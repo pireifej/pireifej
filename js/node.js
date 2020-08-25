@@ -4,7 +4,8 @@ $( document ).ready(function() {
         dataType: "jsonp",
         //              jsonpCallback: "_testcb",
         cache: false,
-        timeout: 5000,
+     timeout: 5000,
+     data: { command: "yes", param1: "hello" },
         success: function(data) {
             console.log("success");
             console.log(data);

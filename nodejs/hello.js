@@ -1,9 +1,10 @@
 #!/usr/bin/env nodejs
 
 var http = require('http');
+const url = require('url');
 
 http.createServer(function (request, response) {
-    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.writeHead(200, {'Content-Type': 'application/json'});
 
     const mariadb = require('mariadb');
     const pool = mariadb.createPool({
@@ -14,13 +15,17 @@ http.createServer(function (request, response) {
         connectionLimit: 5
     });
 
+    const queryObject = url.parse(request.url,true).query;
+    console.log(queryObject);
+
     pool.getConnection()
         .then(conn => {
             conn.query("SELECT * from user")
                 .then((rows) => {
                     //response.end("end response");
-                    console.log(rows);
-                    response.end('Hello World! Node.js is working correctly!\n');
+		    var json = JSON.stringify(rows);
+		    console.log(json);
+                    response.end(json);
                 })
                 .then((res) => {
                     response.end("res");
