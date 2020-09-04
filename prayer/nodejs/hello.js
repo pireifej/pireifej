@@ -19,10 +19,22 @@ http.createServer(function (request, response) {
     var command = queryObject.command;
     console.log(queryObject);
 
-    var query = "SELECT * FROM user";
+    var query = null;
     var currentDateTime = new Date().toISOString();
     currentDateTime = currentDateTime.replace("T", " " ).replace("Z", "");
     currentDateTime = currentDateTime.split(".")[0];
+
+    if (command == "getAllRequests") {
+	query = "SELECT * ";
+	query += "FROM request WHERE user_id = " + queryObject.userId;
+    }
+
+    if (command == "login") {
+	query = "SELECT user_name,email,real_name,location,active,created,user_id ";
+	query += "FROM user WHERE email = '" + queryObject.email + "' ";
+	query += "AND password = '" + queryObject.password + "' ";
+	query += "LIMIT 1;";
+    }
     
     if (command == "createUser") {
 	var password = security.encrypt(queryObject.password);
@@ -35,7 +47,6 @@ http.createServer(function (request, response) {
 	query += "'" + queryObject.location + "',";
 	query += "'" + currentDateTime + "',";
 	query += "TRUE);";
-	console.log(query);
     }
 
     if (command == "createRequest") {
@@ -44,7 +55,23 @@ http.createServer(function (request, response) {
 	query += "'" + queryObject.requestText + "',";
 	query += "TRUE,";
 	query += "'" + currentDateTime + "')";
-	console.log(query);
+    }
+
+    if (command == "prayFor") {
+	query = "INSERT INTO user_request (request_id, user_id, prayer_date_time) VALUES (";
+	query += "'" + queryObject.requestId + "',";
+	query += "'" + queryObject.userId + "',";
+	query += "'" + currentDateTime + "')";
+    }
+
+    console.log(query);
+
+    if (!query) {
+	response.setHeader('Content-type','application/json');
+	response.setHeader('Charset','utf8');
+	var returnError = { "status": "no query" };
+	response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
+	return;
     }
     
     pool.getConnection()
