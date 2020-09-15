@@ -4,6 +4,23 @@ var http = require('http');
 var tools = require('./tools');
 var security = require("./security");
 const url = require('url');
+var nodemailer = require('nodemailer');
+var moment = require('moment');
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+	user: 'pireifej@gmail.com',
+	pass: 'bcvbfcsvklsnegqc'
+    }
+});
+
+var mailOptions = {
+    from: 'pireifej@gmail.com',
+    to: 'myfriend@yahoo.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+};
 
 http.createServer(function (request, response) {
     const mariadb = require('mariadb');
@@ -17,16 +34,19 @@ http.createServer(function (request, response) {
 
     const queryObject = url.parse(request.url,true).query;
     var command = queryObject.command;
-    console.log(queryObject);
-
     var query = null;
-    var currentDateTime = new Date().toISOString();
-    currentDateTime = currentDateTime.replace("T", " " ).replace("Z", "");
-    currentDateTime = currentDateTime.split(".")[0];
+    
+    if (command == "deleteRequest") {
+	query = "UPDATE request ";
+	query += "SET active = FALSE ";
+	query += "WHERE request_id = '" + queryObject.requestId + "'";
+    }
 
     if (command == "getAllRequests") {
-	query = "SELECT * ";
-	query += "FROM request WHERE user_id = " + queryObject.userId;
+	query = "SELECT request_id,user_id,request_text,request_title,CONVERT_TZ('2016-01-01 12:00:00','GMT','America/New_York') as timestamp ";
+	query += "FROM request WHERE user_id = '" + queryObject.userId + "' ";
+	query += "AND active IS TRUE ";
+	query += "ORDER BY timestamp DESC";
     }
 
     if (command == "login") {
@@ -39,29 +59,39 @@ http.createServer(function (request, response) {
     if (command == "createUser") {
 	var password = security.encrypt(queryObject.password);
 	console.log(password);
-	query = "INSERT INTO user (user_name, password, email, real_name, location, created, active) VALUES (";
+	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, active) VALUES (";
 	query += "'" + queryObject.userName + "',";
 	query += "'" + password + "',";
 	query += "'" + queryObject.email + "',";
 	query += "'" + queryObject.realName + "',";
 	query += "'" + queryObject.location + "',";
-	query += "'" + currentDateTime + "',";
+	query += "'" + queryObject.title + "',";
+	query += "'" + queryObject.about + "',";
 	query += "TRUE);";
+
+	mailOptions["to"] = queryObject.email;
+	console.log(mailOptions);
+	transporter.sendMail(mailOptions, function(error, info){
+	    if (error) {
+		console.log(error);
+	    } else {
+		console.log('Email sent: ' + info.response);
+	    }
+	});
     }
 
     if (command == "createRequest") {
-	query = "INSERT INTO request (user_id, request_text, active, request_date_time) VALUES (";
+	query = "INSERT INTO request (user_id, request_text, request_title, active) VALUES (";
 	query += "'" + queryObject.userId + "',";
 	query += "'" + queryObject.requestText + "',";
-	query += "TRUE,";
-	query += "'" + currentDateTime + "')";
+	query += "'" + queryObject.requestTitle + "',";
+	query += "TRUE)";
     }
 
     if (command == "prayFor") {
-	query = "INSERT INTO user_request (request_id, user_id, prayer_date_time) VALUES (";
+	query = "INSERT INTO user_request (request_id, user_id, timestamp) VALUES (";
 	query += "'" + queryObject.requestId + "',";
-	query += "'" + queryObject.userId + "',";
-	query += "'" + currentDateTime + "')";
+	query += "'" + queryObject.userId + "')";
     }
 
     console.log(query);
@@ -81,6 +111,7 @@ http.createServer(function (request, response) {
 		    response.setHeader('Content-type','application/json');
 		    response.setHeader('Charset','utf8');
 		    response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+		    console.log(JSON.stringify(rows));
 		    conn.end();
                 })
                 .catch(err => {
