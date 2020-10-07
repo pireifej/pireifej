@@ -6,6 +6,7 @@ var security = require("./security");
 const url = require('url');
 var nodemailer = require('nodemailer');
 var moment = require('moment');
+var fs = require('fs')
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -23,6 +24,7 @@ var mailOptions = {
 };
 
 http.createServer(function (request, response) {
+    /*
     const mariadb = require('mariadb');
     const pool = mariadb.createPool({
         host: 'localhost',
@@ -31,10 +33,19 @@ http.createServer(function (request, response) {
         database: 'god',
         connectionLimit: 5
     });
-
+*/
     const queryObject = url.parse(request.url,true).query;
     var command = queryObject.command;
     var query = null;
+    var readFile = null;
+
+    if (command == "getPrayer") {
+	query = "SELECT * ";
+	query += "FROM prayers ";
+	query += "WHERE category = '" + queryObject.category + "' ";
+	query += "LIMIT 1;";
+	readFile = true;
+    }
     
     if (command == "deleteRequest") {
 	query = "UPDATE request ";
@@ -43,14 +54,26 @@ http.createServer(function (request, response) {
     }
 
     if (command == "getAllRequests") {
-	query = "SELECT request_id,user_id,request_text,request_title,CONVERT_TZ('2016-01-01 12:00:00','GMT','America/New_York') as timestamp ";
+	query = "SELECT request_id,user_id,request_text,request_title,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp ";
 	query += "FROM request WHERE user_id = '" + queryObject.userId + "' ";
 	query += "AND active IS TRUE ";
 	query += "ORDER BY timestamp DESC";
     }
 
+    if (command == "getRequest") {
+	query = "SELECT request_id,user_id,request_text,request_title,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp ";
+	query += "FROM request WHERE request_id = '" + queryObject.requestId + "' ";
+    }
+
+    if (command == "getRequestFeed") {
+	query = "SELECT request_id,user_id,request_text,request_title,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp ";
+	query += "FROM request ";
+	query += "WHERE active IS TRUE ";
+	query += "ORDER BY timestamp DESC";
+    }
+
     if (command == "login") {
-	query = "SELECT user_name,email,real_name,location,active,created,user_id ";
+	query = "SELECT user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id ";
 	query += "FROM user WHERE email = '" + queryObject.email + "' ";
 	query += "AND password = '" + queryObject.password + "' ";
 	query += "LIMIT 1;";
@@ -103,16 +126,60 @@ http.createServer(function (request, response) {
 	response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
 	return;
     }
-    
+
+    response.setHeader('Content-type','application/json');
+    response.setHeader('Charset','utf8');
+
+    var pool = require("./mariadbConnector");
+
+    exports.getPosts = function(callback) {
+	pool.getConnection()
+	    .then(connection => {
+		connection.query(query)
+		    .then((rows) => {
+			if (readFile) {
+			    var textFileName = rows[0].prayer_file_name;
+			    fs.readFile('/home/pireifej/pireifej/prayer/prayers/' + textFileName, 'utf8', function (err,data) {
+				if (err) {
+				    return console.log(err);
+				}
+				rows[0]["prayer_text"] = data;
+				response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+				connection.end();
+			    });
+			} else {
+			    response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+			    connection.release();
+			    connection.end();
+			}
+		    })})}
+		      
+    exports.getPosts("test");
+
+    /*
     pool.getConnection()
         .then(conn => {
             conn.query(query)
                 .then((rows) => {
 		    response.setHeader('Content-type','application/json');
 		    response.setHeader('Charset','utf8');
-		    response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
-		    console.log(JSON.stringify(rows));
-		    conn.end();
+
+		    if (readFile) {
+			var textFileName = rows[0].prayer_file_name;
+			fs.readFile('/home/pireifej/pireifej/prayer/prayers/' + textFileName, 'utf8', function (err,data) {
+			    if (err) {
+				return console.log(err);
+			    }
+			    rows[0]["prayer_text"] = data;
+			    response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+			    //console.log(JSON.stringify(rows));
+			    conn.end();
+			});
+		    } else {
+			response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+			//console.log(JSON.stringify(rows));
+			conn.end();
+		    }
                 })
                 .catch(err => {
                     console.log("error");
@@ -125,5 +192,6 @@ http.createServer(function (request, response) {
             response.end("Error again");
             conn.end();
         });
+    */
 }).listen(8080);
 console.log('Server running at http://198.12.248.83:8080/');

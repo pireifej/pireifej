@@ -8,7 +8,7 @@
 	     =============================================== -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Masha - Medium Social Network Redesigned</title>
+	<title>God Help Me - New Request</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Add your business website description here">
@@ -29,7 +29,7 @@
 	<!-- Style-->
 	<link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
 	<link type="text/css" href="css/app.css" rel="stylesheet" />
-	<link type="text/css" href="css/profile-edit.css" rel="stylesheet" />
+	<link type="text/css" href="css/new-request.css" rel="stylesheet" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -48,7 +48,7 @@
 	   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
 	     <span class="navbar-toggler-icon"></span>
 	   </button>
-	   <a href="index.html" class="navbar-brand mr-0"> PRAY FOR US</a>
+	   <a href="index.html" class="navbar-brand mr-0"> MEDIUM</a>
 	   <div class="navbar-collapse collapse justify-content-between" id="collapsingNavbar2">
 	     <div><!--placeholder to evenly space flexbox items and center links--></div>
 	     <ul class="navbar-nav">
@@ -228,7 +228,7 @@
 	     <div class="row">
 	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
 		 <div class="post-heading text-center">
-		   <h1>We're excited to have you!</h1>
+		   <h1>New Prayer Request</h1>
 		 </div>
 	       </div>
 	     </div>
@@ -248,7 +248,7 @@
 
 		   <div class="row post-top-sec">
 		     <div class="col-lg-3">
-		       <h5>Provide your information</h5>
+		       <h5 class="request-title">What would you like to request?</h5>
 		     </div><!-- /.col-lg-3 -->
 		     <div class="col-lg-3">
 		     </div><!-- /.col-lg-3 -->
@@ -265,22 +265,11 @@
 
 		   <div class="form-style-2">
 <!--		     <div class="form-style-2-heading">Provide your information</div>-->
-		     <form id="form">
-		       <label for="username"><span>Username <span class="required">*</span></span><input type="text" class="input-field" name="username" value="" /></label>
-		       <label for="password"><span>Password <span class="required">*</span></span><input type="password" class="input-field" name="password" value="" /></label>
-		       <label for="email"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="email" value="" /></label>
-		       <label for="location"><span>Name <span></span></span><input type="text" class="input-field" name="location" value="" /></label>
-		       <label for="location"><span>Location <span></span></span><input type="text" class="input-field" name="name" placeholder="city,state,country" value="" /></label>
-<!--		       <label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>-->
-		       <label for="field4"><span>Reason for joining</span><select name="reason" class="select-field">
-			   <option value="General Question">Pray for others</option>
-			   <option value="Advertise">Pray for myself</option>
-			   <option value="Partnership">Curious</option>
-		       </select></label>
-		       <label for="title"><span>Title <span></span></span><input type="text" class="input-field" name="title" value="" /></label>
-		       <label for="about"><span>About <span></span></span><textarea name="about" class="textarea-field"></textarea></label>
+		     <form id="newRequestForm">
+		       <label for="subject"><span>Subject <span class="required">*</span></span><input type="text" class="input-field" name="subject" value="" /></label>
+		       <label for="request"><span>Request <span></span></span><textarea name="request" class="textarea-field"></textarea></label>
 		       
-		       <label><span> </span><input type="submit" value="Submit" /></label>
+		       <label><span> </span><input class="clicky" type="submit" value="Submit" /></label>
 		     </form>
 		   </div>
 
@@ -320,6 +309,7 @@
 	 <script src="js/bootstrap.js"></script>
 	 <script src="js/medium.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	 <script src="js/common.js"></script>
 	 <script src="js/node.js"></script>
 	 <script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
   </body>

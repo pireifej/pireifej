@@ -8,7 +8,7 @@
 	     =============================================== -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Masha - Medium Social Network Redesigned</title>
+	<title>Pray For Us - Prayer Social Network</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Add your business website description here">
@@ -27,8 +27,9 @@
 		 CSS
 		 =============================================== -->
 	<!-- Style-->
-	<link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
-	<link type="text/css" href="css/app.css" rel="stylesheet" />
+        <link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
+        <link type="text/css" href="css/app.css" rel="stylesheet" />
+	<link type="text/css" href="css/prayer.css" rel="stylesheet" />
 	<link type="text/css" href="css/profile-edit.css" rel="stylesheet" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,7 +40,7 @@
 
 		 </head>
 
-  <body class="greybg">
+  <body>
 
          <!-- ==============================================
      Navigation Section
@@ -117,7 +118,7 @@
 		     <div class="col-xs-4 b-r b-b">
 		       <a class="p-a block text-center">
 			 <i class="fa fa-files-o text-muted m-v-sm"></i>
-			 <span class="block">StOries</span>
+			 <span class="block">Stories</span>
 		       </a>
 		     </div><!-- /col-xs-4 -->
 		     <div class="col-xs-4 b-r b-b">
@@ -200,8 +201,8 @@
 		   <span class="avatar w-32"><img src="img/users/2.jpg" class="w-full rounded" width="25" height="25" alt="..."></span>
 		   <i class="mini"></i>
 		   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-		   <span class="hidden-xs">
-		     Alex Grantte
+		   <span id="user-name" class="hidden-xs">
+		     --
 		   </span>
 		 </a>
 		 <div class="dropdown-menu w dropdown-menu-scale pull-right">
@@ -220,70 +221,149 @@
 	   </div><!-- /navbar-collapse -->
 	 </nav><!-- /nav -->
 
+
 	      <!-- ==============================================
 		    Header
 		    =============================================== -->
-	 <header class="masthead" style="">
+	 <header class="page-post-2">
 	   <div class="container">
 	     <div class="row">
-	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-		 <div class="post-heading text-center">
-		   <h1>We're excited to have you!</h1>
-		 </div>
-	       </div>
-	     </div>
-	   </div>
-	 </header>
 
+	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+		 <div class="post-heading">
+		   <p class="entry-meta">
+		     <span class="date updated time">
+		       <time id="request-timestamp" class="entry-modified-time">--</time>
+		     </span> &nbsp; / &nbsp;
+		     <span class="entry-categories">
+		       <a id="prayer-category" rel="category tag">--</a>
+		     </span>
+		   </p>
+		   <h1 id="request-title"></h1>
+		 </div><!-- /.post-heading -->
+	       </div><!-- /.col-lg-8 -->
+
+	     </div><!-- /.row -->
+	   </div><!-- /.container -->
+	 </header><!-- /header -->
+
+	      <!-- ==============================================
+		    Header
+		    =============================================== -->
+
+	 <div class="header-avatar">
+	   <img alt="..." src="img/users/5.jpg" class="avatar avatar-200 photo" width="200" height="200">
+	   <p>Kyle Murray</p>
+	 </div><!-- /.header-avatar -->
 
 
 	      <!-- ==============================================
 		    Post Content
 		    =============================================== -->
-	 <article>
+	 <article class="entry-content">
 	   <div class="container">
 	     <div class="row">
-	       <div class="col-lg-10 offset-md-1">
-		 <div class="white-blogpage">
+	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
 
-		   <div class="row post-top-sec">
-		     <div class="col-lg-3">
-		       <h5>Provide your information</h5>
-		     </div><!-- /.col-lg-3 -->
-		     <div class="col-lg-3">
-		     </div><!-- /.col-lg-3 -->
-		     <div class="col-lg-3">
-		     </div><!-- /.col-lg-3 -->
-		     <div class="col-lg-3">
-		     </div><!-- /.col-lg-3 -->
+		 <h4 id="prayer-title">--</h4>
+		 <p id="prayer">--</p>
+		 
+<!--		 <p>
+		   <strong>practicing the guitar.</strong>
+		 </p>
+-->
 
-		     <div class="col-lg-12">
-		       <hr class="small-hr">
-		     </div> <!-- /.col-lg-12 -->
-		   </div><!-- /.row -->
+	       </div><!-- /col-lg-8 -->
+	     </div><!-- /row -->
+	   </div><!-- /container -->
+	 </article><!-- /article -->
+
+	      <!-- ==============================================
+     Banner Section
+     =============================================== -->
+	 <section class="banner-comment">
+	   <div class="container">
+	     <h1>Amen.</h1>
+	   </div><!-- /container -->
+	 </section><!-- /section -->
 
 
-		   <div class="form-style-2">
-<!--		     <div class="form-style-2-heading">Provide your information</div>-->
-		     <form id="form">
-		       <label for="username"><span>Username <span class="required">*</span></span><input type="text" class="input-field" name="username" value="" /></label>
-		       <label for="password"><span>Password <span class="required">*</span></span><input type="password" class="input-field" name="password" value="" /></label>
-		       <label for="email"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="email" value="" /></label>
-		       <label for="location"><span>Name <span></span></span><input type="text" class="input-field" name="location" value="" /></label>
-		       <label for="location"><span>Location <span></span></span><input type="text" class="input-field" name="name" placeholder="city,state,country" value="" /></label>
-<!--		       <label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>-->
-		       <label for="field4"><span>Reason for joining</span><select name="reason" class="select-field">
-			   <option value="General Question">Pray for others</option>
-			   <option value="Advertise">Pray for myself</option>
-			   <option value="Partnership">Curious</option>
-		       </select></label>
-		       <label for="title"><span>Title <span></span></span><input type="text" class="input-field" name="title" value="" /></label>
-		       <label for="about"><span>About <span></span></span><textarea name="about" class="textarea-field"></textarea></label>
-		       
-		       <label><span> </span><input type="submit" value="Submit" /></label>
-		     </form>
-		   </div>
+	      <!-- ==============================================
+		    Post Content
+		    =============================================== -->
+	 <article class="entry-content-2">
+	   <div class="container">
+	     <div class="row">
+	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
 
+	       </div><!-- /col-lg-8 -->
+	     </div><!-- /row -->
+	   </div><!-- /container -->
+	 </article><!-- /article -->
+
+	      <!-- ==============================================
+		    Post Content
+		    =============================================== -->
+	 <article class="post-comments">
+	   <div class="container">
+	     <div class="row">
+	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+
+		 <div class="comments-list-notification">
+		   <h4><span class="text">2 Comments</span></h4>
+		 </div><!-- /.comment-list -->
+
+		 <div class="comments-list">
+
+		   <div class="comment-body">
+		     <div class="author-avatar">
+		       <img alt="..." src="img/users/3.jpg" class="img-fluid" width="100" height="100">
+		     </div>
+		     <div class="comment-content">
+		       <span class="author-name">David Murlee</span>
+		       <span class="author-time">June 13, 2017 at 2:37 pm</span>
+		       <p class="author-post">Thanks, great article.</p>
+		       <a rel="nofollow" class="comment-reply-link" href="#"  aria-label="Reply to Bablofil">Reply</a>
+		     </div><!-- /.comment-content -->
+		   </div><!-- .comment-body -->
+
+		 </div><!-- /.comment-list -->
+
+		 <div class="comments-list">
+
+		   <div class="comment-body">
+		     <div class="author-avatar">
+		       <img alt="..." src="img/users/4.jpg" class="img-fluid" width="100" height="100">
+		     </div>
+		     <div class="comment-content">
+		       <span class="author-name">Jonathan Smart</span>
+		       <span class="author-time">June 13, 2017 at 2:37 pm</span>
+		       <p class="author-post">I love the article, keep up with the good work.</p>
+		       <a rel="nofollow" class="comment-reply-link" href="#"  aria-label="Reply to Bablofil">Reply</a>
+		     </div><!-- /.comment-content -->
+		   </div><!-- .comment-body -->
+
+		 </div><!-- /.comment-list -->
+
+		 <div class="comments-list">
+		   <!-- The contactform -->
+		   <form method="post" name="contactform" id="contactform">
+		     <fieldset>
+		       <!-- Comments / Message -->
+		       <label for="comments" accesskey="C"><i class="fa fa-comment"></i></label>
+		       <textarea name="comments" id="comments"></textarea>
+		       <!-- Send button -->
+		       <div class="text-center">
+			 <button type="submit" class="kafe-btn kafe-btn-mint full-width">Submit</button>
+		       </div>
+		     </fieldset>
+		   </form>
+		 </div><!-- /.comment-list -->
+
+	       </div><!-- /col-lg-8 -->
+	     </div><!-- /row -->
+	   </div><!-- /container -->
+	 </article><!-- /article -->
 
 	      <!-- ==============================================
      Footer Section
@@ -315,12 +395,14 @@
 	      <!-- ==============================================
 		    Scripts
 		    =============================================== -->
-	 <script src="js/jquery.js"></script>
-	 <script src="js/tether.min.js"></script>
-	 <script src="js/bootstrap.js"></script>
-	 <script src="js/medium.js"></script>
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
-	 <script src="js/node.js"></script>
-	 <script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/medium.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	<script src="js/common.js"></script>
+	<script src="js/pray.js"></script>
+	<script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
+
   </body>
   </html>
