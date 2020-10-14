@@ -1,33 +1,33 @@
 $( document ).ready(function() {
     window.god = window.god || {};
-    
-    var params = {};
-
+        
     god.login();
     getRequestFeed();
-
-    window.openForm = function() {
-	$("#newRequest").css("display", "block");
-    }
-
-    window.closeForm = function() {
-	$("#newRequest").css("display", "none");
-    }
+    god.getCategories("afterGetCategories");
 
     $("#newRequestForm").submit(function(e) {
 	console.log("CREATE");
 	e.preventDefault();
-	window.closeForm();
 
 	var formValues = $("#newRequestForm").serializeArray();
+	var category = formValues[1].value;
+
+	for (var i = 0; i < god.categories.length; i++) {
+	    if (god.categories[i].category_name == category) {
+		categoryId = god.categories[i].category_id;
+		break;
+	    }
+	}
 
 	params = {
 	    command: 'createRequest',
 	    jsonpCallback: 'afterCreateRequest',
 	    userId: god.userId,
-	    requestText: formValues[1].value,
-	    requestTitle: formValues[0].value
+	    requestText: "\"" + formValues[2].value + "\"",
+	    requestTitle: "\"" + formValues[0].value + "\"",
+	    requestCategoryId: categoryId
 	};
+	console.log(params);
 	god.sendQuery(params);
     })
 
@@ -57,9 +57,10 @@ $( document ).ready(function() {
 	console.log("insertRequests...");
 	$("#requests").empty();
 	var htmlPost = "";
-	$("#nbrRequests").html(response.length + " Requests");
-	for (var i = 0; i < response.length; i++) {
-	    var request = response[i];
+	$("#nbrRequests").html(response.result.length + " Requests");
+	console.log(response);
+	for (var i = 0; i < response.result.length; i++) {
+	    var request = response.result[i];
 	    var date = god.getFormattedTimestamp(request.timestamp);
 
 	    htmlPost += " <div>";
@@ -78,7 +79,7 @@ $( document ).ready(function() {
 	    htmlPost += "    	<ul>";
 	    htmlPost += "    	<li><a href='#'>" + request.request_id + "</a></li>";
 	    htmlPost += "    	<li>" + date + "</li>";
-	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.request_id + " Min Read</li>";
+	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.category_name + " </li>";
 	    htmlPost += "    	</ul>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='read-more'>";
@@ -111,9 +112,9 @@ $( document ).ready(function() {
 	console.log("insertRequestFeed...");
 	$("#request-feed").empty();
 	var htmlPost = "";
-	$("#nbrRequests").html(response.length + " Requests");
-	for (var i = 0; i < response.length; i++) {
-	    var request = response[i];
+	$("#nbrRequests").html(response.result.length + " Requests");
+	for (var i = 0; i < response.result.length; i++) {
+	    var request = response.result[i];
 	    var timestamp = request.timestamp.split("T");
 	    var date = timestamp[0];
 	    var time = timestamp[1];
@@ -144,7 +145,7 @@ $( document ).ready(function() {
 	    htmlPost += "    	<ul>";
 	    htmlPost += "    	<li><a href='#'>" + request.request_id + "</a></li>";
 	    htmlPost += "    	<li>" + date + "</li>";
-	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.request_id + " Min Read</li>";
+	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.category_name + " </li>";
 	    htmlPost += "    	</ul>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='read-more'>";
@@ -210,11 +211,21 @@ $( document ).ready(function() {
 	god.sendQuery(params);
     }
 
-	window.afterGetRequestFeed = function(response) {
-	    console.log('afterGetRequestFeed success');
-	    console.log(response);
-	    insertRequestFeed(response);
+    window.afterGetRequestFeed = function(response) {
+	console.log('afterGetRequestFeed success');
+	console.log(response);
+	insertRequestFeed(response);
+    }
+
+    window.afterGetCategories = function(response) {
+	console.log('afterGetCategories success');
+	var categoryHtml = "";
+	for (var i = 0; i < response.result.length; i++) {
+	    categoryHtml += "<option>" + response.result[i].category_name + "</option>";
 	}
+	$("#category-options").html(categoryHtml);
+	god.categories = response.result;
+    }
 
 	window.afterGetPrayer = function(response) {
 	    console.log('afterGetPrayer success');

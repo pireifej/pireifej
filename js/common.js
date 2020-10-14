@@ -4,6 +4,7 @@ $( document ).ready(function() {
     var userId = "";
 
     god.categories = {};
+
     $.urlParam = function(name){
 	console.log(window.location.href);
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -25,10 +26,15 @@ $( document ).ready(function() {
 	god.sendQuery(params);
     }
 
+    window.afaterEmail = function(response) {
+	console.log("afterEmail success");
+	console.log(response);
+    }
+
     	window.afterLogin = function(response) {
 	    console.log('afterLogin success');
 	    console.log(response);
-	    var user = response.result[0];
+	    var user = response[0];
 	    god.userId = user.user_id;
 	    console.log(user);
 	    $('*[id*=user-name]').each(function() {
@@ -74,20 +80,18 @@ $( document ).ready(function() {
 	return date;
     }
 
-    god.sendQuery = function(params) {	
-	//var url = "https://198.12.248.83:8080/hello.php";
-	url = "callSendQuery.php";
-	//url = "https://www.pireifej.com:8080//prayer/nodejs/sendQuery.js";
-	//var url = "https://198.12.248.83:4433/";
+    god.sendQuery = function(params) {
+	var url = "https://198.12.248.83:8001/";
 	const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	params["tz"] = tz;
 	$.ajax({
-	    type: 'GET',
+	    type: 'POST',
 	    url: url,
 	    data: params,
 	    cache: false,
 	    dataType: 'jsonp',
 	    jsonpCallback: params.jsonpCallback,
+	    jsonp: false,
 	    contentType: 'application/json; charset=utf-8;',
 	    success: function(data) {
 		console.log('success');

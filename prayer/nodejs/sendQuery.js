@@ -8,6 +8,8 @@ var nodemailer = require('nodemailer');
 var moment = require('moment');
 var fs = require('fs')
 
+var home = "/home/pireifej/pireifej/prayer/nodejs/";
+
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -22,20 +24,44 @@ var mailOptions = {
     text: 'That was easy!'
 };
 
-var home = "/home/pireifej/pireifej/prayer/nodejs/";
-const options = {
-    key: fs.readFileSync("/etc/ssl/private/generated-private-key.txt"),
-    cert: fs.readFileSync("/etc/ssl/certs/5bd0662974e1e6c8.crt"),
-    ca: fs.readFileSync("/etc/ssl/certs/gd_bundle-g2-g1.crt"),
-    requestCert: true,
-    rejectUnauthorized: true
-};
+const argv = require('minimist')(process.argv.slice(2));
+var queryObject = {};
+var thing = argv["_"];;
 
-https.createServer(options, function (request, response) {
-    const queryObject = url.parse(request.url,true).query;
+for (var i = 0; i < thing.length; i++) {
+    var param = thing[i];
+    var params = param.split("=");
+    queryObject[params[0]] = params[1];
+}
+
+function createPool() {
+    try {
+	const mariadb = require('mariadb');
+
+	const pool = mariadb.createPool({
+	    host: 'localhost',
+	    user: 'pireifej',
+	    password: 'Armani2362!',
+	    database: 'god',
+	    connectionLimit: 10,
+	    waitForConnections: true,
+	    queueLimit: 0
+	});
+
+	return pool;
+    } catch (error) {
+	return console.log(`Could not connect - ${error}`);
+    }
+}
+
+
+
+
+//https.createServer(options, function (request, response) {
+//    const queryObject = url.parse(request.url,true).query;
     var command = queryObject.command;
     var query = null;
-    var readFile = null;
+    var readFile = null;   
 
     if (command == "getPrayer") {
 	query = "SELECT * ";
@@ -88,7 +114,6 @@ https.createServer(options, function (request, response) {
     
     if (command == "createUser") {
 	var password = security.encrypt(queryObject.password);
-	console.log(password);
 	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, active) VALUES (";
 	query += "'" + queryObject.userName + "',";
 	query += "'" + password + "',";
@@ -100,24 +125,12 @@ https.createServer(options, function (request, response) {
 	query += "TRUE);";
 
 	mailOptions["to"] = queryObject.email;
-	console.log(mailOptions);
+	//console.log(mailOptions);
 	transporter.sendMail(mailOptions, function(error, info){
 	    if (error) {
-		console.log(error);
+		//console.log(error);
 	    } else {
-		console.log('Email sent: ' + info.response);
-	    }
-	});
-    }
-
-    if (command == "sendEmail") {
-	mailOptions["to"] = "pireifej@gmail.com";
-	console.log(mailOptions);
-	transporter.sendMail(mailOptions, function(error, info){
-	    if (error) {
-		console.log(error);
-	    } else {
-		console.log('Email sent: ' + info.response);
+		//console.log('Email sent: ' + info.response);
 	    }
 	});
     }
@@ -137,20 +150,62 @@ https.createServer(options, function (request, response) {
 	query += "'" + queryObject.userId + "')";
     }
 
-    console.log(query);
-
     if (!query) {
-	response.setHeader('Content-type','application/json');
-	response.setHeader('Charset','utf8');
+	//response.setHeader('Content-type','application/json');
+	//response.setHeader('Charset','utf8');
+	//response.setHeader('Access-Control-Allow-Origin', '*');
 	var returnError = { "status": "no query" };
-	response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
+	//response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
 	return;
     }
 
-    response.setHeader('Content-type','application/json');
-    response.setHeader('Charset','utf8');
+    //response.setHeader('Content-type','application/json');
+    //response.setHeader('Charset','utf8');
+    //response.setHeader('Access-Control-Allow-Origin', '*');
+    
+//    var pool = require("./mariadbConnector");
 
-    var pool = require("./mariadbConnector");
+const pool = createPool();
+module.exports = pool;
+pool.getConnection()
+    .then(conn => {
+	conn.query(query)
+	    .then((rows) => {
+		if (readFile) {
+		    var textFileName = rows[0].prayer_file_name;
+		    fs.readFile('/home/pireifej/pireifej/prayer/prayers/' + textFileName, 'utf8', function (err,data) {
+			if (err) {
+			    //console.log(err);
+			    return;
+			}
+			rows[0]["prayer_text"] = data;
+			var obj = {}
+			obj["result"] = rows;
+			obj["query"] = query;
+			console.log(JSON.stringify(obj));
+			conn.release();
+			conn.end();
+			process.exit();
+			return;
+		    });
+		} else {
+		    var obj = {}
+		    obj["result"] = rows;
+		    obj["query"] = query;
+		    console.log(JSON.stringify(obj));
+		    conn.release();
+		    conn.end();
+		    process.exit();
+		    return;
+		}
+	    })
+    });
+
+
+return;
+
+var obj = {};
+obj["query"] = query;
 
     exports.getPosts = function(callback) {
 	pool.getConnection()
@@ -161,17 +216,18 @@ https.createServer(options, function (request, response) {
 			    var textFileName = rows[0].prayer_file_name;
 			    fs.readFile('/home/pireifej/pireifej/prayer/prayers/' + textFileName, 'utf8', function (err,data) {
 				if (err) {
-				    return console.log(err);
+				    //console.log(err);
+				    return;
 				}
 				rows[0]["prayer_text"] = data;
-				response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+				console.log(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
 				connection.end();
 			    });
 			} else {
-			    response.end(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+			    console.log(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
 			    connection.release();
 			    connection.end();
 			}
 		    })})}
-}).listen(8080);
-console.log('Server running at https://198.12.248.83:8080/');
+//}).listen(8080);
+//console.log('Server running at https://198.12.248.83:8080/');
