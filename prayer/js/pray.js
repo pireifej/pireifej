@@ -3,6 +3,8 @@ $( document ).ready(function() {
     
     var params = {};
     var userId = "";
+    var globalPrayerHtml = "";
+    var prayerObj = [];
     var requestId = $.urlParam('requestId');
     
     god.login();
@@ -53,13 +55,52 @@ $( document ).ready(function() {
 	    var prayer = response.result[0];
 	    $("#prayer-title").html(prayer.prayer_title);
 	    var prayerLines = prayer.prayer_text.split("\n");
-	    var prayerHtml = "";
 	    for (var i = 0; i < prayerLines.length; i++) {
-		prayerHtml += "<p>" + prayerLines[i] + "</p>";
+		var prayerWords = prayerLines[i].split(" ");
+		for (var j = 0; j < prayerWords.length; j++) {
+		    var newline = "none";
+		    if (j == 0) {
+			newline = "start";
+		    }
+		    if (j == prayerWords.length - 1) {
+			newline = "end";
+		    }
+		    var obj = {
+			text: prayerWords[j],
+			done: false,
+			newline: newline
+		    };
+		    prayerObj.push(obj);
+		}
 	    }
-	    $("#prayer").html(prayerHtml);
+
 	    $("#prayer-category").html(prayer.category);
+
+	    refreshPrayerDisplay();
 	}
+
+    function refreshPrayerDisplay() {
+	var prayerHtml = "<p>";
+	for (var i = 0; i < prayerObj.length; i++) {
+	    var strongStartTag = "";
+	    var strongEndTag = "";
+	    
+	    if (prayerObj[i].done) {
+		strongStartTag = "<strong>";
+		strongEndTag = "</strong>";
+	    }
+	    if (prayerObj[i].newline == "end") {
+		prayerHtml += strongStartTag + prayerObj[i].text + strongEndTag + "</p>";
+		continue;
+	    }
+	    if (prayerObj[i].newline == "start") {
+		prayerHtml += "<p>" + strongStartTag + prayerObj[i].text + " " + strongEndTag;
+		continue;
+	    }
+	    prayerHtml += strongStartTag + prayerObj[i].text + " " + strongEndTag;
+	}
+	$("#prayer").html(prayerHtml);
+    }
 
 	window.afterPrayFor = function(response) {
 	    console.log('afterPrayFor success');
@@ -82,19 +123,21 @@ $( document ).ready(function() {
 	recognition.onstart = function() {
 	    recognizing = true;
 	    showInfo('info_speak_now');
-	    start_img.src = '/intl/en/chrome/assets/common/images/content/mic-animate.gif';
+	    //start_img.src = '/intl/en/chrome/assets/common/images/content/mic-animate.gif';
+	    //start_img.src = "img/users/7.jpg";
 	};
 
 	recognition.onerror = function(event) {
 	    console.log("ERROR");
 	    console.log(event);
 	    if (event.error == 'no-speech') {
-		start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+		//start_img.src = "img/users/11.jpg";
 		showInfo('info_no_speech');
 		ignore_onend = true;
 	    }
 	    if (event.error == 'audio-capture') {
-		start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+		//start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+		//start_img.src = "img/users/4.jpg";
 		showInfo('info_no_microphone');
 		ignore_onend = true;
 	    }
@@ -113,7 +156,7 @@ $( document ).ready(function() {
 	    if (ignore_onend) {
 		return;
 	    }
-	    start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+	    //start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
 	    if (!final_transcript) {
 		showInfo('info_start');
 		return;
@@ -147,12 +190,61 @@ $( document ).ready(function() {
 		}
 	    }
 	    final_transcript = capitalize(final_transcript);
-	    final_span.innerHTML = linebreak(final_transcript);
-	    interim_span.innerHTML = linebreak(interim_transcript);
+	    verifyPrayer(linebreak(interim_transcript));
 	    if (final_transcript || interim_transcript) {
 		showButtons('inline-block');
 	    }
 	};
+    }
+
+    function cleanWord(wordToClean) {
+	var wordToMatch = wordToClean;
+	wordToMatch = wordToMatch.trim();
+	wordToMatch = wordToMatch.toLowerCase();
+	wordToMatch = wordToMatch.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+	return wordToMatch;
+    }
+
+    function verifyPrayer(words) {
+	var highlight="background-color: yellow;color: black;";
+	var myWords = words.split(" ");;
+	var myWord = myWords[myWords.length - 1];
+
+	for (var i = 0; i < prayerObj.length; i++) {
+	    if (prayerObj[i].done) continue;
+	    if (cleanWord(prayerObj[i].text) == cleanWord(myWord)) {
+		prayerObj[i].done = true;
+		break;
+	    }
+	}
+
+	refreshPrayerDisplay();
+
+	var doneCount = 0;
+	for (var i = 0; i < prayerObj.length; i++) {
+	    if (prayerObj[i].done) doneCount++;
+	}
+
+	var percentComplete = Math.ceil(doneCount / prayerObj.length * 100);
+	console.log(percentComplete + "%");
+	$("#percent-complete").html(percentComplete + "%");
+	
+//	for (var i = 0; i < myWords.length; i++) {
+//	    var myWord = myWords[i];
+//	    var index = globalPrayerHtml.indexOf(myWord);
+/*	    var prayerText = globalPrayerHtml.replace(
+		new RegExp("\\b" + myWord + "\\b"),
+		"<span style='" + highlight + "'>" + myWord + "</span>"
+	    );
+*/
+/*	    var prayerText = globalPrayerHtml.replace(
+		new RegExp("\\b" + myWord + "\\b"),
+		"<strong>" + myWord + "</strong>"
+	    );
+*/
+//	    var prayerText = replaceAt(globalPrayerHtml, index, "<strong>" + myWord + "</string>");
+//	    $("#prayer").html(prayerText);
+//	}
     }
 
     function upgrade() {
@@ -171,51 +263,16 @@ $( document ).ready(function() {
 	return s.replace(first_char, function(m) { return m.toUpperCase(); });
     }
 
-    function createEmail() {
-	var n = final_transcript.indexOf('\n');
-	if (n < 0 || n >= 80) {
-	    n = 40 + final_transcript.substring(40).indexOf(' ');
-	}
-	var subject = encodeURI(final_transcript.substring(0, n));
-	var body = encodeURI(final_transcript.substring(n + 1));
-	window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
-    }
-
-    function copyButton() {
-	if (recognizing) {
-	    recognizing = false;
-	    recognition.stop();
-	}
-	copy_button.style.display = 'none';
-	copy_info.style.display = 'inline-block';
-	showInfo('');
-    }
-
-    function emailButton() {
-	if (recognizing) {
-	    create_email = true;
-	    recognizing = false;
-	    recognition.stop();
-	} else {
-	    createEmail();
-	}
-	email_button.style.display = 'none';
-	email_info.style.display = 'inline-block';
-	showInfo('');
-    }
-
     window.startButton = function(event) {
 	if (recognizing) {
 	    recognition.stop();
 	    return;
 	}
 	final_transcript = '';
-	recognition.lang = select_dialect.value;
+	recognition.lang = "en-US";
 	recognition.start();
 	ignore_onend = false;
-	final_span.innerHTML = '';
-	interim_span.innerHTML = '';
-	start_img.src = '/intl/en/chrome/assets/common/images/content/mic-slash.gif';
+	//start_img.src = '/intl/en/chrome/assets/common/images/content/mic-slash.gif';
 	showInfo('info_allow');
 	showButtons('none');
 	start_timestamp = event.timeStamp;
@@ -240,9 +297,5 @@ $( document ).ready(function() {
 	    return;
 	}
 	current_style = style;
-	copy_button.style.display = style;
-	email_button.style.display = style;
-	copy_info.style.display = 'none';
-	email_info.style.display = 'none';
     }
 });

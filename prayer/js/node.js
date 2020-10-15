@@ -31,6 +31,25 @@ $( document ).ready(function() {
 	god.sendQuery(params);
     })
 
+    $("#quickRequestPost").click(function() {
+	for (var i = 0; i < god.categories.length; i++) {
+	    if (god.categories[i].category_name == "general") {
+		categoryId = god.categories[i].category_id;
+		break;
+	    }
+	}
+	
+	params = {
+	    command: 'createRequest',
+	    jsonpCallback: 'afterQuickCreateRequest',
+	    userId: god.userId,
+	    requestText: "\"" + $("#quickRequestText").val() + "\"",
+	    requestTitle: "quick request",
+	    requestCategoryId: categoryId
+	};
+	god.sendQuery(params);
+    })
+
     $("#form").submit(function(e) {
 	e.preventDefault();
 
@@ -108,6 +127,52 @@ $( document ).ready(function() {
 	$("#requests").html(htmlPost);
     }
 
+    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText) {
+	var htmlPost = "";
+	htmlPost += " <div>";
+	htmlPost += "    <div class='tr-section feed'>";
+	htmlPost += "    	<div class='tr-post'>";
+	htmlPost += "    	<div class='entry-header'>";
+	htmlPost += "    	<div class='entry-thumbnail'>";
+	htmlPost += "    	<a href='#'><img class='img-fluid' src='img/blog/8.jpg' alt='Image'></a>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	<div class='post-content'>";
+	htmlPost += "    	<div class='author-post'>";
+	htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='img/users/8.jpg' alt='Image'></a>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	<div class='entry-meta'>";
+	htmlPost += "    	<ul>";
+	htmlPost += "    	<li><a href='#'>" + requestId + "</a></li>";
+	htmlPost += "    	<li>" + requestDate + "</li>";
+	htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + categoryName + " </li>";
+	htmlPost += "    	</ul>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	<div class='read-more'>";
+	htmlPost += "    	<div class='feed pull-left'>";
+	htmlPost += "    	<ul>";
+	htmlPost += "    	</ul>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	<h2><a href='#' class='entry-title'>" + requestTitle + "</a></h2>";
+	htmlPost += "    	<p>" + requestText + "</p>";
+	htmlPost += "    	<div class='read-more'>";
+	htmlPost += "    	<div class='feed pull-left'>";
+	htmlPost += "    	<ul>";
+	htmlPost += "    	<li><i class='fa fa-comments'></i>134</li>&nbsp;";
+	htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
+	htmlPost += "    	</ul>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	<div class='continue-reading pull-right'>";
+	htmlPost += "    	<a href='pray.html?requestId=" + requestId + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	</div>";
+	htmlPost += "    	</div>";
+	htmlPost += " </div>";
+	return htmlPost;
+    }
+
     function insertRequestFeed(response) {
 	console.log("insertRequestFeed...");
 	$("#request-feed").empty();
@@ -128,48 +193,7 @@ $( document ).ready(function() {
 	    }
 	    time = hour + ":" + times[1] + " " + amOrPM;
 	    date = date + " " + time;
-
-	    htmlPost += " <div>";
-	    htmlPost += "    <div class='tr-section feed'>";
-	    htmlPost += "    	<div class='tr-post'>";
-	    htmlPost += "    	<div class='entry-header'>";
-	    htmlPost += "    	<div class='entry-thumbnail'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid' src='img/blog/8.jpg' alt='Image'></a>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='post-content'>";
-	    htmlPost += "    	<div class='author-post'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='img/users/8.jpg' alt='Image'></a>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='entry-meta'>";
-	    htmlPost += "    	<ul>";
-	    htmlPost += "    	<li><a href='#'>" + request.request_id + "</a></li>";
-	    htmlPost += "    	<li>" + date + "</li>";
-	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.category_name + " </li>";
-	    htmlPost += "    	</ul>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='read-more'>";
-	    htmlPost += "    	<div class='feed pull-left'>";
-	    htmlPost += "    	<ul>";
-	    htmlPost += "    	</ul>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<h2><a href='#' class='entry-title'>" + request.request_title + "</a></h2>";
-	    htmlPost += "    	<p>" + request.request_text + "</p>";
-	    htmlPost += "    	<div class='read-more'>";
-	    htmlPost += "    	<div class='feed pull-left'>";
-	    htmlPost += "    	<ul>";
-	    htmlPost += "    	<li><i class='fa fa-comments'></i>134</li>&nbsp;";
-	    htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
-	    htmlPost += "    	</ul>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='continue-reading pull-right'>";
-	    htmlPost += "    	<a href='pray.html?requestId=" + request.request_id + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += " </div>";
+	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text);
 	}
 	$("#request-feed").html(htmlPost);
     }
@@ -243,6 +267,12 @@ $( document ).ready(function() {
 	    window.location.href = "index.html";
 	    console.log(response);
 	    god.getAllRequests();
+	}
+
+    	window.afterQuickCreateRequest = function(response) {
+	    console.log('quickCreateRequest success');
+	    console.log(response);
+	    $("#quickRequestText").val("");
 	}
 
 	window.afterPrayFor = function(response) {
