@@ -259,7 +259,7 @@
 }
 
 /* line 6, ../bower_components/font-awesome/scss/_icons.scss */
-.fa-search:before {
+.fa-replace:before {
   content: "\f002";
 }
 
@@ -321,12 +321,12 @@
 }
 
 /* line 20, ../bower_components/font-awesome/scss/_icons.scss */
-.fa-search-plus:before {
+.fa-replace-plus:before {
   content: "\f00e";
 }
 
 /* line 21, ../bower_components/font-awesome/scss/_icons.scss */
-.fa-search-minus:before {
+.fa-replace-minus:before {
   content: "\f010";
 }
 
@@ -4160,12 +4160,12 @@ a {
      ================================ */
 }
 /* line 22, ../scss/_nav.scss */
-#mainNav .top_search {
+#mainNav .top_replace {
   height: 33px;
   position: relative;
 }
 /* line 26, ../scss/_nav.scss */
-#mainNav .top_search .top_search_con {
+#mainNav .top_replace .top_replace_con {
   background: #fff;
   height: 30px;
   border: 1px solid #E4E4E4 !important;
@@ -4173,7 +4173,7 @@ a {
   width: 100%;
 }
 /* line 33, ../scss/_nav.scss */
-#mainNav .top_search .top_search_con input[type="text"] {
+#mainNav .top_replace .top_replace_con input[type="text"] {
   background: none !important;
   border: medium none;
   height: 100%;
@@ -4186,7 +4186,7 @@ a {
   transition: .5s ease-out;
 }
 /* line 45, ../scss/_nav.scss */
-#mainNav .top_search .top_search_con input[type="text"]:focus {
+#mainNav .top_replace .top_replace_con input[type="text"]:focus {
   background: none !important;
   border: medium none;
   height: 100%;
@@ -4197,7 +4197,7 @@ a {
   outline: none;
 }
 /* line 55, ../scss/_nav.scss */
-#mainNav .top_search .top_search_icon {
+#mainNav .top_replace .top_replace_icon {
   color: #1ab394 !important;
   font-size: 1em;
   left: 15px;
@@ -4205,7 +4205,7 @@ a {
   top: 4px;
 }
 /* line 62, ../scss/_nav.scss */
-#mainNav .top_search .top_search_submit {
+#mainNav .top_replace .top_replace_submit {
   border: medium none;
   padding: 0;
   position: absolute;
@@ -4767,13 +4767,13 @@ a {
   color: #fff !important;
 }
 /* line 34, ../scss/_nav-2.scss */
-#mainNav-2 .top_search {
+#mainNav-2 .top_replace {
   height: 33px;
   position: relative;
   top: 5px;
 }
 /* line 39, ../scss/_nav-2.scss */
-#mainNav-2 .top_search .top_search_con {
+#mainNav-2 .top_replace .top_replace_con {
   background: #fff;
   height: 30px;
   border: 1px solid #E4E4E4 !important;
@@ -4781,7 +4781,7 @@ a {
   width: 100%;
 }
 /* line 46, ../scss/_nav-2.scss */
-#mainNav-2 .top_search .top_search_con input[type="text"] {
+#mainNav-2 .top_replace .top_replace_con input[type="text"] {
   background: none !important;
   border: medium none;
   height: 100%;
@@ -4794,7 +4794,7 @@ a {
   transition: .5s ease-out;
 }
 /* line 58, ../scss/_nav-2.scss */
-#mainNav-2 .top_search .top_search_con input[type="text"]:focus {
+#mainNav-2 .top_replace .top_replace_con input[type="text"]:focus {
   background: none !important;
   border: medium none;
   height: 100%;
@@ -4805,7 +4805,7 @@ a {
   outline: none;
 }
 /* line 68, ../scss/_nav-2.scss */
-#mainNav-2 .top_search .top_search_icon {
+#mainNav-2 .top_replace .top_replace_icon {
   color: #1ab394 !important;
   font-size: 14px;
   left: 15px;
@@ -4813,7 +4813,7 @@ a {
   top: 4px;
 }
 /* line 75, ../scss/_nav-2.scss */
-#mainNav-2 .top_search .top_search_submit {
+#mainNav-2 .top_replace .top_replace_submit {
   border: medium none;
   padding: 0;
   position: absolute;
@@ -6610,14 +6610,14 @@ div.blog-row .blog-col .blog-content .blog-detail .blog-detail-text i {
   border-radius: 50%;
 }
 /* line 155, ../scss/_newsfeed.scss */
-.box-typical .people-rel-list .site-header-search {
+.box-typical .people-rel-list .site-header-replace {
   width: auto;
   margin: 0 15px;
   height: 34px;
   padding: 2px 0 0;
 }
 /* line 161, ../scss/_newsfeed.scss */
-.box-typical .site-header-search input[type="text"] {
+.box-typical .site-header-replace input[type="text"] {
   font-family: 'Abhaya Libre', serif;
   width: 100%;
   padding: 4px 0 0 14px;
@@ -6630,11 +6630,11 @@ div.blog-row .blog-col .blog-content .blog-detail .blog-detail-text i {
   transition: all .2s ease-in-out;
 }
 /* line 173, ../scss/_newsfeed.scss */
-.box-typical .people-rel-list .site-header-search button {
+.box-typical .people-rel-list .site-header-replace button {
   line-height: 32px;
 }
 /* line 176, ../scss/_newsfeed.scss */
-.box-typical .site-header-search button {
+.box-typical .site-header-replace button {
   display: block;
   position: relative;
   right: -180px;

@@ -106,4 +106,11 @@ $( document ).ready(function() {
 	};
 	god.sendQuery(params);
     }
+
+    	   $(".dual-nav").on('shown.bs.collapse',function(){
+	       $(".dual-navv").collapse('show');
+	   })
+	   $(".dual-nav").on('hidden.bs.collapse',function(){
+	       $(".dual-navv").collapse('hide');
+	   })
 });

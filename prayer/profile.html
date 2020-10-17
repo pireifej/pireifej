@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+	    <!-- ==============================================
+		Title and Meta Tags
+		=============================================== -->
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pray For Us - Prayer Network</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Add your business website description here">
+        <meta name="keywords" content="Add your, business, website, keywords, here">
+        <meta name="author" content="Add your business, website, author here">
+		
+		<!-- ==============================================
+		Favicons
+		=============================================== --> 
+		<link rel="shortcut icon" href="img/favicons/favicon.ico">
+		<link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+		
+	    <!-- ==============================================
+		CSS
+		=============================================== -->
+        <!-- Style-->
+        <link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
+        <link type="text/css" href="css/app.css" rel="stylesheet" />
+	<link type="text/css" href="css/prayer.css" rel="stylesheet" />
+	<link type="text/css" href="css/profile-edit.css" rel="stylesheet" />
+				
+  </head>
+
+  <body>
+  
+     <!-- ==============================================
+     Navigation Section
+     =============================================== -->
+     {{header}}
+
+
+     <!-- ==============================================
+	 Header
+	 =============================================== -->
+	 <header class="profile-bg-picture">
+     </header><!-- /header -->	
+	 
+     <!-- ==============================================
+	 User Section
+	 =============================================== -->
+     <section class="user-section">	 
+	  <div class="container">
+	   <div class="profile-user-box">
+	    <div class="row">
+		 <div class="col-sm-6">
+		  <span class="pull-left m-r-15"><img src="img/users/11.jpg" alt="" class="thumb-lg img-circle"></span>
+		  <div class="media-body">
+		   <h4 id="user-name" class="m-t-5 m-b-5 ellipsis">--</h4>
+		   <p id="user-title" class="font-13">--</p>
+		   <p id="user-location" class="text-muted m-b-0"><small>--</small></p>
+		  </div><!-- /media-body -->
+		 </div><!-- /col-sm-6 -->
+		 <div class="col-sm-6">
+		  <div class="text-right">
+		   <button id="edit-profile" type="button" class="clicky btn btn-success waves-effect waves-light">
+		    <i class="fa fa-user m-r-5"></i> Edit Profile
+		   </button>
+		  </div><!-- /text-right -->
+		 </div><!-- /col-sm-6 -->
+	    </div><!-- /row -->
+	   </div><!--/ profile-user-box -->
+	  </div><!-- /container -->
+	 </section><!-- /section --> 
+	  
+    <!-- ==============================================
+     Posts Section
+     =============================================== -->		  
+	  
+	 <section class="posts-2">
+	  <div class="container">
+	   <div class="row">
+	   
+	    <div class="col-lg-3">
+
+         <div class="tbl">
+		  <div class="tbl-row">
+		   <div class="tbl-cell">
+			<span id="nbrRequests" class="number">0</span>
+		   </div>
+		   <div class="tbl-cell">
+			<span id="nbrPrayers" class="number">0</span>
+		   </div>
+		  </div>
+		 </div>		
+
+         <div class="card about-user">
+		  <div class="card-body">
+		   <div class="card-block">
+			<h4 class="card-title info">About</h4>
+			<p id="user-about" class="card-text">--</p>
+            <div class="text-left">
+             <p class="card-text"><strong>Full Name :</strong> <span id="user-name" class="m-l-15">--</span></p>
+             <p class="card-text"><strong>Location :</strong> <span id="user-location" class="m-l-15">--</span></p>
+            </div>			
+		   </div>
+		  </div>
+	     </div>		
+		
+		
+	    </div>
+	    
+	    <div class="col-lg-6">
+	      <a href="new-request.html"  onclick='window.openForm()' class="kafe-btn kafe-btn-default newRequest"><i class="fa fa-spinner"></i> Create New Request</a>
+	      <div id="requests">
+	      </div>
+		 
+		</div>
+		<div class="col-lg-3">
+		
+	     <div class="tr-section tr-ad ad-before">
+		  <a href="#"><img class="img-responsive" src="img/posts/n.gif" alt="Image"></a>
+	     </div><!-- /.tr-post -->
+		 
+		</div>
+		
+	   </div>
+	  </div>
+    </section>		
+	 
+	 <!-- ==============================================
+	 More Section
+	 =============================================== -->		  
+	 <section class="more" style="background: #f2f2f2 !important; padding-top: 10px;">
+	  <div class="container">
+	   <div class="row">
+	    <div class="col-lg-8 offset-md-2">
+		 <a href="new-request.html"  onclick='window.openForm()' class="kafe-btn kafe-btn-default"><i class="fa fa-spinner"></i> Create New Request</a>
+		</div><!-- /.col-lg-8 -->
+	   </div><!-- /.row -->
+	  </div><!-- /container -->
+	 </section><!-- /w -->
+
+	 <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=l4fS8vum1UkS3QovxVFIzPJyPG4C2Ly36WygJ4d29iXMNucJJ3RZZcAaZ65Z"></script></span>
+	
+     <!-- ==============================================
+     Footer Section
+     =============================================== -->	
+     <footer class="bottom-footer">
+	  <div class="container">
+	   <p><span>2020 pireifej.com</span></p>			
+		 
+	   <ul id="menu-footer-menu">
+	    <li>
+	     <a href="#">About Us</a>
+	    </li><!-- /li -->
+	    <li>
+	     <a href="#">Privacy</a>
+	    </li><!-- /li -->
+		<li>
+		 <a href="#">Terms & Conditions</a>
+		</li><!-- /li -->
+		<li>
+		 <a href="#">Contact Us</a>
+		</li><!-- /li -->
+	   </ul><!-- /ul -->	
+	   
+	  </div><!-- /container -->
+     </footer><!-- /footer -->
+	 
+     <a id="scrollup">Scroll</a>
+
+<!--     <div id="newRequest" class="form-popup form-style-2">
+       <form id="newRequestForm" class="form-container">
+	 <h1>New Request</h1>
+
+	 <label for="title"><span>Title <span class="required">*</span></span><input type="text" class="input-field" name="title" value="" /></label>
+	 <label for="request"><span>Request <span></span></span><textarea name="request" class="textarea-field"></textarea></label>
+	 
+	 <button type="submit" class="btn">Publish</button>
+	 <button class="btn cancel" onclick="closeForm()">Cancel</button>
+       </form>
+       </div>-->
+	 
+     <!-- ==============================================
+	 Scripts
+	 =============================================== -->
+	<script src="js/jquery.js"></script>
+	<script src="js/tether.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/medium.js"></script>
+	<script src="js/common.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	<script src="js/node.js"></script>
+	<script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -219,13 +219,13 @@ button:focus {
           margin-top: 0px; }
       .header_area .navbar .nav .nav-item:last-child {
         margin-right: 0px; }
-    .header_area .navbar .search {
+    .header_area .navbar .replace {
       font-size: 12px;
       line-height: 60px;
       display: inline-block;
       color: #222222;
       margin-left: 80px; }
-      .header_area .navbar .search i {
+      .header_area .navbar .replace i {
         font-weight: 600; }
   .header_area.navbar_fixed .main_menu {
     position: fixed;
@@ -605,7 +605,7 @@ button:focus {
     color: #fff;
     padding: 8px 0px;
     margin-bottom: 30px; }
-  .blog_right_sidebar .search_widget .input-group .form-control {
+  .blog_right_sidebar .replace_widget .input-group .form-control {
     font-size: 14px;
     line-height: 29px;
     border: 0px;
@@ -616,17 +616,17 @@ button:focus {
     border-radius: 45px;
     z-index: 0;
     background: #766dff; }
-    .blog_right_sidebar .search_widget .input-group .form-control.placeholder {
+    .blog_right_sidebar .replace_widget .input-group .form-control.placeholder {
       color: #fff; }
-    .blog_right_sidebar .search_widget .input-group .form-control:-moz-placeholder {
+    .blog_right_sidebar .replace_widget .input-group .form-control:-moz-placeholder {
       color: #fff; }
-    .blog_right_sidebar .search_widget .input-group .form-control::-moz-placeholder {
+    .blog_right_sidebar .replace_widget .input-group .form-control::-moz-placeholder {
       color: #fff; }
-    .blog_right_sidebar .search_widget .input-group .form-control::-webkit-input-placeholder {
+    .blog_right_sidebar .replace_widget .input-group .form-control::-webkit-input-placeholder {
       color: #fff; }
-    .blog_right_sidebar .search_widget .input-group .form-control:focus {
+    .blog_right_sidebar .replace_widget .input-group .form-control:focus {
       box-shadow: none; }
-  .blog_right_sidebar .search_widget .input-group .btn-default {
+  .blog_right_sidebar .replace_widget .input-group .btn-default {
     position: absolute;
     right: 20px;
     background: transparent;

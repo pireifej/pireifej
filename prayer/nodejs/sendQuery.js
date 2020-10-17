@@ -54,9 +54,6 @@ function createPool() {
     }
 }
 
-
-
-
 //https.createServer(options, function (request, response) {
 //    const queryObject = url.parse(request.url,true).query;
     var command = queryObject.command;
@@ -145,7 +142,7 @@ function createPool() {
     }
 
     if (command == "prayFor") {
-	query = "INSERT INTO user_request (request_id, user_id, timestamp) VALUES (";
+	query = "INSERT INTO user_request (request_id, user_id) VALUES (";
 	query += "'" + queryObject.requestId + "',";
 	query += "'" + queryObject.userId + "')";
     }
@@ -199,8 +196,17 @@ pool.getConnection()
 		    return;
 		}
 	    })
+	    .catch(err => {
+		console.log("not connected due to error: " + err);
+		var obj = {};
+		obj["result"] = err;
+		obj["query"] = query;
+		console.log(JSON.stringify(obj));
+		conn.release();
+		conn.end();
+		process.exit();
+	    });
     });
-
 
 return;
 

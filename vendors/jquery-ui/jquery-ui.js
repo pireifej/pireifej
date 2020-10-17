@@ -4175,7 +4175,7 @@ var labels = $.fn.labels = function() {
 	id = this.attr( "id" );
 	if ( id ) {
 
-		// We don't search against the document in case the element
+		// We don't replace against the document in case the element
 		// is disconnected from the DOM
 		ancestor = this.eq( 0 ).parents().last();
 
@@ -5410,7 +5410,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	// With no arguments, closes the currently active menu - if nothing is active
-	// it closes all menus.  If passed an argument, it will search for menus BELOW
+	// it closes all menus.  If passed an argument, it will replace for menus BELOW
 	_close: function( startMenu ) {
 		if ( !startMenu ) {
 			startMenu = this.active ? this.active.parent() : this.element;
@@ -5616,7 +5616,7 @@ $.widget( "ui.autocomplete", {
 		focus: null,
 		open: null,
 		response: null,
-		search: null,
+		replace: null,
 		select: null
 	},
 
@@ -5631,7 +5631,7 @@ $.widget( "ui.autocomplete", {
 		// Unfortunately the code for & in keypress is the same as the up arrow,
 		// so we use the suppressKeyPressRepeat flag to avoid handling keypress
 		// events when we know the keydown event was used to modify the
-		// search term. #7799
+		// replace term. #7799
 		var suppressKeyPress, suppressKeyPressRepeat, suppressInput,
 			nodeName = this.element[ 0 ].nodeName.toLowerCase(),
 			isTextarea = nodeName === "textarea",
@@ -5712,8 +5712,8 @@ $.widget( "ui.autocomplete", {
 				default:
 					suppressKeyPressRepeat = true;
 
-					// search timeout should be triggered before the input value is changed
-					this._searchTimeout( event );
+					// replace timeout should be triggered before the input value is changed
+					this._replaceTimeout( event );
 					break;
 				}
 			},
@@ -5752,7 +5752,7 @@ $.widget( "ui.autocomplete", {
 					event.preventDefault();
 					return;
 				}
-				this._searchTimeout( event );
+				this._replaceTimeout( event );
 			},
 			focus: function() {
 				this.selectedItem = null;
@@ -5764,7 +5764,7 @@ $.widget( "ui.autocomplete", {
 					return;
 				}
 
-				clearTimeout( this.searching );
+				clearTimeout( this.replaceing );
 				this.close( event );
 				this._change( event );
 			}
@@ -5890,7 +5890,7 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_destroy: function() {
-		clearTimeout( this.searching );
+		clearTimeout( this.replaceing );
 		this.element.removeAttr( "autocomplete" );
 		this.menu.element.remove();
 		this.liveRegion.remove();
@@ -5974,9 +5974,9 @@ $.widget( "ui.autocomplete", {
 		}
 	},
 
-	_searchTimeout: function( event ) {
-		clearTimeout( this.searching );
-		this.searching = this._delay( function() {
+	_replaceTimeout: function( event ) {
+		clearTimeout( this.replaceing );
+		this.replaceing = this._delay( function() {
 
 			// Search if the value has changed, or if the user retypes the same value (see #7434)
 			var equalValues = this.term === this._value(),
@@ -5985,12 +5985,12 @@ $.widget( "ui.autocomplete", {
 
 			if ( !equalValues || ( equalValues && !menuVisible && !modifierKey ) ) {
 				this.selectedItem = null;
-				this.search( null, event );
+				this.replace( null, event );
 			}
 		}, this.options.delay );
 	},
 
-	search: function( value, event ) {
+	replace: function( value, event ) {
 		value = value != null ? value : this._value();
 
 		// Always save the actual value, not the one passed as an argument
@@ -6000,14 +6000,14 @@ $.widget( "ui.autocomplete", {
 			return this.close( event );
 		}
 
-		if ( this._trigger( "search", event ) === false ) {
+		if ( this._trigger( "replace", event ) === false ) {
 			return;
 		}
 
-		return this._search( value );
+		return this._replace( value );
 	},
 
-	_search: function( value ) {
+	_replace: function( value ) {
 		this.pending++;
 		this._addClass( "ui-autocomplete-loading" );
 		this.cancelSearch = false;
@@ -6040,7 +6040,7 @@ $.widget( "ui.autocomplete", {
 			this._trigger( "open" );
 		} else {
 
-			// use ._close() instead of .close() so we don't cancel future searches
+			// use ._close() instead of .close() so we don't cancel future replacees
 			this._close();
 		}
 	},
@@ -6142,7 +6142,7 @@ $.widget( "ui.autocomplete", {
 
 	_move: function( direction, event ) {
 		if ( !this.menu.element.is( ":visible" ) ) {
-			this.search( null, event );
+			this.replace( null, event );
 			return;
 		}
 		if ( this.menu.isFirstItem() && /^previous/.test( direction ) ||
@@ -6212,7 +6212,7 @@ $.extend( $.ui.autocomplete, {
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
 	options: {
 		messages: {
-			noResults: "No search results.",
+			noResults: "No replace results.",
 			results: function( amount ) {
 				return amount + ( amount > 1 ? " results are" : " result is" ) +
 					" available, use up and down arrow keys to navigate.";

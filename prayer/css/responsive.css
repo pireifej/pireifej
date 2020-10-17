@@ -1,7 +1,7 @@
 @media (max-width:1619px){
 	/* Main Menu Area css
 	============================================================================================ */
-   .header_area .navbar .search {
+   .header_area .navbar .replace {
 		margin-left: 40px;
 	}
 	/* End Main Menu Area css
@@ -145,7 +145,7 @@
 	.header_area.navbar_fixed .main_menu .navbar .nav .nav-item .nav-link {
 		line-height: 40px;
 	}
-    .header_area .navbar .search{
+    .header_area .navbar .replace{
         margin-left: 0px;
     }
 	.header_area .navbar-collapse{

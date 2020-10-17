@@ -212,13 +212,13 @@ textarea {
   height: auto;
 }
 
-[type="search"] {
+[type="replace"] {
   -webkit-appearance: textfield;
   outline-offset: -2px;
 }
 
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type="replace"]::-webkit-replace-cancel-button,
+[type="replace"]::-webkit-replace-decoration {
   -webkit-appearance: none;
 }
 
@@ -518,7 +518,7 @@ legend {
   line-height: inherit;
 }
 
-input[type="search"] {
+input[type="replace"] {
   -webkit-appearance: none;
 }
 

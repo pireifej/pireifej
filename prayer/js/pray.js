@@ -6,6 +6,7 @@ $( document ).ready(function() {
     var globalPrayerHtml = "";
     var prayerObj = [];
     var requestId = $.urlParam('requestId');
+    var prayerComplete = false;
     
     god.login();
     getRequest();
@@ -37,16 +38,6 @@ $( document ).ready(function() {
 	    category: category
 	};
 	god.sendQuery(params);
-    }
-
-    function prayFor() {
-	params = {
-	    command: 'prayFor',
-	    jsonpCallback: 'afterPrayFor',
-	    userId: userId,
-	    requestId: '456'
-	};
-	sendQuery(params);
     }
 
 	window.afterGetPrayer = function(response) {
@@ -105,6 +96,10 @@ $( document ).ready(function() {
 	window.afterPrayFor = function(response) {
 	    console.log('afterPrayFor success');
 	    console.log(response);
+	    if (response.error == 0) {
+		console.log("Hello");
+		window.location.href = "request-feed.html";
+	    }
 	}
 
     var create_email = false;
@@ -123,21 +118,19 @@ $( document ).ready(function() {
 	recognition.onstart = function() {
 	    recognizing = true;
 	    showInfo('info_speak_now');
-	    //start_img.src = '/intl/en/chrome/assets/common/images/content/mic-animate.gif';
-	    //start_img.src = "img/users/7.jpg";
+	    start_img.src = 'img/mic/mic-animate.gif';
 	};
 
 	recognition.onerror = function(event) {
 	    console.log("ERROR");
 	    console.log(event);
 	    if (event.error == 'no-speech') {
-		//start_img.src = "img/users/11.jpg";
+		start_img.src = "img/mic/mic-slash.gif";
 		showInfo('info_no_speech');
 		ignore_onend = true;
 	    }
 	    if (event.error == 'audio-capture') {
-		//start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
-		//start_img.src = "img/users/4.jpg";
+		start_img.src = 'img/mic/mic.gif';
 		showInfo('info_no_microphone');
 		ignore_onend = true;
 	    }
@@ -156,7 +149,7 @@ $( document ).ready(function() {
 	    if (ignore_onend) {
 		return;
 	    }
-	    //start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+	    start_img.src = 'img/mic/mic.gif';
 	    if (!final_transcript) {
 		showInfo('info_start');
 		return;
@@ -164,9 +157,6 @@ $( document ).ready(function() {
 	    showInfo('');
 	    if (window.getSelection) {
 		window.getSelection().removeAllRanges();
-		var range = document.createRange();
-		range.selectNode(document.getElementById('final_span'));
-		window.getSelection().addRange(range);
 	    }
 	    if (create_email) {
 		create_email = false;
@@ -206,6 +196,8 @@ $( document ).ready(function() {
     }
 
     function verifyPrayer(words) {
+	if (prayerComplete) return;
+	
 	var highlight="background-color: yellow;color: black;";
 	var myWords = words.split(" ");;
 	var myWord = myWords[myWords.length - 1];
@@ -226,8 +218,16 @@ $( document ).ready(function() {
 	}
 
 	var percentComplete = Math.ceil(doneCount / prayerObj.length * 100);
-	console.log(percentComplete + "%");
 	$("#percent-complete").html(percentComplete + "%");
+
+	if (percentComplete >= 85) {
+	    prayerComplete = true;
+	    // done with prayer
+	    if (recognizing) {
+		recognition.stop();
+	    }
+	    prayForMe();
+	}
 	
 //	for (var i = 0; i < myWords.length; i++) {
 //	    var myWord = myWords[i];
@@ -245,6 +245,17 @@ $( document ).ready(function() {
 //	    var prayerText = replaceAt(globalPrayerHtml, index, "<strong>" + myWord + "</string>");
 //	    $("#prayer").html(prayerText);
 //	}
+    }
+
+    function prayForMe() {
+	params = {
+	    command: "prayFor",
+	    jsonpCallback: "afterPrayFor",
+	    requestId: requestId,
+	    userId: god.userId
+	}
+	console.log(params);
+	god.sendQuery(params);
     }
 
     function upgrade() {
@@ -272,7 +283,7 @@ $( document ).ready(function() {
 	recognition.lang = "en-US";
 	recognition.start();
 	ignore_onend = false;
-	//start_img.src = '/intl/en/chrome/assets/common/images/content/mic-slash.gif';
+	start_img.src = 'img/mic/mic-slash.gif';
 	showInfo('info_allow');
 	showButtons('none');
 	start_timestamp = event.timeStamp;
