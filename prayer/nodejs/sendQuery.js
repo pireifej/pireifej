@@ -104,7 +104,7 @@ function createPool() {
 
     if (command == "login") {
 	query = "SELECT user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id ";
-	query += "FROM user WHERE email = '" + queryObject.email + "' ";
+	query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
 	query += "AND password = '" + queryObject.password + "' ";
 	query += "LIMIT 1;";
     }
@@ -226,11 +226,13 @@ obj["query"] = query;
 				    return;
 				}
 				rows[0]["prayer_text"] = data;
-				console.log(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+				//console.log(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+				console.log(JSON.stringify(rows));
 				connection.end();
 			    });
 			} else {
-			    console.log(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+			    //console.log(queryObject.jsonpCallback + '('+ JSON.stringify(rows) + ');');
+			    console.log(JSON.stringify(rows));
 			    connection.release();
 			    connection.end();
 			}

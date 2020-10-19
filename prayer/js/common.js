@@ -1,62 +1,71 @@
 $( document ).ready(function() {
     window.god = window.god || {};
 
-    var userId = "";
+    // god functions
+    god.init = function () {	
+	// load all request for this user
+	god.setUserDetails();
+	
+	// site wide configuration
+	$("#copyright").html("&#169; prayerforus.com");
+    }
 
     god.categories = {};
     $.urlParam = function(name){
 	console.log(window.location.href);
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (!results) return null;
 	return results[1] || 0;
     }
 
-    god.login = function() {
-	var encrypted = CryptoJS.AES.encrypt('Message', 'Secret Passphrase');
-	var plaintexte = encrypted.toString();
-	var decrypted = CryptoJS.AES.decrypt(encrypted, 'Secret Passphrase');
-	var plaintext = decrypted.toString(CryptoJS.enc.Utf8);
+    god.setUserDetails = function() {
+	var userId = localStorage.getItem("userId");
+	var userRealName = localStorage.getItem("userRealName");
+	var userTitle = localStorage.getItem("userTitle");
+	var userLocation = localStorage.getItem("userLocation");
+	var userAbout = localStorage.getItem("userAbout");
+	var userCreated = localStorage.getItem("userCreated");
 
-	params = {
-	    command: 'login',
-	    jsonpCallback: 'afterLogin',
-	    email: 'pireifej@gmail.com',
-	    password: '0c523f47a325e1a8f163f81e93fff45b'
-	};
-	god.sendQuery(params);
+	$('*[id*=user-name]').each(function() {
+	    $(this).html(userRealName);
+	});
+	$('*[id*=user-title]').each(function() {
+	    $(this).html(userTitle);
+	});
+	$('*[id*=user-location]').each(function() {
+	    $(this).html(userLocation);
+	});
+	$('*[id*=user-about]').each(function() {
+	    $(this).html(userAbout);
+	});
+	$('*[id*=user-created]').each(function() {
+	    $(this).html(userCreated);
+	});
     }
 
-    	window.afterLogin = function(response) {
-	    console.log('afterLogin success');
-	    console.log(response);
-	    var user = response.result[0];
-	    god.userId = user.user_id;
-	    console.log(user);
-	    $('*[id*=user-name]').each(function() {
-		$(this).html(user.real_name);
-	    });
-	    $('*[id*=user-title]').each(function() {
-		$(this).html(user.user_title);
-	    });
-	    $('*[id*=user-location]').each(function() {
-		$(this).html(user.location);
-	    });
-	    $('*[id*=user-about]').each(function() {
-		$(this).html(user.user_about);
-	    });
-	    $('*[id*=user-created]').each(function() {
-		$(this).html(god.getFormattedTimestamp(user.timestamp));
-	    });
-	    god.getAllRequests();
+    window.afterGetAllRequests = function(response) {
+	console.log("common.js: afterGetAllRequests success");
+	god.insertRequests(response);
+    }
+
+    window.afterLogin = function(response) {
+	console.log('afterLogin success');
+	console.log(response);
+	var user = response.result[0];
+	console.log(user);
+	god.userId = user.user_id;
+	    console.log(god.userId);
+	    localStorage.setItem("userId", user.user_id);
+	    localStorage.setItem("userRealName", user.real_name);
+	    localStorage.setItem("userTitle", user.user_title);
+	    localStorage.setItem("userLocation", user.location);
+	    localStorage.setItem("userAbout", user.user_about);
+	    localStorage.setItem("userCreated", god.getFormattedTimestamp(user.timestamp));
+
+	    window.location.href = "profile.html";
 	}
 
-        god.getAllRequests = function() {
-	params = {
-	    command: 'getAllRequests',
-	    jsonpCallback: 'afterGetAllRequests',
-	    userId: god.userId
-	};
-	god.sendQuery(params);
-    }
+    
 
     god.getFormattedTimestamp = function(timestamp) {
 	var timestamp = timestamp.split("T");
@@ -74,13 +83,79 @@ $( document ).ready(function() {
 	return date;
     }
 
+    god.insertRequests = function(response) {
+	$("#requests").empty();
+	var htmlPost = "";
+	$("#nbrRequests").html(response.result.length + " Requests");
+	for (var i = 0; i < response.result.length; i++) {
+	    var request = response.result[i];
+	    var date = god.getFormattedTimestamp(request.timestamp);
+
+	    htmlPost += " <div>";
+	    htmlPost += "    <div class='tr-section feed'>";
+	    htmlPost += "    	<div class='tr-post'>";
+	    htmlPost += "    	<div class='entry-header'>";
+	    htmlPost += "    	<div class='entry-thumbnail'>";
+	    htmlPost += "    	<a href='#'><img class='img-fluid' src='img/blog/8.jpg' alt='Image'></a>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	<div class='post-content'>";
+	    htmlPost += "    	<div class='author-post'>";
+	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='img/users/8.jpg' alt='Image'></a>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	<div class='entry-meta'>";
+	    htmlPost += "    	<ul>";
+	    htmlPost += "    	<li><a href='#'>" + request.request_id + "</a></li>";
+	    htmlPost += "    	<li>" + date + "</li>";
+	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.category_name + " </li>";
+	    htmlPost += "    	</ul>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	<div class='read-more'>";
+	    htmlPost += "    	<div class='feed pull-left'>";
+	    htmlPost += "    	<ul>";
+	    htmlPost += "    	</ul>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	<h2><a href='#' class='entry-title'>" + request.request_title + "</a></h2>";
+	    htmlPost += "    	<p>" + request.request_text + "</p>";
+	    htmlPost += "    	<div class='read-more'>";
+	    htmlPost += "    	<div class='feed pull-left'>";
+	    htmlPost += "    	<ul>";
+	    htmlPost += "    	<li><i class='fa fa-comments'></i>134</li>&nbsp;";
+	    htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
+	    htmlPost += "    	</ul>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	<div class='continue-reading pull-right'>";
+	    htmlPost += "    	<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'>Delete <i class='fa fa-angle-right'></i></a>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	</div>";
+	    htmlPost += "    	</div>";
+	    htmlPost += " </div>";
+	}
+	$("#requests").html(htmlPost);
+    }
+
     god.sendQuery = function(params) {	
-	//var url = "https://198.12.248.83:8080/hello.php";
 	url = "callSendQuery.php";
-	//url = "https://www.pireifej.com:8080//prayer/nodejs/sendQuery.js";
-	//var url = "https://198.12.248.83:4433/";
+
+	// get time zone
 	const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	params["tz"] = tz;
+
+	// get user ID
+	var userId = localStorage.getItem("userId");
+	if (!userId) {
+	    console.log("need to login first!");
+	    if (window.location.href !== "https://pireifej.com/prayer/login.html" &&
+	       window.location.href !== "https://pireifej.com/prayer/profile-edit.html") {
+		window.location.href = "login.html";
+		return;
+	    }
+	}
+	
+	params["userId"] = userId;
+	
 	$.ajax({
 	    type: 'GET',
 	    url: url,
@@ -90,7 +165,7 @@ $( document ).ready(function() {
 	    jsonpCallback: params.jsonpCallback,
 	    contentType: 'application/json; charset=utf-8;',
 	    success: function(data) {
-		console.log('success');
+		console.log(params.command + ' success');
 		console.log(data);
 	    },
 	    error: function(jqXHR, textStatus, errorThrown) {

@@ -14,5 +14,6 @@ $arr['command'] = $command;
 $arr['result'] = $json['result'];
 $arr['query'] = $json['query'];
 
+//echo "(".json_encode($arr) . ");";
 echo $_GET['callback']."(".json_encode($arr).");";
 ?>

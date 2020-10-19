@@ -4141,7 +4141,7 @@ a {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   border: none;
-  background: #1ab394 !important;
+  background: #1a7bb3cf !important;
   font-size: 12px;
   /* ================================
      Top Search
@@ -7354,8 +7354,8 @@ article.entry-content-2 ul li {
 .user-section .btn-success {
   font-family: 'Abhaya Libre', serif;
   font-size: 14px !important;
-  background-color: #1ab394 !important;
-  border: 1px solid #1ab394 !important;
+  background-color: #1a7bb3cf !important;
+  border: 1px solid #1a7bb3cf !important;
 }
 /* line 82, ../scss/_profile.scss */
 .user-section .m-r-5 {

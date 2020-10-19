@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     window.god = window.god || {};
+    god.init();
     
     var params = {};
     var userId = "";
@@ -8,7 +9,6 @@ $( document ).ready(function() {
     var requestId = $.urlParam('requestId');
     var prayerComplete = false;
     
-    god.login();
     getRequest();
     
     window.afterGetRequest = function(response) {
@@ -201,6 +201,7 @@ $( document ).ready(function() {
 	var highlight="background-color: yellow;color: black;";
 	var myWords = words.split(" ");;
 	var myWord = myWords[myWords.length - 1];
+	console.log("myWord = " + myWord);
 
 	for (var i = 0; i < prayerObj.length; i++) {
 	    if (prayerObj[i].done) continue;

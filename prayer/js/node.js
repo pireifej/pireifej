@@ -1,7 +1,6 @@
 $( document ).ready(function() {
     window.god = window.god || {};
-        
-    god.login();
+    god.init();
     getRequestFeed();
     god.getCategories("afterGetCategories");
 
@@ -22,7 +21,6 @@ $( document ).ready(function() {
 	params = {
 	    command: 'createRequest',
 	    jsonpCallback: 'afterCreateRequest',
-	    userId: god.userId,
 	    requestText: "\"" + formValues[2].value + "\"",
 	    requestTitle: "\"" + formValues[0].value + "\"",
 	    requestCategoryId: categoryId
@@ -42,7 +40,6 @@ $( document ).ready(function() {
 	params = {
 	    command: 'createRequest',
 	    jsonpCallback: 'afterQuickCreateRequest',
-	    userId: god.userId,
 	    requestText: "\"" + $("#quickRequestText").val() + "\"",
 	    requestTitle: "quick request",
 	    requestCategoryId: categoryId
@@ -71,61 +68,6 @@ $( document ).ready(function() {
     $("#edit-profile").click(function() {
 	window.location.href = "profile-edit.html";
     });
-
-    function insertRequests(response) {
-	console.log("insertRequests...");
-	$("#requests").empty();
-	var htmlPost = "";
-	$("#nbrRequests").html(response.result.length + " Requests");
-	console.log(response);
-	for (var i = 0; i < response.result.length; i++) {
-	    var request = response.result[i];
-	    var date = god.getFormattedTimestamp(request.timestamp);
-
-	    htmlPost += " <div>";
-	    htmlPost += "    <div class='tr-section feed'>";
-	    htmlPost += "    	<div class='tr-post'>";
-	    htmlPost += "    	<div class='entry-header'>";
-	    htmlPost += "    	<div class='entry-thumbnail'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid' src='img/blog/8.jpg' alt='Image'></a>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='post-content'>";
-	    htmlPost += "    	<div class='author-post'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='img/users/8.jpg' alt='Image'></a>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='entry-meta'>";
-	    htmlPost += "    	<ul>";
-	    htmlPost += "    	<li><a href='#'>" + request.request_id + "</a></li>";
-	    htmlPost += "    	<li>" + date + "</li>";
-	    htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + request.category_name + " </li>";
-	    htmlPost += "    	</ul>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='read-more'>";
-	    htmlPost += "    	<div class='feed pull-left'>";
-	    htmlPost += "    	<ul>";
-	    htmlPost += "    	</ul>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<h2><a href='#' class='entry-title'>" + request.request_title + "</a></h2>";
-	    htmlPost += "    	<p>" + request.request_text + "</p>";
-	    htmlPost += "    	<div class='read-more'>";
-	    htmlPost += "    	<div class='feed pull-left'>";
-	    htmlPost += "    	<ul>";
-	    htmlPost += "    	<li><i class='fa fa-comments'></i>134</li>&nbsp;";
-	    htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
-	    htmlPost += "    	</ul>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	<div class='continue-reading pull-right'>";
-	    htmlPost += "    	<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'>Delete <i class='fa fa-angle-right'></i></a>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += "    	</div>";
-	    htmlPost += " </div>";
-	}
-	$("#requests").html(htmlPost);
-    }
 
     function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText) {
 	var htmlPost = "";
@@ -179,6 +121,7 @@ $( document ).ready(function() {
 	var htmlPost = "";
 	$("#nbrRequests").html(response.result.length + " Requests");
 	for (var i = 0; i < response.result.length; i++) {
+	    console.log(response.result[i]);
 	    var request = response.result[i];
 	    var timestamp = request.timestamp.split("T");
 	    var date = timestamp[0];
@@ -198,14 +141,33 @@ $( document ).ready(function() {
 	$("#request-feed").html(htmlPost);
     }
 
-    window.deleteRequest = function(requestId) {
+    $("#login").submit(function(e) {
+	e.preventDefault();
+	console.log("login");
+	var formValues = $("#login").serializeArray();
+	console.log(formValues);
+	var username = formValues[0].value;
+	var password = formValues[1].value;
+
+	if (!username || !password) {
+	    alert("Enter both!");
+	    return;
+	}
+	
+//	var encrypted = CryptoJS.AES.encrypt('Message', 'Secret Passphrase');
+//	var plaintexte = encrypted.toString();
+//	var decrypted = CryptoJS.AES.decrypt(encrypted, 'Secret Passphrase');
+//	var plaintext = decrypted.toString(CryptoJS.enc.Utf8);
+
 	params = {
-	    command: 'deleteRequest',
-	    jsonpCallback: 'afterDeleteRequest',
-	    requestId: requestId
+	    command: 'login',
+	    jsonpCallback: 'afterLogin',
+	    userName: username,
+	    password: password
 	};
 	god.sendQuery(params);
-    }
+    })
+
 
     function getPrayer() {
 	params = {
@@ -219,24 +181,14 @@ $( document ).ready(function() {
     function getRequestFeed() {
 	params = {
 	    command: 'getRequestFeed',
-	    jsonpCallback: 'afterGetRequestFeed',
-	    userId: god.userId
-	};
-	god.sendQuery(params);
-    }
-
-    function prayFor() {
-	params = {
-	    command: 'prayFor',
-	    jsonpCallback: 'afterPrayFor',
-	    userId: god.userId,
-	    requestId: '456'
+	    jsonpCallback: 'afterGetRequestFeed'
 	};
 	god.sendQuery(params);
     }
 
     window.afterGetRequestFeed = function(response) {
 	console.log('afterGetRequestFeed success');
+	console.log(localStorage.getItem("userId"));
 	console.log(response);
 	insertRequestFeed(response);
     }
@@ -264,8 +216,7 @@ $( document ).ready(function() {
 
 	window.afterCreateRequest = function(response) {
 	    console.log('createRequest success');
-	    window.location.href = "index.html";
-	    console.log(response);
+	    window.location.href = "profile.html";
 	    god.getAllRequests();
 	}
 
@@ -274,20 +225,4 @@ $( document ).ready(function() {
 	    console.log(response);
 	    $("#quickRequestText").val("");
 	}
-
-	window.afterPrayFor = function(response) {
-	    console.log('afterPrayFor success');
-	    console.log(response);
-	}
-
-	window.afterGetAllRequests = function(response) {
-	    console.log("afterGetAllRequests success");
-	    insertRequests(response);
-	}
-
-	window.afterDeleteRequest = function(response) {
-	    console.log("afterDeleteRequest success");
-	    console.log(response);
-	    god.getAllRequests();
-	};
 });
