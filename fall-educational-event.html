@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="img/favicon.png" type="image/png">
-        <title>MeetPaul</title>
+        <title>MeetPaul -- CFCA Tucson</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="vendors/linericon/style.css">
@@ -20,68 +20,7 @@
         <link rel="stylesheet" href="css/responsive.css">
     </head>
     <body>
-        
-        <!--================Header Menu Area =================-->
-        <header class="header_area">
-            <div class="main_menu">
-            	<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container box_1620">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-							<ul class="nav navbar-nav menu_nav ml-auto">
-								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
-								<!--<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li> 
-								<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>-->
-
-								<li class="nav-item submenu dropdown">
-									<!-- CFCA menu link -->
-									<a id="cfca-menu-link" href="#gallery" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CFCA</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="chicago.html">Chicago</a></li>
-										<li class="nav-item"><a class="nav-link" href="tucson.html">Tucson</a></li>
-									</ul>
-								</li>
-								
-								<!-- Projects menu link -->
-								<li id="projects-menu-link" class="nav-item"><a class="nav-link" href="#gallery">Projects</a></li>
-								
-								<!-- Patents menu link -->
-								<li href="#gallery" class="nav-item submenu dropdown">
-									<a id="patents-menu-link" href="#gallery" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patents</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="https://patents.justia.com/patent/20200112905">Routing Optimization</a></li>
-										<li class="nav-item"><a class="nav-link" href="https://patents.google.com/patent/US20170329620A1/en">Scripting Languages</a></li>
-									</ul>
-								</li>
-
-								<!-- Contests menu link -->
-								<li id="contests-menu-link" class="nav-item"><a class="nav-link" href="#gallery">Contests</a></li>
-
-								<!-- Hackathon menu link -->
-								<li id="hackathon-menu-link" class="nav-item"><a class="nav-link" href="#gallery">Hackathon</a></li>								
-
-								<!--<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-									</ul>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
-							</ul>
-						</div> 
-					</div>
-            	</nav>
-            </div>
-        </header>
-        <!--================Header Menu Area =================-->
+      {{header}}
         
         <!--================Home Banner Area =================-->
         <section class="banner_area">
@@ -97,210 +36,65 @@
                         <div class="single-post row">
                             <div class="col-lg-12">
                                 <div class="feature-img">
-                                    <img class="img-fluid" src="img/contests/disteval1.jpg" alt="">
+                                    <img class="img-fluid" src="cfca/47F7693E-AC09-4CF6-A628-A2B5BE57166B-519-0000002C1532B394.jpg" alt="">
                                 </div>									
                             </div>
                             <div class="col-lg-3 col-md-3">
                                 <div class="blog_info text-right">
                                     <ul class="blog_meta list">
                                         <li><a href="#">Paul Ireifej<i class="lnr lnr-user"></i></a></li>
-                                        <li><a href="#">May 5, 2019<i class="lnr lnr-calendar-full"></i></a></li>
-                                        <li><a href="#">APA Woodbridge Hotel<i class="lnr lnr-map"></i></a></li>
-                                        <li><a href="#">Iselin, NJ<i class="lnr lnr-location"></i></a></li>
-										<li><a href="https://www.tm83.org/blog/meet-the-district-83-evaluation-contest-winner-paul-ireifej/">District 83 Article<i class="fa fa-thumb-tack"></i></a></li>
+                                        <li><a href="#">October 27, 2020<i class="lnr lnr-calendar-full"></i></a></li>
+                                        <li><a href="#">Zoom<i class="lnr lnr-map"></i></a></li>
+                                        <li><a href="#">Zoom, The Internet<i class="lnr lnr-location"></i></a></li>
+					<li><a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a></li>
                                         <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
                                         <li><a href="#">0 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                        <li><a href="docs/Speaker Certificate Paul Ireifej 27 October 20.pdf">Download Certificate<i class="fa fa-thumb-tack"></i></a></li>
+					<li><a href="docs/agenda.pdf">Download Agenda<i class="fa fa-thumb-tack"></i></a></li>
                                     </ul>
                                     <ul class="social-links">
                                         <li><a id="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a id="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a id="github" href="#"><i class="fa fa-github"></i></a></li>
-                                        <li><a id="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a id="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a id="github"><i class="fa fa-github"></i></a></li>
+                                        <li><a id="linkedin"><i class="fa fa-linkedin"></i></a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>							
                             <div class="col-lg-9 col-md-9 blog_details">
-                                <h3>2019 District 83 Evaluation 1st Place</h3>
-								<h2>NOT a long email</h2>
+			      <h3>Real Time Machine Learning and AI Operations</h3>
                                 <p class="excert">
-Since youʼre unable to travel today, I figure you have time to read a NOT long email! I decided NOT to write an overwhelmingly long email, instead Iʼll just
-summarize my verbal evaluation (as best as I remember it). Here are my notes that I wrote during the target speech:
-								</p>
+				  Presentation with my manager at the Fall Educational Event on Zoom.
+                                </p>
                                 <p>
-The target speaker was a lovely lady named --48--. Her speech title was “Ace It.” She spoke about the sales process and how it relates (or can be applied
-to) a job interview. Here is my verbal evaluation (from what I can recall, haha).
+                                    paragraph
                                 </p>
                             </div>
                             <div class="col-lg-12">
-                                <div class="quotes">
-                                quote
+                              <div class="quotes">
+				In corporate America, we operate by the maxim: what gets measured, gets done. We use data to recognize trends, inform our goals, and drive our decision-making and actions. </br> -- Randall L. Stephenson, Chief Executive Offer of AT&T
                                 </div>
                                 <div class="row">
-								<p>
-</p>
-
-								<div class="col-lg-12 mt-25">
-
-										<div class="row">
-											<div class="col-6">
-												<div class="gallery_f_inner row imageGallery1">
-													<div class="h_gallery_item">
-														<div class="g_img_item">
-															<img class="img-fluid" src="img/contests/diseval3Small.jpg" alt="">
-															<a class="light" href="img/contests/diseval3Large.jpg"><img src="img/gallery/icon.png" alt=""></a>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-6">
-												<div class="gallery_f_inner row imageGallery1">
-													<div class="h_gallery_item">
-														<div class="g_img_item">
-															<img class="img-fluid" src="img/contests/diseval4Small.jpg" alt="">
-															<a class="light" href="img/contests/diseval4Large.jpg"><img src="img/gallery/icon.png" alt=""></a>
-														</div>
-													</div>
-												</div>
-											</div>
-                                        </div>
-                                    </div>
-                                        
-										
-<p>
-Some context:
-<ul>
-<li> my parents were able to make it. They were in the audience at the time.</li>
-<li>in her speech, --48-- told us to say a phrase at the end of a job interview: “Before we part ways, Iʼd like to tell you ... <something>”</li>
-<li>I had my notes in my hand, but they were rolled up and I never even glanced at them! I only looked down to remember the speakerʼs quote above.</li>
-</ul>
-</p>
-
-									<div class="col-lg-12 mt-25">
-										<div class="row">
-											<div class="col-6">
-												<div class="gallery_f_inner row imageGallery1">
-													<div class="h_gallery_item">
-														<div class="g_img_item">
-															<img class="img-fluid" src="img/contests/diseval6Small.JPG" alt="">
-															<a class="light" href="img/contests/diseval6Large.JPG"><img src="img/gallery/icon.png" alt=""></a>
-														</div>
-													</div>
-												</div>
-											</div>
-                                        </div>
-                                    </div>
-									
-<p>
-“Welcome, Toastmasters, honored guests and my mommy & daddy. [laughs] Thank you, --48--, for sharing your experience with us about the sales
-process and how we can apply it to a job interview. Your advice was so good that Iʼm going to use it right now. Like a good sales person, Iʼm going to make
-you like me by telling you three things that you did well. Iʼll then sell you on three pieces of advice that I will convince you that you need.
-</p>
-<p>
-First, you established yourself upfront. How can we trust you? Well, you answered that question by telling us that youʼre an HR professional and a coach.
-This way, we know that the advice youʼre about to give is valid. Second, the information you gave us is tangible and relatable. Not only can it be applied to a
-job interview, it can be applied to our personal lives. For example, we learned how to make someone else like us. Iʼm going to take that advice, go home and
-immediately apply it to my wife. [laughs]
-</p>
-<p>
-Third, your speech mechanisms were all there. You had vocal variety, gestures, good speech cadence with well placed pauses. You spoke with crisp
-precision. Well done!
-</p>
-<p>
-Now, hereʼs some advice to elevate your speech to the next level. First, you gave us advice to tell a personal story to get someone to like us. Well, I would
-like to turn this same advice over to you. If you tell us a personal story about why you got into HR and interested in the process upfront, that would help to
-establish a human connection with your audience. Tell us about your first interview. If you donʼt have a story, make one up. [laughs] I make up stuff every
-time my wife asks me a question. [laughs]
-</p>
-<p>
-Second, you had a lot of really good information. But at times, I felt it was information overload. I would suggest that you have a hand out with explicit takes
-ways that you want the audience to remember. Third, the title of your speech was “Ace It.” You used it in the intro and again in the conclusion. I would
-recommend that you make “Ace It” your speech mantra, and sprinkle the phrase throughout your speech.
-</p>
-<p>
-[first time I glance at my notes]
-</p>
-								<div class="col-lg-12 mt-25">
-										<div class="row">
-											<div class="col-8">
-												<div class="gallery_f_inner row imageGallery1">
-													<div class="h_gallery_item">
-														<div class="g_img_item">
-															<img class="img-fluid" src="img/contests/disteval.jpg" alt="">
-															<a class="light" href="img/contests/disteval.jpg"><img src="img/gallery/icon.png" alt=""></a>
-														</div>
-													</div>
-												</div>
-											</div>
-                                        </div>
-                                    </div>
-<p>
-Before we part ways, Iʼd like to tell you about .... how I admire your speaking ability. You spoke with confidence, were very organized, had really good speech mechanics and I congratulate you on a job well done.”
-</p>
-<p>
-I ended just after 3 minutes (I would estimate 3 min 10 seconds). When I finished my evaluation content, I was at the yellow flag. So I figured I had some
-leeway to come up with a decent conclusion and a summary to wrap everything up.
-</p>
-<p>
-Interesting note on some of the other evaluators: I was speaking order #4 (which I was really excited about, itʼs a good number to have chosen). The guy
-next to me, during the target speakerʼs speech, had used TWO sheets of paper for his notes!!! I was very surprised. He was writing A LOT during the
-speech. When he went up there, it was somewhat amusing to see him fumble through his two sheets of notes to find more advice for the speaker. The
-lesson that I learned is that less is more. My notes were pretty succinct, I even finished marking them up before the 5 minute time limit we were given.
-Also, in the room where they put us while we finish our evaluation, *many* people were just having idle chats with each other. I, on the other hand, was
-pacing back & forth and planning out my speech (which removed my dependency on the notes during my evaluation — yay!).
-</p>
-<p>
-It was a very good and humbling experience. I canʼt wait to chat about it in person! I feel very humbled and proud of the progress I made with giving an
-effective evaluation. I really do credit you with much of that progress. Iʼve watched you give evaluations in our club and give me evaluations when I practiced my contest speeches in front of you. Thank you as always for being my friend and mentor. :-)
-This is our trophy! Of course, Iʼll keep it with me though. Hahahahahaha.
-Me with my parents at the contest:
-</p>
-</p>
-									<div class="col-lg-12 mt-25">
-										<div class="row">
-											<div class="col-6">
-												<div class="gallery_f_inner row imageGallery1">
-													<div class="h_gallery_item">
-														<div class="g_img_item">
-															<img class="img-fluid" src="img/contests/diseval2Small.JPG" alt="">
-															<a class="light" href="img/contests/diseval2Large.JPG"><img src="img/gallery/icon.png" alt=""></a>
-														</div>
-													</div>
-												</div>
-											</div>
-											
-											<div class="col-6">
-												<div class="gallery_f_inner row imageGallery1">
-													<div class="h_gallery_item">
-														<div class="g_img_item">
-															<img class="img-fluid" src="img/contests/FB_IMG_1558405948064 - small.jpg" alt="">
-															<a class="light" href="img/contests/FB_IMG_1558405948064.jpg"><img src="img/gallery/icon.png" alt=""></a>
-														</div>
-													</div>
-												</div>
-											</div>
-                                        </div>
-                                    </div>
-<p>
-
-</p>
-
                                     <div class="col-lg-12 mt-25">
-                                        
-                                    </div>
-                                       
                                         <div class="col-lg-12 mt-25">
-                                   
-                                        
-                                    <div class="row">
-                                        </div>
-                                        <div class="col-lg-12 mt-25">
-                                    
-                                        </div>  
-                                        <div class="row">
-                                   
-                                        </div>
-                                        <div class="col-lg-12 mt-25">
-
+					  <div class="row">
+					    <div class="col-8">
+					      <div class="gallery_f_inner row imageGallery1">
+						<div class="h_gallery_item">
+						  <div class="g_img_item">
+						    <img class="img-fluid" src="cfca/Screenshot_20201028-093200.png" alt="">
+						    <a class="light" href="cfca/Screenshot_20201028-093200.png"><img src="img/gallery/icon.png" alt=""></a>
+						  </div>
+						</div>
+					      </div>
+					    </div>
+                                          </div>
+                                          <div class="col-lg-12 mt-25">
+					  </div>
+					  <div class="row">
+                                          </div>
+                                          <div class="col-lg-12 mt-25">
+					    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRK_tNmWEXUO7C1oJwm1I7E-X8TrCp1uIY-xAqPEYIes52ne3H2xJbZjlpfyFLzAg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+					  </div>                                  
                                         </div>
                                     </div>									
                                 </div>
@@ -326,7 +120,7 @@ Me with my parents at the contest:
                                            <a href="" class="btn-reply text-uppercase">reply</a> 
                                     </div>
                                 </div>
-                            </div>
+                            </div>	
                             <div class="comment-list left-padding">
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
@@ -402,7 +196,7 @@ Me with my parents at the contest:
                                            <a href="" class="btn-reply text-uppercase">reply</a> 
                                     </div>
                                 </div>
-                            </div>-->                                           				
+                            </div>-->	                                             				
                         </div>
                         <div class="comment-form">
                             <h4>Leave a Reply</h4>
@@ -437,16 +231,16 @@ Me with my parents at the contest:
                                 <div class="br"></div>
                             </aside>
                             <aside class="single_sidebar_widget author_widget">
-                                <img class="author_img rounded-circle" src="../cfca/20180626_122818.png" alt="">
+                                <img class="author_img rounded-circle" src="cfca/IMG_20191015_151901.png" alt="">
                                 <h4>Paul Ireifej</h4>
                                 <p>CFCA Member and Speaker</p>
                                 <div class="social_icon">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-github"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                    <a id="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                    <a id="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                    <a id="github" href="#"><i class="fa fa-github"></i></a>
+                                    <a id="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
                                 </div>
-                                <p>Communications Fraud Control Association (CFCA) 2018 Annual Meeting & Summer Educational Event in the Kimpton Monaco Hotel in Chicago, IL, USA. The title of my talk was "Managing a Succesful System Migration." This was my first time speaking at the CFCA.                                </p>
+                                <p>Communications Fraud Control Association (CFCA) Fall 2020 Educational Event on Zoom. The title of my talk was "Real Time Machine Learning and AI Operations." This was my third time speaking at the CFCA.</p>
                             </aside>
                         </div>
                     </div>
@@ -456,7 +250,7 @@ Me with my parents at the contest:
         <!--================Blog Area =================-->
         
         <!--================Footer Area =================-->
-<footer class="footer_area p_120">
+        <footer class="footer_area p_120">
         	<div class="container">
         		<div class="row footer_inner">
         			<div class="col-lg-5 col-sm-6">
@@ -492,10 +286,10 @@ Me with my parents at the contest:
         					</div>
         					<p>Let us be social</p>
         					<ul class="list">
-        						<li><a href="https://m.facebook.com/profile.php?id=17501182&ref=content_filter"><i class="fa fa-facebook"></i></a></li>
-        						<li><a href="https://mobile.twitter.com/paulireifej"><i class="fa fa-twitter"></i></a></li>
-        						<li><a href="https://linkedin.com/in/paul-ireifej-572829b"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="https://www.instagram.com/ipaullllllll/"><i class="fa fa-instagram"></i></a></li>
+        						<li><a id="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        						<li><a id="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        						<li><a id="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a id="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
         					</ul>
         				</aside>
         			</div>
@@ -524,6 +318,5 @@ Me with my parents at the contest:
         <script src="vendors/counter-up/jquery.counterup.min.js"></script>
         <script src="js/mail-script.js"></script>
         <script src="js/theme.js"></script>
-		<script src="js/name.js"></script>
     </body>
 </html>

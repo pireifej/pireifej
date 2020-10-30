@@ -22,67 +22,7 @@
     </head>
     <body>
         
-        <!--================Header Menu Area =================-->
-        <header class="header_area">
-            <div class="main_menu">
-            	<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container box_1620">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-							<ul class="nav navbar-nav menu_nav ml-auto">
-								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
-								<!--<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li> 
-								<li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>-->
-
-								<li class="nav-item submenu dropdown">
-									<!-- CFCA menu link -->
-									<a id="cfca-menu-link" href="#gallery" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CFCA</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="chicago.html">Chicago</a></li>
-										<li class="nav-item"><a class="nav-link" href="tucson.html">Tucson</a></li>
-									</ul>
-								</li>
-								
-								<!-- Projects menu link -->
-								<li id="projects-menu-link" class="nav-item"><a class="nav-link" href="#gallery">Projects</a></li>
-								
-								<!-- Patents menu link -->
-								<li href="#gallery" class="nav-item submenu dropdown">
-									<a id="patents-menu-link" href="#gallery" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patents</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="https://patents.justia.com/patent/20200112905">Routing Optimization</a></li>
-										<li class="nav-item"><a class="nav-link" href="https://patents.google.com/patent/US20170329620A1/en">Scripting Languages</a></li>
-									</ul>
-								</li>
-
-								<!-- Contests menu link -->
-								<li id="contests-menu-link" class="nav-item"><a class="nav-link" href="#gallery">Contests</a></li>
-
-								<!-- Hackathon menu link -->
-								<li id="hackathon-menu-link" class="nav-item"><a class="nav-link" href="#gallery">Hackathon</a></li>								
-
-								<!--<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-									</ul>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
-							</ul>
-						</div> 
-					</div>
-            	</nav>
-            </div>
-        </header>
-        <!--================Header Menu Area =================-->
+      {{header}}
         
         <!--================Home Banner Area =================-->
         <section class="home_banner_area">
@@ -456,44 +396,56 @@
         	<div class="container">
         		<div class="gallery_f_inner row imageGallery1">
         			<div class="col-lg-4 col-md-4 col-sm-6 cfca">
-        				<div class="h_gallery_item">
-        					<div class="g_img_item">
-								<img class="img-fluid" src="img/gallery/cfcaMain.png" alt="">
-        						<a class="light" href="img/gallery/cfca.png"><img src="img/gallery/icon.png" alt=""></a>
-        					</div>
-        					<div class="g_item_text">
-        						<h4>CFCA 2018 - Chicago</h4>
-								<a href="chicago.html">Read more <i class="fa fa-star"></i></a>
-        					</div>
-        				</div>
+        			  <div class="h_gallery_item">
+        			    <div class="g_img_item">
+				      <img class="img-fluid" src="img/gallery/cfcaMain.png" alt="">
+        			      <a class="light" href="img/gallery/cfca.png"><img src="img/gallery/icon.png" alt=""></a>
+        			    </div>
+        			    <div class="g_item_text">
+        			      <h4>CFCA 2018 - Chicago</h4>
+				      <a href="chicago.html">Read more <i class="fa fa-star"></i></a>
+        			    </div>
+        			  </div>
         			</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 cfca">
-        				<div class="h_gallery_item">
-        					<div class="g_img_item">
-								<img class="img-fluid" src="img/gallery/cfcaMain.png" alt="">
-        						<a class="light" href="img/gallery/cfca.png"><img src="img/gallery/icon.png" alt=""></a>
-        					</div>
-        					<div class="g_item_text">
-        						<h4>CFCA 2019 - Tucson</h4>
-								<a href="tucson.html">Read more <i class="fa fa-star"></i></a>
-        					</div>
-        				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 cfca">
+        			  <div class="h_gallery_item">
+        			    <div class="g_img_item">
+				      <img class="img-fluid" src="img/gallery/cfcaMain.png" alt="">
+        			      <a class="light" href="img/gallery/cfca.png"><img src="img/gallery/icon.png" alt=""></a>
+        			    </div>
+        			    <div class="g_item_text">
+        			      <h4>CFCA 2019 - Tucson</h4>
+				      <a href="tucson.html">Read more <i class="fa fa-star"></i></a>
+        			    </div>
+        			  </div>
         			</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 project">
-        				<div class="h_gallery_item">
-        					<div class="g_img_item">
-        						<img class="img-fluid" src="img/gallery/portfolio-12.jpg" alt="">
-        						<a class="light" href="img/gallery/project-descr - small/Slide12.JPG"><img src="img/gallery/icon.png" alt=""></a>
-        					</div>
-        					<div class="g_item_text">
-        						<h4>aiOpX</h4>
-        						<p>AT&T 2020</p>
-        					</div>
-        				</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 cfca">
+        			  <div class="h_gallery_item">
+        			    <div class="g_img_item">
+				      <img class="img-fluid" src="img/gallery/cfcaMain.png" alt="">
+        			      <a class="light" href="img/gallery/cfca.png"><img src="img/gallery/icon.png" alt=""></a>
+        			    </div>
+        			    <div class="g_item_text">
+        			      <h4>CFCA 2020 - Zoom</h4>
+				      <a href="fall-educational-event.html">Read more <i class="fa fa-star"></i></a>
+        			    </div>
+        			  </div>
         			</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 project">
-        				<div class="h_gallery_item">
-        					<div class="g_img_item">
+				<div class="col-lg-4 col-md-4 col-sm-6 project">
+        			  <div class="h_gallery_item">
+        			    <div class="g_img_item">
+        			      <img class="img-fluid" src="img/gallery/portfolio-12.jpg" alt="">
+        			      <a class="light" href="img/gallery/project-descr - small/Slide12.JPG"><img src="img/gallery/icon.png" alt=""></a>
+        			    </div>
+        			    <div class="g_item_text">
+        			      <h4>aiOpX</h4>
+        			      <p>AT&T 2020</p>
+        			    </div>
+        			  </div>
+        			</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 project">
+        			  <div class="h_gallery_item">
+        			    <div class="g_img_item">
         						<img class="img-fluid" src="img/gallery/portfolio-11.jpg" alt="">
         						<a class="light" href="img/gallery/project-descr - small/Slide11.JPG"><img src="img/gallery/icon.png" alt=""></a>
         					</div>
@@ -942,6 +894,19 @@
 								<a href="contest13.html">Read more<i class="fa fa-star"></i></a>
         					</div>
         				</div>
+        				</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 contests">
+        				  <div class="h_gallery_item">
+        				    <div class="g_img_item">
+        				      <img class="img-fluid" src="img/trophy/trophy11Small.jpg" alt="">
+        				      <a class="light" href="img/trophy/trophy11Large.jpg"><img src="img/gallery/icon.png" alt=""></a>
+        				    </div>
+        				    <div class="g_item_text">
+        				      <h4>2020 Area 61/62 Humor 1st Place</h4>
+        				      <p>TBD</p>
+					      <a href="contest14.html">Read more<i class="fa fa-star"></i></a>
+        				    </div>
+        				  </div>
         			</div>
         			<div class="col-lg-4 col-md-4 col-sm-6 hackathon">
         				<div class="h_gallery_item">

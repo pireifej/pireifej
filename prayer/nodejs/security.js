@@ -1,18 +1,22 @@
-// Nodejs encryption with CTR
+const crypto = require('crypto');
+const algorithm = 'aes-256-cbc';
+const key = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
+
 module.exports = {    
     encrypt: function(text){
-    const crypto = require("crypto");
-    var cipher = crypto.createCipher('aes-256-cbc','d6F3Efeq')
-    var crypted = cipher.update(text,'utf8','hex')
-    crypted += cipher.final('hex');
-    return crypted;
+	let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);
+	let encrypted = cipher.update(text);
+	encrypted = Buffer.concat([encrypted, cipher.final()]);
+	return { iv: iv.toString('hex'), encryptedData: encrypted.toString('hex') };
     },
 
     decrypt:function(text){
-    const crypto = require("crypto");
-    var decipher = crypto.createDecipher('aes-256-cbc','d6F3Efeq')
-    var dec = decipher.update(text,'hex','utf8')
-    dec += decipher.final('utf8');
-    return dec;
+	let iv = Buffer.from(text.iv, 'hex');
+	let encryptedText = Buffer.from(text.encryptedData, 'hex');
+	let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
+	let decrypted = decipher.update(encryptedText);
+	decrypted = Buffer.concat([decrypted, decipher.final()]);
+	return decrypted.toString();
     }
 };

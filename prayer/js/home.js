@@ -3,6 +3,7 @@ $( document ).ready(function() {
     god.init();
     var logout = $.urlParam('signout');
     if (logout) {
+	god.notify("See you later, " + localStorage.getItem("userRealName") + "!", "success");
 	localStorage.removeItem("userId");
 	localStorage.removeItem("userRealName");
 	localStorage.removeItem("userTitle");

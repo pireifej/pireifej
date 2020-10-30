@@ -1,11 +1,16 @@
 $( document ).ready(function() {
     window.god = window.god || {};
+    var email = "";
+    var realName = "";
     god.init();
+    var pray = $.urlParam("pray");
+    if (pray) {
+	god.notify("Prayer completed.", "success");
+    }
     getRequestFeed();
     god.getCategories("afterGetCategories");
 
     $("#newRequestForm").submit(function(e) {
-	console.log("CREATE");
 	e.preventDefault();
 
 	var formValues = $("#newRequestForm").serializeArray();
@@ -51,16 +56,18 @@ $( document ).ready(function() {
 	e.preventDefault();
 
 	var formValues = $("#form").serializeArray();
+	email = formValues[2].value;
+	realName = formValues[3].value;
 	var params = {
 	    command: 'createUser',
 	    jsonpCallback: 'afterCreateUser',
 	    userName: formValues[0].value,
 	    password: formValues[1].value,
 	    email: formValues[2].value,
-	    realName: formValues[3].value,
-	    location: formValues[4].value,
-	    title: formValues[6].value,
-	    about: formValues[7].value
+	    realName: "'" + formValues[3].value + "'",
+	    location: "'" + formValues[4].value + "'",
+	    title: "'" + formValues[6].value + "'",
+	    about: "'" + formValues[7].value + "'"
 	};
 	god.sendQuery(params);
     })
@@ -69,14 +76,14 @@ $( document ).ready(function() {
 	window.location.href = "profile-edit.html";
     });
 
-    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText) {
+    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText, prayerCount) {
 	var htmlPost = "";
 	htmlPost += " <div>";
 	htmlPost += "    <div class='tr-section feed'>";
 	htmlPost += "    	<div class='tr-post'>";
 	htmlPost += "    	<div class='entry-header'>";
 	htmlPost += "    	<div class='entry-thumbnail'>";
-	htmlPost += "    	<a href='#'><img class='img-fluid' src='img/blog/8.jpg' alt='Image'></a>";
+	htmlPost += "    	<a href='#'><img class='img-fluid' src='img/requests/" + categoryName + ".jpg' alt='Image'></a>";
 	htmlPost += "    	</div>";
 	htmlPost += "    	</div>";
 	htmlPost += "    	<div class='post-content'>";
@@ -100,8 +107,8 @@ $( document ).ready(function() {
 	htmlPost += "    	<div class='read-more'>";
 	htmlPost += "    	<div class='feed pull-left'>";
 	htmlPost += "    	<ul>";
-	htmlPost += "    	<li><i class='fa fa-comments'></i>134</li>&nbsp;";
-	htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
+	htmlPost += "    	<li><i class='fa fa-handshake-o'></i>" + prayerCount + "</li>&nbsp;";
+//	htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
 	htmlPost += "    	</ul>";
 	htmlPost += "    	</div>";
 	htmlPost += "    	<div class='continue-reading pull-right'>";
@@ -136,38 +143,10 @@ $( document ).ready(function() {
 	    }
 	    time = hour + ":" + times[1] + " " + amOrPM;
 	    date = date + " " + time;
-	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text);
+	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text, request.prayer_count);
 	}
 	$("#request-feed").html(htmlPost);
     }
-
-    $("#login").submit(function(e) {
-	e.preventDefault();
-	console.log("login");
-	var formValues = $("#login").serializeArray();
-	console.log(formValues);
-	var username = formValues[0].value;
-	var password = formValues[1].value;
-
-	if (!username || !password) {
-	    alert("Enter both!");
-	    return;
-	}
-	
-//	var encrypted = CryptoJS.AES.encrypt('Message', 'Secret Passphrase');
-//	var plaintexte = encrypted.toString();
-//	var decrypted = CryptoJS.AES.decrypt(encrypted, 'Secret Passphrase');
-//	var plaintext = decrypted.toString(CryptoJS.enc.Utf8);
-
-	params = {
-	    command: 'login',
-	    jsonpCallback: 'afterLogin',
-	    userName: username,
-	    password: password
-	};
-	god.sendQuery(params);
-    })
-
 
     function getPrayer() {
 	params = {
@@ -209,14 +188,21 @@ $( document ).ready(function() {
 	}
 	window.afterCreateUser = function(response) {
 	    console.log('createUser success');
-	    console.log(response);
-	    alert("Thanks! Profile is created.");
-	    $("#form")[0].reset();
+	    if (response.error == 0) {
+		$("#form")[0].reset();
+		window.location.href = "login.html?user=true";
+		var params = {
+		    command: "email",
+		    email: email,
+		    realName: realName
+		};
+		god.sendQuery(params);
+	    }
 	};
 
 	window.afterCreateRequest = function(response) {
 	    console.log('createRequest success');
-	    window.location.href = "profile.html";
+	    window.location.href = "profile.html?create=true";
 	    god.getAllRequests();
 	}
 
@@ -224,5 +210,6 @@ $( document ).ready(function() {
 	    console.log('quickCreateRequest success');
 	    console.log(response);
 	    $("#quickRequestText").val("");
+	    god.notify("Quick request created.", "success");
 	}
 });

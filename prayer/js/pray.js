@@ -98,7 +98,7 @@ $( document ).ready(function() {
 	    console.log(response);
 	    if (response.error == 0) {
 		console.log("Hello");
-		window.location.href = "request-feed.html";
+		window.location.href = "request-feed.html?pray=true";
 	    }
 	}
 
@@ -173,6 +173,7 @@ $( document ).ready(function() {
 		return;
 	    }
 	    for (var i = event.resultIndex; i < event.results.length; ++i) {
+		verifyPrayer(event.results[i][0].transcript);
 		if (event.results[i].isFinal) {
 		    final_transcript += event.results[i][0].transcript;
 		} else {
@@ -180,7 +181,6 @@ $( document ).ready(function() {
 		}
 	    }
 	    final_transcript = capitalize(final_transcript);
-	    verifyPrayer(linebreak(interim_transcript));
 	    if (final_transcript || interim_transcript) {
 		showButtons('inline-block');
 	    }
@@ -197,7 +197,7 @@ $( document ).ready(function() {
 
     function verifyPrayer(words) {
 	if (prayerComplete) return;
-	
+
 	var highlight="background-color: yellow;color: black;";
 	var myWords = words.split(" ");;
 	var myWord = myWords[myWords.length - 1];
@@ -221,7 +221,7 @@ $( document ).ready(function() {
 	var percentComplete = Math.ceil(doneCount / prayerObj.length * 100);
 	$("#percent-complete").html(percentComplete + "%");
 
-	if (percentComplete >= 85) {
+	if (percentComplete >= 90) {
 	    prayerComplete = true;
 	    // done with prayer
 	    if (recognizing) {

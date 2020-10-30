@@ -1,6 +1,12 @@
 $( document ).ready(function() {
     window.god = window.god || {};
 
+    // text - display text
+    // type - success, info, warning, error
+    god.notify = function(text, type) {
+	$.notify(text, { position: "top center", className: type });
+    }
+
     // god functions
     god.init = function () {	
 	// load all request for this user
@@ -8,6 +14,7 @@ $( document ).ready(function() {
 	
 	// site wide configuration
 	$("#copyright").html("&#169; prayerforus.com");
+	$("#title").html("Pray For Us - Prayer Social Network");
     }
 
     god.categories = {};
@@ -48,24 +55,14 @@ $( document ).ready(function() {
 	god.insertRequests(response);
     }
 
-    window.afterLogin = function(response) {
-	console.log('afterLogin success');
-	console.log(response);
-	var user = response.result[0];
-	console.log(user);
-	god.userId = user.user_id;
-	    console.log(god.userId);
-	    localStorage.setItem("userId", user.user_id);
-	    localStorage.setItem("userRealName", user.real_name);
-	    localStorage.setItem("userTitle", user.user_title);
-	    localStorage.setItem("userLocation", user.location);
-	    localStorage.setItem("userAbout", user.user_about);
-	    localStorage.setItem("userCreated", god.getFormattedTimestamp(user.timestamp));
-
-	    window.location.href = "profile.html";
-	}
-
-    
+    god.setUser = function(user) {
+	localStorage.setItem("userId", user.user_id);
+	localStorage.setItem("userRealName", user.real_name);
+	localStorage.setItem("userTitle", user.user_title);
+	localStorage.setItem("userLocation", user.location);
+	localStorage.setItem("userAbout", user.user_about);
+	localStorage.setItem("userCreated", god.getFormattedTimestamp(user.timestamp));
+    }
 
     god.getFormattedTimestamp = function(timestamp) {
 	var timestamp = timestamp.split("T");
@@ -136,22 +133,24 @@ $( document ).ready(function() {
 	$("#requests").html(htmlPost);
     }
 
-    god.sendQuery = function(params) {	
+    god.sendQuery = function(params) {
 	url = "callSendQuery.php";
 
 	// get time zone
 	const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	params["tz"] = tz;
 
+	if (!params["command"]) return;
+
 	// get user ID
 	var userId = localStorage.getItem("userId");
-	if (!userId) {
-	    console.log("need to login first!");
-	    if (window.location.href !== "https://pireifej.com/prayer/login.html" &&
-	       window.location.href !== "https://pireifej.com/prayer/profile-edit.html") {
-		window.location.href = "login.html";
-		return;
-	    }
+
+	var exceptions = { "createUser": true, "login": true };
+	if (!exceptions[params["command"]] && !userId) {
+	    if (window.location.href.includes("https://pireifej.com/prayer/login.html")) return;
+	    if (window.location.href.includes("https://pireifej.com/prayer/profile-edit.html")) return;
+	    window.location.href = "login.html?access=true";
+	    return;
 	}
 	
 	params["userId"] = userId;

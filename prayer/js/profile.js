@@ -1,32 +1,90 @@
 $( document ).ready(function() {
     window.god = window.god || {};
-    god.init();
-    getAllRequests();
+    var login = $.urlParam('login');
+    var create = $.urlParam('create');
 
-    window.afterGetAllRequests = function(response) {
-	console.log("profile.js: afterGetAllRequests success");
+    if (login) {
+	god.notify("Welcome back, " + localStorage.getItem("userRealName"), "success");
+    }
+    if (create) {
+	god.notify("Request created.", "success");
+    }
+    
+    god.init();
+    getPrayerCount();
+    getMyRequests();
+
+    window.afterGetPrayerCount = function(response) {
+	console.log("afterGetPrayerCount success");
+	console.log(response);
+	var count = response.result[0]["COUNT(*)"];
+	$("#nbrPrayers").html(count + " Prayers");
+    }
+
+    window.afterGetMyRequests = function(response) {
+	console.log("profile.js: afterGetMyRequests success");
 	insertRequests(response);
     }
 
     window.deleteRequest = function(requestId) {
-	params = {
-	    command: 'deleteRequest',
-	    jsonpCallback: 'afterDeleteRequest',
-	    requestId: requestId
-	};
-	god.sendQuery(params);
+	$.confirm({
+	    text: "Are you sure you want to delete your request?",
+	    confirmButton: "Yes",
+	    cancelButton: "No",
+	    post: true,
+	    confirmButtonClass: "btn-danger",
+	    cancelButtonClass: "btn-default",
+	    dialogClass: "modal-dialog modal-lg",
+	    confirm: function() {
+		params = {
+		    command: 'deleteRequest',
+		    jsonpCallback: 'afterDeleteRequest',
+		    requestId: requestId
+		};
+		god.sendQuery(params);
+	    },
+	    cancel: function() {
+		// nothing to do
+	    }
+	});
     }
 
     window.afterDeleteRequest = function(response) {
 	console.log("profile.js: afterDeleteRequest success");
 	console.log(response);
-	getAllRequests();
+	getMyRequests();
+	god.notify("Request deleted.", "success");
     };
 
-    function getAllRequests() {
+    $("#delete").confirm({
+	text: "Are you sure you want to delete that comment?",
+	title: "Confirmation required",
+	confirm: function(button) {
+	    //delete();
+	},
+	cancel: function(button) {
+	    // nothing to do
+	},
+	confirmButton: "Yes I am",
+	cancelButton: "No",
+	post: true,
+	confirmButtonClass: "btn-danger",
+	cancelButtonClass: "btn-default",
+	dialogClass: "modal-dialog modal-lg" // Bootstrap classes for large modal
+    });
+
+    function getPrayerCount() {
+	params = {
+	    command: 'getPrayerCount',
+	    jsonpCallback: 'afterGetPrayerCount'
+	};
+	god.sendQuery(params);
+    }
+
+    function getMyRequests() {
 	var params = {
-	    command: 'getAllRequests',
-	    jsonpCallback: 'afterGetAllRequests'
+	    command: 'getMyRequests',
+	    jsonpCallback: 'afterGetMyRequests'
 	};
 	god.sendQuery(params);
     }
@@ -44,7 +102,7 @@ $( document ).ready(function() {
 	    htmlPost += "    	<div class='tr-post'>";
 	    htmlPost += "    	<div class='entry-header'>";
 	    htmlPost += "    	<div class='entry-thumbnail'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid' src='img/blog/8.jpg' alt='Image'></a>";
+	    htmlPost += "    	<a href='#'><img class='img-fluid' src='img/requests/" + request.category_name + ".jpg' alt='Image'></a>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='post-content'>";
@@ -68,8 +126,8 @@ $( document ).ready(function() {
 	    htmlPost += "    	<div class='read-more'>";
 	    htmlPost += "    	<div class='feed pull-left'>";
 	    htmlPost += "    	<ul>";
-	    htmlPost += "    	<li><i class='fa fa-comments'></i>134</li>&nbsp;";
-	    htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
+	    htmlPost += "    	<li><i class='fa fa-handshake-o'></i>" + request.prayer_count + "</li>&nbsp;";
+//	    htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
 	    htmlPost += "    	</ul>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='continue-reading pull-right'>";

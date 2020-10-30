@@ -9,21 +9,6 @@ var moment = require('moment');
 var fs = require('fs')
 
 var home = "/home/pireifej/pireifej/prayer/nodejs/";
-
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-	user: 'pireifej@gmail.com',
-	pass: 'bcvbfcsvklsnegqc'
-    }
-});
-
-var mailOptions = {
-    from: 'pireifej@gmail.com',
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
-};
-
 const argv = require('minimist')(process.argv.slice(2));
 var queryObject = {};
 var thing = argv["_"];;
@@ -56,109 +41,141 @@ function createPool() {
 
 //https.createServer(options, function (request, response) {
 //    const queryObject = url.parse(request.url,true).query;
-    var command = queryObject.command;
-    var query = null;
-    var readFile = null;   
+var command = queryObject.command;
+var query = null;
+var readFile = null;
 
-    if (command == "getPrayer") {
-	query = "SELECT * ";
-	query += "FROM prayers ";
-	query += "WHERE fk_category_id = ";
-	query += " (SELECT category_id FROM category WHERE category_name='" + queryObject.category + "') ";
-	query += "LIMIT 1;";
-	readFile = true;
-    }
+if (command == "getPrayerCount") {
+    query = "SELECT COUNT(*) ";
+    query += " FROM user_request ";
+    query += " WHERE user_id = " + queryObject["userId"];
+}
+
+if (command == "getPrayer") {
+    query = "SELECT * ";
+    query += "FROM prayers ";
+    query += "WHERE fk_category_id = ";
+    query += " (SELECT category_id FROM category WHERE category_name='" + queryObject.category + "') ";
+    query += "LIMIT 1;";
+    readFile = true;
+}
+
+if (command == "deleteRequest") {
+    query = "UPDATE request ";
+    query += "SET active = FALSE ";
+    query += "WHERE request_id = '" + queryObject.requestId + "'";
+}
+
+if (command == "getMyRequests") {
+    query = "SELECT request.request_id,request.user_id,request_text,request_title,category.category_name,CONVERT_TZ(request.timestamp,'GMT','America/New_York') as timestamp, ";
+    query += "(SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count ";
+    query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
+    query += "WHERE request.user_id = '" + queryObject.userId + "' and active is TRUE ";
+    query += "ORDER BY timestamp DESC";
+}
+
+if (command == "getRequest") {
+    query = "SELECT request_id,request_text,request_title,category.category_name,user.user_name,CONVERT_TZ(request.timestamp,'GMT','America/New_York') as timestamp ";
+    query += "FROM request ";
+    query += "INNER JOIN category ON category.category_id = fk_category_id ";
+    query += "INNER JOIN user ON user.user_id = request.user_id ";
+    query += "WHERE request_id = '" + queryObject.requestId + "' ";
+}
+
+if (command == "getRequestFeed") {
+    query = "SELECT request_id,user_id,request_text,request_title,category.category_name,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp, ";
+    query += "(SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count ";
+    query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
+    query += "WHERE active IS TRUE ";
+    query += "AND request.user_id <> '" + queryObject.userId + "' ";
+    query += "AND request.request_id NOT IN ";
+    query += "(SELECT request_id FROM user_request WHERE user_request.user_id = '" + queryObject.userId + "') ";
+    query += "ORDER BY timestamp DESC";
+}
+
+if (command == "getCategories") {
+    query = "SELECT category_id, category_name ";
+    query += "FROM category ";
+}
+
+if (command == "login") {
+    var password = security.encrypt(queryObject.password);
+    var decrypt = security.decrypt(password);
+    query = "SELECT password,iv,user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id ";
+    query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
+    query += "AND password = '" + queryObject.password + "' ";
+    query += "LIMIT 1;";
+}
+
+if (command == "email") {
+    var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+	    user: 'pireifej@gmail.com',
+	    pass: 'bcvbfcsvklsnegqc'
+	}
+    });
     
-    if (command == "deleteRequest") {
-	query = "UPDATE request ";
-	query += "SET active = FALSE ";
-	query += "WHERE request_id = '" + queryObject.requestId + "'";
-    }
+    var mailOptions = {
+	from: 'welcome@prayforus.com',
+	subject: 'Welcome to the Prayer Network, ' + queryObject.realName + '!',
+	text: 'Thanks for joining, ' + queryObject.realName + '! Try to login and start praying.'
+    };
 
-    if (command == "getAllRequests") {
-	query = "SELECT request_id,user_id,request_text,request_title,category.category_name,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp ";
-	query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
-	query += "WHERE user_id = '" + queryObject.userId + "' and active is TRUE ";
-	query += "ORDER BY timestamp DESC";
-    }
+    mailOptions["to"] = queryObject.email;
+    transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+	    console.log(error);
+	} else {
+	    console.log('Email sent: ' + info.response);
+	}
+    });
+}
 
-    if (command == "getRequest") {
-	query = "SELECT request_id,request_text,request_title,category.category_name,user.user_name,CONVERT_TZ(request.timestamp,'GMT','America/New_York') as timestamp ";
-	query += "FROM request ";
-	query += "INNER JOIN category ON category.category_id = fk_category_id ";
-	query += "INNER JOIN user ON user.user_id = request.user_id ";
-	query += "WHERE request_id = '" + queryObject.requestId + "' ";
-    }
+if (command == "createUser") {
+    //var e = security.encrypt(queryObject.password);
+    //var password = e.encryptedData;
+    //var iv = e.iv;
+    var password = queryObject.password;
+    query = "INSERT INTO user (user_name, password, iv, email, real_name, location, user_title, user_about, active) VALUES (";
+    query += "'" + queryObject.userName + "',";
+    query += "'" + password + "',";
+    query += "'" + "iv" + "',";
+    query += "'" + queryObject.email + "',";
+    query += "'" + queryObject.realName + "',";
+    query += "'" + queryObject.location + "',";
+    query += "'" + queryObject.title + "',";
+    query += "'" + queryObject.about + "',";
+    query += "TRUE);";
+}
 
-    if (command == "getRequestFeed") {
-	query = "SELECT request_id,user_id,request_text,request_title,category.category_name,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp ";
-	query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
-	query += "WHERE active IS TRUE ";
-	query += "ORDER BY timestamp DESC";
-    }
+if (command == "createRequest") {
+    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, active) VALUES (";
+    query += "'" + queryObject.userId + "',";
+    query += "'" + queryObject.requestText + "',";
+    query += "'" + queryObject.requestTitle + "',";
+    query += "'" + queryObject.requestCategoryId + "',";
+    query += "TRUE)";
+}
 
-    if (command == "getCategories") {
-	query = "SELECT category_id, category_name ";
-	query += "FROM category ";
-    }
+if (command == "prayFor") {
+    query = "INSERT INTO user_request (request_id, user_id) VALUES (";
+    query += "'" + queryObject.requestId + "',";
+    query += "'" + queryObject.userId + "')";
+}
 
-    if (command == "login") {
-	query = "SELECT user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id ";
-	query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
-	query += "AND password = '" + queryObject.password + "' ";
-	query += "LIMIT 1;";
-    }
-    
-    if (command == "createUser") {
-	var password = security.encrypt(queryObject.password);
-	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, active) VALUES (";
-	query += "'" + queryObject.userName + "',";
-	query += "'" + password + "',";
-	query += "'" + queryObject.email + "',";
-	query += "'" + queryObject.realName + "',";
-	query += "'" + queryObject.location + "',";
-	query += "'" + queryObject.title + "',";
-	query += "'" + queryObject.about + "',";
-	query += "TRUE);";
-
-	mailOptions["to"] = queryObject.email;
-	//console.log(mailOptions);
-	transporter.sendMail(mailOptions, function(error, info){
-	    if (error) {
-		//console.log(error);
-	    } else {
-		//console.log('Email sent: ' + info.response);
-	    }
-	});
-    }
-
-    if (command == "createRequest") {
-	query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, active) VALUES (";
-	query += "'" + queryObject.userId + "',";
-	query += "'" + queryObject.requestText + "',";
-	query += "'" + queryObject.requestTitle + "',";
-	query += "'" + queryObject.requestCategoryId + "',";
-	query += "TRUE)";
-    }
-
-    if (command == "prayFor") {
-	query = "INSERT INTO user_request (request_id, user_id) VALUES (";
-	query += "'" + queryObject.requestId + "',";
-	query += "'" + queryObject.userId + "')";
-    }
-
-    if (!query) {
-	//response.setHeader('Content-type','application/json');
-	//response.setHeader('Charset','utf8');
-	//response.setHeader('Access-Control-Allow-Origin', '*');
-	var returnError = { "status": "no query" };
-	//response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
-	return;
-    }
-
+if (!query) {
     //response.setHeader('Content-type','application/json');
     //response.setHeader('Charset','utf8');
     //response.setHeader('Access-Control-Allow-Origin', '*');
+    var returnError = { "status": "no query" };
+    //response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
+    return;
+}
+
+//response.setHeader('Content-type','application/json');
+//response.setHeader('Charset','utf8');
+//response.setHeader('Access-Control-Allow-Origin', '*');
     
 //    var pool = require("./mariadbConnector");
 
