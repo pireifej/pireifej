@@ -6664,7 +6664,7 @@ div.blog-row .blog-col .blog-content .blog-detail .blog-detail-text i {
 /* line 5, ../scss/_page-post.scss */
 header.masthead {
   margin-bottom: 50px;
-  background: linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url("../img/blog/5.jpg") no-repeat center center;
+  background: linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url("../img/blog/FULL.jpg") no-repeat center center;
   background-color: #777777;
   background-attachment: scroll;
   -webkit-background-size: cover;
@@ -6820,7 +6820,6 @@ article ul li {
 ---------------------------------------------------------------------- */
 /* line 5, ../scss/_page-post-2.scss */
 header.page-post-2 {
-  background: linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url("../img/blog/5.jpg") no-repeat center center fixed;
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -18,7 +18,23 @@ $( document ).ready(function() {
 	$("#request-title").html(request.request_title);
 	$("#prayer-category").html(request.category_name);
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
-	$("#user-name").html(request.user_name);
+	$("#user-name-for-request").html(request.user_name);
+
+	$("#headerImage").css("background-position", "center center");
+	$("#headerImage").css("-webkit-background-size", "cover");
+	$("#headerImage").css("-moz-background-size", "cover");
+	$("#headerImage").css("-o-background-size", "cover");
+	$("#headerImage").css("background-size", "cover");
+	$("#headerImage").css("background-attachment", "scroll");
+	$("#headerImage").css("color", "#fff");
+	$("#headerImage").css("height", "65vh");
+	$("#headerImage").css("display", "flex");
+	$("#headerImage").css("flex-direction", "column");
+	$("#headerImage").css("justify-content", "center");
+	$("#headerImage").css("align-items", "center");
+	$("#headerImage").css("text-align", "center");
+	$("#headerImage").css("background", "linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url('img/blog/FULL.jpg') no-repeat center center fixed");
+	
 	getPrayer(request.category_name);
     }
     

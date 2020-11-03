@@ -141,4 +141,9 @@ $( document ).ready(function() {
 	}
 	$("#requests").html(htmlPost);
     }
+
+    $("#edit-profile").click(function() {
+	console.log("edit profile!");
+	window.location.href = "profile-edit.html";
+    });
 })

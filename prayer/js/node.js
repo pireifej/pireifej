@@ -10,6 +10,69 @@ $( document ).ready(function() {
     getRequestFeed();
     god.getCategories("afterGetCategories");
 
+    $("#headerImage").css("margin-bottom", "50px");
+    $("#headerImage").css("background", "linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url('img/blog/FULL.jpg') no-repeat center center");
+    $("#headerImage").css("background-color: #777777");
+    $("#headerImage").css("background-attachment", "scroll");
+    $("#headerImage").css("-webkit-background-size", "cover");
+    $("#headerImage").css("-moz-background-size", "cover");
+    $("#headerImage").css("-o-background-size", "cover");
+    $("#headerImage").css("background-size", "cover");
+
+    var userId = localStorage.getItem("userId");
+
+    if (userId) {
+	$("#submit-button").val("Update User");
+	var params = {
+	    command: 'getUser',
+	    userId: userId,
+	    jsonpCallback: "afterGetuser"
+	};
+	god.sendQuery(params);
+    }
+
+    //Dropdown plugin data
+var ddData = [
+    {
+        text: "Facebook",
+        value: 1,
+        selected: false,
+        description: "Description with Facebook",
+        imageSrc: "https://i.imgur.com/XkuTj3B.png"
+    },
+    {
+        text: "Twitter",
+        value: 2,
+        selected: false,
+        description: "Description with Twitter",
+        imageSrc: "https://i.imgur.com/8ScLNnk.png"
+    },
+    {
+        text: "LinkedIn",
+        value: 3,
+        selected: true,
+        description: "Description with LinkedIn",
+        imageSrc: "https://i.imgur.com/aDNdibj.png"
+    },
+    {
+        text: "Foursquare",
+        value: 4,
+        selected: false,
+        description: "Description with Foursquare",
+        imageSrc: "https://i.imgur.com/kFAk2DX.png"
+    }
+];
+
+    $('#demoBasic').ddslick({
+	data: ddData,
+	width: 300,
+	imagePosition: "left",
+	selectText: "Select your favorite social network",
+	onSelected: function (data) {
+            console.log(data);
+	}
+    });
+
     $("#newRequestForm").submit(function(e) {
 	e.preventDefault();
 
@@ -56,27 +119,29 @@ $( document ).ready(function() {
 	e.preventDefault();
 
 	var formValues = $("#form").serializeArray();
-	email = formValues[2].value;
-	realName = formValues[3].value;
+	var userId = localStorage.getItem("userId");
+	var profileDetails = {};
+	for (var i = 0; i < formValues.length; i++) {
+	    profileDetails[formValues[i].name] = formValues[i].value;
+	}
+	
 	var params = {
-	    command: 'createUser',
-	    jsonpCallback: 'afterCreateUser',
-	    userName: formValues[0].value,
-	    password: formValues[1].value,
-	    email: formValues[2].value,
-	    realName: "'" + formValues[3].value + "'",
-	    location: "'" + formValues[4].value + "'",
-	    title: "'" + formValues[6].value + "'",
-	    about: "'" + formValues[7].value + "'"
+	    command: (userId) ? 'updateUser' : 'createUser',
+	    jsonpCallback: (userId) ? 'afterUpdateUser' : 'afterCreateUser',
+	    userName: "'" + profileDetails["username"] + "'",
+	    password: "'" + profileDetails["password"] + "'",
+	    email: "'" + profileDetails["email"] + "'",
+	    realName: "'" + profileDetails["realname"] + "'",
+	    location: "'" + profileDetails["location"] + "'",
+	    title: "'" + profileDetails["title"] + "'",
+	    about: "'" + profileDetails["about"] + "'",
+	    userId: (userId) ? userId : ""
 	};
+	
 	god.sendQuery(params);
     })
 
-    $("#edit-profile").click(function() {
-	window.location.href = "profile-edit.html";
-    });
-
-    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText, prayerCount) {
+    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText, prayerCount, realName) {
 	var htmlPost = "";
 	htmlPost += " <div>";
 	htmlPost += "    <div class='tr-section feed'>";
@@ -92,7 +157,7 @@ $( document ).ready(function() {
 	htmlPost += "    	</div>";
 	htmlPost += "    	<div class='entry-meta'>";
 	htmlPost += "    	<ul>";
-	htmlPost += "    	<li><a href='#'>" + requestId + "</a></li>";
+	htmlPost += "    	<li><a href='#'>" + realName + "</a></li>";
 	htmlPost += "    	<li>" + requestDate + "</li>";
 	htmlPost += "    	<li><i class='fa fa-align-left'></i>&nbsp;" + categoryName + " </li>";
 	htmlPost += "    	</ul>";
@@ -143,7 +208,7 @@ $( document ).ready(function() {
 	    }
 	    time = hour + ":" + times[1] + " " + amOrPM;
 	    date = date + " " + time;
-	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text, request.prayer_count);
+	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text, request.prayer_count, request.real_name);
 	}
 	$("#request-feed").html(htmlPost);
     }
@@ -172,6 +237,21 @@ $( document ).ready(function() {
 	insertRequestFeed(response);
     }
 
+    window.afterGetuser = function(response) {
+	console.log('afterGetUser success');
+	console.log(localStorage.getItem("userId"));
+	console.log(response);
+	var user = response.result[0];
+	$("[name=username]").val(user.user_name);
+	$("[name=password]").val("");
+	$("[name=email]").val(user.email);
+	$("[name=location]").val(user.location);
+	$("[name=reason]").val("");
+	$("[name=title]").val(user.user_title);
+	$("[name=about]").val(user.user_about);
+	$("[name=realname]").val(user.real_name);
+    }
+
     window.afterGetCategories = function(response) {
 	console.log('afterGetCategories success');
 	var categoryHtml = "";
@@ -182,6 +262,12 @@ $( document ).ready(function() {
 	god.categories = response.result;
     }
 
+    window.afterUpdateUser = function(response) {
+	console.log("afterUpdateUser success");
+	god.notify("Profile updated.", "success");
+	console.log(response);
+    }
+    
 	window.afterGetPrayer = function(response) {
 	    console.log('afterGetPrayer success');
 	    console.log(response);

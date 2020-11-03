@@ -83,10 +83,11 @@ if (command == "getRequest") {
 }
 
 if (command == "getRequestFeed") {
-    query = "SELECT request_id,user_id,request_text,request_title,category.category_name,CONVERT_TZ(timestamp,'GMT','America/New_York') as timestamp, ";
+    query = "SELECT request_id,request.user_id,request_text,request_title,category.category_name,CONVERT_TZ(request.timestamp,'GMT','America/New_York') as timestamp,user.real_name, ";
     query += "(SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count ";
     query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
-    query += "WHERE active IS TRUE ";
+    query += "INNER JOIN user ON user.user_id = request.user_id ";
+    query += "WHERE request.active IS TRUE ";
     query += "AND request.user_id <> '" + queryObject.userId + "' ";
     query += "AND request.request_id NOT IN ";
     query += "(SELECT request_id FROM user_request WHERE user_request.user_id = '" + queryObject.userId + "') ";
@@ -105,6 +106,22 @@ if (command == "login") {
     query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
     query += "AND password = '" + queryObject.password + "' ";
     query += "LIMIT 1;";
+}
+
+if (command == "getUser") {
+    query = "SELECT user_name,email,real_name,location,user_title,user_about ";
+    query += "FROM user WHERE user_id = '" + queryObject.userId + "';";
+}
+
+if (command == "updateUser") {
+    query = "UPDATE user ";
+    query += "SET user_name = '" + queryObject.userName + "', ";
+    query += "email = '" + queryObject.email + "', ";
+    query += "real_name = '" + queryObject.realName + "', ";
+    query += "location = '" + queryObject.location + "', ";
+    query += "user_title = '" + queryObject.title + "', ";
+    query += "user_about = '" + queryObject.about + "' ";
+    query += "WHERE user_id = '" + queryObject.userId + "';";
 }
 
 if (command == "email") {

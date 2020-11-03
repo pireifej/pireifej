@@ -32,8 +32,10 @@ $( document ).ready(function() {
 	var userLocation = localStorage.getItem("userLocation");
 	var userAbout = localStorage.getItem("userAbout");
 	var userCreated = localStorage.getItem("userCreated");
-
+	console.log("setUserdetails");
+	console.log(userRealName);
 	$('*[id*=user-name]').each(function() {
+	    console.log("setting ... " + userRealName);
 	    $(this).html(userRealName);
 	});
 	$('*[id*=user-title]').each(function() {
