@@ -10,7 +10,13 @@ $( document ).ready(function() {
     var prayerComplete = false;
     
     getRequest();
-    
+
+    var options = {
+	classname: 'prayer-progress-class',
+	id: 'prayer-progress'
+    };
+    var nanobar = new Nanobar( options );
+
     window.afterGetRequest = function(response) {
 	console.log("afterGetRequest success");
 	console.log(response);
@@ -109,14 +115,13 @@ $( document ).ready(function() {
 	$("#prayer").html(prayerHtml);
     }
 
-	window.afterPrayFor = function(response) {
-	    console.log('afterPrayFor success');
-	    console.log(response);
-	    if (response.error == 0) {
-		console.log("Hello");
-		window.location.href = "request-feed.html?pray=true";
-	    }
+    window.afterPrayFor = function(response) {
+	console.log('afterPrayFor success');
+	console.log(response);
+	if (response.error == 0) {
+	    window.location.href = "request-feed.html?pray=true";
 	}
+    }
 
     var create_email = false;
     var final_transcript = '';
@@ -202,7 +207,7 @@ $( document ).ready(function() {
 	    }
 	};
     }
-
+    
     function cleanWord(wordToClean) {
 	var wordToMatch = wordToClean;
 	wordToMatch = wordToMatch.trim();
@@ -219,12 +224,20 @@ $( document ).ready(function() {
 	var myWord = myWords[myWords.length - 1];
 	console.log("myWord = " + myWord);
 
-	for (var i = 0; i < prayerObj.length; i++) {
-	    if (prayerObj[i].done) continue;
-	    if (cleanWord(prayerObj[i].text) == cleanWord(myWord)) {
-		prayerObj[i].done = true;
+	var i = 0;
+	for (i = 0; i < prayerObj.length; i++) {
+	    if (!prayerObj[i].done) break;
+	}
+
+	var counter = 0;
+	for (var j = i; j < prayerObj.length; j++) {
+	    if (cleanWord(prayerObj[j].text) == cleanWord(myWord)) {
+		prayerObj[j].done = true;
+		prayerObj[j-1].done = true; // ???
 		break;
 	    }
+	    counter++;
+	    if (counter >= 3) break;
 	}
 
 	refreshPrayerDisplay();
@@ -235,33 +248,17 @@ $( document ).ready(function() {
 	}
 
 	var percentComplete = Math.ceil(doneCount / prayerObj.length * 100);
-	$("#percent-complete").html(percentComplete + "%");
+	nanobar.go(percentComplete);
+//	$("#progress-percent-display").text(percentComplete + "%");
 
-	if (percentComplete >= 90) {
+	// done with prayer
+	if (percentComplete == 100) {
 	    prayerComplete = true;
-	    // done with prayer
 	    if (recognizing) {
 		recognition.stop();
 	    }
 	    prayForMe();
 	}
-	
-//	for (var i = 0; i < myWords.length; i++) {
-//	    var myWord = myWords[i];
-//	    var index = globalPrayerHtml.indexOf(myWord);
-/*	    var prayerText = globalPrayerHtml.replace(
-		new RegExp("\\b" + myWord + "\\b"),
-		"<span style='" + highlight + "'>" + myWord + "</span>"
-	    );
-*/
-/*	    var prayerText = globalPrayerHtml.replace(
-		new RegExp("\\b" + myWord + "\\b"),
-		"<strong>" + myWord + "</strong>"
-	    );
-*/
-//	    var prayerText = replaceAt(globalPrayerHtml, index, "<strong>" + myWord + "</string>");
-//	    $("#prayer").html(prayerText);
-//	}
     }
 
     function prayForMe() {

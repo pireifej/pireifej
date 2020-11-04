@@ -2,12 +2,16 @@ $( document ).ready(function() {
     window.god = window.god || {};
     var login = $.urlParam('login');
     var create = $.urlParam('create');
+    var deleted = $.urlParam('deleted');
 
     if (login) {
 	god.notify("Welcome back, " + localStorage.getItem("userRealName"), "success");
     }
     if (create) {
 	god.notify("Request created.", "success");
+    }
+    if (deleted) {
+	god.notify("Request deleted.", "success");
     }
     
     god.init();
@@ -23,7 +27,7 @@ $( document ).ready(function() {
 
     window.afterGetMyRequests = function(response) {
 	console.log("profile.js: afterGetMyRequests success");
-	insertRequests(response);
+	insertRequests(response.result);
     }
 
     window.deleteRequest = function(requestId) {
@@ -52,8 +56,12 @@ $( document ).ready(function() {
     window.afterDeleteRequest = function(response) {
 	console.log("profile.js: afterDeleteRequest success");
 	console.log(response);
-	getMyRequests();
-	god.notify("Request deleted.", "success");
+	window.location.href = "profile.html?deleted=true";
+
+//	console.log(globalRequests);
+//	$("#nbrRequests").html(globalRequests.length-1 + " Requests");
+	//insertRequests(globalRequests);
+//	god.notify("Request deleted.", "success");
     };
 
     $("#delete").confirm({
@@ -89,12 +97,12 @@ $( document ).ready(function() {
 	god.sendQuery(params);
     }
 
-    function insertRequests(response) {
+    function insertRequests(requests) {
 	$("#requests").empty();
 	var htmlPost = "";
-	$("#nbrRequests").html(response.result.length + " Requests");
-	for (var i = 0; i < response.result.length; i++) {
-	    var request = response.result[i];
+	$("#nbrRequests").html(requests.length + " Requests");
+	for (var i = 0; i < requests.length; i++) {
+	    var request = requests[i];
 	    var date = god.getFormattedTimestamp(request.timestamp);
 
 	    htmlPost += " <div>";

@@ -41,6 +41,10 @@
 
   <body>
 
+    <div class="nanobar prayer-progress-class" id="prayer-progress" style="position: fixed;">
+      <div class="bar"><span id="progress-percent-display"></span></div>
+    </div>
+    
          <!-- ==============================================
      Navigation Section
      =============================================== -->
@@ -89,11 +93,6 @@
 	   <div class="container">
 	     <div class="row">
 	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-
-		 		     <p id="percent-complete">
-		       --
-		     </p>
-
 		 <div class="compact marquee">
 		   <div id="info">
 		     <p id="info_speak_now" style="display:none">
@@ -178,14 +177,15 @@
 	      <!-- ==============================================
 		    Scripts
 		    =============================================== -->
-	<script src="js/jquery.js"></script>
-	<script src="js/tether.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/medium.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
-	<script src="js/common.js"></script>
-	<script src="js/pray.js"></script>
-	<script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
-
+	 <script src="js/jquery.js"></script>
+	 <script src="js/nanobar.min.js"></script>
+	 <script src="js/tether.min.js"></script>
+	 <script src="js/bootstrap.js"></script>
+	 <script src="js/medium.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	 <script src="js/common.js"></script>
+	 <script src="js/pray.js"></script>
+	 <script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
+	 
   </body>
-  </html>
+</html>

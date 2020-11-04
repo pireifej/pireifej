@@ -1,3 +1,11 @@
+.prayer-progress-class .bar {
+    background: #0275d8;
+}
+
+.bar {
+    height: 200% !important;
+}
+
 .clicky {
     cursor: pointer;
 }
