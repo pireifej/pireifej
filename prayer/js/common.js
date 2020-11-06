@@ -10,60 +10,135 @@ $( document ).ready(function() {
     // god functions
     god.init = function () {	
 	// load all request for this user
-	god.setUserDetails();
+	var userId = localStorage.getItem("userId");
+
+	if (userId) {
+	  var params = {
+	    command: 'getUser',
+	    userId: userId,
+	    jsonpCallback: "afterGetUser"
+	  };
+	
+	  god.sendQuery(params);
+	}
 	
 	// site wide configuration
+	if (!userId) {
+	    $("#user-name").html("Welcome");
+	    $("#user-picture").hide();
+	    $("#user-pic-circle").hide();
+	    $("#navigation").hide();
+	    $("#user-notification").hide();
+	}
+
+	var params = {
+	    command: 'getNotifications',
+	    jsonpCallback: 'afterGetNotifications'
+	};
+	god.sendQuery(params);
+	
 	$("#copyright").html("&#169; prayerforus.com");
 	$("#title").html("Pray For Us - Prayer Social Network");
     }
 
     god.categories = {};
     $.urlParam = function(name){
-	console.log(window.location.href);
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	if (!results) return null;
 	return results[1] || 0;
     }
 
-    god.setUserDetails = function() {
-	var userId = localStorage.getItem("userId");
-	var userRealName = localStorage.getItem("userRealName");
-	var userTitle = localStorage.getItem("userTitle");
-	var userLocation = localStorage.getItem("userLocation");
-	var userAbout = localStorage.getItem("userAbout");
-	var userCreated = localStorage.getItem("userCreated");
-	console.log("setUserdetails");
-	console.log(userRealName);
+    window.afterGetNotifications = function(response) {
+	console.log("afterGetNotifications success");
+	console.log(response);
+
+	$("#notifications").empty();
+	var htmlNotifications = "";
+
+	for (var i = 0; i < response.result.length; i++) {
+	    var notice = response.result[i];
+	    console.log(notice);
+
+	    var current = new Date().getTime();
+	    var prayedFor = new Date(notice.timestamp).getTime();
+	    var difference = current - prayedFor;
+
+	    var seconds = (current-prayedFor)/1000;
+	    var minutes = Math.floor(seconds / 60);
+	    var hours = Math.floor(minutes / 60);
+	    var days = Math.floor(hours / 24);
+	    var timeAgo = days + " days ago";
+
+	    if (days == 0) {
+		timeAgo = hours + " hours ago";
+	    }
+
+	    if (days == 0 && hours == 0) {
+		timeAgo = minutes + " minutes ago";
+	    }
+
+	    if (days == 0 && hours == 0 && minutes == 0) {
+		timeAgo = seconds + " seconds ago";
+	    }
+	    
+	    htmlNotifications += "<li class='list-group-item dark-white box-shadow-z0 b'>";
+	    htmlNotifications += "<span class='pull-left m-r'>";
+	    htmlNotifications += "<img src='" + notice.picture + "' alt='...' class='w-40 img-circle'>";
+	    htmlNotifications += "</span>";
+	    htmlNotifications += "<span class='clear block'><span class='text-primary'>" + notice.real_name + "</span> prayed for you <br>";
+	    htmlNotifications += "<small class='text-muted'>" + timeAgo + "</small>";
+	    htmlNotifications += "</span>";
+	    htmlNotifications += "</li>";
+	}
+	$("#notifications").html(htmlNotifications);
+    }
+
+    window.afterGetUser = function(response) {
+	console.log('afterGetUser success');
+
+	var user = response.result[0];
+
+	// set edit profile form
+	$("[name=username]").val(user.user_name);
+	$("[name=password]").val("");
+	$("[name=email]").val(user.email);
+	$("[name=location]").val(user.location);
+	$("[name=reason]").val("");
+	$("[name=title]").val(user.user_title);
+	$("[name=about]").val(user.user_about);
+	$("[name=realname]").val(user.real_name);
+
+	// select the selected user profile picture
+	$('.pic-select').each(function(i, obj) {
+	    if ($(obj).attr("src") == user.picture) {
+		$(obj).css('border', "5px inset yellow");
+	    }
+	});
+
+	// set user details on screen header, requests, elsewhere
 	$('*[id*=user-name]').each(function() {
-	    console.log("setting ... " + userRealName);
-	    $(this).html(userRealName);
+	    $(this).html(user.real_name);
 	});
 	$('*[id*=user-title]').each(function() {
-	    $(this).html(userTitle);
+	    $(this).html(user.user_title);
 	});
 	$('*[id*=user-location]').each(function() {
-	    $(this).html(userLocation);
+	    $(this).html(user.location);
 	});
 	$('*[id*=user-about]').each(function() {
-	    $(this).html(userAbout);
+	    $(this).html(user.user_about);
 	});
 	$('*[id*=user-created]').each(function() {
-	    $(this).html(userCreated);
+	    $(this).html(god.getFormattedTimestamp(user.timestamp));
+	});
+	$('*[id*=user-picture]').each(function() {
+	    $(this).attr("src", user.picture);
 	});
     }
 
     window.afterGetAllRequests = function(response) {
 	console.log("common.js: afterGetAllRequests success");
 	god.insertRequests(response);
-    }
-
-    god.setUser = function(user) {
-	localStorage.setItem("userId", user.user_id);
-	localStorage.setItem("userRealName", user.real_name);
-	localStorage.setItem("userTitle", user.user_title);
-	localStorage.setItem("userLocation", user.location);
-	localStorage.setItem("userAbout", user.user_about);
-	localStorage.setItem("userCreated", god.getFormattedTimestamp(user.timestamp));
     }
 
     god.getFormattedTimestamp = function(timestamp) {
@@ -79,7 +154,19 @@ $( document ).ready(function() {
 	}
 	time = hour + ":" + times[1] + " " + amOrPM;
 	date = date + " " + time;
-	return date;
+
+	var dateVals = date.split("-");
+	var year = dateVals[0];
+	var month = dateVals[1];
+	var day = dateVals[2];
+
+	var dayArray = day.split(" ");
+	day = dayArray[0];
+
+	if (month == 11) month = "October";
+
+	return month + " " + day + ", " + year + " @ " + time;
+	//return date;
     }
 
     god.insertRequests = function(response) {

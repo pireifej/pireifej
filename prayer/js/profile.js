@@ -3,9 +3,22 @@ $( document ).ready(function() {
     var login = $.urlParam('login');
     var create = $.urlParam('create');
     var deleted = $.urlParam('deleted');
+    var name = $.urlParam("name");
+    var updated = $.urlParam("updated");
+    var help = $.urlParam("help");
+        
+    god.init();
+    getPrayerCount();
+    getMyRequests();
 
+    if (help) {
+	god.notify("Help is on it's way!.", "success");
+    }
+    if (updated) {
+	god.notify("Profile updated.", "success");
+    }
     if (login) {
-	god.notify("Welcome back, " + localStorage.getItem("userRealName"), "success");
+	god.notify("Welcome back!", "success");
     }
     if (create) {
 	god.notify("Request created.", "success");
@@ -13,14 +26,9 @@ $( document ).ready(function() {
     if (deleted) {
 	god.notify("Request deleted.", "success");
     }
-    
-    god.init();
-    getPrayerCount();
-    getMyRequests();
 
     window.afterGetPrayerCount = function(response) {
 	console.log("afterGetPrayerCount success");
-	console.log(response);
 	var count = response.result[0]["COUNT(*)"];
 	$("#nbrPrayers").html(count + " Prayers");
     }
@@ -115,7 +123,7 @@ $( document ).ready(function() {
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='post-content'>";
 	    htmlPost += "    	<div class='author-post'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='img/users/8.jpg' alt='Image'></a>";
+	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' alt='Image'></a>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='entry-meta'>";
 	    htmlPost += "    	<ul>";

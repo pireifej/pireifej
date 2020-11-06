@@ -5443,18 +5443,18 @@ a {
 .kafe-btn-default {
   font-family: 'Varela Round', sans-serif;
   letter-spacing: 1px;
-  color: #1ab394;
+  color: #1a7bb3cf;
   border-width: 1px;
   border-style: solid;
   background-color: transparent;
-  border: 1px solid #1ab394;
+  border: 1px solid #1a7bb3cf;
   margin-top: 10px;
   padding: 13px 31px;
 }
 
 /* line 101, ../scss/_footer.scss */
 .kafe-btn-default:hover {
-  background-color: #1ab394;
+    background-color: #1a7bb3cf;
   color: #fff !important;
   text-decoration: none;
 }
@@ -5989,7 +5989,7 @@ a {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   letter-spacing: 0px;
-  color: #1ab394 !important;
+  color: #1a7bb3cf !important;
   font-size: 16px;
   line-height: 1 !important;
 }
@@ -6484,7 +6484,7 @@ div.blog-row .blog-col .blog-content .blog-detail .blog-detail-text i {
 }
 /* line 37, ../scss/_newsfeed.scss */
 .widget-info-one .card-footer {
-  background: #65CEA7 !important;
+  background: #1a7bb3cf !important;
   border: none;
   color: #fff;
   padding: 0;
@@ -6554,8 +6554,8 @@ div.blog-row .blog-col .blog-content .blog-detail .blog-detail-text i {
 .box .btn-info {
   font-family: 'Abhaya Libre', serif;
   color: #fff;
-  background-color: #1ab394 !important;
-  border-color: #1ab394 !important;
+  background-color: #1a7bb3cf !important;
+  border-color: #1a7bb3cf !important;
 }
 /* line 108, ../scss/_newsfeed.scss */
 .box .nav-sm .nav-link {

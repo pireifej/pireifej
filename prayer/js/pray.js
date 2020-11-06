@@ -25,6 +25,7 @@ $( document ).ready(function() {
 	$("#prayer-category").html(request.category_name);
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
 	$("#user-name-for-request").html(request.user_name);
+	$("#requestor-picture").attr("src", request.picture);
 
 	$("#headerImage").css("background-position", "center center");
 	$("#headerImage").css("-webkit-background-size", "cover");
@@ -233,7 +234,7 @@ $( document ).ready(function() {
 	for (var j = i; j < prayerObj.length; j++) {
 	    if (cleanWord(prayerObj[j].text) == cleanWord(myWord)) {
 		prayerObj[j].done = true;
-		prayerObj[j-1].done = true; // ???
+		if (prayerObj[j-1]) prayerObj[j-1].done = true; // ???
 		break;
 	    }
 	    counter++;
@@ -249,7 +250,6 @@ $( document ).ready(function() {
 
 	var percentComplete = Math.ceil(doneCount / prayerObj.length * 100);
 	nanobar.go(percentComplete);
-//	$("#progress-percent-display").text(percentComplete + "%");
 
 	// done with prayer
 	if (percentComplete == 100) {

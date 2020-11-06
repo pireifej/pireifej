@@ -3,17 +3,25 @@ $( document ).ready(function() {
     god.init();
     var logout = $.urlParam('signout');
     if (logout) {
-	god.notify("See you later, " + localStorage.getItem("userRealName") + "!", "success");
-	localStorage.removeItem("userId");
-	localStorage.removeItem("userRealName");
-	localStorage.removeItem("userTitle");
-	localStorage.removeItem("userLocation");
-	localStorage.removeItem("userAbout");
-	localStorage.removeItem("userCreated");
+	var userId = localStorage.getItem("userId");
+	var params = {
+	    command: 'getUser',
+	    userId: userId,
+	    jsonpCallback: "logout"
+	  };
+	
+	god.sendQuery(params);
     }
-    if (!localStorage.getItem("userId")) {
-	$("#user-name").html("Welcome");
-	$("#user-pic").hide();
+
+    window.logout = function(response) {
+	console.log(response);
+	var name = response.result[0].real_name;
+	god.notify("See you later, " + name + "!", "success");
+	localStorage.removeItem("userId");
+	$('*[id*=user-name]').each(function() {
+	    $(this).html("Welcome");
+	});
+	$("#user-picture").hide();
 	$("#user-pic-circle").hide();
 	$("#navigation").hide();
 	$("#user-notification").hide();

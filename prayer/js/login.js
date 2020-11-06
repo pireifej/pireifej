@@ -47,7 +47,7 @@ $( document ).ready(function() {
 	    god.notify("Wrong username or password.", "error");
 	} else {
 	    var user = response.result[0];
-	    god.setUser(user);
+	    localStorage.setItem("userId", user.user_id);
 	    window.location.href = "profile.html?login=true";
 	}
     }

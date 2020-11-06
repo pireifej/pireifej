@@ -4,6 +4,7 @@ $( document ).ready(function() {
     var realName = "";
     god.init();
     var pray = $.urlParam("pray");
+    var selectdPicture = "";
     if (pray) {
 	god.notify("Prayer completed.", "success");
     }
@@ -26,10 +27,18 @@ $( document ).ready(function() {
 	var params = {
 	    command: 'getUser',
 	    userId: userId,
-	    jsonpCallback: "afterGetuser"
+	    jsonpCallback: "afterGetUser"
 	};
 	god.sendQuery(params);
     }
+
+    $('body').on('click','img',function(element){
+	$('.pic-select').each(function(i, obj) {
+	    $(obj).css('border', "");
+	});
+	$(event.target).css('border', "5px inset yellow");
+	selectedPicture = $(event.target).attr("src");
+    })
 
     //Dropdown plugin data
 var ddData = [
@@ -135,13 +144,14 @@ var ddData = [
 	    location: "'" + profileDetails["location"] + "'",
 	    title: "'" + profileDetails["title"] + "'",
 	    about: "'" + profileDetails["about"] + "'",
+	    picture: "'" + selectedPicture + "'",
 	    userId: (userId) ? userId : ""
 	};
 	
 	god.sendQuery(params);
     })
 
-    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText, prayerCount, realName) {
+    function getRequestHtml(requestId, requestDate, categoryName, requestTitle, requestText, prayerCount, realName, picture) {
 	var htmlPost = "";
 	htmlPost += " <div>";
 	htmlPost += "    <div class='tr-section feed'>";
@@ -153,7 +163,7 @@ var ddData = [
 	htmlPost += "    	</div>";
 	htmlPost += "    	<div class='post-content'>";
 	htmlPost += "    	<div class='author-post'>";
-	htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='img/users/8.jpg' alt='Image'></a>";
+	htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' src='" + picture + "' alt='Image'></a>";
 	htmlPost += "    	</div>";
 	htmlPost += "    	<div class='entry-meta'>";
 	htmlPost += "    	<ul>";
@@ -208,7 +218,7 @@ var ddData = [
 	    }
 	    time = hour + ":" + times[1] + " " + amOrPM;
 	    date = date + " " + time;
-	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text, request.prayer_count, request.real_name);
+	    htmlPost += getRequestHtml(request.request_id, date, request.category_name, request.request_title, request.request_text, request.prayer_count, request.real_name, request.picture);
 	}
 	$("#request-feed").html(htmlPost);
     }
@@ -237,21 +247,6 @@ var ddData = [
 	insertRequestFeed(response);
     }
 
-    window.afterGetuser = function(response) {
-	console.log('afterGetUser success');
-	console.log(localStorage.getItem("userId"));
-	console.log(response);
-	var user = response.result[0];
-	$("[name=username]").val(user.user_name);
-	$("[name=password]").val("");
-	$("[name=email]").val(user.email);
-	$("[name=location]").val(user.location);
-	$("[name=reason]").val("");
-	$("[name=title]").val(user.user_title);
-	$("[name=about]").val(user.user_about);
-	$("[name=realname]").val(user.real_name);
-    }
-
     window.afterGetCategories = function(response) {
 	console.log('afterGetCategories success');
 	var categoryHtml = "";
@@ -264,38 +259,39 @@ var ddData = [
 
     window.afterUpdateUser = function(response) {
 	console.log("afterUpdateUser success");
-	god.notify("Profile updated.", "success");
+	console.log(response);
+	window.location.href = "profile.html?updated=true";
+    }
+    
+    window.afterGetPrayer = function(response) {
+	console.log('afterGetPrayer success');
 	console.log(response);
     }
     
-	window.afterGetPrayer = function(response) {
-	    console.log('afterGetPrayer success');
-	    console.log(response);
+    window.afterCreateUser = function(response) {
+	console.log('createUser success');
+	if (response.error == 0) {
+	    $("#form")[0].reset();
+	    window.location.href = "login.html?user=true";
+	    var params = {
+		command: "email",
+		email: email,
+		realName: realName
+	    };
+	    god.sendQuery(params);
 	}
-	window.afterCreateUser = function(response) {
-	    console.log('createUser success');
-	    if (response.error == 0) {
-		$("#form")[0].reset();
-		window.location.href = "login.html?user=true";
-		var params = {
-		    command: "email",
-		    email: email,
-		    realName: realName
-		};
-		god.sendQuery(params);
-	    }
-	};
+    };
+    
+    window.afterCreateRequest = function(response) {
+	console.log('createRequest success');
+	window.location.href = "profile.html?create=true";
+	god.getAllRequests();
+    }
 
-	window.afterCreateRequest = function(response) {
-	    console.log('createRequest success');
-	    window.location.href = "profile.html?create=true";
-	    god.getAllRequests();
-	}
-
-    	window.afterQuickCreateRequest = function(response) {
-	    console.log('quickCreateRequest success');
-	    console.log(response);
-	    $("#quickRequestText").val("");
-	    god.notify("Quick request created.", "success");
-	}
+    window.afterQuickCreateRequest = function(response) {
+	console.log('quickCreateRequest success');
+	console.log(response);
+	$("#quickRequestText").val("");
+	god.notify("Quick request created.", "success");
+    }
 });
