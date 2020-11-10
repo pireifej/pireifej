@@ -109,12 +109,54 @@ if (command == "getCategories") {
 }
 
 if (command == "login") {
-    var password = security.encrypt(queryObject.password);
-    var decrypt = security.decrypt(password);
-    query = "SELECT password,iv,user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id,picture ";
+    query = "SELECT password,user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id,picture ";
     query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
-    query += "AND password = '" + queryObject.password + "' ";
     query += "LIMIT 1;";
+
+    const pool = createPool();
+    module.exports = pool;
+    pool.getConnection()
+	.then(conn => {
+	    conn.query(query)
+		.then((rows) => {
+		    var obj = {};
+		    var hash = rows[0].password;
+		    delete rows[0]["password"];
+		    obj["result"] = rows;
+		    obj["query"] = query;
+
+		    if (!obj["result"]) {
+
+		    } else {
+			var bcrypt = require('bcrypt');
+			bcrypt.compare(queryObject.password, hash, function(err, result) {
+			    if (err) {
+				obj["result"] = err;
+			    }
+			    if (!result) {
+				obj["result"] = result;
+			    }
+				       
+			    console.log(JSON.stringify(obj));
+			    conn.release();
+			    conn.end();
+			    process.exit();
+			    return;
+			});
+		    }
+		})
+		.catch(err => {
+		    console.log("not connected due to error: " + err);
+		    var obj = {};
+		    obj["result"] = err;
+		    obj["query"] = query;
+		    console.log(JSON.stringify(obj));
+		    conn.release();
+		    conn.end();
+		    process.exit();
+		});
+	});
+    return;
 }
 
 if (command == "getUser") {
@@ -146,7 +188,7 @@ if (command == "help") {
     var mailOptions = {
 	from: 'welcome@prayforus.com',
 	subject: 'User needs help with ID#, ' + queryObject.userId + '!',
-	text: queryObject.message
+	text: queryObject.message + "\n" + queryObject.email
     };
 
     mailOptions["to"] = "pireifej@gmail.com";
@@ -205,21 +247,52 @@ if (command == "email") {
 }
 
 if (command == "createUser") {
-    //var e = security.encrypt(queryObject.password);
-    //var password = e.encryptedData;
-    //var iv = e.iv;
-    var password = queryObject.password;
-    query = "INSERT INTO user (user_name, password, iv, email, real_name, location, user_title, user_about, picture, active) VALUES (";
-    query += "'" + queryObject.userName + "',";
-    query += "'" + password + "',";
-    query += "'" + "iv" + "',";
-    query += "'" + queryObject.email + "',";
-    query += "'" + queryObject.realName + "',";
-    query += "'" + queryObject.location + "',";
-    query += "'" + queryObject.title + "',";
-    query += "'" + queryObject.about + "',";
-    query += "'" + queryObject.picture + "',";
-    query += "TRUE);";
+    var mypassword = queryObject.password;
+    var bcrypt = require('bcrypt');
+    const saltRounds = 5;
+    
+    bcrypt.hash(mypassword, saltRounds, function(err, hash) {
+	var password = hash;
+	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, picture, active) VALUES (";
+	query += "'" + queryObject.userName + "',";
+	query += "'" + password + "',";
+	query += "'" + queryObject.email + "',";
+	query += "'" + queryObject.realName + "',";
+	query += "'" + queryObject.location + "',";
+	query += "'" + queryObject.title + "',";
+	query += "'" + queryObject.about + "',";
+	query += "'" + queryObject.picture + "',";
+	query += "TRUE);";
+
+	const pool = createPool();
+	module.exports = pool;
+	pool.getConnection()
+	    .then(conn => {
+		conn.query(query)
+		    .then((rows) => {
+			var obj = {};
+			obj["result"] = rows;
+			obj["query"] = query;
+			console.log(JSON.stringify(obj));
+			conn.release();
+			conn.end();
+			process.exit();
+			return;
+		    })
+		    .catch(err => {
+			console.log("not connected due to error: " + err);
+			var obj = {};
+			obj["result"] = err;
+			obj["query"] = query;
+			console.log(JSON.stringify(obj));
+			conn.release();
+			conn.end();
+			process.exit();
+		    });
+	    });
+    });
+
+    return;
 }
 
 if (command == "createRequest") {

@@ -20,6 +20,7 @@ $( document ).ready(function() {
 	    command: 'help',
 	    jsonpCallback: 'afterHelp',
 	    message: "'" + helpDetails['help'] + "'",
+	    email: "'" + helpDetails['email'] + "'",
 	    userId: (userId) ? userId : ""
 	};
 	console.log(params);	

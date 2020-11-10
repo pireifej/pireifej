@@ -7269,7 +7269,7 @@ article.entry-content-2 ul li {
    ========================================================================== */
 /* line 5, ../scss/_profile.scss */
 .profile-bg-picture {
-  background: linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url("../img/blog/13.jpg") no-repeat center center fixed;
+  background: linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url("../img/blog/FULL.jpg") no-repeat center center fixed;
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;

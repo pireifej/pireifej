@@ -13,6 +13,17 @@ $( document ).ready(function() {
 	window.location.href = "profile.html";
     }
 
+    window.forgot = function() {
+	console.log("forgot");
+	var params = {
+	    command: "email",
+	    email: "pireifej@gmail.com",
+	    realName: "Forgot Password!",
+	    jsonpCallback: "afterForgot"
+	};
+	god.sendQuery(params);
+    }
+
     $("#login").submit(function(e) {
 	e.preventDefault();
 	console.log("login");
@@ -26,11 +37,6 @@ $( document ).ready(function() {
 	    return;
 	}
 	
-//	var encrypted = CryptoJS.AES.encrypt('Message', 'Secret Passphrase');
-//	var plaintexte = encrypted.toString();
-//	var decrypted = CryptoJS.AES.decrypt(encrypted, 'Secret Passphrase');
-//	var plaintext = decrypted.toString(CryptoJS.enc.Utf8);
-
 	params = {
 	    command: 'login',
 	    jsonpCallback: 'afterLogin',
@@ -40,10 +46,17 @@ $( document ).ready(function() {
 	god.sendQuery(params);
     })
 
+    window.afterForgot = function(response) {
+	console.log("afterForgot success");
+	console.log(response);
+	god.notify("Help is on its way! Check your email shortly.", "info");
+    }
+
     window.afterLogin = function(response) {
 	console.log('afterLogin success');
 	console.log(response);
-	if (response.result.length == 0) {
+
+	if (!response.result) {
 	    god.notify("Wrong username or password.", "error");
 	} else {
 	    var user = response.result[0];

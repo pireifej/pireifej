@@ -2,6 +2,10 @@
     width: 50px !important;
     height: 50px !important;
 }
+.linky {
+    cursor: pointer;
+    text-decoration: underline;
+}
 .clicky {
     cursor: pointer;
 }

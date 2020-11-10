@@ -24,6 +24,7 @@ $( document ).ready(function() {
 	
 	// site wide configuration
 	if (!userId) {
+	    console.log("IREIFEJ");
 	    $("#user-name").html("Welcome");
 	    $("#user-picture").hide();
 	    $("#user-pic-circle").hide();
@@ -59,8 +60,9 @@ $( document ).ready(function() {
 	    var notice = response.result[i];
 	    console.log(notice);
 
+	    var thisTimestamp = notice.timestamp.replace(".000Z", "");
 	    var current = new Date().getTime();
-	    var prayedFor = new Date(notice.timestamp).getTime();
+	    var prayedFor = new Date(thisTimestamp).getTime();
 	    var difference = current - prayedFor;
 
 	    var seconds = (current-prayedFor)/1000;
@@ -69,16 +71,20 @@ $( document ).ready(function() {
 	    var days = Math.floor(hours / 24);
 	    var timeAgo = days + " days ago";
 
+	    if (days == 1) timeAgo = " yesterday";
+
 	    if (days == 0) {
-		timeAgo = hours + " hours ago";
+		if (hours == 1) timeAgo = hours + " hour ago";
+		else timeAgo = hours + " hours ago";
 	    }
 
 	    if (days == 0 && hours == 0) {
-		timeAgo = minutes + " minutes ago";
+		if (minutes == 1) timeAgo = " minute ago";
+		else timeAgo = minutes + " minutes ago";
 	    }
 
 	    if (days == 0 && hours == 0 && minutes == 0) {
-		timeAgo = seconds + " seconds ago";
+		timeAgo = parseInt(seconds) + " just now";
 	    }
 	    
 	    htmlNotifications += "<li class='list-group-item dark-white box-shadow-z0 b'>";
@@ -97,6 +103,9 @@ $( document ).ready(function() {
 	console.log('afterGetUser success');
 
 	var user = response.result[0];
+
+	var logout = $.urlParam('signout')
+	if (logout) return;
 
 	// set edit profile form
 	$("[name=username]").val(user.user_name);
@@ -234,7 +243,7 @@ $( document ).ready(function() {
 	// get user ID
 	var userId = localStorage.getItem("userId");
 
-	var exceptions = { "createUser": true, "login": true };
+	var exceptions = { "createUser": true, "login": true, "email": true };
 	if (!exceptions[params["command"]] && !userId) {
 	    if (window.location.href.includes("https://pireifej.com/prayer/login.html")) return;
 	    if (window.location.href.includes("https://pireifej.com/prayer/profile-edit.html")) return;
