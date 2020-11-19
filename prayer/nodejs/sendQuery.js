@@ -76,7 +76,7 @@ if (command == "getMyRequests") {
 }
 
 if (command == "getRequest") {
-    query = "SELECT request_id,request_text,request_title,category.category_name,user.user_name,user.picture,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query = "SELECT request_id,request_text,request_title,category.category_name,user.user_name,user.picture,user.real_name,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM request ";
     query += "INNER JOIN category ON category.category_id = fk_category_id ";
     query += "INNER JOIN user ON user.user_id = request.user_id ";
@@ -187,8 +187,11 @@ if (command == "help") {
     
     var mailOptions = {
 	from: 'welcome@prayforus.com',
-	subject: 'User needs help with ID#, ' + queryObject.userId + '!',
-	text: queryObject.message + "\n" + queryObject.email
+	subject: queryObject.subject,
+	text: "Message : " + queryObject.message + "\n" +
+	    "Email: " + queryObject.email + "\n" +
+	    "User ID: " + queryObject.userId + "\n" +
+	    "Name: " + queryObject.name + "\n"
     };
 
     mailOptions["to"] = "pireifej@gmail.com";

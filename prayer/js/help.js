@@ -6,24 +6,34 @@ $( document ).ready(function() {
 
     var userId = localStorage.getItem("userId");
 
-    $("#form").submit(function(e) {
+    $("#submit-email").submit(function(e) {
 	e.preventDefault();
 
-	var formValues = $("#form").serializeArray();
+	var formValues = $("#submit-email").serializeArray();
 	var userId = localStorage.getItem("userId");
 	var helpDetails = {};
 	for (var i = 0; i < formValues.length; i++) {
 	    helpDetails[formValues[i].name] = formValues[i].value;
 	}
+
+	if (!helpDetails["name"]) return;
+	if (!helpDetails["email"]) return;
+	if (!helpDetails["subject"]) return;
+	if (!helpDetails["message"]) return;
+
+	$("#submit-email-button").prop('disabled', true);
+	$("#send-email-text").html("Sending ...");
 	
 	var params = {
 	    command: 'help',
 	    jsonpCallback: 'afterHelp',
-	    message: "'" + helpDetails['help'] + "'",
+	    subject: "'" + helpDetails['subject'] + "'",
+	    message: "'" + helpDetails['message'] + "'",
 	    email: "'" + helpDetails['email'] + "'",
-	    userId: (userId) ? userId : ""
+	    userId: (userId) ? userId : "",
+	    name: "'" + helpDetails["name"] + "'"
 	};
-	console.log(params);	
+
 	god.sendQuery(params);
     })
 

@@ -31,11 +31,11 @@
 	   <div class="navbar-collapse collapse dual-navv">
 	     <ul class="nav navbar-nav ml-auto">
 
-	       <li class="nav-item dropdown mega-pills" id="navigation">
+<!--	       <li class="nav-item dropdown mega-pills" id="navigation">
 		 <a href="" class="nav-link" data-toggle="dropdown" aria-expanded="true">
 		   <i class="fa fa-th"></i>
 		   <span class="label up p-a-0 warn"></span>
-		 </a><!-- /nav-link -->
+		 </a>
 		  <div class="dropdown-menu w-xl pull-right p-a-0">
 		    <div class="row no-gutter text-primary-hover">
 		     <div class="col-xs-4 b-r b-b">
@@ -43,25 +43,26 @@
 			   <i class="fa fa-files-o text-muted m-v-sm"></i>
 			  <span class="block">Requests</span>
 			 </a>
-		     </div><!-- /col-xs-4 -->
+		     </div>
 		     <div class="col-xs-4 b-r b-b">
 		       <a class="p-a block text-center">
 			 <i class="fa fa-file-text-o text-muted m-v-sm"></i>
 			 <span class="block">Series</span>
 		       </a>
-		     </div><!-- /col-xs-4 -->
+		     </div>
 		     <div class="col-xs-4 b-b">
 		       <a class="p-a block text-center">
 			 <i class="fa fa-line-chart text-muted m-v-sm"></i>
 			 <span class="block">Stats</span>
 		       </a>
-		     </div><!-- /col-xs-4 -->
+		     </div>
 
 		   </div>
 		 </div>
-	       </li><!-- /navbar-item -->
+	       </li>
+-->
 
-	       	       <li class="nav-item dropdown mega-notification" id="user-notification">
+	       <li class="nav-item dropdown mega-notification" id="user-notification">
 		 <a href="" class="nav-link" data-toggle="dropdown" aria-expanded="true">
 		   <i class="fa fa-bell-o"></i>
 		   <span class="label up p-a-0 danger"></span>
@@ -74,6 +75,13 @@
 		 </div><!-- /dropdown-menu -->
 	       </li><!-- /navbar-item -->
 
+<li class="nav-item dropdown mega-notification" id="request-feed-menu">
+  <a href="request-feed.html" class="nav-link" data-toggle="dropdown" aria-expanded="true" onclick="goToRequestFeed()">
+    <i class="fa fa-files-o"></i>
+    <span class="label up p-a-0 danger">
+    </span>
+  </a>
+</li><!-- /navbar-item -->
 
 	       <li class="nav-item dropdown mega-avatar">
 		 <a class="nav-link dropdown-toggle clear" data-toggle="dropdown" aria-expanded="true">
@@ -91,7 +99,7 @@
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="profile.html"><span>Profile</span></a>
 <!--		   <a class="dropdown-item" href="#"><span>Settings</span></a> -->
-		   <a class="dropdown-item" href="help.html">Need help?</a>
+		   <a class="dropdown-item" href="contact.html">Need help?</a>
 		   <div class="dropdown-divider"></div>
 		   <a class="dropdown-item" href="index.html?signout=true">Sign out</a>
 		 </div>

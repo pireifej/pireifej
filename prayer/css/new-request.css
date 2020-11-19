@@ -1,3 +1,22 @@
+.pic-select {
+    width: 50px !important;
+    height: 50px !important;
+}
+.linky {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.clicky {
+    cursor: pointer;
+}
+
+.prayer-preview {
+    height: 400px;
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 .custom-combobox {
     position: relative;
     display: inline-block;

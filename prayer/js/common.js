@@ -24,12 +24,12 @@ $( document ).ready(function() {
 	
 	// site wide configuration
 	if (!userId) {
-	    console.log("IREIFEJ");
 	    $("#user-name").html("Welcome");
 	    $("#user-picture").hide();
 	    $("#user-pic-circle").hide();
 	    $("#navigation").hide();
 	    $("#user-notification").hide();
+	    $("#request-feed").hide();
 	}
 
 	var params = {
@@ -48,6 +48,8 @@ $( document ).ready(function() {
 	if (!results) return null;
 	return results[1] || 0;
     }
+
+    
 
     window.afterGetNotifications = function(response) {
 	console.log("afterGetNotifications success");
@@ -99,6 +101,10 @@ $( document ).ready(function() {
 	$("#notifications").html(htmlNotifications);
     }
 
+    window.goToRequestFeed = function() {
+	window.location.href = "request-feed.html";
+    }
+
     window.afterGetUser = function(response) {
 	console.log('afterGetUser success');
 
@@ -115,18 +121,14 @@ $( document ).ready(function() {
 	$("[name=reason]").val("");
 	$("[name=title]").val(user.user_title);
 	$("[name=about]").val(user.user_about);
-	$("[name=realname]").val(user.real_name);
-
-	// select the selected user profile picture
-	$('.pic-select').each(function(i, obj) {
-	    if ($(obj).attr("src") == user.picture) {
-		$(obj).css('border', "5px inset yellow");
-	    }
-	});
+	$("[name=name]").val(user.real_name);
 
 	// set user details on screen header, requests, elsewhere
-	$('*[id*=user-name]').each(function() {
+	$('*[id*=real-name]').each(function() {
 	    $(this).html(user.real_name);
+	});
+	$('*[id*=user-name]').each(function() {
+	    $(this).html(user.user_name);
 	});
 	$('*[id*=user-title]').each(function() {
 	    $(this).html(user.user_title);
@@ -148,6 +150,17 @@ $( document ).ready(function() {
     window.afterGetAllRequests = function(response) {
 	console.log("common.js: afterGetAllRequests success");
 	god.insertRequests(response);
+    }
+
+    god.getCustomPrayer = function(prayerText, gender, userRealName) {
+	var hisOrHer = (gender == "male") ? "his" : "her";	
+	var heOrShe = (gender == "male") ? "he" : "she";
+	var himOrHer = (gender == "male") ? "him" : "her";
+	prayerText = prayerText.replace(/{{name}}/g, userRealName);
+	prayerText = prayerText.replace(/{{gender1}}/g, hisOrHer);
+	prayerText = prayerText.replace(/{{gender2}}/g, heOrShe);
+	prayerText = prayerText.replace(/{{gender3}}/g, himOrHer);
+	return prayerText;
     }
 
     god.getFormattedTimestamp = function(timestamp) {
@@ -172,7 +185,18 @@ $( document ).ready(function() {
 	var dayArray = day.split(" ");
 	day = dayArray[0];
 
-	if (month == 11) month = "October";
+	if (month == 1) month = "January";
+	if (month == 2) month = "February";
+	if (month == 3) month = "March";
+	if (month == 4) month = "April";
+	if (month == 5) month = "May";
+	if (month == 6) month = "June";
+	if (month == 7) month = "July";
+	if (month == 8) month = "August";
+	if (month == 9) month = "September";
+	if (month == 10) month = "October";
+	if (month == 11) month = "November";
+	if (month == 12) month = "December";
 
 	return month + " " + day + ", " + year + " @ " + time;
 	//return date;
@@ -242,11 +266,12 @@ $( document ).ready(function() {
 
 	// get user ID
 	var userId = localStorage.getItem("userId");
-
-	var exceptions = { "createUser": true, "login": true, "email": true };
+	var exceptions = { "createUser": true, "login": true, "email": true, "help" :true };
 	if (!exceptions[params["command"]] && !userId) {
-	    if (window.location.href.includes("https://pireifej.com/prayer/login.html")) return;
-	    if (window.location.href.includes("https://pireifej.com/prayer/profile-edit.html")) return;
+	    if (window.location.href.includes("login.html")) return;
+	    if (window.location.href.includes("profile-edit.html")) return;
+	    if (window.location.href.includes("contact.html")) return;
+	    if (window.location.href.includes("index.html")) return;
 	    window.location.href = "login.html?access=true";
 	    return;
 	}

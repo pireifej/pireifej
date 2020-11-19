@@ -4,7 +4,7 @@ $( document ).ready(function() {
     var realName = "";
     god.init();
     var pray = $.urlParam("pray");
-    var selectdPicture = "";
+
     if (pray) {
 	god.notify("Prayer completed.", "success");
     }
@@ -20,28 +20,10 @@ $( document ).ready(function() {
     $("#headerImage").css("-o-background-size", "cover");
     $("#headerImage").css("background-size", "cover");
 
-    var userId = localStorage.getItem("userId");
 
-    if (userId) {
-	$("#submit-button").val("Update User");
-	var params = {
-	    command: 'getUser',
-	    userId: userId,
-	    jsonpCallback: "afterGetUser"
-	};
-	god.sendQuery(params);
-    }
-
-    $('body').on('click','img',function(element){
-	$('.pic-select').each(function(i, obj) {
-	    $(obj).css('border', "");
-	});
-	$(event.target).css('border', "5px inset yellow");
-	selectedPicture = $(event.target).attr("src");
-    })
 
     //Dropdown plugin data
-var ddData = [
+    var ddData = [
     {
         text: "Facebook",
         value: 1,
@@ -81,31 +63,7 @@ var ddData = [
             console.log(data);
 	}
     });
-
-    $("#newRequestForm").submit(function(e) {
-	e.preventDefault();
-
-	var formValues = $("#newRequestForm").serializeArray();
-	var category = formValues[1].value;
-
-	for (var i = 0; i < god.categories.length; i++) {
-	    if (god.categories[i].category_name == category) {
-		categoryId = god.categories[i].category_id;
-		break;
-	    }
-	}
-
-	params = {
-	    command: 'createRequest',
-	    jsonpCallback: 'afterCreateRequest',
-	    requestText: "\"" + formValues[2].value + "\"",
-	    requestTitle: "\"" + formValues[0].value + "\"",
-	    requestCategoryId: categoryId
-	};
-	console.log(params);
-	god.sendQuery(params);
-    })
-
+    
     $("#quickRequestPost").click(function() {
 	for (var i = 0; i < god.categories.length; i++) {
 	    if (god.categories[i].category_name == "general") {
@@ -121,33 +79,6 @@ var ddData = [
 	    requestTitle: "quick request",
 	    requestCategoryId: categoryId
 	};
-	god.sendQuery(params);
-    })
-
-    $("#form").submit(function(e) {
-	e.preventDefault();
-
-	var formValues = $("#form").serializeArray();
-	var userId = localStorage.getItem("userId");
-	var profileDetails = {};
-	for (var i = 0; i < formValues.length; i++) {
-	    profileDetails[formValues[i].name] = formValues[i].value;
-	}
-	
-	var params = {
-	    command: (userId) ? 'updateUser' : 'createUser',
-	    jsonpCallback: (userId) ? 'afterUpdateUser' : 'afterCreateUser',
-	    userName: "'" + profileDetails["username"] + "'",
-	    password: "'" + profileDetails["password"] + "'",
-	    email: "'" + profileDetails["email"] + "'",
-	    realName: "'" + profileDetails["realname"] + "'",
-	    location: "'" + profileDetails["location"] + "'",
-	    title: "'" + profileDetails["title"] + "'",
-	    about: "'" + profileDetails["about"] + "'",
-	    picture: "'" + selectedPicture + "'",
-	    userId: (userId) ? userId : ""
-	};
-	
 	god.sendQuery(params);
     })
 
@@ -246,46 +177,10 @@ var ddData = [
 	console.log(response);
 	insertRequestFeed(response);
     }
-
-    window.afterGetCategories = function(response) {
-	console.log('afterGetCategories success');
-	var categoryHtml = "";
-	for (var i = 0; i < response.result.length; i++) {
-	    categoryHtml += "<option>" + response.result[i].category_name + "</option>";
-	}
-	$("#category-options").html(categoryHtml);
-	god.categories = response.result;
-    }
-
-    window.afterUpdateUser = function(response) {
-	console.log("afterUpdateUser success");
-	console.log(response);
-	window.location.href = "profile.html?updated=true";
-    }
     
     window.afterGetPrayer = function(response) {
 	console.log('afterGetPrayer success');
 	console.log(response);
-    }
-    
-    window.afterCreateUser = function(response) {
-	console.log('createUser success');
-	if (response.error == 0) {
-	    $("#form")[0].reset();
-	    window.location.href = "login.html?user=true";
-	    var params = {
-		command: "email",
-		email: email,
-		realName: realName
-	    };
-	    god.sendQuery(params);
-	}
-    };
-    
-    window.afterCreateRequest = function(response) {
-	console.log('createRequest success');
-	window.location.href = "profile.html?create=true";
-	god.getAllRequests();
     }
 
     window.afterQuickCreateRequest = function(response) {

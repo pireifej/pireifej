@@ -4,11 +4,12 @@ $( document ).ready(function() {
     
     var params = {};
     var userId = "";
+    var userRealName = "";
     var globalPrayerHtml = "";
     var prayerObj = [];
     var requestId = $.urlParam('requestId');
     var prayerComplete = false;
-    
+
     getRequest();
 
     var options = {
@@ -24,7 +25,8 @@ $( document ).ready(function() {
 	$("#request-title").html(request.request_title);
 	$("#prayer-category").html(request.category_name);
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
-	$("#user-name-for-request").html(request.user_name);
+	$("#user-name-for-request").html(request.real_name);
+	userRealName = request.real_name;
 	$("#requestor-picture").attr("src", request.picture);
 
 	$("#headerImage").css("background-position", "center center");
@@ -63,35 +65,47 @@ $( document ).ready(function() {
 	god.sendQuery(params);
     }
 
-	window.afterGetPrayer = function(response) {
-	    console.log('afterGetPrayer success');
-	    console.log(response);
-	    var prayer = response.result[0];
-	    $("#prayer-title").html(prayer.prayer_title);
-	    var prayerLines = prayer.prayer_text.split("\n");
-	    for (var i = 0; i < prayerLines.length; i++) {
-		var prayerWords = prayerLines[i].split(" ");
-		for (var j = 0; j < prayerWords.length; j++) {
-		    var newline = "none";
-		    if (j == 0) {
-			newline = "start";
+    window.afterGetPrayer = function(response) {
+	console.log('afterGetPrayer success');
+	console.log(response);
+	var prayer = response.result[0];
+
+	// substitute for name and gender
+	$.ajax({
+	    url: "https://api.genderize.io?name=" + userRealName,
+	    dataType: "json",
+	    success: function(data) {
+		console.log("Success!");
+		console.log(data);
+
+		$("#user-name-for-request").html(userRealName);
+		
+		var prayerText = god.getCustomPrayer(prayer.prayer_text, data.gender, userRealName);
+		$("#prayer-title").html(prayer.prayer_title);
+		var prayerLines = prayerText.split("\n");
+		for (var i = 0; i < prayerLines.length; i++) {
+		    var prayerWords = prayerLines[i].split(" ");
+		    for (var j = 0; j < prayerWords.length; j++) {
+			var newline = "none";
+			if (j == 0) {
+			    newline = "start";
+			}
+			if (j == prayerWords.length - 1) {
+			    newline = "end";
+			}
+			var obj = {
+			    text: prayerWords[j],
+			    done: false,
+			    newline: newline
+			};
+			prayerObj.push(obj);
 		    }
-		    if (j == prayerWords.length - 1) {
-			newline = "end";
-		    }
-		    var obj = {
-			text: prayerWords[j],
-			done: false,
-			newline: newline
-		    };
-		    prayerObj.push(obj);
 		}
+		$("#prayer-category").html(prayer.category);
+		refreshPrayerDisplay();
 	    }
-
-	    $("#prayer-category").html(prayer.category);
-
-	    refreshPrayerDisplay();
-	}
+	});
+    }
 
     function refreshPrayerDisplay() {
 	var prayerHtml = "<p>";
@@ -224,21 +238,35 @@ $( document ).ready(function() {
 	var myWords = words.split(" ");;
 	var myWord = myWords[myWords.length - 1];
 	console.log("myWord = " + myWord);
-
+	
 	var i = 0;
+	var counter = 0;
 	for (i = 0; i < prayerObj.length; i++) {
 	    if (!prayerObj[i].done) break;
 	}
 
-	var counter = 0;
+	var match = false;
 	for (var j = i; j < prayerObj.length; j++) {
 	    if (cleanWord(prayerObj[j].text) == cleanWord(myWord)) {
+		match = true;
 		prayerObj[j].done = true;
-		if (prayerObj[j-1]) prayerObj[j-1].done = true; // ???
+		if (prayerObj[j-1]) prayerObj[j-1].done = true; // fill in the gaps
 		break;
 	    }
 	    counter++;
-	    if (counter >= 3) break;
+	    if (counter >= 5) break;
+	}
+
+	console.log(match);
+
+	if (!match) {
+	    for (var i = 0; i < prayerObj.length; i++) {
+		if (prayerObj[i].done && !prayerObj[i+1].done) {
+		    prayerObj[i].done = true;
+		    prayerObj[i+1].done = true;
+		    break;
+		}
+	    }
 	}
 
 	refreshPrayerDisplay();
@@ -261,6 +289,37 @@ $( document ).ready(function() {
 	}
     }
 
+    window.amen = function() {
+	console.log("amen!");
+	prayerComplete = true;
+	prayForMe();
+    }
+
+    $("#amen").hover(function() {
+	$(this).css("color", "forestgreen");
+    }, function(){
+	$(this).css("color", "white");
+    });
+    
+//capture scroll any percentage
+$(window).scroll(function(){
+    var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+    var scrolltrigger = 0.95;
+
+    console.log('wintop='+wintop);
+    console.log('docheight='+docheight);
+    console.log('winheight='+winheight);
+    console.log(wintop+'=='+(docheight-winheight));
+    console.log(wintop==(docheight-winheight));
+    console.log('%scrolled='+(wintop/(docheight-winheight))*100);
+    nanobar.go(wintop/(docheight-winheight)*100);
+
+    if  ((wintop/(docheight-winheight)) > scrolltrigger) {
+       console.log('scroll bottom');
+   //    lastAddedLiveFunc();
+    }
+});
+    
     function prayForMe() {
 	params = {
 	    command: "prayFor",
