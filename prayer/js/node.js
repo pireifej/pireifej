@@ -2,6 +2,7 @@ $( document ).ready(function() {
     window.god = window.god || {};
     var email = "";
     var realName = "";
+    var categories = [];
     god.init();
     var pray = $.urlParam("pray");
 
@@ -65,13 +66,14 @@ $( document ).ready(function() {
     });
     
     $("#quickRequestPost").click(function() {
-	for (var i = 0; i < god.categories.length; i++) {
-	    if (god.categories[i].category_name == "general") {
-		categoryId = god.categories[i].category_id;
+	var categoryId = null;
+	for (var i = 0; i < categories.length; i++) {
+	    if (categories[i].category_name == "general") {
+		categoryId = categories[i].category_id;
 		break;
 	    }
 	}
-	
+
 	params = {
 	    command: 'createRequest',
 	    jsonpCallback: 'afterQuickCreateRequest',
@@ -170,6 +172,12 @@ $( document ).ready(function() {
 	};
 	god.sendQuery(params);
     }
+
+    window.afterGetCategories = function(response) {
+	console.log("afterGetCategories success");
+	categories = response.result;
+	console.log(response);
+    };
 
     window.afterGetRequestFeed = function(response) {
 	console.log('afterGetRequestFeed success');

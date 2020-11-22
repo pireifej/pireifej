@@ -19,7 +19,8 @@ $( document ).ready(function() {
 	    jsonpCallback: "afterGetUser"
 	  };
 	
-	  god.sendQuery(params);
+	    god.sendQuery(params);
+	    $("#login-button").hide();
 	}
 	
 	// site wide configuration
@@ -30,6 +31,7 @@ $( document ).ready(function() {
 	    $("#navigation").hide();
 	    $("#user-notification").hide();
 	    $("#request-feed").hide();
+	    $("#login-button").show();
 	}
 
 	var params = {

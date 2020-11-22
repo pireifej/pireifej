@@ -291,6 +291,8 @@ $( document ).ready(function() {
 
     window.amen = function() {
 	console.log("amen!");
+	$("#amen").html("Sending prayer now ...");
+	$("#amen").prop('disabled', true);
 	prayerComplete = true;
 	prayForMe();
     }

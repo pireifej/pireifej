@@ -12,6 +12,7 @@ var home = "/home/pireifej/pireifej/prayer/nodejs/";
 const argv = require('minimist')(process.argv.slice(2));
 var queryObject = {};
 var thing = argv["_"];;
+var sendEmail = false;
 
 for (var i = 0; i < thing.length; i++) {
     var param = thing[i];
@@ -30,7 +31,8 @@ function createPool() {
 	    database: 'god',
 	    connectionLimit: 10,
 	    waitForConnections: true,
-	    queueLimit: 0
+	    queueLimit: 0,
+	    multipleStatements: true
 	});
 
 	return pool;
@@ -308,9 +310,20 @@ if (command == "createRequest") {
 }
 
 if (command == "prayFor") {
-    query = "INSERT INTO user_request (request_id, user_id) VALUES (";
+    var query = "INSERT INTO user_request (request_id, user_id) VALUES (";
     query += "'" + queryObject.requestId + "',";
-    query += "'" + queryObject.userId + "')";
+    query += "'" + queryObject.userId + "'); ";
+
+    query += "SELECT user.real_name, user.email, request.request_title ";
+    query += "FROM request ";
+    query += "INNER JOIN user ON user.user_id = request.user_id ";
+    query += "WHERE request.request_id = '" + queryObject.requestId + "'; ";
+
+    query += "SELECT user.real_name, user.email ";
+    query += "FROM user ";
+    query += "WHERE user.user_id = '" + queryObject.userId + "';";
+
+    sendEmail = true;
 }
 
 if (!query) {
@@ -350,6 +363,44 @@ pool.getConnection()
 			conn.end();
 			process.exit();
 			return;
+		    });
+		}
+		else if (sendEmail) {
+		    var person1 = rows[1][0];
+		    var person2 = rows[2][0];
+
+		    var transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+			    user: 'pireifej@gmail.com',
+			    pass: 'bcvbfcsvklsnegqc'
+			}
+		    });
+    
+		    var mailOptions = {
+			from: 'welcome@prayforus.com',
+			subject: person2.real_name + " prayed for you!",
+			text: "Hello " + person1.real_name + "!\n\n" + person2.real_name + " just prayed for your request '" + person1.request_title + "'.\n\nHave a blessed day! Keep praying. Jesus loves you.",
+		    };
+
+		    mailOptions["to"] = person1.email;
+		    console.log(mailOptions);
+		    transporter.sendMail(mailOptions, function(error, info) {
+			if (error) {
+			    var obj = {};
+			    obj["result"] = 'Error: ' + error;
+			    obj["query"] = "No Query";
+			    console.log(JSON.stringify(obj));
+			    process.exit();
+			    return;
+			} else {
+			    var obj = {};
+			    obj["result"] = 'Email sent: ' + info.response;
+			    obj["query"] = "No Query";
+			    console.log(JSON.stringify(obj));
+			    process.exit();
+			    return;
+			}
 		    });
 		} else {
 		    var obj = {};

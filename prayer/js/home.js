@@ -25,5 +25,6 @@ $( document ).ready(function() {
 	$("#user-pic-circle").hide();
 	$("#navigation").hide();
 	$("#user-notification").hide();
+	$("#login-button").show();
     }
 });
