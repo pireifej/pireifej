@@ -154,6 +154,19 @@ $( document ).ready(function() {
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	</div>";
 	    htmlPost += " </div>";
+
+	    if (god.getEnv() == "prod") {
+		    htmlPost += "<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>";
+		    htmlPost += "<ins class='adsbygoogle'";
+		    htmlPost += "style='display:block'";
+		    htmlPost += "data-ad-format='fluid'";
+		    htmlPost += "data-ad-layout-key='-6t+ed+2i-1n-4w'";
+		    htmlPost += "data-ad-client='ca-pub-3440306279423513'";
+		    htmlPost += "data-ad-slot='3204220014'></ins>";
+		    htmlPost += "<script>";
+		    htmlPost += "(adsbygoogle = window.adsbygoogle || []).push({});";
+		    htmlPost += "</script>";
+		}
 	}
 	$("#requests").html(htmlPost);
     }

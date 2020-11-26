@@ -154,6 +154,10 @@ $( document ).ready(function() {
 	god.insertRequests(response);
     }
 
+    god.getEnv = function() {
+	return (window.location.href.includes("prayer-test") ? "test" : "prod");
+    }
+
     god.getCustomPrayer = function(prayerText, gender, userRealName) {
 	var hisOrHer = (gender == "male") ? "his" : "her";	
 	var heOrShe = (gender == "male") ? "he" : "she";

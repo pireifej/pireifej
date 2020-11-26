@@ -6,7 +6,8 @@ $( document ).ready(function() {
     var selectedPicture = "";
     
     if (userId) {
-	$("#submit-button").val("Update User");
+	$("#submit-text").html("Update User");
+	$("#excited").html("Edit your profile");
 	var params = {
 	    command: 'getUser',
 	    userId: userId,
@@ -33,6 +34,8 @@ $( document ).ready(function() {
 	    profileDetails[formValues[i].name] = formValues[i].value;
 	}
 
+	console.log(profileDetails);
+
 	if (!profileDetails["username"]) {
 	    god.notify("Username required", "error");
 	    return;
@@ -56,11 +59,12 @@ $( document ).ready(function() {
 		return;
 	    }
 	}
+	/*
 	if (!selectedPicture) {
 	    god.notify("Please select a profile picture", "error");
 	    return;
 	}
-	
+	*/
 	var params = {
 	    command: (userId) ? 'updateUser' : 'createUser',
 	    jsonpCallback: (userId) ? 'afterUpdateUser' : 'afterCreateUser',
@@ -71,9 +75,18 @@ $( document ).ready(function() {
 	    location: "'" + profileDetails["location"] + "'",
 	    title: "'" + profileDetails["title"] + "'",
 	    about: "'" + profileDetails["about"] + "'",
-	    picture: "'" + selectedPicture + "'",
+//	    picture: "'" + selectedPicture + "'",
 	    userId: (userId) ? userId : ""
 	};
+	console.log(params);
+
+	$("#submit-button").prop('disabled', true);
+
+	if (userId) {
+	    $("#submit-text").html("Updating ...");
+	} else {
+	    $("#submit-text").html("Creating ...");
+	}
 	
 	god.sendQuery(params);
     })
@@ -88,15 +101,15 @@ $( document ).ready(function() {
 	console.log('afterGetUser success');
 
 	var user = response.result[0];
-	selectedPicture = user.picture;
+//	selectedPicture = user.picture;
 
 	// select the selected user profile picture
-	$('.pic-select').each(function(i, obj) {
+/*	$('.pic-select').each(function(i, obj) {
 	    if ($(obj).attr("src") == selectedPicture) {
 		$(obj).css('border', "5px inset yellow");
 	    }
 	});
-
+*/
 	var logout = $.urlParam('signout')
 	if (logout) return;
 
@@ -136,12 +149,6 @@ $( document ).ready(function() {
 	if (response.error == 0) {
 	    $("#form")[0].reset();
 	    window.location.href = "login.html?user=true";
-	    var params = {
-		command: "email",
-		email: email,
-		realName: realName
-	    };
-	    god.sendQuery(params);
 	}
     };
 })

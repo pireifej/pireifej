@@ -330,7 +330,85 @@ if (command == "createRequest") {
     query += "'" + queryObject.requestText + "',";
     query += "'" + queryObject.requestTitle + "',";
     query += "'" + queryObject.requestCategoryId + "',";
-    query += "TRUE)";
+    query += "TRUE);";
+
+    query += "SELECT user.real_name, user.email ";
+    query += "FROM user ";
+    query += "WHERE user.user_id <> '" + queryObject.userId + "';";
+
+    const pool = createPool();
+    module.exports = pool;
+    pool.getConnection()
+    	.then(conn => {
+	    conn.query(query)
+	    	.then((rows) => {
+		    var obj = {};
+		    var requestId = rows[0].insertId;
+		    var url = "https://pireifej.com/prayer/pray.html?requestId=" + requestId;
+		    var users = rows[1];
+		    var comma = "";
+		    var emailList = "";
+		    var emails = [];
+		    for (var i = 0; i < users.length; i++) {
+			emailList += comma + users[i].email;
+			emails.push(users[i].email);
+			comma = ",";
+		    }
+
+		    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'pireifej@gmail.com',
+                            pass: 'bcvbfcsvklsnegqc'
+                        }
+                    });
+
+		    var mailOptions = {
+			from: 'pireifej@gmail.com',
+			to: 'pireifej@gmail.com',
+			bcc: emails,
+			subject: "Please pray for me!",
+			text: "Hello,\n A friend needs your prayer. Here are the details ... \n Subject: " + queryObject.requestTitle + "\n" + "Request: " + queryObject.requestText + "\n Click here to pray: " + url
+//			envelope: {
+//			    from: 'pireifej@gmail.com',
+//			    to: 'pireifej@gmail.com'
+//			}
+		    };
+
+		    console.log(mailOptions);
+		    
+		    transporter.sendMail(mailOptions, function(error, info) {
+			if (error) {
+			    var obj = {};
+                            obj["result"] = 'Error: ' + error;
+                            obj["query"] = "No Query";
+                            console.log(JSON.stringify(obj));
+                            process.exit();
+                            return;
+			} else {
+                            var obj = {};
+                            obj["result"] = 'Email sent: ' + info.response;
+                            obj["query"] = "No Query";
+                            console.log(JSON.stringify(obj));
+                            process.exit();
+                            conn.release();
+                            conn.end();
+                            return;
+			}
+                    });
+		})
+    		.catch(err => {
+		    console.log("not connected due to error: " + err);
+                    var obj = {};
+                    obj["result"] = err;
+                    obj["query"] = query;
+                    console.log(JSON.stringify(obj));
+                    conn.release();
+                    conn.end();
+                    process.exit();
+		})
+	})
+    return;
 }
 
 if (command == "prayFor") {
