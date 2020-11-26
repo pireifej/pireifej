@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+        <!-- ==============================================
+	     Title and Meta Tags
+	     =============================================== -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Pray For Us - Prayer Social Network</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Add your business website description here">
+	<meta name="keywords" content="Add your, business, website, keywords, here">
+	<meta name="author" content="Add your business, website, author here">
+
+	<!-- ==============================================
+	     Favicons
+	     =============================================== -->
+	<link rel="shortcut icon" href="img/favicons/favicon.ico">
+	<link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+
+	    <!-- ==============================================
+		 CSS
+		 =============================================== -->
+	<!-- Style-->
+        <link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
+        <link type="text/css" href="css/app.css" rel="stylesheet" />
+	<link type="text/css" href="css/prayer.css" rel="stylesheet" />
+	<link type="text/css" href="css/profile-edit.css" rel="stylesheet" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		 </head>
+
+  <body>
+
+    <div class="nanobar prayer-progress-class" id="prayer-progress" style="position: fixed;">
+      <div class="bar"><span id="progress-percent-display"></span></div>
+    </div>
+    
+         <!-- ==============================================
+     Navigation Section
+     =============================================== -->
+{{header}}
+
+
+	      <!-- ==============================================
+		    Header
+		    =============================================== -->
+	 <header id="headerImage">
+	   <div class="container">
+	     <div class="row">
+
+	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+		 <div class="post-heading">
+		   <p class="entry-meta">
+		     <span class="date updated time">
+		       <time id="request-timestamp" class="entry-modified-time">--</time>
+		     </span> &nbsp; / &nbsp;
+		     <span class="entry-categories">
+		       <a id="prayer-category" rel="category tag">--</a>
+		     </span>
+		   </p>
+		   <h1 id="request-title" style="color: green"></h1>
+		 </div><!-- /.post-heading -->
+	       </div><!-- /.col-lg-8 -->
+
+	     </div><!-- /.row -->
+	   </div><!-- /.container -->
+	 </header><!-- /header -->
+
+	      <!-- ==============================================
+		    Header
+		    =============================================== -->
+
+	 <div class="header-avatar">
+	   <img id="requestor-picture" alt="..." class="avatar avatar-200 photo" width="200" height="200">
+	   <p id="user-name-for-request">--</p>
+	 </div><!-- /.header-avatar -->
+
+
+	      <!-- ==============================================
+		    Post Content
+		    =============================================== -->
+	 <article class="entry-content">
+	   <div class="container">
+	     <div class="row">
+	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+		 <div class="compact marquee">
+		   <div id="info">
+		     <p id="info_speak_now" style="display:none">
+		       Speak now.
+		     </p>
+		     <p id="info_no_speech" style="display:none">
+		       No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone
+			 settings</a>.
+		     </p>
+		     <p id="info_no_microphone" style="display:none">
+		       No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a> are configured correctly.
+		     </p>
+		     <p id="info_allow" style="display:none">
+		       Click the "Allow" button above to enable your microphone.
+		     </p>
+		     <p id="info_denied" style="display:none">
+		       Permission to use microphone was denied.
+		     </p>
+		     <p id="info_blocked" style="display:none">
+		       Permission to use microphone is blocked. To change, go to
+		       chrome://settings/contentExceptions#media-stream
+		     </p>
+		     <p id="info_upgrade" style="display:none">
+		       Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.
+		     </p>
+		   </div>
+		   <div id="div_start">
+		     <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img" src="/prayer/img/mic/mic.gif"></button>
+		   </div>
+		 </div>
+
+		 <h4 id="prayer-title">--</h4>
+		 <p id="prayer">--</p>
+		 
+<!--		 <p>
+		   <strong>practicing the guitar.</strong>
+		 </p>
+-->
+
+	       </div><!-- /col-lg-8 -->
+	     </div><!-- /row -->
+	   </div><!-- /container -->
+	 </article><!-- /article -->
+
+	      <!-- ==============================================
+     Banner Section
+     =============================================== -->
+	 <section class="banner-comment">
+	   <div class="container">
+	     <h1 id="amen" class="clicky" onclick="amen()">Amen.</h1>
+	   </div><!-- /container -->
+	 </section><!-- /section -->
+
+
+	      <!-- ==============================================
+     Footer Section
+     =============================================== -->
+	 <footer class="bottom-footer">
+	   <div class="container">
+	     <p><span id="copyright">--</span></p>
+
+	     <ul id="menu-footer-menu">
+	       <li>
+		 <a href="#">About Us</a>
+	       </li><!-- /li -->
+	       <li>
+		 <a href="#">Privacy</a>
+	       </li><!-- /li -->
+	       <li>
+		 <a href="#">Terms & Conditions</a>
+	       </li><!-- /li -->
+	       <li>
+		 <a href="#">Contact Us</a>
+	       </li><!-- /li -->
+	     </ul><!-- /ul -->
+
+	   </div><!-- /container -->
+	 </footer><!-- /footer -->
+
+	 <a id="scrollup">Scroll</a>
+
+	      <!-- ==============================================
+		    Scripts
+		    =============================================== -->
+	 <script src="js/jquery.js"></script>
+	 <script src="js/nanobar.min.js"></script>
+	 <script src="js/tether.min.js"></script>
+	 <script src="js/bootstrap.js"></script>
+	 <script src="js/medium.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	 <script src="js/common.js"></script>
+	 <script src="js/pray.js"></script>
+	 <script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
+	 
+  </body>
+</html>
