@@ -30,6 +30,17 @@ $( document ).ready(function() {
 	    }
 	}
 
+	var text = $("#quickRequestText").val();
+	console.log(text);
+
+	if (!text) {
+	    god.notify("Quick request needs a message", "error");
+	    return;
+	}
+
+	$("#quickRequestPost").html("Posting now ...");
+	$("#quickRequestPost").prop("disabled", true);
+	
 	params = {
 	    command: 'createRequest',
 	    jsonpCallback: 'afterQuickCreateRequest',

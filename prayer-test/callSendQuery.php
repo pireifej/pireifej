@@ -6,7 +6,8 @@ foreach ($_GET as $key => $value) {
   $params = $params . "$key=$value ";
 }
 
-$ret = exec("node /home/pireifej/pireifej/prayer-test/nodejs/sendQuery.js $params 2>&1", $out, $err);
+//$ret = exec("node /var/www/html/prayer/nodejs/sendQuery.js $params 2>&1", $out, $err);
+$ret = exec("node /home/pireifej/pireifej/prayer/nodejs/sendQuery.js $params 2>&1", $out, $err);
 $json = json_decode($out[0], true);
 
 $arr['error'] = $err;

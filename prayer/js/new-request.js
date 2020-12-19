@@ -24,6 +24,9 @@ $( document ).ready(function() {
 	if (!requestDetails["message"]) return;
 	if (!requestDetails["subject"]) return;
 
+	requestDetails["subject"] = requestDetails["subject"].replace(/'/g, "\\'");
+	requestDetails["message"] = requestDetails["message"].replace(/'/g, "\\'");
+
 	$("#submit-btn").prop("disabled", true);
 	$("#submit-label").html("Submitting ...");
 	
@@ -54,22 +57,6 @@ $( document ).ready(function() {
     window.afterCreateRequest = function(response) {
 	console.log('createRequest success');
 	window.location.href = "profile.html?create=true";
-    }
-
-    window.changeCategory = function() {
-	console.log("changeCategory");
-	var category = $("#category-options").val();
-	console.log(category);
-	if (category == "Select a category") {
-	    $("#prayer-preview").html("<p>Select a category to preview the prayer that others will see.</p>");
-	    return;
-	}
-	var params = {
-	    command: 'getPrayer',
-	    jsonpCallback: 'afterGetPrayer',
-	    category: category
-	};
-	god.sendQuery(params);
     }
 
     window.afterGetPrayer = function(response) {

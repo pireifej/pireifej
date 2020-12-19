@@ -6,8 +6,8 @@ $( document ).ready(function() {
     var name = $.urlParam("name");
     var updated = $.urlParam("updated");
     var help = $.urlParam("help");
+    var requestIds = [];
         
-    god.init();
     getPrayerCount();
     getMyRequests();
 
@@ -35,7 +35,16 @@ $( document ).ready(function() {
 
     window.afterGetMyRequests = function(response) {
 	console.log("profile.js: afterGetMyRequests success");
+	console.log(response);
 	insertRequests(response.result);
+	god.init();
+
+	var params = {
+	    command: 'getPeopleWhoPrayed',
+	    jsonpCallback: 'afterGetPeopleWhoPrayed',
+	    requestId: requestIds.join(",")
+	};
+        god.sendQuery(params);
     }
 
     window.deleteRequest = function(requestId) {
@@ -59,6 +68,32 @@ $( document ).ready(function() {
 		// nothing to do
 	    }
 	});
+    }
+
+    window.afterGetPeopleWhoPrayed = function(response) {
+	console.log("profile.js: afterGetPeopleWhoPrayed success");
+	var requestId = response.result[0].request_id;
+	console.log("requestId = " + requestId);
+	var requests = {};
+	for (var i = 0; i < response.result.length; i++) {
+	    if (!requests[response.result[i].request_id]) requests[response.result[i].request_id] = [];
+	    requests[response.result[i].request_id].push(response.result[i].real_name);
+	}
+	console.log(requests);
+
+	for (var key in requests) {
+	    var people = requests[key];
+	    var peopleText = "";
+	    if (people.length > 1) {
+		people[people.length - 1] = "and " + people[people.length - 1];
+		peopleText = people.join(", ");
+	    } else peopleText = people[0];
+	    $("#people-who-prayed-" + key).html(people.length + "&nbsp;<i class='fa fa-handshake-o'>&nbsp;" + peopleText + " prayed for you.</i>");
+	}
+//	
+	//var html = "<div id='people-who-prayed-" + requestId + "'>";
+//	html += "<i class='fa fa-handshake-o'>&nbsp;" + response.result.length  + "</i>";
+//	$("#people-who-prayed-" + response.result).html("Paul Ireifej");
     }
 
     window.afterDeleteRequest = function(response) {
@@ -106,14 +141,14 @@ $( document ).ready(function() {
     }
 
     function insertRequests(requests) {
-	$("#requests").empty();
+	requestIds = [];
 	var htmlPost = "";
 	$("#nbrRequests").html(requests.length + " Requests");
 	for (var i = 0; i < requests.length; i++) {
 	    var request = requests[i];
 	    var date = god.getFormattedTimestamp(request.timestamp);
 
-	    htmlPost += " <div>";
+	    htmlPost += " <div id='" + request.request_id + "'>";
 	    htmlPost += "    <div class='tr-section feed'>";
 	    htmlPost += "    	<div class='tr-post'>";
 	    htmlPost += "    	<div class='entry-header'>";
@@ -123,7 +158,7 @@ $( document ).ready(function() {
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='post-content'>";
 	    htmlPost += "    	<div class='author-post'>";
-	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' alt='Image'></a>";
+	    htmlPost += "    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' id='user-picture' alt='Image'></a>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='entry-meta'>";
 	    htmlPost += "    	<ul>";
@@ -142,9 +177,11 @@ $( document ).ready(function() {
 	    htmlPost += "    	<div class='read-more'>";
 	    htmlPost += "    	<div class='feed pull-left'>";
 	    htmlPost += "    	<ul>";
-	    htmlPost += "    	<li><i class='fa fa-handshake-o'></i>" + request.prayer_count + "</li>&nbsp;";
-//	    htmlPost += "            <li><i class='fa fa-heart-o'></i>45</li>";
+	    htmlPost += "<div id='" + request.request_id + "'></div>";
 	    htmlPost += "    	</ul>";
+	    htmlPost += "                        <div id='people-who-prayed-" + request.request_id + "'>";
+            htmlPost += "                  <i class='fa fa-handshake-o'>&nbsp;" + request.prayer_count + "</i>";
+	    htmlPost += "</div>";
 	    htmlPost += "    	</div>";
 	    htmlPost += "    	<div class='continue-reading pull-right'>";
 	    htmlPost += "    	<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'>Delete <i class='fa fa-angle-right'></i></a>";
@@ -166,7 +203,8 @@ $( document ).ready(function() {
 		    htmlPost += "<script>";
 		    htmlPost += "(adsbygoogle = window.adsbygoogle || []).push({});";
 		    htmlPost += "</script>";
-		}
+	    }
+	    requestIds.push(request.request_id);
 	}
 	$("#requests").html(htmlPost);
     }

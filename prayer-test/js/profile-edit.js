@@ -14,15 +14,86 @@ $( document ).ready(function() {
 	    jsonpCallback: "afterGetUser"
 	};
 	god.sendQuery(params);
+    } else {
+	$("#blah").hide();
     }
 
-    $('body').on('click','img',function(element){
-	$('.pic-select').each(function(i, obj) {
-	    $(obj).css('border', "");
-	});
-	$(event.target).css('border', "5px inset yellow");
-	selectedPicture = $(event.target).attr("src");
-    })
+    function readURL(input) {
+	if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    var item = input.files[0];
+	    reader.readAsDataURL(item); // convert to base64 string
+	    reader.name = item.name;//get the image's name
+	    reader.size = item.size; //get the image's size
+    
+	    reader.onload = function(event) {
+		$('#blah').attr('src', event.target.result);
+		
+		var resize_width = 600;//without px
+		var img = new Image();//create a image
+		img.src = event.target.result;//result is base64-encoded Data URI
+		img.name = event.target.name;//set name (optional)
+		img.size = event.target.size;//set size (optional)
+		img.onload = function(el) {
+		    var elem = document.createElement('canvas');//create a canvas
+
+		    //scale the image to 600 (width) and keep aspect ratio
+		    var scaleFactor = resize_width / el.target.width;
+		    elem.width = resize_width;
+		    elem.height = el.target.height * scaleFactor;
+		    
+		    //draw in canvas
+		    var ctx = elem.getContext('2d');
+		    ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
+
+		    //get the base64-encoded Data URI from the resize image
+		    var srcEncoded = ctx.canvas.toDataURL(el.target, 'image/jpeg', 0);
+
+		    //assign it to thumb src
+		    //document.querySelector('#image').src = srcEncoded;
+		    $('#blah').attr('src', srcEncoded);
+		    $("#blah").show();
+
+		    $("#pic-upload-button").click();
+		    $("#upload-profile-picture-button").prop("disabled", true);
+		    $("#upload-profile-picture-button").val("Uploading now...");
+
+		    /*Now you can send "srcEncoded" to the server and
+		      convert it to a png o jpg. Also can send
+		      "el.target.name" that is the file's name.*/
+		    selectedPicture = srcEncoded;
+
+		}
+	    }
+	}
+    }
+
+     $("#but_upload").click(function(){
+        var fd = new FormData();
+         var files = $('#file')[0].files[0];
+	 console.log(files);
+        fd.append('file',files);
+        $.ajax({
+            url: 'upload.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+		console.log(response);
+                if(response != 0){
+                    $("#img").attr("src",response); 
+                    $(".preview img").show(); // Display image element
+                }else{
+                    alert('file not uploaded');
+                }
+            },
+        });
+     });
+
+    $("#fileToUpload").change(function() {
+	readURL(this);
+    });
 
     $("#form").submit(function(e) {
 	e.preventDefault();
@@ -33,8 +104,6 @@ $( document ).ready(function() {
 	for (var i = 0; i < formValues.length; i++) {
 	    profileDetails[formValues[i].name] = formValues[i].value;
 	}
-
-	console.log(profileDetails);
 
 	if (!profileDetails["username"]) {
 	    god.notify("Username required", "error");
@@ -59,12 +128,11 @@ $( document ).ready(function() {
 		return;
 	    }
 	}
-	/*
 	if (!selectedPicture) {
 	    god.notify("Please select a profile picture", "error");
 	    return;
 	}
-	*/
+
 	var params = {
 	    command: (userId) ? 'updateUser' : 'createUser',
 	    jsonpCallback: (userId) ? 'afterUpdateUser' : 'afterCreateUser',
@@ -74,10 +142,10 @@ $( document ).ready(function() {
 	    realName: "'" + profileDetails["realname"] + "'",
 	    location: "'" + profileDetails["location"] + "'",
 	    title: "'" + profileDetails["title"] + "'",
-	    about: "'" + profileDetails["about"] + "'",
-//	    picture: "'" + selectedPicture + "'",
-	    userId: (userId) ? userId : ""
+	    about: "'" + profileDetails["about"] + "'"
 	};
+
+	if (userId) params["userId"] = userId;
 	console.log(params);
 
 	$("#submit-button").prop('disabled', true);
@@ -87,9 +155,50 @@ $( document ).ready(function() {
 	} else {
 	    $("#submit-text").html("Creating ...");
 	}
-	
+
 	god.sendQuery(params);
     })
+
+    $("#pic-upload-form").submit(function(e) {
+	console.log("pic-upload-form!");
+	e.preventDefault();
+
+	var fileData = $("#fileToUpload").prop("files")[0];
+	var formData = new FormData();
+	formData.append("fileToUpload", fileData);
+
+	$.ajax({
+            url: "upload.php",
+            dataType: 'script',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            type: 'post',
+            success: function(response){
+		console.log("upload.php success");
+		var json = JSON.parse(response);
+		console.log(json);
+		
+		if (json.error == 1) {
+		    god.notify(json.message, "error");
+		    $("#upload-profile-picture-button").prop("disabled", false);
+		    $("#upload-profile-picture-button").val("Upload Profile Picture");
+		}
+		if (json.error == 0) {
+		    god.notify(json.message, "success");
+		    $("#upload-profile-picture-button").prop("disabled", false);
+		    $("#upload-profile-picture-button").val("Upload Profile Picture");
+		}
+            }
+	});
+
+	return;
+	
+	$.post( "upload.php", function( data ) {
+	    console.log(data);
+	});	
+    });
 
     window.afterUpdateUser = function(response) {
 	console.log("afterUpdateUser success");
@@ -101,15 +210,6 @@ $( document ).ready(function() {
 	console.log('afterGetUser success');
 
 	var user = response.result[0];
-//	selectedPicture = user.picture;
-
-	// select the selected user profile picture
-/*	$('.pic-select').each(function(i, obj) {
-	    if ($(obj).attr("src") == selectedPicture) {
-		$(obj).css('border', "5px inset yellow");
-	    }
-	});
-*/
 	var logout = $.urlParam('signout')
 	if (logout) return;
 
@@ -139,13 +239,14 @@ $( document ).ready(function() {
 	$('*[id*=user-created]').each(function() {
 	    $(this).html(god.getFormattedTimestamp(user.timestamp));
 	});
-	$('*[id*=user-picture]').each(function() {
+	$('*[id*=blah]').each(function() {
 	    $(this).attr("src", user.picture);
 	});
     }
 
     window.afterCreateUser = function(response) {
 	console.log('createUser success');
+	
 	if (response.error == 0) {
 	    $("#form")[0].reset();
 	    window.location.href = "login.html?user=true";

@@ -43,6 +43,13 @@
 	<div class="card-heading"></div>
 	<div class="card-body">
 	  <h2 id="excited" class="title">We're excited to have you!</h2>
+
+	  <form style="display:none;" id="pic-upload-form" action="upload.php" method="post" enctype="multipart/form-data">
+	    Select image to upload:
+	    <input type="file" name="fileToUpload" id="fileToUpload">
+	    <input id="pic-upload-button" type="submit" value="Upload Image" name="submit">
+	  </form>
+		    
 	  <form id="form">
 	    <div class="input-group">
 	      <input class="input--style-1" type="text" placeholder="USERNAME" name="username">
@@ -53,12 +60,20 @@
 	    <div class="input-group">
 	      <input class="input--style-1" type="text" placeholder="FIRST NAME" name="realname">
 	    </div>
+
+	    <img id="blah" src="#" alt="your image" class="pic-upload"/>
+	    <div class="input-group">
+	      <input name="fileToUpload" type="file" id="fileToUpload" style="display: none;" />
+	      <input id="upload-profile-picture-button" class="btn btn--radius btn--green" type="button" value="Upload Profile Picture" onclick="document.getElementById('fileToUpload').click();" />
+
+	    </div>
 	    <div class="input-group">
 	      <input class="input--style-1" type="text" placeholder="EMAIL" name="email">
 	    </div>
 	    <div class="input-group">
 	      <input class="input--style-1" type="text" placeholder="LOCATION" name="location">
 	    </div>
+
 	    <div class="input-group">
 	      <input class="input--style-1" type="text" placeholder="TITLE" name="title">
 	    </div>

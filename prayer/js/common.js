@@ -21,6 +21,7 @@ $( document ).ready(function() {
 	
 	    god.sendQuery(params);
 	    $("#login-button").hide();
+	    $("#become-a-member").html("Edit Profile");
 	}
 	
 	// site wide configuration
@@ -51,7 +52,35 @@ $( document ).ready(function() {
 	return results[1] || 0;
     }
 
-    
+    god.getTimeAgo = function (time) {
+        var thisTimestamp = time.replace(".000Z", "");
+        var current = new Date().getTime();
+        var prayedFor = new Date(thisTimestamp).getTime();
+        var difference = current - prayedFor;
+
+        var seconds = (current-prayedFor)/1000;
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+        var timeAgo = days + " days ago";
+
+	if (days == 1) timeAgo = " yesterday";
+
+        if (days == 0) {
+            if (hours == 1) timeAgo = hours + " hour ago";
+            else timeAgo = hours + " hours ago";
+        }
+
+        if (days == 0 && hours == 0) {
+            if (minutes == 1) timeAgo = " minute ago";
+            else timeAgo = minutes + " minutes ago";
+        }
+
+        if (days == 0 && hours == 0 && minutes == 0) {
+            timeAgo = parseInt(seconds) + " just now";
+        }
+	return timeAgo;
+    }
 
     window.afterGetNotifications = function(response) {
 	console.log("afterGetNotifications success");
@@ -64,32 +93,7 @@ $( document ).ready(function() {
 	    var notice = response.result[i];
 	    console.log(notice);
 
-	    var thisTimestamp = notice.timestamp.replace(".000Z", "");
-	    var current = new Date().getTime();
-	    var prayedFor = new Date(thisTimestamp).getTime();
-	    var difference = current - prayedFor;
-
-	    var seconds = (current-prayedFor)/1000;
-	    var minutes = Math.floor(seconds / 60);
-	    var hours = Math.floor(minutes / 60);
-	    var days = Math.floor(hours / 24);
-	    var timeAgo = days + " days ago";
-
-	    if (days == 1) timeAgo = " yesterday";
-
-	    if (days == 0) {
-		if (hours == 1) timeAgo = hours + " hour ago";
-		else timeAgo = hours + " hours ago";
-	    }
-
-	    if (days == 0 && hours == 0) {
-		if (minutes == 1) timeAgo = " minute ago";
-		else timeAgo = minutes + " minutes ago";
-	    }
-
-	    if (days == 0 && hours == 0 && minutes == 0) {
-		timeAgo = parseInt(seconds) + " just now";
-	    }
+	    var timeAgo = god.getTimeAgo(notice.timestamp);
 	    
 	    htmlNotifications += "<li class='list-group-item dark-white box-shadow-z0 b'>";
 	    htmlNotifications += "<span class='pull-left m-r'>";
@@ -156,17 +160,6 @@ $( document ).ready(function() {
 
     god.getEnv = function() {
 	return (window.location.href.includes("prayer-test") ? "test" : "prod");
-    }
-
-    god.getCustomPrayer = function(prayerText, gender, userRealName) {
-	var hisOrHer = (gender == "male") ? "his" : "her";	
-	var heOrShe = (gender == "male") ? "he" : "she";
-	var himOrHer = (gender == "male") ? "him" : "her";
-	prayerText = prayerText.replace(/{{name}}/g, userRealName);
-	prayerText = prayerText.replace(/{{gender1}}/g, hisOrHer);
-	prayerText = prayerText.replace(/{{gender2}}/g, heOrShe);
-	prayerText = prayerText.replace(/{{gender3}}/g, himOrHer);
-	return prayerText;
     }
 
     god.getFormattedTimestamp = function(timestamp) {
@@ -275,33 +268,52 @@ $( document ).ready(function() {
 	var exceptions = { "createUser": true, "login": true, "email": true, "help" :true };
 	if (!exceptions[params["command"]] && !userId) {
 	    if (window.location.href.includes("login.html")) return;
-	    if (window.location.href.includes("login2.html")) return;
-	    if (window.location.href.includes("login3.html")) return;
 	    if (window.location.href.includes("profile-edit.html")) return;
 	    if (window.location.href.includes("contact.html")) return;
 	    if (window.location.href.includes("index.html")) return;
 	    window.location.href = "login.html?access=true";
 	    return;
 	}
-	
-	params["userId"] = userId;
-	
-	$.ajax({
-	    type: 'GET',
-	    url: url,
-	    data: params,
-	    cache: false,
-	    dataType: 'jsonp',
-	    jsonpCallback: params.jsonpCallback,
-	    contentType: 'application/json; charset=utf-8;',
-	    success: function(data) {
-		console.log(params.command + ' success');
-		console.log(data);
-	    },
-	    error: function(jqXHR, textStatus, errorThrown) {
-		console.log(textStatus + ': ' + params.command);
-	    }
-	});
+
+	if (!window.location.href.includes("pray.html") && !window.location.href.includes("profile-edit.html")) {
+	    params["userId"] = userId;
+	}
+
+	var type = "GET";
+	if (params["command"] == "createUser" || params["command"] == "updateUser") {
+	    type = "POST";
+	    url = "callSendQueryPost.php";
+	}
+
+	if (type == "POST") {
+	    $.post(url, params,
+		   function(returnedData){
+		       console.log(params.jsonpCallback);
+		       console.log(returnedData);
+		       window[params.jsonpCallback](returnedData);
+		   }).fail(function(){
+		       console.log("error");
+		   });
+	}
+
+	if (type == "GET") {
+	    $.ajax({
+		type: type,
+		url: url,
+		data: params,
+		cache: false,
+		dataType: 'jsonp',
+		jsonpCallback: params.jsonpCallback,
+		contentType: 'application/json; charset=utf-8;',
+		success: function(data) {
+		    console.log(params.command + ' success');
+		    console.log(data);
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		    console.log(textStatus + ': ' + params.command);
+		}
+	    });
+	}
     }
 
     god.getCategories = function(callback) {
