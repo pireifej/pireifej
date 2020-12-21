@@ -1,6 +1,10 @@
 .pic-upload {
     width: 100px;
     height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
 }
 
 .pic-select {

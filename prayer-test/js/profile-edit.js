@@ -3,7 +3,11 @@ $( document ).ready(function() {
     god.init();
 
     var userId = localStorage.getItem("userId");
-    var selectedPicture = "";
+    var uploadedPicName = "";
+    var srcEncoded = "";
+    var bodyFormData = new FormData();
+    var gFileData = null;
+    var imageResized = null;
     
     if (userId) {
 	$("#submit-text").html("Update User");
@@ -18,6 +22,31 @@ $( document ).ready(function() {
 	$("#blah").hide();
     }
 
+    var dataURLToBlob = function(dataURL) {
+     var BASE64_MARKER = ';base64,';
+     if (dataURL.indexOf(BASE64_MARKER) == -1) {
+          var parts = dataURL.split(',');
+          var contentType = parts[0].split(':')[1];
+          var raw = parts[1];
+
+          return new Blob([raw], {type: contentType});
+     }
+
+     var parts = dataURL.split(BASE64_MARKER);
+     var contentType = parts[0].split(':')[1];
+     var raw = window.atob(parts[1]);
+     var rawLength = raw.length;
+
+     var uInt8Array = new Uint8Array(rawLength);
+
+     for (var i = 0; i < rawLength; ++i) {
+          uInt8Array[i] = raw.charCodeAt(i);
+     }
+
+     return new Blob([uInt8Array], {type: "image/jpg"});
+     //return new Blob([uInt8Array], {type: contentType});
+}
+
     function readURL(input) {
 	if (input.files && input.files[0]) {
 	    var reader = new FileReader();
@@ -31,8 +60,9 @@ $( document ).ready(function() {
 		
 		var resize_width = 600;//without px
 		var img = new Image();//create a image
+		uploadedPicName = god.makeId(8) + ".jpg";
 		img.src = event.target.result;//result is base64-encoded Data URI
-		img.name = event.target.name;//set name (optional)
+		img.name = uploadedPicName;//set name (optional)
 		img.size = event.target.size;//set size (optional)
 		img.onload = function(el) {
 		    var elem = document.createElement('canvas');//create a canvas
@@ -47,11 +77,21 @@ $( document ).ready(function() {
 		    ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
 
 		    //get the base64-encoded Data URI from the resize image
-		    var srcEncoded = ctx.canvas.toDataURL(el.target, 'image/jpeg', 0);
+		    srcEncoded = ctx.canvas.toDataURL(el.target, 'image/jpeg', 0);
+		    imageResized = dataURLToBlob(srcEncoded);
+
+		    elem.toBlob(function(blob) {        // get content as JPEG blob
+			// here the image is a blob
+			bodyFormData.set('file', blob, uploadedPicName);
+			gFileData = new File([blob], uploadedPicName, {
+			    type: "image/jpg",
+			});
+		    }, "image/jpg", 0.75);
 
 		    //assign it to thumb src
-		    //document.querySelector('#image').src = srcEncoded;
 		    $('#blah').attr('src', srcEncoded);
+		    $("#fileToUpload").attr('src', srcEncoded);
+
 		    $("#blah").show();
 
 		    $("#pic-upload-button").click();
@@ -61,35 +101,10 @@ $( document ).ready(function() {
 		    /*Now you can send "srcEncoded" to the server and
 		      convert it to a png o jpg. Also can send
 		      "el.target.name" that is the file's name.*/
-		    selectedPicture = srcEncoded;
-
 		}
 	    }
 	}
     }
-
-     $("#but_upload").click(function(){
-        var fd = new FormData();
-         var files = $('#file')[0].files[0];
-	 console.log(files);
-        fd.append('file',files);
-        $.ajax({
-            url: 'upload.php',
-            type: 'post',
-            data: fd,
-            contentType: false,
-            processData: false,
-            success: function(response){
-		console.log(response);
-                if(response != 0){
-                    $("#img").attr("src",response); 
-                    $(".preview img").show(); // Display image element
-                }else{
-                    alert('file not uploaded');
-                }
-            },
-        });
-     });
 
     $("#fileToUpload").change(function() {
 	readURL(this);
@@ -128,8 +143,8 @@ $( document ).ready(function() {
 		return;
 	    }
 	}
-	if (!selectedPicture) {
-	    god.notify("Please select a profile picture", "error");
+	if (!uploadedPicName) {
+	    god.notify("Please upload a profile picture", "error");
 	    return;
 	}
 
@@ -142,11 +157,11 @@ $( document ).ready(function() {
 	    realName: "'" + profileDetails["realname"] + "'",
 	    location: "'" + profileDetails["location"] + "'",
 	    title: "'" + profileDetails["title"] + "'",
-	    about: "'" + profileDetails["about"] + "'"
+	    about: "'" + profileDetails["about"] + "'",
+	    picture: uploadedPicName
 	};
 
 	if (userId) params["userId"] = userId;
-	console.log(params);
 
 	$("#submit-button").prop('disabled', true);
 
@@ -165,8 +180,11 @@ $( document ).ready(function() {
 
 	var fileData = $("#fileToUpload").prop("files")[0];
 	var formData = new FormData();
-	formData.append("fileToUpload", fileData);
+	gFileData = new File([imageResized], uploadedPicName, {
+	    type: "image/jpg",
+	});
 
+	formData.append("fileToUpload", gFileData);
 	$.ajax({
             url: "upload.php",
             dataType: 'script',
@@ -177,6 +195,7 @@ $( document ).ready(function() {
             type: 'post',
             success: function(response){
 		console.log("upload.php success");
+		console.log(response);
 		var json = JSON.parse(response);
 		console.log(json);
 		
@@ -245,8 +264,6 @@ $( document ).ready(function() {
     }
 
     window.afterCreateUser = function(response) {
-	console.log('createUser success');
-	
 	if (response.error == 0) {
 	    $("#form")[0].reset();
 	    window.location.href = "login.html?user=true";

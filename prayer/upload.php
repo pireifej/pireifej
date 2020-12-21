@@ -1,4 +1,6 @@
 <?php
+header("content-type: application/javascript");
+
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -22,22 +24,22 @@ if(isset($_POST["submit"])) {
 }
 
 // Check if file already exists
-if (file_exists($target_file)) {
-  $arr['error'] = '1';
-  $arr['message'] =  "Sorry, file already exists.";
-  echo json_encode($arr);
-  exit();
-  $uploadOk = 0;
-}
+//if (file_exists($target_file)) {
+//  $arr['error'] = '1';
+//  $arr['message'] =  "Sorry, file already exists.";
+//  echo json_encode($arr);
+//  exit();
+//  $uploadOk = 0;
+//}
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-  $arr['error'] = '1';
-  $arr['message'] = "Sorry, your file is too large.";
-  echo json_encode($arr);
-  exit();
-  $uploadOk = 0;
-}
+//if ($_FILES["fileToUpload"]["size"] > 500000) {
+//  $arr['error'] = '1';
+//  $arr['message'] = "Sorry, your file is too large.";
+//  echo json_encode($arr);
+//  exit();
+//  $uploadOk = 0;
+//}
 
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
@@ -48,6 +50,9 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
   exit();
   $uploadOk = 0;
 }
+
+ // Compress Image
+//compressImage($_FILES['fileToUpload']['tmp_name'],$target_file,60);
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
@@ -68,5 +73,22 @@ if ($uploadOk == 0) {
   echo json_encode($arr);
   exit();
   }
+}
+
+// Compress image
+function compressImage($source, $destination, $quality) {
+
+  $info = getimagesize($source);
+
+  if ($info['mime'] == 'image/jpeg') 
+    $image = imagecreatefromjpeg($source);
+
+  elseif ($info['mime'] == 'image/gif') 
+    $image = imagecreatefromgif($source);
+
+  elseif ($info['mime'] == 'image/png') 
+    $image = imagecreatefrompng($source);
+
+  imagejpeg($image, $destination, $quality);
 }
 ?>

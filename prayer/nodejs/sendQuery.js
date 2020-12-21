@@ -291,7 +291,7 @@ if (command == "getUser") {
 }
 
 if (command == "updateUser") {
-    var pictureData = queryObject.picture;
+/*    var pictureData = queryObject.picture;
     var imageBuffer = decodeBase64Image(pictureData);
     console.log(imageBuffer);
     var picturePath = "/var/www/html/prayer/img/users/" + queryObject.userName + "." + imageBuffer.type;
@@ -308,7 +308,7 @@ if (command == "updateUser") {
 	    return;
 	}
     });
-    
+  */  
     query = "UPDATE user ";
     query += "SET user_name = '" + queryObject.userName + "', ";
     query += "email = '" + queryObject.email + "', ";
@@ -316,7 +316,7 @@ if (command == "updateUser") {
     query += "location = '" + queryObject.location + "', ";
     query += "user_title = '" + queryObject.title + "', ";
     query += "user_about = '" + queryObject.about + "', ";
-    query += "picture = '" + picturePathForDB + "' ";
+    query += "picture = '" + "uploads/" + queryObject.picture + "' ";
     query += "WHERE user_id = '" + queryObject.userId + "';";
 }
 
@@ -426,6 +426,7 @@ if (command == "createUser") {
     requireParam("location");
     requireParam("title");
     requireParam("about");
+    requireParam("picture");
 
     var mypassword = queryObject.password;
     var bcrypt = require('bcrypt');
@@ -462,7 +463,7 @@ if (command == "createUser") {
 	query += "'" + queryObject.location + "',";
 	query += "'" + queryObject.title + "',";
 	query += "'" + queryObject.about + "',";
-	query += "'" + picturePathForDB + "',";
+	query += "'" + "uploads/" + queryObject.picture + "',";
 	query += "TRUE);";
 
 	const pool = createPool();

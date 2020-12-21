@@ -72,6 +72,7 @@ $( document ).ready(function() {
 
     window.afterGetPeopleWhoPrayed = function(response) {
 	console.log("profile.js: afterGetPeopleWhoPrayed success");
+	if (!response.result.length) return;
 	var requestId = response.result[0].request_id;
 	console.log("requestId = " + requestId);
 	var requests = {};

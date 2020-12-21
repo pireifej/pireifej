@@ -52,6 +52,16 @@ $( document ).ready(function() {
 	return results[1] || 0;
     }
 
+    god.makeId = function(length) {
+	var result           = '';
+	var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var charactersLength = characters.length;
+	for ( var i = 0; i < length; i++ ) {
+	    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return result;
+    }
+
     god.getTimeAgo = function (time) {
         var thisTimestamp = time.replace(".000Z", "");
         var current = new Date().getTime();
@@ -280,40 +290,23 @@ $( document ).ready(function() {
 	}
 
 	var type = "GET";
-	if (params["command"] == "createUser" || params["command"] == "updateUser") {
-	    type = "POST";
-	    url = "callSendQueryPost.php";
-	}
 
-	if (type == "POST") {
-	    $.post(url, params,
-		   function(returnedData){
-		       console.log(params.jsonpCallback);
-		       console.log(returnedData);
-		       window[params.jsonpCallback](returnedData);
-		   }).fail(function(){
-		       console.log("error");
-		   });
-	}
-
-	if (type == "GET") {
-	    $.ajax({
-		type: type,
-		url: url,
-		data: params,
-		cache: false,
-		dataType: 'jsonp',
-		jsonpCallback: params.jsonpCallback,
-		contentType: 'application/json; charset=utf-8;',
-		success: function(data) {
-		    console.log(params.command + ' success');
-		    console.log(data);
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-		    console.log(textStatus + ': ' + params.command);
-		}
-	    });
-	}
+	$.ajax({
+	    type: type,
+	    url: url,
+	    data: params,
+	    cache: false,
+	    dataType: 'jsonp',
+	    jsonpCallback: params.jsonpCallback,
+	    contentType: 'application/json; charset=utf-8;',
+	    success: function(data) {
+		console.log(params.command + ' success');
+		console.log(data);
+	    },
+	    error: function(jqXHR, textStatus, errorThrown) {
+		console.log(textStatus + ': ' + params.command);
+	    }
+	});
     }
 
     god.getCategories = function(callback) {
