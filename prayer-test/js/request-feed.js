@@ -81,8 +81,6 @@ $( document ).ready(function() {
      }
 
     window.afterGetPrayerCount = function(response) {
-	console.log("IREIFEJ");
-	console.log(response);
          var count = response.result[0]["COUNT(*)"];
          $("#no-prayers").html("<a href='#'><i class='fa fa-handshake'></i></a>" + count);
     }

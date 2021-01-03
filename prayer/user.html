@@ -59,18 +59,18 @@
 		  <div class="content row">
 		   <div class="social-description col-xs-3">
 			<i class="fa fa-users fa-2x"></i>
-			<h2>100k</h2>
-			<p>Followers</p>
+			<h2 id="no-users">--</h2>
+			<p>Friends</p>
 		   </div><!-- /.social-description -->
 		   <div class="social-description col-xs-3">
-			<i class="fa fa-user-plus fa-2x"></i>
-			<h2>544</h2>
-			<p>Following</p>
+			<i class="fa fa-handshake fa-2x"></i>
+			<h2 id="no-prayers">--</h2>
+			<p>Prayers</p>
 		   </div><!-- /.social-description -->
 		   <div class="social-description col-xs-3">
 			<i class="fa fa-edit fa-2x"></i>
-			<h2>48</h2>
-			<p>Posts</p>
+			<h2 id="no-requests">--</h2>
+			<p>Requests</p>
 		   </div><!-- /.social-description -->
 		  </div><!-- /.content -->
          </div><!-- /.post-heading -->
@@ -98,6 +98,9 @@
 	     
 	     <h3 class="title">About me</h3>
 	     <h5 id="my-about" class="description">--</h5>
+
+	     <h3 class="title">Location</h3>
+	     <h5 id="my-location" class="description">--</h5>
       </div><!-- /container -->
      </section><!-- /entry-content -->	 
 
@@ -105,240 +108,51 @@
      Posts Section
      =============================================== -->		  
 	  
-	 <section class="posts-2">
+  
+    <!-- ==============================================
+     Posts Section
+     =============================================== -->		  
+	  
+     <section class="posts-2 following">
 	  <div class="container">
-	   <div class="row">	
-	   
+	   <div class="row">
+	    <div class="col-lg-12">
 
+		<ul class="nav nav-tabs" role="tablist" id="myTabs">
+		  <li class="nav-item">
+			<a class="nav-link active" href="#followers" role="tab" data-toggle="tab">Requests</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#following" role="tab" data-toggle="tab">Prayers</a>
+		  </li>
+		</ul>
+		<br></br>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+		 <div role="tabpanel" class="tab-pane active" id="followers">
+		 
+		   <div class="row">
+		   <div id="requests">
+		   </div>
+		   </div><!-- row -->
+		   
+		 </div><!-- tabpanel -->
+		 
+		 <div role="tabpanel" class="tab-pane fade" id="following">
+		  
+		   <div class="row">
+		     <div id="prayers">
+		     </div>
+		   </div><!-- row -->		  
+		  	  
+		  </div><!-- tabpanel -->
+		</div>	   
 	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/9.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/9.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Ellen Johns</em></p>
-		     <a href="#">
-		      <h5>Master your mind in 5 minutes a day</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 3 months ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 424</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 115</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/12.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/12.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Sean Hanity</em></p>
-		     <a href="#">
-		      <h5>Family values you can teach your children</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 15 minutes ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 200</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 15</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/6.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/6.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Victoria Stephens</em></p>
-		     <a href="#">
-		      <h5>Improve your productivity with these 10 management tools</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 2 months ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 324</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 30</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/5.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/5.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Kyle Murray</em></p>
-		     <a href="#">
-		      <h5>What it’s like to travel to Greece right now</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 2 months ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 500</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 100</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/8.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/8.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Danie Thames</em></p>
-		     <a href="#">
-		      <h5>A new generation of wireless headsets is here</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 2 months ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 134</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 17</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/7.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/7.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Grace King</em></p>
-		     <a href="#">
-		      <h5>How health & fitness can ease your pain</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> a month ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 160</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 23</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/11.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/11.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Amanda Taylor</em></p>
-		     <a href="#">
-		      <h5>Stomach Cancer: causes, symptoms and treatment</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 10 minutes ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 110</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 13</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/10.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/10.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Charles Travis</em></p>
-		     <a href="#">
-		      <h5>Organize your workflow with the available tech and software</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> 5 minutes ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 10</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 4</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->
-	   
-	    <div class="col-sm-4">
-		 <div class="blog-row blog-compact blog-compact-sm">
-		  <div class="blog-col">
-		   <div class="blog-relative blog-hover blog-hover-scale">
-		    <div class="blog-image blog-vgradient-black-lg">
-		   <div class="overlay">
-		     <img class="img-fluid blog-img" src="img/blog/4.jpg" alt="blog image" width="750" height="500">
-			</div> 
-		    </div>
-		    <div class="blog-content">
-		     <p class="blog-user"><img class="" src="img/users/4.jpg" alt="..." width="25" height="25"/> &nbsp;<em>by Jonathan Smart</em></p>
-		     <a href="#">
-		      <h5>How the cloud can improve business</h5>
-		     </a>
-		     <div class="blog-detail">
-		      <span class="blog-detail-text"><i class="fa fa-clock-o"></i> a month ago</span>
-		      <span class="blog-detail-text"><i class="fa fa-comments"></i> 400</span>
-		      <span class="blog-detail-text"><i class="fa fa-heart"></i> 44</span>
-		     </div><!-- /blog-detail -->
-		    </div><!-- /blog-content -->
-		   </div><!-- /blog-relative -->
-		  </div><!-- /blog-col -->
-		 </div><!-- /blog-row -->
-		</div><!-- /col-sm-4 -->	   
-	   
-	   </div><!-- /row -->
-	  </div><!-- /container -->
-     </section><!-- /section -->			
+	    </div>
+	   </div><!--/ row -->
+	  </div><!--/ container -->
+    </section><!--/ section -->
 	 
 	 <!-- ==============================================
 	 More Section
@@ -372,6 +186,5 @@
      <script src="js/common.js"></script>
      <script src="js/user.js"></script>
      <script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
-
   </body>
 </html>

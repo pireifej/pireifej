@@ -401,6 +401,15 @@ function decodeBase64Image(dataString) {
     return response;
 }
 
+if (command == "getPrayerHistory") {
+    requireParam("userId");
+    
+    query = "SELECT user.real_name,user.picture,request.request_title,request.request_text ";
+    query += "FROM user_request INNER JOIN request ON request.request_id = user_request.request_id ";
+    query += "INNER JOIN user on user.user_id = request.user_id ";
+    query += "WHERE user_request.user_id=" + queryObject.userId;
+}
+
 if (command == "getPeopleWhoPrayed") {
     requireParam("requestId");
     
