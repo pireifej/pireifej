@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {{ads}}
     <title>God Help Me - New Request</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +23,6 @@
   {{header}}
   
   <body>
-    {{adcash}}
     <div class="container-contact100">
       <div class="wrap-contact100">
 	<form class="contact100-form validate-form" id="new-request">
@@ -51,6 +51,10 @@
 	    <span class="label-input100">Request</span>
 	    <textarea class="input100" name="message" placeholder="Your request here..."></textarea>
 	    <span class="focus-input100"></span>
+	  </div>
+	  <div class="wrap-input100 validate-input" data-validate="Request is required">
+	    <span class="label-input100">Notify All Via Email</span>
+	    <input class="input100" type="checkbox" name="sendEmail" checked>
 	  </div>
 	  <div class="container-contact100-form-btn">
 	    <div class="wrap-contact100-form-btn">

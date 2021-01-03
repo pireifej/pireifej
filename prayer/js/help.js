@@ -4,13 +4,13 @@ $( document ).ready(function() {
     var realName = "";
     god.init();
 
-    var userId = localStorage.getItem("userId");
+    var subject = $.urlParam('subject');
+    if (subject) $("[name='subject']").val(decodeURIComponent(subject));
 
     $("#submit-email").submit(function(e) {
 	e.preventDefault();
 
 	var formValues = $("#submit-email").serializeArray();
-	var userId = localStorage.getItem("userId");
 	var helpDetails = {};
 	for (var i = 0; i < formValues.length; i++) {
 	    helpDetails[formValues[i].name] = formValues[i].value;
@@ -25,21 +25,16 @@ $( document ).ready(function() {
 	$("#send-email-text").html("Sending ...");
 	
 	var params = {
-	    command: 'help',
-	    jsonpCallback: 'afterHelp',
 	    subject: "'" + helpDetails['subject'] + "'",
 	    message: "'" + helpDetails['message'] + "'",
 	    email: "'" + helpDetails['email'] + "'",
-	    userId: (userId) ? userId : "",
 	    name: "'" + helpDetails["name"] + "'"
 	};
 
-	god.sendQuery(params);
+	god.query("help", "afterHelp", params, true, true);
     })
 
     window.afterHelp = function(response) {
-	console.log('help success');
-	console.log(response);
 	if (response.error == 0) {
 	    window.location.href = "profile.html?help=true";
 	}

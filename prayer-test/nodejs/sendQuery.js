@@ -290,25 +290,17 @@ if (command == "getUser") {
     query += "FROM user WHERE user_id = '" + queryObject.userId + "';";
 }
 
+if (command == "getThisUser") {
+    query = "SELECT user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "FROM user WHERE user_id = '" + queryObject.thisUserId + "';";
+}
+
+if (command == "getAllUsers") {
+    query = "SELECT user_id,user_name,picture ";
+    query += "FROM user";
+}
+
 if (command == "updateUser") {
-/*    var pictureData = queryObject.picture;
-    var imageBuffer = decodeBase64Image(pictureData);
-    console.log(imageBuffer);
-    var picturePath = "/var/www/html/prayer/img/users/" + queryObject.userName + "." + imageBuffer.type;
-    var picturePathForDB = "img/users/" + queryObject.userName + "." + imageBuffer.type;
-    require("fs").writeFile(picturePath, imageBuffer.data, 'base64', function(err) {
-	var obj = {};
-	if (err) {
-	    obj["result"] = err;
-	    obj["query"] = "No Query";
-	    console.log(JSON.stringify(obj));
-	    process.exit();
-	    conn.release();
-	    conn.end();
-	    return;
-	}
-    });
-  */  
     query = "UPDATE user ";
     query += "SET user_name = '" + queryObject.userName + "', ";
     query += "email = '" + queryObject.email + "', ";
@@ -316,7 +308,7 @@ if (command == "updateUser") {
     query += "location = '" + queryObject.location + "', ";
     query += "user_title = '" + queryObject.title + "', ";
     query += "user_about = '" + queryObject.about + "', ";
-    query += "picture = '" + "uploads/" + queryObject.picture + "' ";
+    query += "picture = '" + queryObject.picture + "' ";
     query += "WHERE user_id = '" + queryObject.userId + "';";
 }
 
@@ -432,27 +424,6 @@ if (command == "createUser") {
     var bcrypt = require('bcrypt');
     const saltRounds = 5;
 
-/*    var pictureData = queryObject.picture;
-    
-    var imageBuffer = decodeBase64Image(pictureData);
-*/
-    //    var picturePath = "/home/pireifej/img/" + queryObject.userName + ".jpeg";
-  //  var picturePath = "/var/www/html/prayer/img/users/" + queryObject.userName + "." + imageBuffer.type;
-    //var picturePathForDB = "img/users/" + queryObject.userName + "." + imageBuffer.type;
-    //    require("fs").writeFile("../img/users" + queryObject.userName + ".jpeg", base64Data, 'base64', function(err) {
-    /*require("fs").writeFile(picturePath, imageBuffer.data, 'base64', function(err) {
-	var obj = {};
-	if (err) {
-            obj["result"] = err;
-            obj["query"] = "No Queryyyyy";
-            console.log(JSON.stringify(obj));
-            process.exit();
-            conn.release();
-            conn.end();
-            return;
-	}
-    });*/
-    
     bcrypt.hash(mypassword, saltRounds, function(err, hash) {
 	var password = hash;
 	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, picture, active) VALUES (";
@@ -473,9 +444,6 @@ if (command == "createUser") {
 		conn.query(query)
 		    .then((rows) => {
 			var obj = {};
-//			obj["result"] = rows;
-//			obj["query"] = query;
-//			console.log(JSON.stringify(obj));
 
 			var transporter = nodemailer.createTransport({
                             service: 'gmail',
@@ -485,27 +453,43 @@ if (command == "createUser") {
                             }
 			});
 
-			var mailOptions = {
-                            from: 'welcome@prayforus.com',
-                            subject: "Welcome to Pray For Us!",
-			    text: "Thanks for joining, " + queryObject.realName + "! Visit your profile to create requests and start praying.",
-			    to: queryObject.email
-			};
+			fs.readFile(home + '/nodejs/welcomeEmailTemplate.html', 'utf8', function (err,data) {
+			    if (err) {
+				console.log(err);
+				return;
+			    }
 
-			//obj["result"] = mailOptions;
-                        //obj["query"] = "IREIFEJ";
-                        //console.log(JSON.stringify(obj));
+			    data = data.replace("{{realName}}", queryObject.realName);
+			    
+			    var mailOptions = {
+				from: 'pireifej@gmail.com',
+				to: queryObject.email,
+				bcc: "pireifej@gmail.com",
+				subject: "Welcome to Pray For Us!",
+				html: data
+			    };
 
-			transporter.sendMail(mailOptions, function(error, info) {
-			    var obj = {};
-                            obj["result"] = 'Email sent: ' + info.response;
-                            obj["query"] = "No Query";
-                            console.log(JSON.stringify(obj));
-                            process.exit();
-			    conn.release();
-			    conn.end();
-                            return;
-			});
+			    transporter.sendMail(mailOptions, function(error, info) {
+				if (error) {
+				    var obj = {};
+				    obj["result"] = 'Error: ' + error;
+				    obj["query"] = "No Query";
+				    console.log(JSON.stringify(obj));
+				    process.exit();
+				    return;
+				} else {
+				    var obj = {};
+				    obj["output"] = env;
+				    obj["result"] = 'Email sent: ' + info.response;
+				    obj["query"] = "No Query";
+				    console.log(JSON.stringify(obj));
+				    process.exit();
+				    conn.release();
+				    conn.end();
+				    return;
+				}
+			    });
+			})
 		    })
 		    .catch(err => {
 			console.log("not connected due to error: " + err);
@@ -518,7 +502,8 @@ if (command == "createUser") {
 			process.exit();
 		    });
 	    });
-    });
+	return;
+    })
 }
 
 if (command == "createRequest") {
@@ -526,6 +511,7 @@ if (command == "createRequest") {
     requireParam("requestText");
     requireParam("requestTitle");
     requireParam("requestCategoryId");
+    requireParam("sendEmail");
     
     query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, active) VALUES (";
     query += "'" + queryObject.userId + "',";
@@ -548,6 +534,15 @@ if (command == "createRequest") {
     	.then(conn => {
 	    conn.query(query)
 	    	.then((rows) => {
+		    if (queryObject.sendEmail !== "on") {
+			var obj = {};
+			obj["result"] = 'No email sent';
+			obj["query"] = "No Query";
+			console.log(JSON.stringify(obj));
+			process.exit();
+			return;
+		    }
+
 		    var obj = {};
 		    var requestId = rows[0].insertId;
 		    var url = "https://pireifej.com/prayer/pray.html?requestId=" + requestId;
@@ -590,7 +585,6 @@ if (command == "createRequest") {
 			    bcc: emails,
 			    subject: "Please pray for me!",
 			    html: data,
-//			text: "Hello,\n\n" + "Your friend, " + realName + " needs your prayer. Here are the details ... \n\n Subject: " + queryObject.requestTitle + "\n" + "Request: " + queryObject.requestText + "\n\nClick here to pray: \n" + url
 			};
 
 			console.log(mailOptions);

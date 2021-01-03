@@ -19,8 +19,6 @@ $( document ).ready(function() {
     var nanobar = new Nanobar( options );
 
     window.afterGetRequest = function(response) {
-	console.log("afterGetRequest success");
-	console.log(response);
 	var request = response.result[0];
 	$("#request-title").html(request.request_title);
 	$("#prayer-category").html(request.category_name);
@@ -48,26 +46,14 @@ $( document ).ready(function() {
     }
     
     function getRequest() {
-	params = {
-	    command: 'getRequest',
-	    jsonpCallback: 'afterGetRequest',
-	    requestId: requestId
-	};
-	god.sendQuery(params);
+	god.query("getRequest", "afterGetRequest", {requestId: requestId}, false, true);
     }
 
     function getPrayer() {
-	params = {
-	    command: 'getPrayer',
-	    jsonpCallback: 'afterGetPrayer',
-	    requestId: requestId
-	};
-	god.sendQuery(params);
+	god.query("getPrayer", "afterGetPrayer", {requestId: requestId}, false, true);
     }
 
     window.afterGetPrayer = function(response) {
-	console.log('afterGetPrayer success');
-	console.log(response);
 	var prayer = response.result[0];
 	var prayerText = prayer.prayer_text;
 
@@ -121,8 +107,6 @@ $( document ).ready(function() {
     }
 
     window.afterPrayFor = function(response) {
-	console.log('afterPrayFor success');
-	console.log(response);
 	if (response.error == 0) {
 	    window.location.href = "request-feed.html?pray=true";
 	}
@@ -293,14 +277,7 @@ $( document ).ready(function() {
     });
     
     function prayForMe() {
-	params = {
-	    command: "prayFor",
-	    jsonpCallback: "afterPrayFor",
-	    requestId: requestId,
-	    userId: userId
-	}
-	console.log(params);
-	god.sendQuery(params);
+	god.query("prayFor", "afterPrayFor", {requestId: requestId}, true, true);
     }
 
     function upgrade() {

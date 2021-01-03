@@ -13,13 +13,7 @@ $( document ).ready(function() {
 	var userId = localStorage.getItem("userId");
 
 	if (userId) {
-	  var params = {
-	    command: 'getUser',
-	    userId: userId,
-	    jsonpCallback: "afterGetUser"
-	  };
-	
-	    god.sendQuery(params);
+	    god.query("getUser", "afterGetUser", {}, true, true);
 	    $("#login-button").hide();
 	    $("#become-a-member").html("Edit Profile");
 	}
@@ -35,11 +29,7 @@ $( document ).ready(function() {
 	    $("#login-button").show();
 	}
 
-	var params = {
-	    command: 'getNotifications',
-	    jsonpCallback: 'afterGetNotifications'
-	};
-	god.sendQuery(params);
+	god.query("getNotifications", "afterGetNotifications", {}, true, true);
 	
 	$("#copyright").html("&#169; prayerforus.com");
 	$("#title").html("Pray For Us - Prayer Social Network");
@@ -60,6 +50,16 @@ $( document ).ready(function() {
 	    result += characters.charAt(Math.floor(Math.random() * charactersLength));
 	}
 	return result;
+    }
+
+    // mode - feed or profile
+    god.getHtmlPost = function(request, mode) {
+	var date = god.getFormattedTimestamp(request.timestamp);
+
+	var topLeft = (mode == "profile") ? request.request_id : request.real_name;
+	var button = (mode == "profile") ? "<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'>Delete <i class='fa fa-angle-right' aria-hidden='true'></i></a>" : "<a href='pray.html?requestId=" + request.request_id + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
+	
+	return "<div id='" + request.request_id + "'>    <div class='tr-section feed'>    	<div class='tr-post'>    	<div class='entry-header'>    	<div class='entry-thumbnail'>    	<a href='#'><img class='img-fluid' src='img/requests/" + request.category_name + ".jpg' alt='Image'></a>    	</div>    	</div>    	<div class='post-content'>    	<div class='author-post'>    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' id='user-picture' alt='Image' src='" + request.picture + "'></a>    	</div>    	<div class='entry-meta'>    	<ul>    	<li><a href='#'>" + topLeft + "</a></li>    	<li>" + date + "</li>    	<li><i class='fa fa-align-left' aria-hidden='true'></i>&nbsp;" + request.category_name + " </li>    	</ul>    	</div>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul>    	</ul>    	</div>    	<h2><a href='#' class='entry-title'>" + request.request_title + " </a></h2>    	<p>" + request.request_text + " </p>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul><div id='" + request.request_id + "'></div>    	</ul>                        <div id='people-who-prayed-" + request.request_id + "'>" + request.prayer_count + "&nbsp;<i class='fa fa-handshake-o' aria-hidden='true'>&nbsp;</i></div>    	</div>    	<div class='continue-reading pull-right'>    	" + button + "    	</div>    	</div>    	</div>    	</div>    	</div> </div>";
     }
 
     god.getTimeAgo = function (time) {
@@ -93,16 +93,11 @@ $( document ).ready(function() {
     }
 
     window.afterGetNotifications = function(response) {
-	console.log("afterGetNotifications success");
-	console.log(response);
-
 	$("#notifications").empty();
 	var htmlNotifications = "";
 
 	for (var i = 0; i < response.result.length; i++) {
 	    var notice = response.result[i];
-	    console.log(notice);
-
 	    var timeAgo = god.getTimeAgo(notice.timestamp);
 	    
 	    htmlNotifications += "<li class='list-group-item dark-white box-shadow-z0 b'>";
@@ -122,8 +117,6 @@ $( document ).ready(function() {
     }
 
     window.afterGetUser = function(response) {
-	console.log('afterGetUser success');
-
 	var user = response.result[0];
 
 	var logout = $.urlParam('signout')
@@ -164,7 +157,6 @@ $( document ).ready(function() {
     }
 
     window.afterGetAllRequests = function(response) {
-	console.log("common.js: afterGetAllRequests success");
 	god.insertRequests(response);
     }
 
@@ -264,17 +256,28 @@ $( document ).ready(function() {
 	$("#requests").html(htmlPost);
     }
 
-    god.sendQuery = function(params) {
-	url = "callSendQuery.php";
+    // commandName - command name to send to nodejs/sendQuery
+    // jsonpCallback - function to callback after query returns with a response
+    // params - object that includes key/value parameters for query
+    // includeUserId - do you want to include current user ID?
+    // includeTimeZone - do you want to include client time zone?
+    god.query = function(commandName, jsonpCallback, params, includeUserId, includeTimeZone) {
+	params = (!params) ? {} : params;
+	if (!commandName) return;
+	if (!jsonpCallback) return;
 
-	// get time zone
-	const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-	params["tz"] = tz;
+	params["command"] = commandName;
+	params["jsonpCallback"] = jsonpCallback;
+	
+	if (includeTimeZone) {
+	    // get time zone
+	    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	    params["tz"] = tz;
+	}
 
-	if (!params["command"]) return;
-
-	// get user ID
+	// redirect to login screen if user is not already logged on
 	var userId = localStorage.getItem("userId");
+	// exceptions are creating a user, logging in, contact the website for help
 	var exceptions = { "createUser": true, "login": true, "email": true, "help" :true };
 	if (!exceptions[params["command"]] && !userId) {
 	    if (window.location.href.includes("login.html")) return;
@@ -284,16 +287,21 @@ $( document ).ready(function() {
 	    window.location.href = "login.html?access=true";
 	    return;
 	}
-
-	if (!window.location.href.includes("pray.html") && !window.location.href.includes("profile-edit.html")) {
+	
+	if (includeUserId) {
 	    params["userId"] = userId;
 	}
 
-	var type = "GET";
+	god.sendQuery(params);
+    }
+
+    god.sendQuery = function(params) {
+	console.log(params["command"]);
+	console.log(params);
 
 	$.ajax({
-	    type: type,
-	    url: url,
+	    type: "GET",
+	    url: "callSendQuery.php",
 	    data: params,
 	    cache: false,
 	    dataType: 'jsonp',
@@ -310,17 +318,13 @@ $( document ).ready(function() {
     }
 
     god.getCategories = function(callback) {
-	params = {
-	    command: 'getCategories',
-	    jsonpCallback: callback
-	};
-	god.sendQuery(params);
+	god.query("getCategories", callback, {}, false, true);
     }
 
-    	   $(".dual-nav").on('shown.bs.collapse',function(){
-	       $(".dual-navv").collapse('show');
-	   })
-	   $(".dual-nav").on('hidden.bs.collapse',function(){
-	       $(".dual-navv").collapse('hide');
-	   })
+    $(".dual-nav").on('shown.bs.collapse',function(){
+	$(".dual-navv").collapse('show');
+    })
+    $(".dual-nav").on('hidden.bs.collapse',function(){
+	$(".dual-navv").collapse('hide');
+    })
 });

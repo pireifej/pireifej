@@ -21,8 +21,12 @@ $( document ).ready(function() {
 	    requestDetails[formValues[i].name] = formValues[i].value;
 	}
 
+	console.log(requestDetails);
+
 	if (!requestDetails["message"]) return;
 	if (!requestDetails["subject"]) return;
+
+	var sendEmail = (!requestDetails["sendEmail"]) ? "off" : "on";
 
 	requestDetails["subject"] = requestDetails["subject"].replace(/'/g, "\\'");
 	requestDetails["message"] = requestDetails["message"].replace(/'/g, "\\'");
@@ -31,19 +35,15 @@ $( document ).ready(function() {
 	$("#submit-label").html("Submitting ...");
 	
 	params = {
-	    command: 'createRequest',
-	    jsonpCallback: 'afterCreateRequest',
 	    requestText: "\"" + requestDetails["message"] + "\"",
 	    requestTitle: "\"" + requestDetails["subject"] + "\"",
-	    requestCategoryId: categoryId
+	    requestCategoryId: categoryId,
+	    sendEmail: sendEmail
 	};
-	console.log(params);
-	god.sendQuery(params);
+	god.query("createRequest", "afterCreateRequest", params, true, true);	
     })
 
     window.afterGetCategories = function(response) {
-	console.log('afterGetCategories success');
-
 	var categoryHtml = "<option>Select a category</option>";
 	for (var i = 0; i < response.result.length; i++) {
 	    categoryHtml += "<option>" + response.result[i].category_name + "</option>";
@@ -55,7 +55,6 @@ $( document ).ready(function() {
     }
 
     window.afterCreateRequest = function(response) {
-	console.log('createRequest success');
 	window.location.href = "profile.html?create=true";
     }
 

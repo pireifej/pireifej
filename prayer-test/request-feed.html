@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {{ads}}
 
         <!-- ==============================================
 	     Title and Meta Tags
@@ -71,9 +72,9 @@
 		   </div>
 		   <div class="card-footer">
 		     <ul class="post-view">
-		       <li><a href="#"><i class="fa fa-users"></i></a>1.5k</li>
-		       <li class="active"><a href="#"><i class="fa fa-user-plus"></i></a>100</li>
-		       <li><a href="#"><i class="fa fa-edit"></i></a>34</li>
+		       <li id="no-users"><a href="#"><i class="fa fa-users"></i></a>--</li>
+		       <li id="no-requests" class="active"><a href="#"><i class="fa fa-edit"></i></a>--</li>
+		       <li id="no-prayers"><a href="#"><i class="fa fa-handshake"></i></a>--</li>
 		     </ul><!-- /.post-view -->
 		   </div><!-- /.card-footer -->
 		 </div><!-- /.panel -->
@@ -81,7 +82,7 @@
 		 <div class="card widget-info-two">
 		   <ul class="list-group list-group-flush">
 		     <li class="list-group-item"><i class="fa fa-map-marker"><span id="user-location" style="margin-left: 10px;"></span>&nbsp;</i></li>
-		     <li class="list-group-item"><i class="fa fa-users"></i>&nbsp; Group1, Group2</li>
+<!--		     <li class="list-group-item"><i class="fa fa-users"></i>&nbsp; Group1, Group2</li>-->
 		     <li class="list-group-item"><i class="fa fa-calendar"><span style="margin-left: 10px;" id="user-created"</span></i>&nbsp;</li>
 <!--		     <li class="list-group-item"><i class="fa fa-globe"></i>&nbsp;
 		       <a href="http://www.themashabrand.com" target="_blank">www.themashabrand.com</a>
@@ -116,18 +117,7 @@
 		 <section class="box-typical">
 		   <header class="box-typical-header-sm">People you may know</header>
 		   <div class="people-rel-list">
-		     <ul class="people-rel-list-photos">
-		       <li><a href="#"><img src="img/users/1.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/3.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/4.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/5.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/6.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/7.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/8.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/9.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/10.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/11.jpg" alt=""></a></li>
-		       <li><a href="#"><img src="img/users/12.jpg" alt=""></a></li>
+		     <ul class="people-rel-list-photos" id="all-users">
 		     </ul>
 		     <form class="site-header-replace">
 		       <input placeholder="Search for people" type="text">
@@ -175,7 +165,7 @@
 	<script src="js/medium.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
 	<script src="js/common.js"></script>
-	<script src="js/node.js"></script>
+	<script src="js/request-feed.js"></script>
 	<script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
 
   </body>

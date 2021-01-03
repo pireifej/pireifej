@@ -2,6 +2,7 @@ $( document ).ready(function() {
     window.god = window.god || {};
     var user = $.urlParam('user');
     var access = $.urlParam('access');
+    god.init();
     if (user) {
 	god.notify("New user profile created.", "success");
     }
@@ -14,14 +15,11 @@ $( document ).ready(function() {
     }
 
     window.forgot = function() {
-	console.log("forgot");
 	var params = {
-	    command: "email",
 	    email: "pireifej@gmail.com",
-	    realName: "Forgot Password!",
-	    jsonpCallback: "afterForgot"
+	    realName: "Forgot Password!"
 	};
-	god.sendQuery(params);
+	god.query("email", "afterForgot", params, false, true);
     }
 
     $("#login").submit(function(e) {
@@ -38,24 +36,17 @@ $( document ).ready(function() {
 	}
 	
 	params = {
-	    command: 'login',
-	    jsonpCallback: 'afterLogin',
 	    userName: username,
 	    password: password
 	};
-	god.sendQuery(params);
+	god.query("login", "afterLogin", params, false, true);
     })
 
     window.afterForgot = function(response) {
-	console.log("afterForgot success");
-	console.log(response);
 	god.notify("Help is on its way! Check your email shortly.", "info");
     }
 
     window.afterLogin = function(response) {
-	console.log('afterLogin success');
-	console.log(response);
-
 	if (!response.result) {
 	    god.notify("Wrong username or password.", "error");
 	} else {

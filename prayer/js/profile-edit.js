@@ -12,13 +12,11 @@ $( document ).ready(function() {
     if (userId) {
 	$("#submit-text").html("Update User");
 	$("#excited").html("Edit your profile");
-	var params = {
-	    command: 'getUser',
-	    userId: userId,
-	    jsonpCallback: "afterGetUser"
-	};
-	god.sendQuery(params);
+	$('#enter-password').attr('readonly', true);
+	god.query("getUser", "afterGetUser", {}, true, true);
     } else {
+	$('#enter-password').attr('readonly', false);
+	$("#password-change").hide();
 	$("#blah").hide();
     }
 
@@ -149,8 +147,6 @@ $( document ).ready(function() {
 	}
 
 	var params = {
-	    command: (userId) ? 'updateUser' : 'createUser',
-	    jsonpCallback: (userId) ? 'afterUpdateUser' : 'afterCreateUser',
 	    userName: "'" + profileDetails["username"] + "'",
 	    password: "'" + profileDetails["password"] + "'",
 	    email: "'" + profileDetails["email"] + "'",
@@ -161,8 +157,6 @@ $( document ).ready(function() {
 	    picture: uploadedPicName
 	};
 
-	if (userId) params["userId"] = userId;
-
 	$("#submit-button").prop('disabled', true);
 
 	if (userId) {
@@ -170,8 +164,14 @@ $( document ).ready(function() {
 	} else {
 	    $("#submit-text").html("Creating ...");
 	}
+	console.log("IREIFEJ");
+	console.log(params);
 
-	god.sendQuery(params);
+	if (userId) {
+	    god.query("updateUser", "afterUpdateUser", params, true, true);
+	} else {
+	    god.query("createUser", "afterCreateUser", params, false, true);
+	}
     })
 
     $("#pic-upload-form").submit(function(e) {
@@ -220,14 +220,10 @@ $( document ).ready(function() {
     });
 
     window.afterUpdateUser = function(response) {
-	console.log("afterUpdateUser success");
-	console.log(response);
 	window.location.href = "profile.html?updated=true";
     }
 
     window.afterGetUser = function(response) {
-	console.log('afterGetUser success');
-
 	var user = response.result[0];
 	var logout = $.urlParam('signout')
 	if (logout) return;
@@ -261,6 +257,8 @@ $( document ).ready(function() {
 	$('*[id*=blah]').each(function() {
 	    $(this).attr("src", user.picture);
 	});
+
+	uploadedPicName = user.picture;
     }
 
     window.afterCreateUser = function(response) {
