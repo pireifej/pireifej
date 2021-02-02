@@ -13,8 +13,27 @@ var home = root + "/prayer";
 const argv = require('minimist')(process.argv.slice(2));
 var queryObject = {};
 var thing = argv["_"];;
-var sendEmail = false;
 var env = "prod";
+
+let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+// current year
+let year = date_ob.getFullYear();
+// current hours
+let hours = date_ob.getHours();
+// current minutes
+let minutes = date_ob.getMinutes();
+// current seconds
+let seconds = date_ob.getSeconds();
+
+fs.appendFile(home + '/nodejs/log.txt', year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds + " " + thing+"\n", function (err) {
+    if (err) { console.log("error"); return console.log(err); }
+});
 
 for (var i = 0; i < thing.length; i++) {
     var param = thing[i];
@@ -37,7 +56,7 @@ function log(message) {
 
 function requireParam(param) {
     if (param == "userId" && env == "test") {
-	queryObject["userId"] = 35; // pireifej user
+	queryObject["userId"] = 105; // pireifej user
 	return;
     }
     if (!queryObject[param]) {
@@ -210,7 +229,7 @@ if (command == "getMyRequests") {
 }
 
 if (command == "getNotifications") {
-    query = "SELECT user.real_name, user_request.user_id, request.request_id, user.picture, CONVERT_TZ(user_request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query = "SELECT user.real_name, request.request_title,user_request.user_id, request.request_id, user.picture, CONVERT_TZ(user_request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM request INNER JOIN user_request ON user_request.request_id = request.request_id INNER JOIN user on user.user_id = user_request.user_id ";
     query += "WHERE request.user_id = '" + queryObject.userId + "' AND request.active = 1 ";
     query += "ORDER BY user_request.timestamp DESC ";
@@ -286,7 +305,7 @@ if (command == "login") {
 }
 
 if (command == "getUser") {
-    query = "SELECT user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query = "SELECT user_id,user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM user WHERE user_id = '" + queryObject.userId + "';";
 }
 
@@ -308,7 +327,7 @@ if (command == "updateUser") {
     query += "location = '" + queryObject.location + "', ";
     query += "user_title = '" + queryObject.title + "', ";
     query += "user_about = '" + queryObject.about + "', ";
-    query += "picture = '" + queryObject.picture + "' ";
+    query += "picture = '" + "uploads/" + queryObject.picture + "' ";
     query += "WHERE user_id = '" + queryObject.userId + "';";
 }
 
@@ -593,7 +612,7 @@ if (command == "createRequest") {
 			    to: 'pireifej@gmail.com',
 			    bcc: emails,
 			    subject: "Please pray for me!",
-			    html: data,
+			    html: data
 			};
 
 			console.log(mailOptions);
@@ -642,32 +661,87 @@ if (command == "prayFor") {
     query += "'" + queryObject.requestId + "',";
     query += "'" + queryObject.userId + "'); ";
 
-    query += "SELECT user.real_name, user.email, request.request_title ";
+    query += "SELECT user.real_name, user.email, user.picture, request.request_title ";
     query += "FROM request ";
     query += "INNER JOIN user ON user.user_id = request.user_id ";
     query += "WHERE request.request_id = '" + queryObject.requestId + "'; ";
 
-    query += "SELECT user.real_name, user.email ";
+    query += "SELECT user.real_name, user.email, user.picture ";
     query += "FROM user ";
     query += "WHERE user.user_id = '" + queryObject.userId + "';";
 
-    sendEmail = true;
-}
+    const pool = createPool();
+    module.exports = pool;
+    pool.getConnection()
+    	.then(conn => {
+	    conn.query(query)
+	    	.then((rows) => {
+		    var person1 = rows[1][0];
+		    var person2 = rows[2][0];
+		    
+		    var transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+			    user: 'pireifej@gmail.com',
+			    pass: 'bcvbfcsvklsnegqc'
+			}
+		    });
 
-if (!query) {
-    //response.setHeader('Content-type','application/json');
-    //response.setHeader('Charset','utf8');
-    //response.setHeader('Access-Control-Allow-Origin', '*');
-    var returnError = { "status": "no query" };
-    //response.end(queryObject.jsonpCallback + '('+ JSON.stringify(returnError) + ');');
+		    fs.readFile(home + '/nodejs/prayedEmailTemplate.html', 'utf8', function (err,data) {
+			if (err) {
+			    console.log(err);
+			    return;
+			}
+			
+			data = data.replace("{{realName}}", person2.real_name);
+			data = data.replace("{{prayerText}}", person1.request_title);
+			data = data.replace("{{picture}}", person2.picture);
+			
+			var mailOptions = {
+			    from: 'pireifej@gmail.com',
+			    to: person1.email,
+			    bcc: 'pireifej@gmail.com',
+			    subject: person2.real_name + " prayed for you!",
+			    html: data
+			};
+
+			transporter.sendMail(mailOptions, function(error, info) {
+			    if (error) {
+				var obj = {};
+				obj["result"] = 'Error: ' + error;
+				obj["query"] = "No Query";
+				console.log(JSON.stringify(obj));
+				process.exit();
+				return;
+			    } else {
+				var obj = {};
+				obj["result"] = 'Email sent: ' + info.response;
+				obj["query"] = "No Query";
+				console.log(JSON.stringify(obj));
+				process.exit();
+				return;
+			    }
+			});
+		    })
+		})
+    		.catch(err => {
+		    console.log("not connected due to error: " + err);
+                    var obj = {};
+                    obj["result"] = err;
+                    obj["query"] = query;
+                    console.log(JSON.stringify(obj));
+                    conn.release();
+                    conn.end();
+                    process.exit();
+		})
+	})
     return;
 }
 
-//response.setHeader('Content-type','application/json');
-//response.setHeader('Charset','utf8');
-//response.setHeader('Access-Control-Allow-Origin', '*');
-    
-//    var pool = require("./mariadbConnector");
+if (!query) {
+    var returnError = { "status": "no query" };
+    return;
+}
 
 const pool = createPool();
 module.exports = pool;
@@ -691,44 +765,6 @@ pool.getConnection()
 			conn.end();
 			process.exit();
 			return;
-		    });
-		}
-		else if (sendEmail) {
-		    var person1 = rows[1][0];
-		    var person2 = rows[2][0];
-
-		    var transporter = nodemailer.createTransport({
-			service: 'gmail',
-			auth: {
-			    user: 'pireifej@gmail.com',
-			    pass: 'bcvbfcsvklsnegqc'
-			}
-		    });
-    
-		    var mailOptions = {
-			from: 'welcome@prayforus.com',
-			subject: person2.real_name + " prayed for you!",
-			text: "Hello " + person1.real_name + "!\n\n" + person2.real_name + " just prayed for your request '" + person1.request_title + "'.\n\nHave a blessed day! Keep praying. Jesus loves you.",
-		    };
-
-		    mailOptions["to"] = person1.email;
-		    console.log(mailOptions);
-		    transporter.sendMail(mailOptions, function(error, info) {
-			if (error) {
-			    var obj = {};
-			    obj["result"] = 'Error: ' + error;
-			    obj["query"] = "No Query";
-			    console.log(JSON.stringify(obj));
-			    process.exit();
-			    return;
-			} else {
-			    var obj = {};
-			    obj["result"] = 'Email sent: ' + info.response;
-			    obj["query"] = "No Query";
-			    console.log(JSON.stringify(obj));
-			    process.exit();
-			    return;
-			}
 		    });
 		} else {
 		    var obj = {};

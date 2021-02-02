@@ -1,3 +1,15 @@
+.char-limit {
+    content: "\f06a";
+    font-family: FontAwesome;
+    display: block;
+    position: absolute;
+    color: #c80000;
+    font-size: 16px;
+    top: 58%;
+    transform: translateY(-50%);
+    right: 8px;
+}
+
 .pic-select {
     width: 50px !important;
     height: 50px !important;

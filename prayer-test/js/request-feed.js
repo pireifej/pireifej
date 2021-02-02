@@ -2,7 +2,6 @@ $( document ).ready(function() {
     window.god = window.god || {};
     var email = "";
     var realName = "";
-    var categories = [];
     var requestIds = [];
     god.init();
     var pray = $.urlParam("pray");
@@ -11,7 +10,6 @@ $( document ).ready(function() {
 	god.notify("Prayer completed.", "success");
     }
     getRequestFeed();
-    god.getCategories("afterGetCategories");
     god.query("getAllUsers", "afterGetAllUsers", {}, false, true);
 
     $("#headerImage").css("margin-bottom", "50px");
@@ -22,33 +20,6 @@ $( document ).ready(function() {
     $("#headerImage").css("-moz-background-size", "cover");
     $("#headerImage").css("-o-background-size", "cover");
     $("#headerImage").css("background-size", "cover");
-    
-    $("#quickRequestPost").click(function() {
-	var categoryId = null;
-	for (var i = 0; i < categories.length; i++) {
-	    if (categories[i].category_name == "general") {
-		categoryId = categories[i].category_id;
-		break;
-	    }
-	}
-
-	var text = $("#quickRequestText").val();
-
-	if (!text) {
-	    god.notify("Quick request needs a message", "error");
-	    return;
-	}
-
-	$("#quickRequestPost").html("Posting now ...");
-	$("#quickRequestPost").prop("disabled", true);
-	
-	params = {
-	    requestText: "\"" + $("#quickRequestText").val() + "\"",
-	    requestTitle: "Quick Request",
-	    requestCategoryId: categoryId
-	};
-	god.query("createRequest", "afterQuickCreateRequest", params, false, true);
-    })
 
     function insertRequestFeed(response) {
 	$("#request-feed").empty();
@@ -97,11 +68,7 @@ $( document ).ready(function() {
 	html += "</ul>";
 	$("#all-users").html(html);
     }
-
-    window.afterGetCategories = function(response) {
-	categories = response.result;
-    };
-
+    
     window.afterGetRequestFeed = function(response) {
 	insertRequestFeed(response);
 	god.query("getPeopleWhoPrayed", "afterGetPeopleWhoPrayed", { requestId:  requestIds.join(",") }, false, true);
@@ -135,10 +102,5 @@ $( document ).ready(function() {
             }
             $("#people-who-prayed-" + key).html(people.length + "&nbsp;<i class='fa fa-handshake-o'>&nbsp;" + peopleText + " prayed.</i>");
         }
-    }
-
-    window.afterQuickCreateRequest = function(response) {
-	$("#quickRequestText").val("");
-	god.notify("Quick request created.", "success");
     }
 });

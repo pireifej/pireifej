@@ -42,24 +42,13 @@ $( document ).ready(function() {
     }
 
     window.deleteRequest = function(requestId) {
-	$.confirm({
-	    text: "Are you sure you want to delete your request?",
-	    confirmButton: "Yes",
-	    cancelButton: "No",
-	    post: true,
-	    confirmButtonClass: "btn-danger",
-	    cancelButtonClass: "btn-default",
-	    dialogClass: "modal-dialog modal-lg",
-	    confirm: function() {
-		 god.query("deleteRequest", "afterDeleteRequest",
-			   {requestId: requestId},
-			   true, true);
+	var buttonText = $("#delete-button").text();
+	if (buttonText == "Delete") {
+	    $("#delete-button").html("Are you sure?!");
+	    return;
+	}
 
-	    },
-	    cancel: function() {
-		// nothing to do
-	    }
-	});
+	god.query("deleteRequest", "afterDeleteRequest",{requestId: requestId},true, true);
     }
 
     window.afterGetPeopleWhoPrayed = function(response) {

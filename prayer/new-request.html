@@ -19,6 +19,23 @@
     <link type="text/css" href="css/profile-edit.css" rel="stylesheet" />
     <link type="text/css" href="css/new-request.css" rel="stylesheet" />
 
+        <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="css/bicon.min.css">
+    <!-- Flat Icon CSS -->
+    <link rel="stylesheet" href="css/flaticon.css">
+    <!-- audio & video player CSS -->
+    <link rel="stylesheet" href="css/plyr.css">
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="css/slick.min.css">
+    <!-- nice-select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- perfect scrollbar css -->
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+    <!-- light gallery css -->
+    <link rel="stylesheet" href="css/lightgallery.min.css">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="css/new-header.css">
+
   </head>
   {{header}}
   
@@ -32,14 +49,17 @@
 
 	  <div class="wrap-input100 validate-input" data-validate="Subject is required">
 	    <span class="label-input100">Subject</span>
-	    <input class="input100" type="text" name="subject" placeholder="Enter your subject">
+	    <input id="subject-input" class="input100" type="text" name="subject" placeholder="Enter your subject">
+	    <span id="no-char-subject" class="char-limit">--</span>
 	    <span class="focus-input100"></span>
 	  </div>
-	  <!--<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+	  
+<!--	  <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
 	    <span class="label-input100">Email</span>
 	    <input class="input100" type="text" name="email" placeholder="Enter your email addess">
 	    <span class="focus-input100"></span>
 	  </div>-->
+	  
 	  <div class="wrap-input100 input100-select">
 	    <span class="label-input100">Category</span>
 	    <div>
@@ -49,7 +69,8 @@
 	  </div>
 	  <div class="wrap-input100 validate-input" data-validate="Request is required">
 	    <span class="label-input100">Request</span>
-	    <textarea class="input100" name="message" placeholder="Your request here..."></textarea>
+	    <textarea id="request-input" class="input100" name="message" placeholder="Your request here..."></textarea>
+	    <span id="no-char-request" class="char-limit">--</span>
 	    <span class="focus-input100"></span>
 	  </div>
 	  <div class="wrap-input100 validate-input" data-validate="Request is required">
@@ -93,6 +114,17 @@
   <script src="js/common.js"></script>
   <script src="js/new-request.js"></script>
   <script src="js/form.js"></script>
+
+  	 <script src="js/modernizr.custom.js"></script>
+	 <script src="js/popper.js"></script>
+	 <script src="js/slick.min.js"></script>
+	 <script src="js/nice-select.min.js"></script>
+	 <script src="js/plyr.min.js"></script>
+	 <script src="js/perfect-scrollbar.min.js"></script>
+	 <script src="js/lightgallery-all.min.js"></script>
+	 <script src="js/imagesloaded.pkgd.min.js"></script>
+	 <script src="js/isotope.pkgd.min.js"></script>
+	 <script src="js/new-header.js"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
   </script>

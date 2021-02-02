@@ -1,27 +1,45 @@
 $( document ).ready(function() {
     window.god = window.god || {};
+    var categories = [];
 
     // text - display text
     // type - success, info, warning, error
     god.notify = function(text, type) {
-	$.notify(text, { position: "top center", className: type });
+	$.notify(text, { position: "bottom left", className: type });
     }
 
     // god functions
-    god.init = function () {	
+    god.init = function () {
 	// load all request for this user
 	var userId = localStorage.getItem("userId");
+	god.query("getAllUsers", "afterGetAllUsers", {}, false, true);
 
 	if (userId) {
 	    god.query("getUser", "afterGetUser", {}, true, true);
 	    $("#login-button").hide();
 	    $("#become-a-member").html("Edit Profile");
+	    $("#login-button-mobile").hide();
 	}
-	
+
 	// site wide configuration
 	if (!userId) {
+	    $("#header-notifications-text").hide();
+	    $("#header-prayer-text").hide();
+	    $("#header-requests-text").attr("src", "login.html");
+	    $("#header-requests-text").html("Login");
+
+	    $("#profile-button-mobile").hide();
+	    $("#request-feed-button-mobile").hide();
+	    $("#notification-button-mobile").hide();
+	    $("#new-request-button-mobile").hide();
+	    $("#login-button-mobile").show();
+	    
 	    $("#user-name").html("Welcome");
-	    $("#user-picture").hide();
+	    $('*[id*=user-picture]').each(function() {
+		console.log("image..");
+		console.log($(this));
+		$(this).hide();
+	    });
 	    $("#user-pic-circle").hide();
 	    $("#navigation").hide();
 	    $("#user-notification").hide();
@@ -30,10 +48,37 @@ $( document ).ready(function() {
 	}
 
 	god.query("getNotifications", "afterGetNotifications", {}, true, true);
+	god.getCategories("afterGetCategories");
 	
 	$("#copyright").html("&#169; prayerforus.com");
 	$("#title").html("Pray For Us - Prayer Social Network");
     }
+
+    window.submitQuickRequest = function() {
+	var categoryId = null;
+	for (var i = 0; i < categories.length; i++) {
+	    if (categories[i].category_name == "general") {
+		categoryId = categories[i].category_id;
+		break;
+	    }
+	}
+
+	var text = $('#quickRequestText').val();
+
+	if (!text) {
+	    god.notify("Quick request needs a message", "error");
+	    return;
+	}
+
+	$("#quickRequestPost").prop("disabled", true);
+	
+	params = {
+	    requestText: "\"" + $("#quickRequestText").val() + "\"",
+	    requestTitle: "Quick Request",
+	    requestCategoryId: categoryId
+	};
+	god.query("createRequest", "afterQuickCreateRequest", params, true, true);
+    };
 
     god.categories = {};
     $.urlParam = function(name){
@@ -57,7 +102,7 @@ $( document ).ready(function() {
 	var date = god.getFormattedTimestamp(request.timestamp);
 
 	var topLeft = (mode == "profile") ? request.request_id : request.real_name;
-	var button = (mode == "profile") ? "<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'>Delete <i class='fa fa-angle-right' aria-hidden='true'></i></a>" : "<a href='pray.html?requestId=" + request.request_id + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
+	var button = (mode == "profile") ? "<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'><span id='delete-button'>Delete</span> <i class='fa fa-angle-right' aria-hidden='true'></i></a>" : "<a href='pray.html?requestId=" + request.request_id + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
 	
 	return "<div id='" + request.request_id + "'>    <div class='tr-section feed'>    	<div class='tr-post'>    	<div class='entry-header'>    	<div class='entry-thumbnail'>    	<a href='#'><img class='img-fluid' src='img/requests/" + request.category_name + ".jpg' alt='Image'></a>    	</div>    	</div>    	<div class='post-content'>    	<div class='author-post'>    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' id='user-picture' alt='Image' src='" + request.picture + "'></a>    	</div>    	<div class='entry-meta'>    	<ul>    	<li><a href='#'>" + topLeft + "</a></li>    	<li>" + date + "</li>    	<li><i class='fa fa-align-left' aria-hidden='true'></i>&nbsp;" + request.category_name + " </li>    	</ul>    	</div>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul>    	</ul>    	</div>    	<h2><a href='#' class='entry-title'>" + request.request_title + " </a></h2>    	<p>" + request.request_text + " </p>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul><div id='" + request.request_id + "'></div>    	</ul>                        <div id='people-who-prayed-" + request.request_id + "'>" + request.prayer_count + "&nbsp;<i class='fa fa-handshake-o' aria-hidden='true'>&nbsp;</i></div>    	</div>    	<div class='continue-reading pull-right'>    	" + button + "    	</div>    	</div>    	</div>    	</div>    	</div> </div>";
     }
@@ -92,24 +137,103 @@ $( document ).ready(function() {
 	return timeAgo;
     }
 
+    window.afterGetCategories = function(response) {
+	categories = response.result;
+    };
+
+    window.afterQuickCreateRequest = function(response) {
+	$("#quickRequestText").val("");
+	god.notify("Quick request created.", "success");
+    }
+
+    window.afterGetAllUsers = function(response) {
+	var html = "<div class='active-profile-mobile' id='all-users-mobile'>";
+
+	var users = response.result;
+	for (var i = 0; i < users.length; i++) {
+	    var user = users[i];
+	    
+	    html += "<div class='single-slide'>";
+	    html += "<div class='profile-thumb active profile-active'>";
+	    html += "<a href='user.html?userId=" + user.user_id + ">";
+	    html += "<figure class='profile-thumb-small profile-active'>";
+            html += "<img src='" + user.picture + "' alt='profile picture'>";
+            html += "</figure>";
+	    html += "</a>";
+	    html += "</div>";
+	    html += "</div>";
+	    
+	    var htmlDesktop = "";
+	    htmlDesktop += "      <div class='single-slide'>";
+	    htmlDesktop += "                                          <div class='profile-thumb active profile-active'>";
+	    htmlDesktop += "                                                <a href='javascript:void(0)'>";
+	    htmlDesktop += "                                                   <figure class='profile-thumb-small'>";
+	    htmlDesktop += "                                                        <img src='" + user.picture + "' alt='profile picture'>";
+	    htmlDesktop += "                                                   </figure>";
+	    htmlDesktop += "                                               </a>";
+	    htmlDesktop += "                                           </div>";
+	    htmlDesktop += "                                        </div>";
+	    $("#all-users-desktop").append(htmlDesktop);
+	}
+	html += "</div>";
+
+	$("#all-users-mobile").html(html);
+
+    }
+
     window.afterGetNotifications = function(response) {
 	$("#notifications").empty();
+	$("#notifications-mobile").empty();
 	var htmlNotifications = "";
+	var htmlNotificationsMobile = "";
 
 	for (var i = 0; i < response.result.length; i++) {
 	    var notice = response.result[i];
 	    var timeAgo = god.getTimeAgo(notice.timestamp);
 	    
-	    htmlNotifications += "<li class='list-group-item dark-white box-shadow-z0 b'>";
-	    htmlNotifications += "<span class='pull-left m-r'>";
-	    htmlNotifications += "<img src='" + notice.picture + "' alt='...' class='w-40 img-circle'>";
-	    htmlNotifications += "</span>";
-	    htmlNotifications += "<span class='clear block'><span class='text-primary'>" + notice.real_name + "</span> prayed for you <br>";
-	    htmlNotifications += "<small class='text-muted'>" + timeAgo + "</small>";
-	    htmlNotifications += "</span>";
+	    htmlNotifications += "<li class='msg-list-item d-flex justify-content-between'>";
+            htmlNotifications += "<!-- profile picture end -->";
+	    htmlNotifications += "<div class='profile-thumb'>";
+	    htmlNotifications += + "<figure class='profile-thumb-middle'>";
+	    htmlNotifications += "<img src='" + notice.picture + "' alt='profile picture' class='notice-picture'>";
+	    htmlNotifications += "</figure>";
+	    htmlNotifications += "</div>";
+	    htmlNotifications += "<!-- profile picture end -->";
+	    htmlNotifications += "<!-- message content start -->";
+	    htmlNotifications += "<div class='msg-content notification-content'>";
+	    htmlNotifications += "<a href='user.html?userId=" + notice.user_id + "'>" + notice.real_name + "</a> ";
+	    htmlNotifications += "<p>prayed for '" + notice.request_title + "'.</p>";
+	    htmlNotifications += "</div>";
+	    htmlNotifications += "<!-- message content end -->";
+	    htmlNotifications += "<!-- message time start -->";
+	    htmlNotifications += "<div class='msg-time'>";
+	    htmlNotifications += "<p>" + timeAgo + "</p>";
+	    htmlNotifications += "</div>";
+	    htmlNotifications += "<!-- message time end -->";
 	    htmlNotifications += "</li>";
+
+	    htmlNotificationsMobile += "                                <li>";
+	    htmlNotificationsMobile += "                                    <div class='frnd-request-member'>";
+	    htmlNotificationsMobile += "                                        <figure class='request-thumb'>";
+	    htmlNotificationsMobile += "                                            <a href='profile.html'>";
+	    htmlNotificationsMobile += "                                                <img style='width: 75px; height: 75px' src='" + notice.picture + "' alt='proflie author'>";
+	    htmlNotificationsMobile += "                                            </a>";
+	    htmlNotificationsMobile += "                                        </figure>";
+	    htmlNotificationsMobile += "                                        <div class='frnd-content'>";
+	    htmlNotificationsMobile += "                                            <p class='author-subtitle'><a href='user.html?userId=" + notice.user_id + "'>" + notice.real_name + "</a> prayed for '" + notice.request_title + "'.</p>";
+	    htmlNotificationsMobile += "                                            <div class='request-btn-inner'>";
+	    htmlNotificationsMobile += "<p>" + timeAgo + "</p>";
+//	    htmlNotificationsMobile += "                                                <button class='frnd-btn'>confirm</button>";
+//	    htmlNotificationsMobile += "                                                <button class='frnd-btn delete'>delete</button>";
+	    htmlNotificationsMobile += "                                            </div>";
+	    htmlNotificationsMobile += "                                        </div>";
+	    htmlNotificationsMobile += "                                    </div>";
+	    htmlNotificationsMobile += "                                </li>";
 	}
+
+	htmlNotifications = htmlNotifications.replaceAll("NaN", "");
 	$("#notifications").html(htmlNotifications);
+	$("#notifications-mobile").html(htmlNotificationsMobile);
     }
 
     window.goToRequestFeed = function() {
@@ -153,6 +277,12 @@ $( document ).ready(function() {
 	});
 	$('*[id*=user-picture]').each(function() {
 	    $(this).attr("src", user.picture);
+	});
+	$('*[id*=profile-link]').each(function() {
+	    $(this).attr("href", "user.html?userId="+user.user_id);
+	});
+	$('*[id*=my-email-address]').each(function() {
+	    $(this).html(user.email);
 	});
     }
 

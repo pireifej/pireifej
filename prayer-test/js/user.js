@@ -31,7 +31,7 @@ $( document ).ready(function() {
 	    html += "		 <div class='wid-u-info'>";
 	    html += "		   <h4 class='m-t-0 m-b-5 font-600'>" + prayer.real_name + "</h4>";
 	    html += "		   <p class='text-muted m-b-5 font-13'>" + prayer.request_title + "</p>";
-	    html += "		   <small class='text-warning'><b>Follow</b></small>";
+//	    html += "		   <small class='text-warning'><b>Follow</b></small>";
 	    html += "		 </div>";
 	    html += "	       </div>";
 	    html += "	     </div>";
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 	    html += "		 <div class='wid-u-info'>";
 	    html += "		   <h4 class='m-t-0 m-b-5 font-600'>" + request.request_title + "</h4>";
 	    html += "		   <p class='text-muted m-b-5 font-13'>" + request.request_text + "</p>";
-	    html += "		   <small class='text-warning'><b>Follow</b></small>";
+//	    html += "		   <small class='text-warning'><b>Follow</b></small>";
 	    html += "		 </div>";
 	    html += "	       </div>";
 	    html += "	     </div>";

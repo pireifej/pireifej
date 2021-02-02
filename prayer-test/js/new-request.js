@@ -2,6 +2,39 @@ $( document ).ready(function() {
     window.god = window.god || {};
     god.init();
     god.getCategories("afterGetCategories");
+    var prevSubject = "";
+    var prevRequest = "";
+
+    $( "#subject-input" ).keyup(function() {
+	var subject = $("#subject-input").val();
+	var noChar = subject.length;
+	if (noChar <= 20) $("#no-char-subject").css("color", "lightgreen");
+	if (noChar > 20 && noChar <= 29) $("#no-char-subject").css("color", "orange");
+	if (noChar >= 30) {
+	    $("#no-char-subject").css("color", "red");
+	    $("#subject-input").val(prevSubject);
+	    $("#no-char-subject").text(noChar);
+	    return;
+	}
+	$("#no-char-subject").text(noChar);
+	prevSubject = subject;
+    });
+
+    $( "#request-input" ).keyup(function() {
+	var request = $("#request-input").val();
+	var noChar = request.length;
+
+	if (noChar <= 100) $("#no-char-request").css("color", "lightgreen");
+	if (noChar > 150 && noChar <= 199) $("#no-char-request").css("color", "orange");
+	if (noChar >= 200) {
+	    $("#no-char-request").css("color", "red");
+	    $("#request-input").val(prevRequest);
+	    $("#no-char-request").text(noChar);
+	    return;
+	}
+	$("#no-char-request").text(noChar);
+	prevRequest = request;
+    });
     
     $("#new-request").submit(function(e) {
 	e.preventDefault();
