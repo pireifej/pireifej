@@ -1,6 +1,145 @@
 $( document ).ready(function() {
     window.god = window.god || {};
     var categories = [];
+    var bodyFormData = new FormData();
+    var uploadedPicName = "";
+
+    $("#pic-upload-form").submit(function(e) {
+	e.preventDefault();
+
+	var fileData = $("#fileToUpload").prop("files")[0];
+	var formData = new FormData();
+	gFileData = new File([imageResized], uploadedPicName, {
+	    type: "image/jpg",
+	});
+
+	formData.append("fileToUpload", gFileData);
+	$.ajax({
+            url: "upload.php",
+            dataType: 'script',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            type: 'post',
+            success: function(response){
+		console.log("upload.php success");
+		console.log(response);
+		var json = JSON.parse(response);
+		console.log(json);
+		
+		if (json.error == 1) {
+		    god.notify(json.message, "error");
+		    $("#upload-profile-picture-button").prop("disabled", false);
+		    $("#upload-profile-picture-button").val("Upload Profile Picture");
+		    uploadedPicName = "";
+		}
+		if (json.error == 0) {
+		    god.notify(json.message, "success");
+		    $("#upload-profile-picture-button").prop("disabled", false);
+		    $("#upload-profile-picture-button").val("Upload Profile Picture");
+		}
+            }
+	});
+	
+	return;
+	
+	$.post( "upload.php", function( data ) {
+	    console.log(data);
+	});	
+    });
+    
+    $("#fileToUpload").change(function() {
+	god.readURL(this, 600);
+    });
+
+    god.getUploadedPicName = function() {
+	console.log("god.getUploadedPicName");
+	console.log(uploadedPicName);
+	return uploadedPicName;
+    }
+
+    god.readURL = function(input, resizeWidth) {
+	if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    var item = input.files[0];
+	    reader.readAsDataURL(item); // convert to base64 string
+	    reader.name = item.name;//get the image's name
+	    reader.size = item.size; //get the image's size
+    
+	    reader.onload = function(event) {
+		$('#blah').attr('src', "uploads/" + event.target.result);
+		
+		var resize_width = resizeWidth;//without px
+		var img = new Image();//create a image
+		uploadedPicName = god.makeId(8) + ".jpg";
+		img.src = event.target.result;//result is base64-encoded Data URI
+		img.name = uploadedPicName;//set name (optional)
+		img.size = event.target.size;//set size (optional)
+		img.onload = function(el) {
+		    var elem = document.createElement('canvas');//create a canvas
+
+		    //scale the image to 600 (width) and keep aspect ratio
+		    var scaleFactor = resize_width / el.target.width;
+		    elem.width = resize_width;
+		    elem.height = el.target.height * scaleFactor;
+		    
+		    //draw in canvas
+		    var ctx = elem.getContext('2d');
+		    ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
+
+		    //get the base64-encoded Data URI from the resize image
+		    srcEncoded = ctx.canvas.toDataURL(el.target, 'image/jpeg', 0);
+		    imageResized = god.dataURLToBlob(srcEncoded);
+
+		    elem.toBlob(function(blob) {        // get content as JPEG blob
+			// here the image is a blob
+			bodyFormData.set('file', blob, uploadedPicName);
+			gFileData = new File([blob], uploadedPicName, {
+			    type: "image/jpg",
+			});
+		    }, "image/jpg", 0.75);
+
+		    //assign it to thumb src
+		    $('#blah').attr('src', srcEncoded);
+		    $("#fileToUpload").attr('src', srcEncoded);
+
+		    $("#blah").show();
+
+		    $("#pic-upload-button").click();
+		    $("#upload-profile-picture-button").prop("disabled", true);
+		    $("#upload-profile-picture-button").val("Uploading now...");
+
+		    /*Now you can send "srcEncoded" to the server and
+		      convert it to a png o jpg. Also can send
+		      "el.target.name" that is the file's name.*/
+		}
+	    }
+	}
+    }
+
+    god.dataURLToBlob = function(dataURL) {
+	var BASE64_MARKER = ';base64,';
+	if (dataURL.indexOf(BASE64_MARKER) == -1) {
+            var parts = dataURL.split(',');
+            var contentType = parts[0].split(':')[1];
+            var raw = parts[1];
+            return new Blob([raw], {type: contentType});
+	}
+
+	var parts = dataURL.split(BASE64_MARKER);
+	var contentType = parts[0].split(':')[1];
+	var raw = window.atob(parts[1]);
+	var rawLength = raw.length;
+
+	var uInt8Array = new Uint8Array(rawLength);
+
+	for (var i = 0; i < rawLength; ++i) {
+            uInt8Array[i] = raw.charCodeAt(i);
+	}
+
+	return new Blob([uInt8Array], {type: "image/jpg"});
+    }
 
     // text - display text
     // type - success, info, warning, error
@@ -32,12 +171,11 @@ $( document ).ready(function() {
 	    $("#request-feed-button-mobile").hide();
 	    $("#notification-button-mobile").hide();
 	    $("#new-request-button-mobile").hide();
+	    $("#header-new-request-text").hide();
 	    $("#login-button-mobile").show();
 	    
 	    $("#user-name").html("Welcome");
 	    $('*[id*=user-picture]').each(function() {
-		console.log("image..");
-		console.log($(this));
 		$(this).hide();
 	    });
 	    $("#user-pic-circle").hide();
@@ -103,8 +241,19 @@ $( document ).ready(function() {
 
 	var topLeft = (mode == "profile") ? request.request_id : request.real_name;
 	var button = (mode == "profile") ? "<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'><span id='delete-button'>Delete</span> <i class='fa fa-angle-right' aria-hidden='true'></i></a>" : "<a href='pray.html?requestId=" + request.request_id + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
-	
-	return "<div id='" + request.request_id + "'>    <div class='tr-section feed'>    	<div class='tr-post'>    	<div class='entry-header'>    	<div class='entry-thumbnail'>    	<a href='#'><img class='img-fluid' src='img/requests/" + request.category_name + ".jpg' alt='Image'></a>    	</div>    	</div>    	<div class='post-content'>    	<div class='author-post'>    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' id='user-picture' alt='Image' src='" + request.picture + "'></a>    	</div>    	<div class='entry-meta'>    	<ul>    	<li><a href='#'>" + topLeft + "</a></li>    	<li>" + date + "</li>    	<li><i class='fa fa-align-left' aria-hidden='true'></i>&nbsp;" + request.category_name + " </li>    	</ul>    	</div>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul>    	</ul>    	</div>    	<h2><a href='#' class='entry-title'>" + request.request_title + " </a></h2>    	<p>" + request.request_text + " </p>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul><div id='" + request.request_id + "'></div>    	</ul>                        <div id='people-who-prayed-" + request.request_id + "'>" + request.prayer_count + "&nbsp;<i class='fa fa-handshake-o' aria-hidden='true'>&nbsp;</i></div>    	</div>    	<div class='continue-reading pull-right'>    	" + button + "    	</div>    	</div>    	</div>    	</div>    	</div> </div>";
+
+	var img = "img/requests/" + request.category_name + ".jpg";
+	if (request["request_picture"]) {
+	    img = "uploads/" + request["request_picture"];
+	}
+	console.log(request);
+
+	var otherPerson = request["other_person"];
+	var forOtherPerson = (otherPerson) ? " (for " + otherPerson + ")" : "";
+
+	console.log(otherPerson, forOtherPerson);
+
+	return "<a href='#" + request.request_id + "'><div id='" + request.request_id + "'>    <div class='tr-section feed'>    	<div class='tr-post'>    	<div class='entry-header'>    	<div class='entry-thumbnail'>    	<a href='#'><img class='img-fluid' src='" + img + "' alt='Image'></a>    	</div>    	</div>    	<div class='post-content'>    	<div class='author-post'>    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' id='user-picture' alt='Image' src='uploads/" + request.picture + "'></a>    	</div>    	<div class='entry-meta'>    	<ul>    	<li><a href='#'>" + topLeft + "</a></li>    	<li>" + date + "</li>    	<li><i class='fa fa-align-left' aria-hidden='true'></i>&nbsp;" + request.category_name + " </li>    	</ul>    	</div>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul>    	</ul>    	</div>    	<h2><a href='#' class='entry-title'>" + request.request_title + " </a></h2>    	<p>" + request.request_text + forOtherPerson + " </p>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul><div id='" + request.request_id + "'></div>    	</ul>                        <div id='people-who-prayed-" + request.request_id + "'>" + request.prayer_count + "&nbsp;<i class='fa fa-handshake-o' aria-hidden='true'>&nbsp;</i></div>    	</div>    	<div class='continue-reading pull-right'>    	" + button + "    	</div>    	</div>    	</div>    	</div>    	</div> </div></a>";
     }
 
     god.getTimeAgo = function (time) {
@@ -157,7 +306,7 @@ $( document ).ready(function() {
 	    html += "<div class='profile-thumb active profile-active'>";
 	    html += "<a href='user.html?userId=" + user.user_id + ">";
 	    html += "<figure class='profile-thumb-small profile-active'>";
-            html += "<img src='" + user.picture + "' alt='profile picture'>";
+            html += "<img src='uploads/" + user.picture + "' alt='profile picture'>";
             html += "</figure>";
 	    html += "</a>";
 	    html += "</div>";
@@ -168,7 +317,7 @@ $( document ).ready(function() {
 	    htmlDesktop += "                                          <div class='profile-thumb active profile-active'>";
 	    htmlDesktop += "                                                <a href='javascript:void(0)'>";
 	    htmlDesktop += "                                                   <figure class='profile-thumb-small'>";
-	    htmlDesktop += "                                                        <img src='" + user.picture + "' alt='profile picture'>";
+	    htmlDesktop += "                                                        <img src='uploads/" + user.picture + "' alt='profile picture'>";
 	    htmlDesktop += "                                                   </figure>";
 	    htmlDesktop += "                                               </a>";
 	    htmlDesktop += "                                           </div>";
@@ -195,7 +344,7 @@ $( document ).ready(function() {
             htmlNotifications += "<!-- profile picture end -->";
 	    htmlNotifications += "<div class='profile-thumb'>";
 	    htmlNotifications += + "<figure class='profile-thumb-middle'>";
-	    htmlNotifications += "<img src='" + notice.picture + "' alt='profile picture' class='notice-picture'>";
+	    htmlNotifications += "<img src='uploads/" + notice.picture + "' alt='profile picture' class='notice-picture'>";
 	    htmlNotifications += "</figure>";
 	    htmlNotifications += "</div>";
 	    htmlNotifications += "<!-- profile picture end -->";
@@ -216,7 +365,7 @@ $( document ).ready(function() {
 	    htmlNotificationsMobile += "                                    <div class='frnd-request-member'>";
 	    htmlNotificationsMobile += "                                        <figure class='request-thumb'>";
 	    htmlNotificationsMobile += "                                            <a href='profile.html'>";
-	    htmlNotificationsMobile += "                                                <img style='width: 75px; height: 75px' src='" + notice.picture + "' alt='proflie author'>";
+	    htmlNotificationsMobile += "                                                <img style='width: 75px; height: 75px' src='uploads/" + notice.picture + "' alt='proflie author'>";
 	    htmlNotificationsMobile += "                                            </a>";
 	    htmlNotificationsMobile += "                                        </figure>";
 	    htmlNotificationsMobile += "                                        <div class='frnd-content'>";
@@ -276,7 +425,7 @@ $( document ).ready(function() {
 	    $(this).html(god.getFormattedTimestamp(user.timestamp));
 	});
 	$('*[id*=user-picture]').each(function() {
-	    $(this).attr("src", user.picture);
+	    $(this).attr("src", "uploads/" + user.picture);
 	});
 	$('*[id*=profile-link]').each(function() {
 	    $(this).attr("href", "user.html?userId="+user.user_id);

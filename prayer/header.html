@@ -10,6 +10,7 @@
               <ul>
                 <li class="active"><a href="profile.html"><div id="header-requests-text">requests</div></a></li>
 		<li class="active"><a href="request-feed.html"><div id="header-prayer-text">prayer</div></a></li>
+		<li class="active"><a href="new-request.html"><div id="header-new-request-text">new request</div></a></li>
                 <li style="display:none" class="msg-trigger"><a class="msg-trigger-btn" href="request-feed.html">messages</a>
                   <div class="message-dropdown" id="a">
                     <div class="dropdown-title">
@@ -91,7 +92,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="notification-trigger"><a class="msg-trigger-btn" href="#b"><div id="header-notifications-text">notification</div></a>
+                <li class="notification-trigger"><a class="msg-trigger-btn" href="#b"><div class="fas fa-bell" style="font-size:24px;color:lightblue;" id="header-notifications-text"></div></a>
                   <div class="message-dropdown" id="b">
                     <div class="dropdown-title">
                     </div>
@@ -145,9 +146,9 @@
                                         </div>
                                         <div class="profile-body">
                                             <ul>
-                                                <li><a id="profile-link"><i class="flaticon-user"></i>Profile</a></li>
-                                                <li><a href="profile.html"><i class="flaticon-message"></i>My Requests</a></li>
-                                                <li><a href="#"><i class="flaticon-document"></i>Activity</a></li>
+                                              <li><a id="profile-link"><i class="flaticon-user"></i>Profile</a></li>
+					      <li><a href="profile-edit.html" id="profile-edit-link"><i class="flaticon-settings"></i>Edit Profile</a></li>
+                                              <li><a href="profile.html"><i class="flaticon-message"></i>My Requests</a></li>
                                             </ul>
                                             <ul>
                                                 <li><a href="contact.html"><i class="flaticon-settings"></i>Contact Us</a></li>
@@ -177,26 +178,26 @@
                 <div class="mobile-menu w-100">
                   <ul>
 		    <li id="login-button-mobile">
-                      <button style="margin-right: 400px;" onclick="location.href='login.html'" class="chat-trigger notification"><i class="flaticon-message"></i>Login
+                      <button style="margin-right: 400px;" onclick="location.href='login.html'" class="chat-trigger notification"><i class="fas fa-sign-in-alt" style="font-size:24px;color:lightblue;"></i>
                       </button>
                     </li>
                     <li  id="profile-button-mobile">
-                            <button onclick="location.href='profile.html'" class="chat-trigger notification"><i class="flaticon-message">my requests</i>
+                            <button onclick="location.href='profile.html'" class="chat-trigger notification"><i class="far fa-id-card" style="font-size:24px;color:lightblue;"></i>
 <!--                                <span>04</span>-->
                             </button>
                         </li>
                         <li id="request-feed-button-mobile">
-                            <button onclick="location.href='request-feed.html'" class="notification"><i class="flaticon-like">pray</i>
+                            <button onclick="location.href='request-feed.html'" class="notification"><i class="far fa-comments" style="font-size:24px;color:lightblue;"></i>
 <!--                                <span>03</span>-->
                             </button>
                         </li>
 		    <li id="new-request-button-mobile">
-                      <button onclick="location.href='new-request.html'" class="notification"><i class="flaticon-support">new request</i>
+                      <button onclick="location.href='new-request.html'" class="notification"><i class="fas fa-plus" style="font-size:24px;color:lightblue;"></i>
 			<!--                                <span>03</span>-->
                             </button>
                         </li>
                         <li  id="notification-button-mobile">
-			  <button class="notification request-trigger"><i class="flaticon-chats"></i>
+			  <button class="notification request-trigger"><i class="fas fa-bell" style="font-size:24px;color:lightblue;"></i>
 <!--                                <span>03</span>-->
                             </button>
                             <ul class="frnd-request-list">
@@ -232,9 +233,9 @@
                             </div>
                             <div class="profile-body">
                                 <ul>
-                                    <li><a id="profile-link"><i class="flaticon-user"></i>Profile</a></li>
-                                    <li><a href="#"><i class="flaticon-message"></i>Inbox</a></li>
-                                    <li><a href="#"><i class="flaticon-document"></i>Activity</a></li>
+                                  <li><a href="profile.html" id="profile-link"><i class="flaticon-user"></i>Profile</a></li>
+				  <li><a href="profile-edit.html" id="profile-edit-link"><i class="flaticon-settings"></i>Edit Profile</a></li>
+                                  <li><a href="profile.html"><i class="flaticon-message"></i>My Requests</a></li>
                                 </ul>
                                 <ul>
                                     <li><a href="contact.html"><i class="flaticon-settings"></i>Contact Us</a></li>

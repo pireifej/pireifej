@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<!--    <link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/cf/ContactFrom_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="stylesheet" type="text/css" href="css/hamburgers.min.css">
     <link rel="stylesheet" type="text/css" href="css/animsition.css">
@@ -48,63 +47,74 @@
   <body>
     <div class="container-contact100">
       <div class="wrap-contact100" style="margin-top: 50px">
-	<form class="contact100-form validate-form" id="new-request">
+	<form class="contact100-form validate-form" id="edit-prayer">
 	  <span class="contact100-form-title">
-	    New Prayer Request
+	    Prayer Admin
 	  </span>
 
-	  <div class="wrap-input100 validate-input" data-validate="Subject is required">
-	    <span class="label-input100">Subject</span>
-	    <input id="subject-input" class="input100" type="text" name="subject" placeholder="Enter your subject">
-	    <span id="no-char-subject" class="char-limit">--</span>
+          <div class="wrap-input100 input100-select">
+	    <span class="label-input100">Prayer Names</span>
+	    <div>
+	      <select id="prayer-names" class="selection-2" name="prayer-names" onchange="selectPrayerName()">
+	      </select>
+	    </div>
+	  </div>
+
+	  <div class="wrap-input100 validate-input" data-validate="Prayer Title is required">
+	    <span class="label-input100">Prayer Title</span>
+	    <input id="prayer-title-input" class="input100" type="text" name="prayer-title" placeholder="Enter your prayer title">
 	    <span class="focus-input100"></span>
 	  </div>
-	  
-<!--	  <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-	    <span class="label-input100">Email</span>
-	    <input class="input100" type="text" name="email" placeholder="Enter your email addess">
+
+	  <div class="wrap-input100 validate-input" data-validate="Prayer File Name is required">
+	    <span class="label-input100">Prayer File Name</span>
+	    <input id="prayer-file-name-input" class="input100" type="text" name="prayer-file-name" placeholder="Enter your prayer file name">
 	    <span class="focus-input100"></span>
-	  </div>-->
+	  </div>
+
+	  <div class="wrap-input100 validate-input" data-validate="Tags is required">
+	    <span class="label-input100">Tags</span>
+	    <input id="tags-input" class="input100" type="text" name="tags" placeholder="Enter your tags">
+	    <span class="focus-input100"></span>
+	  </div>
 	  
 	  <div class="wrap-input100 input100-select">
 	    <span class="label-input100">Category</span>
 	    <div>
-	      <select id="category-options" class="selection-2" name="service">
+	      <select id="category-options" class="selection-2" name="service" onchange="selectCategory()">
 	      </select>
 	    </div>
 	  </div>
-	  <div class="wrap-input100 validate-input" data-validate="Request is required">
-	    <span class="label-input100">Request</span>
-	    <textarea id="request-input" class="input100" name="message" placeholder="Your request here..."></textarea>
-	    <span id="no-char-request" class="char-limit">--</span>
+	  
+	  <div class="wrap-input100 validate-input" data-validate="Prayer Text is required">
+	    <span class="label-input100">Prayer Text</span></br>
+	    <span class="label-input100"><em>name - realName</em></span></br>
+	    <span class="label-input100"><em>gender1 - hisOrHer</em></span></br>
+	    <span class="label-input100"><em>gender2 - heOrShe</em></span></br>
+	    <span class="label-input100"><em>gender3 - himOrHer</em></span></br>
+	    <textarea id="prayer-text-input" class="input100 longer" name="prayer-text" placeholder="Your prayer text here..."></textarea>
 	    <span class="focus-input100"></span>
 	  </div>
-
-	  <div class="wrap-input100 validate-input">
-	    <span class="label-input100">Picture (optional)</span>
-	      <img id="blah" src="img/upload.JPG" alt="your image" class="pic-upload" onclick="document.getElementById('fileToUpload').click();" style="cursor:pointer;"/>
-	  <div class="input-group">
-	    <input name="fileToUpload" type="file" id="fileToUpload" style="display: none;"/>
-	    <input id="upload-profile-picture-button" class="btn btn--radius btn--green" type="button" value="" onclick="document.getElementById('fileToUpload').click();" />
-	  </div>
-	  </div>
 	    
-	  <div class="wrap-input100 validate-input" data-validate="Request is required">
+<!--	  <div class="wrap-input100 validate-input" data-validate="Request is required">
 	    <span class="label-input100">Is this prayer for someone other than yourself?</span>
 	    <input id="checkForSomeoneElse" class="input100" type="checkbox" name="forSomeoneElse">
 	  </div>
+	  
 	  <div id="who">
 	  </div>
+	  
 	  <div class="wrap-input100 validate-input" data-validate="Request is required">
 	    <span class="label-input100">Notify All Via Email</span>
 	    <input class="input100" type="checkbox" name="sendEmail" checked>
-	  </div>
+	  </div>-->
+	  
 	  <div class="container-contact100-form-btn">
 	    <div class="wrap-contact100-form-btn">
 	      <div class="contact100-form-bgbtn"></div>
 	      <button class="contact100-form-btn" id="submit-btn">
 		<span id="submit-label">
-		  Submit
+		  Update Prayer
 		  <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 		</span>
 	      </button>
@@ -134,7 +144,7 @@
   <script src="js/countdowntime.js"></script>
   <script src="js/medium.js"></script>
   <script src="js/common.js"></script>
-  <script src="js/new-request.js"></script>
+  <script src="js/prayer-admin.js"></script>
   <script src="js/form.js"></script>
 
   	 <script src="js/modernizr.custom.js"></script>

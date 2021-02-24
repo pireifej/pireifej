@@ -5,6 +5,7 @@ $( document ).ready(function() {
     var requestIds = [];
     god.init();
     var pray = $.urlParam("pray");
+    var requestId = $.urlParam("requestId");
 
     if (pray) {
 	god.notify("Prayer completed.", "success");
@@ -29,7 +30,7 @@ $( document ).ready(function() {
 	$("#nbrRequests").html(nbrRequests + " Requests");
 
 	if (nbrRequests == 0) {
-	    $("#request-feed").html("<h5>You prayed for everyone! Check back later.</h5>");
+	    $("#request-feed").html("<h5 style='padding:30px 30px 30px 30px'>You prayed for everyone! Check back later.</h5>");
 	    return;
 	}
 	
@@ -42,7 +43,7 @@ $( document ).ready(function() {
     }
 
     function getRequestFeed() {
-	god.query("getRequestFeed", "afterGetRequestFeed", {}, true, true);
+	god.query("getRequestFeed", "afterGetRequestFeed", {"requestId":requestId}, true, true);
 	god.query("getPrayerCount", "afterGetPrayerCount", {}, true, true);
 	god.query("getMyRequests", "afterGetMyRequests", {}, true, true);
     }
@@ -63,7 +64,7 @@ $( document ).ready(function() {
 	var users = response.result;
 	for (var i = 0; i < users.length; i++) {
 	    var user = users[i];
-	    html += "<li><a href='user.html?userId=" + user.user_id + "'><img src='" + user.picture + "' alt=''></a></li>";
+	    html += "<li><a href='user.html?userId=" + user.user_id + "'><img src='uploads/" + user.picture + "' alt=''></a></li>";
 	}
 	html += "</ul>";
 	$("#all-users").html(html);

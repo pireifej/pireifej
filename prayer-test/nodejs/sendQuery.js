@@ -47,8 +47,6 @@ if (__filename.includes("prayer-test")) {
 }
 
 function log(message) {
-    console.log("trying " + message);
-    console.log(home + "/log.txt");
     fs.writeFile(home + '/log.txt', message, function (err) {
 	if (err) return console.log(err);
     });
@@ -88,7 +86,49 @@ function createPool() {
     }
 }
 
+var allCommands = {
+    "getPrayerCount": true,
+    "getPrayer": true,
+    "deleteRequest": true,
+    "getRequest": true,
+    "getMyRequests": true,
+    "getNotifications": true,
+    "getRequestFeed": true,
+    "getCategories": true,
+    "login": true,
+    "getUser": true,
+    "getThisUser": true,
+    "getAllUsers": true,
+    "updateUser": true,
+    "help": true,
+    "email": true,
+    "forgotPassword": true,
+    "getPrayerHistory": true,
+    "getPeopleWhoPrayed": true,
+    "createUser": true,
+    "createRequest": true,
+    "prayFor": true,
+    "getAllPrayers": true,
+    "readPrayer": true,
+    "updatePrayer": true,
+    "createPrayer": true
+};
+
+if (!queryObject["command"]) {
+    printAllCommands();
+}
+
+function printAllCommands() {
+    for (var key in allCommands) {
+	console.log(key);
+    }
+}
+
 requireParam("command");
+
+if (!allCommands[queryObject["command"]]) {
+    printAllCommands();
+}
 
 //https.createServer(options, function (request, response) {
 //    const queryObject = url.parse(request.url,true).query;
@@ -103,10 +143,75 @@ if (command == "getPrayerCount") {
     query += " WHERE user_id = " + queryObject["userId"];
 }
 
+if (command == "getAllPrayers") {
+    query = "SELECT * ";
+    query += "FROM prayers;";
+}
+
+if (command == "createPrayer") {
+    requireParam("prayerText");
+    requireParam("prayerTags");
+    requireParam("prayerTitle");
+    requireParam("prayerName");
+    requireParam("categoryId");
+
+    fs.appendFile(home + '/prayers/' + queryObject.prayerName, queryObject.prayerText, function (err) {
+	if (err) return console.log(err);
+    });
+
+    query = "INSERT INTO prayers (prayer_title, prayer_file_name, fk_category_id, tags) VALUES (";
+    query += "'" + queryObject.prayerTitle + "',";
+    query += "'" + queryObject.prayerName + "',";
+    query += "'" + queryObject.categoryId + "',";
+    query += "'" + queryObject.prayerTags + "');";
+}
+
+if (command == "updatePrayer") {
+    requireParam("prayerId");
+    requireParam("prayerName");
+
+    var prayerText = queryObject["prayerText"];
+    var prayerTags = queryObject["prayerTags"];
+    var prayerTitle = queryObject["prayerTitle"];
+    var prayerName = queryObject["prayerName"];
+    var prayerId = queryObject["prayerId"];
+    var categoryId = queryObject["categoryId"];
+
+    if (prayerText) {
+	fs.writeFile(home + '/prayers/' + prayerName, prayerText, function (err) {
+	    if (err) return console.log(err);
+	});
+    }
+
+    query = "UPDATE prayers ";
+    query += "SET prayer_file_name = '" + prayerName + "' ";
+    if (categoryId) query += ", fk_category_id = '" + categoryId + "' ";
+    if (prayerTags) query += ", tags = '" + prayerTags + "' ";
+    if (prayerTitle) query += ", prayer_title = '" + prayerTitle + "' ";
+    query += "WHERE prayer_id = '" + prayerId + "'";
+}
+
+if (command == "readPrayer") {
+    requireParam("fileName");
+
+    fs.readFile(home + '/prayers/' + queryObject["fileName"], 'utf8', function (err,data) {
+	if (err) {
+	    return;
+	}
+	var prayerText = data;
+	var obj = {};
+	obj["result"] = prayerText;
+	obj["query"] = query;
+	console.log(JSON.stringify(obj));
+	process.exit();
+	return;
+    })
+}
+
 if (command == "getPrayer") {
     requireParam("requestId");
 
-    query = "SELECT user.real_name,user.gender,request.request_text,prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
+    query = "SELECT user.real_name,user.gender,request.request_text,request.other_person,prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
     query += "FROM prayers INNER JOIN request INNER JOIN user ";
     query += "WHERE prayers.fk_category_id = request.fk_category_id ";
     query += "AND user.user_id = request.user_id ";
@@ -124,11 +229,13 @@ if (command == "getPrayer") {
 		    var requestText = "";
 		    var realName = "";
 		    var gender = "";
+		    var otherPerson = "";
 		    
 		    if (prayers.length > 0) {
 			requestText = prayers[0].request_text
 			realName = prayers[0].real_name;
 			gender = prayers[0].gender;
+			otherPerson = prayers[0].other_person;
 		    }
 
                     for (var i = 0; i < prayers.length; i++) {
@@ -157,6 +264,27 @@ if (command == "getPrayer") {
 			var prayerText = data;
 			const genderDetect = require('gender-detection');
 
+			// is this prayer for someone else?
+			// CODE IN PROGRESS
+			/*
+			var x = require('people-names');
+			var words = requestText.split(" ");
+			var newText = "";
+			var subject = "";
+			for (var i = 0; i < words.length; i++) {
+			    var txt = words[i];
+			    newText = txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			    if (x.isPersonName(newText)) {
+				subject = newText;
+			    }
+			}
+			console.log(subject);
+
+			realName = (subject) ? subject : realName;
+			*/
+
+			realName = (otherPerson) ? otherPerson : realName;
+			
 			if (!gender) {
 			    gender = genderDetect.detect(realName);
 			}
@@ -205,7 +333,7 @@ if (command == "deleteRequest") {
 if (command == "getRequest") {
     requireParam("requestId");
 
-    query = "SELECT request_id,request_text,request_title,category.category_name,user.user_name,user.picture,user.real_name,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query = "SELECT request_id,request_text,request_title,request.picture as request_picture,category.category_name,user.user_name,user.picture,user.real_name,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM request ";
     query += "INNER JOIN category ON category.category_id = fk_category_id ";
     query += "INNER JOIN user ON user.user_id = request.user_id ";
@@ -215,7 +343,7 @@ if (command == "getRequest") {
 if (command == "getMyRequests") {
     requireParam("userId");
 
-    query = "SELECT request.request_id,request.user_id,request_text,request_title,category.category_name,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp, ";
+    query = "SELECT request.request_id,request.user_id,request_text,request_title,picture as request_picture,category.category_name,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp, ";
     query += "(SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count ";
     query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
     query += "WHERE request.user_id = '" + queryObject.userId + "' and active is TRUE ";
@@ -237,12 +365,20 @@ if (command == "getNotifications") {
 }
 
 if (command == "getRequestFeed") {
-    query = "SELECT request_id,request.user_id,request_text,request_title,category.category_name,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp,user.real_name,user.picture, ";
+    var requestId = (queryObject["requestId"]) ? queryObject["requestId"] : null;
+    query = "SELECT request_id,request.user_id,request_text,request_title,request.picture as request_picture,request.other_person,category.category_name,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp,user.real_name,user.picture, ";
     query += "(SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count ";
     query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
     query += "INNER JOIN user ON user.user_id = request.user_id ";
+    // only active prayers
     query += "WHERE request.active IS TRUE ";
-    query += "AND request.user_id <> '" + queryObject.userId + "' ";
+    // get a specific request only
+    if (requestId) {
+	query += "AND request.request_id = " + requestId + " ";
+    }
+    // not your request
+    query += "AND (request.user_id <> '" + queryObject.userId + "' OR request.other_person <> '') ";
+    // you already prayed
     query += "AND request.request_id NOT IN ";
     query += "(SELECT request_id FROM user_request WHERE user_request.user_id = '" + queryObject.userId + "') ";
     query += "ORDER BY timestamp DESC";
@@ -254,6 +390,9 @@ if (command == "getCategories") {
 }
 
 if (command == "login") {
+    requireParam("userName");
+    requireParam("password");
+    
     query = "SELECT password,user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id,picture ";
     query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
     query += "LIMIT 1;";
@@ -319,16 +458,77 @@ if (command == "getAllUsers") {
     query += "FROM user";
 }
 
+if (command=="passwordChange") {
+    requireParam("password");
+    requireParam("userId");
+
+    var mypassword = queryObject.password;
+    var bcrypt = require('bcrypt');
+    const saltRounds = 5;
+   
+    bcrypt.hash(mypassword, saltRounds, function(err, hash) {
+	var password = hash;
+	query = "UPDATE user ";
+	query += "SET password = '" + password + "' ";
+	query += "WHERE user_id = '" + queryObject.userId + "';";
+
+	const pool = createPool();
+	module.exports = pool;
+	pool.getConnection()
+	    .then(conn => {
+		conn.query(query)
+		    .then((rows) => {
+			var obj = {};
+			obj["result"] = rows;
+			obj["query"] = query;
+			console.log(JSON.stringify(obj));
+			conn.release();
+			conn.end();
+			process.exit();
+		    })
+	    })
+	    .catch(err => {
+		console.log("not connected due to error: " + err);
+		var obj = {};
+		obj["result"] = err;
+		obj["query"] = query;
+		console.log(JSON.stringify(obj));
+		conn.release();
+		conn.end();
+		process.exit();
+	    });
+    });
+}
+
 if (command == "updateUser") {
-    query = "UPDATE user ";
-    query += "SET user_name = '" + queryObject.userName + "', ";
-    query += "email = '" + queryObject.email + "', ";
-    query += "real_name = '" + queryObject.realName + "', ";
-    query += "location = '" + queryObject.location + "', ";
-    query += "user_title = '" + queryObject.title + "', ";
-    query += "user_about = '" + queryObject.about + "', ";
-    query += "picture = '" + "uploads/" + queryObject.picture + "' ";
-    query += "WHERE user_id = '" + queryObject.userId + "';";
+    requireParam("userId");
+    var queryParts = [];
+
+    if (queryObject["userName"]) {
+	queryParts.push("user_name = '" + queryObject.userName + "'");
+    }
+    if (queryObject["email"]) {
+	queryParts.push("email = '" + queryObject.email + "'");
+    }
+    if (queryObject["realName"]) {
+	queryParts.push("real_name = '" + queryObject.realName + "'");
+    }
+    if (queryObject["location"]) {
+	queryParts.push("location = '" + queryObject.location + "'");
+    }
+    if (queryObject["title"]) {
+	queryParts.push("user_title = '" + queryObject.title + "'");
+    }
+    if (queryObject["picture"]) {
+	queryParts.push("picture = '" + queryObject.picture + "'");
+    }
+    if (queryObject["about"]) {
+	queryParts.push("user_about = '" + queryObject.about + "'");
+    }
+
+    if (queryParts.length > 0) {
+	query = "UPDATE user SET " + queryParts.join(",") + " WHERE user_id = '" + queryObject.userId + "';";
+    }
 }
 
 if (command == "help") {
@@ -370,6 +570,41 @@ if (command == "help") {
 }
 
 if (command == "email") {
+    var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth: {
+	    user: 'pireifej@gmail.com',
+	    pass: 'bcvbfcsvklsnegqc'
+	}
+    });
+    
+    var mailOptions = {
+	from: 'welcome@prayforus.com',
+	subject: 'Welcome to the Prayer Network, ' + queryObject.realName + '!',
+	text: 'Thanks for joining, ' + queryObject.realName + '! Try to login and start praying.'
+    };
+
+    mailOptions["to"] = queryObject.email;
+    transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+	    var obj = {};
+	    obj["result"] = 'Error: ' + error;
+	    obj["query"] = "No Query";
+	    console.log(JSON.stringify(obj));
+	    process.exit();
+	    return;
+	} else {
+	    var obj = {};
+	    obj["result"] = 'Email sent: ' + info.response;
+	    obj["query"] = "No Query";
+	    console.log(JSON.stringify(obj));
+	    process.exit();
+	    return;
+	}
+    });
+}
+
+if (command == "forgotPassword") {
     var transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
@@ -462,7 +697,7 @@ if (command == "createUser") {
 	query += "'" + queryObject.location + "',";
 	query += "'" + queryObject.title + "',";
 	query += "'" + queryObject.about + "',";
-	query += "'" + "uploads/" + queryObject.picture + "',";
+	query += "'" + queryObject.picture + "',";
 	query += "TRUE);";
 
 	const pool = createPool();
@@ -488,6 +723,7 @@ if (command == "createUser") {
 			    }
 
 			    data = data.replace("{{realName}}", queryObject.realName);
+			    data = data.replace("{{userName}}", queryObject.userName);
 			    
 			    var mailOptions = {
 				from: 'pireifej@gmail.com',
@@ -541,11 +777,13 @@ if (command == "createRequest") {
     requireParam("requestCategoryId");
     requireParam("sendEmail");
     
-    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, active) VALUES (";
+    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, other_person, picture, active) VALUES (";
     query += "'" + queryObject.userId + "',";
     query += "'" + queryObject.requestText + "',";
     query += "'" + queryObject.requestTitle + "',";
     query += "'" + queryObject.requestCategoryId + "',";
+    query += "'" + queryObject.otherPerson + "',";
+    query += "'" + queryObject.picture + "',";
     query += "TRUE);";
 
     query += "SELECT user.real_name, user.email ";
@@ -573,7 +811,7 @@ if (command == "createRequest") {
 
 		    var obj = {};
 		    var requestId = rows[0].insertId;
-		    var url = "https://pireifej.com/prayer/pray.html?requestId=" + requestId;
+		    var url = "https://pireifej.com/prayer/request-feed.html?requestId=" + requestId;
 		    var users = rows[1];
 		    var realName = rows[2][0].real_name;
 		    var comma = "";
@@ -602,8 +840,17 @@ if (command == "createRequest") {
                             return;
                         }
 
+			var otherPerson = queryObject.otherPerson;
+
 			data = data.replace("{{realName}}", realName);
 			data = data.replace("{{realName}}", realName);
+			
+			if (otherPerson) {
+			    data = data.replace("{{otherPerson}}", "(for " + otherPerson + ")");
+			} else {
+			    data = data.replace("{{otherPerson}}", "");
+			}
+
 			data = data.replace("{{prayerText}}", queryObject.requestText);
 			data = data.replace("{{requestLink}}", url);
 

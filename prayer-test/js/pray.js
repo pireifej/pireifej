@@ -19,13 +19,18 @@ $( document ).ready(function() {
     var nanobar = new Nanobar( options );
 
     window.afterGetRequest = function(response) {
+	console.log("window.afterGetRequest");
+	console.log(response);
 	var request = response.result[0];
 	$("#request-title").html(request.request_title);
 	$("#prayer-category").html(request.category_name);
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
 	$("#user-name-for-request").html(request.real_name);
+	console.log("COMING HERE!");
 	userRealName = request.real_name;
-	$("#requestor-picture").attr("src", request.picture);
+	console.log(request.picture);
+	$("#requestor-picture").attr("src", "uploads/" + request.picture);
+	console.log($("#requestor-picture").attr("src"));
 
 	$("#headerImage").css("background-position", "center center");
 	$("#headerImage").css("-webkit-background-size", "cover");

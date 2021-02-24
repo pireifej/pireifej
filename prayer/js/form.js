@@ -16,11 +16,12 @@
 	var message=$('.validate-input textarea[name="message"]');
 	$('.validate-form').on('submit',function(){
 	    var check=true;
-	    if($(subject).val().trim()==''){
+	    console.log(subject);
+	    if($(subject).val() && $(subject).val().trim()==''){
 		showValidate(subject);
 		check=false;
 	    }
-	    if($(message).val().trim()==''){
+	    if($(message).val() && $(message).val().trim()==''){
 		showValidate(message);
 		check=false;
 	    }

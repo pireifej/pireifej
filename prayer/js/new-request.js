@@ -35,6 +35,18 @@ $( document ).ready(function() {
 	$("#no-char-request").text(noChar);
 	prevRequest = request;
     });
+
+    $("#checkForSomeoneElse").change(function() {
+	var otherPersonHtml = "<div id='otherPersonContainer'><div class='wrap-input100 validate-input' data-validate='Person is required'>";
+	otherPersonHtml += "<span class='label-input100'>Who are you praying for?</span>";
+	otherPersonHtml += "<input id='who-input' class='input100' type='text' name='otherPerson' placeholder='Enter the person's first name'>";
+	otherPersonHtml += "</div></div>";
+	if (this.checked) {
+	    $("#who").after(otherPersonHtml);
+	} else {
+	    $("#otherPersonContainer").remove();
+	}
+    });
     
     $("#new-request").submit(function(e) {
 	e.preventDefault();
@@ -54,8 +66,6 @@ $( document ).ready(function() {
 	    requestDetails[formValues[i].name] = formValues[i].value;
 	}
 
-	console.log(requestDetails);
-
 	if (!requestDetails["message"]) return;
 	if (!requestDetails["subject"]) return;
 
@@ -71,7 +81,9 @@ $( document ).ready(function() {
 	    requestText: "\"" + requestDetails["message"] + "\"",
 	    requestTitle: "\"" + requestDetails["subject"] + "\"",
 	    requestCategoryId: categoryId,
-	    sendEmail: sendEmail
+	    sendEmail: sendEmail,
+	    otherPerson: (requestDetails["otherPerson"]) ? requestDetails["otherPerson"] : "",
+	    picture: god.getUploadedPicName()
 	};
 	god.query("createRequest", "afterCreateRequest", params, true, true);	
     })

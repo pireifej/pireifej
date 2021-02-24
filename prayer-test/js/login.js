@@ -19,7 +19,7 @@ $( document ).ready(function() {
 	    email: "pireifej@gmail.com",
 	    realName: "Forgot Password!"
 	};
-	god.query("email", "afterForgot", params, false, true);
+	god.query("forgotPassword", "afterForgot", params, false, true);
     }
 
     $("#login").submit(function(e) {
@@ -43,6 +43,7 @@ $( document ).ready(function() {
     })
 
     window.afterForgot = function(response) {
+	$("#forgot").hide();
 	god.notify("Help is on its way! Check your email shortly.", "info");
     }
 
