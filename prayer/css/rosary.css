@@ -1,0 +1,13 @@
+.rosaryPrayerText {
+    min-height: 150px;
+    max-height: 150px;
+    height: 150px;
+}
+
+.rosary-btn-join {
+    color: green !important;
+}
+
+.rosary-btn-leave {
+    color: red !important;
+}

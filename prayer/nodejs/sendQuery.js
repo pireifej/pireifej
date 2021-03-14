@@ -87,6 +87,8 @@ function createPool() {
 }
 
 var allCommands = {
+    "previewPrayer": true,
+    "passwordChange": true,
     "getPrayerCount": true,
     "getPrayer": true,
     "deleteRequest": true,
@@ -208,6 +210,66 @@ if (command == "readPrayer") {
     })
 }
 
+if (command == "previewPrayer") {
+    requireParam("userId");
+    requireParam("requestText");
+    requireParam("categoryId");
+
+    query = "SELECT user.real_name,user.gender ";
+    query += "FROM user ";
+    query += "WHERE user.user_id = '" + queryObject.userId + "';";
+
+    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
+    query += "FROM prayers ";
+    query += "WHERE prayers.fk_category_id = '" + queryObject.categoryId + "' ";
+
+    const pool = createPool();
+    module.exports = pool;
+    pool.getConnection()
+        .then(conn => {
+            conn.query(query)
+                .then((rows) => {
+		    var user = rows[0][0];
+		    var obj = {};
+		    var gender = user.gender;
+		    var realName = user.real_name;
+		    var otherPerson = queryObject["otherPerson"];
+		    var requestText = queryObject.requestText;
+		    var prayers = rows[1];
+
+		    var bestPrayer = getBestPrayer(prayers, requestText);
+
+		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
+			if (err) {
+			    console.log("Error");
+			    console.log(err);
+			    return;
+			}
+
+			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
+			obj["result"] = customPrayer;
+			obj["query"] = query;
+			console.log(JSON.stringify(obj));
+			conn.release();
+			conn.end();
+			process.exit();
+			return;
+		    })
+		})
+	    	.catch(err => {
+                    console.log("not connected due to error: " + err);
+                    var obj = {};
+                    obj["result"] = err;
+                    obj["query"] = query;
+                    console.log(JSON.stringify(obj));
+                    conn.release();
+                    conn.end();
+                    process.exit();
+                })
+	});
+    return;
+}
+
 if (command == "getPrayer") {
     requireParam("requestId");
 
@@ -223,14 +285,12 @@ if (command == "getPrayer") {
         .then(conn => {
             conn.query(query)
                 .then((rows) => {
-		    // determine best prayer to use
-		    var prayers = rows;
-		    var scores = {};
 		    var requestText = "";
 		    var realName = "";
 		    var gender = "";
 		    var otherPerson = "";
-		    
+		    var prayers = rows;
+
 		    if (prayers.length > 0) {
 			requestText = prayers[0].request_text
 			realName = prayers[0].real_name;
@@ -238,68 +298,16 @@ if (command == "getPrayer") {
 			otherPerson = prayers[0].other_person;
 		    }
 
-                    for (var i = 0; i < prayers.length; i++) {
-                        var tags = prayers[i].tags;
-                        var fileName = prayers[i].prayer_file_name;
-			if (!tags) {
-			    scores[fileName] = 0;
-			    continue;
-			}
-                        scores[fileName] = 0;
-                        var words = requestText.split(" ");
-                        for (var j = 0; j < words.length; j++) {
-                            if (tags.includes(words[j])) scores[fileName]++;
-                        }
-		    }
+		    var bestPrayer = getBestPrayer(prayers, requestText);
 
-		    const max = Object.keys(scores).reduce((a, v) => Math.max(a, scores[v]), -Infinity);
-                    const result = Object.keys(scores).filter(v => scores[v] === max);
-		    var fileNameToRead = result[0];
-
-		    fs.readFile(home + '/prayers/' + fileNameToRead, 'utf8', function (err,data) {
+		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
 			if (err) {
+			    console.log("Error");
+			    console.log(err);
 			    return;
 			}
-
-			var prayerText = data;
-			const genderDetect = require('gender-detection');
-
-			// is this prayer for someone else?
-			// CODE IN PROGRESS
-			/*
-			var x = require('people-names');
-			var words = requestText.split(" ");
-			var newText = "";
-			var subject = "";
-			for (var i = 0; i < words.length; i++) {
-			    var txt = words[i];
-			    newText = txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-			    if (x.isPersonName(newText)) {
-				subject = newText;
-			    }
-			}
-			console.log(subject);
-
-			realName = (subject) ? subject : realName;
-			*/
-
-			realName = (otherPerson) ? otherPerson : realName;
-			
-			if (!gender) {
-			    gender = genderDetect.detect(realName);
-			}
-
-			var hisOrHer = (gender == "male") ? "his" : "her";
-			var heOrShe = (gender == "male") ? "he" : "she";
-			var himOrHer = (gender == "male") ? "him" : "her";
-
-			prayerText = prayerText.replace(/{{name}}/g, realName);
-			prayerText = prayerText.replace(/{{gender1}}/g, hisOrHer);
-			prayerText = prayerText.replace(/{{gender2}}/g, heOrShe);
-			prayerText = prayerText.replace(/{{gender3}}/g, himOrHer);
-
-			rows[0]["prayer_text"] = prayerText;
-			
+			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
+			rows[0]["prayer_text"] = customPrayer;
 			var obj = {};
 			obj["result"] = rows;
 			obj["query"] = query;
@@ -637,6 +645,70 @@ if (command == "forgotPassword") {
 	    return;
 	}
     });
+}
+
+// determine best prayer to use
+function getBestPrayer(prayers, requestText) {
+    var scores = {};
+
+    for (var i = 0; i < prayers.length; i++) {
+        var tags = prayers[i].tags;
+        var fileName = prayers[i].prayer_file_name;
+	if (!tags) {
+	    scores[fileName] = 0;
+	    continue;
+	}
+        scores[fileName] = 0;
+
+        var words = requestText.split(" ");
+        for (var j = 0; j < words.length; j++) {
+            if (tags.includes(words[j])) scores[fileName]++;
+        }
+    }
+
+    const max = Object.keys(scores).reduce((a, v) => Math.max(a, scores[v]), -Infinity);
+    const result = Object.keys(scores).filter(v => scores[v] === max);
+    return result[0];
+}
+
+function generateCustomPrayer(prayerText, realName,gender,otherPerson) {
+    const genderDetect = require('gender-detection');
+
+    // is this prayer for someone else?
+    // CODE IN PROGRESS
+    /*
+      var x = require('people-names');
+      var words = requestText.split(" ");
+      var newText = "";
+      var subject = "";
+      for (var i = 0; i < words.length; i++) {
+      var txt = words[i];
+      newText = txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      if (x.isPersonName(newText)) {
+      subject = newText;
+      }
+      }
+      console.log(subject);
+      
+      realName = (subject) ? subject : realName;
+    */
+
+    realName = (otherPerson) ? otherPerson : realName;
+
+    if (!gender) {
+	gender = genderDetect.detect(realName);
+    }
+
+    var hisOrHer = (gender == "male") ? "his" : "her";
+    var heOrShe = (gender == "male") ? "he" : "she";
+    var himOrHer = (gender == "male") ? "him" : "her";
+    
+    prayerText = prayerText.replace(/{{name}}/g, realName);
+    prayerText = prayerText.replace(/{{gender1}}/g, hisOrHer);
+    prayerText = prayerText.replace(/{{gender2}}/g, heOrShe);
+    prayerText = prayerText.replace(/{{gender3}}/g, himOrHer);
+
+    return prayerText;
 }
 
 function decodeBase64Image(dataString) {

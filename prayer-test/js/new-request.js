@@ -88,6 +88,36 @@ $( document ).ready(function() {
 	god.query("createRequest", "afterCreateRequest", params, true, true);	
     })
 
+    window.preview = function() {
+	var formValues = $("#new-request").serializeArray();
+	var category = $("#category-options").val();
+	console.log(formValues);
+	var categoryId = "8";
+	for (var i = 0; i < god.categories.length; i++) {
+	    if (god.categories[i].category_name == category) {
+		categoryId = god.categories[i].category_id;
+		break;
+	    }
+	}
+	var requestDetails = {};
+	for (var i = 0; i < formValues.length; i++) {
+	    requestDetails[formValues[i].name] = formValues[i].value;
+	}
+
+	if (!requestDetails["message"]) return;
+	
+	var params = {
+	    requestText: requestDetails["message"],
+	    categoryId: categoryId,
+	    otherPerson: (requestDetails["otherPerson"]) ? requestDetails["otherPerson"] : ""
+	};
+	god.query("previewPrayer", "afterPreviewPrayer", params, true, false);
+    }
+
+    window.afterPreviewPrayer = function(response) {
+	$("#prayer-preview").text(response.result);
+    }
+
     window.afterGetCategories = function(response) {
 	var categoryHtml = "<option>Select a category</option>";
 	for (var i = 0; i < response.result.length; i++) {

@@ -8,9 +8,10 @@
           <div class="header-top-navigation">
             <nav>
               <ul>
-                <li class="active"><a href="profile.html"><div id="header-requests-text">requests</div></a></li>
-		<li class="active"><a href="request-feed.html"><div id="header-prayer-text">prayer</div></a></li>
-		<li class="active"><a href="new-request.html"><div id="header-new-request-text">new request</div></a></li>
+ 		<li class="active"><button onclick="location.href='profile.html'" id="header-new-request-text"><i class="far fa-id-card" style="font-size:24px;color:lightblue;"></i></button></li>
+		<li class="active"><button onclick="location.href='request-feed.html'" id="header-new-request-text"><i class="far fa-comments" style="font-size:24px;color:lightblue;"></i></button></li>
+		<li class="active"><button onclick="location.href='new-request.html'" id="header-new-request-text"><i class="fas fa-plus" style="font-size:24px;color:lightblue;"></i></button></li>
+		<li class="active"><button onclick="location.href='rosary.html'" id="header-new-request-text"><i class="fas fa-place-of-worship" style="font-size:24px;color:lightblue;"></i></button></li>
                 <li style="display:none" class="msg-trigger"><a class="msg-trigger-btn" href="request-feed.html">messages</a>
                   <div class="message-dropdown" id="a">
                     <div class="dropdown-title">
@@ -147,6 +148,7 @@
                                         <div class="profile-body">
                                             <ul>
                                               <li><a id="profile-link"><i class="flaticon-user"></i>Profile</a></li>
+					      <li><a id="prayer-admin-link" href="prayer-admin.html"><i class="flaticon-user"></i>Prayer Admin</a></li>
 					      <li><a href="profile-edit.html" id="profile-edit-link"><i class="flaticon-settings"></i>Edit Profile</a></li>
                                               <li><a href="profile.html"><i class="flaticon-message"></i>My Requests</a></li>
                                             </ul>
@@ -195,7 +197,12 @@
                       <button onclick="location.href='new-request.html'" class="notification"><i class="fas fa-plus" style="font-size:24px;color:lightblue;"></i>
 			<!--                                <span>03</span>-->
                             </button>
-                        </li>
+                    </li>
+		    <li  id="notification-button-mobile">
+		      <button onclick="location.href='rosary.html'" class="notification"><i class="fas fa-place-of-worship" style="font-size:24px;color:lightblue;"></i>
+			<!--                                <span>03</span>-->
+                      </button>
+		    </li>
                         <li  id="notification-button-mobile">
 			  <button class="notification request-trigger"><i class="fas fa-bell" style="font-size:24px;color:lightblue;"></i>
 <!--                                <span>03</span>-->
@@ -234,6 +241,7 @@
                             <div class="profile-body">
                                 <ul>
                                   <li><a href="profile.html" id="profile-link"><i class="flaticon-user"></i>Profile</a></li>
+				  <li><a href="prayer-admin.html" id="prayer-admin-link-mobile"><i class="flaticon-user"></i>Prayer Admin</a></li>
 				  <li><a href="profile-edit.html" id="profile-edit-link"><i class="flaticon-settings"></i>Edit Profile</a></li>
                                   <li><a href="profile.html"><i class="flaticon-message"></i>My Requests</a></li>
                                 </ul>

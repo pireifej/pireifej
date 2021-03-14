@@ -6,6 +6,11 @@ $( document ).ready(function() {
     god.init();
     var pray = $.urlParam("pray");
     var requestId = $.urlParam("requestId");
+    
+    if (requestId) {
+	var aTag = $("a[name='"+ "my-anchor" +"']");
+	$('html,body').animate({scrollTop: aTag.offset().top},'slow');
+    }
 
     if (pray) {
 	god.notify("Prayer completed.", "success");
