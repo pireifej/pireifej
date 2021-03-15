@@ -74,7 +74,7 @@
 	    </div>
 	  </div>
 	  <div class="wrap-input100 validate-input" data-validate="Request is required">
-	    <span class="label-input100">Request</span>
+	    <span class="label-input100">Request</span><i id="preview-eye" class="far fa-eye fa-lg clicky" style="padding-left: 10px;" onclick="window.preview()" title="Paul Ireifej"></i>
 	    <textarea id="request-input" class="input100" name="message" placeholder="Your request here..."></textarea>
 	    <span id="no-char-request" class="char-limit">--</span>
 	    <span class="focus-input100"></span>
@@ -99,10 +99,6 @@
 	    <span class="label-input100">Notify All Via Email</span>
 	    <input class="input100" type="checkbox" name="sendEmail" checked>
 	  </div>
-	  <div class="wrap-input100 validate-input" data-validate="Request is required">
-	    <span id="prayer-preview-btn" class="clicky label-input100" onclick='window.preview()'>Preview Prayer</span>
-	    <textarea id="prayer-preview" class="input100" name="preview" placeholder="Preview the prayer here..."></textarea>
-	  </div>
 	  <div class="container-contact100-form-btn">
 	    <div class="wrap-contact100-form-btn">
 	      <div class="contact100-form-bgbtn"></div>
@@ -126,7 +122,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="js/notify.min.js"></script>
     <script src="js/tether.min.js"></script>
-  <script src="js/select2.min.js"></script>
+    <script src="js/select2.min.js"></script>
   <script>
     $(".selection-2").select2({
 	minimumResultsForSearch: 20,
@@ -137,6 +133,7 @@
   <script src="js/daterangepicker.js"></script>
   <script src="js/countdowntime.js"></script>
   <script src="js/medium.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js" crossorigin="anonymous"></script>
   <script src="js/common.js"></script>
   <script src="js/new-request.js"></script>
   <script src="js/form.js"></script>

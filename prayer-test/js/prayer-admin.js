@@ -74,12 +74,18 @@ $( document ).ready(function() {
     }
 
     window.afterGetAllPrayers = function(response) {
-	console.log(response);
+	console.log("all prayers!");
+	console.log(response.result);
 	var prayerNamesHtml = "<option>Select a prayer name</option>";
 	prayerNamesHtml += "<option>Create a new prayer</option>";
+	var prayerSorted = [];
 	for (var i = 0; i < response.result.length; i++) {
-	    prayerNamesHtml += "<option>" + response.result[i].prayer_file_name + "</option>";
+	    prayerSorted.push(response.result[i].prayer_file_name);
 	    allPrayers.push(response.result[i]);
+	}
+	prayerSorted.sort();
+	for (var i = 0; i < prayerSorted.length; i++) {
+	    prayerNamesHtml += "<option>" + prayerSorted[i] + "</option>";
 	}
 	$("#prayer-names").html(prayerNamesHtml);
     }
@@ -119,18 +125,18 @@ $( document ).ready(function() {
 	    var prayer = allPrayers[i];
 	    prayerId = prayer.prayer_id;
 	    if (prayer.prayer_file_name == prayerName) {
-		console.log(prayer);
 		$("#prayer-title-input").val(prayer.prayer_title);
 		$("#prayer-file-name-input").val(prayer.prayer_file_name);
 		$("#tags-input").val(prayer.tags);
 
 		god.query("readPrayer", "afterReadPrayer", {"fileName":prayer.prayer_file_name}, false, false);
 
-		var categoryName = null;
-		for (var j = 0; i < god.categories.length; j++) {
+		for (var j = 0; j < god.categories.length; j++) {
 		    if (god.categories[j].category_id == prayer.fk_category_id) {
 			categoryName = god.categories[j].category_name;
-			$("#category-options").val(categoryName);
+
+			$('#category-options').val(categoryName); // Select the option with a value of '1'
+			$('#category-options').trigger('change'); // Notify any JS components that the value changed
 			break;
 		    }
 		}
@@ -142,7 +148,7 @@ $( document ).ready(function() {
     window.afterGetCategories = function(response) {
 	var categoryHtml = "<option>Select a category</option>";
 	for (var i = 0; i < response.result.length; i++) {
-	    categoryHtml += "<option value='" + response.result[i].category_name + "'>" + response.result[i].category_name + "</option>";
+	    categoryHtml += "<option id='" + response.result[i].category_name + "' value='" + response.result[i].category_name + "'>" + response.result[i].category_name + "</option>";
 	}
 
 	$("#category-options").html(categoryHtml);

@@ -115,6 +115,9 @@ $( document ).ready(function() {
     }
 
     window.afterPreviewPrayer = function(response) {
+	alert(response.result.prayer);
+	console.log(response.result.scores);
+//	$("#preview-eye").tooltip();
 	$("#prayer-preview").text(response.result);
     }
 
@@ -148,7 +151,7 @@ $( document ).ready(function() {
 		for (var i = 0; i < lines.length; i++) {
 		    prayerTextHtml += "<p>" + lines[i] + "</p>";
 		}
-		$("#prayer-preview").html(prayerTextHtml);	
+		$("#prayer-preview").html(prayerTextHtml);
 	    }
 	});
     }

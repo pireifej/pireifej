@@ -421,9 +421,7 @@ $( document ).ready(function() {
 	$("[name=about]").val(user.user_about);
 	$("[name=name]").val(user.real_name);
 
-	console.log("USERREALNAME");
 	userRealName = user.real_name;
-	console.log(userRealName);
 
 	// set user details on screen header, requests, elsewhere
 	$('*[id*=real-name]').each(function() {
@@ -598,6 +596,9 @@ $( document ).ready(function() {
 	console.log(params["command"]);
 	console.log(params);
 
+	// Show full page LoadingOverlay
+	$.LoadingOverlay("show");
+	
 	$.ajax({
 	    type: "GET",
 	    url: "callSendQuery.php",
@@ -609,9 +610,13 @@ $( document ).ready(function() {
 	    success: function(data) {
 		console.log(params.command + ' success');
 		console.log(data);
+		// Hide loading overlay
+		$.LoadingOverlay("hide");
 	    },
 	    error: function(jqXHR, textStatus, errorThrown) {
 		console.log(textStatus + ': ' + params.command);
+		// Hide loading overlay
+		$.LoadingOverlay("hide");
 	    }
 	});
     }

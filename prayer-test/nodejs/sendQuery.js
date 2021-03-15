@@ -220,8 +220,8 @@ if (command == "previewPrayer") {
     query += "WHERE user.user_id = '" + queryObject.userId + "';";
 
     query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
-    query += "FROM prayers ";
-    query += "WHERE prayers.fk_category_id = '" + queryObject.categoryId + "' ";
+    query += "FROM prayers; ";
+//    query += "WHERE prayers.fk_category_id = '" + queryObject.categoryId + "' ";
 
     const pool = createPool();
     module.exports = pool;
@@ -237,7 +237,9 @@ if (command == "previewPrayer") {
 		    var requestText = queryObject.requestText;
 		    var prayers = rows[1];
 
-		    var bestPrayer = getBestPrayer(prayers, requestText);
+		    var bestPrayerObj = getBestPrayer(prayers, requestText);
+		    var bestPrayer = bestPrayerObj.result;
+		    var scores = bestPrayerObj.scores;
 
 		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
 			if (err) {
@@ -247,7 +249,7 @@ if (command == "previewPrayer") {
 			}
 
 			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
-			obj["result"] = customPrayer;
+			obj["result"] = {prayer:customPrayer,scores:scores};
 			obj["query"] = query;
 			console.log(JSON.stringify(obj));
 			conn.release();
@@ -298,7 +300,9 @@ if (command == "getPrayer") {
 			otherPerson = prayers[0].other_person;
 		    }
 
-		    var bestPrayer = getBestPrayer(prayers, requestText);
+		    var bestPrayerObj = getBestPrayer(prayers, requestText);
+		    var bestPrayer = bestPrayerObj.result;
+		    var scores = bestPrayerObj.scores;
 
 		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
 			if (err) {
@@ -311,6 +315,7 @@ if (command == "getPrayer") {
 			var obj = {};
 			obj["result"] = rows;
 			obj["query"] = query;
+			obj["scores"] = scores;
 			console.log(JSON.stringify(obj));
 			conn.release();
 			conn.end();
@@ -354,7 +359,7 @@ if (command == "getMyRequests") {
     query = "SELECT request.request_id,request.user_id,request_text,request_title,picture as request_picture,category.category_name,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp, ";
     query += "(SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count ";
     query += "FROM request INNER JOIN category ON category.category_id = fk_category_id ";
-    query += "WHERE request.user_id = '" + queryObject.userId + "' and active is TRUE ";
+    query += "WHERE request.user_id = '" + queryObject.userId + "' and request.active is TRUE ";
     query += "ORDER BY timestamp DESC";
 /*    
     query += "SELECT user.picture,user.real_name,user.user_name,user_request.user_id,user_request.request_id,user_request.timestamp, ";
@@ -395,6 +400,7 @@ if (command == "getRequestFeed") {
 if (command == "getCategories") {
     query = "SELECT category_id, category_name ";
     query += "FROM category ";
+    query += "WHERE active is TRUE";
 }
 
 if (command == "login") {
@@ -649,26 +655,57 @@ if (command == "forgotPassword") {
 
 // determine best prayer to use
 function getBestPrayer(prayers, requestText) {
-    var scores = {};
+    // init tags hash
+    var tags = {};
 
+    // store each prayer tag into 'fileName' --> 'tags list' hash
     for (var i = 0; i < prayers.length; i++) {
-        var tags = prayers[i].tags;
-        var fileName = prayers[i].prayer_file_name;
-	if (!tags) {
-	    scores[fileName] = 0;
-	    continue;
+	var fileName = prayers[i].prayer_file_name;
+	var prayerTags = prayers[i].tags;
+	if (!prayerTags) continue;
+	tags[fileName] = {};
+	prayerTags = prayerTags.split(",");
+	for (var j = 0; j < prayerTags.length; j++) {
+	    tags[fileName][prayerTags[j].toLowerCase()] = true;
 	}
-        scores[fileName] = 0;
-
-        var words = requestText.split(" ");
-        for (var j = 0; j < words.length; j++) {
-            if (tags.includes(words[j])) scores[fileName]++;
-        }
     }
 
-    const max = Object.keys(scores).reduce((a, v) => Math.max(a, scores[v]), -Infinity);
-    const result = Object.keys(scores).filter(v => scores[v] === max);
-    return result[0];
+    // store each request word into hash
+    var words = {};
+    var requestWords = requestText.split(" ");
+    for (var i = 0; i < requestWords.length; i++) {
+	words[requestWords[i].toLowerCase()] = true;
+    }
+
+    // perform scoring
+    var scores = {};
+    for (var prayerName in tags) {
+	if (!scores[prayerName]) scores[prayerName] = 0;
+
+	var myTags = tags[prayerName];
+	for (var tag in myTags) {
+	    if (words[tag]) {
+		scores[prayerName]++;
+	    }
+	}
+    }
+    console.log(scores);
+
+    var allZeroes = true;
+    for (var key in scores) {
+	if (scores[key] > 0) {
+	    allZeroes = false;
+	}
+    }
+
+    var finalPrayer = "general1";
+    if (!allZeroes) {
+	const max = Object.keys(scores).reduce((a, v) => Math.max(a, scores[v]), -Infinity);
+	const result = Object.keys(scores).filter(v => scores[v] === max);
+	finalPrayer = result[0];
+    }
+
+    return {result:finalPrayer,scores:scores};
 }
 
 function generateCustomPrayer(prayerText, realName,gender,otherPerson) {
