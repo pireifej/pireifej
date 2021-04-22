@@ -2,8 +2,8 @@ $( document ).ready(function() {
     window.god = window.god || {};
     god.init();
     god.getCategories("afterGetCategories");
-    god.query("getAllPrayers", "afterGetAllPrayers", {}, false, false);
-    
+    god.query("getAllPrayers", "afterGetAllPrayers", {}, false, false, "all");
+
     var prevSubject = "";
     var prevRequest = "";
     var allPrayers = [];
@@ -74,8 +74,6 @@ $( document ).ready(function() {
     }
 
     window.afterGetAllPrayers = function(response) {
-	console.log("all prayers!");
-	console.log(response.result);
 	var prayerNamesHtml = "<option>Select a prayer name</option>";
 	prayerNamesHtml += "<option>Create a new prayer</option>";
 	var prayerSorted = [];
@@ -88,6 +86,8 @@ $( document ).ready(function() {
 	    prayerNamesHtml += "<option>" + prayerSorted[i] + "</option>";
 	}
 	$("#prayer-names").html(prayerNamesHtml);
+	var prayerFileNameFromUrl = $.urlParam('prayerFileName')
+	selectPrayerName(prayerFileNameFromUrl);
     }
 
     window.selectCategory = function() {
@@ -108,9 +108,10 @@ $( document ).ready(function() {
 	console.log(newPrayerFile);
     }
 
-    window.selectPrayerName = function() {
-	console.log("window.selectPrayerName");
-	var prayerName = $("#prayer-names").val();
+    function selectPrayerName(prayerName) {
+	console.log("selectPrayerName " + prayerName);
+	var prayerName = prayerName;
+
 	if (prayerName == "Create a new prayer") {
 	    $("#prayer-title-input").val("");
 	    $("#tags-input").val("");
@@ -120,6 +121,7 @@ $( document ).ready(function() {
 	    $("#submit-label").html("Create Prayer");
 	    return;
 	}
+	
 	$("#submit-label").html("Update Prayer");
 	for (var i = 0; i < allPrayers.length; i++) {
 	    var prayer = allPrayers[i];
@@ -171,30 +173,11 @@ $( document ).ready(function() {
 	    god.notify("Prayer Updated", "success");
 	    $("#submit-btn").prop("disabled", false);
 	    $("#submit-label").html("Update Prayer");
+	    god.query("getAllPrayers", "afterGetAllPrayers", {}, false, false, "all");
 	}
     }
 
     window.afterCreateRequest = function(response) {
 	window.location.href = "profile.html?create=true";
-    }
-
-    window.afterGetPrayer = function(response) {
-	var prayerText = response.result[0].prayer_text;
-	var realName = $("#real-name").html();
-
-	// substitute for name and gender
-	$.ajax({
-	    url: "https://api.genderize.io?name=" + realName,
-	    dataType: "json",
-	    success: function(data) {
-		prayerText = god.getCustomPrayer(prayerText, data.gender, realName);
-		var lines = prayerText.split("\n");
-		var prayerTextHtml = "";
-		for (var i = 0; i < lines.length; i++) {
-		    prayerTextHtml += "<p>" + lines[i] + "</p>";
-		}
-		$("#prayer-preview").html(prayerTextHtml);	
-	    }
-	});
     }
 });

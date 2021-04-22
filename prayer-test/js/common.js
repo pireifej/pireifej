@@ -15,6 +15,7 @@ $( document ).ready(function() {
 	});
 
 	formData.append("fileToUpload", gFileData);
+	$.LoadingOverlay("show");
 	$.ajax({
             url: "upload.php",
             dataType: 'script',
@@ -28,6 +29,7 @@ $( document ).ready(function() {
 		console.log(response);
 		var json = JSON.parse(response);
 		console.log(json);
+		$.LoadingOverlay("hide");
 		
 		if (json.error == 1) {
 		    god.notify(json.message, "error");
@@ -411,6 +413,11 @@ $( document ).ready(function() {
 	    $("#prayer-admin-link-mobile").hide();
 	}
 
+	if (god.getEnv() == "test") {
+	    $("#prayer-admin-link").hide();
+	    $("#prayer-admin-link-mobile").hide();
+	}
+
 	// set edit profile form
 	$("[name=username]").val(user.user_name);
 	$("[name=password]").val("");
@@ -558,7 +565,8 @@ $( document ).ready(function() {
     // params - object that includes key/value parameters for query
     // includeUserId - do you want to include current user ID?
     // includeTimeZone - do you want to include client time zone?
-    god.query = function(commandName, jsonpCallback, params, includeUserId, includeTimeZone) {
+    // showLoadingOverlay - show the spinny circle thing on entire page 'all' or element 'id of elem'
+    god.query = function(commandName, jsonpCallback, params, includeUserId, includeTimeZone, showLoadingOverlay) {
 	params = (!params) ? {} : params;
 	if (!commandName) return;
 	if (!jsonpCallback) return;
@@ -589,16 +597,19 @@ $( document ).ready(function() {
 	    params["userId"] = userId;
 	}
 
-	god.sendQuery(params);
+	god.sendQuery(params, showLoadingOverlay);
     }
 
-    god.sendQuery = function(params) {
+    god.sendQuery = function(params, showLoadingOverlay) {
 	console.log(params["command"]);
 	console.log(params);
 
 	// Show full page LoadingOverlay
-	$.LoadingOverlay("show");
-	
+	if (showLoadingOverlay) {
+	    if (showLoadingOverlay == "all") $.LoadingOverlay("show");
+	    else $("#" + showLoadingOverlay).LoadingOverlay("show");
+	}
+
 	$.ajax({
 	    type: "GET",
 	    url: "callSendQuery.php",
@@ -611,7 +622,13 @@ $( document ).ready(function() {
 		console.log(params.command + ' success');
 		console.log(data);
 		// Hide loading overlay
-		$.LoadingOverlay("hide");
+		$("#requests").LoadingOverlay("hide");
+		$("#request-feed").LoadingOverlay("hide");
+		$("#prayer").LoadingOverlay("hide");
+		if (showLoadingOverlay) {
+		    if (showLoadingOverlay == "all") $.LoadingOverlay("hide");
+		    else $("#" + showLoadingOverlay).LoadingOverlay("hide");
+		}
 	    },
 	    error: function(jqXHR, textStatus, errorThrown) {
 		console.log(textStatus + ': ' + params.command);

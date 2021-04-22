@@ -48,7 +48,7 @@ $( document ).ready(function() {
     }
 
     function getRequestFeed() {
-	god.query("getRequestFeed", "afterGetRequestFeed", {"requestId":requestId}, true, true);
+	god.query("getRequestFeed", "afterGetRequestFeed", {"requestId":requestId}, true, true, "request-feed");
 	god.query("getPrayerCount", "afterGetPrayerCount", {}, true, true);
 	god.query("getMyRequests", "afterGetMyRequests", {}, true, true);
     }

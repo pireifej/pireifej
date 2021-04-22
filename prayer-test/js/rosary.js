@@ -88,6 +88,8 @@ $( document ).ready(function() {
 	}
     };
 
+    god.query("getRosarySession", "afterGetRosarySession", {sessionId:"rosary"}, true, true, "all");
+
     $("#mystery-day").html(n + " - " + rosaryMysteries[n].mystery);
     $( "#back-btn" ).click(function() {
 	if (currentPrayerIndex > 0) currentPrayerIndex--;
@@ -123,6 +125,31 @@ $( document ).ready(function() {
 	}
     }
 
+    window.afterLeaveRosarySession = function(response) {
+	console.log("afterLeaveRosarySession");
+	console.log(response);
+	god.query("getRosarySession", "afterGetRosarySession", {sessionId:"rosary"}, true, true, "all");
+    }
+
+    window.afterJoinRosarySession = function(response) {
+	console.log("afterJoinRosarySession");
+	console.log(response);
+	god.query("getRosarySession", "afterGetRosarySession", {sessionId:"rosary"}, true, true, "all");
+    }
+
+    window.afterGetRosarySession = function(response) {
+	console.log("afterGetRosarySession");
+	console.log(response.result);
+	$("#user-list").html("");
+	var result = "<ul>";
+	for (var i = 0; i < response.result.length; i++) {
+	    var timeAgo = god.getTimeAgo(response.result[i].timestamp);
+	    result += "<li>" + response.result[i].real_name + " -- " + timeAgo + "</li>";
+	}
+	result += "</ul>";
+	$("#user-list").html(result);
+    }
+
     function initUI() {
 	const nameMessage = $("#name-message");
 	const joinButton = $("#join-btn");
@@ -132,6 +159,7 @@ $( document ).ready(function() {
 
 	$( "#join-btn" ).click(function() {
 	    nameMessage.html("You are logged in as " + god.getUserRealName() + ".");
+	    god.query("joinRosarySession", "afterJoinRosarySession", {sessionId:"rosary"}, true, true, "all");
 
             /*
               1. Create a conference room with an alias
@@ -147,6 +175,7 @@ $( document ).ready(function() {
 	});
 
 	$( "#leave-btn" ).click(function() {
+	    god.query("leaveRosarySession", "afterLeaveRosarySession", {sessionId:"rosary"}, true, true, "all");
 	    VoxeetSDK.conference
 		.leave()
 		.then(() => {

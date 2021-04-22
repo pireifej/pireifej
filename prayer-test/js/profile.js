@@ -116,7 +116,7 @@ $( document ).ready(function() {
     }
 
     function getMyRequests() {
-	god.query("getMyRequests", "afterGetMyRequests", {}, true, true);
+	god.query("getMyRequests", "afterGetMyRequests", {}, true, true, "requests");
     }
 
     function insertRequests(requests) {

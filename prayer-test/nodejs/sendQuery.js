@@ -35,11 +35,33 @@ fs.appendFile(home + '/nodejs/log.txt', year + "-" + month + "-" + date + " " + 
     if (err) { console.log("error"); return console.log(err); }
 });
 
+fs.appendFile(home + '/nodejs/log.txt', year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds + " " + thing+"\n", function (err) {
+    if (err) { console.log("error"); return console.log(err); }
+});
+
+// correction for requestText, which comes in with commas (don't know why!)
+var requestText = "";
+var paramString = thing.join(",");
+var firstPart = paramString.split("requestText=");
+
+if (firstPart.length > 1) {
+    firstPart = firstPart[1];
+    var secondPart = firstPart.split("categoryId");
+    requestText = secondPart[0];
+    requestText = requestText.split(",").join(" ");
+}
+
+fs.appendFile(home + '/nodejs/log.txt', year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds + " " + requestText +"\n", function (err) {
+    if (err) { console.log("error"); return console.log(err); }
+});
+
 for (var i = 0; i < thing.length; i++) {
     var param = thing[i];
     var params = param.split("=");
     queryObject[params[0]] = params[1];
 }
+
+if (queryObject["command"] == "previewPrayer" && requestText) queryObject["requestText"] = requestText;
 
 if (__filename.includes("prayer-test")) {
     env = "test";
@@ -90,6 +112,7 @@ var allCommands = {
     "previewPrayer": true,
     "passwordChange": true,
     "getPrayerCount": true,
+    "deletePrayer": true,
     "getPrayer": true,
     "deleteRequest": true,
     "getRequest": true,
@@ -113,7 +136,10 @@ var allCommands = {
     "getAllPrayers": true,
     "readPrayer": true,
     "updatePrayer": true,
-    "createPrayer": true
+    "createPrayer": true,
+    "joinRosarySession": true,
+    "leaveRosarySession": true,
+    "getRosarySession": true
 };
 
 if (!queryObject["command"]) {
@@ -148,6 +174,18 @@ if (command == "getPrayerCount") {
 if (command == "getAllPrayers") {
     query = "SELECT * ";
     query += "FROM prayers;";
+}
+
+if (command == "deletePrayer") {
+    requireParam("prayerName");
+
+    try {
+	fs.unlinkSync(home + '/prayers/' + queryObject.prayerName);
+    } catch(err) {
+	if (err) return console.log(err);
+    }
+
+    query = "DELETE FROM prayers WHERE prayer_file_name='" + queryObject.prayerName + "';";
 }
 
 if (command == "createPrayer") {
@@ -221,7 +259,6 @@ if (command == "previewPrayer") {
 
     query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
     query += "FROM prayers; ";
-//    query += "WHERE prayers.fk_category_id = '" + queryObject.categoryId + "' ";
 
     const pool = createPool();
     module.exports = pool;
@@ -275,12 +312,15 @@ if (command == "previewPrayer") {
 if (command == "getPrayer") {
     requireParam("requestId");
 
-    query = "SELECT user.real_name,user.gender,request.request_text,request.other_person,prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
-    query += "FROM prayers INNER JOIN request INNER JOIN user ";
-    query += "WHERE prayers.fk_category_id = request.fk_category_id ";
-    query += "AND user.user_id = request.user_id ";
+    query = "SELECT user.real_name,user.gender,";
+    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "FROM request INNER JOIN user ";
+    query += "WHERE user.user_id = request.user_id ";
     query += "AND request.request_id = '" + queryObject.requestId + "';";
-    
+
+    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
+    query += "FROM prayers; ";
+
     const pool = createPool();
     module.exports = pool;
     pool.getConnection()
@@ -291,18 +331,21 @@ if (command == "getPrayer") {
 		    var realName = "";
 		    var gender = "";
 		    var otherPerson = "";
-		    var prayers = rows;
+
+		    var request = rows[0][0];
+		    var prayers = rows[1];
 
 		    if (prayers.length > 0) {
-			requestText = prayers[0].request_text
-			realName = prayers[0].real_name;
-			gender = prayers[0].gender;
-			otherPerson = prayers[0].other_person;
+			requestText = request.request_text
+			realName = request.real_name;
+			gender = request.gender;
+			otherPerson = request.other_person;
 		    }
 
 		    var bestPrayerObj = getBestPrayer(prayers, requestText);
 		    var bestPrayer = bestPrayerObj.result;
 		    var scores = bestPrayerObj.scores;
+		    var title = bestPrayerObj.name;
 
 		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
 			if (err) {
@@ -311,9 +354,11 @@ if (command == "getPrayer") {
 			    return;
 			}
 			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
-			rows[0]["prayer_text"] = customPrayer;
 			var obj = {};
-			obj["result"] = rows;
+			obj["result"] = {};
+			obj["result"]["prayer_title"] = title;
+			obj["result"]["prayer_text"] = customPrayer;
+			obj["result"]["request"] = request;
 			obj["query"] = query;
 			obj["scores"] = scores;
 			console.log(JSON.stringify(obj));
@@ -341,6 +386,34 @@ if (command == "deleteRequest") {
     query = "UPDATE request ";
     query += "SET active = FALSE ";
     query += "WHERE request_id = '" + queryObject.requestId + "'";
+}
+
+if (command == "joinRosarySession") {
+    requireParam("userId");
+    requireParam("sessionId");
+    
+    query = "INSERT INTO rosary (session_id, fk_user_id) VALUES(";
+    query += "'" + queryObject.sessionId + "',";
+    query += "'" + queryObject.userId + "');";
+}
+
+if (command == "leaveRosarySession") {
+    requireParam("userId");
+    requireParam("sessionId");
+    
+    query = "UPDATE rosary ";
+    query += "SET session_id = NULL ";
+    query += "WHERE fk_user_id = '" + queryObject.userId + "' ";
+    query += "AND session_id = '" + queryObject.sessionId + "';";
+}
+
+if (command == "getRosarySession") {
+    requireParam("sessionId");
+
+    query = "SELECT user.real_name,rosary.fk_user_id,CONVERT_TZ(rosary.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "FROM rosary ";
+    query += "INNER JOIN user ON user.user_id = fk_user_id ";
+    query += "WHERE session_id='" + queryObject.sessionId + "';";
 }
 
 if (command == "getRequest") {
@@ -657,13 +730,17 @@ if (command == "forgotPassword") {
 function getBestPrayer(prayers, requestText) {
     // init tags hash
     var tags = {};
+    var prayerNames = {};
 
     // store each prayer tag into 'fileName' --> 'tags list' hash
     for (var i = 0; i < prayers.length; i++) {
 	var fileName = prayers[i].prayer_file_name;
 	var prayerTags = prayers[i].tags;
+	var prayerName = prayers[i].prayer_title;
 	if (!prayerTags) continue;
 	tags[fileName] = {};
+	prayerNames[fileName] = prayerName;
+
 	prayerTags = prayerTags.split(",");
 	for (var j = 0; j < prayerTags.length; j++) {
 	    tags[fileName][prayerTags[j].toLowerCase()] = true;
@@ -673,6 +750,11 @@ function getBestPrayer(prayers, requestText) {
     // store each request word into hash
     var words = {};
     var requestWords = requestText.split(" ");
+
+    if (requestWords.length == 1) {
+	requestWords = requestText.split("%20");
+    }
+
     for (var i = 0; i < requestWords.length; i++) {
 	words[requestWords[i].toLowerCase()] = true;
     }
@@ -689,7 +771,6 @@ function getBestPrayer(prayers, requestText) {
 	    }
 	}
     }
-    console.log(scores);
 
     var allZeroes = true;
     for (var key in scores) {
@@ -705,7 +786,8 @@ function getBestPrayer(prayers, requestText) {
 	finalPrayer = result[0];
     }
 
-    return {result:finalPrayer,scores:scores};
+    var prayerTitle = prayerNames[finalPrayer];
+    return {result:finalPrayer,scores:scores,name:prayerTitle};
 }
 
 function generateCustomPrayer(prayerText, realName,gender,otherPerson) {

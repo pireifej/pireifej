@@ -6889,7 +6889,6 @@ header.page-post-2 .post-heading h1 {
    ========================================================================== */
 /* line 67, ../scss/_page-post-2.scss */
 .header-avatar {
-  margin-bottom: -110px;
   position: relative;
   top: -40px;
   text-align: center;
@@ -6919,7 +6918,7 @@ header.page-post-2 .post-heading h1 {
 /* line 96, ../scss/_page-post-2.scss */
 article.entry-content {
   border: 20px solid #f5f5f6;
-  padding: 10% 0%;
+  padding: 0% 0%;
 }
 /* line 101, ../scss/_page-post-2.scss */
 article.entry-content h4 {
@@ -7473,7 +7472,6 @@ header.profile-3 .content .social-description p {
    ========================================================================== */
 /* line 60, ../scss/_profile-2.scss */
 .header-avatar {
-  margin-bottom: -110px;
   position: relative;
   top: -40px;
   text-align: center;

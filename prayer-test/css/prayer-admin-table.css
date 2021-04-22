@@ -1,0 +1,49 @@
+td.details-control {
+    background: url('details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('details_close.png') no-repeat center center;
+}
+
+.dataTables_wrapper {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.th-id, .td-id {
+    width: 10px;
+    max-width: 10px;
+    min-width: 10px;
+}
+
+.th-expand, .td-expand {
+    width: 10px;
+    max-width: 10px;
+    min-width: 10px;
+}
+
+.th-delete, .td-delete {
+    width: 10px;
+    min-width: 10px;
+    max-width: 10px;
+}
+
+.th-filename, .td-filename {
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+}
+
+.th-tags, .td-tags {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.th-title, .td-title {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}

@@ -91,7 +91,7 @@ $( document ).ready(function() {
     window.preview = function() {
 	var formValues = $("#new-request").serializeArray();
 	var category = $("#category-options").val();
-	console.log(formValues);
+
 	var categoryId = "8";
 	for (var i = 0; i < god.categories.length; i++) {
 	    if (god.categories[i].category_name == category) {
@@ -105,12 +105,15 @@ $( document ).ready(function() {
 	}
 
 	if (!requestDetails["message"]) return;
+
+	requestDetails["message"] = requestDetails["message"].replace(/'/g, "\\'");
 	
 	var params = {
 	    requestText: requestDetails["message"],
 	    categoryId: categoryId,
 	    otherPerson: (requestDetails["otherPerson"]) ? requestDetails["otherPerson"] : ""
 	};
+	console.log(params);
 	god.query("previewPrayer", "afterPreviewPrayer", params, true, false);
     }
 

@@ -10,7 +10,7 @@ $( document ).ready(function() {
     var requestId = $.urlParam('requestId');
     var prayerComplete = false;
 
-    getRequest();
+    getRequestAndPrayer();
 
     var options = {
 	classname: 'prayer-progress-class',
@@ -18,19 +18,16 @@ $( document ).ready(function() {
     };
     var nanobar = new Nanobar( options );
 
-    window.afterGetRequest = function(response) {
-	console.log("window.afterGetRequest");
-	console.log(response);
-	var request = response.result[0];
-	$("#request-title").html(request.request_title);
-	$("#prayer-category").html(request.category_name);
-	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
-	$("#user-name-for-request").html(request.real_name);
-	console.log("COMING HERE!");
-	userRealName = request.real_name;
-	console.log(request.picture);
-	$("#requestor-picture").attr("src", "uploads/" + request.picture);
-	console.log($("#requestor-picture").attr("src"));
+    function getRequestAndPrayer() {
+	god.query("getPrayer", "afterGetPrayer", {requestId: requestId}, false, true, "prayer");
+    }
+
+    window.afterGetPrayer = function(response) {
+	var result = response.result;
+	var request = result.request;
+	var prayerText = result.prayer_text;
+
+	console.log(result);
 
 	$("#headerImage").css("background-position", "center center");
 	$("#headerImage").css("-webkit-background-size", "cover");
@@ -45,25 +42,16 @@ $( document ).ready(function() {
 	$("#headerImage").css("justify-content", "center");
 	$("#headerImage").css("align-items", "center");
 	$("#headerImage").css("text-align", "center");
-	$("#headerImage").css("background", "linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url('img/blog/FULL.jpg') no-repeat center center fixed");
-	
-	getPrayer();
-    }
-    
-    function getRequest() {
-	god.query("getRequest", "afterGetRequest", {requestId: requestId}, false, true);
-    }
+	$("#headerImage").css("background", "linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url('img/blog/heaven-sky.jpg') no-repeat center center fixed"); 
 
-    function getPrayer() {
-	god.query("getPrayer", "afterGetPrayer", {requestId: requestId}, false, true);
-    }
-
-    window.afterGetPrayer = function(response) {
-	var prayer = response.result[0];
-	var prayerText = prayer.prayer_text;
-
+	$("#request-title").html(request.request_title);
+	var otherPerson = (request["other_person"]) ? " for " + request.other_person : "none";
+	$("#prayer-category").html(otherPerson);
+	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
+	$("#user-name-for-request").html(request.real_name);
+	$("#requestor-picture").attr("src", "uploads/" +request.picture);
 	$("#user-name-for-request").html(userRealName);
-	$("#prayer-title").html(prayer.prayer_title);
+	$("#prayer-title").html(result.prayer_title);
 	
 	var prayerLines = prayerText.split("\n");
 	for (var i = 0; i < prayerLines.length; i++) {
@@ -84,7 +72,7 @@ $( document ).ready(function() {
 		prayerObj.push(obj);
 	    }
 	}
-	$("#prayer-category").html(prayer.category);
+//	$("#prayer-category").html(prayer.category);
 	refreshPrayerDisplay();
     }
 

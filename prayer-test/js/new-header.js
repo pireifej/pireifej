@@ -28,65 +28,6 @@
 		element.css('background-image', 'url(' + bgSource + ')');
 	});
 
-    // video player active js
-	var plyrVideo = new Plyr('.plyr-video'),
-      	plyrAudio = new Plyr('.plyr-audio'),
-      	plyrYoutube = new Plyr('.plyr-youtube'),
-		plyrVimeo = new Plyr('.plyr-vimeo');
-		  
-    // active profile carousel js
-	$('.active-profile-carousel').slick({
-        speed: 800,
-        slidesToShow: 10,
-		prevArrow: '<button type="button" class="slick-prev"><i class="bi bi-arrow-left-rounded"></i></button>',
-		nextArrow: '<button type="button" class="slick-next"><i class="bi bi-arrow-right-rounded"></i></button>',
-		responsive: [{
-			breakpoint: 1200,
-			settings: {
-				slidesToShow: 5,
-			}
-		},
-		{
-			breakpoint: 992,
-			settings: {
-				slidesToShow: 8,
-			}
-		}]
-	});
-
-	// active profile carousel js
-	$('.active-profile-mobile').slick({
-        speed: 800,
-		slidesToShow: 6,
-		arrows: false,
-		responsive: [{
-			breakpoint: 480,
-			settings: {
-				slidesToShow: 4,
-			}
-		}]
-	});
-
-	// active profile carousel js
-	$('.favorite-item-carousel').slick({
-		autoplay: true,
-        speed: 800,
-		slidesToShow: 5,
-		arrows: false,
-		responsive: [{
-			breakpoint: 992,
-			settings: {
-				slidesToShow: 3,
-			}
-		},
-		{
-			breakpoint: 576,
-			settings: {
-				slidesToShow: 2,
-			}
-		}]
-	});
-
 	// live chat box and friend search box active js
 	$(".profile-active").on('click', function(){
 		$(".chat-output-box").addClass('show');
@@ -166,23 +107,6 @@
 		});
 
 	});
-
-	// photo filter active js
-	$('.photo-filter').imagesLoaded( function() {
-		var $grid = $('.photo-filter, .friends-list').isotope({
-		});
-		// filter items on button click
-		$('.filter-menu').on( 'click', 'button', function() {
-			var filterValue = $(this).attr('data-filter');
-			$grid.isotope({ filter: filterValue });
-			$(this).siblings('.active').removeClass('active');
-	         $(this).addClass('active');
-		});
-		
-	});
-
-	// nice select active js
-	$('select').niceSelect();
 
 	// Scroll to top active js
 	$(window).on('scroll', function () {
