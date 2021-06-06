@@ -1,4 +1,14 @@
 $( document ).ready(function() {
+    $.ajaxSetup({ cache: true });
+    $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+	FB.init({
+	    appId: '820853052173991',
+	    version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+	});
+	$('#loginbutton,#feedbutton').removeAttr('disabled');
+	FB.getLoginStatus(updateStatusCallback);
+    });
+    
     window.god = window.god || {};
     var user = $.urlParam('user');
     var access = $.urlParam('access');
@@ -41,6 +51,21 @@ $( document ).ready(function() {
 	};
 	god.query("login", "afterLogin", params, false, true);
     })
+
+    
+    window.checkLoginState = function() {
+	FB.getLoginStatus(function(response) {
+	    statusChangeCallback(response);
+	});
+    }
+
+    window.statusChangeCallback = function(response) {
+	console.log(response);
+    }
+
+    window.updateStatusCallback = function(response) {
+	console.log(response);
+    }
 
     window.afterForgot = function(response) {
 	$("#forgot").hide();

@@ -251,7 +251,6 @@ if (command == "readPrayer") {
 if (command == "previewPrayer") {
     requireParam("userId");
     requireParam("requestText");
-    requireParam("categoryId");
 
     query = "SELECT user.real_name,user.gender ";
     query += "FROM user ";
@@ -288,10 +287,10 @@ if (command == "previewPrayer") {
 			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
 			obj["result"] = {prayer:customPrayer,scores:scores};
 			obj["query"] = query;
-			console.log(JSON.stringify(obj));
+//			console.log(JSON.stringify(obj));
 			conn.release();
 			conn.end();
-			process.exit();
+//			process.exit();
 			return;
 		    })
 		})
@@ -751,6 +750,15 @@ function getBestPrayer(prayers, requestText) {
     var words = {};
     var requestWords = requestText.split(" ");
 
+    const rake = require('node-rake');
+    const myKeywords = rake.generate(requestText);
+
+    const datamuse = require('datamuse');
+    for (var i = 0; i < myKeywords.length; i++) {
+	console.log(myKeywords[i]);
+	getLikeWords(myKeywords[i]);
+    }
+
     if (requestWords.length == 1) {
 	requestWords = requestText.split("%20");
     }
@@ -788,6 +796,18 @@ function getBestPrayer(prayers, requestText) {
 
     var prayerTitle = prayerNames[finalPrayer];
     return {result:finalPrayer,scores:scores,name:prayerTitle};
+}
+
+function getLikeWords(phrase) {
+    const datamuse = require('datamuse');
+    console.log("================="+phrase+"=====================");
+     datamuse.words({
+	ml: phrase
+    })
+	.then((json) => {
+	    console.log(json);
+	    //do it!
+	});
 }
 
 function generateCustomPrayer(prayerText, realName,gender,otherPerson) {
