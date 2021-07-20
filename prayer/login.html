@@ -62,6 +62,9 @@
 
   <body class="greybg">
 
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=820853052173991&autoLogAppEvents=1" nonce="WZCE3C7L"></script>
+
          <!-- ==============================================
      Navigation Section
      =============================================== -->
@@ -93,12 +96,7 @@
 	       <div class="col-lg-10 offset-md-1">
 		 <div class="white-blogpage">
 
-
-		   
-<fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState()">
-</fb:login-button>
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false" scope="public_profile,email" onlogin="checkLoginState()"></div>
 
 		   <div class="form-style-2">
 <!--		     <div class="form-style-2-heading">Provide your information</div>-->

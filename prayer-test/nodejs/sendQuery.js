@@ -159,6 +159,7 @@ var allCommands = {
     "prayFor": true,
     "getAllPrayers": true,
     "readPrayer": true,
+    "getTemp": true,
     "updatePrayer": true,
     "createPrayer": true,
     "joinRosarySession": true,
@@ -335,15 +336,16 @@ if (command == "previewPrayer") {
 
 if (command == "getPrayer") {
     requireParam("requestId");
-    var debug = false;
+
+    var debug = (queryObject["debug"]) ? queryObject.debug : false;
 
     query = "SELECT user.real_name,user.gender,";
-    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,request.fk_prayer_id,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM request INNER JOIN user ";
     query += "WHERE user.user_id = request.user_id ";
     query += "AND request.request_id = '" + queryObject.requestId + "';";
 
-    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
+    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title,prayers.prayer_id ";
     query += "FROM prayers ";
     query += "WHERE prayers.active = 1;";
 
@@ -357,6 +359,8 @@ if (command == "getPrayer") {
 		    var realName = "";
 		    var gender = "";
 		    var otherPerson = "";
+		    var prayerId = "";
+		    var selectedPrayerFileName = "";
 
 		    var request = rows[0][0];
 		    var prayers = rows[1];
@@ -366,6 +370,13 @@ if (command == "getPrayer") {
 			realName = request.real_name;
 			gender = request.gender;
 			otherPerson = request.other_person;
+			prayerId = request.fk_prayer_id;
+
+			for (var i = 0; i < prayers.length; i++) {
+			    if (prayers[i].prayer_id == prayerId) {
+				selectedPrayerFileName = prayers[i].prayer_file_name;
+			    }
+			}
 		    }
 
 		    if (debug) {
@@ -398,8 +409,9 @@ if (command == "getPrayer") {
 				    var word = taggedWord[0];
 				    var tag = taggedWord[1];
 				    if (debug) console.log("got phrase:" + word + " /" + tag);
-				    if (tag == "VB") {
+				    if (tag == "VB" || tag == "VBN") {
 					chosen = word;
+					break;
 				    }
 				    // adjective has priority
 				    if (tag == "JJ") {
@@ -416,8 +428,9 @@ if (command == "getPrayer") {
 			    var taggedWord = taggedWords[j];
 			    var word = taggedWord[0];
 			    var tag = taggedWord[1];
-			    if (tag == "VB") {
+			    if (tag == "VB" || tag == "VBN") {
 				chosen = word;
+				break;
 			    }
 			    // adjective has priority
 			    if (tag == "JJ") {
@@ -458,40 +471,46 @@ if (command == "getPrayer") {
 			    scores["chosen"] = chosen;
 			    var title = bestPrayerObj.name;
 
-		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
-			if (err) {
-			    console.log("Error");
-			    console.log(err);
-			    return;
-			}
-			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
-			var obj = {};
-			obj["result"] = {};
-			obj["result"]["prayer_title"] = title;
-			obj["result"]["prayer_text"] = customPrayer;
-			obj["result"]["request"] = request;
-			obj["query"] = query;
-			obj["scores"] = scores;
-			console.log(JSON.stringify(obj));
-			conn.release();
-			conn.end();
-			process.exit();
-			return;
-		    });
-	})
-		.catch(err => {
-                    console.log("not connected due to error: " + err);
-                    var obj = {};
-                    obj["result"] = err;
-                    obj["query"] = query;
-                    console.log(JSON.stringify(obj));
-                    conn.release();
-                    conn.end();
-                    process.exit();
-                })
+			    // don't use logic to select best prayer, just select assigned prayer
+			    if (selectedPrayerFileName) {
+				bestPrayer = selectedPrayerFileName;
+			    }
+
+			    // if prayerId exists, pick that bestPrayer prayer name
+			    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
+				if (err) {
+				    console.log("Error");
+				    console.log(err);
+				    return;
+				}
+				var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
+				var obj = {};
+				obj["result"] = {};
+				obj["result"]["prayer_title"] = title;
+				obj["result"]["prayer_text"] = customPrayer;
+				obj["result"]["request"] = request;
+				obj["result"]["query"] = query;
+				obj["result"]["scores"] = scores;
+				console.log(JSON.stringify(obj));
+				conn.release();
+				conn.end();
+				process.exit();
+				return;
+			    });
+			})
+			.catch(err => {
+			    console.log("not connected due to error: " + err);
+			    var obj = {};
+			    obj["result"] = err;
+			    obj["query"] = query;
+			    console.log(JSON.stringify(obj));
+			    conn.release();
+			    conn.end();
+			    process.exit();
+			})
 		});
 	});
-    return;	    
+    return;
 }
 
 if (command == "deleteRequest") {
@@ -697,6 +716,15 @@ if (command=="passwordChange") {
 		process.exit();
 	    });
     });
+}
+
+if (command == "getTemp") {
+    var max = 10;
+    var temp = (Math.random() * (99 - 97.9) + 97.9).toFixed(2);
+    var obj = {};
+    obj["result"] = temp;
+    console.log(JSON.stringify(obj));
+    process.exit();
 }
 
 if (command == "updateUser") {
@@ -1032,6 +1060,17 @@ if (command == "createUser") {
 		    .then((rows) => {
 			var obj = {};
 
+			if (mypassword == "facebook") {
+			    obj["output"] = env;
+			    obj["result"] = 'facebook user created';
+			    obj["query"] = query;
+			    console.log(JSON.stringify(obj));
+			    process.exit();
+			    conn.release();
+			    conn.end();
+			    return;
+			}
+
 			var transporter = nodemailer.createTransport({
                             service: 'gmail',
                             auth: {
@@ -1080,7 +1119,6 @@ if (command == "createUser") {
 			})
 		    })
 		    .catch(err => {
-			console.log("not connected due to error: " + err);
 			var obj = {};
 			obj["result"] = err;
 			obj["query"] = query;
@@ -1100,15 +1138,27 @@ if (command == "createRequest") {
     requireParam("requestTitle");
     requireParam("requestCategoryId");
     requireParam("sendEmail");
+    requireParam("preview");
+    requireParam("prayerId");
+
+    var preview = queryObject.preview;
+
+    if (preview == "false") active = "TRUE";
+    else active = "FALSE";
     
-    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, other_person, picture, active) VALUES (";
+    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, other_person, picture, fk_prayer_id, active) VALUES (";
     query += "'" + queryObject.userId + "',";
     query += "'" + queryObject.requestText + "',";
     query += "'" + queryObject.requestTitle + "',";
     query += "'" + queryObject.requestCategoryId + "',";
     query += "'" + queryObject.otherPerson + "',";
     query += "'" + queryObject.picture + "',";
-    query += "TRUE);";
+    query += "'" + queryObject.prayerId + "',";
+    query += active + ");";
+
+    if (preview) {
+	query += "SELECT request_id FROM request WHERE request_id = LAST_INSERT_ID();";
+    }
 
     query += "SELECT user.real_name, user.email ";
     query += "FROM user ";
@@ -1126,8 +1176,12 @@ if (command == "createRequest") {
 	    	.then((rows) => {
 		    if (queryObject.sendEmail !== "on") {
 			var obj = {};
-			obj["result"] = 'No email sent';
-			obj["query"] = "No Query";
+			if (preview) {
+			    obj["result"] = rows[1][0];
+			} else {
+			    obj["result"] = 'No email sent';
+			}
+			obj["query"] = query;
 			console.log(JSON.stringify(obj));
 			process.exit();
 			return;
@@ -1192,7 +1246,7 @@ if (command == "createRequest") {
 			    if (error) {
 				var obj = {};
 				obj["result"] = 'Error: ' + error;
-				obj["query"] = "No Query";
+				obj["query"] = query;
 				console.log(JSON.stringify(obj));
 				process.exit();
 				return;
@@ -1200,7 +1254,7 @@ if (command == "createRequest") {
 				var obj = {};
 				obj["output"] = env;
 				obj["result"] = 'Email sent: ' + info.response;
-				obj["query"] = "No Query";
+				obj["query"] = query;
 				console.log(JSON.stringify(obj));
 				process.exit();
 				conn.release();

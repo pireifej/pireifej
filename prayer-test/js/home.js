@@ -8,6 +8,9 @@ $( document ).ready(function() {
 
     window.logout = function(response) {
 	localStorage.removeItem("userId");
+	FB.logout(function(response) {
+	    // user is now logged out
+	});
 	god.init();
 	var name = response.result[0].real_name;
 	god.notify("See you later, " + name + "!", "success");

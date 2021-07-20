@@ -12,6 +12,8 @@ $( document ).ready(function() {
     window.god = window.god || {};
     var user = $.urlParam('user');
     var access = $.urlParam('access');
+    var facebookId = null;
+    
     god.init();
     if (user) {
 	god.notify("New user profile created.", "success");
@@ -61,10 +63,51 @@ $( document ).ready(function() {
 
     window.statusChangeCallback = function(response) {
 	console.log(response);
+	console.log("great");
+
+	var userId = response.authResponse.userID;
+	console.log(userId);
+
+	/* make the API call */
+	FB.api(
+	    "/" + userId + "/",
+	    function (response) {
+		console.log("Response!");
+		console.log(response);
+		if (response && !response.error) {
+		    /* handle the result */
+		    facebookId = response.id;
+		    var params = {
+			userName: "'" + response.id + "'",
+			password: "facebook",
+			email: "facebook",
+			realName: response.name,
+			location: "facebook",
+			title: "facebook",
+			about: "facebook",
+			picture: "facebook"
+		    };
+
+		    god.query("createUser", "afterCreateUser", params, false, true);
+		}
+	    }
+	);
     }
 
+    // maybe not used?
     window.updateStatusCallback = function(response) {
 	console.log(response);
+    }
+
+    window.afterCreateUser = function(response) {
+	console.log(response);
+	if (response.result.code == "ER_DUP_ENTRY") {
+	    var params = {
+		userName: facebookId,
+		password: "facebook"
+	    };
+	    god.query("login", "afterLogin", params, false, true);
+	}
     }
 
     window.afterForgot = function(response) {

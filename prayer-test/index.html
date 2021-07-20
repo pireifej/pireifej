@@ -83,6 +83,8 @@
      Header Section
      =============================================== -->
 
+	 <button onclick="window.helloClick()">hello</button>
+
 	 <section class="header remove-gap">
 	   <div class="container-fluid">
 	     <div class="row no-gap">
@@ -194,7 +196,26 @@
 	 {{footer}}
 
 	 <a id="scrollup">Scroll</a>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '820853052173991',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v10.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+  };
 
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
      <!-- ==============================================
 	 Scripts

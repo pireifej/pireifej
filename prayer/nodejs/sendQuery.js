@@ -108,6 +108,30 @@ function createPool() {
     }
 }
 
+var categories = {
+    "healing": ['curative','therapeutic','healthful','remedial','alterative','sanative','healer','recovery','therapy','curing','reconciliation','mend','recuperation','rehabilitation','soothing','cure','scarring','calming','treatment','medicinal','regeneration','treating','wellness','reparation','restoration','medicine','care','conciliation','repair','pacification','easing','wound','redress','calm','reinstatement','retrieval','convalescent','surgeon','retrieving','appeasement','dressing','appeasing','infirmary','showcase','sanitation','de-escalation','re-establishment','resourcing','self-awareness','self-healing','wholeness','cleansing','spirituality','meditation','rejuvenation','peruvian balsam','salve','forgiveness','intercessory','reiki','magick','exfoliation','detoxification','balm','recuperative','brokenness','purification','aromatherapy','kundalini','regrowth','rolfing','arnica montana','reflexology','deliverance','mediumship','physical therapy','overcomer','repentance','indwelling','poultice','transfiguring','systematic desensitization','meditational','purgation','massage','herbalism','awakening','attunement','metta','sanctification','arnica','mindfulness','centredness','drugless','acupressure','catharsis','salvific','moxa','prayer','centeredness'],
+    'surgery': ['surgical procedure','operation','operating room','operating theater','operating theatre','surgical operation','surgeon','surgeons','surgical','surgically','procedure','implant','outpatient','physician','plastic','infirmary','bypass','mammary','intervention','decking','cosmetology','operations','knife','exercise','pad','speech','action','regina','transaction','bloc','operating','response','involvement','chirurgie','interventions','block','reconstructive','skin graft','hysterectomy','microsurgery','arthroscopy','hernia','craniotomy','abdominoplasty','mastectomy','liposuction','neurosurgery','rhinoplasty','maxillofacial','endoscopy','otoplasty','prostatectomy','incision','anesthesia','resection','reconstructive surgery','appendectomy','radical hysterectomy','transplant','skin grafting','tonsillectomy','splenectomy','angioplasty','colectomy','herniated disc','ligament','coronary bypass surgery','laparotomy','corneal transplant','biopsy','tummy tuck','radical mastectomy','amputation','epidural injection','coronary bypass','cyst','laminectomy','detached retina','catheterization','neuroplasty','cholecystectomy','lobectomy','lumpectomy','labrum','rotator cuff','gall bladder','physical therapy','doctors','tracheotomy','blood clot','heart surgeon','stress fracture','tendon','umbilical hernia','colonoscopy','gastrectomy','meniscectomy','thyroidectomy','hamstring tendon','nephrectomy'],
+    'family': ['house','kinfolk','home','kin','household','kinsfolk','fellowship','class','folk','menage','category','sept','family line','family unit','kinsperson','phratry','relatives','siblings','father','wife','clan','parents','uncles','community','familial','life','children','caring','breadwinner','child','brood','caregiver','married','fam','homes','marital','parent','familie','marriage','kinship','relative','familia','dependents','dynasty','cottage','lineage','couple','surname','genealogical','foster','matrimonial','parental','parenting','households','parenthood','homey','casa','care','housework','captivity','portfolio','progeny','close','patronymic','domestic','relatedness','famille','folks','descent','carnival','plans','countries','plan','prisoner','range','dependency','pedigree','captives','ilk','foyer','tribunal','array','secret','gamut','spectrum','system','prisoners','last','familiar','scheme','grouping','series','the','capture','schemes','tribunals','captured','dependants','fvi','hogar'],
+    'pet': ['ducky','deary','loved','favorite','dearie','positron emission tomography','preferred','favourite','favored','darling','dog','puppy','cat','pooch','animal','doggie','pup','doggy','animals','kitten','kitty','toy','bird','livestock','baby','companion','turtle','companionship','lapdog','mascot','cute','household','peeve','peeves','domestic','honey','cosset','friend','boy','beast','dear','bug','sweetheart','small','ornamental','spoon','hat','silly','tame','little','fart','enchanting','pocket','popular','poof','dumb','animalistic','plaything','caress','stupid','beautiful','cabbage','favoured','company','fondle','pretty','spectator','stroke','familiar','chip','spit','tep','polyethylene','toe','cer','tec','trp','puff','compagnie','fdg','bang','journeyman','positron','societal','tomography','kennel','beagle','chihuahua','golden retriever','pug','dachshund','basset hound','shetland sheepdog','veterinarian','hamster','french bulldog','great dane','poodle','schnauzer','lhasa apso'],
+    'love': ['passion','enjoy','beloved','dear','dearest','lovemaking','honey','loved one','making love','sexual love','adore','hate','affection','adores','cherish','romance','friendship','devotion','beautiful','liked','lover','admire','lovey','fondness','romantic','fond','appreciate','goodness','admiration','wanna','know','kindness','want','lovers','sweetie','compassion','liking','heaven','feelings','kiss','valentine','favorite','bless','adorable','pleasure','sweet','kisses','affinity','god','sweetheart','nice','like','caring','conquers','cares','hobby','ardor','prefer','hug','tenderness','enjoyed','desires','eros','likes','babe','caritas','amour','amor','enjoying','sake','heart','treasure','sympathy','enjoys','feeling','crying','amity','taste','sakes','emotional','crush','darling','sick','patriotic','girl','eff','sex','fancies','amore','chuckles','noah','christ','bonk','angel','flame','favourite','care','wants','jazz','worships'],
+    'life': ['lifetime','living','aliveness','lifespan','biography','sprightliness','spirit','liveliness','animation','life story','life history','lifestyle','society','family','lifestyles','career','lifelong','lifetimes','death','livelihood','survival','existence','soul','human','personal','eternity','longevity','health','reclusion','imprisonment','vitality','learning','live','time','mortality','die','way','experience','future','birth','zest','souls','always','reality','breath','world','breathing','biological','cycle','sciences','daily','story','fate','hell','history','day','age','people','span','flora','skin','insurance','subsistence','expectancy','sphere','term','coexistence','vest','kill','lifeblood','alive','vivacity','person','welfare','fauna','autonomy','property','perpetuity','vital','psychosocial','biology','liv','killing','activity','scene','course','perpetual','days','privacy','leben','vida','perpetua','lifeline','discussion','vigor','vita','anima','period','debate','duration'],
+    'children': ['kids','parents','toddlers','daughters','mothers','preschoolers','teenagers','siblings','orphans','infants','grandchildren','babies','youngsters','families','schoolchildren','adolescents','sons','youths','tots','infant','girls','boys','people','pupils','son','ages','kiddies','baby','childhood','students','boy','youth','childcare','offspring','young','juveniles','persons','age','family','pediatric','them','kid','education','males','births','schoolboys','pupil','dependents','pediatrics','those','clothes','juvenile','minors','paediatric','dears','student','clothing','enfants','paediatrics','unicef','infancy','babes','lads','they','secondary','bambino','infantile','miners','underage','descendants','barns','enfant','guys','male','less','burdens','barn','beau','peeps','minor','kinder','reduced','subjection','nino','the','lower','lowest','organization','lesser','child-care','childhoods','ciac','dependants','enfance','infantil','jeunesse','niño','under-age','tong','adult'],
+    'hope': ['promise','desire','trust','go for','hopeful','hopefully','believe','wish','chance','want','optimism','expect','pray','think','urge','expectation','aim','opportunity','belief','vow','confidence','intend','faith','wishing','aspire','wants','wishes','wait','wished','despair','wanted','await','dream','look','waiting','aspirations','expects','anticipate','ask','illusion','aspiration','omen','urged','better','expectancy','luck','attempt','lot','like','desirous','expectations','anticipation','prospect','perspective','rely','augur','anticipates','call','count','vote','sing','trusts','deferred','mma','span','bob','hoppe','reb','amal','hoop','esperanza','espoir','espérance','expectancies','esperance','mel','mul','simpson','glad','someday','happy','feel','glimmer','try','fear','need','strive','thankful','implore','confident','wanhope','say','convinced','grateful','insist','surely','rejoice','worry','positiveness','regret'],
+    'inspiration': ['brainchild','stirring','inhalation','breathing in','encouragement','muse','inspire','impetus','motivation','imagination','spirit','enlightenment','enthusiasm','vision','beacon','aspiration','palette','guide','example','impulse','momentum','breath','idea','goddess','important','guidance','hint','incentive','model','centrepiece','impression','revelation','emulation','breathing','stimulus','basis','suggestion','creativity','passion','joy','creativeness','wisdom','artistry','ingenuity','spirituality','inspirationist','solace','theopneusted','wellspring','entheal','entheastic','mentor','inspirable','admiration','touchstone','interspiration','courage','homage','sustenance','encourager','sketch pad','catalyst','love','inbreathe','metaphor','springboard','nourishment','devotion','reverence','genius','overcomer','motivator','exemplar','pride','greatness','succor','uplifting','michelangelesque','indomitability','spiritally','epiphany','leitmotif','tirelessness','zest','oneirocriticism','perseverance','timelessness','spark','transcendentalist','pathognomy','ideas','boundlessness','resonance','thrill','afflation','vivaciousness','kindness','admirer','idol','inventiveness'],
+    'marriage': ['matrimony','wedding','wedlock','married couple','union','man and wife','marriage ceremony','marry','marrying','married','divorce','wed','marital','remarriage','matrimonial','bride','prenup','spousal','conjugal','weddings','spouse','wife','husband','polygyny','knot','brides','intermarriage','couple','family','matchmaking','alliance','mating','household','ceremony','match','marie','martial','anniversary','celebration','pair','affinity','meager','combination','torque','blend','common-law','zakon','nuptials','cohabitation','monogamy','betrothal','serial monogamy','decree absolute','premarital','decree nisi','infidelity','parenthood','fatherhood','courtship','marital status','bigamy','banns','civil marriage','adelphogamy','open marriage','dismarry','group marriage','marriage of convenience','mariage','monandry','sponsal','couples','deuterogamy','digamist','newlyweds','bachelorhood','solemnisation','romance','digamy','polygamize','digamous','elopement','misogamist','bedswerver','loveless','polygamy','unfaithfulness','divorcees','sororate','marriable','adultery','solemnization','monogyny','alimony','polyandry','procreative','relationship','community property','platonic','confarreation'],
+    'travel': ['trip','journey','jaunt','go','move','locomotion','change of location','locomote','travelers','trips','journeys','flights','traveler','itinerary','cruise','fly','vacation','commuting','sightseeing','hitchhike','destination','commute','transportation','flight','depart','accommodation','trek','transport','excursions','tourism','fare','passengers','ride','outbound','excursion','ticket','visa','freight','visit','honeymoon','holiday','passport','rides','leave','tourist','route','voyages','voyage','passenger','hospitality','transporting','road','sail','tours','tourists','shipping','traffic','traverse','visitor','relocation','tour','come','transit','navigate','touring','air','travellers','relocate','enter','roam','mobility','haulage','migrate','transports','voyager','reimbursement','reach','carriers','drive','get','moving','navigation','walk','browse','departure','transfer','cross','make','walking','circulate','borrow','town','wend','proceed','racing','moves','surrender','entry','touristic','way'],
+    'strength': ['potency','durability','persuasiveness','intensity','effectiveness','force','forte','forcefulness','specialty','metier','speciality','enduringness','lastingness','long suit','military capability','strong point','resilience','resiliency','strong','toughness','stamina','fortitude','prowess','tenacity','solidity','firmness','determination','vigor','superiority','momentum','dynamism','courage','depth','clout','robustness','ability','strengthening','resilient','endurance','muscle','vitality','closeness','stature','skill','success','elasticity','decisiveness','strengthen','solid','presence','backbone','stability','soundness','hardness','capability','robust','steadfastness','power','hardiness','vibrancy','importance','concentration','talent','pressure','advantages','weight','resistance','powerful','size','stiffness','leverage','extent','advantage','capacity','cogency','steam','severity','reinforcement','bravery','edge','rigor','powerhouse','vehemence','influence','reliability','numbers','stringency','impetus','powers','validity','value','level','reluctance','virtue','stress','dynamic','energy','horsepower','incumbency','complement'],
+    'peace': ['peace treaty','serenity','peacefulness','public security','repose','heartsease','ataraxis','peace of mind','peacemaking','reconciliation','truce','tranquility','peaceful','peacemakers','concord','harmony','pacification','stability','appeasement','peacemaker','freedom','peacefully','peacekeeping','peacekeepers','pacifist','calmness','paix','settlement','political','calm','salaam','security','salam','quiet','islam','lull','quietness','paz','silence','process','pacific','sholom','safely','peacetime','missions','order','anger','keeping','anthem','rest','consolation','outrage','hoping','fred','degree','push','wrath','break','pace','activities','alone','ciao','pushing','mier','tranquillity','staircase','taiping','level','operations','rate','capc','ladder','delivered','freds','brasileiro','dpko','frieden','pacifica','peace-loving','peacebuilding','pso','ceasefire','mir','ping','disarmament','unity','nonviolence','amity','coexistence','prosperity','shalom','happiness','oneness','contentment','democracy','rapprochement','peace conference','democratic','pacificator','disengagement'],
+    'leaders': ['leadership','officials','representatives','politicians','chiefs','governments','presidents','policymakers','commanders','executives','chieftains','governors','dignitaries','summit','statesmen','champions','elites','elders','chairmen','rulers','spokespersons','administrators','spokesmen','luminaries','bosses','cadres','entrepreneurs','officers','unionists','managers','elite','authorities','captains','principals','heads','commander','men','leading','governing','pioneers','managements','monarchs','owners','ceos','makers','supervisors','bellwethers','chefs','personalities','superiors','presenters','princes','masters','drivers','commandos','figures','facilitator','caucuses','chief','directors','nobles','warlords','protagonists','frameworks','noblemen','captain','moguls','senior','lords','management','officer','command','leads','accountable','bearers','executive','responsibility','chairs','guides','direction','fuhrer','lead','commands','head','formers','counts','guiding','arrows','chef','responsible','charge','vips','ceo','animators','chairpersons','discussants','facilitators','frontrunners','führer','leadership'],
+    'finances': ['funds','cash in hand','monetary resource','pecuniary resource','financial','financially','budgets','budget','auditors','coffers','fiscal','funding','comptroller','financials','resources','accounts','bankrolls','revenues','economies','economically','treasury','exchequers','economics','exchequer','appropriations','households','pays','subsidizes','underwrites','means','supports','hacienda','chests','debt','balance sheet','solvency','economy','purse strings','creditworthiness','borrowing','bookkeeping','cashflow','auditor','spending','pension','outgoings','insolvency','dealings','cash flow','checkbook','treasurer','fisc','relations','economic','expenditures','credit','assets','welfare','incomes','indebtedness','refinancing','accountant','credit crunch','loans','money','payroll','endowments','audit','expenses','recession','affairs','stockholdings','disbursements','pocketbooks','mismanagement','liquidity','trustees','fortunes','troubles','investments','payments','ledgers','spendthrift','governance','relationship','mortgage','footing','liabilities','taxpayers','shortfalls','receipts','unsecured debt','cutbacks','credibility','stewardship','savings','health','business','repayment','disposable income'],
+    'salvation': ['redemption','savior','forgiveness','reincarnation','liberation','lifeline','rescuer','rescuing','rescue','saving','saved','rescuers','relief','solution','hallo','salvage','rescued','rescues','save','bailout','howdy','hey','cheerio','hiya','bye','goodbye','soup','victoria','ticket','salut','greeting','greetings','saviour','release','hello','welcome','heil','salvo','drawee','salute','hail','resort','blaze','bail-out','bye-bye','deliverance','resurrection','salvific','righteousness','repentance','sanctification','holiness','god','atonement','blessedness','divine','redeemer','messiah','heaven','sinner','faith','sin','damnation','perdition','transcendence','beatitude','enlightenment','immortality','terminism','prophets','eternal damnation','absolution','providence','lovingkindness','metanoia','wholeness','faithfulness','lowliness','fulness','apostles','prophecy','koinonia','transubstantiation','transfiguration','godhood','gnosis','eschaton','souls','exaltation','samsara','oblation','afterlife','apostle paul','purgation','disciples','perfectibility','sonship','eternities','heathenism','littleness'],
+    'emotion': ['emotional','excitement','sadness','sorrow','passion','compassion','indignation','affection','fervor','sympathy','emotive','feeling','sense','thrill','outrage','sentiment','shock','mood','feel','consternation','distress','commotion','turmoil','heart','upset','upheaval','unrest','movement','stir','agitation','microchip','chip','cit','grief','empathy','anguish','pathos','anger','frustration','angst','jealousy','anxiety','emotionality','feelings','emotionalist','elation','pathognomy','exuberance','emotional state','sentimentality','joy','adrenaline','tears','affectuous','remorse','sobs','enthusiasm','despair','dejection','emotionalism','adrenalin','incredulousness','negativity','bitterness','exhilaration','poignancy','jubilation','dispathy','bravado','wistfulness','histrionics','psychological state','bashfulness','instinct','melancholy','heartbreak','soulfulness','sarcasm','laughter','nervousness','spontaneity','exultation','nuance','cognitive state','anxiousness','peevishness','impassionable','hopefulness','theatrics','pensiveness','joviality','rawness','sombreness','anthropopathy','aloneness','nerves','joyousness','positiveness','bewilderment','nostalgia'],
+    'sexual': ['intersexual','intimate','unisexual','sexy','sexed','sex','intercourse','lewd','sexuality','erotic','carnal','heterosexual','genital','indecent','pornographic','pornography','sexualized','reproductive','gender','obscene','sexist','harassment','mating','impotence','dishonest','nature','provokes','vice','character','nationality','naturalization','infections','representativeness','citizenship','the','rogue','csec','gamic','statelessness','homosexual','nonsexual','bisexual','sadomasochistic','extramarital','gay','lustful','kinky','homoerotic','lesbian','psychosexual','sensual','male','raunchy','porn','sex act','sexual relation','erotographomania','amphigony','amphigenesis','consensual','anisogamous','amphigonic','lascivious','antiaphrodisiac','esexual','sexualist','suggestive','psychosexual development','sex organ','monandrous','erotopathy','transexion','sexual intercourse','amorous','protandric','criminal conversation','heterogamous','genophobia','carnal knowledge','venereous','algophilia','digenesis','algolagnic','putage','procreative','autoerotic','dirty old man','flirtatious','sex object','libidinosity','cacogenic','vaginal','sexual arousal','inappropriate','digenetic','prurient','open marriage','lustless','licentious','adolescent'],
+    'drugs': ['dose','do drugs','medications','medicines','narcotics','pills','painkillers','narcotic','medication','stimulants','substances','meds','dope','prescriptions','therapies','treatments','medicine','pharmaceuticals','pharmaceutical','medicinal','substance','sedatives','illicit','medicaments','addicts','sedates','addictions','pharmacy','inhibitors','addiction','intoxicants','doping','herbs','cures','downers','medical','remedies','abuse','dopes','products','product','poisonous','supplies','expensive','use','drogue','anti-drug','antimicrobials','cox-2','drogues','drug-free','hopheads','immunosuppressants','roofies','scrips','heroin','cocaine','methadone','amphetamines','methamphetamine','ketamine','dextroamphetamine','cocain','morphine','opiates','methylenedioxymethamphetamine','ecstasy','cannabis','psychoactive substance','antianxiety drug','methaqualone','meth','prescription drug','pimozide','narcan','anticonvulsants','alcohol','imuran','ketamine hydrochloride','pentazocine','antidepressant','nardil','temazepam','mdma','fentanyl','dilaudid','diacetylmorphine','ephedrine','prescription','coricidin','retrovir','pethidine','oxazepam','booze','dronabinol','triazolam','molindone','marijuana','chlordiazepoxide','tranquillizer'],
+    'suicide': ['felo-de-se','self-annihilation','self-destruction','suicidal','homicide','death','bomb','bombing','martyrdom','attack','bombers','terrorist','bomber','kamikaze','kill','explosion','martyr','attacker','commando','fedayeen','madness','guerrilla','ideation','overkill','car','throat','jumper','sacrificial','terminator','slaughterhouse','booby-trapped','fedayee','one-way','self-immolation','self-inflicted','suicidality','commit suicide','murder','filicide','assassination','violence','arson','fatality','overdose','rape','tragedy','murderer','alcoholism','crime','seppuku','terror','victimization','suicide bombing','felo de se','suicide bomber','uxoricide','bombings','crime of passion','sororicide','shootings','depression','attacks','spree killer','murderee','drownings','psychiatric','mental illness','abduction','bomb blast','cruentation','murther','slaying','kidnapping','immolation','vaticide','drowning','mentally ill','killing','psychiatrists','stillbirth','parasuicide','suist','hijacking','mactation','mental health','suicism','thanatosis','foeticide','put to death','miscarriage','ptsd','defunction','assaults','clinical depression','deadlihood','posttraumatic stress disorder','drygulch','femicide','suicidology','blasts'],
+    'pain': ['anguish','painfulness','hurting','annoyance','hurt','trouble','botheration','afflict','ail','bother','nuisance','pain in the ass','pain in the neck','painful sensation','discomfort','ache','agony','soreness','anxiety','heartache','trauma','grief','painful','headache','sore','suffering','nausea','hardship','misery','torment','distress','tenderness','heartbreak','injury','sorrow','sadness','affliction','analgesic','analgesia','hurts','painkiller','bitterness','woe','burden','torments','inconvenience','loss','sting','harm','difficulty','balm','damage','relaxation','regret','ordeal','bereavement','wound','sympathy','misfortune','sufferance','plight','sacrifice','prejudice','punishment','pity','bedside','squirm','bad','thorn','undesirability','time','aggrieve','wrong','grievance','sentencing','tolerance','ill','badly','weak','death','lot','touch','penalty','mother','umma','worth','sentence','evil','poorly','loaf','arrears','mal','boring','backlog','maternal','beard','motherland','term','spite','smart']
+};
+
 var allCommands = {
     "previewPrayer": true,
     "passwordChange": true,
@@ -135,6 +159,7 @@ var allCommands = {
     "prayFor": true,
     "getAllPrayers": true,
     "readPrayer": true,
+    "getTemp": true,
     "updatePrayer": true,
     "createPrayer": true,
     "joinRosarySession": true,
@@ -173,7 +198,8 @@ if (command == "getPrayerCount") {
 
 if (command == "getAllPrayers") {
     query = "SELECT * ";
-    query += "FROM prayers;";
+    query += "FROM prayers ";
+    query += "WHERE prayers.active = 1;";
 }
 
 if (command == "deletePrayer") {
@@ -311,14 +337,17 @@ if (command == "previewPrayer") {
 if (command == "getPrayer") {
     requireParam("requestId");
 
+    var debug = (queryObject["debug"]) ? queryObject.debug : false;
+
     query = "SELECT user.real_name,user.gender,";
-    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,request.fk_prayer_id,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM request INNER JOIN user ";
     query += "WHERE user.user_id = request.user_id ";
     query += "AND request.request_id = '" + queryObject.requestId + "';";
 
-    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title ";
-    query += "FROM prayers; ";
+    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title,prayers.prayer_id ";
+    query += "FROM prayers ";
+    query += "WHERE prayers.active = 1;";
 
     const pool = createPool();
     module.exports = pool;
@@ -330,6 +359,8 @@ if (command == "getPrayer") {
 		    var realName = "";
 		    var gender = "";
 		    var otherPerson = "";
+		    var prayerId = "";
+		    var selectedPrayerFileName = "";
 
 		    var request = rows[0][0];
 		    var prayers = rows[1];
@@ -339,46 +370,147 @@ if (command == "getPrayer") {
 			realName = request.real_name;
 			gender = request.gender;
 			otherPerson = request.other_person;
+			prayerId = request.fk_prayer_id;
+
+			for (var i = 0; i < prayers.length; i++) {
+			    if (prayers[i].prayer_id == prayerId) {
+				selectedPrayerFileName = prayers[i].prayer_file_name;
+			    }
+			}
 		    }
 
-		    var bestPrayerObj = getBestPrayer(prayers, requestText);
-		    var bestPrayer = bestPrayerObj.result;
-		    var scores = bestPrayerObj.scores;
-		    var title = bestPrayerObj.name;
+		    if (debug) {
+			console.log("request text");
+			console.log(requestText);
+		    }
 
-		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
-			if (err) {
-			    console.log("Error");
-			    console.log(err);
-			    return;
+		    const rake = require('node-rake');
+		    const myKeywords = rake.generate(requestText);
+		    const datamuse = require('datamuse');
+		    if (debug) {
+			console.log("keywords...");
+			console.log(myKeywords);
+		    }
+
+		    // https://www.npmjs.com/package/parts-of-speech
+		    var chosen = myKeywords[0];
+		    var pos = require('pos');
+		    for (var i = 0; i < myKeywords.length; i++) {
+			// phrase has priority
+			if (myKeywords[i].split(" ").length > 1) {
+			    chosen = myKeywords[i];
+			    var phraseWords = chosen.split(" ");
+			    for (var j = 0; j < phraseWords.length; j++) {
+				var words = new pos.Lexer().lex(phraseWords[j].toLowerCase());
+				var tagger = new pos.Tagger();
+				var taggedWords = tagger.tag(words);
+				for (k in taggedWords) {
+				    var taggedWord = taggedWords[k];
+				    var word = taggedWord[0];
+				    var tag = taggedWord[1];
+				    if (debug) console.log("got phrase:" + word + " /" + tag);
+				    if (tag == "VB" || tag == "VBN") {
+					chosen = word;
+					break;
+				    }
+				    // adjective has priority
+				    if (tag == "JJ") {
+					chosen = word;
+					break;
+				    }
+				}
+			    }
 			}
-			var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
-			var obj = {};
-			obj["result"] = {};
-			obj["result"]["prayer_title"] = title;
-			obj["result"]["prayer_text"] = customPrayer;
-			obj["result"]["request"] = request;
-			obj["query"] = query;
-			obj["scores"] = scores;
-			console.log(JSON.stringify(obj));
-			conn.release();
-			conn.end();
-			process.exit();
-			return;
-		    });
-		})
-		.catch(err => {
-                    console.log("not connected due to error: " + err);
-                    var obj = {};
-                    obj["result"] = err;
-                    obj["query"] = query;
-                    console.log(JSON.stringify(obj));
-                    conn.release();
-                    conn.end();
-                    process.exit();
-                })
-	})
-    return;	    
+			var words = new pos.Lexer().lex(myKeywords[i].toLowerCase());
+			var tagger = new pos.Tagger();
+			var taggedWords = tagger.tag(words);
+			for (j in taggedWords) {
+			    var taggedWord = taggedWords[j];
+			    var word = taggedWord[0];
+			    var tag = taggedWord[1];
+			    if (tag == "VB" || tag == "VBN") {
+				chosen = word;
+				break;
+			    }
+			    // adjective has priority
+			    if (tag == "JJ") {
+				chosen = word;
+				break;
+			    }
+			    if (debug) console.log("regular:" + word + " /" + tag);
+			}
+		    }
+
+		    if (debug) console.log("chosen word = " + chosen);
+		    
+		    datamuse.words({
+			ml: chosen
+		    })
+			.then((json) => {
+			    var keywords = {};
+			    for (var i = 0; i < json.length; i++) {
+				keywords[json[i].word] = true;
+			    }
+			    var score = {};
+			    for (var key in categories) {
+				score[key] = 0;
+			    }
+			    for (var key in categories) {
+				for (var i = 0; i < categories[key].length; i++) {
+				    if (keywords[categories[key][i]]) score[key]++;
+				}
+			    }
+			    if (debug) console.log(score);
+
+			    const max = Object.keys(score).reduce((a, v) => Math.max(a, score[v]), -Infinity);
+			    const result = Object.keys(score).filter(v => score[v] === max);
+
+		    	    var bestPrayerObj = { result: result[0]+"1", scores: score, title: "general" };
+			    var bestPrayer = bestPrayerObj.result;
+			    var scores = bestPrayerObj.scores;
+			    scores["chosen"] = chosen;
+			    var title = bestPrayerObj.name;
+
+			    // don't use logic to select best prayer, just select assigned prayer
+			    if (selectedPrayerFileName) {
+				bestPrayer = selectedPrayerFileName;
+			    }
+
+			    // if prayerId exists, pick that bestPrayer prayer name
+			    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
+				if (err) {
+				    console.log("Error");
+				    console.log(err);
+				    return;
+				}
+				var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
+				var obj = {};
+				obj["result"] = {};
+				obj["result"]["prayer_title"] = title;
+				obj["result"]["prayer_text"] = customPrayer;
+				obj["result"]["request"] = request;
+				obj["result"]["query"] = query;
+				obj["result"]["scores"] = scores;
+				console.log(JSON.stringify(obj));
+				conn.release();
+				conn.end();
+				process.exit();
+				return;
+			    });
+			})
+			.catch(err => {
+			    console.log("not connected due to error: " + err);
+			    var obj = {};
+			    obj["result"] = err;
+			    obj["query"] = query;
+			    console.log(JSON.stringify(obj));
+			    conn.release();
+			    conn.end();
+			    process.exit();
+			})
+		});
+	});
+    return;
 }
 
 if (command == "deleteRequest") {
@@ -584,6 +716,15 @@ if (command=="passwordChange") {
 		process.exit();
 	    });
     });
+}
+
+if (command == "getTemp") {
+    var max = 10;
+    var temp = (Math.random() * (99 - 97.9) + 97.9).toFixed(2);
+    var obj = {};
+    obj["result"] = temp;
+    console.log(JSON.stringify(obj));
+    process.exit();
 }
 
 if (command == "updateUser") {
@@ -919,6 +1060,17 @@ if (command == "createUser") {
 		    .then((rows) => {
 			var obj = {};
 
+			if (mypassword == "facebook") {
+			    obj["output"] = env;
+			    obj["result"] = 'facebook user created';
+			    obj["query"] = query;
+			    console.log(JSON.stringify(obj));
+			    process.exit();
+			    conn.release();
+			    conn.end();
+			    return;
+			}
+
 			var transporter = nodemailer.createTransport({
                             service: 'gmail',
                             auth: {
@@ -967,7 +1119,6 @@ if (command == "createUser") {
 			})
 		    })
 		    .catch(err => {
-			console.log("not connected due to error: " + err);
 			var obj = {};
 			obj["result"] = err;
 			obj["query"] = query;
@@ -987,15 +1138,27 @@ if (command == "createRequest") {
     requireParam("requestTitle");
     requireParam("requestCategoryId");
     requireParam("sendEmail");
+    requireParam("preview");
+    requireParam("prayerId");
+
+    var preview = queryObject.preview;
+
+    if (preview == "false") active = "TRUE";
+    else active = "FALSE";
     
-    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, other_person, picture, active) VALUES (";
+    query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, other_person, picture, fk_prayer_id, active) VALUES (";
     query += "'" + queryObject.userId + "',";
     query += "'" + queryObject.requestText + "',";
     query += "'" + queryObject.requestTitle + "',";
     query += "'" + queryObject.requestCategoryId + "',";
     query += "'" + queryObject.otherPerson + "',";
     query += "'" + queryObject.picture + "',";
-    query += "TRUE);";
+    query += "'" + queryObject.prayerId + "',";
+    query += active + ");";
+
+    if (preview) {
+	query += "SELECT request_id FROM request WHERE request_id = LAST_INSERT_ID();";
+    }
 
     query += "SELECT user.real_name, user.email ";
     query += "FROM user ";
@@ -1013,8 +1176,12 @@ if (command == "createRequest") {
 	    	.then((rows) => {
 		    if (queryObject.sendEmail !== "on") {
 			var obj = {};
-			obj["result"] = 'No email sent';
-			obj["query"] = "No Query";
+			if (preview) {
+			    obj["result"] = rows[1][0];
+			} else {
+			    obj["result"] = 'No email sent';
+			}
+			obj["query"] = query;
 			console.log(JSON.stringify(obj));
 			process.exit();
 			return;
@@ -1079,7 +1246,7 @@ if (command == "createRequest") {
 			    if (error) {
 				var obj = {};
 				obj["result"] = 'Error: ' + error;
-				obj["query"] = "No Query";
+				obj["query"] = query;
 				console.log(JSON.stringify(obj));
 				process.exit();
 				return;
@@ -1087,7 +1254,7 @@ if (command == "createRequest") {
 				var obj = {};
 				obj["output"] = env;
 				obj["result"] = 'Email sent: ' + info.response;
-				obj["query"] = "No Query";
+				obj["query"] = query;
 				console.log(JSON.stringify(obj));
 				process.exit();
 				conn.release();

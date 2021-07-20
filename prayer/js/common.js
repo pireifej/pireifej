@@ -199,6 +199,14 @@ $( document ).ready(function() {
 	$("#title").html("Pray For Us - Prayer Social Network");
     }
 
+    window.helloClick = function() {
+	console.log("Hello!");
+	FB.ui({
+	    method: 'share',
+	    href: 'https://developers.facebook.com/docs/',
+	}, function(response){});
+    }
+
     window.submitQuickRequest = function() {
 	var categoryId = null;
 	for (var i = 0; i < categories.length; i++) {
