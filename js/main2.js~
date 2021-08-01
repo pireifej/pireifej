@@ -1,0 +1,221 @@
+$( document ).ready(function() {
+    var fullElem = "";
+    var stuff = [
+	{
+	    image: 'img/gallery/portfolio-12.jpg',
+	    label: 'aiOpX',
+	    type: 'projects',
+	    href: 'aiopx',
+	    desc: '<p>aiOpX (or Artifical Intelligence Operations X - any) is a real-time fraud monitoring application. It performs a health check on internal fraud systems and tracks errors, down-time, and generates metrics based on log files.</p><p>There are dynamic rules that include a mitigation to when a rule is triggered. The mitigation includes responses such as sending an email to a preset distribution list (business hours vs. off-hours), and paging a cell phone.</p><p><b>Developed key front-end capabilities: severity cases landing page, raw JSON recorde view, application field type with virtual field support.</b></p>'
+	},
+	{
+	    image: 'img/gallery/portfolio-11.jpg',
+	    label: 'Crossroads',
+	    type: 'projects',
+	    href: 'xrds'
+	},
+	{
+	    image: 'img/gallery/portfolio-10.jpg',
+	    label: 'Watch Dog',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-09.jpg',
+	    label: 'FASTR',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-07.PNG',
+	    label: 'Project Frugality',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-06.jpg',
+	    label: 'Electronic Law Enforcement Activity Tracker',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-08.PNG',
+	    label: 'Parent Locator Service (PLS)',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-05.jpg',
+	    label: 'Consolidated Compliance System',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-04.jpg',
+	    label: 'Mobility Community of Interest',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-03.jpg',
+	    label: 'Integrated Software Environment',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-02.jpg',
+	    label: 'Software Engineer - AMD',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Student Researcher',
+	    type: 'projects'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Internship at the White House',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'How I Met My Wife',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'The Greatest Father in the World',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'I am P-P-Paul',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Evaluation Contest',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Improvise and Don\'t Apologize',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Don\'t Stop Speaking',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'What\'s the Point?',
+	    type: 'speech'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'CFCA 2018 - Chicago',
+	    type: 'conference'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'CFCA 2019 - Tucson',
+	    type: 'conference'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'CFCA 2020 - Zoom',
+	    type: 'conference'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'CFCA 2021 - Zoom',
+	    type: 'conference'
+	},
+	{
+	    image: 'img/gallery/network.jpg',
+	    label: 'Routing Optimization Based On Historical Network Measures',
+	    type: 'patent',
+	    href: 'https://patents.justia.com/patent/20200112905'
+	},
+	{
+	    image: 'img/gallery/interface.jpg',
+	    label: 'Extending Legacy Scripting Languages with Graphical References',
+	    type: 'patent',
+	    href: 'https://patents.google.com/patent/US20170329620A1/en'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'It Can\'t Wait',
+	    type: 'hackathon'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Fraud Finder',
+	    type: 'hackathon'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Polished Speaker',
+	    type: 'hackathon'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: '2016',
+	    type: 'hackathon'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'SMS Stalker',
+	    type: 'hackathon'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: '2020 Walt Disney World® Maratho',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: '2019 Rocky Run',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Independence Rhode Race Half Marathon',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Rhinebeck Hudson Valley Half Marathon',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Philadelphia Half Marathon',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Run from Winter 10K',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Hustle for the Puzzle 5k Road Race for Autism',
+	    type: 'race'
+	},
+	{
+	    image: 'img/gallery/portfolio-01.jpg',
+	    label: 'Verizon Wireless Corporate Classic',
+	    type: 'race'
+	}
+    ];
+    for (var i = 0; i < stuff.length; i++) {
+	var href = stuff[i].href;
+	if (href && href.includes("http")) {
+	    href = stuff[i].href;
+	} else {
+	    href = "#" + stuff[i].href;
+	}
+	fullElem += "<div class='single-item col-6 col-lg-4 " + stuff[i].type + "'><a class='portfolio-item' href='" + href + "'><div class='portfolio-wrapper'><img class='img-fluid' alt='Item' src='" + stuff[i].image + "'><div class='item-content'><h6 class='content-title'>" + stuff[i].label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
+    }
+    $("#ireifej").html(fullElem);
+
+    fullElem = "";
+    for (var i = 0; i < stuff.length; i++) {
+	fullElem += "<!-- Single lightbox--><div class='lightbox-wrapper' id='" + stuff[i].href + "'><div class='f-basis-100'><div class='lightbox-close' data-modal-close><span class='close-btn'><span class='btn-line'></span></span></div></div><div class='container'><div class='row'><div class='col-12 col-lg-5'><div class='lightbox-gallery owl-carousel owl-theme'><img class='img-fluid item-img' alt='Item' src='img/item-1.jpg'><img class='img-fluid item-img' alt='Item' src='img/item-2.jpg'><img class='img-fluid item-img' alt='Item' src='img/item-3.jpg'><img class='img-fluid item-img' alt='Item' src='img/item-4.jpg'><img class='img-fluid item-img' alt='Item' src='img/item-5.jpg'><img class='img-fluid item-img' alt='Item' src='img/item-6.jpg'></div></div><div class='col-12 col-lg-7'><div class='lightbox-content'><h3 class='content-title'>" + stuff[i].label + "</h3><div class='content-description'>"+stuff[i].desc+"</div><ul class='list-inline content-info'><li class='list-inline-item single-info'><span>Client:</span><p>Envato</p></li><li class='list-inline-item single-info'><span>Categories:</span><p><a href='#0'>Branding</a>, <a href='#0'>Web Design</a></p></li><li class='list-inline-item single-info'><span>Date:</span><p>12 May, 2019</p></li><li class='list-inline-item single-info'><span>Technologies:</span><p>HTML5, SCSS, JS</p></li></ul><a class='btn content-btn button-main button-scheme' href='#0' role='button'>Visit Project</a></div></div></div></div></div>";
+    }
+    $("#ireifej2").html(fullElem);
+});
