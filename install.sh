@@ -25,5 +25,9 @@ for file in /var/www/html/*; do
     	 s/{{header}}//g
     	 r /var/www/html/header.html
 	 }' $file
+       sudo sed -i '/{{toastmastersBio}}/{
+    	 s/{{toastmastersBio}}//g
+    	 r /var/www/html/toastmastersBio.html
+	 }' $file
     fi
 done

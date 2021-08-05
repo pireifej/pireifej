@@ -47,22 +47,22 @@
     //------- Mailchimp js --------//  
 
     function mailChimp(){
-        $('#mc_embed_signup').find('form').ajaxChimp();
+//        $('#mc_embed_signup').find('form').ajaxChimp();
     }
     mailChimp();
     
     /* ===== Parallax Effect===== */
 	
 	function parallaxEffect() {
-    	$('.bg-parallax').parallax();
+//    	$('.bg-parallax').parallax();
 	}
 	parallaxEffect();
     
     
-    $('select').niceSelect();
-    $('#datetimepicker11,#datetimepicker1').datetimepicker({
-        daysOfWeekDisabled: [0, 6]
-    });
+//    $('select').niceSelect();
+//    $('#datetimepicker11,#datetimepicker1').datetimepicker({
+//        daysOfWeekDisabled: [0, 6]
+//    });
     
      /*---------gallery isotope js-----------*/
     function galleryMasonry(){
@@ -86,7 +86,7 @@
 	/*----------------------------------------------------*/
     /*  Simple LightBox js
     /*----------------------------------------------------*/
-    $('.imageGallery1 .light').simpleLightbox();
+//    $('.imageGallery1 .light').simpleLightbox();
     
     /*----------------------------------------------------*/
     /*  Google map js

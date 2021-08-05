@@ -1,0 +1,16 @@
+                <!-- Single post-->
+            <div class='col-12 col-sm-8 col-lg-4'>
+              <div class='card single-post'><a class='post-img' href='https://pireifej.com/chicago.html'><img class='card-img-top' src='img/gallery/cfcaMain.png' alt='Blog post'><span class='content-date'>June 26, 2018</span></a>
+                <div class='card-body post-content'><a href='https://pireifej.com/chicago.html'>
+                    <h5 class='card-title content-title'>CFCA in Chicago</h5>
+                  </a>
+                  <p class='card-text content-description'>My trip to Chicago to present at the 2018 CFCA.</p>
+                  <div class='content-tags'><span class='tags-title'>Tags:</span>
+                    <ul class='list-unstyled list-inline tags-list'>
+                      <li class='list-inline-item'><a href='#0'>Photography</a></li>
+                      <li class='list-inline-item'><a href='#0'>Freelance</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
