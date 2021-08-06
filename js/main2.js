@@ -389,41 +389,75 @@ $( document ).ready(function() {
 	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'cfca/cfca.jpg',
 	    label: 'CFCA 2018 - Chicago',
-	    type: 'conference'
+	    type: 'conference',
+		desc: '<p>Communications Fraud Control Association (CFCA) 2018 Annual Meeting & Summer Educational Event in the Kimpton Monaco Hotel in Chicago, IL, USA. The title of my talk was "Managing a Succesful System Migration." This was my first time speaking at the CFCA.</p>',
+	    href: 'cfca1',
+	    gallery: ['cfca/20180625_170113.jpg','cfca/20180626_122932.jpg','cfca/20180626_011817.jpg','cfca/20180626_011842.jpg','cfca/20180626_122807.jpg','cfca/20180626_151308.jpg','cfca/IMG_0184.JPG','cfca/20180626_190439.jpg'],
+			details: {
+			date: 'June 26, 2018',
+			location: 'Kimpton Monaco in Chicago, IL',
+			agenda: '<a href="cfca/Chicago 2018 Agenda - Final SG2 6-20-2018.pdf">Download Agenda<i class="fa fa-thumb-tack"></i></a>',
+			cfca: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'cfca/47F7693E-AC09-4CF6-A628-A2B5BE57166B-519-0000002C1532B394.jpg',
 	    label: 'CFCA 2019 - Tucson',
-	    type: 'conference'
+	    type: 'conference',
+		desc: '<p>Powerful and sustained change requires constant communication, not only throughout the rollout but after the major elements of the plan are in place. The more kinds of communication employed, the more effective they are.</p><p>Communications Fraud Control Association (CFCA) Fall 2019 Educational Event in the El Conquistador Tucson Hilton Resort in Tucson, AZ, USA. The title of my talk was \"Reeling in Outsourced Fraud Mitigation Development.\" This was my second time speaking at the CFCA.</p>',
+	    href: 'cfca2',
+	    gallery: ['cfca/IMG_20191014_172247.jpg','cfca/IMG_20191015_0831219.jpg','cfca/frontRoomLarge.jpg','cfca/backRoomLarge.jpg','cfca/outsideLarge.jpg','cfca/chickenLarge.jpg','cfca/IMG_20191015_151101.jpg','cfca/IMG_20191015_141121.jpg'],
+			details: {
+			date: 'June 26, 2018',
+			location: 'Kimpton Monaco in Chicago, IL',
+			agenda: '<a href="cfca/Chicago 2018 Agenda - Final SG2 6-20-2018.pdf">Download Agenda<i class="fa fa-thumb-tack"></i></a>',
+			cfca: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/gallery/cfcaMain.png',
 	    label: 'CFCA 2020 - Zoom',
-	    type: 'conference'
+	    type: 'conference',
+		desc: '<p>In corporate America, we operate by the maxim: what gets measured, gets done. We use data to recognize trends, inform our goals, and drive our decision-making and actions.</p><p>Communications Fraud Control Association (CFCA) Fall 2020 Educational Event on Zoom. The title of my talk was \"Real Time Machine Learning and AI Operations.\" This was my third time speaking at the CFCA.</p><a href="docs/Speaker Certificate Paul Ireifej 27 October 20.pdf">Download Certificate<i class="fa fa-thumb-tack"></i></a><iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRK_tNmWEXUO7C1oJwm1I7E-X8TrCp1uIY-xAqPEYIes52ne3H2xJbZjlpfyFLzAg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>',
+		href: 'cfca3',
+	    gallery: ['cfca/Screenshot_20201028-093200.png'],
+			details: {
+			date: 'October 27, 2020',
+			location: 'Zoom',
+			agenda: '<a href="docs/aagenda.pdf>Download Agenda<i class="fa fa-thumb-tack"></i></a>',
+			cfca: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/gallery/cfcaMain.png',
 	    label: 'CFCA 2021 - Zoom',
-	    type: 'conference'
+	    type: 'conference',
+		desc: '<p>Communications Fraud Control Association (CFCA) \'Spring into 2020ONE Education Event\' on Zoom. The title of my talk was \"Transformation as a Service.\" This was my fourth time speaking at the CFCA.</p><p>Let your customers be your parnters; let your vendors be your employees. What\'s necessary in this transformation more than anything else is courage and willingness to change</p><a href="docs/CFCA Speaker Certificate Paul Ireifej - AT&amp;T.pdf">Download Certificate<i class="fa fa-thumb-tack"></i></a>					    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQLKZQKIcP6-hrvXVsJNMd6vMY3b4qn0BUWDpOwxIA_G5Pm44RT1xehgQJjPNrjfQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>',
+		href: 'cfca4',
+	    gallery: ['cfca/Screenshot_20210421-163038.png','cfca/Screenshot_20210412-122217.png'],
+			details: {
+			date: 'April 19, 2021',
+			location: 'Zoom',
+			agenda: '<a href="docs/agenda.pdf">Download Agenda<i class="fa fa-thumb-tack"></i></a>',
+			cfca: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
+	    }
+
 	},
 	{
-	    image: 'img/gallery/network.jpg',
-	    label: 'Routing Optimization Based On Historical Network Measures',
-	    type: 'patent',
-	    href: 'https://patents.justia.com/patent/20200112905'
-	},
-	{
-	    image: 'img/gallery/interface.jpg',
-	    label: 'Extending Legacy Scripting Languages with Graphical References',
-	    type: 'patent',
-	    href: 'https://patents.google.com/patent/US20170329620A1/en'
-	},
-	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/hack/itcantwaitpng.png',
 	    label: 'It Can\'t Wait',
-	    type: 'hackathon'
+	    type: 'hackathon',
+		desc: '<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>',
+		href: 'hack1',
+		link: 'https://pireifej.com/it-cant-wait.html',
+		details: {
+			date: 'May 15, 2019',
+			location: 'AT&T Research in Middletown, NJ',
+			other1: '<a href="docs/agenda.pdf">Download Agenda<i class="fa fa-thumb-tack"></i></a>',
+			other2: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
+	    }
 	},
 	{
 	    image: 'img/gallery/portfolio-01.jpg',
@@ -444,23 +478,45 @@ $( document ).ready(function() {
 	    image: 'img/gallery/portfolio-01.jpg',
 	    label: 'SMS Stalker',
 	    type: 'hackathon'
-	}
+	},
+	{
+	    image: 'img/gallery/network.jpg',
+	    label: 'Routing Optimization Based On Historical Network Measures',
+	    type: 'patent',
+	    link: 'https://patents.justia.com/patent/20200112905',
+		href: 'patent1',
+		desc: '<p>The present disclosure relates generally to network communications, and relates more particularly to devices, computer-readable media, and methods for optimizing the routing of communications through networks based on historical network measures.</p>',
+		details: {
+			date: 'Oct 09, 2018',
+			applicationNo: '20200112905',
+			other1: 'other',
+			other2: 'other'
+	    }
+	},
+	{
+	    image: 'img/gallery/interface.jpg',
+	    label: 'Extending Legacy Scripting Languages with Graphical References',
+	    type: 'patent',
+	    link: 'https://patents.google.com/patent/US20170329620A1/en',
+		href: 'patent2',
+		desc: '<p>A graphical data type inference transparently transforms a legacy text-oriented command line interface (CLI) into a graphic-oriented or graphic-aware CLI (G-CLI).</p>',
+		details: {
+			date: 'Dec 08, 2010',
+			applicationNo: 'US20120150939A1',
+			other1: 'other',
+			other2: 'other'
+	    }
+	},
     ];
 
     for (var i = 0; i < stuff.length; i++) {
 		var href = stuff[i].href;
-		var finalHref = "";
-		if (href) {
-			finalHref = (href.includes("http")) ? href : "#" + href;
-			finalHref = "href='" + finalHref + "'";
-		}
-
 		var size = "style='height:339px; width: 338px'";
 		if (stuff[i].type == "speech") {
 			size = "style='height:200px; width: 338px'"
 		}
 		
-		fullElem += "<div class='single-item col-6 col-lg-4 " + stuff[i].type + "'><a class='portfolio-item' " + finalHref + "><div class='portfolio-wrapper'><img " + size + " class='img-fluid' alt='Item' src='" + stuff[i].image + "'><div class='item-content'><h6 class='content-title'>" + stuff[i].label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
+		fullElem += "<div class='single-item col-6 col-lg-4 " + stuff[i].type + "'><a class='portfolio-item' href='#" + href + "'><div class='portfolio-wrapper'><img " + size + " class='img-fluid' alt='Item' src='" + stuff[i].image + "'><div class='item-content'><h6 class='content-title'>" + stuff[i].label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
     }
     $("#ireifej").html(fullElem);
 
@@ -490,10 +546,25 @@ $( document ).ready(function() {
 	    var details = stuff[i].details;
 	    extraDetails = "<li class='list-inline-item single-info'><span>Year:</span><p>"+details.year + "</p></li><li class='list-inline-item single-info'><span>Location:</span><p>"+details.location + "</p></li><li class='list-inline-item single-info'><span>Contest:</span><p>"+details.contest+"</p></li><li class='list-inline-item single-info'><span>Other2:</span><p>"+details.other2+"</p></li>";
 	}
+	if (stuff[i].type == "conference" && stuff[i].details) {
+	    var details = stuff[i].details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Location:</span><p>"+details.location + "</p></li><li class='list-inline-item single-info'><span>Agenda:</span><p>"+details.agenda+"</p></li><li class='list-inline-item single-info'><span>CFCA:</span><p>"+details.cfca+"</p></li>";
+	}
+	if (stuff[i].type == "hackathon" && stuff[i].details) {
+	    var details = stuff[i].details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Location:</span><p>"+details.location + "</p></li><li class='list-inline-item single-info'><span>Other1:</span><p>"+details.other1+"</p></li><li class='list-inline-item single-info'><span>Other2:</span><p>"+details.other2+"</p></li>";
+	}
+	if (stuff[i].type == "patent" && stuff[i].details) {
+	    var details = stuff[i].details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Application Number:</span><p>"+details.applicationNo + "</p></li><li class='list-inline-item single-info'><span>Other1:</span><p>"+details.other1+"</p></li><li class='list-inline-item single-info'><span>Other2:</span><p>"+details.other2+"</p></li>";
+	}
 
 	var buttonText = "Visit Project";
 	if (stuff[i].type == "race") buttonText = "Visit Results";
 	if (stuff[i].type == "speech") buttonText = "Watch Speech";
+	if (stuff[i].type == "conference") buttonText = "Visit Presentation";
+	if (stuff[i].type == "patent") buttonText = "View Patent";
+
 	var visitProject = (stuff[i].link) ? "<a class='btn content-btn button-main button-scheme' href='" + stuff[i].link + "' role='button'>" + buttonText + "</a>" : "";
 	
 	var nextElem = "<!-- Single lightbox--><div class='lightbox-wrapper' id='" + stuff[i].href + "'><div class='f-basis-100'><div class='lightbox-close' data-modal-close><span class='close-btn'><span class='btn-line'></span></span></div></div><div class='container'><div class='row'><div class='col-12 col-lg-5'><div class='lightbox-gallery owl-carousel owl-theme'>" + images + "</div></div><div class='col-12 col-lg-7'><div class='lightbox-content'><h3 class='content-title'>" + stuff[i].label + "</h3><div class='content-description'>"+desc+"</div><ul class='list-inline content-info'>" + extraDetails + "</ul>" + visitProject + "</div></div></div></div></div>";
