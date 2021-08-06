@@ -292,7 +292,6 @@ $( document ).ready(function() {
 	    type: 'speech',
 	    desc: '<p>2015 Area 62 Tall Tales 1st Place</p><p>2015 Divison F Tall Tales 2nd Place</p>',
 	    href: 'metmywife',
-	    link: 'tbd',
 	    gallery: ['img/trophy/trophy3Large.jpg'],
 	    details: {
 		year: '2015',
@@ -317,7 +316,7 @@ $( document ).ready(function() {
 	    }
 	},
 	{
-	    image: 'img/trophy/trophy6Large.jpg',
+	    image: 'img/contests/iampaulPNG.PNG',
 	    label: 'I am P-P-Paul',
 	    type: 'speech',
 	    desc: '<p>Placed first at the 2018 Area 61 & 62 Humorous Speech Contest on October 15, 2018 at the Eastern Branch, Monmouth County Library in Shrewsbury, NJ, USA.</p><p>Did not place at the 2018 Division F Humorous Speech on TBD at the Hospital.</p>',
@@ -332,33 +331,62 @@ $( document ).ready(function() {
 	    }
 	},
 	{
-	    image: '/img/trophy/trophy11Large.jpg',
+	    image: 'img/contests/diseval4Large.jpg',
 	    label: 'Evaluation Contest',
 	    type: 'speech',
 	    desc: '<p>Placed first at the 2019 Area 62 Evaluation 1st Place at the Bayshore Medical Center on March, 2019.</p><p>Placed first at the 2019 Division F Evaluation at the Bayshore Medical Center on March 2019.</p><p>Placed first at the 2019 District 83 Evaluation 1st Place at the APA Woodbridge Hotel in Iselin, NJ.</p>',
 	    href: 'evaluation',
-	    gallery: ['img/trophy/trophy7Large.jpg','img/trophy/trophy8Large.jpg','img/contests/areaeval.jpeg','img/contests/diveval.jpg','img/contests/disteval.jpg','img/contests/diseval3Large.jpg','img/contests/diseval4Large.jpg','img/contests/diseval2Large.JPG','/img/contests/FB_IMG_1558405948064.jpg'],
+	    gallery: ['img/trophy/trophy11Large.jpg','img/trophy/trophy7Large.jpg','img/trophy/trophy8Large.jpg','img/contests/areaeval.jpeg','img/contests/diveval.jpg','img/contests/disteval.jpg','img/contests/diseval3Large.jpg','img/contests/diseval2Large.JPG','/img/contests/FB_IMG_1558405948064.jpg'],
 	    details: {
 		year: '2019',
 		location: 'tbd',
-		contest: 'Humorous',
+		contest: 'Evaluation',
 		other2: 'other2'
 	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/ralph.jpg',
 	    label: 'Improvise and Don\'t Apologize',
-	    type: 'speech'
+	    type: 'speech',
+		desc: '<p>Placed first at the 2019 Area 62 Tall Tales.</p><p>Placed first at the 2019 2019 Division F Tall Tales.</p>',
+	    href: 'improvise',
+	    gallery: ['img/trophy/trophy9Large.jpg','img/trophy/trophy10Large.jpg','img/contests/IMG_20191002_194504.jpg','img/contests/IMG_0078%20(1).JPG','img/contests/Screenshot_20191114-215011%20(1).png','img/contests/IMG_1213 - Copy.jpg'],
+			details: {
+			year: '2020',
+			location: 'tbd',
+			contest: 'Tall Tales',
+			other2: 'other2'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/contests/cookie.PNG',
 	    label: 'Don\'t Stop Speaking',
-	    type: 'speech'
+	    type: 'speech',
+		desc: '<p>Placed first at the 2020 Area 61/62 Humor 1st Place on Zoom.</p><p>Placed first at the 2020 Division F Humor 1st Place on Zoom.</p><p>Placed first at the 2021 District 83 Humor Speech Contest on Zoom.</p>',
+	    href: 'dontstopspeaking',
+		link: 'https://www.youtube.com/watch?v=jaQD_r7Xe8s&t=409s&ab_channel=SingwalaIreifej',
+	    gallery: [],
+			details: {
+			year: '2020',
+			location: 'Zoom',
+			contest: 'Humor',
+			other2: 'other2'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/contests/whatsthepoint.PNG',
 	    label: 'What\'s the Point?',
-	    type: 'speech'
+	    type: 'speech',
+		desc: '<p>Placed first at the 2021 Area 62 & 64 International Speech Contesat on Zoom.</p><p>Placed first at the 2021 Division F International Speech Contest.</p>Competed at the District 83 International Speech Contest, but did not place.</p>',
+	    href: 'point',
+		link: "https://youtu.be/57r37xeTq5c",
+	    gallery: [],
+			details: {
+			year: '2021',
+			location: 'Zoom',
+			contest: 'International Speech',
+			other2: 'other2'
+	    }
 	},
 	{
 	    image: 'img/gallery/portfolio-01.jpg',
@@ -418,15 +446,21 @@ $( document ).ready(function() {
 	    type: 'hackathon'
 	}
     ];
+
     for (var i = 0; i < stuff.length; i++) {
-	var href = stuff[i].href;
-	var finalHref = "";
-	if (href) {
-	    finalHref = (href.includes("http")) ? href : "#" + href;
-	    finalHref = "href='" + finalHref + "'";
-	}
-	var size = "style='height:339px; width: 338px'";
-	fullElem += "<div class='single-item col-6 col-lg-4 " + stuff[i].type + "'><a class='portfolio-item' " + finalHref + "><div class='portfolio-wrapper'><img " + size + " class='img-fluid' alt='Item' src='" + stuff[i].image + "'><div class='item-content'><h6 class='content-title'>" + stuff[i].label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
+		var href = stuff[i].href;
+		var finalHref = "";
+		if (href) {
+			finalHref = (href.includes("http")) ? href : "#" + href;
+			finalHref = "href='" + finalHref + "'";
+		}
+
+		var size = "style='height:339px; width: 338px'";
+		if (stuff[i].type == "speech") {
+			size = "style='height:200px; width: 338px'"
+		}
+		
+		fullElem += "<div class='single-item col-6 col-lg-4 " + stuff[i].type + "'><a class='portfolio-item' " + finalHref + "><div class='portfolio-wrapper'><img " + size + " class='img-fluid' alt='Item' src='" + stuff[i].image + "'><div class='item-content'><h6 class='content-title'>" + stuff[i].label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
     }
     $("#ireifej").html(fullElem);
 
@@ -466,8 +500,6 @@ $( document ).ready(function() {
 	fullElem += nextElem;
     }
     $("#ireifej2").html(fullElem);
-
-
 
     var blogs = [
 	{
