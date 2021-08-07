@@ -455,29 +455,54 @@ $( document ).ready(function() {
 		details: {
 			date: 'May 15, 2019',
 			location: 'AT&T Research in Middletown, NJ',
-			other1: '<a href="docs/agenda.pdf">Download Agenda<i class="fa fa-thumb-tack"></i></a>',
-			other2: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
+			other1: 'TBD',
+			other2: 'TBD'
 	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/hack/fraudFinderMainPNG.PNG',
 	    label: 'Fraud Finder',
-	    type: 'hackathon'
+	    type: 'hackathon',
+		link: 'https://pireifej.com/fraud-finder.html',
+		desc: '<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>',
+		href: 'hack2',
+		gallery: ['img/hack/fraud-finder-first-place.png'],
+		details: {
+			date: 'May 5, 2019',
+			location: 'AT&T Research in Middletown, NJ',
+			other1: 'TBD',
+			other2: 'TBD'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/hack/polishedSpeaker.png',
 	    label: 'Polished Speaker',
-	    type: 'hackathon'
+	    type: 'hackathon',
+		link: 'https://pireifej.com/polished-speaker.html',
+		desc: '<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>',
+		href: 'hack3',
+		gallery: ['img/hack/fraud-finder-first-place.png'],
+		details: {
+			date: '2017',
+			location: 'AT&T Research in Middletown, NJ',
+			other1: 'TBD',
+			other2: 'TBD'
+	    }
 	},
 	{
-	    image: 'img/gallery/portfolio-01.jpg',
-	    label: '2016',
-	    type: 'hackathon'
-	},
-	{
-	    image: 'img/gallery/portfolio-01.jpg',
+	    image: 'img/hack/smsStalker2small.jpg',
 	    label: 'SMS Stalker',
-	    type: 'hackathon'
+	    type: 'hackathon',
+		link: 'https://pireifej.com/sms.html',
+		desc: '<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>',
+		href: 'hack4',
+		gallery: ['img/hack/smsStalker1.jpg'],
+		details: {
+			date: '2015',
+			location: 'AT&T Research in Middletown, NJ',
+			other1: 'TBD',
+			other2: 'TBD'
+	    }
 	},
 	{
 	    image: 'img/gallery/network.jpg',
