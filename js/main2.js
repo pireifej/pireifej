@@ -336,7 +336,7 @@ $( document ).ready(function() {
 	    type: 'speech',
 	    desc: '<p>Placed first at the 2019 Area 62 Evaluation 1st Place at the Bayshore Medical Center on March, 2019.</p><p>Placed first at the 2019 Division F Evaluation at the Bayshore Medical Center on March 2019.</p><p>Placed first at the 2019 District 83 Evaluation 1st Place at the APA Woodbridge Hotel in Iselin, NJ.</p>',
 	    href: 'evaluation',
-	    gallery: ['img/trophy/trophy11Large.jpg','img/trophy/trophy7Large.jpg','img/trophy/trophy8Large.jpg','img/contests/areaeval.jpeg','img/contests/diveval.jpg','img/contests/disteval.jpg','img/contests/diseval3Large.jpg','img/contests/diseval2Large.JPG','/img/contests/FB_IMG_1558405948064.jpg'],
+	    gallery: ['img/trophy/trophy11Large.jpg','img/trophy/trophy7Large.jpg','img/trophy/trophy8Large.jpg','img/contests/areaeval.jpeg','img/contests/diveval.jpg','img/contests/disteval.jpg','img/contests/diseval3Large.jpg','img/contests/diseval2Large.JPG','img/contests/FB_IMG_1558405948064.jpg'],
 	    details: {
 		year: '2019',
 		location: 'tbd',
@@ -365,7 +365,7 @@ $( document ).ready(function() {
 		desc: '<p>Placed first at the 2020 Area 61/62 Humor 1st Place on Zoom.</p><p>Placed first at the 2020 Division F Humor 1st Place on Zoom.</p><p>Placed first at the 2021 District 83 Humor Speech Contest on Zoom.</p>',
 	    href: 'dontstopspeaking',
 		link: 'https://www.youtube.com/watch?v=jaQD_r7Xe8s&t=409s&ab_channel=SingwalaIreifej',
-	    gallery: [],
+	    gallery: ["img/trophy/trophy14Large.jpg","img/contests/cert.PNG","img/contests/Screenshot_20210501-160712.png","img/contests/Screenshot_20210501-141044.png","img/contests/Screenshot_20210428-193907.png","img/contests/Screenshot_20210428-193916.png"],
 			details: {
 			year: '2020',
 			location: 'Zoom',
@@ -377,10 +377,10 @@ $( document ).ready(function() {
 	    image: 'img/contests/whatsthepoint.PNG',
 	    label: 'What\'s the Point?',
 	    type: 'speech',
-		desc: '<p>Placed first at the 2021 Area 62 & 64 International Speech Contesat on Zoom.</p><p>Placed first at the 2021 Division F International Speech Contest.</p>Competed at the District 83 International Speech Contest, but did not place.</p>',
+		desc: '<p>Placed first at the 2021 Area 62 & 64 International Speech Contest on Zoom.</p><p>Placed first at the 2021 Division F International Speech Contest.</p>Competed at the District 83 International Speech Contest, but did not place.</p>',
 	    href: 'point',
 		link: "https://youtu.be/57r37xeTq5c",
-	    gallery: [],
+	    gallery: ["img/trophy/trophy12Large.jpg","img/trophy/trophy13Large.jpg"],
 			details: {
 			year: '2021',
 			location: 'Zoom',
@@ -475,7 +475,7 @@ $( document ).ready(function() {
 	    }
 	},
 	{
-	    image: 'img/hack/polishedSpeaker.png',
+	    image: 'img/hack/polishedSpeaker.PNG',
 	    label: 'Polished Speaker',
 	    type: 'hackathon',
 		link: 'https://pireifej.com/polished-speaker.html',
@@ -539,6 +539,9 @@ $( document ).ready(function() {
 		var size = "style='height:339px; width: 338px'";
 		if (stuff[i].type == "speech") {
 			size = "style='height:200px; width: 338px'"
+		}
+		if (stuff[i].type == "conference") {
+			size = "style='height:175px; width: 325px'"
 		}
 		
 		fullElem += "<div class='single-item col-6 col-lg-4 " + stuff[i].type + "'><a class='portfolio-item' href='#" + href + "'><div class='portfolio-wrapper'><img " + size + " class='img-fluid' alt='Item' src='" + stuff[i].image + "'><div class='item-content'><h6 class='content-title'>" + stuff[i].label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
@@ -656,7 +659,7 @@ $( document ).ready(function() {
 	    date: '2019',
 	    title: 'The Contest Heard Around the World',
 	    href: 'https://pireifej.com/contest9.html',
-	    heading: 'Welcome to the longest area contest in the history of contests. Iʼm still recovering from a whopping 4 1/2 hour long contest.',
+	    heading: 'Iʼm still recovering from a whopping 4 1/2 hour long contest.',
 	    tag1: 'Longest',
 	    tag2: 'Contests',
 	    image: 'img/trophy/trophy7Large.jpg',
@@ -678,6 +681,33 @@ $( document ).ready(function() {
 	    tag1: 'Evaluation',
 	    tag2: 'Ace It',
 	    image: 'img/contests/disteval1.jpg'
+	},
+	{
+	    date: 'May 5, 2019',
+	    title: 'The Easiest Area Contest Ever',
+	    href: 'https://pireifej.com/contest11.html',
+	    heading: 'Tonight was a good night. A good and ... easy night.',
+	    tag1: 'Easy',
+	    tag2: 'Tall Tales',
+	    image: 'img/contests/IMG_20191002_194504.jpg'
+	},
+	{
+	    date: 'Nov 14, 2019',
+	    title: 'Much Ado About Nothing',
+	    href: 'https://pireifej.com/contest12.html',
+	    heading: '',
+	    tag1: 'Nervous',
+	    tag2: 'Charismatic',
+	    image: 'img/contests/IMG_0078%20(1).JPG'
+	},
+	{
+	    date: 'TBD',
+	    title: 'placeholder',
+	    href: '',
+	    heading: 'placeholder',
+	    tag1: 'TBD',
+	    tag2: 'TBD',
+	    image: 'img/contests/IMG_20191002_194504.jpg'
 	}
     ];
 
