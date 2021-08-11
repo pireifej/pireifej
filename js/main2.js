@@ -25,11 +25,11 @@ $( document ).ready(function() {
 		visitorDetails["longitude"] = crd.longitude;
 		visitorDetails["accuracy"] = crd.accuracy;
 
-		god.query("logVisitor", "afterLogVisitor", JSON.stringify(visitorDetails), false, true);
+	    god.query("logVisitor", "afterLogVisitor", {details:JSON.stringify(visitorDetails)}, false, true);
 	  }
 
 	  function error(err) {
-		god.query("logVisitor", "afterLogVisitor", JSON.stringify(visitorDetails), false, true);
+	      god.query("logVisitor", "afterLogVisitor", {details:JSON.stringify(visitorDetails)}, false, true);
 		console.warn(`ERROR(${err.code}): ${err.message}`);
 	  }
 

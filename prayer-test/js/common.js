@@ -591,7 +591,7 @@ $( document ).ready(function() {
 	// redirect to login screen if user is not already logged on
 	var userId = localStorage.getItem("userId");
 	// exceptions are creating a user, logging in, contact the website for help
-	var exceptions = { "createUser": true, "login": true, "email": true, "help" :true };
+	var exceptions = { "createUser": true, "login": true, "email": true, "help" :true, "logVisitor": true };
 	if (!exceptions[params["command"]] && !userId) {
 	    if (window.location.href.includes("login.html")) return;
 	    if (window.location.href.includes("profile-edit.html")) return;

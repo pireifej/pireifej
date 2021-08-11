@@ -164,7 +164,8 @@ var allCommands = {
     "createPrayer": true,
     "joinRosarySession": true,
     "leaveRosarySession": true,
-    "getRosarySession": true
+    "getRosarySession": true,
+    "logVisitor": true
 };
 
 if (!queryObject["command"]) {
@@ -189,6 +190,13 @@ var command = queryObject.command;
 var tz = queryObject.tz;
 var query = null;
 var readFile = null;
+
+if (command == "logVisitor") {
+    requireParam("details");
+
+    query = "INSERT INTO visitors (visitor_details) VALUES (";
+    query += "'" + queryObject.details + "')";
+}
 
 if (command == "getPrayerCount") {
     query = "SELECT COUNT(*) ";
