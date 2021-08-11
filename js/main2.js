@@ -468,7 +468,7 @@ $( document ).ready(function() {
 	    image: 'img/gallery/cfcaMain.png',
 	    label: 'CFCA 2021 - Zoom',
 	    type: 'conference',
-		desc: '<p>Communications Fraud Control Association (CFCA) \'Spring into 2020ONE Education Event\' on Zoom. The title of my talk was \"Transformation as a Service.\" This was my fourth time speaking at the CFCA.</p><p>Let your customers be your parnters; let your vendors be your employees. What\'s necessary in this transformation more than anything else is courage and willingness to change</p><a href="docs/CFCA Speaker Certificate Paul Ireifej - AT&amp;T.pdf">Download Certificate<i class="fa fa-thumb-tack"></i></a>					    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQLKZQKIcP6-hrvXVsJNMd6vMY3b4qn0BUWDpOwxIA_G5Pm44RT1xehgQJjPNrjfQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>',
+		desc: '<p>Communications Fraud Control Association (CFCA) \'Spring into 2020ONE Education Event\' on Zoom. The title of my talk was \"Transformation as a Service.\" This was my fourth time speaking at the CFCA.</p><p>Let your customers be your parnters; let your vendors be your employees. What\'s necessary in this transformation more than anything else is courage and willingness to change</p><a href="docs/CFCA Speaker Certificate Paul Ireifej - AT&amp;T.pdf">Download Certificate<i class="fa fa-thumb-tack"></i></a><iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQLKZQKIcP6-hrvXVsJNMd6vMY3b4qn0BUWDpOwxIA_G5Pm44RT1xehgQJjPNrjfQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>',
 		href: 'cfca4',
 	    gallery: ['cfca/Screenshot_20210421-163038.png','cfca/Screenshot_20210412-122217.png'],
 			details: {
@@ -741,12 +741,12 @@ $( document ).ready(function() {
 	},
 	{
 	    date: 'TBD',
-	    title: 'placeholder',
+	    title: 'Coming Soon!',
 	    href: '',
-	    heading: 'placeholder',
-	    tag1: 'TBD',
-	    tag2: 'TBD',
-	    image: 'img/contests/IMG_20191002_194504.jpg'
+	    heading: 'TBD',
+	    tag1: 'N/A',
+	    tag2: 'N/A',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
 	}
     ];
 
