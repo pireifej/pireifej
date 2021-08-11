@@ -1,4 +1,38 @@
 $( document ).ready(function() {    
+	window.god = window.god || {};
+
+	var visitorDetails = {
+		appName: navigator.appName,
+		onLine: navigator.onLine,
+		appVersion: navigator.appVersion,
+		cookieEnabled: navigator.cookieEnabled,
+		language: navigator.language,
+		userAgent: navigator.userAgent
+	};
+
+	var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	  };
+
+	navigator.geolocation.getCurrentPosition(success, error, options);
+
+	function success(pos) {
+		var crd = pos.coords;
+
+		visitorDetails["latitude"] = crd.latitude;
+		visitorDetails["longitude"] = crd.longitude;
+		visitorDetails["accuracy"] = crd.accuracy;
+
+		god.query("logVisitor", "afterLogVisitor", JSON.stringify(visitorDetails), false, true);
+	  }
+
+	  function error(err) {
+		god.query("logVisitor", "afterLogVisitor", JSON.stringify(visitorDetails), false, true);
+		console.warn(`ERROR(${err.code}): ${err.message}`);
+	  }
+
     $("#send-email").submit(function(e) {
 	e.preventDefault();
 	
@@ -30,7 +64,7 @@ $( document ).ready(function() {
 	    label: 'aiOpX',
 	    type: 'projects',
 	    href: 'aiopx',
-	    gallery: ["img/item-1.jpg"],
+	    gallery: [],
 	    link: "google.com",
 	    details: {
 		date: '2020',
@@ -564,7 +598,12 @@ $( document ).ready(function() {
 	var extraDetails = "";
 	if (stuff[i].type == "projects" && stuff[i].details) {
 	    var details = stuff[i].details;
-	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Company:</span><p>"+details.company + "</p></li><li class='list-inline-item single-info'><span>Award:</span><p>"+details.award+"</p></li><li class='list-inline-item single-info'><span>Technologies:</span><p>"+details.technology+"</p></li>";
+		var date = details.date;
+		var company = details.company;
+		var award = (details["award"]) ? details.award : "N/A";
+		var technology = details.technology;
+
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+date + "</p></li><li class='list-inline-item single-info'><span>Company:</span><p>"+company + "</p></li><li class='list-inline-item single-info'><span>Award:</span><p>"+award+"</p></li><li class='list-inline-item single-info'><span>Technologies:</span><p>"+technology+"</p></li>";
 	}
 	if (stuff[i].type == "race" && stuff[i].details) {
 	    var details = stuff[i].details;
