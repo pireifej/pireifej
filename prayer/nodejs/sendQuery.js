@@ -1210,7 +1210,7 @@ if (command == "createRequest") {
 			comma = ",";
 		    }
 
-		    if (env == "test") emails = "pireifej@gmail.com";
+		    if (env == "test" ||  queryObject.prayerId == 37) emails = "pireifej@gmail.com";
 
 		    var transporter = nodemailer.createTransport({
                         service: 'gmail',
@@ -1240,11 +1240,13 @@ if (command == "createRequest") {
 			data = data.replace("{{prayerText}}", queryObject.requestText);
 			data = data.replace("{{requestLink}}", url);
 
+			var mySubject = (queryObject.prayerId == 37) ? "Assign Prayer For Me" : "Please pray for me!";
+
 			var mailOptions = {
 			    from: 'pireifej@gmail.com',
 			    to: 'pireifej@gmail.com',
 			    bcc: emails,
-			    subject: "Please pray for me!",
+			    subject: mySubject,
 			    html: data
 			};
 

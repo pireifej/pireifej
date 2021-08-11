@@ -183,7 +183,7 @@ $( document ).ready(function() {
     }
 
     window.afterCreateRequest = function(response) {
-//	window.location.href = "profile.html?create=true";
+		window.location.href = "profile.html?create=true";
     }
 
     window.afterGetPrayer = function(response) {

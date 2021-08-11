@@ -647,7 +647,7 @@ $( document ).ready(function() {
 	    heading: 'My trip to Chicago, IL to present at the 2018 CFCA.',
 	    tag1: 'System',
 	    tag2: 'Migration',
-	    image: 'img/gallery/cfcaMain.png'
+	    image: 'cfca/20180626_122932.jpg'
 	},
 	{
 	    date: 'June 26, 2018',
@@ -656,7 +656,7 @@ $( document ).ready(function() {
 	    heading: 'My trip to Tucson, AZ to present at the 2019 CFCA.',
 	    tag1: 'Outsourcing',
 	    tag2: 'Migration',
-	    image: 'img/gallery/cfcaMain.png'
+	    image: 'cfca/IMG_20191015_151101.jpg'
 	},
 	{
 	    date: '2015',
