@@ -399,7 +399,7 @@ $( document ).ready(function() {
 		desc: '<p>Placed first at the 2020 Area 61/62 Humor 1st Place on Zoom.</p><p>Placed first at the 2020 Division F Humor 1st Place on Zoom.</p><p>Placed first at the 2021 District 83 Humor Speech Contest on Zoom.</p>',
 	    href: 'dontstopspeaking',
 		link: 'https://www.youtube.com/watch?v=jaQD_r7Xe8s&t=409s&ab_channel=SingwalaIreifej',
-	    gallery: ["img/trophy/trophy14Large.jpg","img/contests/cert.PNG","img/contests/Screenshot_20210501-160712.png","img/contests/Screenshot_20210501-141044.png","img/contests/Screenshot_20210428-193907.png","img/contests/Screenshot_20210428-193916.png"],
+	    gallery: ["img/trophy/trophy14Large.jpg","img/trophy/PXL_20210814_010114454.PORTRAIT.jpg", "img/trophy/PXL_20210814_010104720.PORTRAIT.jpg", "img/contests/cert.PNG","img/contests/Screenshot_20210501-160712.png","img/contests/Screenshot_20210501-141044.png","img/contests/Screenshot_20210428-193907.png","img/contests/Screenshot_20210428-193916.png"],
 			details: {
 			year: '2020',
 			location: 'Zoom',
