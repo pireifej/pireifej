@@ -393,13 +393,13 @@ $( document ).ready(function() {
 	    }
 	},
 	{
-	    image: 'img/contests/cookie.PNG',
+	    image: "img/contests/IMG_2489.PNG",
 	    label: 'Don\'t Stop Speaking',
 	    type: 'speech',
 		desc: '<p>Placed first at the 2020 Area 61/62 Humor 1st Place on Zoom.</p><p>Placed first at the 2020 Division F Humor 1st Place on Zoom.</p><p>Placed first at the 2021 District 83 Humor Speech Contest on Zoom.</p>',
 	    href: 'dontstopspeaking',
 		link: 'https://www.youtube.com/watch?v=jaQD_r7Xe8s&t=409s&ab_channel=SingwalaIreifej',
-	    gallery: ["img/trophy/trophy14Large.jpg","img/trophy/PXL_20210814_010114454.PORTRAIT.jpg", "img/trophy/PXL_20210814_010104720.PORTRAIT.jpg", "img/contests/cert.PNG","img/contests/Screenshot_20210501-160712.png","img/contests/Screenshot_20210501-141044.png","img/contests/Screenshot_20210428-193907.png","img/contests/Screenshot_20210428-193916.png"],
+	    gallery: ['img/contests/cookie.PNG', "img/contests/IMG_2470.PNG", "img/contests/IMG_2486.PNG", "img/trophy/trophy14Large.jpg","img/trophy/PXL_20210814_010114454.PORTRAIT.jpg", "img/trophy/PXL_20210814_010104720.PORTRAIT.jpg", "img/contests/cert.PNG",/*"img/contests/Screenshot_20210501-160712.png",*/"img/contests/Screenshot_20210501-141044.png",/*"img/contests/Screenshot_20210428-193907.png",*/"img/contests/Screenshot_20210428-193916.png"],
 			details: {
 			year: '2020',
 			location: 'Zoom',
@@ -408,13 +408,13 @@ $( document ).ready(function() {
 	    }
 	},
 	{
-	    image: 'img/contests/whatsthepoint.PNG',
+	    image: 'img/contests/IMG_2523.PNG',
 	    label: 'What\'s the Point?',
 	    type: 'speech',
 		desc: '<p>Placed first at the 2021 Area 62 & 64 International Speech Contest on Zoom.</p><p>Placed first at the 2021 Division F International Speech Contest.</p>Competed at the District 83 International Speech Contest, but did not place.</p>',
 	    href: 'point',
 		link: "https://youtu.be/57r37xeTq5c",
-	    gallery: ["img/trophy/trophy12Large.jpg","img/trophy/trophy13Large.jpg"],
+	    gallery: ["img/contests/IMG_2537.PNG", "img/contests/IMG_2571.PNG", "img/trophy/trophy12Large.jpg","img/trophy/trophy13Large.jpg"],
 			details: {
 			year: '2021',
 			location: 'Zoom',
