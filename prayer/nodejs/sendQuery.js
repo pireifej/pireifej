@@ -212,13 +212,6 @@ if (command == "getAllPrayers") {
 
 if (command == "deletePrayer") {
     requireParam("prayerName");
-
-    try {
-	fs.unlinkSync(home + '/prayers/' + queryObject.prayerName);
-    } catch(err) {
-	if (err) return console.log(err);
-    }
-
     query = "DELETE FROM prayers WHERE prayer_file_name='" + queryObject.prayerName + "';";
 }
 
@@ -229,15 +222,12 @@ if (command == "createPrayer") {
     requireParam("prayerName");
     requireParam("categoryId");
 
-    fs.appendFile(home + '/prayers/' + queryObject.prayerName, queryObject.prayerText, function (err) {
-	if (err) return console.log(err);
-    });
-
-    query = "INSERT INTO prayers (prayer_title, prayer_file_name, fk_category_id, tags) VALUES (";
+    query = "INSERT INTO prayers (prayer_title, prayer_file_name, fk_category_id, tags, prayer_text) VALUES (";
     query += "'" + queryObject.prayerTitle + "',";
     query += "'" + queryObject.prayerName + "',";
     query += "'" + queryObject.categoryId + "',";
-    query += "'" + queryObject.prayerTags + "');";
+    query += "'" + queryObject.prayerTags + "',";
+    query += "'" + queryObject.prayerText + "');";
 }
 
 if (command == "updatePrayer") {
@@ -251,35 +241,21 @@ if (command == "updatePrayer") {
     var prayerId = queryObject["prayerId"];
     var categoryId = queryObject["categoryId"];
 
-    if (prayerText) {
-	fs.writeFile(home + '/prayers/' + prayerName, prayerText, function (err) {
-	    if (err) return console.log(err);
-	});
-    }
-
     query = "UPDATE prayers ";
     query += "SET prayer_file_name = '" + prayerName + "' ";
     if (categoryId) query += ", fk_category_id = '" + categoryId + "' ";
     if (prayerTags) query += ", tags = '" + prayerTags + "' ";
     if (prayerTitle) query += ", prayer_title = '" + prayerTitle + "' ";
+    if (prayerText) query += ", prayer_text = '" + prayerText + "' ";
     query += "WHERE prayer_id = '" + prayerId + "'";
 }
 
 if (command == "readPrayer") {
     requireParam("fileName");
 
-    fs.readFile(home + '/prayers/' + queryObject["fileName"], 'utf8', function (err,data) {
-	if (err) {
-	    return;
-	}
-	var prayerText = data;
-	var obj = {};
-	obj["result"] = prayerText;
-	obj["query"] = query;
-	console.log(JSON.stringify(obj));
-	process.exit();
-	return;
-    })
+    query = "SELECT prayer_text ";
+    query += "FROM prayers ";
+    query += "WHERE prayer_file_name='" + queryObject.fileName + "';";
 }
 
 if (command == "previewPrayer") {
@@ -353,7 +329,7 @@ if (command == "getPrayer") {
     query += "WHERE user.user_id = request.user_id ";
     query += "AND request.request_id = '" + queryObject.requestId + "';";
 
-    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title,prayers.prayer_id ";
+    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title,prayers.prayer_id,prayer_text ";
     query += "FROM prayers ";
     query += "WHERE prayers.active = 1;";
 
@@ -482,6 +458,7 @@ if (command == "getPrayer") {
 			    // don't use logic to select best prayer, just select assigned prayer
 			    if (selectedPrayerFileName) {
 				bestPrayer = selectedPrayerFileName;
+				title = "Prayer Title";
 			    }
 
 			    // if prayerId exists, pick that bestPrayer prayer name
@@ -1182,7 +1159,7 @@ if (command == "createRequest") {
     	.then(conn => {
 	    conn.query(query)
 	    	.then((rows) => {
-		    if (queryObject.sendEmail !== "on") {
+		    if (queryObject.prayerId != 37 && queryObject.sendEmail !== "on") {
 			var obj = {};
 			if (preview) {
 			    obj["result"] = rows[1][0];

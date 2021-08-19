@@ -70,7 +70,7 @@ $( document ).ready(function() {
     })
 
     window.afterReadPrayer = function(response) {
-	$("#prayer-text-input").val(response.result);
+	$("#prayer-text-input").val(response.result[0].prayer_text);
     }
 
     window.afterGetAllPrayers = function(response) {

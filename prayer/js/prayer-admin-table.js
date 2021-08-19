@@ -2,10 +2,17 @@ var windowSelection = null;
 var globalTextAreaId = null;
 var start = null;
 var end = null;
+var maxIndex = 0;
 
 function format ( prayerText, index ) {
     var textArea = "<textarea id='prayer-text-input-" + index + "' class='input100 longer' name='prayer-text' placeholder='Your prayer text here...' onkeydown=getLastHighlighted(" + index + ")>" + prayerText + "</textarea>";
     var saveButton2 = "<button onclick='updatePrayer(\"" + index + "\")'>Save</button>";
+    return textArea + saveButton2;
+}
+
+function formatNewPrayer ( prayerText, index ) {
+    var textArea = "<textarea id='prayer-text-input-" + index + "' class='input100 longer' name='prayer-text' placeholder='Your prayer text here...' onkeydown=getLastHighlighted(" + index + ")>" + prayerText + "</textarea>";
+    var saveButton2 = "<button onclick='createPrayer(\"" + index + "\")'>Save</button>";
     return textArea + saveButton2;
 }
 
@@ -115,6 +122,7 @@ $(document).ready(function() {
 	var result = response.result;
 	for (var i = 0; i < result.length; i++) {
 	    var record = result[i];
+	    if (record.prayer_id > maxIndex) maxIndex = record.prayer_id;
 	    dt.row.add({
 		index: i,
 		id: "<span id='prayer-id-" + i + "'>" + record.prayer_id + "</span>",
@@ -134,6 +142,21 @@ $(document).ready(function() {
 	end = el.selectionEnd;
     }
 
+    window.insertPrayer = function() {
+	console.log("insert");
+	var t = $('#example').DataTable();
+	maxIndex++;
+	t.row.add({
+	    index: maxIndex,
+	    id: "<span id='prayer-id-" + maxIndex + "'>" + maxIndex + "</span>",
+	    title: "<input id='prayer-title-input-" + maxIndex + "' class='input100' type='text' name='prayer-title' placeholder='Enter your prayer title' value=''>",
+	    filename: "<span id='prayer-filename-" + maxIndex + "'>newPrayerName" + maxIndex + "</span>",
+	    tags: "<input id='prayer-tags-input-" + maxIndex + "' class='input100' type='text' name='tags' placeholder='Enter your tags' value=''>",
+	    delete: "<i class='far fa-times-circle clicky' onclick='deletePrayer(\"" + 'none' + "\")'></i>",
+	    realFileName: "newPrayerName"
+        }).draw();
+    }
+
     window.updatePrayer = function(index) {
 	var newTitle = $("#prayer-title-input-" + index).val();
 	var newTags = $("#prayer-tags-input-" + index).val();
@@ -149,14 +172,43 @@ $(document).ready(function() {
 	};
 
 	if (prayerText) {
-            params["prayerText"] = "\"" + prayerText + "\"";
+	    var newPrayerText = prayerText.replace(/'/g, "\\'");
+            params["prayerText"] = "\"" + newPrayerText + "\"";
 	}
 
 	god.query("updatePrayer", "afterUpdatePrayer", params, false, false, "all");
     }
 
+    window.createPrayer = function(index) {
+	var newTitle = $("#prayer-title-input-" + index).val();
+	var newTags = $("#prayer-tags-input-" + index).val();
+	var fileName = $("#prayer-filename-" + index).html();
+	var prayerId = $("#prayer-id-" + index).html();
+	var prayerText = $("#prayer-text-input-" + index).val();
+
+	var params = {
+	    "prayerName": fileName,
+	    "prayerTags": newTags,
+	    "prayerTitle": "'" + newTitle + "'",
+	    "prayerId": prayerId,
+	    "categoryId": 8,
+	    "prayerText": prayerText
+	};
+
+	if (prayerText) {
+	    var newPrayerText = prayerText.replace(/'/g, "\\'");
+            params["prayerText"] = "\"" + newPrayerText + "\"";
+	}
+
+	god.query("createPrayer", "afterCreatePrayer", params, false, false, "all");
+    }
+
     window.afterUpdatePrayer = function(result) {
 	console.log(result);
+    }
+
+    window.afterCreatePrayer = function(result) {
+	location.reload();
     }
 
     window.deletePrayer = function(prayerFileName) {
@@ -169,7 +221,7 @@ $(document).ready(function() {
 
     window.afterReadPrayer = function(response) {
 	console.log("afterReadPrayer");
-	var prayerText = response.result;
+	var prayerText = response.result[0].prayer_text;
 
 	globalTr.addClass( 'details' );
         globalRow.child( format( prayerText, globalIndex ) ).show();
@@ -197,6 +249,17 @@ $(document).ready(function() {
             detailRows.splice( idx, 1 );
         } else {
 	    var fileName = row.data().realFileName;
+	    console.log(fileName);
+	    if (fileName == "newPrayerName") {
+		globalTr.addClass( 'details' );
+		globalRow.child( formatNewPrayer( "new prayer", maxIndex ) ).show();
+ 
+		// Add to the 'open' array
+		if ( globalIdx === -1 ) {
+		    detailRows.push( globalTr.attr('id') );
+		}
+		return;
+	    }
 	    globalIndex = row.data().index;
 	    god.query("readPrayer", "afterReadPrayer", {"fileName":fileName}, false, false, "all");
         }
