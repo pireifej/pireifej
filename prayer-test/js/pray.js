@@ -23,6 +23,8 @@ $( document ).ready(function() {
     }
 
     window.afterGetPrayer = function(response) {
+	console.log(response);
+	
 	var result = response.result;
 	var request = result.request;
 	var prayerText = result.prayer_text;
@@ -51,7 +53,7 @@ $( document ).ready(function() {
 	$("#user-name-for-request").html(request.real_name);
 	$("#requestor-picture").attr("src", "uploads/" +request.picture);
 	$("#user-name-for-request").html(userRealName);
-	$("#prayer-title").html(result.prayer_title);
+	$("#prayer-title").html(request.prayer_title);
 	
 	var prayerLines = prayerText.split("\n");
 	for (var i = 0; i < prayerLines.length; i++) {

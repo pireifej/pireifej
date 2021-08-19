@@ -287,7 +287,7 @@ if (command == "previewPrayer") {
 		    var bestPrayer = bestPrayerObj.result;
 		    var scores = bestPrayerObj.scores;
 
-		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
+		    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err, data) {
 			if (err) {
 			    console.log("Error");
 			    console.log(err);
@@ -324,15 +324,16 @@ if (command == "getPrayer") {
     var debug = (queryObject["debug"]) ? queryObject.debug : false;
 
     query = "SELECT user.real_name,user.gender,";
-    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,request.fk_prayer_id,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
-    query += "FROM request INNER JOIN user ";
+    query += "request.request_text,request.other_person,request.request_id,request.request_title,request.picture,request.fk_prayer_id,prayers.prayer_text,prayers.prayer_title,CONVERT_TZ(request.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "FROM request INNER JOIN user INNER JOIN prayers ";
     query += "WHERE user.user_id = request.user_id ";
+    query += "AND prayers.prayer_id = request.fk_prayer_id ";
     query += "AND request.request_id = '" + queryObject.requestId + "';";
 
-    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title,prayers.prayer_id,prayer_text ";
+/*    query += "SELECT prayers.tags,prayers.prayer_file_name,prayers.prayer_title,prayers.prayer_id,prayer_text ";
     query += "FROM prayers ";
     query += "WHERE prayers.active = 1;";
-
+*/
     const pool = createPool();
     module.exports = pool;
     pool.getConnection()
@@ -346,21 +347,23 @@ if (command == "getPrayer") {
 		    var prayerId = "";
 		    var selectedPrayerFileName = "";
 
-		    var request = rows[0][0];
-		    var prayers = rows[1];
+//		    var request = rows[0][0];
+//		    var prayers = rows[1];
+		    var request = rows[0];
 
-		    if (prayers.length > 0) {
+		    if (request.length > 0) {
 			requestText = request.request_text
 			realName = request.real_name;
 			gender = request.gender;
 			otherPerson = request.other_person;
 			prayerId = request.fk_prayer_id;
 
-			for (var i = 0; i < prayers.length; i++) {
+		/*	for (var i = 0; i < prayers.length; i++) {
 			    if (prayers[i].prayer_id == prayerId) {
 				selectedPrayerFileName = prayers[i].prayer_file_name;
 			    }
 			}
+		*/
 		    }
 
 		    if (debug) {
@@ -368,6 +371,7 @@ if (command == "getPrayer") {
 			console.log(requestText);
 		    }
 
+/*
 		    const rake = require('node-rake');
 		    const myKeywords = rake.generate(requestText);
 		    const datamuse = require('datamuse');
@@ -375,13 +379,13 @@ if (command == "getPrayer") {
 			console.log("keywords...");
 			console.log(myKeywords);
 		    }
-
+*/
 		    // https://www.npmjs.com/package/parts-of-speech
-		    var chosen = myKeywords[0];
+/*		    var chosen = myKeywords[0];
 		    var pos = require('pos');
-		    for (var i = 0; i < myKeywords.length; i++) {
+		    for (var i = 0; i < myKeywords.length; i++) {*/
 			// phrase has priority
-			if (myKeywords[i].split(" ").length > 1) {
+/*			if (myKeywords[i].split(" ").length > 1) {
 			    chosen = myKeywords[i];
 			    var phraseWords = chosen.split(" ");
 			    for (var j = 0; j < phraseWords.length; j++) {
@@ -426,9 +430,9 @@ if (command == "getPrayer") {
 		    }
 
 		    if (debug) console.log("chosen word = " + chosen);
-		    
-		    datamuse.words({
-			ml: chosen
+*/		    
+/*		    datamuse.words({
+			ml: "chosen"
 		    })
 			.then((json) => {
 			    var keywords = {};
@@ -454,34 +458,30 @@ if (command == "getPrayer") {
 			    var scores = bestPrayerObj.scores;
 			    scores["chosen"] = chosen;
 			    var title = bestPrayerObj.name;
-
+*/
 			    // don't use logic to select best prayer, just select assigned prayer
-			    if (selectedPrayerFileName) {
-				bestPrayer = selectedPrayerFileName;
-				title = "Prayer Title";
-			    }
+//			    if (selectedPrayerFileName) {
+//				bestPrayer = selectedPrayerFileName;
+//				title = "Prayer Title";
+//			    }
 
-			    // if prayerId exists, pick that bestPrayer prayer name
-			    fs.readFile(home + '/prayers/' + bestPrayer, 'utf8', function (err,data) {
-				if (err) {
-				    console.log("Error");
-				    console.log(err);
-				    return;
-				}
-				var customPrayer = generateCustomPrayer(data, realName, gender, otherPerson);
-				var obj = {};
-				obj["result"] = {};
-				obj["result"]["prayer_title"] = title;
-				obj["result"]["prayer_text"] = customPrayer;
-				obj["result"]["request"] = request;
-				obj["result"]["query"] = query;
-				obj["result"]["scores"] = scores;
-				console.log(JSON.stringify(obj));
-				conn.release();
-				conn.end();
-				process.exit();
-				return;
-			    });
+		    // if prayerId exists, pick that bestPrayer prayer name
+		    var scores = {};
+		    var otherPerson = request.other_person;
+		    var realName = request.real_name;
+		    var customPrayer = generateCustomPrayer(request.prayer_text, realName, gender, otherPerson);
+			    var obj = {};
+			    obj["result"] = {};
+			    obj["result"]["prayer_title"] = request.request_title;
+			    obj["result"]["prayer_text"] = customPrayer;
+			    obj["result"]["request"] = request;
+			    obj["result"]["query"] = query;
+			    obj["result"]["scores"] = scores;
+			    console.log(JSON.stringify(obj));
+			    conn.release();
+			    conn.end();
+			    process.exit();
+			    return;
 			})
 			.catch(err => {
 			    console.log("not connected due to error: " + err);
@@ -493,8 +493,8 @@ if (command == "getPrayer") {
 			    conn.end();
 			    process.exit();
 			})
-		});
 	});
+//	});
     return;
 }
 
