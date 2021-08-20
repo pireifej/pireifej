@@ -38,9 +38,16 @@ $( document ).ready(function() {
 	    $("#request-feed").html("<h5 style='padding:30px 30px 30px 30px'>You prayed for everyone! Check back later.</h5>");
 	    return;
 	}
-	
+
 	for (var i = 0; i < response.result.length; i++) {
 	    var request = response.result[i];
+	    htmlPost += god.getHtmlPost(request, "feed");
+	}
+	$("#request-feed").html(htmlPost);
+	return;
+	
+	for (var i = 0; i < response.result.length; i++) {
+
 	    htmlPost += god.getHtmlPost(request, "feed");
 	    requestIds.push(request.request_id);
 	}

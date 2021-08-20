@@ -1,302 +1,134 @@
-;(function($){
-    "use strict"
-    var nav_offset_top = $('.header_area').height()+50; 
-    /*-------------------------------------------------------------------------------
-	  Navbar 
-	-------------------------------------------------------------------------------*/
-
-	//* Navbar Fixed  
-    function navbarFixed(){
-        if ( $('.header_area').length ){ 
-            $(window).scroll(function() {
-                var scroll = $(window).scrollTop();   
-                if (scroll >= nav_offset_top ) {
-                    $(".header_area").addClass("navbar_fixed");
+/* ----------------- Start Document ----------------- */
+(function($){
+    "use strict";
+    
+    $(document).ready(function(){
+         
+        /*----------------------------------------------------*/
+        /* Sidebar Nav submenu
+        /*----------------------------------------------------*/
+    
+        $('.sidebar_inner ul li a').on('click', function(e){
+            if($(this).closest("li").children("ul").length) {
+                if ( $(this).closest("li").is(".active-submenu") ) {
+                   $('.sidebar_inner ul li').removeClass('active-submenu');
                 } else {
-                    $(".header_area").removeClass("navbar_fixed");
+                    $('.sidebar_inner ul li').removeClass('active-submenu');
+                    $(this).parent('li').addClass('active-submenu');
+                }
+                e.preventDefault();
+            }
+        });
+        
+          /*--------------------------------------------------*/
+        /*  Keywords
+        /*--------------------------------------------------*/
+        $(".keywords-container").each(function() {
+    
+            var keywordInput = $(this).find(".keyword-input");
+            var keywordsList = $(this).find(".keywords-list");
+    
+            // adding keyword
+            function addKeyword() {
+                var $newKeyword = $("<span class='keyword'><span class='keyword-remove'></span><span class='keyword-text'>"+ keywordInput.val() +"</span></span>");
+                keywordsList.append($newKeyword).trigger('resizeContainer');
+                keywordInput.val("");
+            }
+    
+            // add via enter key
+            keywordInput.on('keyup', function(e){
+                if((e.keyCode == 13) && (keywordInput.val()!=="")){
+                    addKeyword();
                 }
             });
-        };
-    };
-    navbarFixed();
     
-    function testimonialSlider(){
-        if ( $('.testimonial_slider').length ){
-            $('.testimonial_slider').owlCarousel({
-                loop:true,
-                margin: 30,
-                items: 2,
-                nav:false,
-                autoplay: true,
-                dots: true,
-                smartSpeed: 1500,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                    },
-                    768: {
-                        items: 2,
-                    },
+            // add via button
+            $('.keyword-input-button').on('click', function(){ 
+                if((keywordInput.val()!=="")){
+                    addKeyword();
                 }
-            })
-        }
-    }
-    testimonialSlider();
+            });
     
-    //------- Mailchimp js --------//  
+            // removing keyword
+            $(document).on("click",".keyword-remove", function(){
+                $(this).parent().addClass('keyword-removed');
+    
+                function removeFromMarkup(){
+                  $(".keyword-removed").remove();
+                }
+                setTimeout(removeFromMarkup, 500);
+                keywordsList.css({'height':'auto'}).height();
+            });
+    
+    
+            // animating container height
+            keywordsList.on('resizeContainer', function(){
+                var heightnow = $(this).height();
+                var heightfull = $(this).css({'max-height':'auto', 'height':'auto'}).height();
+    
+                $(this).css({ 'height' : heightnow }).animate({ 'height': heightfull }, 200);
+            });
+    
+            $(window).on('resize', function() {
+                keywordsList.css({'height':'auto'}).height();
+            });
+    
+            // Auto Height for keywords that are pre-added
+            $(window).on('load', function() {
+                var keywordCount = $('.keywords-list').children("span").length;
+    
+                // Enables scrollbar if more than 3 items
+                if (keywordCount > 0) {
+                    keywordsList.css({'height':'auto'}).height();
+            
+                } 
+            });
+    
+        });
 
-    function mailChimp(){
-        $('#mc_embed_signup').find('form').ajaxChimp();
-    }
-    mailChimp();
+         
+        /*--------------------------------------------------*/
+        /*  Tippy JS 
+        /*--------------------------------------------------*/
+        /* global tippy */
+        tippy('[data-tippy-placement]', {
+            delay: 100,
+            arrow: true,
+            arrowType: 'sharp',
+            size: 'regular',
+            duration: 200,
     
-    /* ===== Parallax Effect===== */
-	
-	function parallaxEffect() {
-    	$('.bg-parallax').parallax();
-	}
-	parallaxEffect();
+            // 'shift-toward', 'fade', 'scale', 'perspective'
+            animation: 'shift-away',
     
+            animateFill: true,
+            theme: 'dark',
     
-    $('select').niceSelect();
-    $('#datetimepicker11,#datetimepicker1').datetimepicker({
-        daysOfWeekDisabled: [0, 6]
+            // How far the tooltip is from its reference element in pixels 
+            distance: 10,
+    
+        });
+    
+
+    
+    // ------------------ End Document ------------------ //
     });
     
-     /*---------gallery isotope js-----------*/
-    function galleryMasonry(){
-        if ( $('#gallery').length ){
-            $('#gallery').imagesLoaded( function() {
-              // images have loaded
-                // Activate isotope in container
-                $("#gallery").isotope({
-                    itemSelector: ".gallery_item",
-                    layoutMode: 'masonry',
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear'
-                    }
-                });
-            })
-        }
-    }
-    galleryMasonry();
-	
-	/*----------------------------------------------------*/
-    /*  Simple LightBox js
-    /*----------------------------------------------------*/
-    $('.imageGallery1 .light').simpleLightbox();
+    })(this.jQuery);
     
-    /*----------------------------------------------------*/
-    /*  Google map js
-    /*----------------------------------------------------*/
-    
-    if ( $('#mapBox').length ){
-        var $lat = $('#mapBox').data('lat');
-        var $lon = $('#mapBox').data('lon');
-        var $zoom = $('#mapBox').data('zoom');
-        var $marker = $('#mapBox').data('marker');
-        var $info = $('#mapBox').data('info');
-        var $markerLat = $('#mapBox').data('mlat');
-        var $markerLon = $('#mapBox').data('mlon');
-        var map = new GMaps({
-        el: '#mapBox',
-        lat: $lat,
-        lng: $lon,
-        scrollwheel: false,
-        scaleControl: true,
-        streetViewControl: false,
-        panControl: true,
-        disableDoubleClickZoom: true,
-        mapTypeControl: false,
-        zoom: $zoom,
-            styles: [
-                {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#dcdfe6"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "stylers": [
-                        {
-                            "color": "#808080"
-                        },
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#dcdfe6"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "weight": 1.8
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.local",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#d7d7d7"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#ebebeb"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry",
-                    "stylers": [
-                        {
-                            "color": "#a7a7a7"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#efefef"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#696969"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#737373"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "labels",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#d6d6d6"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {},
-                {
-                    "featureType": "poi",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#dadada"
-                        }
-                    ]
-                }
-            ]
-        });
+
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
     }
 
-})(jQuery)
+    // Whenever the user explicitly chooses light mode
+    localStorage.theme = 'light'
+
+    // Whenever the user explicitly chooses dark mode
+    localStorage.theme = 'dark'
+
+    // Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem('theme')

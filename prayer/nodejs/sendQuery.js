@@ -1175,12 +1175,12 @@ if (command == "createRequest") {
 		    var obj = {};
 		    var requestId = rows[0].insertId;
 		    var url = "https://pireifej.com/prayer/request-feed.html?requestId=" + requestId;
-		    var users = rows[1];
-		    var realName = rows[2][0].real_name;
+		    var users = rows[2];
+		    var realName = rows[3][0].real_name;
 		    var comma = "";
 		    var emailList = "";
 		    var emails = [];
-		    
+
 		    for (var i = 0; i < users.length; i++) {
 			emailList += comma + users[i].email;
 			emails.push(users[i].email);
@@ -1226,8 +1226,6 @@ if (command == "createRequest") {
 			    subject: mySubject,
 			    html: data
 			};
-
-			console.log(mailOptions);
 		    
 			transporter.sendMail(mailOptions, function(error, info) {
 			    if (error) {
