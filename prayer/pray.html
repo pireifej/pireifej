@@ -1,220 +1,365 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {{ads}}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- ==============================================
-	     Title and Meta Tags
-	     =============================================== -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Pray For Us - Prayer Social Network</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Add your business website description here">
-	<meta name="keywords" content="Add your, business, website, keywords, here">
-	<meta name="author" content="Add your business, website, author here">
+    <!-- Favicon -->
+    <link href="assets/images/favicon.png" rel="icon" type="image/png">
 
-	<!-- ==============================================
-	     Favicons
-	     =============================================== -->
-	<link rel="shortcut icon" href="img/favicons/favicon.ico">
-	<link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <!-- Basic Page Needs
+        ================================================== -->
+    <title>Pray For Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pray For Us - Community of Hopefuls">
 
-	    <!-- ==============================================
-		 CSS
-		 =============================================== -->
-	<!-- Style-->
-        <link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
-        <link type="text/css" href="css/app.css" rel="stylesheet" />
-	<link type="text/css" href="css/prayer.css" rel="stylesheet" />
-	<link type="text/css" href="css/profile-edit.css" rel="stylesheet" />
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="css/icons.css">
 
-	    <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="css/bicon.min.css">
-    <!-- Flat Icon CSS -->
-    <link rel="stylesheet" href="css/flaticon.css">
-    <!-- audio & video player CSS -->
-    <link rel="stylesheet" href="css/plyr.css">
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="css/slick.min.css">
-    <!-- nice-select CSS -->
-    <link rel="stylesheet" href="css/nice-select.css">
-    <!-- perfect scrollbar css -->
-    <link rel="stylesheet" href="css/perfect-scrollbar.css">
-    <!-- light gallery css -->
-    <link rel="stylesheet" href="css/lightgallery.min.css">
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="css/new-header.css">
+    <!-- CSS 
+    ================================================== --> 
+    <link rel="stylesheet" href="css/uikit.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tailwind.css">  
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-	        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+</head> 
+<body>
 
-		 </head>
 
-  <body>
-    <div class="nanobar prayer-progress-class" id="prayer-progress" style="position: fixed;">
-      <div class="bar"><span id="progress-percent-display"></span></div>
-    </div>
+
+    <div id="wrapper">
+
+        <!-- Header -->
+	{{header}}
+
+<!-- sidebar -->
+{{sidebar}}
+
+        <!-- Main Contents -->
+        <div class="main_content">
+            <div class="mcontainer">
+
+                <div class="lg:flex  lg:space-x-12">
+
+                    <div class="lg:w-3/4   card">
+
+                        <div class="h-44 md:h-60 overflow-hidden relative rounded-t-lg w-full">
+                            <img src="assets/images/blog/img-5.jpg" alt="" class="w-full h-full absolute inset-0 object-cover">
+                        </div>
+                    
+                        <div class="md:p-7 p-3" style="display:none">
+                            <h2 class="text-2xl font-bold">  Technical Event Support Specialist </h2>
+                            <p> Slivon Technician Service </p>
+                        </div>
+                        <hr class="border-gray-100">
+                        <div class="md:p-7 p-3" style="display:none">
+                            <h1 class="block text-xl font-bold mb-6"> Job details  </h1>
+                            <div class="md:flex">
+                                <div class="md:w-3/4 space-y-4 -mt-2">
     
-         <!-- ==============================================
-     Navigation Section
-     =============================================== -->
-{{header}}
+                                    <div class="flex items-center space-x-3">
+                                        <ion-icon name="unlink" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
+                                        <div class="flex-1">
+                                            <div>  <a href="#" class="text-blue-500"> Hargeisa Somaliland </a> </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <ion-icon name="mail-open" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
+                                        <div class="flex-1">
+                                            <div> Full-time  </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <ion-icon name="mail-open" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
+                                        <div class="flex-1">
+                                            <div> Posted 21 hours ago </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <ion-icon name="unlink" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
+                                        <div class="flex-1">
+                                            <div>  <a href="#" class="text-blue-500"> https://mydomain.com </a> </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <ion-icon name="albums" class="bg-gray-100 p-1.5 rounded-full text-xl"></ion-icon>
+                                        <div class="flex-1">
+                                            <div>  <a href="#" class="text-blue-500">Product/service</a> </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+                                <div class="flex-1 space-y-4 md:mt-0 mt-6">
+                                    <div>
+                                        <div class="text- font-semibold"> Minimum </div>
+                                        <div> $500 Per Month</div>
+                                    </div>
+                                    <div>
+                                        <div  class="text- font-semibold"> Maximum </div>
+                                        <div> $700 Per Month</div>
+                                    </div>
+                                    <a href="#" class="bg-blue-600 text-white py-2.5 text-center font-semibold w-full mt-4 block rounded"> Apply now </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="md:p-7 p-3">
+                            <h1 id="prayer-title" class="block text-xl font-bold mb-6">--</h1>
+                            <div class="space-y-3">
+                                <p id="prayer">
+				  --
+                                </p>
+                            </div>
+                        </div>
+
+			<div class="border-t flex justify-between lg:space-x-10 p-6 bg-gray-50 rounded-b-md" style="background-image:url('img/800px-ICS_traditional_church_pews.jpg')">
+                          <p class="text-sm"></p>
+                          <button type="button" class="button lg:w-1/2" id="amen">
+                            Amen
+                          </button>
+			</div>
+
+                    </div>
+                    <div class="lg:w-1/4 w-full flex-shrink-0" style="display:none">
+
+                        <div uk-sticky="media @m ; offset:80 ; bottom : true">
+
+                            <h2 class="text-xl font-semibold mb-2"> Recently Posted </h2>
+                            <ul class="-space-y-2">
+                                <li>
+                                    <a href="#" class="hover:bg-gray-100 rounded-md p-3 -mx-3 block">
+                                        <h3 class="font-medium line-clamp-2">Technical Event Support and Producer Specialist</h3>
+                                        <div class="flex font-medium items-center mt-1 space-x-1.5 text-xs">
+                                            <div class="">Full-time</div>
+                                            <div class="pb-1"> . </div>
+                                            <div class="text-blue-500">100 - 200 / day</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:bg-gray-100 rounded-md p-3 -mx-3 block">
+                                        <h3 class="font-medium line-clamp-2">IT Department Manager Blogger Entrepenour list</h3>
+                                        <div class="flex font-medium items-center mt-1 space-x-1.5 text-xs">
+                                            <div class="">Full-time</div>
+                                            <div class="pb-1"> . </div>
+                                            <div class="text-blue-500">100 - 200 / day</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:bg-gray-100 rounded-md p-3 -mx-3 block">
+                                        <h3 class="font-medium line-clamp-2">Hardware Verification Validation Profissional Engineer</h3>
+                                        <div class="flex font-medium items-center mt-1 space-x-1.5 text-xs">
+                                            <div class="">Full-time</div>
+                                            <div class="pb-1"> . </div>
+                                            <div class="text-blue-500">1900 - 2200 / day</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                          <br>
+
+                          <h4 class="text-lg font-semibold mb-3"> Tags </h4>
+
+                        <div class="flex flex-wrap gap-2">
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> Computers</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> Business</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> News</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> Architecher</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> Technolgy</a>
+                            <a href="#" class="bg-gray-100 py-1.5 px-4 rounded-full"> Music</a>
+                        </div>
+
+                        </div><div class="uk-sticky-placeholder" style="height: 556px; margin: 0px;"></div>
+                    </div>
+
+                </div>
 
 
-	      <!-- ==============================================
-		    Header
-		    =============================================== -->
-	 <header id="headerImage">
-	   <div class="container">
-	     <div class="row">
 
-	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-		 <div class="post-heading">
-		   <p class="entry-meta">
-		     <span class="date updated time">
-		       <time id="request-timestamp" class="entry-modified-time">--</time>
-		     </span> &nbsp; / &nbsp;
-		     <span class="entry-categories">
-		       <a id="prayer-category" rel="category tag">--</a>
-		     </span>
-		   </p>
-		   <h1 id="request-title" style="color: green"></h1>
-		 </div><!-- /.post-heading -->
-	       </div><!-- /.col-lg-8 -->
+            </div>
+        </div>
 
-	     </div><!-- /.row -->
-	   </div><!-- /.container -->
-	 </header><!-- /header -->
-
-	      <!-- ==============================================
-		    Header
-		    =============================================== -->
-
-	 <div class="header-avatar">
-	   <img id="requestor-picture" alt="..." class="avatar avatar-200 photo" width="200" height="200">
-	   <p id="user-name-for-request">--</p>
-	 </div><!-- /.header-avatar -->
+    </div>
 
 
-	      <!-- ==============================================
-		    Post Content
-		    =============================================== -->
-	 <article class="entry-content" style="margin-top:-50px">
-	   <div class="container">
-	     <div class="row">
-	       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-		 <div class="compact marquee">
-		   <div id="info">
-		     <p id="info_speak_now" style="display:none">
-		       Speak now.
-		     </p>
-		     <p id="info_no_speech" style="display:none">
-		       No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone
-			 settings</a>.
-		     </p>
-		     <p id="info_no_microphone" style="display:none">
-		       No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone settings</a> are configured correctly.
-		     </p>
-		     <p id="info_allow" style="display:none">
-		       Click the "Allow" button above to enable your microphone.
-		     </p>
-		     <p id="info_denied" style="display:none">
-		       Permission to use microphone was denied.
-		     </p>
-		     <p id="info_blocked" style="display:none">
-		       Permission to use microphone is blocked. To change, go to
-		       chrome://settings/contentExceptions#media-stream
-		     </p>
-		     <p id="info_upgrade" style="display:none">
-		       Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.
-		     </p>
-		   </div>
-		   <div id="div_start">
-		     <button style="visibility:hidden" id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img" src="/prayer/img/mic/mic.gif"></button>
-		   </div>
-		 </div>
 
-		 <h4 id="prayer-title">--</h4>
-		 <p id="prayer">--</p>
-		 
-<!--		 <p>
-		   <strong>practicing the guitar.</strong>
-		 </p>
--->
+    <!-- open chat box -->
+    <div uk-toggle="target: #offcanvas-chat" class="start-chat">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+        </svg>
+    </div>
 
-	       </div><!-- /col-lg-8 -->
-	     </div><!-- /row -->
-	   </div><!-- /container -->
-	 </article><!-- /article -->
-
-	      <!-- ==============================================
-     Banner Section
-     =============================================== -->
-	 <section class="banner-comment">
-	   <div class="container">
-	     <h1 id="amen" class="clicky" onclick="amen()">Amen.</h1>
-	   </div><!-- /container -->
-	 </section><!-- /section -->
+    <div id="offcanvas-chat" uk-offcanvas="flip: true; overlay: true">
+        <div class="uk-offcanvas-bar bg-white p-0 w-full lg:w-80 shadow-2xl">
 
 
-	      <!-- ==============================================
-     Footer Section
-     =============================================== -->
-	 <footer class="bottom-footer">
-	   <div class="container">
-	     <p><span id="copyright">--</span></p>
+            <div class="relative pt-5 px-4">
 
-	     <ul id="menu-footer-menu">
-	       <li>
-		 <a href="#">About Us</a>
-	       </li><!-- /li -->
-	       <li>
-		 <a href="#">Privacy</a>
-	       </li><!-- /li -->
-	       <li>
-		 <a href="#">Terms & Conditions</a>
-	       </li><!-- /li -->
-	       <li>
-		 <a href="#">Contact Us</a>
-	       </li><!-- /li -->
-	     </ul><!-- /ul -->
+                <h3 class="text-2xl font-bold mb-2"> Chats </h3>
 
-	   </div><!-- /container -->
-	 </footer><!-- /footer -->
+                <div class="absolute right-3 top-4 flex items-center">
 
-	 <a id="scrollup">Scroll</a>
+                    <button class="uk-offcanvas-close  px-2 -mt-1 relative rounded-full inset-0 lg:hidden blcok"
+                        type="button" uk-close></button>
 
-	      <!-- ==============================================
-		    Scripts
-		    =============================================== -->
-	 <script src="js/jquery.js"></script>
-	 <script src="js/nanobar.min.js"></script>
-	 <script src="js/tether.min.js"></script>
-	 <script src="js/bootstrap.js"></script>
-	 <script src="js/medium.js"></script>
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
-	 <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js" crossorigin="anonymous"></script>
-	 <script src="js/common.js"></script>
-	 <script src="js/pray.js"></script>
-	 <script src="https://kit.fontawesome.com/02aa2640d7.js" crossorigin="anonymous"></script>
+                    <a href="#" uk-toggle="target: #search;animation: uk-animation-slide-top-small">
+                        <ion-icon name="search" class="text-2xl hover:bg-gray-100 p-1 rounded-full"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon name="cog" class="text-2xl hover:bg-gray-100 p-1 rounded-full"></ion-icon>
+                    </a>
+                    <a href="#">
+                        <ion-icon name="ellipsis-vertical" class="text-2xl hover:bg-gray-100 p-1 rounded-full"></ion-icon>
+                    </a>
 
-	 	 <script src="js/modernizr.custom.js"></script>
-	 <script src="js/popper.js"></script>
-	 <script src="js/slick.min.js"></script>
-	 <script src="js/nice-select.min.js"></script>
-	 <script src="js/plyr.min.js"></script>
-	 <script src="js/perfect-scrollbar.min.js"></script>
-	 <script src="js/lightgallery-all.min.js"></script>
-	 <script src="js/imagesloaded.pkgd.min.js"></script>
-	 <script src="js/isotope.pkgd.min.js"></script>
-	 <script src="js/new-header.js"></script>
-	 
-  </body>
+                </div>
+
+
+            </div>
+
+            <div class="absolute bg-white z-10 w-full -mt-5 lg:-mt-2 transform translate-y-1.5 py-2 border-b items-center flex"
+                id="search" hidden>
+                <input type="text" placeholder="Search.." class="flex-1">
+                <ion-icon name="close-outline" class="text-2xl hover:bg-gray-100 p-1 rounded-full mr-4 cursor-pointer"
+                    uk-toggle="target: #search;animation: uk-animation-slide-top-small"></ion-icon>
+            </div>
+
+            <nav class="responsive-nav border-b extanded mb-2 -mt-2">
+                <ul uk-switcher="connect: #chats-tab; animation: uk-animation-fade">
+                    <li class="uk-active"><a class="active" href="#0"> Friends </a></li>
+                    <li><a href="#0">Groups <span> 10 </span> </a></li>
+                </ul>
+            </nav>
+
+            <div class="contact-list px-2 uk-switcher" id="chats-tab">
+
+                <div>
+
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                            <span class="user_status status_online"></span>
+                        </div>
+                        <div class="contact-username"> Dennis Han</div>
+                    </a>
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            <span class="user_status"></span>
+                        </div>
+                        <div class="contact-username"> Erica Jones</div>
+                    </a>
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-3.jpg" alt="">
+
+                        </div>
+                        <div class="contact-username">Stella Johnson</div>
+                    </a>
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-4.jpg" alt="">
+
+                        </div>
+                        <div class="contact-username"> Alex Dolgove</div>
+                    </a>
+
+                </div>
+                <div>
+
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                            <span class="user_status status_online"></span>
+                        </div>
+                        <div class="contact-username"> Dennis Han</div>
+                    </a>
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            <span class="user_status"></span>
+                        </div>
+                        <div class="contact-username"> Erica Jones</div>
+                    </a>
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-3.jpg" alt="">
+
+                        </div>
+                        <div class="contact-username">Stella Johnson</div>
+                    </a>
+                    <a href="timeline.html">
+                        <div class="contact-avatar">
+                            <img src="assets/images/avatars/avatar-4.jpg" alt="">
+
+                        </div>
+                        <div class="contact-username"> Alex Dolgove</div>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="start_button"></div>
+
+
+    <!-- For Night mode -->
+    <script>
+        (function (window, document, undefined) {
+            'use strict';
+            if (!('localStorage' in window)) return;
+            var nightMode = localStorage.getItem('gmtNightMode');
+            if (nightMode) {
+                document.documentElement.className += ' night-mode';
+            }
+        })(window, document);
+
+        (function (window, document, undefined) {
+
+            'use strict';
+
+            // Feature test
+            if (!('localStorage' in window)) return;
+
+            // Get our newly insert toggle
+            var nightMode = document.querySelector('#night-mode');
+            if (!nightMode) return;
+
+            // When clicked, toggle night mode on or off
+            nightMode.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('gmtNightMode', true);
+                    return;
+                }
+                localStorage.removeItem('gmtNightMode');
+            }, false);
+
+        })(window, document);
+    </script>
+
+    <!-- Javascript
+    ================================================== -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/tippy.all.min.js"></script>
+    <script src="js/uikit.js"></script>
+    <script src="js/simplebar.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <script src="js/nanobar.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/pray.js"></script>
+
+</body>
 </html>

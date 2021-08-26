@@ -193,14 +193,12 @@ $( document ).ready(function() {
 	}
 
 	god.query("getNotifications", "afterGetNotifications", {}, true, true);
-	god.getCategories("afterGetCategories");
 	
 	$("#copyright").html("&#169; prayerforus.com");
 	$("#title").html("Pray For Us - Prayer Social Network");
     }
 
     window.helloClick = function() {
-	console.log("Hello!");
 	FB.ui({
 	    method: 'share',
 	    href: 'https://developers.facebook.com/docs/',
@@ -250,35 +248,34 @@ $( document ).ready(function() {
 	return result;
     }
 
-    // mode - feed or profile
-    god.getHtmlPost = function(request, mode) {
-	console.log("my request");
-	console.log(request);
+    window.deleteRequest = function(requestId) {
+	var deleteText = $("#delete-text").text();
 
+	if (deleteText == "Delete") {
+	    $("#delete-text").text("Are you sure?");
+	    return;
+	}
+	
+	god.query("deleteRequest", "afterDeleteRequest",{requestId: requestId},true, true);
+    }
+
+    // mode is deprecated, used to be 'feed' or 'profile'
+    god.getHtmlPost = function(request, mode) {
 	var timeAgo = god.getTimeAgo(request.timestamp);
 	var requestText = request.request_text;
 	var requestOwnerName = request.real_name;
 	var requestPicture = request.request_picture;
+	var requestId = request.request_id;
+	var userId = localStorage.getItem("userId");
+	var requestUserId = request.user_id;
 
-	var newHtml = "<div class='flex justify-between items-center lg:p-4 p-2.5'><div class='flex flex-1 items-center space-x-4'><a href='#'><img src='assets/images/avatars/avatar-2.jpg' class='bg-gray-200 border border-white rounded-full w-10 h-10'></a><div class='flex-1 font-semibold capitalize'><a href='#' class='text-black dark:text-gray-100'> " + requestOwnerName + " </a><div class='text-gray-700 flex items-center space-x-2'> " + timeAgo + " <ion-icon name='people'></ion-icon></div></div></div><div><a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a><div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'><ul class='space-y-1'><li><a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-share-alt mr-1'></i> Share</a></li><li><a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-edit-alt mr-1'></i>  Edit Post </a> </li><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-comment-slash mr-1'></i>   Disable comments</a> </li> <li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-favorite mr-1'></i>  Add favorites </a> </li><li><hr class='-mx-2 my-2 dark:border-gray-800'></li><li> <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'><i class='uil-trash-alt mr-1'></i>  Delete</a> </li></ul></div></div></div><div uk-lightbox><div class='grid grid-cols-2 gap-2 p-2'><a href='assets/images/post/img-4.jpg' class='col-span-2'><img src='assets/images/post/img-4.jpg' alt='' class='rounded-md w-full lg:h-76 object-cover'></a><a href='assets/images/post/img-4.jpg'><img src='uploads/" + requestPicture + "' alt='' class='rounded-md w-full h-full'></a><div class='flex items-center space-x-3 pt-2'><div class='dark:text-gray-100'>" + requestText + "</div></div></div></div><div class='p-4 space-y-3'><div class='flex space-x-4 lg:font-bold'><a href='#' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' /></svg></div><div> Like</div></a><a href='#' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path fill-rule='evenodd' d='M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z' clip-rule='evenodd' /></svg></div><div> Comment</div></a><a href='#' class='flex items-center space-x-2 flex-1 justify-end'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z' /></svg></div><div> Share</div></a></div><div class='flex items-center space-x-3 pt-2'><div class='flex items-center'><img src='assets/images/avatars/avatar-1.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'><img src='assets/images/avatars/avatar-4.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'><img src='assets/images/avatars/avatar-2.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'></div><div class='dark:text-gray-100'>Liked <strong> Johnson</strong> and <strong> 209 Others </strong></div></div>";
+	var deleteHtml = (userId == requestUserId) ? "<li> <a onclick='window.deleteRequest(" + requestId +")' class='clicky delete-btn flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600' style='color:red'><i class='iconify' data-icon='bi:trash'></i>     <div id='delete-text'>Delete</div></a> </li>" : "";
 
-	return newHtml;
+	var newHtml = "<div class='card lg:mx-0 uk-animation-slide-bottom-small'><!-- post header--><div class='flex justify-between items-center lg:p-4 p-2.5'><div class='flex flex-1 items-center space-x-4'><a href='#'><img id='user-picture' name='userpic' src='uploads/" + request.picture + "' class='bg-gray-200 border border-white rounded-full w-10 h-10'></a><div class='flex-1 font-semibold capitalize'><a href='#' class='text-black dark:text-gray-100'>" + requestOwnerName + "</a><div class='text-gray-700 flex items-center space-x-2'> " + timeAgo + " <ion-icon name='people' role='img' class='md hydrated' aria-label='people'></ion-icon></div></div></div><div><a href='#' aria-expanded='false'> <i class='iconify text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-900' data-icon='akar-icons:more-horizontal-fill' data-height='30'></i> </a><div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 uk-drop' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'><ul class='space-y-1'><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-share-alt mr-1'></i> Share</a> </li><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-edit-alt mr-1'></i>  Edit Post </a> </li><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-favorite mr-1'></i>  Add favorites </a> </li><li><hr class='-mx-2 my-2 dark:border-gray-800'></li>" + deleteHtml + "</ul></div></div></div><img src='uploads/" + request.request_picture + "' alt='' class='max-h-96 w-full object-cover'><div class='p-3 border-b dark:border-gray-700'>" + requestText + "</div><div class='p-4 space-y-3'> <div class='flex space-x-4 lg:font-bold'><a href='pray.html?requestId=" + requestId + "' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600 '><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z'></path</svg></div><div> Pray</div></a><a href='' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path fill-rule='evenodd' d='M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z' clip-rule='evenodd'></path></svg></div><div> Comment</div></a><a href='#' class='flex items-center space-x-2 flex-1 justify-end'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z'></path></svg></div><div> Share</div></a></div><div class='flex items-center space-x-3 pt-2'> <div class='flex items-center'><img src='assets/images/avatars/avatar-1.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'><img src='assets/images/avatars/avatar-4.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'><img src='assets/images/avatars/avatar-2.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'></div><div id='people-who-prayed-" + requestId + "'></div><div class='dark:text-gray-100'>Liked <strong> Johnson</strong> and <strong> 209 Others </strong></div></div></div></div></div>";
+
+	newHtml += "</br>";
 	
-	var topLeft = (mode == "profile") ? request.request_id : request.real_name;
-	var button = (mode == "profile") ? "<a href='javascript:void(0)' onclick='window.deleteRequest(" + request.request_id + ")'><span id='delete-button'>Delete</span> <i class='fa fa-angle-right' aria-hidden='true'></i></a>" : "<a href='pray.html?requestId=" + request.request_id + "'>Pray for me <i class='fa fa-angle-right'></i></a>";
-
-	var img = "img/requests/" + request.category_name + ".jpg";
-	if (request["request_picture"]) {
-	    img = "uploads/" + request["request_picture"];
-	}
-	console.log(request);
-
-	var otherPerson = request["other_person"];
-	var forOtherPerson = (otherPerson) ? " (for " + otherPerson + ")" : "";
-
-	console.log(otherPerson, forOtherPerson);
-
-	return "<a href='#" + request.request_id + "'><div id='" + request.request_id + "'>    <div class='tr-section feed'>    	<div class='tr-post'>    	<div class='entry-header'>    	<div class='entry-thumbnail'>    	<a href='#'><img class='img-fluid' src='" + img + "' alt='Image'></a>    	</div>    	</div>    	<div class='post-content'>    	<div class='author-post'>    	<a href='#'><img class='img-fluid rounded-circle' name='userpic' id='user-picture' alt='Image' src='uploads/" + request.picture + "'></a>    	</div>    	<div class='entry-meta'>    	<ul>    	<li><a href='#'>" + topLeft + "</a></li>    	<li>" + date + "</li>    	<li><i class='fa fa-align-left' aria-hidden='true'></i>&nbsp;" + request.category_name + " </li>    	</ul>    	</div>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul>    	</ul>    	</div>    	<h2><a href='#' class='entry-title'>" + request.request_title + " </a></h2>    	<p>" + request.request_text + forOtherPerson + " </p>    	<div class='read-more'>    	<div class='feed pull-left'>    	<ul><div id='" + request.request_id + "'></div>    	</ul>                        <div id='people-who-prayed-" + request.request_id + "'>" + request.prayer_count + "&nbsp;<i class='fa fa-handshake-o' aria-hidden='true'>&nbsp;</i></div>    	</div>    	<div class='continue-reading pull-right'>    	" + button + "    	</div>    	</div>    	</div>    	</div>    	</div> </div></a>";
+	return newHtml;
     }
 
     god.mobileCheck = function() {
@@ -604,9 +601,9 @@ $( document ).ready(function() {
 	var exceptions = { "createUser": true, "login": true, "email": true, "help" :true, "logVisitor": true };
 	if (!exceptions[params["command"]] && !userId) {
 	    if (window.location.href.includes("login.html")) return;
-	    if (window.location.href.includes("profile-edit.html")) return;
 	    if (window.location.href.includes("contact.html")) return;
 	    if (window.location.href.includes("index.html")) return;
+	    if (window.location.href.includes("register.html")) return;
 	    window.location.href = "login.html?access=true";
 	    return;
 	}
@@ -619,13 +616,41 @@ $( document ).ready(function() {
     }
 
     god.sendQuery = function(params, showLoadingOverlay) {
-	console.log(params["command"]);
 	console.log(params);
 
 	// Show full page LoadingOverlay
 	if (showLoadingOverlay) {
 	    if (showLoadingOverlay == "all") $.LoadingOverlay("show");
 	    else $("#" + showLoadingOverlay).LoadingOverlay("show");
+	}
+
+	if (window.location.protocol !== "https:") {
+	    var command = params["command"];
+	    console.log(command);
+
+	    var hardCodedResults = {
+		getAllUsers: 'afterGetAllUsers({"error":0,"command":"getAllUsers","result":[{"user_id":41,"user_name":"Singwala","picture":"dIb7Yxut.jpg"},{"user_id":43,"user_name":"Jiri1948@gmail.com","picture":"lw8zWWny.jpg"},{"user_id":61,"user_name":"kimchung80","picture":"0F5D7E33-1324-4E85-B4B3-25C4D54AED31.jpeg"},{"user_id":105,"user_name":"pireifej","picture":"L7UbMRyt.jpg"},{"user_id":106,"user_name":"Jack","picture":"zo5Ro4RN.jpg"},{"user_id":107,"user_name":"10101437702988656","picture":"f2O78FIc.jpg"}],"query":"SELECT user_id,user_name,picture FROM user"});',
+		getUser: 'afterGetUser({"error":0,"command":"getUser","result":[{"user_id":107,"user_name":"10101437702988656","email":"facebook","real_name":"Paul","location":"facebook","user_title":"facebook","user_about":"facebook","picture":"f2O78FIc.jpg","timestamp":"2021-08-19T13:57:27.000Z"}],"query":"SELECT user_id,user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,\'GMT\',\'America\/New_York\') as timestamp FROM user WHERE user_id = \'107\';"});
+',
+		getNotifications: 'afterGetNotifications({"error":0,"command":"getNotifications","result":[],"query":"SELECT user.real_name, request.request_title,user_request.user_id, request.request_id, user.picture, CONVERT_TZ(user_request.timestamp,\'GMT\',\'America\/New_York\') as timestamp FROM request INNER JOIN user_request ON user_request.request_id = request.request_id INNER JOIN user on user.user_id = user_request.user_id WHERE request.user_id = \'107\' AND request.active = 1 ORDER BY user_request.timestamp DESC LIMIT 3;"});
+',
+		getRequestFeed: 'afterGetRequestFeed({"error":0,"command":"getRequestFeed","result":[{"request_id":590,"user_id":105,"request_text":"I have a call coming up soon","request_title":"From Request Feed Page","request_picture":"","other_person":"","category_name":"general","timestamp":"2021-08-25T12:49:05.000Z","real_name":"Paul","picture":"L7UbMRyt.jpg","prayer_count":0},{"request_id":587,"user_id":105,"request_text":"save all the babies","request_title":"From Request Feed Page","request_picture":"","other_person":"","category_name":"general","timestamp":"2021-08-24T17:51:39.000Z","real_name":"Paul","picture":"L7UbMRyt.jpg","prayer_count":1},{"request_id":583,"user_id":107,"request_text":"my new request","request_title":"new website","request_picture":"0M39V4Mk.jpg","other_person":"","category_name":"general","timestamp":"2021-08-19T21:53:10.000Z","real_name":"Paul","picture":"f2O78FIc.jpg","prayer_count":0}],"query":"SELECT request_id,request.user_id,request_text,request_title,request.picture as request_picture,request.other_person,category.category_name,CONVERT_TZ(request.timestamp,\'GMT\',\'America\/New_York\') as timestamp,user.real_name,user.picture, (SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count FROM request INNER JOIN category ON category.category_id = fk_category_id INNER JOIN user ON user.user_id = request.user_id WHERE request.active IS TRUE AND request.request_id NOT IN (SELECT request_id FROM user_request WHERE user_request.user_id = '107') ORDER BY timestamp DESC"});',
+		getPrayerCount: 'afterGetPrayerCount({"error":0,"command":"getPrayerCount","result":[{"COUNT(*)":0}],"query":"SELECT COUNT(*)  FROM user_request  WHERE user_id = 107"});',
+		getMyRequests: 'afterGetMyRequests({"error":0,"command":"getMyRequests","result":[{"request_id":583,"user_id":107,"request_text":"my new request","request_title":"new website","request_picture":"0M39V4Mk.jpg","category_name":"general","timestamp":"2021-08-19T21:53:10.000Z","prayer_count":0}],"query":"SELECT request.request_id,request.user_id,request_text,request_title,picture as request_picture,category.category_name,CONVERT_TZ(timestamp,\'GMT\',\'America\/New_York\') as timestamp, (SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count FROM request INNER JOIN category ON category.category_id = fk_category_id WHERE request.user_id = \'107\' and request.active is TRUE ORDER BY timestamp DESC"});',
+		getAllUsers: 'afterGetAllUsers({"error":0,"command":"getAllUsers","result":[{"user_id":41,"user_name":"Singwala","picture":"dIb7Yxut.jpg"},{"user_id":43,"user_name":"Jiri1948@gmail.com","picture":"lw8zWWny.jpg"},{"user_id":61,"user_name":"kimchung80","picture":"0F5D7E33-1324-4E85-B4B3-25C4D54AED31.jpeg"},{"user_id":105,"user_name":"pireifej","picture":"L7UbMRyt.jpg"},{"user_id":106,"user_name":"Jack","picture":"zo5Ro4RN.jpg"},{"user_id":107,"user_name":"10101437702988656","picture":"f2O78FIc.jpg"}],"query":"SELECT user_id,user_name,picture FROM user"});'
+	    };
+
+	    console.log(data);
+	    // Hide loading overlay
+	    $("#requests").LoadingOverlay("hide");
+	    $("#request-feed").LoadingOverlay("hide");
+	    $("#prayer").LoadingOverlay("hide");
+	    if (showLoadingOverlay) {
+		if (showLoadingOverlay == "all") $.LoadingOverlay("hide");
+		else $("#" + showLoadingOverlay).LoadingOverlay("hide");
+	    }
+	    
+	    return;
 	}
 
 	$.ajax({
@@ -637,7 +662,6 @@ $( document ).ready(function() {
 	    jsonpCallback: params.jsonpCallback,
 	    contentType: 'application/json; charset=utf-8;',
 	    success: function(data) {
-		console.log(params.command + ' success');
 		console.log(data);
 		// Hide loading overlay
 		$("#requests").LoadingOverlay("hide");

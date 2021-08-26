@@ -1,6 +1,6 @@
 /*
-* Author: Hamza mohamet
-* URL: https://foxthemes.net
+* Author: Paul Ireifej
+* URL: https://pireifej.com
 */
 /* -------------------------------------------------------------- */
 /* Default Colors
@@ -24,6 +24,15 @@
 /* ---------------------------------- */
 /* Buttons
 ------------------------------------- */
+
+.clicky {
+    cursor: pointer;
+}
+
+.delete-btn {
+    color: red;
+}
+
 button {
   vertical-align: middle;
 }

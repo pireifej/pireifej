@@ -6,6 +6,7 @@ $( document ).ready(function() {
     god.init();
     var pray = $.urlParam("pray");
     var requestId = $.urlParam("requestId");
+    var prayersLoaded = false;
     
     if (requestId) {
 	var aTag = $("a[name='"+ "my-anchor" +"']");
@@ -18,14 +19,75 @@ $( document ).ready(function() {
     getRequestFeed();
     god.query("getAllUsers", "afterGetAllUsers", {}, false, true);
 
-    $("#headerImage").css("margin-bottom", "50px");
-    $("#headerImage").css("background", "linear-gradient(rgba(34, 34, 34, 0.7), rgba(34, 34, 34, 0.7)), url('img/blog/FULL.jpg') no-repeat center center");
-    $("#headerImage").css("background-color: #777777");
-    $("#headerImage").css("background-attachment", "scroll");
-    $("#headerImage").css("-webkit-background-size", "cover");
-    $("#headerImage").css("-moz-background-size", "cover");
-    $("#headerImage").css("-o-background-size", "cover");
-    $("#headerImage").css("background-size", "cover");
+    $( "#request-input" ).keyup(function() {
+	var request = $("#request-input").val();
+	var noChar = request.length;
+
+	if (noChar <= 100) $("#no-char-request").css("color", "lightgreen");
+	if (noChar > 150 && noChar <= 199) $("#no-char-request").css("color", "orange");
+	if (noChar >= 200) {
+	    $("#no-char-request").css("color", "red");
+	    $("#request-input").val(prevRequest);
+	    $("#no-char-request").text(noChar);
+	    return;
+	}
+	$("#no-char-request").text(noChar);
+	prevRequest = request;
+    });
+
+    $("#prayer-cancel").click(function() {
+	$("#select-prayer-list").hide();
+    });
+
+    $("#select-prayer").click(function() {
+	if (prayersLoaded) {
+	    $("#select-prayer-list").removeAttr("hidden");
+	    $("#select-prayer-list").show();
+	    return;
+	}	
+	god.query("getAllPrayers", "afterGetAllPrayers", {}, false, false, "all");
+    });
+
+    $("#request-publish").click(function() {
+	var requestText = $("#request-input").val();
+	var prayerId = $("#select-prayer-box").val();
+
+	if (!requestText) return;
+	
+	$("#request-publish").prop("disabled", true);
+	$("#request-publish").html("Sharing");
+	
+	var params = {
+	    requestText: "\"" + requestText + "\"",
+	    requestTitle: "\"From Request Feed Page\"",
+	    requestCategoryId: 8,
+	    sendEmail: "off",
+	    otherPerson: null,//(requestDetails["otherPerson"]) ? requestDetails["otherPerson"] : "",
+	    picture: null,//god.getUploadedPicName(),
+	    preview: false,
+	    prayerId: (prayerId) ? prayerId : 37,
+	};
+	god.query("createRequest", "afterCreateRequest", params, true, true);	
+    })
+
+    window.afterGetAllPrayers = function(response) {
+	$("#select-prayer-list").removeAttr("hidden");
+	$("#select-prayer-list").show();
+
+	var prayerList = response.result;
+	for (var i = 0; i < prayerList.length; i++) {
+	    var prayer = prayerList[i];
+	    $("#select-prayer-box").append('<option data-icon="fa-heart" value="'+prayer.prayer_id+'">'+prayer.prayer_title+'</option>');
+	}
+	$("#select-prayer-box").selectpicker('refresh');
+	prayersLoaded = true;
+    };
+
+    window.afterCreateRequest = function(response) {
+	console.log("window.afterCreateRequest");
+	console.log(response);
+	window.location.href = "index.html";
+    }
 
     function insertRequestFeed(response) {
 	$("#request-feed").empty();
@@ -41,15 +103,8 @@ $( document ).ready(function() {
 
 	for (var i = 0; i < response.result.length; i++) {
 	    var request = response.result[i];
-	    htmlPost += god.getHtmlPost(request, "feed");
-	}
-	$("#request-feed").html(htmlPost);
-	return;
-	
-	for (var i = 0; i < response.result.length; i++) {
-
-	    htmlPost += god.getHtmlPost(request, "feed");
 	    requestIds.push(request.request_id);
+	    htmlPost += god.getHtmlPost(request, "feed");
 	}
 	$("#request-feed").html(htmlPost);
     }
@@ -113,6 +168,8 @@ $( document ).ready(function() {
                 people[people.length - 1] = "and " + people[people.length - 1];
                 peopleText = people.join(", ");
             }
+	    console.log("I am here!");
+	    console.log("#people-who-prayed-" + key);
             $("#people-who-prayed-" + key).html(people.length + "&nbsp;<i class='fa fa-handshake-o'>&nbsp;" + peopleText + " prayed.</i>");
         }
     }

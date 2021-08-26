@@ -9,9 +9,9 @@ for file in /var/www/html/prayer/*; do
     if [ ${file: -5} == ".html" ]
     then
        echo $file
-       sudo sed -i '/{{header}}/{
-    	 s/{{header}}//g
-    	 r /var/www/html/prayer/header.html
+       sudo sed -i '/{{sidebar}}/{
+    	 s/{{sidebar}}//g
+    	 r /var/www/html/prayer/sidebar.html
 	 }' $file
     fi
 done

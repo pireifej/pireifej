@@ -469,6 +469,22 @@ if (command == "getPrayer") {
 		    var scores = {};
 		    var otherPerson = request.other_person;
 		    var realName = request.real_name;
+		    
+		    if (!request.prayer_text) {
+			var obj = {};
+			obj["result"] = {};
+			obj["result"]["prayer_title"] = request.request_title;
+			obj["result"]["prayer_text"] = "No prayer assigned yet";
+			obj["result"]["request"] = request;
+			obj["result"]["query"] = query;
+			obj["result"]["scores"] = scores;
+			console.log(JSON.stringify(obj));
+			conn.release();
+			conn.end();
+			process.exit();
+			return;
+		    }
+		    
 		    var customPrayer = generateCustomPrayer(request.prayer_text, realName, gender, otherPerson);
 			    var obj = {};
 			    obj["result"] = {};
@@ -579,7 +595,7 @@ if (command == "getRequestFeed") {
 	query += "AND request.request_id = " + requestId + " ";
     }
     // not your request
-    query += "AND (request.user_id <> '" + queryObject.userId + "' OR request.other_person <> '') ";
+    //query += "AND (request.user_id <> '" + queryObject.userId + "' OR request.other_person <> '') ";
     // you already prayed
     query += "AND request.request_id NOT IN ";
     query += "(SELECT request_id FROM user_request WHERE user_request.user_id = '" + queryObject.userId + "') ";
@@ -1019,6 +1035,8 @@ if (command == "createUser") {
     requireParam("title");
     requireParam("about");
     requireParam("picture");
+    requireParam("gender");
+    requireParam("phone");
 
     var mypassword = queryObject.password;
     var bcrypt = require('bcrypt');
@@ -1026,7 +1044,7 @@ if (command == "createUser") {
 
     bcrypt.hash(mypassword, saltRounds, function(err, hash) {
 	var password = hash;
-	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, picture, active) VALUES (";
+	query = "INSERT INTO user (user_name, password, email, real_name, location, user_title, user_about, picture, gender, phone, active) VALUES (";
 	query += "'" + queryObject.userName + "',";
 	query += "'" + password + "',";
 	query += "'" + queryObject.email + "',";
@@ -1035,6 +1053,8 @@ if (command == "createUser") {
 	query += "'" + queryObject.title + "',";
 	query += "'" + queryObject.about + "',";
 	query += "'" + queryObject.picture + "',";
+	query += "'" + queryObject.gender + "',";
+	query += "'" + queryObject.phone + "',";
 	query += "TRUE);";
 
 	const pool = createPool();
