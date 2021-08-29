@@ -366,7 +366,7 @@ $( document ).ready(function() {
     }
 
     window.afterGetNotifications = function(response) {
-	$("#notifications").empty();
+	$("#notification-list").empty();
 	var htmlNotifications = "";
 
 	var notifications = response.result;
@@ -377,8 +377,11 @@ $( document ).ready(function() {
 	    var timeAgo = god.getTimeAgo(entry.timestamp);
 	    htmlNotifications += "<li class='not-read'><a href='#'><div class='drop_avatar status-online'> <img src='uploads/" + entry.picture + "' alt=''></div><div class='drop_text'><p><strong>" + entry.real_name + "</strong> prayed for you.</p><time>" + timeAgo + "</time></div></a></li>";
 	}
+	
 	$("#notifications-count").html(notifications.length);
-	$("#notifications").html(htmlNotifications);
+	
+	// hard code additional empty spaces strictly for mobile display purposes
+	$("#notification-list").html(htmlNotifications+"<li><a href='#'><div class='drop_avatar'><img src='assets/images/avatars/avatar-1.jpg' alt=''></div></div></a></li><li><a href='#'><div class='drop_avatar'><img src='assets/images/avatars/avatar-1.jpg' alt=''></div><div class='drop_text'><p></div></a></li><li><a href='#'><div class='drop_avatar'><img src='assets/images/avatars/avatar-1.jpg' alt=''></div><div class='drop_text'><p></div></a></li><li><a href='#'><div class='drop_avatar'><img src='assets/images/avatars/avatar-1.jpg' alt=''></div><div class='drop_text'></div></a></li>");
     }
 
     window.goToRequestFeed = function() {

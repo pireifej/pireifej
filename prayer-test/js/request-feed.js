@@ -6,8 +6,15 @@ $( document ).ready(function() {
     god.init();
     var pray = $.urlParam("pray");
     var requestId = $.urlParam("requestId");
+
+    // 'add to your request' data loaded status
     var prayersLoaded = false;
     var otherPeopleLoaded = false;
+
+    // 'add to your request' view toggle status
+    var prayersOpen = false;
+    var otherPeopleOpen = false;
+    
     var users = null;
     
     if (requestId) {
@@ -50,7 +57,7 @@ $( document ).ready(function() {
 	    $("#select-prayer-list").removeAttr("hidden");
 	    $("#select-prayer-list").show();
 	    return;
-	}	
+	}
 	god.query("getAllPrayers", "afterGetAllPrayers", {}, false, false, "all");
     });
 
@@ -61,8 +68,8 @@ $( document ).ready(function() {
 	    return;
 	}
 
-	$("#select-other-people-list").removeAttr("hidden");
-	$("#select-other-people-list").show();
+	$("#select-other-person-list").removeAttr("hidden");
+	$("#select-other-person-list").show();
 
 	for (var i = 0; i < users.length; i++) {
 	    var person = users[i];
@@ -191,7 +198,7 @@ $( document ).ready(function() {
 	    }
 
             if (people.length > 2) {
-		peopleText = people[0].name + " and " + people.length - 1 " other people ";
+		peopleText = people[0].name + " and " + people.length - 1 + " other people ";
             }
             $("#people-who-prayed-" + key).html("<div class='dark:text-gray-100'>Thank you, <strong>" + peopleText + "</strong> for your prayer.</div>");
 

@@ -197,8 +197,115 @@ if (command == "assignPrayer") {
     requireParam("request_id");
     requireParam("prayer_id");
 
-    query = "UPDATE request SET fk_prayer_id = " + queryObject.prayer_id + " ";
+    query = "UPDATE request SET fk_prayer_id = " + queryObject.prayer_id + ", ";
+    query += "active = TRUE ";
     query += "WHERE request_id = " + queryObject.request_id + ";";
+
+    query += "SELECT other_person,request_id,request_text FROM request WHERE request_id = " + queryObject.request_id + ";";
+
+    query += "SELECT user.real_name, user.email ";
+    query += "FROM user ";
+    query += "WHERE user.user_id <> '" + queryObject.userId + "';";
+
+    query += "SELECT user.real_name ";
+    query += "FROM user ";
+    query += "WHERE user.user_id = '" + queryObject.userId + "';";
+
+    const pool = createPool();
+    module.exports = pool;
+    pool.getConnection()
+    	.then(conn => {
+	    conn.query(query)
+	    	.then((rows) => {
+		    var obj = {};
+		    // rows[0] is the status from UPDATE
+		    var requestDetails = rows[1][0];
+		    var users = rows[2];
+		    var realName = rows[3][0].real_name;
+		    var comma = "";
+		    var emailList = "";
+		    var emails = [];
+		    var url = "https://pireifej.com/prayer/index.html?requestId=" + requestDetails.request_id;
+
+		    
+		    for (var i = 0; i < users.length; i++) {
+			emailList += comma + users[i].email;
+			emails.push(users[i].email);
+			comma = ",";
+		    }
+
+		    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'pireifej@gmail.com',
+                            pass: 'bcvbfcsvklsnegqc'
+                        }
+                    });
+
+		    fs.readFile(home + '/nodejs/emailTemplate.html', 'utf8', function (err,data) {
+                        if (err) {
+			    console.log(err);
+                            return;
+                        }
+
+			var otherPerson = requestDetails.otherPerson;
+
+			data = data.replace("{{realName}}", realName);
+			data = data.replace("{{realName}}", realName);
+			
+			if (otherPerson) {
+			    data = data.replace("{{otherPerson}}", "(for " + otherPerson + ")");
+			} else {
+			    data = data.replace("{{otherPerson}}", "");
+			}
+
+			data = data.replace("{{prayerText}}", requestDetails.request_text);
+			data = data.replace("{{requestLink}}", url);
+
+			var mySubject = "Please pray for me!";
+
+			var mailOptions = {
+			    from: 'pireifej@gmail.com',
+			    to: 'pireifej@gmail.com',
+			    bcc: emails,
+			    subject: mySubject,
+			    html: data
+			};
+		    
+			transporter.sendMail(mailOptions, function(error, info) {
+			    if (error) {
+				var obj = {};
+				obj["result"] = 'Error: ' + error;
+				obj["query"] = query;
+				console.log(JSON.stringify(obj));
+				process.exit();
+				return;
+			    } else {
+				var obj = {};
+				obj["output"] = env;
+				obj["result"] = 'Email sent: ' + info.response;
+				obj["query"] = query;
+				console.log(JSON.stringify(obj));
+				process.exit();
+				conn.release();
+				conn.end();
+				return;
+			    }
+			});
+		    })
+		})
+    		.catch(err => {
+		    console.log("not connected due to error: " + err);
+                    var obj = {};
+                    obj["result"] = err;
+                    obj["query"] = query;
+                    console.log(JSON.stringify(obj));
+                    conn.release();
+                    conn.end();
+                    process.exit();
+		})
+	})
+    return;    
 }
 
 if (command == "logVisitor") {
@@ -1156,10 +1263,15 @@ if (command == "createRequest") {
     requireParam("preview");
     requireParam("prayerId");
 
+    // if just a preview, prayer is not active yet
     var preview = queryObject.preview;
-
     if (preview == "false") active = "TRUE";
     else active = "FALSE";
+
+    // if prayer not assigned yet, prayer is not active yet (until assigned a prayer)
+    if (queryObject.prayerId == 37) {
+	active = "FALSE";
+    }
     
     query = "INSERT INTO request (user_id, request_text, request_title, fk_category_id, other_person, picture, fk_prayer_id, active) VALUES (";
     query += "'" + queryObject.userId + "',";
@@ -1204,7 +1316,7 @@ if (command == "createRequest") {
 
 		    var obj = {};
 		    var requestId = rows[0].insertId;
-		    var url = "https://pireifej.com/prayer/request-feed.html?requestId=" + requestId;
+		    var url = "https://pireifej.com/prayer/index.html?requestId=" + requestId;
 		    var users = rows[2];
 		    var realName = rows[3][0].real_name;
 		    var comma = "";
