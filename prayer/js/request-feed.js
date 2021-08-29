@@ -7,6 +7,8 @@ $( document ).ready(function() {
     var pray = $.urlParam("pray");
     var requestId = $.urlParam("requestId");
     var prayersLoaded = false;
+    var otherPeopleLoaded = false;
+    var users = null;
     
     if (requestId) {
 	var aTag = $("a[name='"+ "my-anchor" +"']");
@@ -39,6 +41,10 @@ $( document ).ready(function() {
 	$("#select-prayer-list").hide();
     });
 
+    $("#other-person-cancel").click(function() {
+	$("#select-other-person-list").hide();
+    }); 
+
     $("#select-prayer").click(function() {
 	if (prayersLoaded) {
 	    $("#select-prayer-list").removeAttr("hidden");
@@ -48,9 +54,28 @@ $( document ).ready(function() {
 	god.query("getAllPrayers", "afterGetAllPrayers", {}, false, false, "all");
     });
 
+    $("#select-other-person").click(function() {
+	if (otherPeopleLoaded) {
+	    $("#select-other-person-list").removeAttr("hidden");
+	    $("#select-other-person-list").show();
+	    return;
+	}
+
+	$("#select-other-people-list").removeAttr("hidden");
+	$("#select-other-people-list").show();
+
+	for (var i = 0; i < users.length; i++) {
+	    var person = users[i];
+	    $("#select-other-person-box").append('<option style="width:auto;" data-icon="fa-heart" value="'+person.user_id+'">'+person.real_name+'</option>');
+	}
+	$("#select-other-person-box").selectpicker('refresh');
+	otherPeopleLoaded = true;
+    });
+
     $("#request-publish").click(function() {
 	var requestText = $("#request-input").val();
 	var prayerId = $("#select-prayer-box").val();
+	var otherPerson = $("#select-other-person-box").val();
 
 	if (!requestText) return;
 	
@@ -61,8 +86,8 @@ $( document ).ready(function() {
 	    requestText: "\"" + requestText + "\"",
 	    requestTitle: "\"From Request Feed Page\"",
 	    requestCategoryId: 8,
-	    sendEmail: "off",
-	    otherPerson: null,//(requestDetails["otherPerson"]) ? requestDetails["otherPerson"] : "",
+	    sendEmail: "on",
+	    otherPerson: (otherPerson) ? otherPerson : null,
 	    picture: null,//god.getUploadedPicName(),
 	    preview: false,
 	    prayerId: (prayerId) ? prayerId : 37,
@@ -77,7 +102,7 @@ $( document ).ready(function() {
 	var prayerList = response.result;
 	for (var i = 0; i < prayerList.length; i++) {
 	    var prayer = prayerList[i];
-	    $("#select-prayer-box").append('<option data-icon="fa-heart" value="'+prayer.prayer_id+'">'+prayer.prayer_title+'</option>');
+	    $("#select-prayer-box").append('<option style="width:auto;" data-icon="fa-heart" value="'+prayer.prayer_id+'">'+prayer.prayer_title+'</option>');
 	}
 	$("#select-prayer-box").selectpicker('refresh');
 	prayersLoaded = true;
@@ -128,7 +153,7 @@ $( document ).ready(function() {
 	var html = "<ul class='people-rel-list-photos' id='all-users'>";
 	$("#no-users").html("<a href='#'><i class='fa fa-users'></i></a>" + response.result.length);
 
-	var users = response.result;
+	users = response.result;
 	for (var i = 0; i < users.length; i++) {
 	    var user = users[i];
 	    html += "<li><a href='user.html?userId=" + user.user_id + "'><img src='uploads/" + user.picture + "' alt=''></a></li>";
@@ -149,28 +174,31 @@ $( document ).ready(function() {
 	var requests = {};
         for (var i = 0; i < response.result.length; i++) {
             if (!requests[response.result[i].request_id]) requests[response.result[i].request_id] = [];
-	    requests[response.result[i].request_id].push(response.result[i].real_name);
+	    requests[response.result[i].request_id].push({name:response.result[i].real_name,picture:response.result[i].picture});
         }
 
         for (var key in requests) {
             var people = requests[key];
 	    var peopleText = "";
+	    var peopleImg = "";
 
 	    if (people.length == 1) {
-		peopleText = people[0];
+		peopleText = people[0].name;
 	    }
 	    
 	    if (people.length == 2) {
-		peopleText = people[0] + " and " + people[1];
+		peopleText = people[0].name + " and " + people[1].name;
 	    }
 
             if (people.length > 2) {
-                people[people.length - 1] = "and " + people[people.length - 1];
-                peopleText = people.join(", ");
+		peopleText = people[0].name + " and " + people.length - 1 " other people ";
             }
-	    console.log("I am here!");
-	    console.log("#people-who-prayed-" + key);
-            $("#people-who-prayed-" + key).html(people.length + "&nbsp;<i class='fa fa-handshake-o'>&nbsp;" + peopleText + " prayed.</i>");
+            $("#people-who-prayed-" + key).html("<div class='dark:text-gray-100'>Thank you, <strong>" + peopleText + "</strong> for your prayer.</div>");
+
+	    for (var i = 0; i < people.length; i++) {
+		peopleImg += "<img src='uploads/" + people[i].picture + "' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>";
+	    }
+	    $("#people-who-prayed-img-" + key).html(peopleImg);
         }
     }
 });

@@ -64,7 +64,8 @@ $( document ).ready(function() {
 	    title: "'no title'",
 	    about: "'no about'",
 	    gender: "'" + profileDetails["gender"] + "'",
-	    phone: "'" + profileDetails["phone"] + "'"
+	    phone: "'" + profileDetails["phone"] + "'",
+	    picture: "img/user/defautlUser.png"
 	};
 
 	if (uploadedPicName) {
@@ -75,8 +76,6 @@ $( document ).ready(function() {
 	$("#submit-text").html("Creating ...");
 
 	console.log(profileDetails);
-
-	return;
 	
 //	if (profileDetails["password"]) {
 //	    god.query("passwordChange", "afterPasswordChange", {password: profileDetails.password}, true, true);
@@ -137,6 +136,7 @@ $( document ).ready(function() {
     }
 
     window.afterCreateUser = function(response) {
+	console.log(response);
 	if (response.error == 0) {
 	    $("#form")[0].reset();
 	    window.location.href = "login.html?user=true";

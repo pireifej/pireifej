@@ -8928,7 +8928,7 @@ body.story-active header .header_widgets .is_link {
 
 .create-post .bootstrap-select.btn-group button {
   height: 38px;
-  max-width: 168px !important;
+  max-width: 280px !important;
   -webkit-box-shadow: none;
           box-shadow: none;
   padding: 0;

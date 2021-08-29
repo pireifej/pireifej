@@ -151,7 +151,7 @@ $( document ).ready(function() {
     // text - display text
     // type - success, info, warning, error
     god.notify = function(text, type) {
-	$.notify(text, { position: "bottom left", className: type });
+//	$.notify(text, { position: "bottom left", className: type });
     }
 
     // god functions
@@ -190,6 +190,10 @@ $( document ).ready(function() {
 	    $("#user-notification").hide();
 	    $("#request-feed").hide();
 	    $("#login-button").show();
+
+	    // exceptions are creating a user, logging in, contact the website for help
+	    if (!window.location.href.includes("register.html"))
+		window.location.href = "login.html";
 	}
 
 	god.query("getNotifications", "afterGetNotifications", {}, true, true);
@@ -270,8 +274,11 @@ $( document ).ready(function() {
 	var requestUserId = request.user_id;
 
 	var deleteHtml = (userId == requestUserId) ? "<li> <a onclick='window.deleteRequest(" + requestId +")' class='clicky delete-btn flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600' style='color:red'><i class='iconify' data-icon='bi:trash'></i>     <div id='delete-text'>Delete</div></a> </li>" : "";
+	var editPostHtml = (userId == requestUserId) ? "<li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-edit-alt mr-1'></i>  Edit Post </a> </li>" : "";
+	var addFavoritesHtml = "<li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-favorite mr-1'></i>  Add favorites </a> </li><li><hr class='-mx-2 my-2 dark:border-gray-800'></li>";
+	var commentHtml = (true) ? "<div> Comment</div></a><a href='#' class='flex items-center space-x-2 flex-1 justify-end'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z'></path></svg></div>" : "";
 
-	var newHtml = "<div class='card lg:mx-0 uk-animation-slide-bottom-small'><!-- post header--><div class='flex justify-between items-center lg:p-4 p-2.5'><div class='flex flex-1 items-center space-x-4'><a href='#'><img id='user-picture' name='userpic' src='uploads/" + request.picture + "' class='bg-gray-200 border border-white rounded-full w-10 h-10'></a><div class='flex-1 font-semibold capitalize'><a href='#' class='text-black dark:text-gray-100'>" + requestOwnerName + "</a><div class='text-gray-700 flex items-center space-x-2'> " + timeAgo + " <ion-icon name='people' role='img' class='md hydrated' aria-label='people'></ion-icon></div></div></div><div><a href='#' aria-expanded='false'> <i class='iconify text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-900' data-icon='akar-icons:more-horizontal-fill' data-height='30'></i> </a><div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 uk-drop' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'><ul class='space-y-1'><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-share-alt mr-1'></i> Share</a> </li><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-edit-alt mr-1'></i>  Edit Post </a> </li><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-favorite mr-1'></i>  Add favorites </a> </li><li><hr class='-mx-2 my-2 dark:border-gray-800'></li>" + deleteHtml + "</ul></div></div></div><img src='uploads/" + request.request_picture + "' alt='' class='max-h-96 w-full object-cover'><div class='p-3 border-b dark:border-gray-700'>" + requestText + "</div><div class='p-4 space-y-3'> <div class='flex space-x-4 lg:font-bold'><a href='pray.html?requestId=" + requestId + "' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600 '><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z'></path</svg></div><div> Pray</div></a><a href='' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path fill-rule='evenodd' d='M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z' clip-rule='evenodd'></path></svg></div><div> Comment</div></a><a href='#' class='flex items-center space-x-2 flex-1 justify-end'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z'></path></svg></div><div> Share</div></a></div><div class='flex items-center space-x-3 pt-2'> <div class='flex items-center'><img src='assets/images/avatars/avatar-1.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'><img src='assets/images/avatars/avatar-4.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'><img src='assets/images/avatars/avatar-2.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'></div><div id='people-who-prayed-" + requestId + "'></div><div class='dark:text-gray-100'>Liked <strong> Johnson</strong> and <strong> 209 Others </strong></div></div></div></div></div>";
+	var newHtml = "<div class='card lg:mx-0 uk-animation-slide-bottom-small'><!-- post header--><div class='flex justify-between items-center lg:p-4 p-2.5'><div class='flex flex-1 items-center space-x-4'><a href='#'><img id='user-picture' name='userpic' src='uploads/" + request.picture + "' class='bg-gray-200 border border-white rounded-full w-10 h-10'></a><div class='flex-1 font-semibold capitalize'><a href='#' class='text-black dark:text-gray-100'>" + requestOwnerName + "</a><div class='text-gray-700 flex items-center space-x-2'> " + timeAgo + " <ion-icon name='people' role='img' class='md hydrated' aria-label='people'></ion-icon></div></div></div><div><a href='#' aria-expanded='false'> <i class='iconify text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-900' data-icon='akar-icons:more-horizontal-fill' data-height='30'></i> </a><div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 uk-drop' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'><ul class='space-y-1'><li> <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'><i class='uil-share-alt mr-1'></i> Share</a> </li>" + editPostHtml + deleteHtml + "</ul></div></div></div><img src='uploads/" + request.request_picture + "' alt='' class='max-h-96 w-full object-cover'><div class='p-3 border-b dark:border-gray-700'>" + requestText + "</div><div class='p-4 space-y-3'> <div class='flex space-x-4 lg:font-bold'><a href='pray.html?requestId=" + requestId + "' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600 '><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z'></path</svg></div><div> Pray</div></a><a href='' class='flex items-center space-x-2'><div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'><path fill-rule='evenodd' d='M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z' clip-rule='evenodd'></path></svg></div>" + commentHtml + "<div> Share</div></a></div><div class='flex items-center space-x-3 pt-2'> <div class='flex items-center'><div id='people-who-prayed-img-" + requestId + "'></div></div><div id='people-who-prayed-" + requestId + "'></div></div></div></div></div>";
 
 	newHtml += "</br>";
 	
@@ -360,57 +367,18 @@ $( document ).ready(function() {
 
     window.afterGetNotifications = function(response) {
 	$("#notifications").empty();
-	$("#notifications-mobile").empty();
 	var htmlNotifications = "";
-	var htmlNotificationsMobile = "";
 
-	for (var i = 0; i < response.result.length; i++) {
-	    var notice = response.result[i];
-	    var timeAgo = god.getTimeAgo(notice.timestamp);
-	    
-	    htmlNotifications += "<li class='msg-list-item d-flex justify-content-between'>";
-            htmlNotifications += "<!-- profile picture end -->";
-	    htmlNotifications += "<div class='profile-thumb'>";
-	    htmlNotifications += + "<figure class='profile-thumb-middle'>";
-	    htmlNotifications += "<img src='uploads/" + notice.picture + "' alt='profile picture' class='notice-picture'>";
-	    htmlNotifications += "</figure>";
-	    htmlNotifications += "</div>";
-	    htmlNotifications += "<!-- profile picture end -->";
-	    htmlNotifications += "<!-- message content start -->";
-	    htmlNotifications += "<div class='msg-content notification-content'>";
-	    htmlNotifications += "<a href='user.html?userId=" + notice.user_id + "'>" + notice.real_name + "</a> ";
-	    htmlNotifications += "<p>prayed for '" + notice.request_title + "'.</p>";
-	    htmlNotifications += "</div>";
-	    htmlNotifications += "<!-- message content end -->";
-	    htmlNotifications += "<!-- message time start -->";
-	    htmlNotifications += "<div class='msg-time'>";
-	    htmlNotifications += "<p>" + timeAgo + "</p>";
-	    htmlNotifications += "</div>";
-	    htmlNotifications += "<!-- message time end -->";
-	    htmlNotifications += "</li>";
+	var notifications = response.result;
+	if (!notifications.length) return;
 
-	    htmlNotificationsMobile += "                                <li>";
-	    htmlNotificationsMobile += "                                    <div class='frnd-request-member'>";
-	    htmlNotificationsMobile += "                                        <figure class='request-thumb'>";
-	    htmlNotificationsMobile += "                                            <a href='profile.html'>";
-	    htmlNotificationsMobile += "                                                <img style='width: 75px; height: 75px' src='uploads/" + notice.picture + "' alt='proflie author'>";
-	    htmlNotificationsMobile += "                                            </a>";
-	    htmlNotificationsMobile += "                                        </figure>";
-	    htmlNotificationsMobile += "                                        <div class='frnd-content'>";
-	    htmlNotificationsMobile += "                                            <p class='author-subtitle'><a href='user.html?userId=" + notice.user_id + "'>" + notice.real_name + "</a> prayed for '" + notice.request_title + "'.</p>";
-	    htmlNotificationsMobile += "                                            <div class='request-btn-inner'>";
-	    htmlNotificationsMobile += "<p>" + timeAgo + "</p>";
-//	    htmlNotificationsMobile += "                                                <button class='frnd-btn'>confirm</button>";
-//	    htmlNotificationsMobile += "                                                <button class='frnd-btn delete'>delete</button>";
-	    htmlNotificationsMobile += "                                            </div>";
-	    htmlNotificationsMobile += "                                        </div>";
-	    htmlNotificationsMobile += "                                    </div>";
-	    htmlNotificationsMobile += "                                </li>";
+	for (var i = 0; i < notifications.length; i++) {
+	    var entry = notifications[i];
+	    var timeAgo = god.getTimeAgo(entry.timestamp);
+	    htmlNotifications += "<li class='not-read'><a href='#'><div class='drop_avatar status-online'> <img src='uploads/" + entry.picture + "' alt=''></div><div class='drop_text'><p><strong>" + entry.real_name + "</strong> prayed for you.</p><time>" + timeAgo + "</time></div></a></li>";
 	}
-
-	htmlNotifications = htmlNotifications.replaceAll("NaN", "");
+	$("#notifications-count").html(notifications.length);
 	$("#notifications").html(htmlNotifications);
-	$("#notifications-mobile").html(htmlNotificationsMobile);
     }
 
     window.goToRequestFeed = function() {
@@ -627,19 +595,17 @@ $( document ).ready(function() {
 	if (window.location.protocol !== "https:") {
 	    var command = params["command"];
 	    console.log(command);
-
+/*
 	    var hardCodedResults = {
-		getAllUsers: 'afterGetAllUsers({"error":0,"command":"getAllUsers","result":[{"user_id":41,"user_name":"Singwala","picture":"dIb7Yxut.jpg"},{"user_id":43,"user_name":"Jiri1948@gmail.com","picture":"lw8zWWny.jpg"},{"user_id":61,"user_name":"kimchung80","picture":"0F5D7E33-1324-4E85-B4B3-25C4D54AED31.jpeg"},{"user_id":105,"user_name":"pireifej","picture":"L7UbMRyt.jpg"},{"user_id":106,"user_name":"Jack","picture":"zo5Ro4RN.jpg"},{"user_id":107,"user_name":"10101437702988656","picture":"f2O78FIc.jpg"}],"query":"SELECT user_id,user_name,picture FROM user"});',
-		getUser: 'afterGetUser({"error":0,"command":"getUser","result":[{"user_id":107,"user_name":"10101437702988656","email":"facebook","real_name":"Paul","location":"facebook","user_title":"facebook","user_about":"facebook","picture":"f2O78FIc.jpg","timestamp":"2021-08-19T13:57:27.000Z"}],"query":"SELECT user_id,user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,\'GMT\',\'America\/New_York\') as timestamp FROM user WHERE user_id = \'107\';"});
-',
-		getNotifications: 'afterGetNotifications({"error":0,"command":"getNotifications","result":[],"query":"SELECT user.real_name, request.request_title,user_request.user_id, request.request_id, user.picture, CONVERT_TZ(user_request.timestamp,\'GMT\',\'America\/New_York\') as timestamp FROM request INNER JOIN user_request ON user_request.request_id = request.request_id INNER JOIN user on user.user_id = user_request.user_id WHERE request.user_id = \'107\' AND request.active = 1 ORDER BY user_request.timestamp DESC LIMIT 3;"});
-',
-		getRequestFeed: 'afterGetRequestFeed({"error":0,"command":"getRequestFeed","result":[{"request_id":590,"user_id":105,"request_text":"I have a call coming up soon","request_title":"From Request Feed Page","request_picture":"","other_person":"","category_name":"general","timestamp":"2021-08-25T12:49:05.000Z","real_name":"Paul","picture":"L7UbMRyt.jpg","prayer_count":0},{"request_id":587,"user_id":105,"request_text":"save all the babies","request_title":"From Request Feed Page","request_picture":"","other_person":"","category_name":"general","timestamp":"2021-08-24T17:51:39.000Z","real_name":"Paul","picture":"L7UbMRyt.jpg","prayer_count":1},{"request_id":583,"user_id":107,"request_text":"my new request","request_title":"new website","request_picture":"0M39V4Mk.jpg","other_person":"","category_name":"general","timestamp":"2021-08-19T21:53:10.000Z","real_name":"Paul","picture":"f2O78FIc.jpg","prayer_count":0}],"query":"SELECT request_id,request.user_id,request_text,request_title,request.picture as request_picture,request.other_person,category.category_name,CONVERT_TZ(request.timestamp,\'GMT\',\'America\/New_York\') as timestamp,user.real_name,user.picture, (SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count FROM request INNER JOIN category ON category.category_id = fk_category_id INNER JOIN user ON user.user_id = request.user_id WHERE request.active IS TRUE AND request.request_id NOT IN (SELECT request_id FROM user_request WHERE user_request.user_id = '107') ORDER BY timestamp DESC"});',
-		getPrayerCount: 'afterGetPrayerCount({"error":0,"command":"getPrayerCount","result":[{"COUNT(*)":0}],"query":"SELECT COUNT(*)  FROM user_request  WHERE user_id = 107"});',
-		getMyRequests: 'afterGetMyRequests({"error":0,"command":"getMyRequests","result":[{"request_id":583,"user_id":107,"request_text":"my new request","request_title":"new website","request_picture":"0M39V4Mk.jpg","category_name":"general","timestamp":"2021-08-19T21:53:10.000Z","prayer_count":0}],"query":"SELECT request.request_id,request.user_id,request_text,request_title,picture as request_picture,category.category_name,CONVERT_TZ(timestamp,\'GMT\',\'America\/New_York\') as timestamp, (SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count FROM request INNER JOIN category ON category.category_id = fk_category_id WHERE request.user_id = \'107\' and request.active is TRUE ORDER BY timestamp DESC"});',
-		getAllUsers: 'afterGetAllUsers({"error":0,"command":"getAllUsers","result":[{"user_id":41,"user_name":"Singwala","picture":"dIb7Yxut.jpg"},{"user_id":43,"user_name":"Jiri1948@gmail.com","picture":"lw8zWWny.jpg"},{"user_id":61,"user_name":"kimchung80","picture":"0F5D7E33-1324-4E85-B4B3-25C4D54AED31.jpeg"},{"user_id":105,"user_name":"pireifej","picture":"L7UbMRyt.jpg"},{"user_id":106,"user_name":"Jack","picture":"zo5Ro4RN.jpg"},{"user_id":107,"user_name":"10101437702988656","picture":"f2O78FIc.jpg"}],"query":"SELECT user_id,user_name,picture FROM user"});'
+		getAllUsers: 'afterGetAllUsers({"error":0,"command":"getAllUsers","result":[{"user_id":41,"user_name":"Singwala","picture":"dIb7Yxut.jpg"},{"user_id":43,"user_name":"Jiri1948@gmail.com","picture":"lw8zWWny.jpg"},{"user_id":61,"user_name":"kimchung80","picture":"0F5D7E33-1324-4E85-B4B3-25C4D54AED31.jpeg"},{"user_id":105,"user_name":"pireifej","picture":"L7UbMRyt.jpg"},{"user_id":106,"user_name":"Jack","picture":"zo5Ro4RN.jpg"},{"user_id":107,"user_name":"10101437702988656","picture":"f2O78FIc.jpg"}],"query":"SELECT user_id,user_name,picture FROM user"})',
+		getUser: 'afterGetUser({"error":0,"command":"getUser","result":[{"user_id":107,"user_name":"10101437702988656","email":"facebook","real_name":"Paul","location":"facebook","user_title":"facebook","user_about":"facebook","picture":"f2O78FIc.jpg","timestamp":"2021-08-19T13:57:27.000Z"}],"query":"SELECT user_id,user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,\'GMT\',\'America\/New_York\') as timestamp FROM user WHERE user_id = \'107\';"})',
+		getNotifications: 'afterGetNotifications({"error":0,"command":"getNotifications","result":[],"query":"SELECT user.real_name, request.request_title,user_request.user_id, request.request_id, user.picture, CONVERT_TZ(user_request.timestamp,\'GMT\',\'America\/New_York\') as timestamp FROM request INNER JOIN user_request ON user_request.request_id = request.request_id INNER JOIN user on user.user_id = user_request.user_id WHERE request.user_id = \'107\' AND request.active = 1 ORDER BY user_request.timestamp DESC LIMIT 3;"})',
+		getRequestFeed: 'afterGetRequestFeed({"error":0,"command":"getRequestFeed","result":[{"request_id":590,"user_id":105,"request_text":"I have a call coming up soon","request_title":"From Request Feed Page","request_picture":"","other_person":"","category_name":"general","timestamp":"2021-08-25T12:49:05.000Z","real_name":"Paul","picture":"L7UbMRyt.jpg","prayer_count":0},{"request_id":587,"user_id":105,"request_text":"save all the babies","request_title":"From Request Feed Page","request_picture":"","other_person":"","category_name":"general","timestamp":"2021-08-24T17:51:39.000Z","real_name":"Paul","picture":"L7UbMRyt.jpg","prayer_count":1},{"request_id":583,"user_id":107,"request_text":"my new request","request_title":"new website","request_picture":"0M39V4Mk.jpg","other_person":"","category_name":"general","timestamp":"2021-08-19T21:53:10.000Z","real_name":"Paul","picture":"f2O78FIc.jpg","prayer_count":0}],"query":"SELECT request_id,request.user_id,request_text,request_title,request.picture as request_picture,request.other_person,category.category_name,CONVERT_TZ(request.timestamp,\'GMT\',\'America\/New_York\') as timestamp,user.real_name,user.picture, (SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count FROM request INNER JOIN category ON category.category_id = fk_category_id INNER JOIN user ON user.user_id = request.user_id WHERE request.active IS TRUE AND request.request_id NOT IN (SELECT request_id FROM user_request WHERE user_request.user_id = '107') ORDER BY timestamp DESC"})',
+		getPrayerCount: 'afterGetPrayerCount({"error":0,"command":"getPrayerCount","result":[{"COUNT(*)":0}],"query":"SELECT COUNT(*)  FROM user_request  WHERE user_id = 107"})',
+		getMyRequests: 'afterGetMyRequests({"error":0,"command":"getMyRequests","result":[{"request_id":583,"user_id":107,"request_text":"my new request","request_title":"new website","request_picture":"0M39V4Mk.jpg","category_name":"general","timestamp":"2021-08-19T21:53:10.000Z","prayer_count":0}],"query":"SELECT request.request_id,request.user_id,request_text,request_title,picture as request_picture,category.category_name,CONVERT_TZ(timestamp,\'GMT\',\'America\/New_York\') as timestamp, (SELECT COUNT(*) FROM user_request WHERE user_request.request_id = request.request_id) as prayer_count FROM request INNER JOIN category ON category.category_id = fk_category_id WHERE request.user_id = \'107\' and request.active is TRUE ORDER BY timestamp DESC"})',
+		getAllUsers: 'afterGetAllUsers({"error":0,"command":"getAllUsers","result":[{"user_id":41,"user_name":"Singwala","picture":"dIb7Yxut.jpg"},{"user_id":43,"user_name":"Jiri1948@gmail.com","picture":"lw8zWWny.jpg"},{"user_id":61,"user_name":"kimchung80","picture":"0F5D7E33-1324-4E85-B4B3-25C4D54AED31.jpeg"},{"user_id":105,"user_name":"pireifej","picture":"L7UbMRyt.jpg"},{"user_id":106,"user_name":"Jack","picture":"zo5Ro4RN.jpg"},{"user_id":107,"user_name":"10101437702988656","picture":"f2O78FIc.jpg"}],"query":"SELECT user_id,user_name,picture FROM user"})'
 	    };
-
+*/
 	    console.log(data);
 	    // Hide loading overlay
 	    $("#requests").LoadingOverlay("hide");

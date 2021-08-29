@@ -51,8 +51,8 @@
     
                     <div class="flex items-center lg:justify-between justify-around">
     
-                        <a href="trending.html">
-                            <img src="assets/images/logo.png" alt="" class="w-32">
+                        <a href="index.html">
+                            <img src="img/logo2.png" alt="" class="w-32">
                         </a>
     
                         <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
@@ -67,7 +67,7 @@
             <!-- Content-->
             <div>
                 <div class="lg:p-12 max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
-                    <form class="lg:p-10 p-6 space-y-3 relative bg-white shadow-xl rounded-md">
+                    <form class="lg:p-10 p-6 space-y-3 relative bg-white shadow-xl rounded-md" id="login">
                         <h1 class="lg:text-2xl text-xl font-semibold mb-6"> Login </h1>
 
                         <div>
@@ -76,18 +76,17 @@
                         </div>
                         <div>
                             <label class="mb-0"> Email Address </label>
-                            <input type="email" placeholder="Info@example.com" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                            <input type="email" placeholder="Info@example.com" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full" id="login-email-address">
                         </div>
                         <div>
                             <label class="mb-0"> Password </label>
-                            <input type="password" placeholder="******" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full">
+                            <input type="password" placeholder="******" class="bg-gray-100 h-12 mt-2 px-3 rounded-md w-full" id="login-password">
                         </div>
 
 			<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false" scope="public_profile,email" onlogin="checkLoginState()"></div>
 			
                         <div>
-                            <button type="button" class="bg-blue-600 font-semibold p-2 mt-5 rounded-md text-center text-white w-full">
-                                Get Started</button>
+                            <button type="button" class="bg-blue-600 font-semibold p-2 mt-5 rounded-md text-center text-white w-full" id="login-submit-btn">Get Started</button>
                         </div>
                     </form>
 

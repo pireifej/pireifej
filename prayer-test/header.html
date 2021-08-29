@@ -9,7 +9,7 @@
                         </span>
 
                         <div id="logo">
-                            <a href="homepage.html"> 
+                            <a href="index.html"> 
                                 <img src="img/logo2.png" alt="">
                                 <img src="img/logo-mobile.png" class="logo_mobile" alt="">
                             </a>
@@ -175,7 +175,7 @@
 
                             <a href="#" class="is_icon" uk-tooltip="title: Notifications">
                                 <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
-                                <span>3</span>
+                                <span id="notifications-count">--</span>
                             </a>
                             <div uk-drop="mode: click" class="header_dropdown">
                                  <div  class="dropdown_scrollbar" data-simplebar>
@@ -190,7 +190,7 @@
                                             </a>
                                         </div>
                                      </div>
-                                     <ul>
+                                     <ul id="notifications">
                                          <li>
                                              <a href="#">
                                                  <div class="drop_avatar"> 
@@ -208,20 +208,6 @@
                                                  </div>
                                              </a>
                                          </li>
-                                         <li class="not-read">
-                                             <a href="#">
-                                                 <div class="drop_avatar status-online"> <img src="assets/images" alt="">
-                                                 </div>
-                                                 <div class="drop_text">
-                                                     <p>
-                                                        <strong>Stella Johnson</strong> Replay Your Comments in
-                                                        <span class="text-link">Adobe XD Tutorial</span>
-                                                     </p>
-                                                     <time> 9 hours ago </time>
-                                                 </div>
-                                             </a>
-                                         </li>
-                                         <li>
                                              <a href="#">
                                                  <div class="drop_avatar"> <img src="assets/images/avatars/avatar-3.jpg" alt="">
                                                  </div>
@@ -349,7 +335,7 @@
                             </div> 
 
                             <!-- Message -->
-                            <a href="#" class="is_icon" uk-tooltip="title: Message">
+<!--                            <a href="#" class="is_icon" uk-tooltip="title: Message">
                                 <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path></svg>
                                 <span>4</span>
                             </a>
@@ -451,11 +437,11 @@
                                     </ul>
                                 </div>
                                 <a href="#" class="see-all"> See all in Messages</a>
-                            </div>
+                            </div>-->
          
         
                             <a href="#">
-                                <img id="user-picture" name="userpic" src="" class="is_avatar" alt="">
+                                <img id="user-picture" name="userpic" src="img/users/defautlUser.png" class="is_avatar" alt="">
                             </a>
                             <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 

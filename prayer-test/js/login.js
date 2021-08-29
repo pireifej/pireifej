@@ -3,19 +3,6 @@ $( document ).ready(function() {
     
     // Logout
     var logout = $.urlParam('signout');
-    if (logout) {
-	console.log("yes");
-	localStorage.removeItem("userId");
-	FB.init({
-	    appId: '820853052173991',
-	    version: 'v2.7' // or v2.1, v2.2, v2.3, ...
-	});
-	FB.logout(function(response) {
-	    // user is now logged out
-	    console.log(response);
-	});
-	return;
-    }
 
     $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
 	FB.init({
@@ -28,7 +15,43 @@ $( document ).ready(function() {
     window.updateStatusCallback = function(response) {
 	console.log(response);
 	console.log("window.updateStatusCallback");
+
+	if (logout) {
+	    localStorage.removeItem("userId");
+
+	    if (response.status == "unknown") {
+		console.log("status unknown");
+	    }
+	}
     }
+
+    $("#login-submit-btn").click(function() {
+	var params = {
+	    userName: $("#login-email-address").val(),
+	    password: $("#login-password").val()
+	};
+	god.query("login", "afterLogin", params, false, true);
+    });
+
+    window.afterLogin = function(response) {
+	if (!response.result) {
+	    god.notify("Wrong username or password.", "error");
+	} else {
+	    var user = response.result[0];
+	    localStorage.setItem("userId", user.user_id);
+	    window.location.href = "index.html";
+	}
+    }
+
+    window.checkLoginState = function() {
+	FB.getLoginStatus(function(response) {
+	    console.log("window.checkLoginState");
+	    console.log(response);
+	    statusChangeCallback(response);
+	});
+    }
+
+    if (logout) return;
         
     window.god = window.god || {};
     var user = $.urlParam('user');
@@ -55,37 +78,8 @@ $( document ).ready(function() {
 	god.query("forgotPassword", "afterForgot", params, false, true);
     }
 
-    $("#login").submit(function(e) {
-	e.preventDefault();
-	console.log("login");
-	var formValues = $("#login").serializeArray();
-	console.log(formValues);
-	var username = formValues[0].value;
-	var password = formValues[1].value;
-
-	if (!username || !password) {
-	    god.notify("Both username and password are required.", "error");
-	    return;
-	}
-	
-	params = {
-	    userName: username,
-	    password: password
-	};
-	god.query("login", "afterLogin", params, false, true);
-    })
-
-    window.checkLoginState = function() {
-	FB.getLoginStatus(function(response) {
-	    console.log("window.checkLoginState");
-	    console.log(response);
-	    statusChangeCallback(response);
-	});
-    }
-
     window.statusChangeCallback = function(response) {
 	console.log(response);
-	console.log("great");
 
 	var userId = response.authResponse.userID;
 	console.log(userId);
@@ -132,15 +126,5 @@ $( document ).ready(function() {
     window.afterForgot = function(response) {
 	$("#forgot").hide();
 	god.notify("Help is on its way! Check your email shortly.", "info");
-    }
-
-    window.afterLogin = function(response) {
-	if (!response.result) {
-	    god.notify("Wrong username or password.", "error");
-	} else {
-	    var user = response.result[0];
-	    localStorage.setItem("userId", user.user_id);
-	    window.location.href = "index.html";
-	}
     }
 });

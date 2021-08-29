@@ -165,7 +165,8 @@ var allCommands = {
     "joinRosarySession": true,
     "leaveRosarySession": true,
     "getRosarySession": true,
-    "logVisitor": true
+    "logVisitor": true,
+    "assignPrayer": true
 };
 
 if (!queryObject["command"]) {
@@ -190,6 +191,15 @@ var command = queryObject.command;
 var tz = queryObject.tz;
 var query = null;
 var readFile = null;
+
+
+if (command == "assignPrayer") {
+    requireParam("request_id");
+    requireParam("prayer_id");
+
+    query = "UPDATE request SET fk_prayer_id = " + queryObject.prayer_id + " ";
+    query += "WHERE request_id = " + queryObject.request_id + ";";
+}
 
 if (command == "logVisitor") {
     requireParam("details");
@@ -673,7 +683,7 @@ if (command == "getThisUser") {
 }
 
 if (command == "getAllUsers") {
-    query = "SELECT user_id,user_name,picture ";
+    query = "SELECT user_id,user_name,picture,real_name ";
     query += "FROM user";
 }
 
