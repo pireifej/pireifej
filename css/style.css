@@ -1016,6 +1016,9 @@ button:focus {
   padding-top: 30px;
   margin-top: 60px;
 }
+p {
+    padding: 10px 10px 10px 10px;
+}
 .single-post-area .navigation-area p {
   margin-bottom: 0px;
 }

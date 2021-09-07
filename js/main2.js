@@ -2,12 +2,12 @@ $( document ).ready(function() {
 	window.god = window.god || {};
 
 	var visitorDetails = {
-		appName: navigator.appName,
-		onLine: navigator.onLine,
-		appVersion: navigator.appVersion,
-		cookieEnabled: navigator.cookieEnabled,
-		language: navigator.language,
-		userAgent: navigator.userAgent
+	    appName: navigator.appName,
+	    onLine: navigator.onLine,
+	    appVersion: navigator.appVersion,
+	    cookieEnabled: navigator.cookieEnabled,
+	    language: navigator.language,
+	    userAgent: navigator.userAgent
 	};
 
 	var options = {
@@ -25,11 +25,11 @@ $( document ).ready(function() {
 		visitorDetails["longitude"] = crd.longitude;
 		visitorDetails["accuracy"] = crd.accuracy;
 
-	    god.query("logVisitor", "afterLogVisitor", {details:JSON.stringify(visitorDetails)}, false, true);
+	    god.query("logVisitor", "afterLogVisitor", {page: window.location.pathname,details:JSON.stringify(visitorDetails)}, false, true);
 	  }
 
 	  function error(err) {
-	      god.query("logVisitor", "afterLogVisitor", {details:JSON.stringify(visitorDetails)}, false, true);
+	      god.query("logVisitor", "afterLogVisitor", {page: window.location.pathname,details:JSON.stringify(visitorDetails)}, false, true);
 		console.warn(`ERROR(${err.code}): ${err.message}`);
 	  }
 
@@ -230,7 +230,7 @@ $( document ).ready(function() {
 	    },
 	    gallery: ['img/running/disney1.jpg','img/running/disney2.jpg','img/running/disney3.jpg','img/running/disney4.jpg'],
 	    link: 'https://www.trackshackresults.com/disneysports/results/wdw/wdw20/hm_results.php?Link=98&amp;Type=3&amp;LName=ireifej&amp;FName=&amp;City=&amp;State=&amp;Country=',
-	    desc: 'TBD'
+	    desc: '<p>When you participate in the 2022 Walt Disney World Marathon Weekend, you will become part of something incredibly special, by running right in the heart of The World\' Most Magical Celebration.</p><p>Test your mettle at your chosen skill level - from the marathon to the 5K - while enjoying each step of the way through the Disney theme parks during the 50th anniversary celebration of Walt Disney World Resort.</p>'
 	},
 	{
 	    image: 'img/running/rockySmall.jpg',
@@ -245,7 +245,7 @@ $( document ).ready(function() {
 	    },
 	    gallery: ['img/running/phillyCert.png'],
 	    link: 'https://www.athlinks.com/event/122368/results/Event/891873/Course/1723472/Bib/2526',
-	    desc: 'TBD'
+	    desc: '<p>This is your shot - a chance to join thousands of runners from around the world in Philadelphia for the official Rocky Run 5K, 10 Mile & 13.1 Italian Stallion Challenge. So, channel your inner Rocky Balboa, register, and show the world you can go the distance.</p>'
 	},
 	{
 	    image: 'img/running/rhodeSmall.jpg',
@@ -258,8 +258,9 @@ $( document ).ready(function() {
 		time: '2 hours 15 min',
 		location: 'Rhode Island'
 	    },
+	    gallery: ['img/running/rhode1.jpg', 'img/running/rhode2.jpg', 'img/running/rhode3.jpg', 'img/running/rhode4.jpg'],
 	    link: 'https://runscore.runsignup.com/Race/Results/34245/IndividualResult/QhLB?#U34244592',
-	    desc: 'TBD'
+	    desc: '<p>The half marathon will follow the beautiful downtown streets of America\'s quintessential community when it is decked out in its finest - during the Oldest 4th of July Celebration in America.  The course includes incredible historic homes, a town common and the America\'s Cup Museum before heading out along the scenic coastline, through Roger Williams University, following the parade route, and finishing along the water at Independence Park.</p>'
 	},
 	{
 	    image: 'img/running/rhineSmall.jpg',
@@ -274,35 +275,66 @@ $( document ).ready(function() {
 	    },
 	    link: 'https://www.trisignup.com/Race/Results/65311/IndividualResult/QBGZ?#U36163320,U2638680',
 	    gallery: ['img/running/rhineCert.PNG'],
-	    desc: '<p>TBD</p>'
+	    desc: '<p>Rhinebeck Hudson Valley Full & Half Marathon Sports Event in Rhinebeck, New York</p>'
 	},
 	{
 	    image: 'img/running/phillySmall.jpg',
 	    label: 'Philadelphia Half Marathon',
 	    type: 'race',
+	    gallery: ['img/running/phillyhalf.PNG'],
 	    href: 'philly',
-	    desc: '<p>11/23/19 / 13.1 miles / 2:07</p>'
+	    desc: '<p>The Dietz & Watson Philadelphia Half Marathon. In 2017, the Philadelphia Marathon Team created a new course for the half marathon with almost ten miles in the city. This new course takes runners through most of the same historic areas and iconic neighborhoods that Philadelphia has to offer. The new half marathon course is the most unique and exciting half marathon course in the city.</p>',
+	    details: {
+		date: '11/18/18',
+		distance: '13.1 miles',
+		time: '2 hours 07 min',
+		location: 'Philadelphia, PA'
+	    },
+	    link: 'http://live.xacte.com/templates/philadelphiamarathon.com/for-runners/?utm_source=Philadelphia-Marathon&utm_campaign=c3dcb72372-EMAIL_CAMPAIGN_2018_11_17_08_05&utm_medium=email&utm_term=0_fa2559b911-c3dcb72372-46616553'
 	},
 	{
 	    image: 'img/running/winter.png',
 	    label: 'Run from Winter 10K',
 	    type: 'race',
 	    href: 'winter',
-	    desc: '<p><a href="https://runsignup.com/Race/Results/54760/IndividualResult/tYqb?#U34244592">Results</a></p><p>03/24/19 / 6.2 miles / 54:02</p>'
+	    desc: '<p>11th Annual Run From Winter 10K to benefit Middle Earth. The USATF certified and sanctioned course runs along the scenic Raritan River through the flat paved, wooded trails of Duke Island Park.</p>',
+	    gallery: ['img/running/middleearth.PNG'],
+	    details: {
+		date: '03/24/19',
+		distance: '6.2 miles',
+		time: '54 min 02 sec',
+		location: 'Bridgewater, NJ'
+	    },
+	    link: 'https://runsignup.com/Race/Results/54760/IndividualResult/tYqb?#U34244592'
 	},
 	{
 	    image: 'img/running/autismSmall.jpeg',
 	    label: 'Hustle for the Puzzle 5k Road Race for Autism',
 	    type: 'race',
 	    href: 'autism',
-	    desc: '<p><a href="https://www.athlinks.com/event/16532/results/Event/158372/Course/218826/Bib/327">Results</a></p><p>04/03/2011 / 3.1 miles / 26:13</p>'
+	    desc: '<p></p>',
+	    gallery: ['img/running/puzzle5k.png'],
+	    link: 'https://www.athlinks.com/event/16532/results/Event/158372/Course/218826/Bib/327',
+	    details: {
+		date: '04/03/2011',
+		distance: '3.1 miles',
+		time: '26 min 13 sec',
+		location: 'Montgomery, NY'
+	    }
 	},
 	{
 	    image: 'img/running/verizonSmall.jpg',
 	    label: 'Verizon Wireless Corporate Classic',
 	    type: 'race',
 	    href: 'verizon',
-	    desc: '<p><a href="http://www.bestrace.com/verizonwirelessclassic/overall-2010.HTML">Results</a></p><p>07/15/10 / 3.1 miles / 26:31</p>'
+	    desc: '<p>The race is designed primarily as an opportunity for co-workers to get together to enjoy a morning of fun and fitness in a spirit of camaraderie with their fellow employees by participating as a member of their company\'s corporate running team.</p>',
+	    link: 'http://www.bestrace.com/verizonwirelessclassic/overall-2010.HTML',
+	    details: {
+		date: '07/15/2010',
+		distance: '3.1 miles',
+		time: '26 min 31 sec',
+		location: 'Morristown, NJ'
+	    }
 	},
 	{
 	    image: 'img/gallery/portfolio-01.jpg',
@@ -740,6 +772,15 @@ $( document ).ready(function() {
 	    image: 'img/contests/IMG_0078%20(1).JPG'
 	},
 	{
+	    date: 'Sept 5, 2021',
+	    title: 'Toastmasters Contest Advice',
+	    href: 'https://pireifej.com/talltales.html',
+	    heading: 'What is Tall Tales?',
+	    tag1: 'Imagination',
+	    tag2: 'Exaggeration',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	}/*,
+	{
 	    date: 'TBD',
 	    title: 'Coming Soon!',
 	    href: '',
@@ -747,7 +788,25 @@ $( document ).ready(function() {
 	    tag1: 'N/A',
 	    tag2: 'N/A',
 	    image: 'img/blog/cat-post/cat-post-2.jpg'
-	}
+	},
+	{
+	    date: 'TBD',
+	    title: 'Coming Soon!',
+	    href: '',
+	    heading: 'TBD',
+	    tag1: 'N/A',
+	    tag2: 'N/A',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	},
+	{
+	    date: 'TBD',
+	    title: 'Coming Soon!',
+	    href: '',
+	    heading: 'TBD',
+	    tag1: 'N/A',
+	    tag2: 'N/A',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	}*/
     ];
 
     var blogPosts = "";

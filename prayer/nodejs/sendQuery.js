@@ -143,6 +143,7 @@ var allCommands = {
     "getMyRequests": true,
     "getNotifications": true,
     "getRequestFeed": true,
+    "getUnassignedPrayers": true,
     "getCategories": true,
     "login": true,
     "getUser": true,
@@ -310,8 +311,10 @@ if (command == "assignPrayer") {
 
 if (command == "logVisitor") {
     requireParam("details");
+    requireParam("page");
 
-    query = "INSERT INTO visitors (visitor_details) VALUES (";
+    query = "INSERT INTO visitors (page,visitor_details) VALUES (";
+    query += "'" + queryObject.page + "',";
     query += "'" + queryObject.details + "')";
 }
 
@@ -665,6 +668,11 @@ if (command == "getRosarySession") {
     query += "WHERE session_id='" + queryObject.sessionId + "';";
 }
 
+if (command == "getUnassignedPrayers") {
+    query = "SELECT request_id,request_text,picture,other_person ";
+    query += "FROM request WHERE fk_prayer_id = 37;";
+}
+
 if (command == "getRequest") {
     requireParam("requestId");
 
@@ -781,7 +789,8 @@ if (command == "login") {
 
 if (command == "getUser") {
     query = "SELECT user_id,user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
-    query += "FROM user WHERE user_id = '" + queryObject.userId + "';";
+    query += "FROM user WHERE user_id = '" + queryObject.userId + "' ";
+    query += "OR user_name = '" + queryObject.userId + "';";
 }
 
 if (command == "getThisUser") {

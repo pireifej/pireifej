@@ -55,16 +55,11 @@ $( document ).ready(function() {
         
     window.god = window.god || {};
     var user = $.urlParam('user');
-    var access = $.urlParam('access');
     var facebookId = null;
 
     if (user) {
 	god.notify("New user profile created.", "success");
     }
-    
-//    if (access) {
-//	god.notify("Need to login first.", "error");
-//    }
     
     if (localStorage.getItem("userId")) {
 	window.location.href = "index.html";
@@ -120,6 +115,10 @@ $( document ).ready(function() {
 		password: "facebook"
 	    };
 	    god.query("login", "afterLogin", params, false, true);
+	}
+	if (response.result == "facebook user created") {
+	    localStorage.setItem("userId", facebookId);
+	    window.location.href = "index.html";
 	}
     }
 

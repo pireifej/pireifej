@@ -171,12 +171,13 @@
     /*  Isotope Fillter js
     /*----------------------------------------------------*/
 	function gallery_isotope(){
-		$("[id=twitter]").attr("href", "https://mobile.twitter.com/paulireifej");
-		$("[id=linkedin]").attr("href", "https://linkedin.com/in/paul-ireifej-572829b");
-		$("[id=instagram]").attr("href", "https://www.instagram.com/ipaullllllll/");
-		$("[id=github]").attr("href", "https://github.com/pireifej");
-		$("[id=facebook]").attr("href", "https://www.facebook.com/paul.ireifej");
-		$("[id=hack-desc]").html("AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.");
+	    $("[id=twitter]").attr("href", "https://mobile.twitter.com/paulireifej");
+	    $("[id=linkedin]").attr("href", "https://linkedin.com/in/paul-ireifej-572829b");
+	    $("[id=instagram]").attr("href", "https://www.instagram.com/paulireifej/");
+	    $("[id=youtube]").attr("href", "https://www.youtube.com/channel/UCvIzIe8bIMkAkblXz4aQ-Pw");
+	    $("[id=github]").attr("href", "https://github.com/pireifej");
+	    $("[id=facebook]").attr("href", "https://www.facebook.com/paul.ireifej");
+	    $("[id=hack-desc]").html("AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.");
 
         if ( $('.gallery_f_inner').length ){
             // Activate isotope in container

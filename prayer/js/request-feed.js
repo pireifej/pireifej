@@ -16,11 +16,6 @@ $( document ).ready(function() {
     var otherPeopleOpen = false;
     
     var users = null;
-    
-    if (requestId) {
-	var aTag = $("a[name='"+ "my-anchor" +"']");
-	$('html,body').animate({scrollTop: aTag.offset().top},'slow');
-    }
 
     if (pray) {
 	god.notify("Prayer completed.", "success");
@@ -31,6 +26,14 @@ $( document ).ready(function() {
     $( "#request-input" ).keyup(function() {
 	var request = $("#request-input").val();
 	var noChar = request.length;
+
+	if (noChar == 0) {
+	    $("#request-publish").css("color", "gray");
+	}
+
+	if (noChar > 0) {
+	    $("#request-publish").css("color", "white");
+	}
 
 	if (noChar <= 100) $("#no-char-request").css("color", "lightgreen");
 	if (noChar > 150 && noChar <= 199) $("#no-char-request").css("color", "orange");
@@ -44,13 +47,26 @@ $( document ).ready(function() {
 	prevRequest = request;
     });
 
+    $("#picture-cancel").click(function() {
+	$("#upload-picture").attr("hidden");
+	$("#upload-picture").hide();
+	$("#blah").attr("hidden");
+	$("#blah").hide();
+    });
+
     $("#prayer-cancel").click(function() {
 	$("#select-prayer-list").hide();
+	$("#select-prayer-box").val("")
     });
 
     $("#other-person-cancel").click(function() {
 	$("#select-other-person-list").hide();
-    }); 
+    });
+
+    $("#upload-picture-btn").click(function() {
+	$("#upload-picture").removeAttr("hidden");
+	$("#upload-picture").show();
+    });
 
     $("#select-prayer").click(function() {
 	if (prayersLoaded) {
@@ -84,21 +100,30 @@ $( document ).ready(function() {
 	var prayerId = $("#select-prayer-box").val();
 	var otherPerson = $("#select-other-person-box").val();
 
-	if (!requestText) return;
+	if (!requestText) {
+	    return;
+	}
 	
 	$("#request-publish").prop("disabled", true);
 	$("#request-publish").html("Sharing");
-	
+
 	var params = {
 	    requestText: "\"" + requestText + "\"",
 	    requestTitle: "\"From Request Feed Page\"",
 	    requestCategoryId: 8,
-	    sendEmail: "on",
-	    otherPerson: (otherPerson) ? otherPerson : null,
-	    picture: null,//god.getUploadedPicName(),
+	    sendEmail: $("#sendEmail").val(),
 	    preview: false,
 	    prayerId: (prayerId) ? prayerId : 37,
 	};
+
+	if (!$("#select-other-person-list").is(":hidden") && otherPerson) {
+	    params["otherPerson"] = otherPerson;
+	}
+
+	if (!$("#upload-picture").is(":hidden") && god.getUploadedPicName()) {
+	    params["picture"] = god.getUploadedPicName();
+	}
+
 	god.query("createRequest", "afterCreateRequest", params, true, true);	
     })
 
@@ -117,8 +142,7 @@ $( document ).ready(function() {
 
     window.afterCreateRequest = function(response) {
 	console.log("window.afterCreateRequest");
-	console.log(response);
-	window.location.href = "index.html";
+//	window.location.href = "index.html";
     }
 
     function insertRequestFeed(response) {
@@ -139,6 +163,15 @@ $( document ).ready(function() {
 	    htmlPost += god.getHtmlPost(request, "feed");
 	}
 	$("#request-feed").html(htmlPost);
+
+	var requestId = $.urlParam("requestId");
+	if (requestId) {
+	    var targetOffset = $('#' + requestId).offset();
+	    var targetTop = targetOffset.top;
+	    $('html, body').animate({
+		scrollTop: targetTop
+	    }, 800);
+	}
     }
 
     function getRequestFeed() {
