@@ -64,6 +64,7 @@ $( document ).ready(function() {
     });
 
     $("#upload-picture-btn").click(function() {
+	console.log("Hello");
 	$("#upload-picture").removeAttr("hidden");
 	$("#upload-picture").show();
     });
@@ -89,7 +90,7 @@ $( document ).ready(function() {
 
 	for (var i = 0; i < users.length; i++) {
 	    var person = users[i];
-	    $("#select-other-person-box").append('<option style="width:auto;" data-icon="fa-heart" value="'+person.user_id+'">'+person.real_name+'</option>');
+	    $("#select-other-person-box").append('<option style="width:auto;" data-icon="fa-heart" value="'+person.real_name+'">'+person.real_name+'</option>');
 	}
 	$("#select-other-person-box").selectpicker('refresh');
 	otherPeopleLoaded = true;
@@ -142,7 +143,7 @@ $( document ).ready(function() {
 
     window.afterCreateRequest = function(response) {
 	console.log("window.afterCreateRequest");
-//	window.location.href = "index.html";
+	window.location.href = "index.html";
     }
 
     function insertRequestFeed(response) {

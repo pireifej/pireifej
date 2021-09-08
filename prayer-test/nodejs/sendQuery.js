@@ -337,22 +337,18 @@ if (command == "deletePrayer") {
 
 if (command == "createPrayer") {
     requireParam("prayerText");
-    requireParam("prayerTags");
     requireParam("prayerTitle");
-    requireParam("prayerName");
-    requireParam("categoryId");
 
-    query = "INSERT INTO prayers (prayer_title, prayer_file_name, fk_category_id, tags, prayer_text) VALUES (";
+    query = "INSERT INTO prayers (prayer_title, prayer_text, prayer_file_name) VALUES (";
     query += "'" + queryObject.prayerTitle + "',";
-    query += "'" + queryObject.prayerName + "',";
-    query += "'" + queryObject.categoryId + "',";
-    query += "'" + queryObject.prayerTags + "',";
-    query += "'" + queryObject.prayerText + "');";
+    query += "'" + queryObject.prayerText + "',";
+    query += "'newPrayer');";
 }
 
 if (command == "updatePrayer") {
     requireParam("prayerId");
-    requireParam("prayerName");
+    requireParam("prayerTitle");
+    requireParam("prayerText");
 
     var prayerText = queryObject["prayerText"];
     var prayerTags = queryObject["prayerTags"];
@@ -362,10 +358,9 @@ if (command == "updatePrayer") {
     var categoryId = queryObject["categoryId"];
 
     query = "UPDATE prayers ";
-    query += "SET prayer_file_name = '" + prayerName + "' ";
+    query += "SET prayer_title = '" + prayerTitle + "' ";
     if (categoryId) query += ", fk_category_id = '" + categoryId + "' ";
     if (prayerTags) query += ", tags = '" + prayerTags + "' ";
-    if (prayerTitle) query += ", prayer_title = '" + prayerTitle + "' ";
     if (prayerText) query += ", prayer_text = '" + prayerText + "' ";
     query += "WHERE prayer_id = '" + prayerId + "'";
 }
@@ -604,8 +599,9 @@ if (command == "getPrayer") {
 			process.exit();
 			return;
 		    }
-		    
+
 		    var customPrayer = generateCustomPrayer(request.prayer_text, realName, gender, otherPerson);
+
 			    var obj = {};
 			    obj["result"] = {};
 			    obj["result"]["prayer_title"] = request.request_title;
@@ -1100,7 +1096,7 @@ function generateCustomPrayer(prayerText, realName,gender,otherPerson) {
       realName = (subject) ? subject : realName;
     */
 
-    realName = (otherPerson) ? otherPerson : realName;
+    realName = (otherPerson !== "undefined") ? otherPerson : realName;
 
     if (!gender) {
 	gender = genderDetect.detect(realName);

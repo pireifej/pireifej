@@ -36,7 +36,7 @@ $( document ).ready(function() {
 	$("#prayer-category").html(otherPerson);
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
 	$("#user-name-for-request").html(request.real_name);
-	$("#requestor-picture").attr("src", "uploads/" +request.picture);
+	$("#request-pic").attr("src", "uploads/" +request.picture);
 	$("#user-name-for-request").html(userRealName);
 	$("#prayer-title").html(request.prayer_title);
 	
