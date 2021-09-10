@@ -8,89 +8,39 @@ $( document ).ready(function() {
     var loadedPicName = "";
     var gFileData = null;
     var imageResized = null;
+
+    $("#cancel-btn").click(function(e) {
+	god.query("getUser", "afterGetUser", {}, true, true, "all");
+    });
     
-    if (userId) {
-	$("#submit-text").html("Update User");
-	$("#excited").html("Edit your profile");
-	//$('#enter-password').attr('readonly', true);
-	god.query("getUser", "afterGetUser", {}, true, true);
-    } else {
-	$('#enter-password').attr('readonly', false);
-	$("#password-change").hide();
-	$("#blah").hide();
-    }
-
-    $("#form").submit(function(e) {
-	e.preventDefault();
-
-	var formValues = $("#form").serializeArray();
+    $("#update-user-btn").click(function(e) {
 	var userId = localStorage.getItem("userId");
-	var profileDetails = {};
-	for (var i = 0; i < formValues.length; i++) {
-	    profileDetails[formValues[i].name] = formValues[i].value;
-	}
+//	var uploadedPicName = god.getUploadedPicName();
 
-	if (!profileDetails["username"]) {
-	    god.notify("Username required", "error");
-	    return;
-	}
-	if (!profileDetails["password"] && !userId) {
-	    god.notify("Password required", "error");
-	    return;
-	}
-	if (!profileDetails["email"]) {
-	    god.notify("Email required", "error");
-	    return;
-	}
-	if (!profileDetails["realname"]) {
-	    god.notify("Name required", "error");
-	    return;
-	} else {
-	    var name = profileDetails["realname"];
-	    var nameParts = name.split(" ");
-	    if (nameParts.length > 1) {
-		god.notify("Only first name is needed.", "info");
-		return;
-	    }
-	}
-	var uploadedPicName = god.getUploadedPicName();
-/*	if (!uploadedPicName) {
-	    god.notify("Please upload a profile picture", "error");
-	    return;
-	}
-*/
+	var gender = $("#gender").val();
+	
 	var params = {
-	    userName: "'" + profileDetails["username"] + "'",
-	    password: "'" + profileDetails["password"] + "'",
-	    email: "'" + profileDetails["email"] + "'",
-	    realName: "'" + profileDetails["realname"] + "'",
-	    location: "'" + profileDetails["location"] + "'",
-	    title: "'" + profileDetails["title"] + "'",
-	    about: "'" + profileDetails["about"] + "'"
+	    userName: "'" + $("#username").val() + "'",
+	    email: "'" + $("#email").val() + "'",
+	    realName: "'" + $("#realname").val() + "'",
+	    location: "'" + $("#location").val() + "'",
+	    title: "'" + $("#title").val() + "'",
+	    about: "'" + $("#about").val() + "'",
+	    gender: (gender == 0) ? "male" : "female"
 	};
 
-	if (uploadedPicName) {
-	    params['picture'] = uploadedPicName;
-	}
+//	if (uploadedPicName) {
+//	    params['picture'] = uploadedPicName;
+//	}
 
+	$("#update-user-btn").prop('disabled', true);
+	$("#update-user-btn").html("Saving ...");
 
-	$("#submit-button").prop('disabled', true);
+//	if (profileDetails["password"]) {
+//	    god.query("passwordChange", "afterPasswordChange", {password: profileDetails.password}, true, true);
+//	}
 
-	if (userId) {
-	    $("#submit-text").html("Updating ...");
-	} else {
-	    $("#submit-text").html("Creating ...");
-	}
-	
-	if (profileDetails["password"]) {
-	    god.query("passwordChange", "afterPasswordChange", {password: profileDetails.password}, true, true);
-	}
-
-	if (userId) {
-	    god.query("updateUser", "afterUpdateUser", params, true, true);
-	} else {
-	    god.query("createUser", "afterCreateUser", params, false, true);
-	}
+	god.query("updateUser", "afterUpdateUser", params, true, true);
     })
 
     window.afterPasswordChange = function(response) {
@@ -98,7 +48,11 @@ $( document ).ready(function() {
     }
 
     window.afterUpdateUser = function(response) {
-	window.location.href = "profile.html?updated=true";
+	console.log("window.afterUpdateUser");
+	$("#update-user-btn").prop('disabled', false);
+	$("#update-user-btn").html("Save");
+	console.log(response);
+//	window.location.href = "profile.html?updated=true";
     }
 
     $("#profile-top").click(function() {
@@ -107,6 +61,8 @@ $( document ).ready(function() {
 
 	$("#picture-contents").hide();
 	$("#picture-contents").attr("hidden");
+	$("#password-contents").hide();
+	$("#password-contents").attr("hidden");
     });
 
     $("#picture-top").click(function() {
@@ -115,15 +71,34 @@ $( document ).ready(function() {
 
         $("#profile-contents").hide();
         $("#profile-contents").attr("hidden");
+	$("#password-contents").hide();
+	$("#password-contents").attr("hidden");
+    });
 
+    $("#password-top").click(function() {
+	$("#password-contents").show();
+        $("#password-contents").removeAttr("hidden");
+
+        $("#profile-contents").hide();
+        $("#profile-contents").attr("hidden");
+	$("#picture-contents").hide();
+	$("#picture-contents").attr("hidden");
     });
 
     window.afterGetUser = function(response) {
 	var user = response.result[0];
-	var logout = $.urlParam('signout')
-	if (logout) return;
 
 	// set edit profile form
+	console.log("profiloe");
+	console.log(user);
+
+	// facebook username
+	let isnum = /^\d+$/.test(user.user_name);
+	console.log(isnum);
+	if (isnum) {
+	    $("#username-div").hide();
+	}
+
 	$("[name=username]").val(user.user_name);
 	$("[name=password]").val("");
 	$("[name=email]").val(user.email);
@@ -132,6 +107,18 @@ $( document ).ready(function() {
 	$("[name=title]").val(user.user_title);
 	$("[name=about]").val(user.user_about);
 	$("[name=realname]").val(user.real_name);
+	$('*[id*=user-picture]').each(function() {
+	    $(this).attr("src", "uploads/" + user.picture);
+	});
+
+	if (user.gender == "male") {
+	    $('select[name=gender]').val(0);
+	    $('.selectpicker').selectpicker('refresh')
+	}
+	if (user.gender == "female") {
+	    $('select[name=gender]').val(1);
+	    $('.selectpicker').selectpicker('refresh')
+	}
 
 	// set user details on screen header, requests, elsewhere
 	$('*[id*=user-name]').each(function() {

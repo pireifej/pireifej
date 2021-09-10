@@ -176,7 +176,7 @@ $( document ).ready(function() {
     }
 
     function getRequestFeed() {
-	god.query("getRequestFeed", "afterGetRequestFeed", {"requestId":requestId}, true, true, "request-feed");
+	god.query("getRequestFeed", "afterGetRequestFeed", {}, true, true);//, "request-feed");
 	god.query("getPrayerCount", "afterGetPrayerCount", {}, true, true);
 	god.query("getMyRequests", "afterGetMyRequests", {}, true, true);
     }
@@ -232,14 +232,15 @@ $( document ).ready(function() {
 	    }
 
             if (people.length > 2) {
-		peopleText = people[0].name + " and " + people.length - 1 + " other people ";
+		peopleText = people[0].name + " and " + (people.length - 1) + " other people ";
             }
             $("#people-who-prayed-" + key).html("<div class='dark:text-gray-100'>Thank you, <strong>" + peopleText + "</strong> for your prayer.</div>");
 
-	    for (var i = 0; i < people.length; i++) {
+/*	    for (var i = 0; i < people.length; i++) {
 		peopleImg += "<img src='uploads/" + people[i].picture + "' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>";
 	    }
-	    $("#people-who-prayed-img-" + key).html(peopleImg);
+*/
+	    $("#people-who-prayed-img-" + key).html("<span class='bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 iconify' data-icon='fxemoji:pray' style='color:blue'></span>");
         }
     }
 });

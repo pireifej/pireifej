@@ -22,23 +22,33 @@ $( document ).ready(function() {
 	god.query("getPrayer", "afterGetPrayer", {requestId: requestId}, false, true, "prayer");
     }
 
-    window.afterGetPrayer = function(response) {
-	console.log(response);
-	
+    window.afterGetPrayer = function(response) {	
 	var result = response.result;
 	var request = result.request;
 	var prayerText = result.prayer_text;
 
-	console.log(result);
-
 	$("#request-title").html(request.request_title);
+
+	var prayerLines = prayerText.split("\n");
+	var prayerDisplay = "";
+	for (var i = 0; i < prayerLines.length; i++) {
+	    var prayerLine = prayerLines[i];
+	    if (!prayerLine) continue;
+	    prayerDisplay += "<p style='padding: 10px 10px 10px 10px'>" + prayerLine + "</p>";
+	}
+
+	$("#prayer-title").html(request.prayer_title);
+	$("#prayer").html(prayerDisplay);
+	$("#request-pic").attr("src", "uploads/" +request.picture);
+	
+	return;
+	
 	var otherPerson = (request["other_person"]) ? " for " + request.other_person : "none";
 	$("#prayer-category").html(otherPerson);
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
 	$("#user-name-for-request").html(request.real_name);
-	$("#request-pic").attr("src", "uploads/" +request.picture);
 	$("#user-name-for-request").html(userRealName);
-	$("#prayer-title").html(request.prayer_title);
+
 	
 	var prayerLines = prayerText.split("\n");
 	for (var i = 0; i < prayerLines.length; i++) {

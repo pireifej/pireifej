@@ -730,11 +730,15 @@ if (command == "getCategories") {
 }
 
 if (command == "login") {
-    requireParam("userName");
     requireParam("password");
     
     query = "SELECT password,user_name,email,real_name,user_title,user_about,location,active,timestamp,user_id,picture ";
-    query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
+    if (queryObject["userName"]) {
+	query += "FROM user WHERE user_name = '" + queryObject.userName + "' ";
+    }
+    if (queryObject["email"]) {
+	query += "FROM user WHERE email = '" + queryObject.email + "' ";
+    }
     query += "LIMIT 1;";
 
     const pool = createPool();
@@ -770,7 +774,6 @@ if (command == "login") {
 		    }
 		})
 		.catch(err => {
-		    console.log("not connected due to error: " + err);
 		    var obj = {};
 		    obj["result"] = err;
 		    obj["query"] = query;
@@ -784,7 +787,7 @@ if (command == "login") {
 }
 
 if (command == "getUser") {
-    query = "SELECT user_id,user_name,email,real_name,location,user_title,user_about,picture,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query = "SELECT user_id,user_name,email,real_name,location,user_title,user_about,gender,picture,CONVERT_TZ(timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
     query += "FROM user WHERE user_id = '" + queryObject.userId + "' ";
     query += "OR user_name = '" + queryObject.userId + "';";
 }
@@ -874,6 +877,9 @@ if (command == "updateUser") {
     }
     if (queryObject["about"]) {
 	queryParts.push("user_about = '" + queryObject.about + "'");
+    }
+    if (queryObject["gender"]) {
+	queryParts.push("gender = '" + queryObject.gender + "'");
     }
 
     if (queryParts.length > 0) {

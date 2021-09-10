@@ -27,15 +27,16 @@ $( document ).ready(function() {
 
     $("#login-submit-btn").click(function() {
 	var params = {
-	    userName: $("#login-email-address").val(),
+	    email: $("#login-email-address").val(),
 	    password: $("#login-password").val()
 	};
 	god.query("login", "afterLogin", params, false, true);
     });
 
     window.afterLogin = function(response) {
-	if (!response.result) {
-	    god.notify("Wrong username or password.", "error");
+	if (!response.result.length) {
+	    console.log("Wrong username or password.", "error");
+	    alert("Wrong username or password.", "error");
 	} else {
 	    var user = response.result[0];
 	    localStorage.setItem("userId", user.user_id);
@@ -49,28 +50,6 @@ $( document ).ready(function() {
 	    console.log(response);
 	    statusChangeCallback(response);
 	});
-    }
-
-    if (logout) return;
-        
-    window.god = window.god || {};
-    var user = $.urlParam('user');
-    var facebookId = null;
-
-    if (user) {
-	god.notify("New user profile created.", "success");
-    }
-    
-    if (localStorage.getItem("userId")) {
-	window.location.href = "index.html";
-    }
-
-    window.forgot = function() {
-	var params = {
-	    email: "pireifej@gmail.com",
-	    realName: "Forgot Password!"
-	};
-	god.query("forgotPassword", "afterForgot", params, false, true);
     }
 
     window.statusChangeCallback = function(response) {
@@ -96,7 +75,7 @@ $( document ).ready(function() {
 			location: "facebook",
 			title: "facebook",
 			about: "facebook",
-			picture: "facebook",
+			picture: "defautlUser.png",
 			gender: "facebook",
 			phone: "facebook"
 		    };
@@ -122,6 +101,28 @@ $( document ).ready(function() {
 	}
     }
 
+    if (logout) return;
+        
+    window.god = window.god || {};
+    var user = $.urlParam('user');
+    var facebookId = null;
+
+    if (user) {
+	god.notify("New user profile created.", "success");
+    }
+    
+    if (localStorage.getItem("userId")) {
+	window.location.href = "index.html";
+    }
+
+    window.forgot = function() {
+	var params = {
+	    email: "pireifej@gmail.com",
+	    realName: "Forgot Password!"
+	};
+	god.query("forgotPassword", "afterForgot", params, false, true);
+    }
+    
     window.afterForgot = function(response) {
 	$("#forgot").hide();
 	god.notify("Help is on its way! Check your email shortly.", "info");

@@ -33,12 +33,11 @@
 
 
     <div id="wrapper">
-
         <!-- Header -->
-{{header}}
+	{{header}}
 
         <!-- sidebar -->
-{{sidebar}}
+	{{sidebar}}
 
         <!-- Main Contents -->
         <div class="main_content">
@@ -50,7 +49,7 @@
                         <ul uk-switcher="connect: #form-type; animation: uk-animation-fade">
                             <li><a id="profile-top" href="#" class="lg:px-2"> Profile</a></li>
                             <li><a id="picture-top" href="#" class="lg:px-2"> Picture</a></li>
-                            <li hidden><a href="#" class="lg:px-2"> Notification</a></li>
+                            <li><a id="password-top" href="#" class="lg:px-2"> Password</a></li>
                             <li hidden><a href="#" class="lg:px-2"> Social links </a></li>
                             <li hidden><a href="#" class="lg:px-2"> Billing </a></li>
                             <li hidden><a href="#" class="lg:px-2"> Security </a></li> 
@@ -58,21 +57,28 @@
                     </nav>
                 </div>
 
-		<div id="picture-contents" hidden>
-		  Hello
+		<div id="picture-contents" class="grid lg:grid-cols-3 mt-12 gap-8" hidden>
+		  <div>
+                    <h3 class="text-xl mb-2"> Picture</h3>
+                    <p> Update your profile picture.</p>
+                  </div>
+		</div>
+
+		<div id="password-contents" class="grid lg:grid-cols-3 mt-12 gap-8" hidden>
+		  Hello Password
 		</div>
 
                 <div id="profile-contents" class="grid lg:grid-cols-3 mt-12 gap-8">
                     <div>
                         <h3 class="text-xl mb-2"> Basic</h3>
-                        <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
+                        <p> Update your basic profile information.</p>
                     </div>
                     <div class="bg-white rounded-md lg:shadow-md shadow col-span-2">
     
                        <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
                            <div>
                                <label for=""> First name</label>
-                               <input type="text" placeholder="" class="shadow-none with-border">
+                               <input id="realname" name="realname" type="text" placeholder="" class="shadow-none with-border">
                            </div>
                            <div>
                                <label for=""> Last name</label>
@@ -80,7 +86,11 @@
                             </div>
                             <div class="col-span-2">
                                 <label for=""> Email</label>
-                                <input type="text" placeholder="" class="shadow-none with-border">
+                                <input id="email" name="email" type="text" placeholder="" class="shadow-none with-border">
+                            </div>
+			    <div id="username-div" class="col-span-2">
+                              <label for=""> Username</label>
+                              <input id="username" name="username" type="text" placeholder="" class="shadow-none with-border">
                             </div>
                             <div class="col-span-2">
                                 <label for="about">About me</label>  
@@ -88,36 +98,33 @@
                             </div> 
                             <div class="col-span-2">
                                 <label for=""> Location</label>
-                                <input type="text" placeholder="" class="shadow-none with-border">
+                                <input id="location" name="location" type="text" placeholder="" class="shadow-none with-border">
                             </div>
                             <div>
-                               <label for=""> Working at</label>
-                               <input type="text" placeholder="" class="shadow-none with-border">
+                               <label for=""> Title</label>
+                               <input id="title" name="title" type="text" placeholder="" class="shadow-none with-border">
                             </div> 
                             <div>
-                               <label for=""> Relationship </label>
-                               <select id="relationship" name="relationship"  class="shadow-none selectpicker with-border ">
-                                <option value="0">None</option>
-                                <option value="1">Single</option>
-                                <option value="2">In a relationship</option>
-                                <option value="3">Married</option>
-                                <option value="4">Engaged</option>
+                               <label for=""> Gender </label>
+                               <select id="gender" name="gender" class="shadow-none selectpicker with-border ">
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
                               </select>
                             </div>
                        </div> 
     
                        <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                           <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
-                           <button type="button" class="button bg-blue-700"> Save </button>
+                           <button id="cancel-btn" class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
+                           <button id="update-user-btn" type="button" class="button bg-blue-700"> Save </button>
                        </div>
     
                     </div>
 
-                    <div>
+                    <div hidden>
                         <h3 class="text-xl mb-2"> Privacy</h3>
                         <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
                     </div>
-                    <div class="bg-white rounded-md lg:shadow-md shadow lg:p-6 p-4 col-span-2">
+                    <div class="bg-white rounded-md lg:shadow-md shadow lg:p-6 p-4 col-span-2" hidden>
 
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
@@ -168,18 +175,11 @@
                             </div>
                         </div>
                     </div>
-    
                     </div>
-
                 </div>
-
-        
             </div>
         </div>
-        
     </div>
-
-
 
     <!-- open chat box -->
     <div uk-toggle="target: #offcanvas-chat" class="start-chat" hidden>
@@ -261,53 +261,45 @@
                 <div class="p-1">
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-7.jpg" alt="">
                         </div>
                         <div class="contact-username"> Alex Dolgove</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-8.jpg" alt="">
                             <span class="user_status status_online"></span>
                         </div>
                         <div class="contact-username"> Dennis Han</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
                             <span class="user_status"></span>
                         </div>
                         <div class="contact-username"> Erica Jones</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-3.jpg" alt="">
                         </div>
                         <div class="contact-username">Stella Johnson</div>
                     </a>
                     
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-5.jpg" alt="">
                         </div>
                         <div class="contact-username">Adrian Mohani </div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-6.jpg" alt="">
                         </div>
                         <div class="contact-username"> Jonathan Madano</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
                             <span class="user_status"></span>
                         </div>
                         <div class="contact-username"> Erica Jones</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
                             <span class="user_status status_online"></span>
                         </div>
                         <div class="contact-username"> Dennis Han</div>
@@ -318,53 +310,45 @@
                 <div class="p-1">
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-7.jpg" alt="">
                         </div>
                         <div class="contact-username"> Alex Dolgove</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-8.jpg" alt="">
                             <span class="user_status status_online"></span>
                         </div>
                         <div class="contact-username"> Dennis Han</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
                             <span class="user_status"></span>
                         </div>
                         <div class="contact-username"> Erica Jones</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-3.jpg" alt="">
                         </div>
                         <div class="contact-username">Stella Johnson</div>
                     </a>
                     
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-5.jpg" alt="">
                         </div>
                         <div class="contact-username">Adrian Mohani </div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-6.jpg" alt="">
                         </div>
                         <div class="contact-username"> Jonathan Madano</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
                             <span class="user_status"></span>
                         </div>
                         <div class="contact-username"> Erica Jones</div>
                     </a>
                     <a href="timeline.html">
                         <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
                             <span class="user_status status_online"></span>
                         </div>
                         <div class="contact-username"> Dennis Han</div>

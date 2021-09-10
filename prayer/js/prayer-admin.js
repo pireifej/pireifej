@@ -11,6 +11,7 @@ $( document ).ready(function() {
 	var prayerText = $("#prayer-text").val();
 	var newPrayerText = "";
 
+	console.log(prayerText);
 	if (prayerText) {
 	    newPrayerText = prayerText.replace(/'/g, "\\'");
 	}
