@@ -10,13 +10,29 @@ $( document ).ready(function() {
     var imageResized = null;
 
     $("#cancel-btn").click(function(e) {
-	god.query("getUser", "afterGetUser", {}, true, true, "all");
+	god.query("getUser", "resetUserProfile", {}, true, true, "all");
+    });
+    $("#cancel-btn-picture").click(function(e) {
+	god.query("getUser", "resetUserProfile", {}, true, true, "all");
+    });
+
+    $("#update-user-btn-picture").click(function(e) {
+	var uploadedPicName = god.getUploadedPicName();
+	var params = {};
+	if (uploadedPicName) {
+	    params['picture'] = uploadedPicName;
+	    god.query("updateUser", "afterUpdateUser", params, true, true);
+	    $("#update-user-btn-picture").prop('disabled', true);
+	    $("#update-user-btn-picture").html("Saving ...");
+	}
     });
     
     $("#update-user-btn").click(function(e) {
-	var userId = localStorage.getItem("userId");
-//	var uploadedPicName = god.getUploadedPicName();
+	updateUser();
+    })
 
+    function updateUser() {
+	var userId = localStorage.getItem("userId");
 	var gender = $("#gender").val();
 	
 	var params = {
@@ -29,10 +45,6 @@ $( document ).ready(function() {
 	    gender: (gender == 0) ? "male" : "female"
 	};
 
-//	if (uploadedPicName) {
-//	    params['picture'] = uploadedPicName;
-//	}
-
 	$("#update-user-btn").prop('disabled', true);
 	$("#update-user-btn").html("Saving ...");
 
@@ -41,60 +53,59 @@ $( document ).ready(function() {
 //	}
 
 	god.query("updateUser", "afterUpdateUser", params, true, true);
-    })
+    }
 
     window.afterPasswordChange = function(response) {
 	console.log("afterPasswordChange");
     }
 
     window.afterUpdateUser = function(response) {
-	console.log("window.afterUpdateUser");
 	$("#update-user-btn").prop('disabled', false);
 	$("#update-user-btn").html("Save");
+	$("#update-user-btn-picture").prop('disabled', false);
+	$("#update-user-btn-picture").html("Save");
 	console.log(response);
-//	window.location.href = "profile.html?updated=true";
     }
 
     $("#profile-top").click(function() {
-	$("#profile-contents").show();
-	$("#profile-contents").removeAttr("hidden");
-
-	$("#picture-contents").hide();
-	$("#picture-contents").attr("hidden");
-	$("#password-contents").hide();
-	$("#password-contents").attr("hidden");
+	$("#basic").show();
+        $("#basic").removeAttr("hidden");
+	$("#picture").hide();
+        $("#picture").attr("hidden");
+	$("#basic-heading").html("Basic");
+	$("#basic-sub-heading").html("Update your basic profile information.");
     });
 
     $("#picture-top").click(function() {
-	$("#picture-contents").show();
-        $("#picture-contents").removeAttr("hidden");
+	$("#basic").hide();
+        $("#basic").attr("hidden");
+	$("#picture").show();
+        $("#picture").removeAttr("hidden");
+	$("#basic-heading").html("Picture");
+	$("#basic-sub-heading").html("Change your profile picture.");
 
-        $("#profile-contents").hide();
-        $("#profile-contents").attr("hidden");
-	$("#password-contents").hide();
-	$("#password-contents").attr("hidden");
+	// display current profile picture
+	var userPicture = $("#user-picture").attr("src");
+	$("#blah").attr("src", userPicture);
     });
 
     $("#password-top").click(function() {
-	$("#password-contents").show();
-        $("#password-contents").removeAttr("hidden");
-
-        $("#profile-contents").hide();
-        $("#profile-contents").attr("hidden");
-	$("#picture-contents").hide();
-	$("#picture-contents").attr("hidden");
+	$("#basic").hide();
+        $("#basic").attr("hidden");
+	$("#picture").hide();
+        $("#picture").attr("hidden");
+	$("#password").show();
+        $("#password").removeAttr("hidden");
+	$("#basic-heading").html("Password");
+	$("#basic-sub-heading").html("Update your password.");
     });
 
-    window.afterGetUser = function(response) {
+    // set edit profile form
+    window.resetUserProfile = function(response) {
 	var user = response.result[0];
-
-	// set edit profile form
-	console.log("profiloe");
-	console.log(user);
 
 	// facebook username
 	let isnum = /^\d+$/.test(user.user_name);
-	console.log(isnum);
 	if (isnum) {
 	    $("#username-div").hide();
 	}
@@ -141,7 +152,6 @@ $( document ).ready(function() {
 	});
 
 	loadedPicName = user.picture;
-	console.log("loadedPIcName = " + loadedPicName);
     }
 
     window.afterCreateUser = function(response) {
