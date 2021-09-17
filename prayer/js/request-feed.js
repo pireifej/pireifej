@@ -161,6 +161,7 @@ $( document ).ready(function() {
 
     window.sendComment = function(requestId) {
 	commentRequestId = requestId;
+	$("#send-comment-button-" + requestId).css("pointer-events", "none");
 	var params = {
 	    requestId: requestId,
 	    comment: "'" + $("#enter-comment-" + requestId).val() + "'"
@@ -170,6 +171,7 @@ $( document ).ready(function() {
 
     window.afterPostComment = function(response) {
 	$("#enter-comment-" + commentRequestId).val("");
+	$("#send-comment-button-" + commentRequestId).css("pointer-events", "auto");
 	god.query("getRequestComments", "afterGetRequestComments", { requestId: commentRequestId }, false, true, "comments-" + commentRequestId);
     };
 
@@ -255,14 +257,22 @@ $( document ).ready(function() {
     window.afterGetRequestFeed = function(response) {
 	insertRequestFeed(response);
 	god.query("getPeopleWhoPrayed", "afterGetPeopleWhoPrayed", { requestId:  requestIds.join(",") }, false, true);
-	god.query("getRequestComments", "afterGetRequestComments", { requestId:  requestIds.join(",") }, false, true);
+    }
+
+    window.loadComments = function(requestId) {
+	commentRequestId = requestId;
+	god.query("getRequestComments", "afterGetRequestComments", { requestId: requestId }, false, true, "comments-"+requestId);
     }
 
     window.afterGetRequestComments = function(response) {
 	console.log("window.afterGetRequestComments");
 	console.log(response);
 
-	if (!response.result.length) return;
+	if (!response.result.length) {
+	    console.log("#view-comments-" + commentRequestId);
+	    $("#view-comments-" + commentRequestId).html("No comments to view");
+	    return;
+	}
 
 	var comments = {};
 	for (var i = 0; i < response.result.length; i++) {

@@ -19,7 +19,7 @@ $( document ).ready(function() {
     var nanobar = new Nanobar( options );
 
     function getRequestAndPrayer() {
-	god.query("getPrayer", "afterGetPrayer", {requestId: requestId}, false, true, "prayer");
+	god.query("getPrayer", "afterGetPrayer", {requestId: requestId}, false, true);
     }
 
     window.afterGetPrayer = function(response) {	
@@ -39,7 +39,10 @@ $( document ).ready(function() {
 
 	$("#prayer-title").html(request.prayer_title);
 	$("#prayer").html(prayerDisplay);
-	$("#request-pic").attr("src", "uploads/" +request.picture);
+
+	if (request.picture !== "undefined") {
+	    $("#request-pic").attr("src", "uploads/" +request.picture);
+	}
 	
 	return;
 	
@@ -48,7 +51,6 @@ $( document ).ready(function() {
 	$("#request-timestamp").html(god.getFormattedTimestamp(request.timestamp));
 	$("#user-name-for-request").html(request.real_name);
 	$("#user-name-for-request").html(userRealName);
-
 	
 	var prayerLines = prayerText.split("\n");
 	for (var i = 0; i < prayerLines.length; i++) {
@@ -97,8 +99,10 @@ $( document ).ready(function() {
     }
 
     window.afterPrayFor = function(response) {
+	console.log(response);
+
 	if (response.error == 0) {
-	    window.location.href = "index.html?pray=true";
+	    window.location.href = "index.html";
 	}
     }
 
@@ -266,6 +270,7 @@ $( document ).ready(function() {
     });
     
     function prayForMe() {
+	console.log("prayForMe...");
 	god.query("prayFor", "afterPrayFor", {requestId: requestId}, true, true);
     }
 
