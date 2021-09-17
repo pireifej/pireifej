@@ -47,11 +47,11 @@
                     </div>
 
                     <!-- form body -->
-                    <div class="p-7 space-y-5">
+                    <div class="p-7 space-y-5" height="1000px !important">
 
 		      <div>
                         <label for="" class="font-semibold text-base"> Open a Prayer </label>
-                        <select id="select-prayer-box" name="select-prayer-box"  class="shadow-none selectpicker with-border">
+                        <select id="select-prayer-box" name="select-prayer-box"  class="shadow-none selectpicker with-border" data-live-search="true">
                         </select>
                         </div>
 
@@ -68,7 +68,7 @@
 			</div>
 
                         <div class="line h-32">
-                            <textarea class="line__input h-32"  id="prayer-text" name="prayer-text" type="text" oninput="autoGrow(this)" value="" autocomplete="off"></textarea>
+                            <textarea class="line__input h-32"  id="prayer-text" name="prayer-text" type="text" value="" autocomplete="off" style="height:400px !important"></textarea>
                             <span for="prayer-text" class="line__placeholder">Prayer Text</span>
                         </div>
 
@@ -86,12 +86,14 @@
                     </div>
                     
                     <!-- form footer -->
-                    <div class="border-t flex justify-center border-gray-100 p-6">
-                        <button type="button" class="button lg:w-1/3" id="update-prayer">
-                            Update Prayer
-                        </button>
+                    <div class="border-t flex justify-center border-gray-100 p-6" style="padding-top:300px">
+		      <button type="button" class="button lg:w-1/3" id="skip" style="margin:10px 10px 10px 10px">
+                        Skip
+                      </button>
+                      <button type="button" class="button lg:w-1/3" id="update-prayer" style="margin:10px 10px 10px 10px">
+                        Update Prayer
+                      </button>
                     </div>
-                    
                 </div>
 
         

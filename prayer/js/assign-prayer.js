@@ -40,6 +40,10 @@ $( document ).ready(function() {
 	$("#select-prayer-box").selectpicker('refresh');
     }
 
+    $( "#skip" ).click(function() {
+	console.log("skip");
+    });
+
     $( "#assign-prayer" ).click(function() {
 	var params = {
 	    request_id: requestList[requestIndex].request_id,

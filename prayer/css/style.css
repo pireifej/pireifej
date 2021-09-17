@@ -25,6 +25,10 @@
 /* Buttons
 ------------------------------------- */
 
+.xmargin {
+    margin: 10px 10px 10px 10px;
+}
+
 .clicky {
     cursor: pointer;
 }
@@ -7550,7 +7554,7 @@ header .header_inner .right_side {
 }
 
 .is_message .header_search {
-  display: none;
+    width: 50%;
 }
 
 .is_message .main_content {
@@ -8719,7 +8723,7 @@ body.story-active header {
 body.story-active header .left_side .slide_menu,
 body.story-active header .header_search,
 body.story-active header .header_widgets .is_link {
-  display: none;
+    width: 50%;
 }
 
 .story-users-list a {
@@ -9225,7 +9229,7 @@ body.story-active header .header_widgets .is_link {
     padding: 25px 15px;
   }
   .header_widgets .is_link, .header_search {
-    display: none;
+      width: 50%;
   }
   header .header_inner .left_side #logo img {
     display: none;
@@ -9268,7 +9272,7 @@ body.story-active header .header_widgets .is_link {
     width: 85%;
   }
   .header_search input {
-    width: 100%;
+      width: 100%;
     min-width: 100%;
   }
   .header-search-icon {

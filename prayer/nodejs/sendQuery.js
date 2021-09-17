@@ -155,6 +155,8 @@ var allCommands = {
     "forgotPassword": true,
     "getPrayerHistory": true,
     "getPeopleWhoPrayed": true,
+    "getRequestComments": true,
+    "postComment": true,
     "createUser": true,
     "createRequest": true,
     "prayFor": true,
@@ -1143,6 +1145,25 @@ if (command == "getPrayerHistory") {
     query += "FROM user_request INNER JOIN request ON request.request_id = user_request.request_id ";
     query += "INNER JOIN user on user.user_id = request.user_id ";
     query += "WHERE user_request.user_id=" + queryObject.userId;
+}
+
+if (command == "postComment") {
+    requireParam("requestId");
+    requireParam("comment");
+
+    query = "INSERT INTO comments (request_id,user_id,comment) ";
+    query += "VALUES (" + queryObject.requestId + ",";
+    query += queryObject.userId + ",";
+    query += "'" + queryObject.comment + "')";
+}
+
+if (command == "getRequestComments") {
+    requireParam("requestId");
+
+    query = "SELECT user.picture,user.real_name,comments.user_id,comments.request_id,comments.comment,CONVERT_TZ(comments.timestamp,'GMT','" + queryObject.tz + "') as timestamp ";
+    query += "FROM comments INNER JOIN user ";
+    query += "ON user.user_id = comments.user_id ";
+    query += "WHERE comments.request_id IN(" + queryObject.requestId + ")";
 }
 
 if (command == "getPeopleWhoPrayed") {

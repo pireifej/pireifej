@@ -11,7 +11,6 @@ $( document ).ready(function() {
 	var prayerText = $("#prayer-text").val();
 	var newPrayerText = "";
 
-	console.log(prayerText);
 	if (prayerText) {
 	    newPrayerText = prayerText.replace(/'/g, "\\'");
 	}
@@ -44,9 +43,21 @@ $( document ).ready(function() {
 	}
     });
 
+    function compare( a, b ) {
+	if ( a.prayer_title < b.prayer_title ){
+	    return -1;
+	}
+	if ( a.prayer_title > b.prayer_title ){
+	    return 1;
+	}
+	return 0;
+    }
+
     window.afterGetAllPrayers = function(response) {
 	var prayerList = response.result;
 	allPrayers = prayerList;
+
+	prayerList.sort(compare);
 
 	for (var i = 0; i < prayerList.length; i++) {
 	    var prayer = prayerList[i];
