@@ -35,7 +35,7 @@ $( document ).ready(function() {
 
     $("#send-email").submit(function(e) {
 	e.preventDefault();
-	
+
 	var name = $("#contact-name").val();
 	var email = $("#contact-email").val();
 	var subject = $("#contact-subject").val();
@@ -510,6 +510,20 @@ $( document ).ready(function() {
 			cfca: '<a href="https://www.cfca.org/">CFCA website<i class="lnr lnr-home"></i></a>'
 	    }
 
+	},
+	{
+	    image: 'img/hack/hackthirdplace.png',
+	    label: 'Pencil It In',
+	    type: 'hackathon',
+	    desc: '<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>',
+	    href: 'hack5',
+	    link: 'https://pireifej.com/it-cant-wait.html',
+	    details: {
+		date: 'October 7, 2021',
+		location: 'AT&T Research in Middletown, NJ',
+		other1: 'TBD',
+		other2: 'TBD'
+	    }
 	},
 	{
 	    image: 'img/hack/itcantwaitpng.png',
