@@ -17,7 +17,7 @@ $( document ).ready(function() {
 	});
 
 	formData.append("fileToUpload", gFileData);
-	$.LoadingOverlay("show");
+
 	$.ajax({
             url: "upload.php",
             dataType: 'script',
@@ -31,7 +31,6 @@ $( document ).ready(function() {
 		console.log(response);
 		var json = JSON.parse(response);
 		console.log(json);
-		$.LoadingOverlay("hide");
 		
 		if (json.error == 1) {
 		    god.notify(json.message, "error");
@@ -572,24 +571,9 @@ $( document ).ready(function() {
     god.sendQuery = function(params, showLoadingOverlay) {
 	console.log(params);
 
-	// Show full page LoadingOverlay
-	if (showLoadingOverlay) {
-	    if (showLoadingOverlay == "all") $.LoadingOverlay("show");
-	    else $("#" + showLoadingOverlay).LoadingOverlay("show");
-	}
-
 	if (window.location.protocol !== "https:") {
 	    var command = params["command"];
 	    console.log(command);
-
-	    // Hide loading overlay
-	    $("#requests").LoadingOverlay("hide");
-	    $("#request-feed").LoadingOverlay("hide");
-	    $("#prayer").LoadingOverlay("hide");
-	    if (showLoadingOverlay) {
-		if (showLoadingOverlay == "all") $.LoadingOverlay("hide");
-		else $("#" + showLoadingOverlay).LoadingOverlay("hide");
-	    }
 	    
 	    return;
 	}
@@ -605,18 +589,10 @@ $( document ).ready(function() {
 	    success: function(data) {
 		console.log(data);
 		// Hide loading overlay
-		$("#requests").LoadingOverlay("hide");
-		$("#request-feed").LoadingOverlay("hide");
-		$("#prayer").LoadingOverlay("hide");
-		if (showLoadingOverlay) {
-		    if (showLoadingOverlay == "all") $.LoadingOverlay("hide");
-		    else $("#" + showLoadingOverlay).LoadingOverlay("hide");
-		}
 	    },
 	    error: function(jqXHR, textStatus, errorThrown) {
 		console.log(textStatus + ': ' + params.command);
 		// Hide loading overlay
-		$.LoadingOverlay("hide");
 	    }
 	});
     }

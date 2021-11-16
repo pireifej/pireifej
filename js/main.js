@@ -1,9 +1,338 @@
-/*!
- * Item: CodeX
- * Description:  Personal Portfolio / Resume / CV / vCard Template
- * Author/Developer: Exill
- * Author/Developer URL: https://themeforest.net/user/exill
- * Version: v1.0.0
- * License: Themeforest Standard Licenses: https://themeforest.net/licenses
- */
-!function(e){"use strict";e(function(){e(document).on("click",'a[data-scroll][href^="#"]',function(a){var t=e(this).attr("href"),i=e(t);0!==i.length&&(a.preventDefault(),e("body, html").animate({scrollTop:i.offset().top},600))}),e("body").scrollspy({target:".sidebar .list-menu"}),e(".sidebar .list-menu").clone().children().appendTo(".mobile-navbar .navbar-nav").find(".nav-link").removeClass("active"),e(document).on("mouseup",function(a){if(e(".mobile-navbar #mobileNavbarSupportedContent").hasClass("show")){var t=e(".mobile-navbar .navbar-toggler");t.is(a.target)||0!==t.has(a.target).length||t.trigger("click")}}),function(){var a,t,i=2500,n=660,o=1500;function s(e){var a=function(e){return e.is(":last-child")?e.parent().children().eq(0):e.next()}(e);e.parents(".cd-headline").hasClass("clip")&&e.parents(".cd-words-wrapper").animate({width:"2px"},n,function(){var t;t=a,e.removeClass("is-visible").addClass("is-hidden"),t.removeClass("is-hidden").addClass("is-visible"),function(e,a){e.parents(".cd-headline").hasClass("clip")&&e.parents(".cd-words-wrapper").animate({width:e.width()+10},n,function(){setTimeout(function(){s(e)},o)})}(a)})}a=e(".cd-headline"),t=i,a.each(function(){var a=e(this);if(a.hasClass("clip")){var i=a.find(".cd-words-wrapper"),n=i.width()+10;i.css("width",n)}setTimeout(function(){s(a.find(".is-visible").eq(0))},t)})}(),e(".home-area").hasClass("video-variant")?e("#homeVideo").YTPlayer():e(".home-area").hasClass("particles-variant")?particlesJS("particles-js",{particles:{number:{value:50,density:{enable:!0,value_area:800}},color:{value:"#999999"},shape:{type:"circle",stroke:{width:0,color:"#888888"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.7,random:!1,anim:{enable:!1,speed:3,opacity_min:.1,sync:!1}},size:{value:5,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#999999",opacity:.4,width:1},move:{enable:!0,speed:6,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1,mode:"repulse"},onclick:{enable:!1,mode:"push"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0}):e(".home-area").hasClass("galaxy-variant")?particlesJS("particles-js",{particles:{number:{value:100,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:1,random:!0,anim:{enable:!0,speed:1,opacity_min:0,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:4,size_min:.3,sync:!1}},line_linked:{enable:!1,distance:150,color:"#ffffff",opacity:.4,width:1},move:{enable:!0,speed:1,direction:"none",random:!0,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:600}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1,mode:"bubble"},onclick:{enable:!1,mode:"repulse"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:250,size:0,duration:2,opacity:0,speed:3},repulse:{distance:400,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0}):e(".home-area").hasClass("snow-variant")?particlesJS("particles-js",{particles:{number:{value:50,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!0,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:8,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!1,distance:500,color:"#ffffff",opacity:.4,width:2},move:{enable:!0,speed:3,direction:"bottom",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1,mode:"bubble"},onclick:{enable:!1,mode:"repulse"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:.5}},bubble:{distance:400,size:4,duration:.3,opacity:1,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0}):e(".home-area").hasClass("bubble-variant")&&particlesJS("particles-js",{particles:{number:{value:4,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000"},polygon:{nb_sides:6},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.2,random:!0,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:90,random:!1,anim:{enable:!0,speed:10,size_min:40,sync:!1}},line_linked:{enable:!1,distance:200,color:"#ffffff",opacity:1,width:2},move:{enable:!0,speed:8,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1,mode:"grab"},onclick:{enable:!1,mode:"push"},resize:!0},modes:{grab:{distance:400,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0}),e(".testimonials-area .owl-carousel").owlCarousel({items:3,loop:!0,margin:30,nav:!1,dots:!0,smartSpeed:400,responsive:{0:{items:1},768:{items:2},992:{items:3}}}),e(".contact-form").on("submit",function(a){var t=e(this),i=t.find("#contact-submit"),n=i.text(),o=t.find(".contact-feedback");a.preventDefault(),i.html("Wait...").addClass("wait").prop("disabled",!0),setTimeout(function(){e.ajax({url:t.attr("action"),type:"POST",data:t.serialize()}).done(function(e){"success"==e?(i.removeClass("wait").html("Success").addClass("success"),o.addClass("success").html("Thank you for your message. It has been sent.").fadeIn(200),setTimeout(function(){i.html(n).removeClass("success").prop("disabled",!1),o.fadeOut(200).removeClass("success").html("")},6e3),t[0].reset()):(console.log(e),i.removeClass("wait").html("Error").addClass("error"),o.addClass("error").html("Thank you for your message. It has been sent.").fadeIn(200),setTimeout(function(){i.html(n).removeClass("error").prop("disabled",!1),o.fadeOut(200).removeClass("error").html("")},6e3))})},1e3)})}),e(window).on("load",function(){var a,t;e(".preloader-icon").fadeOut(400),e(".preloader").delay(500).fadeOut("slow"),a=e(".portfolio-area .portfolio-grid"),t=e(".portfolio-area .filter-control li"),a.isotope({itemSelector:".single-item"}),t.on("click",function(){t.removeClass("tab-active"),e(this).addClass("tab-active");var i=e(this).data("filter");a.isotope({filter:i,transitionDuration:".25s"})}),e(".portfolio-area .portfolio-grid .portfolio-item").each(function(){var a=e(this),t=a.attr("href");e(a).animatedModal({animatedIn:"fadeIn",animatedOut:"fadeOut",animationDuration:".15s",beforeOpen:function(){e(t+".lightbox-wrapper .lightbox-gallery").owlCarousel({loop:!0,margin:10,nav:!1,items:1,smartSpeed:400})},afterClose:function(){e(t+".lightbox-wrapper .lightbox-gallery").trigger("destroy.owl.carousel")}})})})}(jQuery);
+$( document ).ready(function() {
+    window.god = window.god || {};
+
+    $.ajax({
+        url: 'nodejs/myJsonFile.json',
+        type: 'get',
+        dataType: 'json',
+        cache: false,
+        success: postProcessing,
+        async:true,
+    });
+
+    function postProcessing(data) {
+	var fullElem = "";
+	var firstElem = "";
+	var secondElem = "";
+	var allStuff = data.records;
+	for (var i = 0; i < allStuff.length; i++) {
+	    var fullElem = loadStuff(allStuff[i]);
+	    firstElem += fullElem.first;
+	    secondElem += fullElem.second;
+	}
+
+	$("#ireifej").html(firstElem);
+	$("#ireifej2").html(secondElem);
+    }
+
+    $.getJSON( "nodejs/myJsonFile.json", function( data ) {
+	return;
+	console.log("getJSON request data");
+	console.log(data);
+	var fullElem = "";
+	var firstElem = "";
+	var secondElem = "";
+	var allStuff = data.records;
+	for (var i = 0; i < allStuff.length; i++) {
+	    var fullElem = loadStuff(allStuff[i]);
+	    firstElem += fullElem.first;
+	    secondElem += fullElem.second;
+	}
+
+	$("#ireifej").html(firstElem);
+	$("#ireifej2").html(secondElem);
+    })
+	.done(function() {
+	    console.log('getJSON request succeeded!');
+	})
+	.fail(function(qXHR, textStatus, errorThrown) {
+	    console.log('getJSON request failed! ');
+	    console.log(errorThrown);
+	})
+	.always(function() {
+	    console.log('getJSON request ended!');
+	});
+
+    function loadStuff(stuff) {
+	console.log("Loading " + stuff.label);
+
+	var href = stuff.href;
+	var size = "style='height:339px; width: 339px'";
+
+	if (god.mobileCheck()) {
+	    size = "style='height:250px; width: 339px'";
+	}
+	
+	var fullElem = "<div class='single-item col-6 col-lg-4 " + stuff.type + "'><a class='portfolio-item' href='#" + href + "'><div class='portfolio-wrapper'><img " + size + " class='img-fluid' alt='Item' src='" + stuff.image + "'><div class='item-content'><h6 class='content-title'>" + stuff.label + "</h6><span class='content-more'>More Info</span></div></div></a></div>";
+
+	if (!stuff.href) return;
+	if (stuff.href.includes("http")) return;
+	var desc = stuff.desc;
+	desc = (desc) ? desc : "Description coming soon!";
+	var images = "<img class='img-fluid item-img' alt='Item' src='" + stuff.image + "'>";
+	var gallery = stuff.gallery;
+	if (gallery) {
+	    for (var j = 0; j < gallery.length; j++) {
+		images += "<img class='img-fluid item-img' alt='Item' src='" + gallery[j] + "'>";
+	    }
+	}
+
+	var extraDetails = "";
+	if (stuff.type == "projects" && stuff.details) {
+	    var details = stuff.details;
+	    var date = details.date;
+	    var company = details.company;
+	    var award = (details["award"]) ? details.award : "N/A";
+	    var technology = details.technology;
+
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+date + "</p></li><li class='list-inline-item single-info'><span>Company:</span><p>"+company + "</p></li><li class='list-inline-item single-info'><span>Award:</span><p>"+award+"</p></li><li class='list-inline-item single-info'><span>Technologies:</span><p>"+technology+"</p></li>";
+	}
+
+	if (stuff.type == "race" && stuff.details) {
+	    var details = stuff.details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Distance:</span><p>"+details.distance + "</p></li><li class='list-inline-item single-info'><span>Location:</span><p>"+details.location+"</p></li><li class='list-inline-item single-info'><span>Time:</span><p>"+details.time+"</p></li>";
+	}
+	if (stuff.type == "speech" && stuff.details) {
+	    var details = stuff.details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Club:</span><p>"+details.club + "</p></li><li class='list-inline-item single-info'><span>Area:</span><p>"+details.area + "</p></li><li class='list-inline-item single-info'><span>Division:</span><p>"+details.division+"</p></li><li class='list-inline-item single-info'><span>District:</span><p>"+details.district+"</p></li>";
+	}
+	if (stuff.type == "conference" && stuff.details) {
+	    var details = stuff.details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Location:</span><p>"+details.location + "</p></li><li class='list-inline-item single-info'><span>Agenda:</span><p>"+details.agenda+"</p></li><li class='list-inline-item single-info'><span>CFCA:</span><p>"+details.cfca+"</p></li>";
+	}
+	if (stuff.type == "hackathon" && stuff.details) {
+	    var details = stuff.details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Location:</span><p>"+details.location + "</p></li><li class='list-inline-item single-info'><span>Track:</span><p>"+details.track+"</p></li><li class='list-inline-item single-info'><span>Place:</span><p>"+details.place+"</p></li>";
+	}
+	if (stuff.type == "patent" && stuff.details) {
+	    var details = stuff.details;
+	    extraDetails = "<li class='list-inline-item single-info'><span>Date:</span><p>"+details.date + "</p></li><li class='list-inline-item single-info'><span>Application Number:</span><p>"+details.applicationNo + "</p></li><li class='list-inline-item single-info'><span>Other1:</span><p>"+details.other1+"</p></li><li class='list-inline-item single-info'><span>Other2:</span><p>"+details.other2+"</p></li>";
+	}
+
+	var buttonText = "Visit Project";
+	if (stuff.type == "race") buttonText = "Visit Results";
+	if (stuff.type == "speech") buttonText = "Watch Speech";
+	if (stuff.type == "conference") buttonText = "Visit Presentation";
+	if (stuff.type == "patent") buttonText = "View Patent";
+
+	var visitProject = (stuff.link) ? "<a class='btn content-btn button-main button-scheme' href='" + stuff.link + "' role='button'>" + buttonText + "</a>" : "";
+	
+	var nextElem = "<!-- Single lightbox--><div class='lightbox-wrapper' id='" + stuff.href + "'><div class='f-basis-100'><div class='lightbox-close' data-modal-close><span class='close-btn'><span class='btn-line'></span></span></div></div><div class='container'><div class='row'><div class='col-12 col-lg-5'><div class='lightbox-gallery owl-carousel owl-theme'>" + images + "</div></div><div class='col-12 col-lg-7'><div class='lightbox-content'><h3 class='content-title'>" + stuff.label + "</h3><div class='content-description'>"+desc+"</div><ul class='list-inline content-info'>" + extraDetails + "</ul>" + visitProject + "</div></div></div></div></div>";
+
+	return { first: fullElem, second: nextElem };
+    }
+
+    var origin = window.location.origin;
+    var originParts = origin.split(":");
+    if (originParts[0] == "http") {
+	window.location.href = "https://www.pireifej.com";
+    }
+
+    var visitorDetails = {
+	appName: navigator.appName,
+	onLine: navigator.onLine,
+	appVersion: navigator.appVersion,
+	cookieEnabled: navigator.cookieEnabled,
+	language: navigator.language,
+	userAgent: navigator.userAgent
+    };
+
+	var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	  };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+    function success(pos) {
+	var crd = pos.coords;
+
+	visitorDetails["latitude"] = crd.latitude;
+	visitorDetails["longitude"] = crd.longitude;
+	visitorDetails["accuracy"] = crd.accuracy;
+
+	god.query("logVisitor", "afterLogVisitor", {page: window.location.pathname,details:JSON.stringify(visitorDetails)}, false, true);
+    }
+
+    function error(err) {
+	god.query("logVisitor", "afterLogVisitor", {page: window.location.pathname,details:JSON.stringify(visitorDetails)}, false, true);
+	console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    $("#send-email").submit(function(e) {
+	e.preventDefault();
+
+	var name = $("#contact-name").val();
+	var email = $("#contact-email").val();
+	var subject = $("#contact-subject").val();
+	var message = $("#contact-message").val();
+
+	var params = {
+	    subject: "'" + subject + "'",
+	    message: "'" + message + "'",
+	    email: "'" + email + "'",
+	    name: "'" + name + "'"
+	};
+
+	window.god = window.god || {};
+	god.query("help", "afterHelp", params, false, false);
+    });
+
+    window.afterLogVisitor = function(response) {
+	console.log("window.afterLogVisitor");
+	console.log(response);
+    }
+
+    window.afterHelp = function(response) {
+	console.log("afterHelp");
+	console.log(response);
+    }
+
+    var blogs = [
+	{
+	    date: 'June 26, 2018',
+	    title: 'CFCA in Chicago',
+	    href: 'chicago.html',
+	    heading: 'My trip to Chicago, IL to present at the 2018 CFCA.',
+	    tag1: 'System',
+	    tag2: 'Migration',
+	    image: 'cfca/20180626_122932.jpg'
+	},
+	{
+	    date: 'June 26, 2018',
+	    title: 'CFCA in Tucson',
+	    href: 'tucson.html',
+	    heading: 'My trip to Tucson, AZ to present at the 2019 CFCA.',
+	    tag1: 'Outsourcing',
+	    tag2: 'Migration',
+	    image: 'cfca/IMG_20191015_151101.jpg'
+	},
+	{
+	    date: '2015',
+	    title: 'Freehold Excursion',
+	    href: 'contest3.html',
+	    heading: 'Story documenting my visit to the contest venue the day before to scope it out.',
+	    tag1: 'Freehold',
+	    tag2: 'Hospital',
+	    image: 'img/trophy/trophy2Large.jpg'
+	},
+	{
+	    date: '2015',
+	    title: 'Brutually Honest',
+	    href: 'contest4.html',
+	    heading: 'A brutually honest evaluation from a trusted audience member about my performance at this contest.',
+	    tag1: 'Judges',
+	    tag2: 'Comedy',
+	    image: 'img/trophy/trophy3Large.jpg'
+	},
+	{
+	    date: '2016',
+	    title: 'The Most Important Day of my Life',
+	    href: 'contest7.html',
+	    heading: 'One of the most important days of my life. Finally got to the District stage in the Humorous Contest',
+	    tag1: 'Humor',
+	    tag2: 'Children',
+	    image: 'img/contests/DSC_0350.jpg'
+	},
+	{
+	    date: '2018',
+	    title: 'My Most Painful Contest Yet',
+	    href: 'contest8.html',
+	    heading: 'A long and challenging contest.',
+	    tag1: 'Painful',
+	    tag2: 'Callback',
+	    image: 'img/contests/FB_IMG_1539660566388.jpg'
+	},
+	{
+	    date: '2019',
+	    title: 'The Contest Heard Around the World',
+	    href: 'contest9.html',
+	    heading: 'Iʼm still recovering from a whopping 4 1/2 hour long contest.',
+	    tag1: 'Longest',
+	    tag2: 'Contests',
+	    image: 'img/trophy/trophy7Large.jpg',
+	},
+	{
+	    date: '2019',
+	    title: 'It\'s the thought that counts',
+	    href: 'contest10.html',
+	    heading: 'My harrowing journey to place first at the 2019 Division F Evaluation Contest.',
+	    tag1: 'Evaluation',
+	    tag2: 'Division',
+	    image: 'img/contests/divcontest.jpg'
+	},
+	{
+	    date: 'May 5, 2019',
+	    title: 'Aced it!',
+	    href: 'contest13.html',
+	    heading: 'Placing first at the District 83 Evaluation Contest.',
+	    tag1: 'Evaluation',
+	    tag2: 'Ace It',
+	    image: 'img/contests/disteval1.jpg'
+	},
+	{
+	    date: 'May 5, 2019',
+	    title: 'The Easiest Area Contest Ever',
+	    href: 'contest11.html',
+	    heading: 'Tonight was a good night. A good and ... easy night.',
+	    tag1: 'Easy',
+	    tag2: 'Tall Tales',
+	    image: 'img/contests/IMG_20191002_194504.jpg'
+	},
+	{
+	    date: 'Nov 14, 2019',
+	    title: 'Much Ado About Nothing',
+	    href: 'contest12.html',
+	    heading: '',
+	    tag1: 'Nervous',
+	    tag2: 'Charismatic',
+	    image: 'img/contests/IMG_0078%20(1).JPG'
+	},
+	{
+	    date: 'Sept 5, 2021',
+	    title: 'Toastmasters Contest Advice',
+	    href: 'talltales.html',
+	    heading: 'What is Tall Tales?',
+	    tag1: 'Imagination',
+	    tag2: 'Exaggeration',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	}/*,
+	{
+	    date: 'TBD',
+	    title: 'Coming Soon!',
+	    href: '',
+	    heading: 'TBD',
+	    tag1: 'N/A',
+	    tag2: 'N/A',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	},
+	{
+	    date: 'TBD',
+	    title: 'Coming Soon!',
+	    href: '',
+	    heading: 'TBD',
+	    tag1: 'N/A',
+	    tag2: 'N/A',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	},
+	{
+	    date: 'TBD',
+	    title: 'Coming Soon!',
+	    href: '',
+	    heading: 'TBD',
+	    tag1: 'N/A',
+	    tag2: 'N/A',
+	    image: 'img/blog/cat-post/cat-post-2.jpg'
+	}*/
+    ];
+
+    var blogPosts = "";
+    for (var i = 0; i < blogs.length; i++) {
+	var nextBlogPost = "<!-- Single post--><div class='col-12 col-sm-8 col-lg-4'><div class='card single-post'><a class='post-img' href='" + blogs[i].href + "'><img style='height: 218px; hwidth: 302px' class='card-img-top' src='" + blogs[i].image + "' alt='Blog post'><span class='content-date'>" + blogs[i].date + "</span></a><div class='card-body post-content'><a href='#0'><h5 class='card-title content-title'>" + blogs[i].title + "</h5><p class='card-text content-description' style='color: #333;'>" + blogs[i].heading + "</p><div class='content-tags'><span class='tags-title'>Tags:</span><ul class='list-unstyled list-inline tags-list'><li class='list-inline-item'><a href='#0'>" + blogs[i].tag1 + "</a></li><li class='list-inline-item'><a href='#0'>" + blogs[i].tag2 + "</a></li></ul></div></div></div></div>";
+	blogPosts += nextBlogPost;
+    }
+
+    var finalBlogPost = "<div class='row justify-content-center'>" + blogPosts + "</div>";
+    $("#ireifej-blog").html(finalBlogPost);
+});
