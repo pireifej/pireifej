@@ -1,0 +1,158 @@
+{
+    "records": [
+	{
+	    "image": "img/running/20221030_130032.jpg",
+	    "label": "Marine Corp Marathon",
+	    "type": "race",
+	    "details": {
+		"date": "10/30/22",
+		"distance": "26.2 miles",
+		"time": "4 hours 52 min",
+		"location": "Washington, D.C."
+	    },
+	    "gallery": ["img/running/1211885_321179061_XLarge.jpg"],
+	    "link": "https://events.hakuapp.com/?registration_number=5ABD8FF913",
+	    "desc": "<p>Recognized for impeccable organization on an iconic course managed by the US Marines in Arlington, VA and the nation's capital, the Marine Corps Marathon is one of the largest marathons in the US and the world. Known as 'the best marathon for beginners,' the MCM is the largest marathon in the world that doesn't offer prize money, earning its nickname, 'The People's Marathon.'</p>"
+	},
+	{
+	    "image": "img/running/disneySmall.jpg",
+	    "label": "2020 Walt Disney World Marathon",
+	    "type": "race",
+	    "details": {
+		"date": "01/11/20",
+		"distance": "13.1 miles",
+		"time": "2 hours 36 min",
+		"location": "Florida"
+	    },
+	    "gallery": ["img/running/disney4.jpg"],
+	    "link": "https://www.trackshackresults.com/disneysports/results/wdw/wdw20/hm_results.php?Link=98&amp;Type=3&amp;LName=ireifej&amp;FName=&amp;City=&amp;State=&amp;Country=",
+	    "desc": "<p>When you participate in the 2022 Walt Disney World Marathon Weekend, you will become part of something incredibly special, by running right in the heart of The World\" Most Magical Celebration.</p><p>Test your mettle at your chosen skill level - from the marathon to the 5K - while enjoying each step of the way through the Disney theme parks during the 50th anniversary celebration of Walt Disney World Resort.</p>"
+	},
+	{
+	    "image": "img/running/rockySmall.jpg",
+	    "label": "2019 Rocky Run",
+	    "type": "race",
+	    "details": {
+		"date": "11/09/19",
+		"distance": "3.1 miles",
+		"time": "27 min 09 sec",
+		"location": "Philadelphia"
+	    },
+	    "gallery": ["img/running/phillyCert.png"],
+	    "link": "http://live.xacte.com/templates/philadelphiamarathon.com/for-runners/?utm_source=Philadelphia-Marathon&utm_campaign=c3dcb72372-EMAIL_CAMPAIGN_2018_11_17_08_05&utm_medium=email&utm_term=0_fa2559b911-c3dcb72372-46616553",
+	    "desc": "<p>This is your shot - a chance to join thousands of runners from around the world in Philadelphia for the official Rocky Run 5K, 10 Mile & 13.1 Italian Stallion Challenge. So, channel your inner Rocky Balboa, register, and show the world you can go the distance.</p>"
+	},
+	{
+	    "image": "img/running/rhodeSmall.jpg",
+	    "label": "Independence Rhode Race Half Marathon",
+	    "type": "race",
+	    "details": {
+		"date": "06/29/19",
+		"distance": "13.1 miles",
+		"time": "2 hours 15 min",
+		"location": "Rhode Island"
+	    },
+	    "gallery": ["img/running/rhode3.jpg"],
+	    "link": "https://runscore.runsignup.com/Race/Results/34245/IndividualResult/QhLB?#U34244592",
+	    "desc": "<p>The half marathon will follow the beautiful downtown streets of America\"s quintessential community when it is decked out in its finest - during the Oldest 4th of July Celebration in America.  The course includes incredible historic homes, a town common and the America\"s Cup Museum before heading out along the scenic coastline, through Roger Williams University, following the parade route, and finishing along the water at Independence Park.</p>"
+	},
+	{
+	    "image": "img/running/rhineSmall.jpg",
+	    "label": "Rhinebeck Hudson Valley Half Marathon",
+	    "type": "race",
+	    "details": {
+		"date": "05/11/19",
+		"distance": "13.1 miles",
+		"time": "2 hours 17 min",
+		"location": "Hudson Valley, NY"
+	    },
+	    "link": "https://www.trisignup.com/Race/Results/65311/IndividualResult/QBGZ?#U36163320,U2638680",
+	    "gallery": ["img/running/rhineCert.PNG"],
+	    "desc": "<p>Rhinebeck Hudson Valley Full & Half Marathon Sports Event in Rhinebeck, New York</p>"
+	},
+	{
+	    "image": "img/running/phillySmall.jpg",
+	    "label": "Philadelphia Half Marathon",
+	    "type": "race",
+	    "gallery": [],
+	    "desc": "<p>The Dietz & Watson Philadelphia Half Marathon. In 2017, the Philadelphia Marathon Team created a new course for the half marathon with almost ten miles in the city. This new course takes runners through most of the same historic areas and iconic neighborhoods that Philadelphia has to offer. The new half marathon course is the most unique and exciting half marathon course in the city.</p>",
+	    "details": {
+		"date": "11/18/18",
+		"distance": "13.1 miles",
+		"time": "2 hours 07 min",
+		"location": "Philadelphia, PA"
+	    },
+	    "link": "http://live.xacte.com/templates/philadelphiamarathon.com/for-runners/?utm_source=Philadelphia-Marathon&utm_campaign=c3dcb72372-EMAIL_CAMPAIGN_2018_11_17_08_05&utm_medium=email&utm_term=0_fa2559b911-c3dcb72372-46616553"
+	},
+	{
+	    "image": "img/running/middleearth.PNG",
+	    "label": "Run from Winter 10K",
+	    "type": "race",
+	    "desc": "<p>11th Annual Run From Winter 10K to benefit Middle Earth. The USATF certified and sanctioned course runs along the scenic Raritan River through the flat paved, wooded trails of Duke Island Park.</p>",
+	    "gallery": [],
+	    "details": {
+		"date": "03/24/19",
+		"distance": "6.2 miles",
+		"time": "54 min 02 sec",
+		"location": "Bridgewater, NJ"
+	    },
+	    "link": "https://runsignup.com/Race/Results/54760/IndividualResult/tYqb?#U34244592"
+	},
+	{
+	    "image": "img/running/autismSmall.jpeg",
+	    "label": "Hustle for the Puzzle 5k Road Race for Autism",
+	    "type": "race",
+	    "desc": "<p></p>",
+	    "gallery": ["img/running/puzzle5k.png"],
+	    "link": "https://www.athlinks.com/event/16532/results/Event/158372/Course/218826/Bib/327",
+	    "details": {
+		"date": "04/03/2011",
+		"distance": "3.1 miles",
+		"time": "26 min 13 sec",
+		"location": "Montgomery, NY"
+	    }
+	},
+	{
+	    "image": "img/running/verizonSmall.jpg",
+	    "label": "Verizon Wireless Corporate Classic",
+	    "type": "race",
+	    "desc": "<p>The race is designed primarily as an opportunity for co-workers to get together to enjoy a morning of fun and fitness in a spirit of camaraderie with their fellow employees by participating as a member of their company\"s corporate running team.</p>",
+	    "link": "http://www.bestrace.com/verizonwirelessclassic/overall-2010.HTML",
+	    "details": {
+		"date": "07/15/2010",
+		"distance": "3.1 miles",
+		"time": "26 min 31 sec",
+		"location": "Morristown, NJ"
+	    }
+	},
+	{
+	    "image": "img/running/PXL_20211115_013037906.PORTRAIT.jpg",
+	    "label": "Rocky Run 5K",
+	    "type": "race",
+	    "desc": "<p>This is your shot - a chance to join thousands of runners from around the world in Philadelphia for the official Rocky Run 5K, 10 Mile & 13.1 Italian Stallion Challenge. So, channel your inner Rocky Balboa, register, and show the world you can go the distance. The race will start on Kelly Drive in front of the Philadelphia Museum of Art.</p>",
+	    "link": "https://results.raceroster.com/en-US/results/detail/ke4h7f5fbuztyds2",
+	    "gallery": ["img/running/PXL_20211115_013057474.PORTRAIT.jpg"],
+	    "details": {
+		"date": "11/13/2021",
+		"distance": "3.1 miles",
+		"time": "25 min 55 sec",
+		"location": "Philadelphia"
+	    }
+	},
+	{
+	    "image": "img/running/Ireifej_5K_Zinn.png",
+	    "label": "59th Annual Captain Zinn Memorial 5K Races",
+	    "type": "race",
+	    "desc": "<p>This event honors all Vietnam Veterans and is named in memory of Captain Ronald Lloyd 'Ron' Zinn, a race walker from the United States who was killed in Vietnam in 1965. He graduated from the US Military Academy in 1962 and represented the USA at both the 1960 (Rome) and 1964 (Tokyo) Summer Olympics. He placed 6th in the 20K race walk in 1964. Shore AC has held this race to remember Captain Zinn since 1966. The day features a 5k Run at 10:00am and Race Walk at 10:05am, along with a kids fun run at 9:30AM.</p>",
+	    "link": "https://runsignup.com/Race/Results/45684/IndividualResult/GBdR#U2638680",
+	    "gallery": [],
+	    "details": {
+		"date": "04/02/2023",
+		"distance": "3.1 miles",
+		"time": "25 min 50 sec",
+		"location": "Colts Neck, NJ"
+	    }
+	}
+
+    ]
+}
