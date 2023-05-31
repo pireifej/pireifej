@@ -5,7 +5,7 @@
 	    "label": "Fluent Force",
 	    "type": "hackathon",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
-	    "powerpointLink": "fluent-force.html",
+	    "powerpointLink": "docs/fluentForce.pdf",
 	    "details": {
 		"date": "May 8, 2023",
 		"location": "Online",
@@ -18,7 +18,7 @@
 	    "label": "Pencil It In",
 	    "type": "hackathon",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
-	    "powerpointLink": "it-cant-wait.html",
+	    "powerpointLink": "docs/pencilItIn.pdf",
 	    "details": {
 		"date": "October 7, 2021",
 		"location": "AT&T Research in Middletown, NJ",
@@ -31,7 +31,7 @@
 	    "label": "It Can't Wait",
 	    "type": "hackathon",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
-	    "powerpointLink": "it-cant-wait.html",
+	    "powerpointLink": "docs/itCantWait.pdf",
 	    "details": {
 		"date": "May 15, 2019",
 		"location": "AT&T Research in Middletown, NJ",
@@ -43,7 +43,7 @@
 	    "image": "img/hack/fraudFinderMainPNG.PNG",
 	    "label": "Fraud Finder",
 	    "type": "hackathon",
-	    "powerpointLink": "fraud-finder.html",
+	    "powerpointLink": "docs/fraudFinder.pdf",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
 	    "gallery": ["img/hack/fraud-finder-first-place.png"],
 	    "details": {
@@ -57,7 +57,7 @@
 	    "image": "img/hack/polishedSpeaker.PNG",
 	    "label": "Polished Speaker",
 	    "type": "hackathon",
-	    "powerpointink": "polished-speaker.html",
+	    "powerpointLink": "docs/polishedSpeaker.pdf",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
 	    "gallery": ["img/hack/fraud-finder-first-place.png"],
 	    "details": {
@@ -71,7 +71,6 @@
 	    "image": "img/hack/smsStalker2small.jpg",
 	    "label": "SMS Stalker",
 	    "type": "hackathon",
-	    "powerpointLink": "sms.html",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
 	    "gallery": ["img/hack/smsStalker1.jpg"],
 	    "details": {

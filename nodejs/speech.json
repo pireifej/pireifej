@@ -9,7 +9,7 @@
 	    "details": {
 		"date": "2014",
 		"contest": "Humorous Speech",
-		"placement": "Division 2nd place",
+		"placement": "Area 1st place",
 		"club": "AT&T Middletown Toastmasters"
 	    },
 	    "link": "https://youtu.be/wLer565RD-o"
@@ -42,12 +42,12 @@
 	    }
 	},
 	{
-	    "image": "img/contests/iampaulPNG.PNG",
+	    "image": "img/trophy/iamppaultrophy.jpg",
 	    "label": "I am P-P-Paul",
 	    "type": "speech",
 	    "desc": "<p>Growing up with a stutter was not easy. In this humor speech, I take you on a journey through my struggles dealing with a severe speech impediment from challenging phone calls to delivering my very first speech during my First Communion in church. There is also a musical twist at the end! This performance placed first at the 2018 Area 61 & 62 Humorous Speech Contest on October 15, 2018 at the Eastern Branch, Monmouth County Library in Shrewsbury, NJ. I placed first at the 2018 Division F Humorous Speech in the Bayshore Medical Center.</p>",
 	    "link": "https://www.youtube.com/watch?v=qkGwzyczOCc&ab_channel=PaulIreifej",
-	    "gallery": ["img/contests/FB_IMG_1539660566388.jpg"],
+	    "gallery": ["img/contests/iampaulPNG.PNG"],
 	    "details": {
 		"date": "2018",
 		"contest": "Humorous Speech",
@@ -110,24 +110,26 @@
 	    }
 	},
 	{
-            "image": "img/contests/PXL_20201021_022435532.jpg",
+            "image": "img/trophy/crackingthecodearea.jpg",
             "label": "Cracking the Code",
             "type": "speech",
-            "desc": "<p>Did I really find the cure for covid? See for yourself in this fast-paced entertaining and animated journey quarantined in my house, attempting to get out for a walk. Starting in the basement and working my way up to the living roomm couch, I face the perils of an angry cat named 'Fear'. This fun journey placed first at the October 19, 2021 Area 21 & 22 Tall Tales Speech Contest on Zoom.</p>",
+            "desc": "<p>Did I really find the cure for covid? See for yourself in this fast-paced entertaining and animated journey quarantined in my house, attempting to get out for a walk. Starting in the basement and working my way up to the living roomm couch, I face the perils of an angry cat named 'Fear'. This fun journey placed first at the October 19, 2021 Area 21 & 22 Tall Tales Speech Contest, first at the Division F Contest and captured the third place spot at the District 83 contest. All were conducted on Zoom.</p>",
 	    "link": "https://youtu.be/NrC2TMZJV8A",
+	    "gallery": ["img/trophy/crackingthecodediv.jpg", "img/trophy/tallTalesDistrict.jpg"],
             "details": {
-                "date": "2021",
+                "date": "2021 - 2022",
                 "contest": "Tall Tales",
-                "placement": "District Second",
+                "placement": "District Third",
                 "club": "AT&T Middletown Toastmasters"
             }
         },
 	{
-	    "image": "",
+	    "image": "img/trophy/evalarea.jpg",
 	    "label": "Evaluation Speech Contest",
 	    "type": "speech",
-	    "desc": "<p>Placed first in the District Evaluation Contest with my evaluation on a speech about a woman's car. Watch as I make an analogy to sheering a cat and relate that to trimming the unnecessary details from a speech.</p>",
+	    "desc": "<p>Placed first in the District Evaluation Contest with my evaluation on a speech about a woman's cat. Watch as I make an analogy to sheering a cat and relate that to trimming the unnecessary details from a speech.</p>",
 	    "link": "https://youtu.be/sq9N-hbHZX0",
+	    "gallery": ["img/trophy/evaldiv.jpg", "img/trophy/evaldistrict.jpg"],
 	    "details": {
 		"date": "2022",
 		"contest": "Evaluation Speech Contest",
@@ -136,15 +138,29 @@
 	    }
 	},
 	{
-            "image": "",
+            "image": "img/trophy/tabletopicsarea.jpg",
+	    "label": "Table Topics Contest",
+            "type": "speech",
+            "desc": "<p>I channeled my inner impromptu speaking abillities to power through all Table Topics Contests until finally placing Second in the District Table Topics Contest. I was able to speak energetically and enthusiastically to answer the question 'why are people afraid of failing?' I started off in my natural Paul Ireifej style which is to SCREAM! Then talked about how I was fearful to compete in this contest and how scary it is to be so vulnerable in front of the audience. I ended with a powerful statement about never giving up.</p>",
+	    "gallery": ["img/trophy/tabletopcsdiv.jpg", "img/trophy/tabletopicsdistrict.jpg"],
+            "details": {
+                "date": "2021 - 2022",
+                "contest": "Table Topics Contest",
+                "placement": "District Second place",
+                "club": "AT&T Middletown Toastmasters"
+            }
+	},
+	{
+            "image": "img/trophy/comeOnADriveWithMeArea.jpg",
 	    "label": "Come on a Drive with Me",
             "type": "speech",
             "desc": "<p>This year, I placed in all four District contests. 'Come on a Drive With Me' is a speech to honor my late friend, Denis Karamboulis, who passed away shortly after we met in college. It's a recounting of the times he invited me to go on a drive with him. We discussed his life & challeneges. I learned the power of being a good friend and a good listener. In addition to placing second in the District International Speech Contest I also placed second in Table Topics, third in Tall Tales and first in Evaluation.</p>",
 	    "link": "https://youtu.be/FnDVbSBvhV0",
+	    "gallery": ["img/trophy/comeOnADriveWithMeDivision.jpg", "img/trophy/comeOnADriveWithMeDistrict.jpg"],
             "details": {
                 "date": "2022",
                 "contest": "International Speech Contest",
-                "placement": "District second place",
+                "placement": "District Second place",
                 "club": "AT&T Middletown Toastmasters and Northern Stars Advanced"
             }
 	},
@@ -159,6 +175,17 @@
                 "contest": "International Speech Contest",
                 "placement": "District Third place",
                 "club": "Northern Stars Advanced"
+            }
+        },
+	{
+            "image": "img/babyshower.png",
+            "label": "My Friend's Babyshower",
+            "type": "speech",
+            "desc": "<p>I was asked to give a speech at my good friend's baby shower.</p>",
+	    "link": "https://youtu.be/2f9C3tmpHFY",
+            "details": {
+                "date": "March 4, 2023",
+		"location": "Blue in Staten Island, NY"
             }
         }
     ]
