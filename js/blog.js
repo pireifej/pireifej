@@ -59,7 +59,9 @@ $( document ).ready(function() {
                                 <img src="${image}" alt="Thumb">
                             </div>
                             <h2>${title}</h2>
+<div class="blog-style-one-area blog-area default-padding-top bottom-less">
                             <div id="content-${modalName}"></div>
+</div>
                         </div>
                     </div>
                 </div>

@@ -5428,15 +5428,11 @@ ul.biography-table li p {
 }
 
 .modal-content .modal-header button.btn-close {
-	height: 16px;
-	width: 16px;
-	line-height: 30px;
 	background: var(--color-primary);
 	opacity: 1;
-	color: var(--white);
 	border-radius: 50%;
 	position: relative;
-	font-weight: 500;
+	font-weight: 1;
 }
 
 .modal-content .modal-header button.btn-close::after {

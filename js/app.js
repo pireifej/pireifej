@@ -295,7 +295,11 @@ modalBody += `</ul>
                     <div class="modal-body">
 
                         <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                      <i class="bg-fixed">
+			<img src="img/close-white-big.svg" alt="Icon" style="margin-top:-10px"></img>
+		      </i>
+                       </button>
                         </div>
 
                         <div class="project-details-items">
@@ -315,11 +319,26 @@ ${modalBody}
     }
 
     $("#submit").click(function() {
+	var comments = $("#comments").val();
+	var name = $("#name").val();
+	var phone = $("#phone").val();
+	var email = $("#email").val();
+
+	if (!comments) {
+	    $("#message").html("Please tell me about your project.");
+	    return;
+	}
+
+	if (!email) {
+	    $("#message").html("I need your email address.");
+	    return;
+	}
+	
 	// send email
 	var params = {
 	    "userId": 353,
-	    "message": $("#comments").val() + "|" + $("#name").val() + "|" + $("#phone").val(),
-	    "email": $("#email").val()
+	    "message": comments + "|" + $("#name").val() + "|" + $("#phone").val(),
+	    "email": email
 	};
 	const url = "https://prayoverus.com:3000/help";
 	var headers = {
@@ -344,7 +363,7 @@ ${modalBody}
 		    $("#name").val("");
 		    $("#phone").val("");
 		    $("#email").val("");
-		    $("#message").html(data.error);
+		    $("#message").html("Thanks for your message!");
 		}
 
 		$("#message").slideDown('slow');
