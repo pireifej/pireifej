@@ -15,13 +15,14 @@ $( document ).ready(function() {
 	    var content = blogItem.content;
 	    var tag = blogItem.tag;
 
+	    var imageStyle = (blogItem["smallImage"]) ? "style=\"width: 75%; height: 75%\"" : "";
 
 	    blogHtml += `
                 <!-- Single item -->
                 <div class="blog-style-one mb-30 col-lg-4 col-md-6">
                     <div class="item">
                         <div class="thumb">
-                           <a href="#" data-bs-toggle="modal" data-bs-target="#${modalName}"><img src="${image}" alt="Thumb"></a>
+                           <a href="#" data-bs-toggle="modal" data-bs-target="#${modalName}"><img src="${image}" ${imageStyle} alt="Thumb"></a>
                         </div>
                         <div class="info">
                             <h4>
@@ -113,7 +114,7 @@ $( document ).ready(function() {
 	},
 	{
 	    link: "contest13",
-	    title: "NOT a long email",
+	    title: "NOT a long blog",
 	    date: "May 5, 2019",
 	    image: "img/contests/disteval1.jpg",
 	    tag: "Toastmasters"
@@ -123,14 +124,16 @@ $( document ).ready(function() {
 	    title: "Before the 2015 Divison F Tall Tales",
 	    date: "Nov 5, 2016",
 	    image: "img/trophy/trophy2Large.jpg",
-	    tag: "Toastmasters"
+	    tag: "Toastmasters",
+	    smallImage: true
 	},
 	{
 	    link: "contest4",
 	    title: "Brutally Honest",
 	    date: "Nov 5, 2016",
 	    image: "img/trophy/trophy3Large.jpg",
-	    tag: "Toastmasters"
+	    tag: "Toastmasters",
+	    smallImage: true
 	},
 	{
 	    link: "contest7",
@@ -144,14 +147,16 @@ $( document ).ready(function() {
 	    title: "My Most Painful Contest Yet",
 	    date: "Oct 15, 2018",
 	    image: "img/contests/FB_IMG_1539660566388.jpg",
-	    tag: "Toastmasters"
+	    tag: "Toastmasters",
+	    smallImage: true
 	},
 	{
 	    link: "contest9",
 	    title: "The Contest Heard Around the World",
 	    date: "March 2019",
 	    image: "img/trophy/trophy7Large.jpg",
-	    tag: "Toastmasters"
+	    tag: "Toastmasters",
+	    smallImage: true
 	},
 	{
 	    link: "talltales",
