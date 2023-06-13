@@ -15,7 +15,8 @@ $( document ).ready(function() {
 		hH = $('#projects-single-item').outerHeight(),
 		wH = $(window).height(),
 		wS = $(this).scrollTop();
-	    if (wS > (hT+hH-wH)){
+	    if (wS > (hT+hH-wH)) {
+//		$("body").addClass("loading");
 		$.ajax({
 		    url: 'nodejs/projects.json',
 		    type: 'get',
@@ -316,6 +317,14 @@ ${modalBody}
         <!-- End ${type} Modal -->`;
 
 	$("#" + type + "Modal").replaceWith(modal);
+//	$("body").removeClass("loading");
+
+	if (type == "projects") projectsLoaded = true;
+	if (type == "race") racesLoaded = true;
+	if (type == "speech") speechLoaded = true;
+	if (type == "conference") conferenceLoaded = true;
+	if (type == "hackathon") hackathonLoaded = true;
+	if (type == "patent") patentLoaded = true;	
     }
 
     $("#submit").click(function() {

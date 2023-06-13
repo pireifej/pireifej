@@ -3,6 +3,11 @@ $( document ).ready(function() {
 
     var blogLoaded = false;
 
+    function finalizeLoad(id, content) {
+	$("#content-" + id).replaceWith(content);
+//	$("body").removeClass("loading");
+    };
+
     function doBlogs(blogItems) {
 	var blogHtml = "";
 
@@ -176,41 +181,42 @@ $( document ).ready(function() {
 	if (wS > (hT+hH-wH)){
 	    doBlogs(blogItems);
 	    blogLoaded = true;
+//	    $("body").addClass("loading");
 	    $.get("nodejs/chicago.blog", function(result) {
-		$("#content-chicago").replaceWith(result);
+		finalizeLoad("chicago", result);
 	    });
 	    $.get("nodejs/contest10.blog", function(result) {
-		$("#content-contest10").replaceWith(result);
+		finalizeLoad("contest10", result);
 	    });
 	    $.get("nodejs/contest11.blog", function(result) {
-		$("#content-contest11").replaceWith(result);
+		finalizeLoad("contest11", result);
 	    });
 	    $.get("nodejs/contest12.blog", function(result) {
-		$("#content-contest12").replaceWith(result);
+		finalizeLoad("contest12", result);
 	    });
 	    $.get("nodejs/contest13.blog", function(result) {
-		$("#content-contest13").replaceWith(result);
+		finalizeLoad("contest13", result);
 	    });
 	    $.get("nodejs/contest3.blog", function(result) {
-		$("#content-contest3").replaceWith(result);
+		finalizeLoad("contest3", result);
 	    });
 	    $.get("nodejs/contest4.blog", function(result) {
-		$("#content-contest4").replaceWith(result);
+		finalizeLoad("contest4", result);
 	    });
 	    $.get("nodejs/contest7.blog", function(result) {
-		$("#content-contest7").replaceWith(result);
+		finalizeLoad("contest7", result);
 	    });
 	    $.get("nodejs/contest8.blog", function(result) {
-		$("#content-contest8").replaceWith(result);
+		finalizeLoad("contest8", result);
 	    });
 	    $.get("nodejs/contest9.blog", function(result) {
-		$("#content-contest9").replaceWith(result);
+		finalizeLoad("contest9", result);
 	    });
 	    $.get("nodejs/talltales.blog", function(result) {
-		$("#content-talltales").replaceWith(result);
+		finalizeLoad("talltales", result);
 	    });
 	    $.get("nodejs/tucson.blog", function(result) {
-		$("#content-tucson").replaceWith(result);
+		finalizeLoad("tucson", result);
 	    });
 	}
     });

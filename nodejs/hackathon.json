@@ -23,7 +23,7 @@
 		"date": "October 7, 2021",
 		"location": "AT&T Research in Middletown, NJ",
 		"track": "Design Thinking",
-		"placement": "First"
+		"placement": "Third"
 	    }
 	},
 	{
@@ -40,12 +40,11 @@
 	    }
 	},
 	{
-	    "image": "img/hack/fraudFinderMainPNG.PNG",
+	    "image": "img/hack/fraud-finder-first-place.png",
 	    "label": "Fraud Finder",
 	    "type": "hackathon",
 	    "powerpointLink": "docs/fraudFinder.pdf",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
-	    "gallery": ["img/hack/fraud-finder-first-place.png"],
 	    "details": {
 		"date": "May 5, 2019",
 		"location": "AT&T Research in Middletown, NJ",
@@ -59,7 +58,6 @@
 	    "type": "hackathon",
 	    "powerpointLink": "docs/polishedSpeaker.pdf",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
-	    "gallery": ["img/hack/fraud-finder-first-place.png"],
 	    "details": {
 		"date": "2017",
 		"location": "AT&T Research in Middletown, NJ",
@@ -72,7 +70,6 @@
 	    "label": "SMS Stalker",
 	    "type": "hackathon",
 	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
-	    "gallery": ["img/hack/smsStalker1.jpg"],
 	    "details": {
 		"date": "2015",
 		"location": "AT&T Research in Middletown, NJ",

@@ -187,6 +187,18 @@
                 "date": "March 4, 2023",
 		"location": "Blue in Staten Island, NY"
             }
+        },
+	{
+            "image": "img/guest-speaker-master-the-craft.jpg",
+            "label": "Transformative Consequence",
+            "type": "speech",
+            "desc": "<p>Master of the Craft invited me to be a Special Guest Speaker at their meeting on Monday, February 6, 2023 at 7:00 pm EST. I delivered a speech on how to write and deliver a personal story that connects with the audience.</p>",
+	    "link": "https://www.youtube.com/watch?v=iYdkzCbiWSY",
+            "details": {
+                "date": "February 6, 2023",
+		"location": "Zoom",
+		"club": "Master the Craft Toastmasters"
+            }
         }
     ]
 }
