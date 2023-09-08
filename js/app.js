@@ -144,7 +144,9 @@ $( document ).ready(function() {
     }
 
     function postProcessData(data, type) {
+	var hackathonDesc = "AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.";
 	var modalBody = "";
+	
 	for (var i = 0; i < data.records.length; i++) {
 	    var entry = data.records[i];
 
@@ -219,6 +221,13 @@ modalBody += `</ul>
 		modalBody += `
                         <div class="button mt-55">
                             <a class="btn btn-md circle btn-dark" href="${entry.powerpointLink}">Download Presentation</a>
+                        </div>`;
+	    }
+
+	    if (entry["certificate"]) {
+		modalBody += `
+                        <div class="button mt-55">
+                            <a class="btn btn-md circle btn-dark" href="${entry.certificate}">Download Certificate</a>
                         </div>`;
 	    }
 

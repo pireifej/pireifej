@@ -4,7 +4,7 @@
 	    "image": "img/hack/lifewithastutter.png",
 	    "label": "Fluent Force",
 	    "type": "hackathon",
-	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
+	    "desc": "<p>Bring awareness to and promote early intervention in children's stammers by profiling their speech patterns and apply metrics with thresholding to best characterize their impediment and provide the best treatment.</p>",
 	    "powerpointLink": "docs/fluentForce.pdf",
 	    "details": {
 		"date": "May 8, 2023",
@@ -17,7 +17,7 @@
 	    "image": "img/hack/hackthirdplace.png",
 	    "label": "Pencil It In",
 	    "type": "hackathon",
-	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
+	    "desc": "<p>Pencil with standard thickness lead, self revolving gear to sharpen while using. Even distribution across tip. Family friendly, child safe and features to help parents such as a built-in timer to help parents manage kids' activities.</p>",
 	    "powerpointLink": "docs/pencilItIn.pdf",
 	    "details": {
 		"date": "October 7, 2021",
@@ -30,7 +30,7 @@
 	    "image": "img/hack/itcantwaitpng.png",
 	    "label": "It Can't Wait",
 	    "type": "hackathon",
-	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
+	    "desc": "<p>Proactive AT&T customer service: search, collate & aggregate tweets praising or complaining about AT&T price, service and overall experience. Get tweets & reply to tweets *automatically* with suggested replies based on sentiment analysis and keywords.</p>",
 	    "powerpointLink": "docs/itCantWait.pdf",
 	    "details": {
 		"date": "May 15, 2019",
@@ -44,7 +44,7 @@
 	    "label": "Fraud Finder",
 	    "type": "hackathon",
 	    "powerpointLink": "docs/fraudFinder.pdf",
-	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
+	    "desc": "<p>Fraud cost U.S. retailers approximately $32 billion in 2014, up from $23 billion just one year earlier. Fraud Finder is here to stop it: Quickly determine fraudster in the store, Real-time customer identify check & retain fraudster image and White Pages database lookup</p>",
 	    "details": {
 		"date": "May 5, 2019",
 		"location": "AT&T Research in Middletown, NJ",
@@ -57,7 +57,7 @@
 	    "label": "Polished Speaker",
 	    "type": "hackathon",
 	    "powerpointLink": "docs/polishedSpeaker.pdf",
-	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
+	    "desc": "<p>Collects data on presentation style to characterize a speaker and give recommendations for improvement</p>",
 	    "details": {
 		"date": "2017",
 		"location": "AT&T Research in Middletown, NJ",
@@ -69,7 +69,7 @@
 	    "image": "img/hack/smsStalker2small.jpg",
 	    "label": "SMS Stalker",
 	    "type": "hackathon",
-	    "desc": "<p>AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.</p>",
+	    "desc": "<p>Detects if the user is texting while driving. If so, alert is sent out and phone is disabled.</p>",
 	    "details": {
 		"date": "2015",
 		"location": "AT&T Research in Middletown, NJ",
