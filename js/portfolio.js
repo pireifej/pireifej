@@ -4,6 +4,21 @@ $( document ).ready(function() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const module = urlParams.get('module')
+
+    // load banner image
+    var bannerImage = "img-new/banner/2.jpg";
+
+    if (module == "projects") bannerImage = "img/banner/workOutside2.jpg";
+    if (module == "race") bannerImage = "img/banner/1211883_320906403_XLarge.jpg";
+    if (module == "speech") bannerImage = "img/contests/DSC_0350.jpg";
+    if (module == "conference") bannerImage = "cfca/cfca.jpg";
+    if (module == "hackathon") bannerImage = "img-new/banner/hackathonBanner.jpeg";
+    if (module == "patent") bannerImage = "img-new/banner/patentBanner.jpg";
+
+    $("#banner-image").replaceWith(`<img id="banner-image" class=" wow fadeInDown" src="${bannerImage}" alt="Thumb">`);
+
+    $("#portfolio-heading-1").replaceWith(`<h1 id="portfolio-heading-1" class="text-invisible">${module}</h1>`);
+    $("#portfolio-heading-2").replaceWith(`<h2 id="portfolio-heading-2">${module}</h2>`);
     
     $.ajax({
 	url: 'nodejs/' + module + '.json',
@@ -26,10 +41,15 @@ $( document ).ready(function() {
     function postProcessDataProjects(data) {
 	var navTabHtml = "";
 	var navTabContentHtml = "";
+	var rotatingTextHtml = "";
+	var rotatingTextClass = "is-visible";
 
 	for (var i = 0; i < data.records.length; i++) {
 	    var project = data.records[i];
 	    console.log(project);
+
+	    if (i > 0) rotatingTextClass = "is-hidden";
+	    rotatingTextHtml += `<b class="${rotatingTextClass}">${project.label}</b>`;
 
 	    var navLinkActive = `class="nav-link"`;
 	    var active = "";
@@ -120,6 +140,7 @@ ${linkButtonHtml}
 
 	$("#nav-tab").html(navTabHtml);
 	$("#nav-tabContent-ireifej").html(navTabContentHtml);
+	$("#rotating-text").replaceWith(rotatingTextHtml);
     }
 
     function postProcessData(data, type) {
