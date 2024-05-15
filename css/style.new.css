@@ -61,6 +61,23 @@ Table of contents
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
+  #body-container {
+    position: relative;
+    width: 500px; /* Adjust as needed */
+    height: auto;
+  }
+  #body-image {
+    width: 100%;
+    height: auto;
+  }
+  .pain-point {
+    position: absolute;
+    background-color: red;
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+    border-radius: 50%;
+    cursor: pointer;
+  }
 
 /* Varialbes */
 :root {
@@ -4117,6 +4134,10 @@ header.header-fixed .video-play-button.theme:after {
      # Gallery 
 =================================================================== */
 
+.banner-img-resize {
+    height: 250px;
+    width: 500px;
+}
 .gallery-area .magnific-mix-gallery {
 	margin: -15px;
 }
