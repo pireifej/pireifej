@@ -1,0 +1,75 @@
+{
+    "records": [
+	{
+	    "label": "one-time",
+	    "name": "Paul Ireifej",
+	    "weight": "150lbs",
+	    "height": "5 ft 5 in",
+	    "medications": "none",
+	    "medical-conditions": "anxiety",
+	    "age": 39
+	},
+    {
+      "label": "Monday, May 13",
+      "air-quality-index": "good",
+      "humidity": "normal",
+      "temperature": "warm",
+      "weather": "sunny",
+      "diet": "balanced",
+      "stress": "low",
+      "hydration": 8,
+      "medicines": ["ibuprofen"],
+      "feelings": "energetic",
+      "pain_level": "mild",
+	"pain_point": "lower-back",
+	"steps": 10000
+    },
+    {
+      "label": "Tuesday, May 14",
+      "air-quality-index": "moderate",
+      "humidity": "high",
+      "temperature": "hot",
+      "weather": "partly cloudy",
+      "diet": "heavy",
+      "stress": "medium",
+      "hydration": 6,
+      "medicines": [],
+      "feelings": "relaxed",
+	"pain_level": "no pain",
+		"steps": 10000
+    },
+    {
+      "label": "Wednesday, May 15",
+      "air-quality-index": "poor",
+      "humidity": "high",
+      "temperature": "mild",
+      "weather": "rainy",
+      "diet": "light",
+      "stress": "high",
+      "hydration": 5,
+      "medicines": ["paracetamol"],
+      "feelings": "tired",
+      "pain_level": "moderate",
+	"pain_point": "head",
+		"steps": 10000
+    },
+    {
+      "label": "Thursday, May 16",
+      "air-quality-index": "good",
+      "humidity": "normal",
+      "temperature": "cool",
+      "weather": "cloudy",
+      "diet": "balanced",
+      "stress": "low",
+      "hydration": 7,
+      "medicines": [],
+      "feelings": "productive",
+      "pain_level": "mild",
+	"pain_point": "neck",
+		"steps": 10000
+    },
+    {
+      "label": "Friday, May 17"
+    }
+  ]
+}

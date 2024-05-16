@@ -3,6 +3,10 @@ $( document ).ready(function() {
 
     // global data structures
     var dataRecordsGlobal = {};
+    var painPointGlobal = [];
+    var humidityGlobal = "";
+    var temperatureGlobal = "";
+    var weatherGlobal = "";
     
     // reference: https://openweathermap.org/api/air-pollution
     var airQualityIndex = {
@@ -13,6 +17,32 @@ $( document ).ready(function() {
 	"5": "Very Poor"
     };
     var currentAirQualityIndex = 0;
+
+    var painScale = {
+	"no pain" : "1",
+	"mild" : "3",
+	"moderate" : "5",
+	"severe" : "7",
+	"worst" : "9"
+    };
+
+    // Garmin data
+    var garminData = 
+    {
+	"activities": [
+	    {
+		"id": "123456789",
+		"type": "Running",
+		"start_time": "2024-05-12T08:00:00Z",
+		"duration": "3600", // in seconds
+		"distance": "5000", // in meters
+		"calories": "400",
+		"heart_rate_data": [75, 78, 80, 82, 84, 85, 87, 88], // Sample heart rate data over time
+		"pace": "07:30" // in minutes per kilometer
+	    }
+	]
+    };
+
 
     function success(pos) {
 	var crd = pos.coords;
@@ -68,13 +98,13 @@ $( document ).ready(function() {
 
 	    console.log("weather set");
 
-	    var humidity = data.current.humidity;
-	    var temperature = data.current.temp;
-	    var weather = data.current.weather[0].description;
+	    humidityGlobal = data.current.humidity;
+	    temperatureGlobal = data.current.temp;
+	    weatherGlobal = data.current.weather[0].description;
 
-	    $("#humidity").replaceWith(`<span id="humidity">${humidity}%</span>`);
-	    $("#temperature").replaceWith(`<span id="temperature">${temperature}&deg</span>`);
-	    $("#weather").replaceWith(`<span id="weather">${weather}</span>`);
+	    $("#humidity").replaceWith(`<span id="humidity">${humidityGlobal}%</span>`);
+	    $("#temperature").replaceWith(`<span id="temperature">${temperatureGlobal}&deg</span>`);
+	    $("#weather").replaceWith(`<span id="weather">${weatherGlobal}</span>`);
 
 	    var currentWeatherIcon = data.current.weather[0].icon
 	    var today = daily[0].rain;
@@ -166,16 +196,22 @@ $( document ).ready(function() {
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="form-group">
                                             <input class="form-control" id="stress" name="email" placeholder="Stress" type="email">
                                             <span class="alert-error"></span>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="form-group">
-                                            <input class="form-control" id="hydration" name="phone" placeholder="Hydration" type="text">
-                                            <span class="alert-error"></span>
+                                              <label for="counter">Hydration:</label>
+                                              <input type="number" id="hydration" name="hydration" min="0" max="100" step="1" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                              <label for="counter">Steps:</label>
+                                              <input type="number" id="steps" name="steps" min="0" max="100" step="1" value="0">
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +226,15 @@ $( document ).ready(function() {
 				<div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                           <img id="body-image" src="pain_scale.jpg" alt="Pain Scale">
+                                           <img id="body-image" src="pain_scale.jpg" alt="Pain Scale" style="margin: 15px 15px 15px 15px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group comments">
+                                              <label for="counter">Pain Scale:</label>
+                                              <input type="number" id="pain-scale" name="pain-scale" min="0" max="100" step="1" value="0">
                                         </div>
                                     </div>
                                 </div>
@@ -277,64 +321,29 @@ $( document ).ready(function() {
                                     <span id="weather">--</span>
                                 </div>
                             </li>`;
-	    
-/*	    for (var key in details) {
-		var detailTitle = toTitleCase(key);
-		detailsHtml += `
-                          <li>
-                                <div class="icon">
-                                    <i class="fab fa-figma"></i>
-                                </div>
-                                <div class="content">
-                                    <h4>${detailTitle}</h4>
-                                    <span>${details[key]}</span>
-                                </div>
-                            </li>`;
-	    }
-*/
-	    var pictureHtml = "";
 
-	    if (project["image"]) {
-		pictureHtml = `
-		                    <div class="thumb">
-                        <img class="wow fadeInUp" src="${project.image}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
-                    </div>`;
-	    }
-
-	    if (project["gallery"]) {
-		for (var j = 0; j < project.gallery.length; j++) {
-		    var galleryPicture = project.gallery[j];
-
-		    pictureHtml += `
-		                    <div class="thumb">
-                        <img class="wow fadeInUp" src="${galleryPicture}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
-                    </div>`;
-		}
-	    }
-
-	    var linkButtonHtml = "";
 	    var buttonLabel = "Check it out";
-	    
-	    if (project.type == "race") buttonLabel = "View Results";
-	    if (project.type == "speech") buttonLabel = "Watch Speech";
-	    if (project.type == "patent") buttonLabel = "View Patent";
-	    if (project["link"]) {
-		linkButtonHtml = `<a style="margin: 20px 20px 20px 20px" class="btn btn-md circle btn-theme smooth-menu" href="${project.link}">${buttonLabel}</a>`;
-	    }
 
 	var bodyHtml = `
+                <div class="about-style-six col-lg-12 offset-lg-1">
+                    <h4 id="sub-heading" class="sub-title">Tell us your pain points</h4>
+		    <h2 class="title">Pain Points</h2>
+                    <p>
+Tell us your pain points.
+                    </p>
+                </div>
 <div id="body-container">
   <img id="body-image" src="body_diagram.jpg" alt="Human Body Diagram">
   <!-- Front Body Diagram -->
   <div id="front-body">
-    <div class="pain-point" style="left: 30%; top: 20%;" data-pain-point="head"></div>
-    <div class="pain-point" style="left: 35%; top: 40%;" data-pain-point="neck"></div>
+    <div id="body-part-head" class="pain-point" style="left: 34%; top: 10%;" data-pain-point="head" onclick="clickBody('head')"></div>
+    <div id="body-part-neck" class="pain-point" style="left: 34%; top: 20%;" data-pain-point="neck" onclick="clickBody('neck')"></div>
     <!-- Add more pain points as needed -->
   </div>
   <!-- Back Body Diagram -->
   <div id="back-body">
-    <div class="pain-point" style="left: 65%; top: 20%;" data-pain-point="upper-back"></div>
-    <div class="pain-point" style="left: 60%; top: 40%;" data-pain-point="lower-back"></div>
+    <div id="body-part-upper-back" class="pain-point" style="left: 62%; top: 20%;" data-pain-point="upper-back" onclick="clickBody('upper-back')"></div>
+    <div id="body-part-lower-back" class="pain-point" style="left: 62%; top: 35%;" data-pain-point="lower-back" onclick="clickBody('lower-back')"></div>
     <!-- Add more pain points as needed -->
   </div>
 </div>`;
@@ -352,11 +361,11 @@ ${bodyHtml}
 <div  id="daily-entry">
 ${dailyEntryHtml}
 </div>
-                <div class="about-style-six col-lg-6 offset-lg-1">
+                <div class="about-style-six col-lg-12 offset-lg-1">
                     <h4 id="sub-heading" class="sub-title">${project.label}</h4>
 		    <h2 class="title">${project.label}</h2>
-                    <p>
-${project.desc}
+                    <p id="my-assessment">
+Loading...
                     </p>
                     <div class="skill-list" style="margin-bottom: 25px">
                         <ul>
@@ -373,7 +382,6 @@ ${detailsHtml}
                             <div class="tab-pane fade show ${active}" id="tab${index}" role="tabpanel" aria-labelledby="nav-id-${index}">
 ${aboutMeHtml}
                                 <div class="row">
-${linkButtonHtml}
 </div>
 </div>
                             <!-- End Single Item -->`;
@@ -382,6 +390,27 @@ ${linkButtonHtml}
 	$("#nav-tabContent-ireifej").replaceWith(`<div class="tab-content resume-tab-content" id="nav-tabContent-ireifej">${navTabContentHtml}</div>`);
 	$("#tab" + (i+1)).addClass("active");
 	$("#rotating-text").replaceWith(rotatingTextHtml);
+
+	// set daily entry
+	$("#diet").val(project.diet);
+	$("#stress").val(project.stress);
+	$("#hydration").val(project.hydration);
+	$("#steps").val(project.steps);
+
+	var painLevel = project["pain_level"];
+	var painLevelNo = 0;
+	painLevelNo = painScale[painLevel];
+	$("#pain-scale").val(painLevelNo);
+
+	if (project["medicines"]) {
+	    $("#today-medicine").val(project.medicines.join(","));
+	}
+	
+	$("#feelings").val(project.feelings);
+
+	var bodyPart = project["pain_point"];
+	console.log("body part is " + bodyPart);
+	$("#body-part-" + bodyPart).css("background-color", "yellow");
     
 	// get location and weather information
 	var options = {
@@ -395,14 +424,90 @@ ${linkButtonHtml}
 	document.querySelectorAll('.pain-point').forEach(painPoint => {
 	    painPoint.addEventListener('click', () => {
 		const point = painPoint.getAttribute('data-pain-point');
-		alert(`Clicked on ${point}`);
+		painPointGlobal.push(point);
 	    });
 	});
     }
 
-    window.giveMeAssessment = function() {
-	console.log("give me ass");
+    window.clickBody = function(bodyPart) {
+	console.log("click " + bodyPart);
+	$("#body-part-" + bodyPart).css("background-color", "yellow");
     }
+
+    window.giveMeAssessment = function() {
+	// get current stuff
+	var profile = {};
+
+	// one-time
+	profile["name"] = $("#name").val();
+	profile["weight"] = $("#weight").val();
+	profile["height"] = $("#height").val();
+	profile["medications"] = $("#medications").val();
+	profile["medical-conditions"] = $("#medical-conditions").val();
+	profile["age"] = $("#age").val();
+
+	// previous days
+	profile["journal"] = {};
+
+	for (var i = 0; i < dataRecordsGlobal.length; i++) {
+	    var record = dataRecordsGlobal[i];
+	    if (record.label == "one-time") continue;
+	    profile.journal[record.label] = record;
+	}
+	
+	// today
+	profile.journal["Friday, May 17"]["diet"] = $("#diet").val();
+	profile.journal["Friday, May 17"]["stress"] = $("#stress").val();
+	profile.journal["Friday, May 17"]["hydration"] = $("#hydration").val();
+	profile.journal["Friday, May 17"]["today-medicine"] = $("#today-medicine").val();
+	profile.journal["Friday, May 17"]["feelings"] = $("#feelings").val();
+	profile.journal["Friday, May 17"]["pain-level"] = "severe"; // FIXME
+	profile.journal["Friday, May 17"]["pain-point"] = painPointGlobal.join(",");
+	profile.journal["Friday, May 17"]["steps"] = $("#steps").val();
+
+	// today weather
+	profile["air-quality-index"] = currentAirQualityIndex;
+	profile["humidity"] = humidityGlobal;
+	profile["temperature"] = temperatureGlobal;
+	profile["weather"] = weatherGlobal;
+
+	console.log(profile);
+	// make prompt for ChatGPT
+	var prompt = `My name is ${profile.name}. I am ${profile.age} years old. I weigh ${profile.weight}. My height is ${profile.height}. I have a chronic medical condition of ${profile["medical-conditions"]}. I take ${profile.medications} medications on a regular basis. `;
+	var dates = [ "Monday, May 13", "Tuesday, May 14", "Wednesday, May 15", "Thursday, May 16" ];
+	var today = "Friday, May 17";
+	for (var i = 0; i  < dates.length; i++) {
+	    var entry = profile.journal[dates[i]];
+	    var todayMedicines = entry.medicines.join(",");
+	    var todayAirQualityIndex = entry["air-quality-index"];
+	    var todayPainLevel = entry["pain_level"];
+	    var todayPainPoint = entry["pain_point"];
+	    var todaySteps = entry["steps"];
+	    prompt += `On ${entry.label}, the air quality was ${todayAirQualityIndex}. My diet was ${entry.diet}. My feelings were ${entry.feelings}. The humidity was ${entry.humidity}. I drank ${entry.hydration} glasses of water. My pain level was ${todayPainLevel}. I felt pain in my ${todayPainPoint}. I experienced ${entry.stress} stress. The temperature outside was ${entry.temperature}. The weather was ${entry.weather}. I took ${todayMedicines} medicines on this day. I walked ${todaySteps} steps.`;
+
+	}
+
+	var todayEntry = profile.journal[today];
+	console.log("todayEntry");
+	console.log(todayEntry);
+	var todayEntryPainlevel = todayEntry["pain-level"];
+	var todayEntryPainPoint = todayEntry["pain-point"];
+	var todayEntryMedicines = "no";
+
+	if (todayEntry["today-medicine"]) {
+	    todayEntryMedicines = todayEntry["today-medicine"];
+	}
+
+	prompt += `Today, the weather is ${profile.weather}. The humidity is ${profile.humidity}%. The temperature is ${profile.temperature} degrees F. The air quality index is ${profile["air-quality-index"]}. My diet today was ${todayEntry.diet}. My feelings today were ${todayEntry.feelings}. Today, I drank ${todayEntry.hydration} glasses of water. My pain level today is ${todayEntryPainlevel}. I felt pain in my ${todayEntryPainPoint}. I experienced ${todayEntry.stress} stress. I took ${todayEntryMedicines} medications today. I walked ${todayEntry.steps} steps today. Given this information, what specific trends are you seeing that might be contributing to this pain and can you give me specific direction to prevent this pain in the future? Can you format the response so it displays nice in HTML?`;
+
+//	$("#my-assessment").replaceWith("<p id='my-assessment'>" + prompt + "</p>");
+	god.query("openai", "afterOpenAI", {prompt: prompt}, true, true);
+    }
+
+    window.afterOpenAI = function(response) {
+	console.log(response);
+	$("#my-assessment").replaceWith("<p id='my-assessment'>" + response.result + "</p>");
+    };
 
     window.scrollToDiv = function(event) {
 	event.preventDefault(); // Prevent the default behavior
@@ -430,13 +535,25 @@ ${linkButtonHtml}
 	var navTabHtml = "";
 	
 	for (var i = 0; i < data.records.length; i++) {
-	    var index = i+1;
-	    var indexLabel = (index < 10) ? "0" + index : index;
 	    var project = data.records[i];
+	    
+	    // one-time information can be skipped
+	    if (project.label == "one-time") {
+		$("#name").val(project.name);
+		$("#weight").val(project.weight);
+		$("#height").val(project.height);
+		$("#medications").val(project.medications);
+		$("#medical-conditions").val(project["medical-conditions"]);
+		$("#age").val(project.age);
+		continue;
+	    }
+	    
+	    var index = i;
+	    var indexLabel = (index < 10) ? "0" + index : index;
+
 
 	    var navLinkActive = `class="nav-link"`;
 	    var active = "";
-
 	    
 	    if (i == 0) {
 		navLinkActive = `class="nav-link active"`;
