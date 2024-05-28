@@ -1,6 +1,20 @@
 {
     "records": [
-		{
+	{
+	    "image": "img/hack/bread.png",
+	    "label": "Pain Busters",
+	    "type": "hackathon",
+	    "desc": "<p>Proactive pain management through daily documenting. Uses AI to find trends and give specific recommendations to alleviate pain. Uses key factors that influence pain, including physical activity, diet, sleep, stress, environmental factors, hydration, medication, medical conditions and psychological factors.</p>",
+	    "powerpointLink": "docs/rearendengineers_demo.pdf",
+	    "link": "https://www.shouldcallpaul.com/pain.html?module=rearend",
+	    "details": {
+		"date": "May 17, 2024",
+		"location": "Middletown, NJ",
+		"track": "Life & Tech Improvement",
+		"placement": "None"
+	    }
+	},
+	{
 	    "image": "img/hack/lifewithastutter.png",
 	    "label": "Fluent Force",
 	    "type": "hackathon",

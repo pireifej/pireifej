@@ -199,6 +199,17 @@
 		"location": "Zoom",
 		"club": "Master the Craft Toastmasters"
             }
+        },
+	{
+            "image": "img/IMG_20240309_131020.jpg",
+            "label": "Impromptu Speaking",
+            "type": "speech",
+            "desc": "<p>The Youth Leadership Program is a workshop consisting of eight one- to two-hour sessions that enable those between the ages of 14 and 18 to develop their communication and leadership skills through practical experience. I presented a module on Impromptu Speaking.</p>",
+            "details": {
+                "date": "March 9, 2024",
+		"location": "Sommerville Library ",
+		"club": "Youth Leadership Program"
+            }
         }
     ]
 }

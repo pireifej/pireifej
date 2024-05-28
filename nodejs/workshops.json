@@ -1,0 +1,28 @@
+{
+    "records": [
+	{
+	    "image": "img/gallery/facebook_1716907117027_7201230388578389877.jpg",
+	    "label": "Youth Leadership Program",
+	    "type": "workshops",
+	    "details": {
+		"date": "March 9, 2024",
+		"location": "SCLSNJ's Somerville Library Branch",
+		"attendees": "15",
+		"duration": "20 min"
+	    },
+	    "desc": "<p>Gave a presentation about impromptu speaking for the Youth Leadership Program.</p>"
+	},
+	{
+	    "image": "img/gallery/facebook_1716907083993_7201230250024254985.jpg",
+	    "label": "Master the Art of Public Speaking",
+	    "type": "workshops",
+	    "details": {
+		"date": "March 14, 2024",
+		"location": "Matawan Aberdeen Public Library",
+		"attendees": "9",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>Embark on a transformative journey in our \"Mastering the Art of Public Speaking\" workshop, featuring voluntary audience interaction with impromptu questions, examples of conststructive criticism. Discover your authentic voice, enhance public speaking skills, and gain a competitive edge. Join us for a concise, impactful session to unlock your full potential in communication and leadership.</p>"
+	}
+    ]
+}

@@ -8,18 +8,21 @@ $( document ).ready(function() {
     // load banner image
     var bannerImage = "img-new/banner/2.jpg";
 
+    var scrollToOffset = 0;
+    
     if (module == "projects") bannerImage = "img/banner/workOutside2.jpg";
-    if (module == "race") bannerImage = "img/banner/1211883_320906403_XLarge.jpg";
+    if (module == "races") bannerImage = "img/banner/1211883_320906403_XLarge.jpg";
     if (module == "speech") bannerImage = "img/contests/DSC_0350.jpg";
     if (module == "conference") bannerImage = "cfca/cfca.jpg";
     if (module == "hackathon") bannerImage = "img-new/banner/hackathonBanner.jpeg";
     if (module == "patent") bannerImage = "img-new/banner/patentBanner.jpg";
+    if (module == "workshops") bannerImage = "img/gallery/facebook_1716907446255_7201231769457866151.jpg";
 
     $("#banner-image").replaceWith(`<img id="banner-image" class=" wow fadeInDown" src="${bannerImage}" alt="Thumb">`);
 
     $("#portfolio-heading-1").replaceWith(`<h1 id="portfolio-heading-1" class="text-invisible">${module}</h1>`);
     $("#portfolio-heading-2").replaceWith(`<h2 id="portfolio-heading-2">${module}</h2>`);
-    
+
     $.ajax({
 	url: 'nodejs/' + module + '.json',
 	type: 'get',
@@ -28,6 +31,16 @@ $( document ).ready(function() {
 	success: postProcessDataProjects,
 	async:true,
     });
+
+    window.scrollToDiv = function(event) {
+	event.preventDefault(); // Prevent the default behavior
+
+	console.log($('#sub-heading').offset().top);
+	// Smooth scroll to #sub-heading
+	$('html, body').animate({
+            scrollTop: scrollToOffset
+	}, 500); // Adjust the duration as needed (in milliseconds)
+    }
 
     function toTitleCase(str) {
 	return str.replace(
@@ -39,6 +52,8 @@ $( document ).ready(function() {
     }
 
     function postProcessDataProjects(data) {
+	console.log("IREIFEJ");
+	console.log(data);
 	var navTabHtml = "";
 	var navTabContentHtml = "";
 	var rotatingTextHtml = "";
@@ -46,10 +61,11 @@ $( document ).ready(function() {
 
 	for (var i = 0; i < data.records.length; i++) {
 	    var project = data.records[i];
+	    var projectLabelRotatingText = (project.label.length > 15) ? project.label.substring(0,15) + "..." : project.label;
 	    console.log(project);
 
 	    if (i > 0) rotatingTextClass = "is-hidden";
-	    rotatingTextHtml += `<b class="${rotatingTextClass}">${project.label}</b>`;
+	    rotatingTextHtml += `<b class="${rotatingTextClass}">${projectLabelRotatingText}</b>`;
 
 	    var navLinkActive = `class="nav-link"`;
 	    var active = "";
@@ -62,7 +78,7 @@ $( document ).ready(function() {
 	    var indexLabel = (index < 10) ? "0" + index : index;
 
 	    navTabHtml += `
-                            <button ${navLinkActive} id="nav-id-${index}" data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true">
+                            <button ${navLinkActive} id="nav-id-${index}" data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)">
                                 ${project.label} <strong>${indexLabel}</strong>
                             </button>`;
 
@@ -91,6 +107,17 @@ $( document ).ready(function() {
                     </div>`;
 	    }
 
+	    if (project["gallery"]) {
+		for (var j = 0; j < project.gallery.length; j++) {
+		    var galleryPicture = project.gallery[j];
+
+		    pictureHtml += `
+		                    <div class="thumb">
+                        <img class="wow fadeInUp" src="${galleryPicture}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
+                    </div>`;
+		}
+	    }
+
 	    var linkButtonHtml = "";
 	    var buttonLabel = "Check it out";
 	    
@@ -100,7 +127,6 @@ $( document ).ready(function() {
 	    if (project["link"]) {
 		linkButtonHtml = `<a style="margin: 20px 20px 20px 20px" class="btn btn-md circle btn-theme smooth-menu" href="${project.link}">${buttonLabel}</a>`;
 	    }
-	    
 
 	    var aboutMeHtml = `
 <div id="about" class="about-style-six-area default-padding-top">
@@ -108,14 +134,15 @@ $( document ).ready(function() {
             <div class="row align-center">
                 <div class="about-style-six col-lg-5">
 ${pictureHtml}
+
                 </div>
                 <div class="about-style-six col-lg-6 offset-lg-1">
-                    <h4 class="sub-title">${project.label}</h4>
+                    <h4 id="sub-heading" class="sub-title">${project.label}</h4>
 		    <h2 class="title">${project.label}</h2>
                     <p>
 ${project.desc}
                     </p>
-                    <div class="skill-list">
+                    <div class="skill-list" style="margin-bottom: 25px">
                         <ul>
 ${detailsHtml}
                         </ul>
@@ -141,191 +168,7 @@ ${linkButtonHtml}
 	$("#nav-tab").html(navTabHtml);
 	$("#nav-tabContent-ireifej").html(navTabContentHtml);
 	$("#rotating-text").replaceWith(rotatingTextHtml);
-    }
-
-    function postProcessData(data, type) {
-	var hackathonDesc = "AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.";
-	var modalBody = "";
-	
-	for (var i = 0; i < data.records.length; i++) {
-	    var entry = data.records[i];
-
-	    if (entry.type != type) continue;
-
-	    modalBody += `
-                              <div class="row">
-                                    <div class="col-xl-12 left-info">
-	                                            <h2>${entry.label}</h2>
-                                        <div class="project-info mt-md-50 mt-xs-40 mb-40">
-                                            <div class="content">
-                                                <ul class="project-basic-info">`;
-
-
-	    for (var detail in entry.details) {
-		var detailLabel = detail.charAt(0).toUpperCase() + detail.substr(1).toLowerCase();
-		modalBody += `
-                                <li>
-                                  ${detailLabel} <span>${entry.details[detail]}</span>
-                                </li>`;
-	    }
-
-modalBody += `</ul>
-                                                <ul class="social" style="display:none">
-                                                    <li>
-                                                        <h4>Share:</h4>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            ${entry.desc}
-                                        </p>
-                                        <ul class="check-list mt-40" style="display:none">
-                                            <li>
-                                                <h4>WordPress Support</h4>
-                                                <p>
-                                                    Tempor nonummy metus lobortis. Sociis velit etiam, dapibus. Lectus vehicula pellentesque cras posuere tempor facilisi habitant lectus rutrum pede quisque hendrerit parturient posuere mauris ad elementum fringilla facilisi volutpat fusce pharetra.
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <h4>Social Media Management</h4>
-                                                <p>
-                                                    Energy nonummy metus lobortis. Sociis velit etiam, dapibus. Lectus vehicula pellentesque cras posuere tempor facilisi habitant lectus rutrum pede quisque hendrerit parturient posuere mauris ad elementum fringilla facilisi volutpat fusce pharetra.
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>`;
-
-	    // buttons
-	    if (entry["agendaLink"]) {
-		modalBody += `
-                        <div class="button mt-55">
-                            <a class="btn btn-md circle btn-dark" href="${entry.agendaLink}">Download Agenda</a>
-                        </div>`;
-	    }
-	    
-	    if (entry["powerpointLink"]) {
-		modalBody += `
-                        <div class="button mt-55">
-                            <a class="btn btn-md circle btn-dark" href="${entry.powerpointLink}">Download Presentation</a>
-                        </div>`;
-	    }
-
-	    if (entry["certificate"]) {
-		modalBody += `
-                        <div class="button mt-55">
-                            <a class="btn btn-md circle btn-dark" href="${entry.certificate}">Download Certificate</a>
-                        </div>`;
-	    }
-
-	    if (entry["disclosure"]) {
-		modalBody += `
-                        <div class="button mt-55">
-                            <a class="btn btn-md circle btn-dark" href="${entry.disclosure}">Download Disclosure</a>
-                        </div>`;
-	    }
-	    
-	    if (entry["link"]) {
-		var buttonLabel = "Check it out";
-		if (type == "race") buttonLabel = "View Results";
-		if (type == "speech") buttonLabel = "Watch Speech";
-		if (type == "patent") buttonLabel = "View Patent";
-
-		modalBody += `
-                        <div class="button mt-55">
-                            <a class="btn btn-md circle btn-dark" href="${entry.link}">${buttonLabel}</a>
-                        </div>`;
-	    }
-
-	    // pictures
-	    modalBody += `<div class="main-content mt-40">
-                                <p>
-                                </p>
-                                <div class="row">`;
-
-	    if (entry["image"]) {
-		modalBody += `<div class="col-lg-6 col-md-6">
-                                        <img src="${entry.image}" alt="Thumb" style="width:340px;height:339px">
-                                    </div>`;
-	    }
-
-	    if (entry["gallery"] && entry.gallery.length) {
-		for (var j = 0; j < entry.gallery.length; j++) {
-		    modalBody += `
-                                    <div class="col-lg-6 col-md-6"">
-                                        <img src="${entry.gallery[j]}" alt="Thumb" style="width:340px;height:339px">
-                                    </div>`;
-		}
-	    }
-
-	    modalBody += `<div class="devider"></div>`;
-	    
-	    modalBody += `</div></div>`;
-
-	    // seperator
-	    modalBody += `
-<div class="blog-comments">
-                            <div class="comments-area">
-                                <div class="comments-title">
-
-                                </div>
-                                <div class="comments-form">
-                                </div>
-                            </div>
-                        </div>`;
-	}
-
-	var bannerImage = "img-new/banner/2.jpg";
-
-	if (type == "projects") bannerImage = "img/banner/workOutside2.jpg";
-	if (type == "race") bannerImage = "img/banner/1211883_320906403_XLarge.jpg";
-	if (type == "speech") bannerImage = "img/contests/DSC_0350.jpg";
-	if (type == "conference") bannerImage = "cfca/cfca.jpg";
-	if (type == "hackathon") bannerImage = "img-new/banner/hackathonBanner.jpeg";
-	if (type == "patent") bannerImage = "img-new/banner/patentBanner.jpg";
-
-	var modal = `
-        <!-- Start ${type} Modal -->
-      <div class="modal fade" id="${type}Modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-                <div class="modal-content">
-                    <div class="modal-body">
-
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                      <i class="bg-fixed">
-			<img src="img/close-white-big.svg" alt="Icon" style="margin-top:-10px"></img>
-		      </i>
-                       </button>
-                        </div>
-
-                        <div class="project-details-items">
-                            <div class="project-thumb">
-                                <img src="${bannerImage}" alt="Thumb">
-                            </div>
-                            <div class="top-info">
-${modalBody}
-</div>
-</div>
-</div>
-</div>
-</div>
-        <!-- End ${type} Modal -->`;
-
-	$("#" + type + "Modal").replaceWith(modal);
+	scrollToOffset = $('#sub-heading').offset().top;
     }
 
     $("#submit").click(function() {

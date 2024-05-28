@@ -143,7 +143,7 @@ $( document ).ready(function() {
     const module = urlParams.get('module')
 
     // load banner image
-    var bannerImage = "img-new/banner/2.jpg";
+    var bannerImage = "image001.png";
 
     $("#banner-image").replaceWith(`<img id="banner-image" class=" wow fadeInDown" src="${bannerImage}" alt="Thumb">`);
     
