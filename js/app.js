@@ -1,4 +1,12 @@
 $( document ).ready(function() {
+    console.log("HELLO!");
+
+    $('#projects-single-item').trigger('mouseenter');
+    console.log($('#projects-single-item'));
+    setTimeout(function(){
+//        $('#projects-single-item').trigger('mouseleave');
+    }, 2000); // Adjust the timeout duration as needed
+    
     window.god = window.god || {};
 
     var projectsLoaded = false;

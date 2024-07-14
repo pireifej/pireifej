@@ -1,6 +1,19 @@
 {
     "records": [
 	{
+	    "image": "img/gallery/20240531_112847.jpg",
+	    "gallery": ["img/gallery/indianhill.png"],
+	    "label": "Career Day",
+	    "type": "workshops",
+	    "details": {
+		"date": "March 31, 2024",
+		"location": "Indian Hill School in Holmdel",
+		"attendees": "20+",
+		"duration": "20 min x 7"
+	    },
+	    "desc": "<p>Gave a total of seven presentations to 4, 5 and 6 grade classes at Indian Hill School during their Career Day to showcase having a job in Software Engineering and Computer Programming.</p>"
+	},
+	{
 	    "image": "img/gallery/facebook_1716907117027_7201230388578389877.jpg",
 	    "label": "Youth Leadership Program",
 	    "type": "workshops",

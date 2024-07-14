@@ -210,6 +210,18 @@
 		"location": "Sommerville Library ",
 		"club": "Youth Leadership Program"
             }
+        },
+	{
+            "image": "img/IMG_20240309_131020.jpg",
+            "label": "Mom's Spaghetti",
+            "type": "speech",
+            "desc": "<p>Inspired by the renowned poet, Eminem, I take the audience through my journey to becoming a standup comedian. This is a dream I've had ever since childhood! I started off in a church carnival, performed at a library and finally in a bar. This speech chronicles my challenges, successes and ends with an message of inspiration.</p>",
+	    "link": "https://youtu.be/66A5u7f3JCs?si=g23QhxJRM55Ipyda",
+            "details": {
+                "date": "April 13, 2024",
+		"location": "Hyatt Regency Morristown",
+		"club": "Northern Stars Advanced"
+            }
         }
     ]
 }

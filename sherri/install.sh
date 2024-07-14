@@ -10,16 +10,25 @@ echo "sherri install ..."
 for file in /var/www/html/pireifej/sherri/*; do
     if [ ${file: -5} == ".html" ]
     then
-       sudo sed -i '/{{header}}/{
-    	 s/{{header}}//g
-    	 r /var/www/html/pireifej/sherri/header.html
-	 }' $file
-       
-       sudo sed -i '/{{preloader}}/{
-    	 s/{{preloader}}//g
-    	 r /var/www/html/pireifej/sherri/preloader.html
+       sudo sed -i '/{{header-main}}/{
+    	 s/{{header-main}}//g
+    	 r /var/www/html/pireifej/sherri/header-main.html
 	 }' $file
 
+       sudo sed -i '/{{header-mobile}}/{
+    	 s/{{header-mobile}}//g
+    	 r /var/www/html/pireifej/sherri/header-mobile.html
+	 }' $file
+       
+       sudo sed -i '/{{about-me}}/{
+    	 s/{{about-me}}//g
+    	 r /var/www/html/pireifej/sherri/about-me.html
+	 }' $file
+
+       sudo sed -i '/{{footer}}/{
+    	 s/{{footer}}//g
+    	 r /var/www/html/pireifej/sherri/footer.html
+	 }' $file
     fi
 done
 

@@ -37,7 +37,7 @@ $( document ).ready(function() {
 			   </div>
 			      
 			    <p><p>${article.preview} …</p></p>			    <div class="post_button_wrapper">
-			    	<a class="readmore" href="https://themes.themegoods.com/letsblog/demo/big-city-light/">Read More</a>
+			    	<a class="readmore" href="https://www.shouldcallpaul.com/sherri/article.html?id=${article.id}">Read More</a>
 			    </div>
 			    
 			    <div class="post_info_comment">
