@@ -6,6 +6,7 @@ $( document ).ready(function() {
 	for (var i = 0; i < response.result.length; i++) {
 	    var article = response.result[i];
 	    var datetime = god.getLocalDateTime(article.timestamp);
+	    var image = article.image;
 	    
 	    var dataColumnLast = (i%2==0) ? `data-column="last"` : "";
 
@@ -19,14 +20,14 @@ $( document ).ready(function() {
 	    	<div class="post_header">
 		    					
 				   	<div class="post_img static">
-				   	    <a href="https://themes.themegoods.com/letsblog/demo/big-city-light/">
-				   	    	<img width="700" height="529" src="https://themes-themegoods.b-cdn.net/letsblog/demo/wp-content/uploads/2015/07/DeathtoStock_NYC11-Custom1-700x529.jpg" alt="" class="" style="width:700px;height:529px;"/>
+				   	    <a href="https://www.shouldcallpaul.com/sherri/article.html?id=${article.id}">
+				   	    	<img src="${image}" alt="" class="" style="width:700px !important;height:300px !important;"/>
 				   	    </a>
 				   	</div>
 			   			   	<br class="clear"/>
 			   	
 			   	<div class="post_header_title">
-			      	<h5><a href="https://themes.themegoods.com/letsblog/demo/big-city-light/" title="${article.title}">${article.title}</a></h5>
+			      	<h5><a href="https://www.shouldcallpaul.com/sherri/article.html?id=${article.id}" title="${article.title}">${article.title}</a></h5>
 			      	<div class="post_detail post_date">
 			      		<span class="post_info_date">
 			      			<span>

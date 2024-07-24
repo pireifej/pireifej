@@ -4,6 +4,9 @@ $( document ).ready(function() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const module = urlParams.get('module')
+    const section = urlParams.get('section')
+
+    console.log(module, section);
 
     // load banner image
     var bannerImage = "img-new/banner/2.jpg";
@@ -305,6 +308,8 @@ ${linkButtonHtml}
 	$("#nav-tabContent-ireifej").html(navTabContentHtml);
 	$("#rotating-text").replaceWith(rotatingTextHtml);
 	scrollToOffset = $('#sub-heading').offset().top;
+
+	$('#nav-id-2').trigger('click');
     }
 
     $("#submit").click(function() {
