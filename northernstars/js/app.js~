@@ -1,0 +1,29 @@
+function setText(id, text) {
+    document.getElementById(id).textContent = text;
+}
+
+var websiteText = {
+    "heading-one": "Break Out",
+    "heading-desc-one": "Break out of your perceived limits.",
+    "heading-two": "Accelerate",
+    "heading-desc-two": "Accelerate your improvement in speaking skills.",
+    "heading-three": "Improve",
+    "heading-desc-three": "Improve your speeches with multiple layers of insightful and truly helpful evaluations.",
+    "major-heading": "Work with higher level projects",
+    "major-heading-sub": "Prepare for speech contests.",
+    "major-heading-sub-p": "Gain additional stage time and experience.",
+    "major-point-one": "Do you need more time for your high level speeches?",
+    "major-point-two": "Do you want more advanced evaluations?",
+    "major-point-three": "Do you want to OUTSHINE your competition in contests?",
+    "major-point-four": "text",
+    "minor-heading-one": "An Effective Mentoring Program is Available to All Members.",
+    "minor-heading-two": "text",
+//    "improve-heading": "text",
+//    "improve-heading-two": "text",
+    "improve-desc": "text"
+};
+
+for (var key in websiteText) {
+    console.log(key, websiteText[key]);
+    setText(key, websiteText[key]);
+}
