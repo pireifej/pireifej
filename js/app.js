@@ -1,10 +1,18 @@
 $( document ).ready(function() {
     console.log("HELLO!");
 
+    
+
     $('#projects-single-item').trigger('mouseenter');
+
+    console.log("yes");
+
+
+    
     console.log($('#projects-single-item'));
     setTimeout(function(){
-//        $('#projects-single-item').trigger('mouseleave');
+	//        $('#projects-single-item').trigger('mouseleave');
+	console.log("YES!");
     }, 2000); // Adjust the timeout duration as needed
     
     window.god = window.god || {};
@@ -17,6 +25,10 @@ $( document ).ready(function() {
     var hackathonLoaded = false;
 
     $(window).scroll(function() {
+	console.log("I am scrolling");
+	$("#projects-single-item").trigger("mouseover");
+	$("#projects-overlay-content").trigger("mouseover");
+	$("#projects-banner").trigger("mouseover");
 	// projects
 	if (!projectsLoaded) {
 	    var hT = $('#projects-single-item').offset().top,

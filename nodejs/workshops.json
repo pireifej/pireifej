@@ -1,6 +1,44 @@
 {
     "records": [
 	{
+	    "image": "img/gallery/respect2.jpg",
+	    "gallery": ["img/gallery/respect1.jpg","img/gallery/respect3.jpg"],
+	    "label": "Week of Respect - Franklin School",
+	    "type": "workshops",
+	    "link": "https://youtu.be/YI2_SnK2B0g",
+	    "details": {
+		"date": "October 9, 2024",
+		"location": "Franklin School in North Bergen, NJ",
+		"attendees": "100+",
+		"duration": "Two 30 minute sessions"
+	    },
+	    "desc": "<p>The week of 10/7 is the \"Week of Respect\" in NJ, and Franklin School in North Bergen is looking for a volunteer speaker who can go into classrooms to speak to students grades 4 - 8 about the importance of respect, kindness, friendship, responsibility, or something that inspires them to be mindful of their actions.</p>"
+	},
+	{
+	    "label": "Master the Art of Public Speaking - Bell Works",
+	    "type": "workshops",
+	    "details": {
+		"date": "September 12, 2024",
+		"location": "Holmdel Public Library",
+		"attendees": "10",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>Embark on a transformative journey in our \"Mastering the Art of Public Speaking\" workshop, featuring voluntary audience interaction with impromptu questions, examples of conststructive criticism. Discover your authentic voice, enhance public speaking skills, and gain a competitive edge. Join us for a concise, impactful session to unlock your full potential in communication and leadership.</p>"
+	},
+	{
+	    "gallery": ["img/PXL_20240824_152158036.MP.jpg"],
+	    "label": "Youth Leadership Program - Coordinator",
+	    "type": "workshops",
+	    "link": "https://www.shouldcallpaul.com/portfolio.html?module=ylp",
+	    "details": {
+		"date": "July & August 2024",
+		"location": "Red Bank Public Library",
+		"attendees": "10",
+		"duration": "Eight 1-hour sessions"
+	    },
+	    "desc": "<p></p>"
+	},
+	{
 	    "image": "img/gallery/20240531_112847.jpg",
 	    "gallery": ["img/gallery/indianhill.png"],
 	    "label": "Career Day",
@@ -15,7 +53,7 @@
 	},
 	{
 	    "image": "img/gallery/facebook_1716907117027_7201230388578389877.jpg",
-	    "label": "Youth Leadership Program",
+	    "label": "Youth Leadership Program - Guest",
 	    "type": "workshops",
 	    "details": {
 		"date": "March 9, 2024",
@@ -27,7 +65,7 @@
 	},
 	{
 	    "image": "img/gallery/facebook_1716907083993_7201230250024254985.jpg",
-	    "label": "Master the Art of Public Speaking",
+	    "label": "Master the Art of Public Speaking - Matawan",
 	    "type": "workshops",
 	    "details": {
 		"date": "March 14, 2024",

@@ -4259,7 +4259,7 @@ header.header-fixed .video-play-button.theme:after {
 	padding: 15px 30px;
 	position: absolute;
 	z-index: 1;
-	display: flex;
+	display: contents;
 	align-items: center;
 	justify-content: space-between;
 	left: 0;
@@ -4268,7 +4268,6 @@ header.header-fixed .video-play-button.theme:after {
 	background: var(--white);
 	transition: all 0.35s ease-in-out;
 	opacity: 0;
-	visibility: hidden;
 }
 
 .pf-item .overlay-content:hover .content {

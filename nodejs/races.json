@@ -1,6 +1,146 @@
 {
     "records": [
 	{
+	    "image": "",
+	    "label": "TCS New York City Marathon 2024",
+	    "type": "race",
+	    "details": {
+		"date": "11/03/24",
+		"distance": "26.2 miles",
+		"time": "5 hours 1 min 12 sec",
+		"location": "NYC"
+	    },
+	    "gallery": ["img/running/858381_1041_0027.jpg", "img/running/858508_1031_0043.jpg", "img/running/IMG_3589.jpg"],
+	    "link": "https://results.nyrr.org/runner/2666/result/23DASH?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 Abbott Dash to the Finish Line 5K",
+	    "type": "race",
+	    "details": {
+		"date": "11/4/23",
+		"distance": "3.1 miles",
+		"time": "27 min 41 sec",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/2666/result/23DASH?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 NYRR Staten Island Half",
+	    "type": "race",
+	    "details": {
+		"date": "10/08/23",
+		"distance": "13.1 miles",
+		"time": "2 hours 21 min",
+		"location": "NYC"
+	    },
+	    "gallery": ["img/running/image.jpg"],
+	    "link": "https://results.nyrr.org/runner/11005/result/23SIHALF?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 New Balance 5th Avenue Mile",
+	    "type": "race",
+	    "details": {
+		"date": "09/10/23",
+		"distance": "1 mile",
+		"time": "6 min 54 sec",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/1954/result/23FAM?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 Percy Sutton Harlem 5K",
+	    "type": "race",
+	    "details": {
+		"date": "08/12/23",
+		"distance": "3.1 miles",
+		"time": "30 min 3 sec",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/4858/result/23HARLEM?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 NYRR Retro 4-Miler",
+	    "type": "race",
+	    "details": {
+		"date": "06/15/23",
+		"distance": "4 miles",
+		"time": "37 min 28 sec",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/5143/result/23RETRO?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 NYRR Queens 10K",
+	    "type": "race",
+	    "details": {
+		"date": "06/17/23",
+		"distance": "6.2 miles",
+		"time": "1 hour",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/11945/result/23QUEENS?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+		},
+	{
+	    "image": "",
+	    "label": "2023 RBC Brooklyn Half",
+	    "type": "race",
+	    "details": {
+		"date": "05/20/23",
+		"distance": "13.1 miles",
+		"time": "2 hours 31 min",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/27062/result/23BKH?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 RBC Race for the Kids 4M",
+	    "type": "race",
+	    "details": {
+		"date": "04/23/2023",
+		"distance": "4 miles",
+		"time": "41 min 50 min",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/1692/result/23RBCkids?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
+	    "image": "",
+	    "label": "2023 NYRR Al Gordon 4M",
+	    "type": "race",
+	    "details": {
+		"date": "02/25/23",
+		"distance": "4 miles",
+		"time": "39 min 53 sec",
+		"location": "NYC"
+	    },
+	    "gallery": [],
+	    "link": "https://results.nyrr.org/runner/1565/result/23ALGORDON?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "desc": "<p></p>"
+	},
+	{
 	    "image": "img/running/20221030_130032.jpg",
 	    "label": "Marine Corp Marathon",
 	    "type": "race",

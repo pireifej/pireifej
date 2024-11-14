@@ -1,6 +1,17 @@
 {
     "records": [
 	{
+	    "image": "img/gallery/avertack-dev-ops.png",
+	    "label": "Avertack Dev Ops",
+	    "type": "projects",
+	    "details": {
+		"date": "2022",
+		"company": "AT&T",
+		"technology": "Microsoft Azure, MongoDB"
+	    },
+	    "desc": "<p>Avertack (or avert attack) is a real-time large-scale fraud prevention application.</p><p><b>Led the migration</b> of 100+ on-premise servers to Microsoft Azure, optimizing performance, scalability, and cost-efficiency.</p><p><b>Served as Technical Team Lead</b>, managing a cross-functional DevOps team and driving successful project delivery.</p><p><b>Implemented CI/CD pipelines</b>, enhancing code deployment speed and reducing time to market for critical releases.</p><p><b>Acted as Scrum Manager</b>, facilitating agile ceremonies, sprint planning, and backlog prioritization for efficient team collaboration.</p><p><b>Spearheaded integration efforts</b> for automated code scans and AT&T compliance, ensuring adherence to industry standards and security protocols.</p><p><b>Developed and maintained cloud infrastructure</b> using Azure DevOps, improving overall system reliability and performance.</p><p><b>Streamlined DevOps processes</b>, resulting in a 30% reduction in deployment times and increased team productivity.</p><p><b>Collaborated with stakeholders</b> across development, QA, and operations to ensure seamless integration and delivery of services.</p><p>Was awarded an AT&T Connection Award for 'GitHub and DORA Integrations' on October 31, 2024'.</p>"
+	},
+	{
 	    "image": "img/gallery/portfolio-12.jpg",
 	    "label": "aiOpX",
 	    "type": "projects",
