@@ -2,6 +2,20 @@
     "records": [
 	{
 	    "image": "",
+	    "label": "2024 PPTC Turkey Trot: Race for Reconciliation 5 Miler",
+	    "type": "race",
+	    "details": {
+		"date": "11/28/24",
+		"distance": "5 miles",
+		"time": "52 min 13 sec",
+		"location": "NYC"
+	    },
+	    "gallery": ["img/running/turkeytrotresults.png"],
+	    "link": "https://runsignup.com/Race/Results/135512/IndividualResult/BBhS?resultSetId=512067#U2638680",
+	    "desc": "<p>One of Brooklyn's most popular races, this spectacular 5-miler is the perfect way to kick off your holiday season!</p>"
+	},
+	{
+	    "image": "",
 	    "label": "TCS New York City Marathon 2024",
 	    "type": "race",
 	    "details": {
@@ -11,7 +25,7 @@
 		"location": "NYC"
 	    },
 	    "gallery": ["img/running/858381_1041_0027.jpg", "img/running/858508_1031_0043.jpg", "img/running/IMG_3589.jpg"],
-	    "link": "https://results.nyrr.org/runner/2666/result/23DASH?_gl=1*1o8unt9*_gcl_au*MTk4MDgzNjYxOC4xNzI1OTMzNDkx",
+	    "link": "https://results.nyrr.org/runner/48426/result/M2024",
 	    "desc": "<p></p>"
 	},
 	{
