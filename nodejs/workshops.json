@@ -1,6 +1,61 @@
 {
     "records": [
 	{
+	    "image": "img/redbankaione.jpg",
+	    "gallery": ["img/airedbanktwo.jpg"],
+	    "label": "AI for Beginners Workshop - Red Bank",
+	    "type": "workshops",
+	    "link": "https://www.redbanklibrary.org/calendar/aiforbeginners",
+	    "details": {
+		"date": "March 6, 2025",
+		"location": "Red Bank Public Library",
+		"attendees": "10",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>You're invited to join our free, one-hour workshop with seasoned speaker and tech enthusiast Paul Ireifej and receive a hands-on introduction to AI.</p><p>Discover practical and simple ways to use ChatGPT in your daily life while shedding fears and demystifying artificial intelligence. Learn how AI can simplify tasks, spark creativity, and become a helpful, approachable tool in your everyday routine.</p><p>Let's make AI work for you - no tech experience required!</p>"
+	},
+	{
+	    "image": "img/gallery/PXL_20250210_233640519.jpg",
+	    "gallery": ["img/gallery/PXL_20250210_232745346.jpg"],
+	    "label": "AI Program with Paul Ireifej - Matawan",
+	    "type": "workshops",
+	    "link": "https://mapl.events.mylibrary.digital/event?id=165278",
+	    "details": {
+		"date": "February 10, 2025",
+		"location": "Matawan Aberdeen Public Library",
+		"attendees": "4",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>Curious about AI but feeling overwhelmed? Join us for a one-hour workshop with Paul Ireifej, a seasoned speaker and tech enthusiast. Discover practical and simple ways to use ChatGPT in your daily life while shedding fears and demystifying artificial intelligence. Learn how AI can simplify tasks, spark creativity, and become a helpful, approachable tool in your everyday routine. Let's make AI work for you - no tech experience required!</p>"
+	},
+	{
+	    "image": "img/gallery/PXL_20250206_224814234.jpg",
+	    "gallery": ["img/gallery/PXL_20250206_223919834.jpg", "img/gallery/PXL_20250206_224049552.jpg"],
+	    "label": "Find Your Voice - Red Bank",
+	    "type": "workshops",
+	    "link": "https://www.redbanklibrary.org/calendar/publicspeaking26",
+	    "details": {
+		"date": "February 06, 2025",
+		"location": "Red Bank Public Library",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>Find your voice at our free workshop, hosted by experienced public speaker Paul Ireifej!</p><p>Adults and young adults are invited to join our free, one-hour workshop and discover the tools to speak with confidence, structure your message effectively, and captivate any audience.</p><p>This workshop combines interactive activities, practical exercises, and real-time feedback to help you build skills and confidence in a supportive environment. Whether you're a beginner or looking to refine your speaking abilities, this workshop is your first step to becoming a dynamic speaker!</p>"
+	},
+	{
+	    "image": "img/gallery/PXL_20250116_000043349.jpg",
+	    "gallery": ["img/gallery/PXL_20250115_233554604.MP.jpg","img/gallery/PXL_20250115_225851074.MP.jpg"],
+	    "label": "Find Your Voice - Matawan",
+	    "type": "workshops",
+	    "link": "https://mapl.events.mylibrary.digital/event?id=156850&fbclid=IwY2xjawHq2ZtleHRuA2FlbQIxMQABHUhJOhjuVasHedD0P8IEAe92faTzBslqv826l87irI2xMCJUluBiliZqmw_aem_xmUHldDL1CgU_W9dfJElug",
+	    "details": {
+		"date": "January 15, 2025",
+		"location": "Matawan Aberdeen Public Library",
+		"attendees": "9",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>Discover the tools to speak with confidence, structure your message effectively, and captivate any audience. In this engaging session, you'll learn how to:  Craft a compelling speech with a clear, introduction, body, and conclusion, Enhance your delivery using vocal variety and powerful body language, Conquer stage fright with proven techniques like breathing exercises and visualization. This workshop combines interactive activities, practical exercises, and real-time feedback to help you build skills and confidence in a supportive environment. Whether you're a beginner or looking to refine your speaking abilities, this workshop is your first step to becoming a dynamic speaker!</p>"
+	},
+	{
 	    "image": "img/gallery/respect2.jpg",
 	    "gallery": ["img/gallery/respect1.jpg","img/gallery/respect3.jpg"],
 	    "label": "Week of Respect - Franklin School",

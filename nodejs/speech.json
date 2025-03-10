@@ -212,15 +212,30 @@
             }
         },
 	{
-            "image": "img/IMG_20240309_131020.jpg",
+            "image": "img/contests/momsspag.jpg",
             "label": "Mom's Spaghetti",
             "type": "speech",
             "desc": "<p>Inspired by the renowned poet, Eminem, I take the audience through my journey to becoming a standup comedian. This is a dream I've had ever since childhood! I started off in a church carnival, performed at a library and finally in a bar. This speech chronicles my challenges, successes and ends with an message of inspiration.</p>",
 	    "link": "https://youtu.be/66A5u7f3JCs?si=g23QhxJRM55Ipyda",
             "details": {
-                "date": "April 13, 2024",
-		"location": "Hyatt Regency Morristown",
-		"club": "Northern Stars Advanced"
+		"date": "April 13, 2024",
+                "contest": "International Speech Contest",
+                "placement": "District - Did Not Place",
+                "club": "Northern Stars Advanced",
+		"location": "Hyatt Regency Morristown"
+            }
+        },
+	{
+            "image": "img/contests/weareonlyhumandiv.jpg",
+            "label": "We Are Only Human",
+            "type": "speech",
+            "desc": "<p>What does it mean to be human? I explore this question through my experience of using ChatGPT to generate a poem to present at my son's Christmas party in school. Can I replace the mechanical heart beat of Artificial Intelligence with something human and real?</p>",
+	    "link": "https://youtu.be/5jbFtR8_8ss",
+            "details": {
+		"date": "March 8, 2025",
+                "contest": "International Speech Contest",
+                "placement": "Division Second place",
+                "club": "AT&T Middletown Toastmasters"
             }
         }
     ]
