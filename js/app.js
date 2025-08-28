@@ -415,5 +415,89 @@ ${modalBody}
 		console.log(error);
 	    });
     });
+
+    $("#submit-story").click(function() {
+	var person1Name = $("#person1-name").val();
+	var person1Like1 = $("#person1-like1").val();
+	var person1Like2 = $("#person1-like2").val();
+	var person1Disslike = $("#person1-disslike").val();
+
+	var person2Name = $("#person2-name").val();
+	var person2Like1 = $("#person2-like1").val();
+	var person2Like2 = $("#person2-like2").val();
+	var person2Disslike = $("#person2-disslike").val();
+
+	var person3Name = $("#person3-name").val();
+	var person3Like1 = $("#person3-like1").val();
+	var person3Like2 = $("#person3-like2").val();
+	var person3Disslike = $("#person3-disslike").val();
+
+	var scenario = $("#scenario").val();
+	
+	// get story
+	var params = {
+	    "person1": {
+		"name": person1Name,
+		"like1": person1Like1,
+		"like2": person1Like2,
+		"disslike": person1Disslike
+	    },
+	    "person2": {
+		"name": person2Name,
+		"like1": person2Like1,
+		"like2": person2Like2,
+		"disslike": person2Disslike
+	    },
+	    "person3": {
+		"name": person3Name,
+		"like1": person3Like1,
+		"like2": person3Like2,
+		"disslike": person3Disslike
+	    },
+	    "scenario": scenario
+	};
+
+	console.log(params);
+	
+	const url = "https://prayoverus.com:3000/makeStoryWithChatGpt";
+	var headers = {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json'
+	};
+	var options = {
+	    method : "POST",
+	    cache: "no-cache",
+	    headers: headers,
+	    body: JSON.stringify(params)
+	};
+
+	fetch(url, options)
+	    .then((response) => {
+		// always executes
+		return response.json();
+	    })
+	    .then(data => {
+		console.log(data);
+		
+		if (data.error == 0) {
+		    $("#story-gpt").val(data.result);
+		    $("#comments").val("");
+		    $("#name").val("");
+		    $("#phone").val("");
+		    $("#email").val("");
+		    $("#message").html("Thanks for your message!");
+		}
+
+		$("#message").slideDown('slow');
+		$('.contact-form img.loader').fadeOut('slow', function() {
+		    $(this).remove()
+		});
+		$('#submit').removeAttr('disabled');
+	    })
+	    .catch(function(error) {
+		console.log("FAILED");
+		console.log(error);
+	    });
+	});
 })
 

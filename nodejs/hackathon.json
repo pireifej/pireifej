@@ -1,6 +1,20 @@
 {
     "records": [
 	{
+	    "image": "img/hack/IMG_0548.PNG",
+	    "label": "Shift Happens",
+	    "type": "hackathon",
+	    "desc": "<p>The Stroke Recovery Companion is a smart tool that records, analyzes, and motivates stroke survivors to perform doctor-recommended exercises, like head rotations and arm raises, accelerating recovery and improving independence.</p><p>With strokes affecting 1 in 4 adults globally, targeted exercise can cut recovery time by up to 30% and restore motor function more effectively.</p>",
+	    "powerpointLink": "",
+	    "link": "https://docs.google.com/presentation/d/1YBJNfOBWHlS_UQx8tdPgBLXWJdVd8cLj/edit?usp=sharing&ouid=112668354220077801813&rtpof=true&sd=true",
+	    "details": {
+		"date": "May 16, 2025",
+		"location": "Middletown, NJ",
+		"track": "Life & Tech Improvement",
+		"placement": "Second"
+	    }
+	},
+	{
 	    "image": "img/hack/bread.png",
 	    "label": "Pain Busters",
 	    "type": "hackathon",

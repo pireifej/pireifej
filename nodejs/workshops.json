@@ -1,6 +1,20 @@
 {
     "records": [
 	{
+	    "image": "img/teentalk3.jpg",
+	    "gallery": ["img/teentalk1.jpg"],
+	    "label": "Teen Talk: Mastering Public Speaking for Success In-Person",
+	    "type": "workshops",
+	    "link": "https://monmouthcountylib.libcal.com/event/14704222",
+	    "details": {
+		"date": "July 24, 2025",
+		"location": "Hazlet Public Library",
+		"attendees": "20",
+		"duration": "1 hour"
+	    },
+	    "desc": "<p>Attention Teens! Do you want to feel more confident when speaking in front of a group? Whether it's for class presentations, interviews, or leadership roles, strong public speaking skills can make a big difference. With experienced public speaker and coach, Paul Ireifej, you'll get practical tools to become a more effective and confident communicator. No prior experience needed -- just bring your voice and an open mind!</p>"
+	},
+	{
 	    "image": "img/redbankaione.jpg",
 	    "gallery": ["img/airedbanktwo.jpg"],
 	    "label": "AI for Beginners Workshop - Red Bank",
