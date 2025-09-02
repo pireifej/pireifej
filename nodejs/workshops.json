@@ -3,6 +3,20 @@
 	{
 	    "image": "img/teentalk3.jpg",
 	    "gallery": ["img/teentalk1.jpg"],
+	    "label": "The Future of School Leadership with AI",
+	    "type": "workshops",
+	    "link": "https://monmouthcountylib.libcal.com/event/14704222",
+	    "details": {
+		"date": "August 25, 2025",
+		"location": "Holmdel School District",
+		"attendees": "20",
+		"duration": "1.5 hours"
+	    },
+	    "desc": "<p>We'll explore how school leaders can personally use AI to save time. You'll choose one real administrative task like newsletters or evaluation summaries and use an AI assistant to create a draft version, refining it through prompt engineering.</p>"
+	},
+	{
+	    "image": "img/teentalk3.jpg",
+	    "gallery": ["img/teentalk1.jpg"],
 	    "label": "Teen Talk: Mastering Public Speaking for Success In-Person",
 	    "type": "workshops",
 	    "link": "https://monmouthcountylib.libcal.com/event/14704222",
