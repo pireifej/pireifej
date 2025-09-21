@@ -1,9 +1,13 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 
 const app = express();
 const port = 5000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
 
 // Middleware to serve static files
 app.use(express.static('.', {
@@ -68,6 +72,40 @@ app.get('/:filename.html', (req, res) => {
     } catch (error) {
         console.error(`Error serving ${filename}:`, error);
         res.status(500).send('Server error');
+    }
+});
+
+// API route to handle contact form submissions
+app.post('/api/contact', async (req, res) => {
+    try {
+        const { subject, to, content } = req.body;
+        
+        // Get credentials from environment variables
+        const username = process.env.CONTACT_API_USERNAME;
+        const password = process.env.CONTACT_API_PASSWORD;
+        
+        if (!username || !password) {
+            return res.status(500).json({ error: 1, message: 'Missing API credentials' });
+        }
+        
+        const credentials = Buffer.from(`${username}:${password}`).toString('base64');
+        
+        const response = await fetch('https://shouldcallpaul.replit.app/contact', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${credentials}`
+            },
+            body: JSON.stringify({ subject, to, content })
+        });
+        
+        const data = await response.json();
+        res.json(data);
+        
+    } catch (error) {
+        console.error('Contact form error:', error);
+        res.status(500).json({ error: 1, message: 'Failed to send message' });
     }
 });
 

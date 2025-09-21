@@ -379,7 +379,8 @@ ${modalBody}
             "to": "shouldcallpaul@gmail.com", 
             "content": content
         };
-        const url = "https://shouldcallpaul.replit.app/contact";
+        const url = "/api/contact";
+        
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
