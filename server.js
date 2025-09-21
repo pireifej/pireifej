@@ -52,8 +52,8 @@ app.get('/portfolio.html', (req, res) => {
 });
 
 // Catch-all route for other HTML files
-app.get('/*.html', (req, res) => {
-    const filename = req.path.substring(1); // Remove leading slash
+app.get('/:filename.html', (req, res) => {
+    const filename = req.params.filename + '.html';
     try {
         if (fs.existsSync(filename)) {
             let content = fs.readFileSync(filename, 'utf8');
