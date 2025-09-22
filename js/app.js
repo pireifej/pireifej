@@ -399,11 +399,15 @@ ${modalBody}
             })
             .then(data => {
                 if (data.error == 0) {
+                    // Success - clear form and show success message
                     $("#comments").val("");
                     $("#name").val("");
                     $("#phone").val("");
                     $("#email").val("");
                     $("#message").html("Thanks for your message!");
+                } else {
+                    // Error - keep form fields populated and show error message
+                    $("#message").html("Sorry, there was an error sending your message. Please try again or contact me directly at shouldcallpaul@gmail.com");
                 }
 
                 $("#message").slideDown('slow');
@@ -413,8 +417,14 @@ ${modalBody}
                 $('#submit').removeAttr('disabled');
             })
             .catch(function(error) {
-                console.log("FAILED");
-                console.log(error);
+                // Network/fetch error - keep form fields and show error
+                $("#message").html("Sorry, there was a connection error. Please try again or contact me directly at shouldcallpaul@gmail.com");
+                $("#message").slideDown('slow');
+                $('.contact-form img.loader').fadeOut('slow', function() {
+                    $(this).remove()
+                });
+                $('#submit').removeAttr('disabled');
+                console.log("Contact form error:", error);
             });
     });
 
