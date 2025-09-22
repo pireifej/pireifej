@@ -38,7 +38,7 @@ $( document ).ready(function() {
             if (wS > (hT+hH-wH)) {
 //              $("body").addClass("loading");
                 $.ajax({
-                    url: 'nodejs/projects.json',
+                    url: 'https://shouldcallpaul.replit.app/resume/projects',
                     type: 'get',
                     dataType: 'json',
                     cache: false,
@@ -56,7 +56,7 @@ $( document ).ready(function() {
                 wS = $(this).scrollTop();
             if (wS > (hT+hH-wH)){
                 $.ajax({
-                    url: 'nodejs/races.json',
+                    url: 'https://shouldcallpaul.replit.app/resume/races',
                     type: 'get',
                     dataType: 'json',
                     cache: false,
@@ -74,7 +74,7 @@ $( document ).ready(function() {
                 wS = $(this).scrollTop();
             if (wS > (hT+hH-wH)){
                 $.ajax({
-                    url: 'nodejs/speech.json',
+                    url: 'https://shouldcallpaul.replit.app/resume/speech',
                     type: 'get',
                     dataType: 'json',
                     cache: false,
@@ -92,7 +92,7 @@ $( document ).ready(function() {
                 wS = $(this).scrollTop();
             if (wS > (hT+hH-wH)){
                 $.ajax({
-                    url: 'nodejs/conference.json',
+                    url: 'https://shouldcallpaul.replit.app/resume/conference',
                     type: 'get',
                     dataType: 'json',
                     cache: false,
@@ -110,7 +110,7 @@ $( document ).ready(function() {
                 wS = $(this).scrollTop();
             if (wS > (hT+hH-wH)){
                 $.ajax({
-                    url: 'nodejs/patent.json',
+                    url: 'https://shouldcallpaul.replit.app/resume/patent',
                     type: 'get',
                     dataType: 'json',
                     cache: false,
@@ -128,7 +128,7 @@ $( document ).ready(function() {
                 wS = $(this).scrollTop();
             if (wS > (hT+hH-wH)){
                 $.ajax({
-                    url: 'nodejs/hackathon.json',
+                    url: 'https://shouldcallpaul.replit.app/resume/hackathon',
                     type: 'get',
                     dataType: 'json',
                     cache: false,

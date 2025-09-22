@@ -28,85 +28,85 @@ $( document ).ready(function() {
     $("#portfolio-heading-2").replaceWith(`<h2 id="portfolio-heading-2">${module}</h2>`);
 
     if (module == "ylp") {
-	$("#portfolio-heading-2").replaceWith(`<h2 id="portfolio-heading-2">Youth Leadership Program</h2>`);
+        $("#portfolio-heading-2").replaceWith(`<h2 id="portfolio-heading-2">Youth Leadership Program</h2>`);
     }
 
     if (module == "ylp") {
-	$.ajax({
-	    url: 'nodejs/' + module + '.json',
-	    type: 'get',
-	    dataType: 'json',
-	    cache: false,
-	    success: postProcessDataYLP,
-	    async:true,
-	});
+        $.ajax({
+            url: 'https://shouldcallpaul.replit.app/resume/' + module,
+            type: 'get',
+            dataType: 'json',
+            cache: false,
+            success: postProcessDataYLP,
+            async:true,
+        });
     } else {
-	$.ajax({
-	    url: 'nodejs/' + module + '.json',
-	    type: 'get',
-	    dataType: 'json',
-	    cache: false,
-	    success: postProcessDataProjects,
-	    async:true,
-	});
+        $.ajax({
+            url: 'https://shouldcallpaul.replit.app/resume/' + module,
+            type: 'get',
+            dataType: 'json',
+            cache: false,
+            success: postProcessDataProjects,
+            async:true,
+        });
     }
 
 
     window.scrollToDiv = function(event) {
-	event.preventDefault(); // Prevent the default behavior
+        event.preventDefault(); // Prevent the default behavior
 
-	console.log($('#sub-heading').offset().top);
-	// Smooth scroll to #sub-heading
-	$('html, body').animate({
+        console.log($('#sub-heading').offset().top);
+        // Smooth scroll to #sub-heading
+        $('html, body').animate({
             scrollTop: scrollToOffset
-	}, 500); // Adjust the duration as needed (in milliseconds)
+        }, 500); // Adjust the duration as needed (in milliseconds)
     }
 
     function toTitleCase(str) {
-	return str.replace(
-	    /\w\S*/g,
-	    function(txt) {
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	    }
-	);
+        return str.replace(
+            /\w\S*/g,
+            function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            }
+        );
     }
 
     function postProcessDataProjects(data) {
-	console.log("IREIFEJ");
-	console.log(data);
-	var navTabHtml = "";
-	var navTabContentHtml = "";
-	var rotatingTextHtml = "";
-	var rotatingTextClass = "is-visible";
+        console.log("IREIFEJ");
+        console.log(data);
+        var navTabHtml = "";
+        var navTabContentHtml = "";
+        var rotatingTextHtml = "";
+        var rotatingTextClass = "is-visible";
 
-	for (var i = 0; i < data.records.length; i++) {
-	    var project = data.records[i];
-	    var projectLabelRotatingText = (project.label.length > 15) ? project.label.substring(0,15) + "..." : project.label;
-	    console.log(project);
+        for (var i = 0; i < data.records.length; i++) {
+            var project = data.records[i];
+            var projectLabelRotatingText = (project.label.length > 15) ? project.label.substring(0,15) + "..." : project.label;
+            console.log(project);
 
-	    if (i > 0) rotatingTextClass = "is-hidden";
-	    rotatingTextHtml += `<b class="${rotatingTextClass}">${projectLabelRotatingText}</b>`;
+            if (i > 0) rotatingTextClass = "is-hidden";
+            rotatingTextHtml += `<b class="${rotatingTextClass}">${projectLabelRotatingText}</b>`;
 
-	    var navLinkActive = `class="nav-link"`;
-	    var active = "";
-	    var index = i+1;
-	    if (i == 0) {
-		navLinkActive = `class="nav-link active"`;
-		active = "active";
-	    }
+            var navLinkActive = `class="nav-link"`;
+            var active = "";
+            var index = i+1;
+            if (i == 0) {
+                navLinkActive = `class="nav-link active"`;
+                active = "active";
+            }
 
-	    var indexLabel = (index < 10) ? "0" + index : index;
+            var indexLabel = (index < 10) ? "0" + index : index;
 
-	    navTabHtml += `
+            navTabHtml += `
                             <button ${navLinkActive} id="nav-id-${index}" data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)">
                                 ${project.label} <strong>${indexLabel}</strong>
                             </button>`;
 
-	    var details = project.details;
-	    var detailsHtml = "";
-	    for (var key in details) {
-		var detailTitle = toTitleCase(key);
-		detailsHtml += `
+            var details = project.details;
+            var detailsHtml = "";
+            for (var key in details) {
+                var detailTitle = toTitleCase(key);
+                detailsHtml += `
                           <li>
                                 <div class="icon">
                                     <i class="fab fa-figma"></i>
@@ -116,39 +116,39 @@ $( document ).ready(function() {
                                     <span>${details[key]}</span>
                                 </div>
                             </li>`;
-	    }
+            }
 
-	    var pictureHtml = "";
+            var pictureHtml = "";
 
-	    if (project["image"]) {
-		pictureHtml = `
-		                    <div class="thumb">
+            if (project["image"]) {
+                pictureHtml = `
+                                    <div class="thumb">
                         <img class="wow fadeInUp" src="${project.image}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
                     </div>`;
-	    }
+            }
 
-	    if (project["gallery"]) {
-		for (var j = 0; j < project.gallery.length; j++) {
-		    var galleryPicture = project.gallery[j];
+            if (project["gallery"]) {
+                for (var j = 0; j < project.gallery.length; j++) {
+                    var galleryPicture = project.gallery[j];
 
-		    pictureHtml += `
-		                    <div class="thumb">
+                    pictureHtml += `
+                                    <div class="thumb">
                         <img class="wow fadeInUp" src="${galleryPicture}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
                     </div>`;
-		}
-	    }
+                }
+            }
 
-	    var linkButtonHtml = "";
-	    var buttonLabel = "Check it out";
-	    
-	    if (project.type == "race") buttonLabel = "View Results";
-	    if (project.type == "speech") buttonLabel = "Watch Speech";
-	    if (project.type == "patent") buttonLabel = "View Patent";
-	    if (project["link"]) {
-		linkButtonHtml = `<a style="margin: 20px 20px 20px 20px" class="btn btn-md circle btn-theme smooth-menu" href="${project.link}">${buttonLabel}</a>`;
-	    }
+            var linkButtonHtml = "";
+            var buttonLabel = "Check it out";
+            
+            if (project.type == "race") buttonLabel = "View Results";
+            if (project.type == "speech") buttonLabel = "Watch Speech";
+            if (project.type == "patent") buttonLabel = "View Patent";
+            if (project["link"]) {
+                linkButtonHtml = `<a style="margin: 20px 20px 20px 20px" class="btn btn-md circle btn-theme smooth-menu" href="${project.link}">${buttonLabel}</a>`;
+            }
 
-	    var aboutMeHtml = `
+            var aboutMeHtml = `
 <div id="about" class="about-style-six-area default-padding-top">
         <div class="container">
             <div class="row align-center">
@@ -158,7 +158,7 @@ ${pictureHtml}
                 </div>
                 <div class="about-style-six col-lg-6 offset-lg-1">
                     <h4 id="sub-heading" class="sub-title">${project.label}</h4>
-		    <h2 class="title">${project.label}</h2>
+                    <h2 class="title">${project.label}</h2>
                     <p>
 ${project.desc}
                     </p>
@@ -172,9 +172,9 @@ ${detailsHtml}
         </div>
     </div>`;
 
-	    
+            
 
-	    navTabContentHtml += `
+            navTabContentHtml += `
                             <!-- Single Item -->
                             <div class="tab-pane fade show ${active}" id="tab${index}" role="tabpanel" aria-labelledby="nav-id-${index}">
 ${aboutMeHtml}
@@ -183,51 +183,51 @@ ${linkButtonHtml}
 </div>
 </div>
                             <!-- End Single Item -->`;
-	}
+        }
 
-	$("#nav-tab").html(navTabHtml);
-	$("#nav-tabContent-ireifej").html(navTabContentHtml);
-	$("#rotating-text").replaceWith(rotatingTextHtml);
-	scrollToOffset = $('#sub-heading').offset().top;
+        $("#nav-tab").html(navTabHtml);
+        $("#nav-tabContent-ireifej").html(navTabContentHtml);
+        $("#rotating-text").replaceWith(rotatingTextHtml);
+        scrollToOffset = $('#sub-heading').offset().top;
     }
 
     function postProcessDataYLP(data) {
-	console.log("YLP");
-	console.log(data);
-	var navTabHtml = "";
-	var navTabContentHtml = "";
-	var rotatingTextHtml = "";
-	var rotatingTextClass = "is-visible";
+        console.log("YLP");
+        console.log(data);
+        var navTabHtml = "";
+        var navTabContentHtml = "";
+        var rotatingTextHtml = "";
+        var rotatingTextClass = "is-visible";
 
-	for (var i = 0; i < data.records.length; i++) {
-	    var project = data.records[i];
-	    var parts = project.label.split("-");
-	    var projectLabelRotatingText = parts[0];
-	    console.log(project);
+        for (var i = 0; i < data.records.length; i++) {
+            var project = data.records[i];
+            var parts = project.label.split("-");
+            var projectLabelRotatingText = parts[0];
+            console.log(project);
 
-	    if (i > 0) rotatingTextClass = "is-hidden";
-	    rotatingTextHtml += `<b class="${rotatingTextClass}">${projectLabelRotatingText}</b>`;
+            if (i > 0) rotatingTextClass = "is-hidden";
+            rotatingTextHtml += `<b class="${rotatingTextClass}">${projectLabelRotatingText}</b>`;
 
-	    var navLinkActive = `class="nav-link"`;
-	    var active = "";
-	    var index = i+1;
-	    if (i == 0) {
-		navLinkActive = `class="nav-link active"`;
-		active = "active";
-	    }
+            var navLinkActive = `class="nav-link"`;
+            var active = "";
+            var index = i+1;
+            if (i == 0) {
+                navLinkActive = `class="nav-link active"`;
+                active = "active";
+            }
 
-	    var indexLabel = (index < 10) ? "0" + index : index;
+            var indexLabel = (index < 10) ? "0" + index : index;
 
-	    navTabHtml += `
+            navTabHtml += `
                             <button ${navLinkActive} id="nav-id-${index}" data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)">
                                 ${project.label} <strong>${indexLabel}</strong>
                             </button>`;
 
-	    var details = project.details;
-	    var detailsHtml = "";
-	    for (var key in details) {
-		var detailTitle = toTitleCase(key);
-		detailsHtml += `
+            var details = project.details;
+            var detailsHtml = "";
+            for (var key in details) {
+                var detailTitle = toTitleCase(key);
+                detailsHtml += `
                           <li>
                                 <div class="icon">
                                     <i class="fab fa-figma"></i>
@@ -237,39 +237,39 @@ ${linkButtonHtml}
                                     <span>${details[key]}</span>
                                 </div>
                             </li>`;
-	    }
+            }
 
-	    var pictureHtml = "";
+            var pictureHtml = "";
 
-	    if (project["image"]) {
-		pictureHtml = `
-		                    <div class="thumb">
+            if (project["image"]) {
+                pictureHtml = `
+                                    <div class="thumb">
                         <img class="wow fadeInUp" src="${project.image}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
                     </div>`;
-	    }
+            }
 
-	    if (project["gallery"]) {
-		for (var j = 0; j < project.gallery.length; j++) {
-		    var galleryPicture = project.gallery[j];
+            if (project["gallery"]) {
+                for (var j = 0; j < project.gallery.length; j++) {
+                    var galleryPicture = project.gallery[j];
 
-		    pictureHtml += `
-		                    <div class="thumb">
+                    pictureHtml += `
+                                    <div class="thumb">
                         <img class="wow fadeInUp" src="${galleryPicture}" alt="Thumb" style="visibility: visible; animation-name: fadeInUp;">
                     </div>`;
-		}
-	    }
+                }
+            }
 
-	    var linkButtonHtml = "";
-	    var buttonLabel = "Check it out";
-	    
-	    if (project.type == "race") buttonLabel = "View Results";
-	    if (project.type == "speech") buttonLabel = "Watch Speech";
-	    if (project.type == "patent") buttonLabel = "View Patent";
-	    if (project["link"]) {
-		linkButtonHtml = `<a style="margin: 20px 20px 20px 20px" class="btn btn-md circle btn-theme smooth-menu" href="${project.link}">${buttonLabel}</a>`;
-	    }
+            var linkButtonHtml = "";
+            var buttonLabel = "Check it out";
+            
+            if (project.type == "race") buttonLabel = "View Results";
+            if (project.type == "speech") buttonLabel = "Watch Speech";
+            if (project.type == "patent") buttonLabel = "View Patent";
+            if (project["link"]) {
+                linkButtonHtml = `<a style="margin: 20px 20px 20px 20px" class="btn btn-md circle btn-theme smooth-menu" href="${project.link}">${buttonLabel}</a>`;
+            }
 
-	    var aboutMeHtml = `
+            var aboutMeHtml = `
 <div id="about" class="about-style-six-area default-padding-top">
         <div class="container">
             <div class="row align-center">
@@ -279,7 +279,7 @@ ${pictureHtml}
                 </div>
                 <div class="col-lg-6 offset-lg-1">
                     <h4 id="sub-heading" class="sub-title">${project.label}</h4>
-		    <h2 class="title">${project.topic}</h2>
+                    <h2 class="title">${project.topic}</h2>
 ${project.desc}
                     <div class="skill-list" style="margin-bottom: 25px">
                         <ul>
@@ -291,9 +291,9 @@ ${detailsHtml}
         </div>
     </div>`;
 
-	    
+            
 
-	    navTabContentHtml += `
+            navTabContentHtml += `
                             <!-- Single Item -->
                             <div class="tab-pane fade show ${active}" id="tab${index}" role="tabpanel" aria-labelledby="nav-id-${index}">
 ${aboutMeHtml}
@@ -302,74 +302,74 @@ ${linkButtonHtml}
 </div>
 </div>
                             <!-- End Single Item -->`;
-	}
+        }
 
-	$("#nav-tab").html(navTabHtml);
-	$("#nav-tabContent-ireifej").html(navTabContentHtml);
-	$("#rotating-text").replaceWith(rotatingTextHtml);
-	scrollToOffset = $('#sub-heading').offset().top;
+        $("#nav-tab").html(navTabHtml);
+        $("#nav-tabContent-ireifej").html(navTabContentHtml);
+        $("#rotating-text").replaceWith(rotatingTextHtml);
+        scrollToOffset = $('#sub-heading').offset().top;
 
-	$('#nav-id-2').trigger('click');
+        $('#nav-id-2').trigger('click');
     }
 
     $("#submit").click(function() {
-	var comments = $("#comments").val();
-	var name = $("#name").val();
-	var phone = $("#phone").val();
-	var email = $("#email").val();
+        var comments = $("#comments").val();
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
 
-	if (!comments) {
-	    $("#message").html("Please tell me about your project.");
-	    return;
-	}
+        if (!comments) {
+            $("#message").html("Please tell me about your project.");
+            return;
+        }
 
-	if (!email) {
-	    $("#message").html("I need your email address.");
-	    return;
-	}
-	
-	// send email
-	var params = {
-	    "userId": 353,
-	    "message": comments + "|" + $("#name").val() + "|" + $("#phone").val(),
-	    "email": email
-	};
-	const url = "https://prayoverus.com:3000/help";
-	var headers = {
-	    'Accept': 'application/json',
-	    'Content-Type': 'application/json'
-	};
-	var options = {
-	    method : "POST",
-	    cache: "no-cache",
-	    headers: headers,
-	    body: JSON.stringify(params)
-	};
+        if (!email) {
+            $("#message").html("I need your email address.");
+            return;
+        }
+        
+        // send email
+        var params = {
+            "userId": 353,
+            "message": comments + "|" + $("#name").val() + "|" + $("#phone").val(),
+            "email": email
+        };
+        const url = "https://prayoverus.com:3000/help";
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+        var options = {
+            method : "POST",
+            cache: "no-cache",
+            headers: headers,
+            body: JSON.stringify(params)
+        };
 
-	fetch(url, options)
-	    .then((response) => {
-		// always executes
-		return response.json();
-	    })
-	    .then(data => {
-		if (data.error == 0) {
-		    $("#comments").val("");
-		    $("#name").val("");
-		    $("#phone").val("");
-		    $("#email").val("");
-		    $("#message").html("Thanks for your message!");
-		}
+        fetch(url, options)
+            .then((response) => {
+                // always executes
+                return response.json();
+            })
+            .then(data => {
+                if (data.error == 0) {
+                    $("#comments").val("");
+                    $("#name").val("");
+                    $("#phone").val("");
+                    $("#email").val("");
+                    $("#message").html("Thanks for your message!");
+                }
 
-		$("#message").slideDown('slow');
-		$('.contact-form img.loader').fadeOut('slow', function() {
-		    $(this).remove()
-		});
-		$('#submit').removeAttr('disabled');
-	    })
-	    .catch(function(error) {
-		console.log("FAILED");
-		console.log(error);
-	    });
+                $("#message").slideDown('slow');
+                $('.contact-form img.loader').fadeOut('slow', function() {
+                    $(this).remove()
+                });
+                $('#submit').removeAttr('disabled');
+            })
+            .catch(function(error) {
+                console.log("FAILED");
+                console.log(error);
+            });
     });
 })
 
