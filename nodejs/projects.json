@@ -56,7 +56,7 @@
             "desc": "<p>Fraud Analysis and Service Order Tracking and Reporting (FASTR) tracks correlations between personnel that sell Internet service and Direct TV products and abnormalities or irregularities in the order and/or billing processes. Works by applying Potential Fraud Group (PFG) rules that describe a potential fraud pattern. It looks for PFG violations in the billing data and generates alerts.</p><p> <b>Leading the effort to redesign legacy FASTR application using JavaScript (AngularJS), HTML, CSS with Java and MongoDB for data access.</b><p>The new design is a fraud case management system that allows the users to look through transaction data to sift out the benign fraud alert from the serious ones. Implemented several query form pages to search through data, implementation a novel configuration-based page generation solution.</p>"
         },
         {
-            "image": "img/gallery/portfolio-07.jpg",
+            "image": "img/gallery/portfolio-07.PNG",
             "label": "Project Frugality",
             "type": "projects",
             "details": {
@@ -78,7 +78,7 @@
             "desc": "<p>Augmenting the Electronic Law Enforcement Activity Tracker (ELEAT) application with surveillance intercept automation. Developed 4 new interfaces in Perl and a web interface for direct node access. Took BVoIP development over from previous developer after his abrupt leave and was still able to deliver top quality code ahead of expected completion deadline.</p><p><b> Undergone several initiates to improve ELEAT code infrastructure:</b></p><p>Effort to re-design dated ELEAT web interface using HTML, JavaScript and jQuery for faster response time, enhanced usability and ease-of-use. jVectorMap API was used to generate an interactive SVG map based on node longitude/latitude information. Markers on map are updated in real-time using Ajax.</p>"
         },
         {
-            "image": "img/gallery/portfolio-08.jpg",
+            "image": "img/gallery/portfolio-08.PNG",
             "label": "Parent Locator Service (PLS)",
             "type": "projects",
             "details": {
