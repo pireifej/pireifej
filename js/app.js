@@ -25,7 +25,6 @@ $( document ).ready(function() {
     var hackathonLoaded = false;
 
     $(window).scroll(function() {
-        console.log("I am scrolling");
         $("#projects-single-item").trigger("mouseover");
         $("#projects-overlay-content").trigger("mouseover");
         $("#projects-banner").trigger("mouseover");
@@ -327,7 +326,6 @@ modalBody += `</ul>
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                       <i class="bg-fixed">
-                        <img src="img/close-white-big.svg" alt="Icon" style="margin-top:-10px"></img>
                       </i>
                        </button>
                         </div>
