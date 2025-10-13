@@ -502,14 +502,14 @@
                             <div class="fun-factor-default">
                                 <div class="fun-fact">
                                     <div class="counter">
-                                        <div class="timer" data-to="12" data-speed="2000">12</div>
+                                        <div class="timer" id="workshops-counter" data-to="12" data-speed="2000">12</div>
                                         <div class="operator"></div>
                                     </div>
-                                    <span class="medium">Completed Projects</span>
+                                    <span class="medium">Completed Workshops</span>
                                 </div>
                                 <div class="fun-fact">
                                     <div class="counter">
-                                        <div class="timer" data-to="25" data-speed="2000">25</div>
+                                        <div class="timer" id="speeches-counter" data-to="25" data-speed="2000">25</div>
                                         <div class="operator"></div>
                                     </div>
                                     <span class="medium">Public Speeches</span>
@@ -1727,6 +1727,34 @@ I am a Software Engineer and have been building sophisticated web applications f
     <script src="js/app.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/skills.js"></script>
+
+    <script>
+        // Update dynamic counters on page load
+        $(document).ready(function() {
+            // Count workshops from "Already Completed" list
+            const workshopsCount = $('.pricing-style-one:last-child .conntent ul li').length;
+            const workshopsCounter = $('#workshops-counter');
+            workshopsCounter.attr('data-to', workshopsCount);
+            workshopsCounter.text(workshopsCount);
+            
+            // Fetch and count speeches from API
+            $.ajax({
+                url: 'https://shouldcallpaul.replit.app/resume/speech',
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+                    const speechesCount = data.records ? data.records.length : 0;
+                    const speechesCounter = $('#speeches-counter');
+                    speechesCounter.attr('data-to', speechesCount);
+                    speechesCounter.text(speechesCount);
+                },
+                error: function() {
+                    console.log('Could not load speeches count');
+                }
+            });
+        });
+    </script>
 
     <div class="modal"><!-- Place at bottom of page --></div>
 </body>
