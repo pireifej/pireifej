@@ -1732,7 +1732,9 @@ I am a Software Engineer and have been building sophisticated web applications f
         // Update dynamic counters on page load
         $(document).ready(function() {
             // Count workshops from "Already Completed" list
-            const workshopsCount = $('.pricing-style-one:last-child .conntent ul li').length;
+            const workshopsList = $('#workshops .pricing-style-one').eq(1).find('ul li');
+            const workshopsCount = workshopsList.length;
+            console.log('Workshops count:', workshopsCount);
             const workshopsCounter = $('#workshops-counter');
             workshopsCounter.attr('data-to', workshopsCount);
             workshopsCounter.text(workshopsCount);
@@ -1744,13 +1746,15 @@ I am a Software Engineer and have been building sophisticated web applications f
                 dataType: 'json',
                 cache: false,
                 success: function(data) {
+                    console.log('Speeches API response:', data);
                     const speechesCount = data.records ? data.records.length : 0;
+                    console.log('Speeches count:', speechesCount);
                     const speechesCounter = $('#speeches-counter');
                     speechesCounter.attr('data-to', speechesCount);
                     speechesCounter.text(speechesCount);
                 },
-                error: function() {
-                    console.log('Could not load speeches count');
+                error: function(xhr, status, error) {
+                    console.log('Could not load speeches count:', error);
                 }
             });
         });
