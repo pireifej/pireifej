@@ -63,8 +63,12 @@
     <!-- Header 
     ============================================= -->
     <header id="home">
-        <nav class="navbar mobile-sidenav mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+        <!-- Start Navigation -->
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+
             <div class="container d-flex justify-content-between align-items-center">            
+
+                <!-- Start Header Navigation -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
@@ -73,28 +77,114 @@
                         <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
                     </a>
                 </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
+
                     <img src="img-new/logo/paulTryAgain.png" alt="Logo">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                       <i class="bg-fixed">
                         <img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></img>
                       </i>
                     </button>
+                    
                     <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#services">services</a></li>
-                        <li><a href="index.html#portfolio">portfolio</a></li>
-                        <li><a href="index.html#about">about</a></li>
-                        <li><a href="index.html#workshops">workshops</a></li>
-                        <li><a href="index.html#blog">blog</a></li>
-                        <li><a href="index.html#contact">contact</a></li>
+                        <li>
+                            <a class="smooth-menu" href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="index.html#services">services</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="index.html#portfolio">portfolio</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="index.html#about">about</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="index.html#workshops">workshops</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="index.html#blog">blog</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="index.html#contact">contact</a>
+                        </li>
                     </ul>
-                </div>
+                </div><!-- /.navbar-collapse -->
+
+                <!-- Main Nav -->
             </div>   
+            <!-- Overlay screen for menu -->
             <div class="overlay-screen"></div>
+            <!-- End Overlay screen for menu -->
         </nav>
+        <!-- End Navigation -->
     </header>
     <!-- End Header -->
+
+    <!-- Start Header Fixed 
+         ============================================= -->
+    <header class="header-fixed">
+        <div class="f-flex">
+            <div class="logo">
+                <a href="index.html"><img src="img-new/logo/newP4.png" alt="Logo"></a>
+            </div>
+            <div class="menu">
+                <ul class="nav">
+                    <li>
+                      <a class="smooth-menu" href="index.html">
+                        <i class="fas fa-home"></i>
+                        <div class="menu-name">Home</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="index.html?#services">
+                            <i class="fas fa-cog"></i>
+                            <div class="menu-name">Services</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="index.html#portfolio">
+                            <i class="fas fa-briefcase"></i>
+                            <div class="menu-name">Portfolio</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="index.html#about">
+                            <i class="fas fa-user"></i>
+                            <div class="menu-name">About</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="index.html#resume">
+                            <i class="fas fa-file-alt"></i>
+                            <div class="menu-name">Resume</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="index.html#workshops">
+                            <i class="fas fa-certificate"></i>
+                            <div class="menu-name">Workshops</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="smooth-menu" href="index.html#contact">
+                            <i class="fas fa-comments"></i>
+                            <div class="menu-name">Contact</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="video">
+              <a href="https://www.youtube.com/watch?v=u1nBU289WLw" class="popup-youtube video-play-button theme">
+                  <i style="margin-top:-30px" class="bg-fixed"><img src="img/youtube-svgrepo-com.svg" alt="Icon"></img></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- End Header Fixed -->
 
     <!-- Hero Section -->
     <div class="banner-style-six-area bg-gradient text-light" style="padding-top: 180px; padding-bottom: 100px;">
