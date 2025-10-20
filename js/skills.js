@@ -7,45 +7,40 @@ $( document ).ready(function() {
                                         <ul class="skill-table">`;
 
     var skillItems = [
-	{
-	    icon: "fa-laravel",
-	    label: "AngularJS",
-	    percent: "90"
-	},
-	{
-	    icon: "fa-react",
-	    label: "ReactJS",
-	    percent: "75"
-	},
-	{
-	    icon: "fa-html5",
-	    label: "jQuery",
-	    percent: "95"
-	},
-	{
-	    icon: "fa-laravel",
-	    label: "Express.js",
-	    percent: "80"
-	},
-	{
-	    icon: "fa-react",
-	    label: "JavaScript",
-	    percent: "95"
-	},
-	{
-	    icon: "fa-html5",
-	    label: "MongoDB",
-	    percent: "90"
-	},
-	{
-	    icon: "fa-laravel",
-	    label: "SQL",
-	    percent: "90"
-	}
+        {
+            icon: "fa-robot",
+            label: "Artificial Intelligence",
+            percent: "90"
+        },
+        {
+            icon: "fa-hand-holding-heart",
+            label: "Week of Respect",
+            percent: "90"
+        },
+        {
+            icon: "fa-microphone",
+            label: "Public Speaking & Communication",
+            percent: "95"
+        },
+        {
+            icon: "fa-book-open",
+            label: "Story Telling",
+            percent: "85"
+        },
+        {
+            icon: "fa-theater-masks",
+            label: "Improv",
+            percent: "85"
+        },
+        {
+            icon: "fa-users",
+            label: "Toastmasters Guest Speaker",
+            percent: "90"
+        }
     ];
 
     for (var i = 0; i < skillItems.length; i++) {
-	skillsHtml += `
+        skillsHtml += `
                                             <li>
                                                 <div class="row align-center">
                                                     <div class="col-lg-2">
