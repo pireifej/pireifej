@@ -1,7 +1,7 @@
 # Paul Ireifej Portfolio Website
 
 ## Overview
-This is a static portfolio website showcasing Paul Ireifej's work as a developer, public speaker, runner, comedian, and father. The site includes sections for services, portfolio projects, about information, workshops, blog, and contact details.
+This is a portfolio website showcasing Paul Ireifej's work as a public speaker, workshop facilitator, and founder of Young Speakers Academy in Monmouth County, NJ. The site includes sections for services, portfolio projects, about information, workshops, blog, and contact details.
 
 ## Project Architecture
 - **Frontend**: Static HTML/CSS/JavaScript portfolio website
@@ -9,11 +9,22 @@ This is a static portfolio website showcasing Paul Ireifej's work as a developer
 - **Template System**: Uses placeholders {{preloader}} and {{header}} for component inclusion
 - **Static Assets**: Images, CSS, JavaScript files served directly
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
+- **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (September 21, 2025)
+## Recent Changes (November 30, 2025)
+### Google SEO Optimization
+- Added comprehensive meta tags targeting "public speaker Monmouth County NJ" searches
+- Implemented Schema.org structured data (LocalBusiness, Person, Service, FAQ schemas)
+- Added Open Graph and Twitter Card tags for social sharing
+- Created XML sitemap (sitemap.xml) for Google indexing
+- Added robots.txt for search engine crawling
+- Added geographic meta tags (geo.region, geo.placename, geo.position)
+- Updated footer with location keywords
+- Optimized page titles with local keywords
+
+### Previous Changes
 - Created Express.js server (server.js) to serve static files on port 5000
 - Added template replacement functionality for header and preloader components
-- Fixed missing main-pic-banner.png image reference
 - Configured Replit workflow to run the portfolio server
 - Set up deployment configuration for autoscale deployment
 
