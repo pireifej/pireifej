@@ -1924,6 +1924,20 @@ I am a Software Engineer and have been building sophisticated web applications f
     <script src="js/skills.js"></script>
 
     <script>
+        // Handle hash navigation on page load
+        $(document).ready(function() {
+            if (window.location.hash) {
+                var target = $(window.location.hash);
+                if (target.length) {
+                    setTimeout(function() {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 80
+                        }, 100);
+                    }, 100);
+                }
+            }
+        });
+        
         // Update dynamic counters on page load
         $(document).ready(function() {
             // Count workshops from "Already Completed" list
