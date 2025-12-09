@@ -104,11 +104,12 @@ $( document ).ready(function() {
 
     // Current active filter for races (single-select)
     var activeRaceFilter = null;
+    
+    // Store race data for modal population
+    var raceDataStore = [];
 
     // Filter races function (single-select)
     window.filterRaces = function(category) {
-        console.log("Filtering by category:", category);
-        
         // Update active filter (single-select)
         activeRaceFilter = category;
         $('.race-filter-btn').removeClass('active');
@@ -124,7 +125,6 @@ $( document ).ready(function() {
             // Apply single filter
             $('#nav-tab button').each(function() {
                 var cat = $(this).attr('data-category');
-                console.log("Button:", $(this).text().trim().substring(0,30), "Category:", cat);
                 if (cat === category) {
                     $(this).show();
                 } else {
@@ -133,27 +133,87 @@ $( document ).ready(function() {
             });
         }
         
-        // Click first visible button
-        var firstVisible = $('#nav-tab button:visible:first');
-        if (firstVisible.length) {
-            $('#nav-tabContent-ireifej').show();
-            // Remove active class to force tab activation
-            $('#nav-tab button').removeClass('active');
-            $('#nav-tabContent-ireifej .tab-pane').removeClass('show active');
-            firstVisible.click();
-            
-            // Scroll to top of filter panel
-            var filterPanel = $('#race-filter-panel');
-            if (filterPanel.length && filterPanel.offset()) {
-                $('html, body').animate({
-                    scrollTop: filterPanel.offset().top - 20
-                }, 300);
-            }
-        } else {
-            // No races match - hide content and nav-tab
-            $('#nav-tabContent-ireifej').hide();
+        // Scroll to top of filter panel
+        var filterPanel = $('#race-filter-panel');
+        if (filterPanel.length && filterPanel.offset()) {
+            $('html, body').animate({
+                scrollTop: filterPanel.offset().top - 20
+            }, 300);
+        }
+        
+        // Hide nav-tab if no races match
+        if ($('#nav-tab button:visible').length === 0) {
             $('#nav-tab').hide();
         }
+    }
+    
+    // Open race modal with specific race data
+    window.openRaceModal = function(raceIndex) {
+        var race = raceDataStore[raceIndex];
+        if (!race) return;
+        
+        // Build details HTML
+        var detailsHtml = "";
+        if (race.details) {
+            for (var key in race.details) {
+                var detailTitle = toTitleCase(key);
+                detailsHtml += `
+                    <li>
+                        <div class="icon">
+                            <i class="fab fa-figma"></i>
+                        </div>
+                        <div class="content">
+                            <h4>${detailTitle}</h4>
+                            <span>${race.details[key]}</span>
+                        </div>
+                    </li>`;
+            }
+        }
+        
+        // Build pictures HTML
+        var pictureHtml = "";
+        if (race.image) {
+            pictureHtml = `<div class="thumb"><img src="${race.image}" alt="Race Image" style="max-width: 100%; border-radius: 10px;"></div>`;
+        }
+        if (race.gallery && race.gallery.length > 0) {
+            for (var j = 0; j < race.gallery.length; j++) {
+                pictureHtml += `<div class="thumb" style="margin-top: 15px;"><img src="${race.gallery[j]}" alt="Gallery" style="max-width: 100%; border-radius: 10px;"></div>`;
+            }
+        }
+        
+        // Build link button
+        var linkButtonHtml = "";
+        if (race.link) {
+            linkButtonHtml = `<a class="btn btn-md circle btn-light" href="${race.link}" target="_blank" style="margin-top: 20px;">View Results</a>`;
+        }
+        
+        // Build modal content using same template structure
+        var modalContent = `
+            <div class="container">
+                <div class="row align-center justify-content-center">
+                    <div class="col-lg-5 col-md-6" style="margin-bottom: 30px;">
+                        ${pictureHtml}
+                    </div>
+                    <div class="col-lg-6 col-md-6 offset-lg-1">
+                        <h4 class="sub-title" style="color: rgba(255,255,255,0.8);">Race Details</h4>
+                        <h2 class="title" style="color: #fff; font-size: 2rem;">${race.label}</h2>
+                        <div style="color: rgba(255,255,255,0.9); margin-bottom: 20px;">
+                            ${race.desc || ''}
+                        </div>
+                        <div class="skill-list" style="margin-bottom: 25px;">
+                            <ul style="color: #fff;">
+                                ${detailsHtml}
+                            </ul>
+                        </div>
+                        ${linkButtonHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        $('#raceModalContent').html(modalContent);
+        var raceModal = new bootstrap.Modal(document.getElementById('raceModal'));
+        raceModal.show();
     }
 
     function postProcessDataProjects(data) {
@@ -207,6 +267,11 @@ $( document ).ready(function() {
             $('#nav-tab').before(filterHtml);
         }
 
+        // Store race data for modal if races module
+        if (isRacesModule) {
+            raceDataStore = data.records;
+        }
+
         for (var i = 0; i < data.records.length; i++) {
             var project = data.records[i];
             var projectLabelRotatingText = (project.label.length > 15) ? project.label.substring(0,15) + "..." : project.label;
@@ -233,10 +298,18 @@ $( document ).ready(function() {
             }
             var dataCategoryAttr = raceCategory ? `data-category="${raceCategory}"` : '';
 
-            navTabHtml += `
-                            <button ${navLinkActive} id="nav-id-${index}" ${dataCategoryAttr} data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)" ${isRacesModule ? 'style="display:none;"' : ''}>
+            // For races, use modal; for other modules, use tabs
+            if (isRacesModule) {
+                navTabHtml += `
+                            <button class="nav-link" id="nav-id-${index}" ${dataCategoryAttr} type="button" onclick="openRaceModal(${i})" style="display:none;">
                                 ${project.label} <strong>${indexLabel}</strong>
                             </button>`;
+            } else {
+                navTabHtml += `
+                            <button ${navLinkActive} id="nav-id-${index}" ${dataCategoryAttr} data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)">
+                                ${project.label} <strong>${indexLabel}</strong>
+                            </button>`;
+            }
 
             var details = project.details;
             var detailsHtml = "";
