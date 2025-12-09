@@ -189,9 +189,9 @@ $( document ).ready(function() {
         var modalContent = `
             <div class="container">
                 <div class="row">
-                    <div class="col-12 d-md-none" style="margin-bottom: 20px;">
+                    <div class="col-12 d-md-none" style="margin-bottom: 20px; padding-top: 60px;">
                         <!-- Mobile Close Button (visible on small screens only) -->
-                        <a class="btn btn-md circle race-modal-close-btn" style="margin-top: 20px; width: 100%; text-align: center; display: block; background: #fff; color: #333; cursor: pointer;">Close</a>
+                        <a class="btn btn-md circle race-modal-close-btn" style="width: 100%; text-align: center; display: block; background: #fff; color: #333; cursor: pointer;">Close</a>
                     </div>
                     <div class="col-12 d-none d-md-block" style="margin-bottom: 20px;">
                         <!-- Desktop X Button (visible on medium screens and up) -->
