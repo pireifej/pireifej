@@ -6,7 +6,6 @@ $( document ).ready(function() {
     const module = urlParams.get('module')
     const section = urlParams.get('section')
 
-    console.log(module, section);
 
     // load banner image
     var bannerImage = "img-new/banner/2.jpg";
@@ -60,7 +59,6 @@ $( document ).ready(function() {
 
         event.preventDefault(); // Prevent the default behavior
 
-        console.log($('#sub-heading').offset().top);
         // Smooth scroll to #sub-heading
         $('html, body').animate({
             scrollTop: scrollToOffset
@@ -217,8 +215,6 @@ $( document ).ready(function() {
     }
 
     function postProcessDataProjects(data) {
-        console.log("IREIFEJ");
-        console.log(data);
         var navTabHtml = "";
         var navTabContentHtml = "";
         var rotatingTextHtml = "";
@@ -275,7 +271,6 @@ $( document ).ready(function() {
         for (var i = 0; i < data.records.length; i++) {
             var project = data.records[i];
             var projectLabelRotatingText = (project.label.length > 15) ? project.label.substring(0,15) + "..." : project.label;
-            console.log(project);
 
             if (i > 0) rotatingTextClass = "is-hidden";
             rotatingTextHtml += `<b class="${rotatingTextClass}">${projectLabelRotatingText}</b>`;
