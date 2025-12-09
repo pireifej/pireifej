@@ -77,25 +77,26 @@ $( document ).ready(function() {
     }
 
     // Race distance categorization function - based ONLY on distance property
+    // IMPORTANT: Check longer distances FIRST to avoid substring matches (13.1 contains 3.1)
     function getRaceCategory(distance) {
         if (!distance) return 'other';
         var dist = distance.toLowerCase().trim();
         
-        // 5K: 3.1 miles
-        if (dist.includes('3.1')) {
-            return '5k';
+        // Marathon: 26.2 miles (check BEFORE 6.2)
+        if (dist.includes('26.2')) {
+            return 'marathon';
+        }
+        // Half Marathon: 13.1 miles (check BEFORE 3.1)
+        if (dist.includes('13.1')) {
+            return 'half';
         }
         // 10K: 6.2 miles
         if (dist.includes('6.2')) {
             return '10k';
         }
-        // Half Marathon: 13.1 miles
-        if (dist.includes('13.1')) {
-            return 'half';
-        }
-        // Marathon: 26.2 miles
-        if (dist.includes('26.2')) {
-            return 'marathon';
+        // 5K: 3.1 miles
+        if (dist.includes('3.1')) {
+            return '5k';
         }
         // Everything else (5 miles, 1 mile, 4 miles, etc.)
         return 'other';
