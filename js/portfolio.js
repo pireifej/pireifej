@@ -188,6 +188,11 @@ $( document ).ready(function() {
         // Build modal content using same template structure
         var modalContent = `
             <div class="container">
+                <div class="row">
+                    <div class="col-12" style="text-align: right; margin-bottom: 15px;">
+                        <button type="button" class="race-modal-close-btn btn btn-light" aria-label="Close" style="width: 45px; height: 45px; border-radius: 50%; font-size: 22px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: inline-flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
+                    </div>
+                </div>
                 <div class="row align-center justify-content-center">
                     <div class="col-lg-5 col-md-6" style="margin-bottom: 30px;">
                         ${pictureHtml}
@@ -212,6 +217,11 @@ $( document ).ready(function() {
         $('#raceModalContent').html(modalContent);
         var raceModal = new bootstrap.Modal(document.getElementById('raceModal'));
         raceModal.show();
+        
+        // Add click handler for dynamically added close button
+        $('.race-modal-close-btn').on('click', function() {
+            raceModal.hide();
+        });
     }
 
     function postProcessDataProjects(data) {
