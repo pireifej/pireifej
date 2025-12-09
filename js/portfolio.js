@@ -179,10 +179,10 @@ $( document ).ready(function() {
             }
         }
         
-        // Build link button
+        // Build link button - using original purple theme color
         var linkButtonHtml = "";
         if (race.link) {
-            linkButtonHtml = `<a class="btn btn-md circle btn-light" href="${race.link}" target="_blank" style="margin-top: 20px;">View Results</a>`;
+            linkButtonHtml = `<a class="btn btn-md circle btn-theme" href="${race.link}" target="_blank" style="margin-top: 20px;">View Results</a>`;
         }
         
         // Build modal content using same template structure
@@ -195,7 +195,7 @@ $( document ).ready(function() {
                     <div class="col-lg-6 col-md-6 offset-lg-1">
                         <h4 class="sub-title" style="color: rgba(255,255,255,0.8);">Race Details</h4>
                         <h2 class="title" style="color: #fff; font-size: 2rem;">${race.label}</h2>
-                        <div style="color: rgba(255,255,255,0.9); margin-bottom: 20px;">
+                        <div style="color: #fff; margin-bottom: 20px; font-size: 16px; line-height: 1.6;">
                             ${race.desc || ''}
                         </div>
                         <div class="skill-list" style="margin-bottom: 25px;">
