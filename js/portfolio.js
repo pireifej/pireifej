@@ -106,6 +106,8 @@ $( document ).ready(function() {
 
     // Filter races function (single-select)
     window.filterRaces = function(category) {
+        console.log("Filtering by category:", category);
+        
         // Update active filter (single-select)
         activeRaceFilter = category;
         $('.race-filter-btn').removeClass('active');
@@ -120,7 +122,8 @@ $( document ).ready(function() {
         } else {
             // Apply single filter
             $('#nav-tab button').each(function() {
-                var cat = $(this).data('category');
+                var cat = $(this).attr('data-category');
+                console.log("Button:", $(this).text().trim().substring(0,30), "Category:", cat);
                 if (cat === category) {
                     $(this).show();
                 } else {
