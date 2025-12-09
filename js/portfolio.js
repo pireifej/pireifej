@@ -53,6 +53,12 @@ $( document ).ready(function() {
 
 
     window.scrollToDiv = function(event) {
+        // Skip scroll on programmatic clicks (handled by shown.bs.tab)
+        if (pendingAutoScroll) {
+            // Don't preventDefault - let Bootstrap activate the tab
+            return;
+        }
+
         event.preventDefault(); // Prevent the default behavior
 
         console.log($('#sub-heading').offset().top);
@@ -71,6 +77,104 @@ $( document ).ready(function() {
         );
     }
 
+    // Race distance categorization function
+    function getRaceCategory(distance, label) {
+        if (!distance) return 'other';
+        var dist = distance.toLowerCase();
+        var name = label.toLowerCase();
+        
+        // 5K: 3.1 miles or contains "5k"
+        if (dist.includes('3.1') || name.includes('5k') || dist.includes('5k')) {
+            return '5k';
+        }
+        // 10K: 6.2 miles or contains "10k"
+        if (dist.includes('6.2') || name.includes('10k') || dist.includes('10k')) {
+            return '10k';
+        }
+        // Half Marathon: 13.1 miles or contains "half"
+        if (dist.includes('13.1') || name.includes('half') || dist.includes('half')) {
+            return 'half';
+        }
+        // Marathon: 26.2 miles (full marathon only)
+        if (dist.includes('26.2') || (name.includes('marathon') && !name.includes('half'))) {
+            return 'marathon';
+        }
+        // Everything else
+        return 'other';
+    }
+
+    // Active filters for races
+    var activeRaceFilters = [];
+    var pendingAutoScroll = false;
+
+    // Filter races function
+    window.filterRaces = function(category) {
+        if (category === 'all') {
+            // Show all races
+            activeRaceFilters = [];
+            $('.race-filter-btn').removeClass('active');
+            $('#filter-all').addClass('active');
+            $('#nav-tab button').show();
+            $('#nav-tabContent-ireifej').show();
+            $('#race-filter-intro p').hide();
+            // Click first visible button - scroll will be triggered by shown.bs.tab
+            pendingAutoScroll = true;
+            // Remove active class to force tab activation event
+            $('#nav-tab button').removeClass('active');
+            $('#nav-tabContent-ireifej .tab-pane').removeClass('show active');
+            $('#nav-tab button:first').click();
+        } else {
+            // Toggle filter
+            $('#filter-all').removeClass('active');
+            var btn = $('#filter-' + category);
+            
+            if (activeRaceFilters.includes(category)) {
+                // Remove filter
+                activeRaceFilters = activeRaceFilters.filter(f => f !== category);
+                btn.removeClass('active');
+            } else {
+                // Add filter
+                activeRaceFilters.push(category);
+                btn.addClass('active');
+            }
+            
+            // If no filters active, show filter intro
+            if (activeRaceFilters.length === 0) {
+                $('#nav-tab button').hide();
+                $('#nav-tabContent-ireifej').hide();
+                $('#race-filter-intro').show();
+                $('#race-filter-intro p').show();
+                return;
+            }
+            
+            // Apply filters
+            $('#nav-tab button').each(function() {
+                var cat = $(this).data('category');
+                if (activeRaceFilters.includes(cat)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+            
+            // Click first visible button
+            var firstVisible = $('#nav-tab button:visible:first');
+            if (firstVisible.length) {
+                $('#nav-tabContent-ireifej').show();
+                $('#race-filter-intro p').hide();
+                // Click tab - scroll will be triggered by shown.bs.tab
+                pendingAutoScroll = true;
+                // Remove active class to force tab activation event
+                $('#nav-tab button').removeClass('active');
+                $('#nav-tabContent-ireifej .tab-pane').removeClass('show active');
+                firstVisible.click();
+            } else {
+                // No races match - hide content
+                $('#nav-tabContent-ireifej').hide();
+            }
+        }
+    }
+
     function postProcessDataProjects(data) {
         console.log("IREIFEJ");
         console.log(data);
@@ -78,6 +182,49 @@ $( document ).ready(function() {
         var navTabContentHtml = "";
         var rotatingTextHtml = "";
         var rotatingTextClass = "is-visible";
+        var isRacesModule = module === 'races';
+
+        // Add race filter UI if races module
+        if (isRacesModule) {
+            var filterHtml = `
+                <div id="race-filter-intro" class="text-center" style="margin-bottom: 30px;">
+                    <p style="font-size: 1.1rem; color: #666; margin-bottom: 25px;">
+                        Browse my running journey by selecting one or more distance categories below.
+                    </p>
+                    <div id="race-filters" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                        <button id="filter-5k" class="race-filter-btn btn btn-md circle" onclick="filterRaces('5k')" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; padding: 12px 25px;">
+                            <i class="fas fa-running" style="margin-right: 8px;"></i>5K
+                        </button>
+                        <button id="filter-10k" class="race-filter-btn btn btn-md circle" onclick="filterRaces('10k')" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; padding: 12px 25px;">
+                            <i class="fas fa-running" style="margin-right: 8px;"></i>10K
+                        </button>
+                        <button id="filter-half" class="race-filter-btn btn btn-md circle" onclick="filterRaces('half')" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; padding: 12px 25px;">
+                            <i class="fas fa-medal" style="margin-right: 8px;"></i>Half Marathon
+                        </button>
+                        <button id="filter-marathon" class="race-filter-btn btn btn-md circle" onclick="filterRaces('marathon')" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; padding: 12px 25px;">
+                            <i class="fas fa-trophy" style="margin-right: 8px;"></i>Marathon
+                        </button>
+                        <button id="filter-other" class="race-filter-btn btn btn-md circle" onclick="filterRaces('other')" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; padding: 12px 25px;">
+                            <i class="fas fa-road" style="margin-right: 8px;"></i>Other
+                        </button>
+                        <button id="filter-all" class="race-filter-btn btn btn-md circle" onclick="filterRaces('all')" style="background: #333; color: white; border: none; padding: 12px 25px;">
+                            <i class="fas fa-list" style="margin-right: 8px;"></i>Show All
+                        </button>
+                    </div>
+                </div>
+                <style>
+                    .race-filter-btn.active {
+                        box-shadow: 0 0 0 3px #fff, 0 0 0 5px #6c5ce7 !important;
+                        transform: scale(1.05);
+                    }
+                    .race-filter-btn:hover {
+                        opacity: 0.9;
+                        transform: scale(1.02);
+                    }
+                </style>
+            `;
+            $('#nav-tab').before(filterHtml);
+        }
 
         for (var i = 0; i < data.records.length; i++) {
             var project = data.records[i];
@@ -90,15 +237,23 @@ $( document ).ready(function() {
             var navLinkActive = `class="nav-link"`;
             var active = "";
             var index = i+1;
-            if (i == 0) {
+            if (i == 0 && !isRacesModule) {
                 navLinkActive = `class="nav-link active"`;
                 active = "active";
             }
 
             var indexLabel = (index < 10) ? "0" + index : index;
+            
+            // Get race category for filtering - always categorize for races module
+            var raceCategory = '';
+            if (isRacesModule) {
+                var distance = (project.details && project.details.distance) ? project.details.distance : '';
+                raceCategory = getRaceCategory(distance, project.label);
+            }
+            var dataCategoryAttr = raceCategory ? `data-category="${raceCategory}"` : '';
 
             navTabHtml += `
-                            <button ${navLinkActive} id="nav-id-${index}" data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)">
+                            <button ${navLinkActive} id="nav-id-${index}" ${dataCategoryAttr} data-bs-toggle="tab" data-bs-target="#tab${index}" type="button" role="tab" aria-controls="tab${index}" aria-selected="true" onclick="scrollToDiv(event)" ${isRacesModule ? 'style="display:none;"' : ''}>
                                 ${project.label} <strong>${indexLabel}</strong>
                             </button>`;
 
@@ -188,7 +343,31 @@ ${linkButtonHtml}
         $("#nav-tab").html(navTabHtml);
         $("#nav-tabContent-ireifej").html(navTabContentHtml);
         $("#rotating-text").replaceWith(rotatingTextHtml);
-        scrollToOffset = $('#sub-heading').offset().top;
+        
+        // Hide tab content initially for races module
+        if (isRacesModule) {
+            $("#nav-tabContent-ireifej").hide();
+        } else {
+            scrollToOffset = $('#sub-heading').offset().top;
+        }
+        
+        // Update scrollToOffset when tabs are shown (for races and other modules)
+        $('button[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var targetTabId = $(e.target).attr('data-bs-target');
+            var targetPane = $(targetTabId);
+            var subHeading = targetPane.find('#sub-heading');
+            if (subHeading.length && subHeading.offset()) {
+                scrollToOffset = subHeading.offset().top;
+                
+                // If this was a programmatic click, perform auto-scroll now
+                if (pendingAutoScroll) {
+                    pendingAutoScroll = false;
+                    $('html, body').animate({
+                        scrollTop: scrollToOffset
+                    }, 500);
+                }
+            }
+        });
     }
 
     function postProcessDataYLP(data) {
