@@ -111,6 +111,9 @@ $( document ).ready(function() {
         $('.race-filter-btn').removeClass('active');
         $('#filter-' + category).addClass('active');
         
+        // Show the nav-tab container
+        $('#nav-tab').show();
+        
         if (category === 'all') {
             // Show all races
             $('#nav-tab button').show();
@@ -126,7 +129,7 @@ $( document ).ready(function() {
             });
         }
         
-        // Click first visible button (no auto-scroll)
+        // Click first visible button
         var firstVisible = $('#nav-tab button:visible:first');
         if (firstVisible.length) {
             $('#nav-tabContent-ireifej').show();
@@ -134,9 +137,18 @@ $( document ).ready(function() {
             $('#nav-tab button').removeClass('active');
             $('#nav-tabContent-ireifej .tab-pane').removeClass('show active');
             firstVisible.click();
+            
+            // Scroll to top of filter panel
+            var filterPanel = $('#race-filter-panel');
+            if (filterPanel.length && filterPanel.offset()) {
+                $('html, body').animate({
+                    scrollTop: filterPanel.offset().top - 20
+                }, 300);
+            }
         } else {
-            // No races match - hide content
+            // No races match - hide content and nav-tab
             $('#nav-tabContent-ireifej').hide();
+            $('#nav-tab').hide();
         }
     }
 
@@ -309,9 +321,10 @@ ${linkButtonHtml}
         $("#nav-tabContent-ireifej").html(navTabContentHtml);
         $("#rotating-text").replaceWith(rotatingTextHtml);
         
-        // Hide tab content initially for races module
+        // Hide tab content and nav-tab initially for races module
         if (isRacesModule) {
             $("#nav-tabContent-ireifej").hide();
+            $("#nav-tab").hide();
         } else {
             scrollToOffset = $('#sub-heading').offset().top;
         }
