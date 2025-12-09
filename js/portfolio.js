@@ -189,8 +189,12 @@ $( document ).ready(function() {
         var modalContent = `
             <div class="container">
                 <div class="row">
-                    <div class="col-12" style="text-align: center; margin-bottom: 20px;">
-                        <button type="button" class="race-modal-close-btn btn btn-md circle btn-theme" style="width: 100%; text-align: center; display: block;">Close</button>
+                    <div class="col-12" style="margin-bottom: 20px;">
+                        <!-- Mobile Close Button (visible on small screens only) -->
+                        <button type="button" class="race-modal-close-btn btn btn-md circle btn-theme d-md-none" style="width: 100%; text-align: center; display: block;">Close</button>
+                        <!-- Desktop X Button (visible on medium screens and up) -->
+                        <button type="button" class="race-modal-close-btn btn btn-light d-none d-md-inline-flex" style="float: right; width: 45px; height: 45px; border-radius: 50%; font-size: 22px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3); align-items: center; justify-content: center; line-height: 1;">✕</button>
+                        <div style="clear: both;"></div>
                     </div>
                 </div>
                 <div class="row align-center justify-content-center">
@@ -407,6 +411,8 @@ ${linkButtonHtml}
         if (isRacesModule) {
             $("#nav-tabContent-ireifej").hide();
             $("#nav-tab").hide();
+            // Show all races by default
+            filterRaces('all');
         } else {
             scrollToOffset = $('#sub-heading').offset().top;
         }
