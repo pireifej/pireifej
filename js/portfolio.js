@@ -189,8 +189,8 @@ $( document ).ready(function() {
         var modalContent = `
             <div class="container">
                 <div class="row">
-                    <div class="col-12" style="text-align: right; margin-bottom: 15px;">
-                        <button type="button" class="race-modal-close-btn btn btn-light" aria-label="Close" style="width: 45px; height: 45px; border-radius: 50%; font-size: 22px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: inline-flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
+                    <div class="col-12" style="text-align: center; margin-bottom: 20px;">
+                        <button type="button" class="race-modal-close-btn btn btn-md circle btn-theme" style="width: 100%; text-align: center; display: block;">Close</button>
                     </div>
                 </div>
                 <div class="row align-center justify-content-center">
