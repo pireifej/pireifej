@@ -3,7 +3,13 @@ $( document ).ready(function() {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const module = urlParams.get('module')
+    
+    // Check if on clean URL workshops.html, otherwise use query parameter
+    let module = urlParams.get('module');
+    if (window.location.pathname === '/workshops.html' || window.location.pathname.endsWith('/workshops.html')) {
+        module = 'workshops';
+    }
+    
     const section = urlParams.get('section')
 
 

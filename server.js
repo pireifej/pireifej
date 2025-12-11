@@ -55,6 +55,18 @@ app.get('/portfolio.html', (req, res) => {
     }
 });
 
+// Clean URL route for workshops - serves portfolio.html with workshops module
+app.get('/workshops.html', (req, res) => {
+    try {
+        let content = fs.readFileSync('portfolio.html', 'utf8');
+        content = replaceTemplates(content);
+        res.send(content);
+    } catch (error) {
+        console.error('Error serving workshops.html:', error);
+        res.status(500).send('Server error');
+    }
+});
+
 // Catch-all route for other HTML files
 app.get('/:filename.html', (req, res) => {
     const filename = req.params.filename + '.html';
