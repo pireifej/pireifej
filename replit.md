@@ -11,7 +11,18 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (November 30, 2025)
+## Recent Changes (December 13, 2025)
+### Portfolio Restructure - Separate Pages
+- Created 3 dedicated portfolio pages instead of inline homepage content:
+  - **tech.html** - Technical portfolio (Work Projects, Conferences, Hackathons, Patents) with filters
+  - **speech.html** - Speech Competitions (Toastmasters speeches)
+  - **workshops.html** - Workshops with AI/Public Speaking filters
+- Updated homepage with navigation tiles linking to the 3 portfolio pages
+- Added css/portfolio-pages.css for shared portfolio page styles
+- Added js/tech-portfolio.js, js/speech-portfolio.js, js/workshops-portfolio.js
+- Simplified js/homepage-portfolio.js to only handle Hobbies/Races section
+
+### Previous Changes (November 30, 2025)
 ### Google SEO Optimization
 - Added comprehensive meta tags targeting "public speaker Monmouth County NJ" searches
 - Implemented Schema.org structured data (LocalBusiness, Person, Service, FAQ schemas)
