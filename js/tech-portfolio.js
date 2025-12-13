@@ -1,80 +1,88 @@
 $(document).ready(function() {
     var API_BASE = 'https://shouldcallpaul.replit.app/resume/';
-    var racesData = [];
+    var allItems = [];
+    var loadedCount = 0;
+    var TOTAL_LOADS = 4;
 
-    $.ajax({ url: API_BASE + 'races', type: 'get', dataType: 'json', cache: false,
-        success: function(data) {
-            racesData = data.records || [];
-            renderHobbiesSection();
+    function checkAllLoaded() {
+        loadedCount++;
+        if (loadedCount >= TOTAL_LOADS) {
+            renderGrid();
             setupFilterHandlers();
             setupModalHandlers();
-        },
-        error: function() {
-            $('#hobbies-content').html('<div style="text-align: center; padding: 40px; color: #666;">Failed to load races.</div>');
         }
-    });
-
-    function getRaceCategory(distance) {
-        if (!distance) return 'other';
-        var dist = distance.toLowerCase().trim();
-        if (dist.includes('26.2')) return 'marathon';
-        if (dist.includes('13.1')) return 'half';
-        if (dist.includes('6.2')) return '10k';
-        if (dist.includes('3.1')) return '5k';
-        return 'other';
     }
 
-    function renderHobbiesSection() {
-        racesData.forEach(function(item, i) {
-            var distance = (item.details && item.details.distance) ? item.details.distance : '';
-            item._category = getRaceCategory(distance);
-            item._index = i;
-        });
+    $.ajax({ url: API_BASE + 'projects', type: 'get', dataType: 'json', cache: false,
+        success: function(data) {
+            (data.records || []).forEach(function(item) {
+                item._category = 'projects';
+                item._categoryLabel = 'Work Project';
+                allItems.push(item);
+            });
+            checkAllLoaded();
+        },
+        error: checkAllLoaded
+    });
 
-        var filters = [
-            { value: 'all', label: 'All' },
-            { value: '5k', label: '5K' },
-            { value: '10k', label: '10K' },
-            { value: 'half', label: 'Half Marathon' },
-            { value: 'marathon', label: 'Marathon' },
-            { value: 'other', label: 'Other' }
-        ];
+    $.ajax({ url: API_BASE + 'conference', type: 'get', dataType: 'json', cache: false,
+        success: function(data) {
+            (data.records || []).forEach(function(item) {
+                item._category = 'conference';
+                item._categoryLabel = 'Conference';
+                allItems.push(item);
+            });
+            checkAllLoaded();
+        },
+        error: checkAllLoaded
+    });
 
-        var html = '<div class="filter-buttons" id="filters-hobbies">';
-        filters.forEach(function(f) {
-            var activeClass = f.value === 'all' ? ' active' : '';
-            html += '<button class="filter-btn' + activeClass + '" data-filter="' + f.value + '" data-section="hobbies">' + f.label + '</button>';
-        });
-        html += '</div>';
+    $.ajax({ url: API_BASE + 'hackathon', type: 'get', dataType: 'json', cache: false,
+        success: function(data) {
+            (data.records || []).forEach(function(item) {
+                item._category = 'hackathon';
+                item._categoryLabel = 'Hackathon';
+                allItems.push(item);
+            });
+            checkAllLoaded();
+        },
+        error: checkAllLoaded
+    });
 
-        html += '<div class="portfolio-grid" id="grid-hobbies">';
-        racesData.forEach(function(item, idx) {
+    $.ajax({ url: API_BASE + 'patent', type: 'get', dataType: 'json', cache: false,
+        success: function(data) {
+            (data.records || []).forEach(function(item) {
+                item._category = 'patent';
+                item._categoryLabel = 'Patent';
+                allItems.push(item);
+            });
+            checkAllLoaded();
+        },
+        error: checkAllLoaded
+    });
+
+    function renderGrid() {
+        var html = '';
+        allItems.forEach(function(item, idx) {
             var img = item.image || 'img-new/banner/2.jpg';
             var label = item.label || 'Untitled';
             html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
                 '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
-                '<div class="card-content"><h5>' + label + '</h5></div></div>';
+                '<div class="card-content"><h5>' + label + '</h5>' +
+                '<span class="card-category">' + item._categoryLabel + '</span></div></div>';
         });
-        html += '</div>';
-        
-        $('#hobbies-content').html(html);
-        window.raceItems = racesData;
+        $('#tech-grid').html(html);
     }
 
     function setupFilterHandlers() {
-        $(document).on('click', '.filter-btn', function() {
-            var $btn = $(this);
-            var section = $btn.data('section');
-            var filter = $btn.data('filter');
-            
-            $('#filters-' + section + ' .filter-btn').removeClass('active');
-            $btn.addClass('active');
-            
-            var $grid = $('#grid-' + section);
+        $('.filter-btn').on('click', function() {
+            var filter = $(this).data('filter');
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
             if (filter === 'all') {
-                $grid.find('.portfolio-card').show();
+                $('.portfolio-card').show();
             } else {
-                $grid.find('.portfolio-card').each(function() {
+                $('.portfolio-card').each(function() {
                     $(this).toggle($(this).data('category') === filter);
                 });
             }
@@ -84,7 +92,7 @@ $(document).ready(function() {
     function setupModalHandlers() {
         $(document).on('click', '.portfolio-card', function() {
             var index = $(this).data('index');
-            var item = window.raceItems[index];
+            var item = allItems[index];
             if (item) openModal(item);
         });
     }
@@ -112,9 +120,10 @@ $(document).ready(function() {
                 pictureHtml += '<div class="thumb" style="margin-top: 15px;"><img src="' + item.gallery[j] + '" alt="Gallery" style="max-width: 100%; border-radius: 10px;"></div>';
             }
         }
+        var buttonLabel = item.type === 'patent' ? 'View Patent' : 'Check it out';
         var linkButtonHtml = '';
         if (item.link) {
-            linkButtonHtml = '<a class="btn btn-md circle btn-theme" href="' + item.link + '" target="_blank" style="margin-top: 20px; width: 100%; text-align: center; display: block;">View Results</a>';
+            linkButtonHtml = '<a class="btn btn-md circle btn-theme" href="' + item.link + '" target="_blank" style="margin-top: 20px; width: 100%; text-align: center; display: block;">' + buttonLabel + '</a>';
         }
         var modalContent = '<div class="container"><div class="row">' +
             '<div class="col-12 d-md-none" style="margin-bottom: 20px; padding-top: 60px;">' +
