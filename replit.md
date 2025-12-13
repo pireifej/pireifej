@@ -13,11 +13,12 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 
 ## Recent Changes (December 13, 2025)
 ### Portfolio Restructure - Separate Pages
-- Created 3 dedicated portfolio pages instead of inline homepage content:
+- Created 4 dedicated portfolio pages instead of inline homepage content:
   - **tech.html** - Technical portfolio (Work Projects, Conferences, Hackathons, Patents) with filters
   - **speech.html** - Speech Competitions (Toastmasters speeches)
   - **workshops.html** - Workshops with AI/Public Speaking filters
-- Updated homepage with navigation tiles linking to the 3 portfolio pages
+  - **races.html** - Running Journey with distance filters (5K, 10K, Half Marathon, Marathon)
+- Updated homepage with navigation tiles linking to the 4 portfolio pages
 - Added css/portfolio-pages.css for shared portfolio page styles
 - Added js/tech-portfolio.js, js/speech-portfolio.js, js/workshops-portfolio.js
 - Simplified js/homepage-portfolio.js to only handle Hobbies/Races section
