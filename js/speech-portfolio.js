@@ -43,7 +43,7 @@ $(document).ready(function() {
         var detailsHtml = '';
         if (item.details) {
             for (var key in item.details) {
-                detailsHtml += '<li><div class="icon"><i class="fab fa-figma"></i></div>' +
+                detailsHtml += '<li><div class="icon"><i class="fas fa-chevron-right"></i></div>' +
                     '<div class="content"><h4>' + toTitleCase(key) + '</h4><span>' + item.details[key] + '</span></div></li>';
             }
         }

@@ -130,6 +130,31 @@
     background: linear-gradient(135deg, #8b9df5 0%, #9b6bc4 100%);
     padding: 30px;
 }
+#portfolioModal .modal-body,
+#portfolioModal .modal-body h1,
+#portfolioModal .modal-body h2,
+#portfolioModal .modal-body h3,
+#portfolioModal .modal-body h4,
+#portfolioModal .modal-body h5,
+#portfolioModal .modal-body h6,
+#portfolioModal .modal-body p,
+#portfolioModal .modal-body span,
+#portfolioModal .modal-body li,
+#portfolioModal .modal-body .content,
+#portfolioModal .modal-body .content h4,
+#portfolioModal .modal-body .content span,
+#portfolioModal .skill-list ul li,
+#portfolioModal .skill-list ul li h4,
+#portfolioModal .skill-list ul li span,
+#portfolioModal .skill-list ul li .content,
+#portfolioModal .skill-list ul li .content h4,
+#portfolioModal .skill-list ul li .content span {
+    color: #fff !important;
+}
+#portfolioModal .skill-list ul li .icon i {
+    color: #fff !important;
+    font-size: 1.5rem;
+}
 @media (max-width: 768px) {
     .portfolio-page-wrapper {
         padding: 120px 15px 40px 15px;

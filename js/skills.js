@@ -45,7 +45,7 @@ $( document ).ready(function() {
                                                 <div class="row align-center">
                                                     <div class="col-lg-2">
                                                         <div class="icon">
-                                                            <i class="fab ${skillItems[i].icon}"></i>
+                                                            <i class="fas ${skillItems[i].icon}"></i>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-5">
