@@ -2,6 +2,19 @@ $(document).ready(function() {
     var API_BASE = 'https://shouldcallpaul.replit.app/resume/';
     var allItems = [];
 
+    var customWorkshopImages = {
+        'Master the Art of Public Speaking - Bell Works': 'img-new/workshops/public_speaking_workshop_bell_works.png',
+        'Youth Leadership Program - Coordinator': 'img-new/illustration/IMG_1922.png'
+    };
+
+    function getWorkshopImage(item) {
+        var label = item.label || '';
+        if (customWorkshopImages[label]) {
+            return customWorkshopImages[label];
+        }
+        return item.image || 'img-new/banner/2.jpg';
+    }
+
     $.ajax({ url: API_BASE + 'workshops', type: 'get', dataType: 'json', cache: false,
         success: function(data) {
             allItems = data.records || [];
@@ -29,7 +42,7 @@ $(document).ready(function() {
     function renderGrid() {
         var html = '';
         allItems.forEach(function(item, idx) {
-            var img = item.image || 'img-new/banner/2.jpg';
+            var img = getWorkshopImage(item);
             var label = item.label || 'Untitled';
             var categoryLabel = item._category === 'ai' ? 'AI Workshop' : 'Public Speaking';
             html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
@@ -78,8 +91,9 @@ $(document).ready(function() {
             }
         }
         var pictureHtml = '';
-        if (item.image) {
-            pictureHtml = '<div class="thumb"><img src="' + item.image + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
+        var modalImage = getWorkshopImage(item);
+        if (modalImage) {
+            pictureHtml = '<div class="thumb"><img src="' + modalImage + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
         }
         if (item.gallery && item.gallery.length > 0) {
             for (var j = 0; j < item.gallery.length; j++) {
