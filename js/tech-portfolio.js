@@ -10,6 +10,18 @@ $(document).ready(function() {
         'Fraud Application Hardening': 'img-new/projects/fraud_protection_security_visual.png'
     };
 
+    var excludeFromCategory = {
+        'conference': ['Transformation as a Service', 'Fraud Application Hardening', 'Real Time Machine Learning and AI Operations']
+    };
+
+    function shouldIncludeItem(item, category) {
+        var label = item.label || '';
+        if (excludeFromCategory[category] && excludeFromCategory[category].indexOf(label) !== -1) {
+            return false;
+        }
+        return true;
+    }
+
     function getProjectImage(item) {
         var label = item.label || '';
         if (customProjectImages[label]) {
@@ -42,9 +54,11 @@ $(document).ready(function() {
     $.ajax({ url: API_BASE + 'conference', type: 'get', dataType: 'json', cache: false,
         success: function(data) {
             (data.records || []).forEach(function(item) {
-                item._category = 'conference';
-                item._categoryLabel = 'Conference';
-                allItems.push(item);
+                if (shouldIncludeItem(item, 'conference')) {
+                    item._category = 'conference';
+                    item._categoryLabel = 'Conference';
+                    allItems.push(item);
+                }
             });
             checkAllLoaded();
         },
