@@ -6,18 +6,12 @@ $(document).ready(function() {
         'Paul, Why Are You So Weird?': 'img-new/speeches/quirky_weird_personality_visual.png'
     };
 
-    var centeredImages = ["Mom's Spaghetti", "We Are Only Human"];
-
     function getSpeechImage(item) {
         var label = item.label || '';
         if (customSpeechImages[label]) {
             return customSpeechImages[label];
         }
         return item.image || 'img-new/banner/2.jpg';
-    }
-
-    function needsCentering(label) {
-        return centeredImages.indexOf(label) !== -1;
     }
 
     $.ajax({ url: API_BASE + 'speech', type: 'get', dataType: 'json', cache: false,
@@ -36,9 +30,8 @@ $(document).ready(function() {
         allItems.forEach(function(item, idx) {
             var img = getSpeechImage(item);
             var label = item.label || 'Untitled';
-            var centerStyle = needsCentering(label) ? ' style="object-position: center top;"' : '';
             html += '<div class="portfolio-card" data-index="' + idx + '">' +
-                '<div class="card-image"><img src="' + img + '" alt="' + label + '"' + centerStyle + ' loading="lazy"></div>' +
+                '<div class="card-image"><img src="' + img + '" alt="' + label + '" style="object-position: center top;" loading="lazy"></div>' +
                 '<div class="card-content"><h5>' + label + '</h5></div></div>';
         });
         $('#speech-grid').html(html);
