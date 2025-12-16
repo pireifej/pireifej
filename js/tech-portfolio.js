@@ -4,6 +4,20 @@ $(document).ready(function() {
     var loadedCount = 0;
     var TOTAL_LOADS = 4;
 
+    var customProjectImages = {
+        'Real Time Machine Learning and AI Operations': 'img-new/projects/ml_and_ai_operations_visualization.png',
+        'Transformation as a Service': 'img-new/projects/transformation_as_a_service_visual.png',
+        'Fraud Application Hardening': 'img-new/projects/fraud_protection_security_visual.png'
+    };
+
+    function getProjectImage(item) {
+        var label = item.label || '';
+        if (customProjectImages[label]) {
+            return customProjectImages[label];
+        }
+        return item.image || 'img-new/banner/2.jpg';
+    }
+
     function checkAllLoaded() {
         loadedCount++;
         if (loadedCount >= TOTAL_LOADS) {
@@ -64,7 +78,7 @@ $(document).ready(function() {
     function renderGrid() {
         var html = '';
         allItems.forEach(function(item, idx) {
-            var img = item.image || 'img-new/banner/2.jpg';
+            var img = getProjectImage(item);
             var label = item.label || 'Untitled';
             html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
                 '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
@@ -112,8 +126,9 @@ $(document).ready(function() {
             }
         }
         var pictureHtml = '';
-        if (item.image) {
-            pictureHtml = '<div class="thumb"><img src="' + item.image + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
+        var modalImage = getProjectImage(item);
+        if (modalImage) {
+            pictureHtml = '<div class="thumb"><img src="' + modalImage + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
         }
         if (item.gallery && item.gallery.length > 0) {
             for (var j = 0; j < item.gallery.length; j++) {
