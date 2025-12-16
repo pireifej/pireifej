@@ -5,15 +5,19 @@ $(document).ready(function() {
     var TOTAL_LOADS = 4;
 
     var customProjectImages = {
-        'Real Time Machine Learning and AI Operations': 'img-new/projects/ml_and_ai_operations_visualization.png',
-        'Transformation as a Service': 'img-new/projects/transformation_as_a_service_visual.png',
-        'Fraud Application Hardening': 'img-new/projects/fraud_protection_security_visual.png'
+        'Real Time Machine Learning and AI Operations': { image: 'img-new/projects/ml_and_ai_operations_visualization.png', categories: ['conference', 'patent'] },
+        'Transformation as a Service': { image: 'img-new/projects/transformation_as_a_service_visual.png', categories: ['conference'] },
+        'Fraud Application Hardening': { image: 'img-new/projects/fraud_protection_security_visual.png', categories: ['conference', 'patent'] }
     };
 
     function getProjectImage(item) {
         var label = item.label || '';
+        var category = item._category || '';
         if (customProjectImages[label]) {
-            return customProjectImages[label];
+            var config = customProjectImages[label];
+            if (config.categories.indexOf(category) !== -1) {
+                return config.image;
+            }
         }
         return item.image || 'img-new/banner/2.jpg';
     }
