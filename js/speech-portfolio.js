@@ -2,6 +2,24 @@ $(document).ready(function() {
     var API_BASE = 'https://shouldcallpaul.replit.app/resume/';
     var allItems = [];
 
+    var customSpeechImages = {
+        'Paul, Why Are You So Weird?': 'img-new/speeches/quirky_weird_personality_visual.png'
+    };
+
+    var centeredImages = ["Mom's Spaghetti", "We Are Only Human"];
+
+    function getSpeechImage(item) {
+        var label = item.label || '';
+        if (customSpeechImages[label]) {
+            return customSpeechImages[label];
+        }
+        return item.image || 'img-new/banner/2.jpg';
+    }
+
+    function needsCentering(label) {
+        return centeredImages.indexOf(label) !== -1;
+    }
+
     $.ajax({ url: API_BASE + 'speech', type: 'get', dataType: 'json', cache: false,
         success: function(data) {
             allItems = data.records || [];
@@ -16,10 +34,11 @@ $(document).ready(function() {
     function renderGrid() {
         var html = '';
         allItems.forEach(function(item, idx) {
-            var img = item.image || 'img-new/banner/2.jpg';
+            var img = getSpeechImage(item);
             var label = item.label || 'Untitled';
+            var centerStyle = needsCentering(label) ? ' style="object-position: center top;"' : '';
             html += '<div class="portfolio-card" data-index="' + idx + '">' +
-                '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
+                '<div class="card-image"><img src="' + img + '" alt="' + label + '"' + centerStyle + ' loading="lazy"></div>' +
                 '<div class="card-content"><h5>' + label + '</h5></div></div>';
         });
         $('#speech-grid').html(html);
@@ -48,8 +67,9 @@ $(document).ready(function() {
             }
         }
         var pictureHtml = '';
-        if (item.image) {
-            pictureHtml = '<div class="thumb"><img src="' + item.image + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
+        var modalImage = getSpeechImage(item);
+        if (modalImage) {
+            pictureHtml = '<div class="thumb"><img src="' + modalImage + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
         }
         if (item.gallery && item.gallery.length > 0) {
             for (var j = 0; j < item.gallery.length; j++) {
