@@ -3,7 +3,8 @@ $(document).ready(function() {
     var allItems = [];
 
     var customWorkshopImages = {
-        'Master the Art of Public Speaking - Bell Works': 'img-new/workshops/public_speaking_workshop_bell_works.png'
+        'Master the Art of Public Speaking - Bell Works': 'img-new/workshops/public_speaking_workshop_bell_works.png',
+        'Youth Leadership Program - Coordinator': 'img/PXL_20240824_152158036.MP.jpg'
     };
 
     function getWorkshopImage(item) {
