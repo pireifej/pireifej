@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Young Speakers Academy - Session 1: Unlocking Your Superpower - Confidence & Voice">
+    <title>Intro to Confidence | Young Speakers Academy</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .lesson-wrapper {
+            padding: 140px 0 60px 0;
+            min-height: 100vh;
+        }
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+        }
+        .lesson-header .subtitle {
+            color: #6c5ce7;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .lesson-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .section-card h2 {
+            color: #232323;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-card h2 .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .section-card h3 {
+            color: #6c5ce7;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+        .section-card p, .section-card li {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .section-card ul {
+            padding-left: 20px;
+        }
+        .section-card li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-left: 4px solid #6c5ce7;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: #4c1d95;
+        }
+        .quiz-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .quiz-container h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .quiz-option {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quiz-option:hover {
+            border-color: #6c5ce7;
+            transform: translateX(5px);
+        }
+        .quiz-option .option-letter {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .quiz-option.correct {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .quiz-option.correct .option-letter {
+            background: #10b981;
+        }
+        .quiz-option.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .quiz-option.incorrect .option-letter {
+            background: #ef4444;
+        }
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+        .quiz-feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        .quiz-feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        .activity-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .activity-box h4 {
+            color: #92400e;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .activity-box p {
+            color: #78350f;
+            margin: 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .tip-box h4 {
+            color: #1e40af;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-box p, .tip-box li {
+            color: #1e3a8a;
+        }
+        .progress-tracker {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .progress-dot.active {
+            background: #6c5ce7;
+            transform: scale(1.3);
+        }
+        .progress-dot:hover {
+            background: #a29bfe;
+        }
+        .score-display {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+            z-index: 100;
+        }
+        @media (max-width: 768px) {
+            .lesson-wrapper {
+                padding: 120px 15px 40px 15px;
+            }
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+            .section-card {
+                padding: 25px 20px;
+            }
+            .progress-tracker {
+                display: none;
+            }
+            .score-display {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    <header class="header-fixed">
+        <div class="f-flex">
+            <div class="logo">
+                <a href="index.html"><img src="img-new/logo/newP4.png" alt="Logo"></a>
+            </div>
+            <div class="menu">
+                <ul class="nav">
+                    <li><a class="smooth-menu" href="index.html"><i class="fas fa-home"></i><div class="menu-name">Home</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#services"><i class="fas fa-cog"></i><div class="menu-name">Services</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#portfolio"><i class="fas fa-briefcase"></i><div class="menu-name">Portfolio</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#about"><i class="fas fa-user"></i><div class="menu-name">About</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#contact-paul-now"><i class="fas fa-comments"></i><div class="menu-name">Contact</div></a></li>
+                </ul>
+            </div>
+            <div class="video">
+                <a href="https://www.youtube.com/watch?v=u1nBU289WLw" class="popup-youtube video-play-button theme">
+                    <i style="margin-top:-30px" class="bg-fixed"><img src="img/youtube-svgrepo-com.svg" alt="Icon"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-tracker">
+        <div class="progress-dot active" data-section="1" title="What is Confidence?"></div>
+        <div class="progress-dot" data-section="2" title="Speaker's Toolkit"></div>
+        <div class="progress-dot" data-section="3" title="Taming the Fear Monster"></div>
+        <div class="progress-dot" data-section="4" title="Your Message"></div>
+        <div class="progress-dot" data-section="5" title="Review"></div>
+    </div>
+
+    <div class="score-display">
+        Score: <span id="score">0</span> / <span id="total">6</span>
+    </div>
+
+    <div class="lesson-wrapper">
+        <div class="container">
+            <div class="lesson-header">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                <div class="subtitle">Young Speakers Academy - Session 1</div>
+                <h1>Unlocking Your Superpower: Confidence & Voice</h1>
+                <p>Review what you learned in class and test your knowledge with interactive quizzes!</p>
+            </div>
+
+            <div class="section-card" data-section="1">
+                <h2><span class="icon"><i class="fas fa-star"></i></span> What is Confidence?</h2>
+                
+                <h3>The Grocery Store Test</h3>
+                <p>Can you buy confidence at the grocery store? Which aisle would it be in - frozen foods? Cereal? Of course not!</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Confidence is NOT something you buy or are born with. It's something you BUILD!</strong></p>
+                </div>
+
+                <h3>What Confidence is NOT</h3>
+                <ul>
+                    <li>Being perfect all the time</li>
+                    <li>Never making mistakes</li>
+                    <li>Never feeling nervous</li>
+                </ul>
+
+                <h3>What Confidence IS</h3>
+                <div class="highlight-box">
+                    <p><strong>Confidence is TRUSTING YOURSELF!</strong> It's knowing that your voice matters and that it's okay to be exactly who you are.</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="1">
+                    <h4><i class="fas fa-question-circle" style="color: #6c5ce7;"></i> Quiz: What is confidence?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Being perfect and never making mistakes</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Trusting yourself and knowing your voice matters</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Never feeling nervous about anything</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="2">
+                <h2><span class="icon"><i class="fas fa-toolbox"></i></span> The Speaker's Toolkit</h2>
+                
+                <h3>Body Stretches (Getting Loose)</h3>
+                <ul>
+                    <li><strong>Reach for the Sky:</strong> Inhale and reach up high, then drop down</li>
+                    <li><strong>Shoulder Rolls:</strong> Roll your shoulders back - we carry stress there, let it go!</li>
+                    <li><strong>The Shake Out:</strong> Shake out your hands and feet to get the wiggles out</li>
+                </ul>
+
+                <h3>Face & Voice Yoga</h3>
+                <ul>
+                    <li><strong>Silly Faces:</strong> Make your face big as a lion, then scrunch it small as a lemon</li>
+                    <li><strong>Jaw Massage:</strong> Gently massage your jaw - a tight jaw makes it hard to speak clearly</li>
+                    <li><strong>Lip Rolls:</strong> Blow out through your lips making a motorboat sound: Brrrbrrrbrrr</li>
+                </ul>
+
+                <h3>Breathing Control (The Engine)</h3>
+                <div class="tip-box">
+                    <h4><i class="fas fa-lungs"></i> Belly Breathing</h4>
+                    <p>Put one hand on your belly. When you breathe, your belly should move OUT, not your shoulders UP.</p>
+                </div>
+
+                <div class="activity-box">
+                    <h4><i class="fas fa-square"></i> Try Box Breathing!</h4>
+                    <p>Inhale for 4 counts... Hold for 4 counts... Exhale for 4 counts. Feel your belly move!</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="2">
+                    <h4><i class="fas fa-question-circle" style="color: #6c5ce7;"></i> Quiz: When doing belly breathing, what should move?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Your shoulders should go up</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Your head should nod</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Your belly should move out</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="3">
+                <h2><span class="icon"><i class="fas fa-ghost"></i></span> Taming the "Fear Monster"</h2>
+                
+                <h3>Meet the Fear Monster</h3>
+                <p>Feeling butterflies in your stomach is <strong>completely normal</strong>! Even famous people and celebrities get scared before they go on stage.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Fear is just your body giving you extra energy to do something great!</strong> The butterflies aren't bad - we just need to make them fly in formation.</p>
+                </div>
+
+                <h3>Techniques to Tame the Butterflies</h3>
+                <ul>
+                    <li><strong>Reframe It:</strong> When you feel shaky, tell yourself: "I'm not nervous, I'm EXCITED!"</li>
+                    <li><strong>Find a Friend:</strong> Look for friendly faces in the audience who are smiling at you</li>
+                </ul>
+
+                <div class="activity-box">
+                    <h4><i class="fas fa-fist-raised"></i> The Power Pose!</h4>
+                    <p>Stand up and take up space! Put your hands on your hips, chest out, and chin up like a Superhero. Hold this pose for 2 minutes - it tricks your brain into feeling brave!</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="3">
+                    <h4><i class="fas fa-question-circle" style="color: #6c5ce7;"></i> Quiz: What should you do when you feel nervous before speaking?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Run away and hide</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Tell yourself "I'm not nervous, I'm EXCITED!"</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Close your eyes and pretend nobody is there</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="4">
+                    <h4><i class="fas fa-question-circle" style="color: #6c5ce7;"></i> Quiz: What is the Power Pose?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Sitting down with your arms crossed</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Making yourself as small as possible</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Hands on hips, chest out, chin up like a Superhero</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="4">
+                <h2><span class="icon"><i class="fas fa-bullhorn"></i></span> What's Your Message?</h2>
+                
+                <h3>The Big Idea</h3>
+                <p>If your audience could only remember <strong>ONE thing</strong> from your speech, what would it be?</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Keep it simple. Keep it clear. Say it LOUD!</strong></p>
+                </div>
+
+                <h3>Know Your Audience</h3>
+                <p>Always ask: Who am I talking to? You talk differently to your best friend than you do to the school principal!</p>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-dog"></i> The "Puppy vs. Principal" Game</h4>
+                    <p><strong>Talking to a Puppy:</strong> High-pitched, exaggerated, simple words. "Hiiii buddy! Who's a good boy?! Sit! Siiiit!"</p>
+                    <p style="margin-top: 10px;"><strong>Talking to the Principal:</strong> Respectful, lower pitch, formal. "Good morning, Mr. Johnson. Please, take a seat right here."</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="5">
+                    <h4><i class="fas fa-question-circle" style="color: #6c5ce7;"></i> Quiz: Why do we change how we speak to different people?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Because we're being fake</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Because we naturally choose the right voice for who is listening</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Because we don't like some people</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="5">
+                <h2><span class="icon"><i class="fas fa-check-circle"></i></span> Review & Remember</h2>
+                
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li><strong>Confidence is TRUST</strong> - trusting yourself and your voice</li>
+                    <li><strong>Breathing controls the nerves</strong> - use belly breathing and box breathing</li>
+                    <li><strong>Power Poses make us brave</strong> - stand like a superhero!</li>
+                    <li><strong>Butterflies are ENERGY</strong> - make them fly in formation</li>
+                    <li><strong>Keep your message simple</strong> - one big idea, said clearly and loud</li>
+                </ul>
+
+                <div class="activity-box">
+                    <h4><i class="fas fa-home"></i> Your Homework</h4>
+                    <p>Notice ONE time this week when you feel nervous, and try turning it into excitement. Tell yourself: "I'm not nervous, I'm EXCITED!"</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="6">
+                    <h4><i class="fas fa-question-circle" style="color: #6c5ce7;"></i> Final Quiz: Which of these is TRUE about stage fright?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Only beginners get stage fright</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>You should try to never feel nervous</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Even famous people get nervous, and that's okay!</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); border-radius: 20px; color: #fff;">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Great Job Reviewing!</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin: 0;">Keep practicing your power poses and belly breathing. See you at the next session!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var totalQuizzes = 6;
+            var answeredQuizzes = {};
+
+            $('.quiz-option').on('click', function() {
+                var $container = $(this).closest('.quiz-container');
+                var quizId = $container.data('quiz');
+                
+                if (answeredQuizzes[quizId]) return;
+                answeredQuizzes[quizId] = true;
+
+                var $options = $container.find('.quiz-option');
+                var $feedback = $container.find('.quiz-feedback');
+                var isCorrect = $(this).data('correct') === true;
+
+                $options.addClass('disabled');
+
+                if (isCorrect) {
+                    $(this).addClass('correct');
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> Correct! Great job!');
+                    score++;
+                } else {
+                    $(this).addClass('incorrect');
+                    $options.filter('[data-correct="true"]').addClass('correct');
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. The correct answer is highlighted in green.');
+                }
+
+                $('#score').text(score);
+            });
+
+            $(window).on('scroll', function() {
+                var scrollPos = $(window).scrollTop();
+                $('.section-card').each(function(index) {
+                    var sectionTop = $(this).offset().top - 200;
+                    var sectionBottom = sectionTop + $(this).outerHeight();
+                    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                        $('.progress-dot').removeClass('active');
+                        $('.progress-dot').eq(index).addClass('active');
+                    }
+                });
+            });
+
+            $('.progress-dot').on('click', function() {
+                var sectionIndex = $(this).index();
+                var $targetSection = $('.section-card').eq(sectionIndex);
+                if ($targetSection.length) {
+                    $('html, body').animate({
+                        scrollTop: $targetSection.offset().top - 100
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
