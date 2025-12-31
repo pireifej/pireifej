@@ -11,7 +11,15 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (December 13, 2025)
+## Recent Changes (December 31, 2025)
+### Blog System
+- Created **blogs.html** - Blog index page showing all 12 blog posts as cards with thumbnails
+- Created **blog.html** - Individual blog viewer using URL parameter (e.g., blog.html?id=chicago)
+- Added js/blogs-portfolio.js for blog card rendering and filtering
+- Blog categories: Toastmasters, Conferences (CFCA)
+- Added Blog tile to Personal Journeys section on homepage (next to Running)
+
+## Previous Changes (December 13, 2025)
 ### Portfolio Restructure - Separate Pages
 - Created 4 dedicated portfolio pages instead of inline homepage content:
   - **tech.html** - Technical portfolio (Work Projects, Conferences, Hackathons, Patents) with filters
