@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Paul Ireifej - Blog">
+    <title>Blog | Paul Ireifej</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .blog-page-wrapper {
+            padding: 140px 0 60px 0;
+            min-height: 100vh;
+        }
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .blog-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .blog-meta span {
+            color: #666;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-meta i {
+            color: #6c5ce7;
+        }
+        .blog-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .blog-featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .blog-content-wrapper {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .blog-content-wrapper p {
+            color: #444;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .blog-content-wrapper img {
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .blog-content-wrapper .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+        .blog-not-found {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .blog-not-found h2 {
+            color: #232323;
+            margin-bottom: 20px;
+        }
+        .blog-not-found p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .blog-loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .blog-page-wrapper {
+                padding: 120px 15px 40px 15px;
+            }
+            .blog-header h1 {
+                font-size: 1.8rem;
+            }
+            .blog-content-wrapper {
+                padding: 25px 20px;
+            }
+            .blog-content-wrapper p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    <header class="header-fixed">
+        <div class="f-flex">
+            <div class="logo">
+                <a href="index.html"><img src="img-new/logo/newP4.png" alt="Logo"></a>
+            </div>
+            <div class="menu">
+                <ul class="nav">
+                    <li><a class="smooth-menu" href="index.html"><i class="fas fa-home"></i><div class="menu-name">Home</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#services"><i class="fas fa-cog"></i><div class="menu-name">Services</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#portfolio"><i class="fas fa-briefcase"></i><div class="menu-name">Portfolio</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#about"><i class="fas fa-user"></i><div class="menu-name">About</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#contact-paul-now"><i class="fas fa-comments"></i><div class="menu-name">Contact</div></a></li>
+                </ul>
+            </div>
+            <div class="video">
+                <a href="https://www.youtube.com/watch?v=u1nBU289WLw" class="popup-youtube video-play-button theme">
+                    <i style="margin-top:-30px" class="bg-fixed"><img src="img/youtube-svgrepo-com.svg" alt="Icon"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="blog-page-wrapper">
+        <div class="container">
+            <div class="page-header">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+
+            <div id="blog-container">
+                <div class="blog-loading">Loading blog post...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var blogData = {
+                'chicago': {
+                    title: 'Managing a Successful System Migration',
+                    date: 'June 26, 2018',
+                    image: 'cfca/20180626_122932.jpg',
+                    tag: 'CFCA'
+                },
+                'tucson': {
+                    title: 'CFCA in Tucson',
+                    date: 'October 15, 2019',
+                    image: 'cfca/IMG_20191015_151101.jpg',
+                    tag: 'CFCA'
+                },
+                'contest10': {
+                    title: "It's the thought that counts",
+                    date: 'March 2019',
+                    image: 'img/contests/divcontest.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest11': {
+                    title: 'The Easiest Area Contest Ever',
+                    date: 'May 5, 2019',
+                    image: 'img/contests/IMG_20191002_194504.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest12': {
+                    title: 'Much Ado About Nothing',
+                    date: 'Nov 14, 2019',
+                    image: 'img/contests/IMG_0078%20(1).JPG',
+                    tag: 'Toastmasters'
+                },
+                'contest13': {
+                    title: 'NOT a long blog',
+                    date: 'May 5, 2019',
+                    image: 'img/contests/disteval1.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest3': {
+                    title: 'Before the 2015 Division F Tall Tales',
+                    date: 'Nov 5, 2016',
+                    image: 'img/trophy/trophy2Large.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest4': {
+                    title: 'Brutally Honest',
+                    date: 'Nov 5, 2016',
+                    image: 'img/trophy/trophy3Large.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest7': {
+                    title: 'Ranting',
+                    date: 'Nov 5, 2016',
+                    image: 'img/contests/DSC_0350.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest8': {
+                    title: 'My Most Painful Contest Yet',
+                    date: 'Oct 15, 2018',
+                    image: 'img/contests/FB_IMG_1539660566388.jpg',
+                    tag: 'Toastmasters'
+                },
+                'contest9': {
+                    title: 'The Contest Heard Around the World',
+                    date: 'March 2019',
+                    image: 'img/trophy/trophy7Large.jpg',
+                    tag: 'Toastmasters'
+                },
+                'talltales': {
+                    title: 'What is Tall Tales?',
+                    date: 'Sept 5, 2021',
+                    image: 'img/cat-post-2.jpg',
+                    tag: 'Toastmasters'
+                }
+            };
+
+            function getUrlParam(param) {
+                var urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            function showNotFound() {
+                $('#blog-container').html(
+                    '<div class="blog-not-found">' +
+                    '<h2>Blog Post Not Found</h2>' +
+                    '<p>The blog post you\'re looking for doesn\'t exist or the ID is invalid.</p>' +
+                    '<a href="index.html" class="btn btn-md circle btn-theme">Back to Home</a>' +
+                    '</div>'
+                );
+            }
+
+            function showBlog(id, meta) {
+                document.title = meta.title + ' | Paul Ireifej';
+                
+                $.get('nodejs/' + id + '.blog', function(content) {
+                    var bodyContent = content;
+                    var bodyMatch = content.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+                    if (bodyMatch) {
+                        bodyContent = bodyMatch[1];
+                    }
+
+                    var html = 
+                        '<div class="blog-header">' +
+                        '<span class="blog-tag">' + meta.tag + '</span>' +
+                        '<h1>' + meta.title + '</h1>' +
+                        '<div class="blog-meta">' +
+                        '<span><i class="fas fa-calendar-alt"></i> ' + meta.date + '</span>' +
+                        '<span><i class="fas fa-user"></i> Paul Ireifej</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '<img src="' + meta.image + '" alt="' + meta.title + '" class="blog-featured-image">' +
+                        '<div class="blog-content-wrapper">' + bodyContent + '</div>';
+
+                    $('#blog-container').html(html);
+                }).fail(function() {
+                    $('#blog-container').html(
+                        '<div class="blog-header">' +
+                        '<span class="blog-tag">' + meta.tag + '</span>' +
+                        '<h1>' + meta.title + '</h1>' +
+                        '<div class="blog-meta">' +
+                        '<span><i class="fas fa-calendar-alt"></i> ' + meta.date + '</span>' +
+                        '<span><i class="fas fa-user"></i> Paul Ireifej</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '<img src="' + meta.image + '" alt="' + meta.title + '" class="blog-featured-image">' +
+                        '<div class="blog-content-wrapper"><p>Content could not be loaded.</p></div>'
+                    );
+                });
+            }
+
+            var blogId = getUrlParam('id');
+            
+            if (!blogId || !blogData[blogId]) {
+                showNotFound();
+            } else {
+                showBlog(blogId, blogData[blogId]);
+            }
+        });
+    </script>
+</body>
+</html>
