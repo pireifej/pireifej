@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Young Speakers Academy - 7-Week Confidence Building Course for Grades 4-6">
+    <title>Young Speakers Academy Course | Confidence Building for Kids</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .course-wrapper {
+            padding: 140px 0 80px 0;
+            min-height: 100vh;
+        }
+        .course-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .course-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+        }
+        .course-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+        }
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .course-meta span {
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .course-meta i {
+            color: #6c5ce7;
+        }
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .session-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .session-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .session-card.locked {
+            opacity: 0.6;
+        }
+        .session-card.locked:hover {
+            transform: none;
+        }
+        .session-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #6c5ce7;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .session-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        .session-image.gradient-1 { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); }
+        .session-image.gradient-2 { background: linear-gradient(135deg, #00b894 0%, #55efc4 100%); }
+        .session-image.gradient-3 { background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%); }
+        .session-image.gradient-4 { background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%); }
+        .session-image.gradient-5 { background: linear-gradient(135deg, #fdcb6e 0%, #ffeaa7 100%); }
+        .session-image.gradient-6 { background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%); }
+        .session-image.gradient-7 { background: linear-gradient(135deg, #00cec9 0%, #81ecec 100%); }
+        .session-content {
+            padding: 25px;
+        }
+        .session-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 10px;
+        }
+        .session-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .session-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .session-topics span {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        .session-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .session-link:hover {
+            transform: scale(1.05);
+            color: white;
+            text-decoration: none;
+        }
+        .session-link.locked {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .session-link.locked:hover {
+            transform: none;
+        }
+        .lock-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .course-wrapper {
+                padding: 120px 15px 60px 15px;
+            }
+            .course-header h1 {
+                font-size: 2rem;
+            }
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="blogs.html">Blog</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    <header class="header-fixed">
+        <div class="f-flex">
+            <div class="logo">
+                <a href="index.html"><img src="img-new/logo/newP4.png" alt="Logo"></a>
+            </div>
+            <div class="menu">
+                <ul class="nav">
+                    <li><a class="smooth-menu" href="index.html"><i class="fas fa-home"></i><div class="menu-name">Home</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#services"><i class="fas fa-cog"></i><div class="menu-name">Services</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#portfolio"><i class="fas fa-briefcase"></i><div class="menu-name">Portfolio</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#about"><i class="fas fa-user"></i><div class="menu-name">About</div></a></li>
+                    <li><a class="smooth-menu" href="blogs.html"><i class="fas fa-blog"></i><div class="menu-name">Blog</div></a></li>
+                    <li><a class="smooth-menu" href="index.html#contact-paul-now"><i class="fas fa-comments"></i><div class="menu-name">Contact</div></a></li>
+                </ul>
+            </div>
+            <div class="video">
+                <a href="https://www.youtube.com/watch?v=u1nBU289WLw" class="popup-youtube video-play-button theme">
+                    <i style="margin-top:-30px" class="bg-fixed"><img src="img/youtube-svgrepo-com.svg" alt="Icon"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="course-wrapper">
+        <div class="container">
+            <div class="page-header">
+                <a href="speak.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Young Speakers Academy</a>
+            </div>
+
+            <div class="course-header">
+                <h1>Confidence Building Course</h1>
+                <p>A 7-session journey from nervous speaker to confident communicator. Master the physical tools of speaking, conquer stage fright, and find your voice.</p>
+                <div class="course-meta">
+                    <span><i class="fas fa-users"></i> Grades 4-6</span>
+                    <span><i class="fas fa-clock"></i> 60 Minutes per Session</span>
+                    <span><i class="fas fa-calendar-alt"></i> 7 Sessions</span>
+                </div>
+            </div>
+
+            <div class="sessions-grid">
+                <div class="session-card">
+                    <div class="session-number">1</div>
+                    <div class="session-image gradient-1">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Introduction to Confidence</h3>
+                        <p>Define confidence, master the physical tools of speaking, and deliver your first micro-speech.</p>
+                        <div class="session-topics">
+                            <span>Power Pose</span>
+                            <span>Belly Breathing</span>
+                            <span>Fear Monster</span>
+                        </div>
+                        <a href="intro-to-confidence-slides.html" class="session-link">
+                            <i class="fas fa-play"></i> Start Session
+                        </a>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="session-number">2</div>
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="session-image gradient-2">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>The Art of Storytelling</h3>
+                        <p>Learn how to structure stories that captivate your audience from start to finish.</p>
+                        <div class="session-topics">
+                            <span>Story Structure</span>
+                            <span>Hooks</span>
+                            <span>Emotion</span>
+                        </div>
+                        <span class="session-link locked">
+                            <i class="fas fa-lock"></i> Coming Soon
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="session-number">3</div>
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="session-image gradient-3">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Body Language Mastery</h3>
+                        <p>Discover how gestures, movement, and eye contact make your message unforgettable.</p>
+                        <div class="session-topics">
+                            <span>Gestures</span>
+                            <span>Eye Contact</span>
+                            <span>Stage Movement</span>
+                        </div>
+                        <span class="session-link locked">
+                            <i class="fas fa-lock"></i> Coming Soon
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="session-number">4</div>
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="session-image gradient-4">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Voice Power</h3>
+                        <p>Master volume, pace, and tone to command attention and express emotion.</p>
+                        <div class="session-topics">
+                            <span>Projection</span>
+                            <span>Pacing</span>
+                            <span>Vocal Variety</span>
+                        </div>
+                        <span class="session-link locked">
+                            <i class="fas fa-lock"></i> Coming Soon
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="session-number">5</div>
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="session-image gradient-5">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Thinking on Your Feet</h3>
+                        <p>Learn to speak confidently without preparation through impromptu speaking games.</p>
+                        <div class="session-topics">
+                            <span>Impromptu</span>
+                            <span>Quick Thinking</span>
+                            <span>Structure</span>
+                        </div>
+                        <span class="session-link locked">
+                            <i class="fas fa-lock"></i> Coming Soon
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="session-number">6</div>
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="session-image gradient-6">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Connecting with Your Audience</h3>
+                        <p>Build rapport, read the room, and make every listener feel included.</p>
+                        <div class="session-topics">
+                            <span>Rapport</span>
+                            <span>Engagement</span>
+                            <span>Q&A Skills</span>
+                        </div>
+                        <span class="session-link locked">
+                            <i class="fas fa-lock"></i> Coming Soon
+                        </span>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="session-number">7</div>
+                    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    <div class="session-image gradient-7">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>The Grand Finale</h3>
+                        <p>Put it all together with a showcase speech celebrating your speaking journey.</p>
+                        <div class="session-topics">
+                            <span>Final Speech</span>
+                            <span>Celebration</span>
+                            <span>Certificates</span>
+                        </div>
+                        <span class="session-link locked">
+                            <i class="fas fa-lock"></i> Coming Soon
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+</body>
+</html>
