@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Session 2: Impromptu Speaking - Young Speakers Academy">
+    <title>Session 2: Impromptu Speaking | Young Speakers Academy</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .slides-wrapper {
+            padding: 100px 0 60px 0;
+            min-height: 100vh;
+        }
+        .slide-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            position: relative;
+        }
+        .slide-section:nth-child(odd) {
+            background: #fff;
+        }
+        .slide-section:nth-child(even) {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f3ff 100%);
+        }
+        .slide-hero {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .slide-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .slide-hero .session-number {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .slide-hero p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        .slide-hero .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .slide-hero .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        .slide-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .slide-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .slide-title .section-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .slide-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #232323;
+            margin: 0;
+        }
+        .slide-title .duration {
+            font-size: 1rem;
+            color: #00b894;
+            font-weight: 500;
+        }
+        .activity-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            border-left: 4px solid #00b894;
+        }
+        .activity-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #232323;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .activity-card h3 i {
+            color: #00b894;
+        }
+        .activity-card p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .activity-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .activity-card ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .activity-card ul li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #00b894;
+        }
+        .quote-block {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .quote-block p {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .quote-block .attribution {
+            font-size: 1rem;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+        .definition-box {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .definition-box .label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        .definition-box p {
+            font-size: 1.4rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .tip-box h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-box p {
+            color: white;
+            margin: 0;
+            font-size: 1rem;
+        }
+        .exercise-steps li {
+            background: #f8f9ff;
+            margin: 10px 0;
+            padding: 15px 15px 15px 45px !important;
+            border-radius: 10px;
+        }
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .nav-dots a {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 184, 148, 0.3);
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .nav-dots a:hover,
+        .nav-dots a.active {
+            background: #00b894;
+            transform: scale(1.3);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: white;
+            opacity: 0.8;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(255,255,255,0.95);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #232323;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #00b894;
+            color: white;
+            text-decoration: none;
+        }
+        .cheat-code-card {
+            background: linear-gradient(135deg, #fdcb6e 0%, #ffeaa7 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-left: 4px solid #f39c12;
+        }
+        .cheat-code-card h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        .cheat-code-card h3 i {
+            color: #f39c12;
+        }
+        .cheat-code-card p, .cheat-code-card li {
+            color: #2d3436;
+        }
+        .cheat-code-card ul li:before {
+            color: #f39c12;
+        }
+        .framework-letter {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #f39c12;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        .example-box {
+            background: rgba(255,255,255,0.7);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #00b894;
+        }
+        .example-box h4 {
+            color: #00b894;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .example-box p {
+            font-size: 0.95rem;
+            margin: 5px 0;
+        }
+        .question-card {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            color: white;
+        }
+        .question-card .number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+        .question-card .target {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        @media (max-width: 768px) {
+            .slide-hero h1 {
+                font-size: 2.2rem;
+            }
+            .slide-hero p {
+                font-size: 1.1rem;
+            }
+            .nav-dots {
+                right: 15px;
+            }
+            .back-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .slide-title {
+                flex-direction: column;
+                text-align: center;
+            }
+            .slide-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="young-speakers-academy.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Course
+    </a>
+
+    <nav class="nav-dots">
+        <a href="#hero" title="Introduction"></a>
+        <a href="#section-1" title="Brain Ping-Pong"></a>
+        <a href="#section-2" title="Cheat Codes"></a>
+        <a href="#section-3" title="O.R.E.O."></a>
+        <a href="#section-4" title="Time Traveler"></a>
+        <a href="#section-5" title="Story Sandwich"></a>
+        <a href="#section-6" title="Skeleton Run"></a>
+        <a href="#section-7" title="Boss Battle"></a>
+        <a href="#section-8" title="Cooldown"></a>
+    </nav>
+
+    <div class="slides-wrapper">
+        <section id="hero" class="slide-section slide-hero">
+            <div class="container">
+                <div class="slide-content" style="text-align: center;">
+                    <div class="session-number">Session 2</div>
+                    <h1>Impromptu Speaking</h1>
+                    <p>Master the "cheat codes" of speaking on the spot. Trust your brain, grab a framework, and speak with confidence!</p>
+                    <div class="meta-info">
+                        <span><i class="fas fa-clock"></i> 60 Minutes</span>
+                        <span><i class="fas fa-users"></i> Grades 4-6</span>
+                        <span><i class="fas fa-gamepad"></i> 3 Cheat Codes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <section id="section-1" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon"><i class="fas fa-table-tennis"></i></div>
+                        <div>
+                            <h2>Warm-Up: "Brain Ping-Pong"</h2>
+                            <div class="duration">10 Minutes</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="label">The Goal</div>
+                        <p>Wake up the brain and stop overthinking. Speed is key!</p>
+                    </div>
+
+                    <div class="activity-card">
+                        <h3><i class="fas fa-circle"></i> The Game</h3>
+                        <p><strong>Setup:</strong> Stand in a circle.</p>
+                        <ul>
+                            <li>The Teacher starts by throwing an imaginary ball (or a real foam ball) to a student and saying ONE word (e.g., "Spatula")</li>
+                            <li>The student catches it and immediately throws it to someone else saying the first word that connects to it (e.g., "Pancakes")</li>
+                            <li>Next student: "Syrup." Next: "Sticky." Next: "Glue."</li>
+                            <li>Keep it going as fast as possible!</li>
+                        </ul>
+                    </div>
+
+                    <div class="quote-block">
+                        <p>"If you paused to think of the 'perfect' word, the game slowed down. Impromptu speaking is about trusting your first thought!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-2" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon"><i class="fas fa-gamepad"></i></div>
+                        <div>
+                            <h2>The "Cheat Codes" (3 Frameworks)</h2>
+                            <div class="duration">15 Minutes</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="label">The Big Idea</div>
+                        <p>"When a video game level is too hard, sometimes you use a Cheat Code. In speaking, we use Frameworks. If I ask you a question, don't panic. Just pick a code."</p>
+                    </div>
+
+                    <div class="activity-card" style="border-left-color: #fdcb6e;">
+                        <h3><i class="fas fa-cookie" style="color: #fdcb6e;"></i> Cheat Code #1: O.R.E.O.</h3>
+                        <p>Best for "Opinion" Questions like "Do you like X?" or "What is your favorite...?"</p>
+                    </div>
+
+                    <div class="activity-card" style="border-left-color: #0984e3;">
+                        <h3><i class="fas fa-clock" style="color: #0984e3;"></i> Cheat Code #2: Time Traveler</h3>
+                        <p>Best for "Tell us about..." Questions - great for big topics or history.</p>
+                    </div>
+
+                    <div class="activity-card" style="border-left-color: #e17055;">
+                        <h3><i class="fas fa-hamburger" style="color: #e17055;"></i> Cheat Code #3: Story Sandwich</h3>
+                        <p>Best for "What would you do?" Questions - hypothetical situations.</p>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4><i class="fas fa-lightbulb"></i> Remember</h4>
+                        <p>You don't need to write a speech - you just need a structure to hang your words on!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-3" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon" style="background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);"><i class="fas fa-cookie"></i></div>
+                        <div>
+                            <h2>Cheat Code #1: The O.R.E.O.</h2>
+                            <div class="duration" style="color: #f39c12;">Opinion Questions</div>
+                        </div>
+                    </div>
+
+                    <div class="cheat-code-card">
+                        <h3><i class="fas fa-cookie-bite"></i> The O.R.E.O. Framework</h3>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">Use this when asked: "Do you like X?" or "What is your favorite...?"</p>
+                        <ul class="exercise-steps">
+                            <li><span class="framework-letter">O</span><strong>Opinion:</strong> State clearly how you feel. <em>"I think Minecraft is the best game ever."</em></li>
+                            <li><span class="framework-letter">R</span><strong>Reason:</strong> Why? <em>"Because you can build anything you can imagine."</em></li>
+                            <li><span class="framework-letter">E</span><strong>Example:</strong> Give a specific detail. <em>"Once, I built a castle that went all the way to the clouds."</em></li>
+                            <li><span class="framework-letter">O</span><strong>Opinion:</strong> Restate it. <em>"That is why Minecraft is the king of games."</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="quote-block" style="background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);">
+                        <p>Opinion + Reason + Example + Opinion = A complete answer every time!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-4" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon" style="background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h2>Cheat Code #2: The Time Traveler</h2>
+                            <div class="duration" style="color: #0984e3;">"Tell us about..." Questions</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" style="border-left-color: #0984e3;">
+                        <h3><i class="fas fa-history" style="color: #0984e3;"></i> The Framework</h3>
+                        <p>Use this for big topics or history - travel through time!</p>
+                        <ul class="exercise-steps">
+                            <li><strong>PAST:</strong> How was it before?</li>
+                            <li><strong>PRESENT:</strong> How is it now?</li>
+                            <li><strong>FUTURE:</strong> What do you hope happens?</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-box" style="background: #e8f4fd;">
+                        <h4><i class="fas fa-music"></i> Example: "Tell us about how we listen to music."</h4>
+                        <p><strong>PAST:</strong> "In the past, my parents told me they had to carry around giant boomboxes or CD players that skipped every time they walked. They could only carry like 12 songs at a time!"</p>
+                        <p><strong>PRESENT:</strong> "Today, I have Spotify on my phone. I have 10 million songs in my pocket and I can listen to anything I want, anytime, instantly."</p>
+                        <p><strong>FUTURE:</strong> "In the future, I bet we won't even need headphones. The music will just be beamed directly to a chip in our ear, or maybe walls will play music automatically when we walk into a room."</p>
+                    </div>
+
+                    <div class="example-box" style="background: #e8f4fd; margin-top: 20px;">
+                        <h4><i class="fas fa-school"></i> Example: "Tell us about your time at this school."</h4>
+                        <p><strong>PAST:</strong> "When I started here in Kindergarten, I was terrified. The hallways felt huge, I couldn't tie my shoes, and my biggest worry was nap time."</p>
+                        <p><strong>PRESENT:</strong> "Now that I am in 5th grade, I know where every classroom is. I play soccer at recess, and I'm learning complex math."</p>
+                        <p><strong>FUTURE:</strong> "In the future, when I graduate from here, I hope to leave a legacy as the best soccer goalie this school has ever seen."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-5" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon" style="background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);"><i class="fas fa-hamburger"></i></div>
+                        <div>
+                            <h2>Cheat Code #3: The Story Sandwich</h2>
+                            <div class="duration" style="color: #e17055;">"What would you do?" Questions</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" style="border-left-color: #e17055;">
+                        <h3><i class="fas fa-bread-slice" style="color: #e17055;"></i> The Framework</h3>
+                        <p>Use this for hypothetical situations - imagine anything!</p>
+                        <ul class="exercise-steps">
+                            <li><strong>TOP BUN (The Hook):</strong> Start with a bold statement or sound effect. <em>"BOOM! That's the sound of me winning the lottery."</em></li>
+                            <li><strong>THE MEAT (The Story):</strong> Tell the story of what you would do. <em>"First, I'd buy a house made of candy. Then I'd buy a jetpack..."</em></li>
+                            <li><strong>BOTTOM BUN (The Lesson):</strong> Why does this matter? <em>"But seriously, I would mostly help my family."</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="quote-block" style="background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);">
+                        <p>Hook them, tell them, teach them!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-6" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon"><i class="fas fa-bone"></i></div>
+                        <div>
+                            <h2>Group Drill: "The Skeleton Run"</h2>
+                            <div class="duration">10 Minutes</div>
+                        </div>
+                    </div>
+
+                    <div class="definition-box">
+                        <div class="label">The Goal</div>
+                        <p>Practice OUTLINING only. Do not give the full speech. This builds the muscle of organizing thoughts quickly.</p>
+                    </div>
+
+                    <div class="activity-card">
+                        <h3><i class="fas fa-skull"></i> The Skeleton (3 Bones)</h3>
+                        <p><strong>Instruction:</strong> "I am going to ask a question. You are NOT going to give a speech. You are only going to give me the Skeleton (The 3 Bones) of your answer."</p>
+                        <div class="example-box">
+                            <h4>Example Question: "What is the best pet?"</h4>
+                            <p><strong>Student Response:</strong> "Dog. Bone 1: They cuddle. Bone 2: They protect the house. Bone 3: They play fetch."</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" style="border-left-color: #fdcb6e;">
+                        <h3><i class="fas fa-list" style="color: #fdcb6e;"></i> Practice Topics</h3>
+                        <p>Go around the room fast! Answer + 3 Points only.</p>
+                        <ul>
+                            <li>What is the best school lunch?</li>
+                            <li>Cats vs. Dogs: Who wins?</li>
+                            <li>What is the worst chore to do at home?</li>
+                            <li>Is it better to be a Ninja or a Pirate?</li>
+                            <li>What is the one food you would eat for the rest of your life?</li>
+                            <li>Summer Vacation vs. Winter Break?</li>
+                            <li>If you could have any superpower, what would it be?</li>
+                            <li>What is the most annoying noise in the world?</li>
+                            <li>Video Games vs. Playing Outside?</li>
+                            <li>What is the best candy in the Halloween bag?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-7" class="slide-section" style="background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title" style="justify-content: center; text-align: center;">
+                        <div class="section-icon" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);"><i class="fas fa-dragon"></i></div>
+                        <div>
+                            <h2 style="color: #fff;">The Boss Battle: Random Encounters</h2>
+                            <div class="duration" style="color: #e74c3c;">20 Minutes</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card" style="background: #1a1a1a; border-left-color: #e74c3c;">
+                        <h3 style="color: #fff;"><i class="fas fa-shield-alt" style="color: #e74c3c;"></i> The Rules of Battle</h3>
+                        <ul style="color: #ddd;">
+                            <li style="color: #ddd;"><strong>Take a Breath:</strong> Remember the "Fear Monster" from last week - breathe to tame it</li>
+                            <li style="color: #ddd;"><strong>Pick a Cheat Code:</strong> O.R.E.O., Time Traveler, or Story Sandwich</li>
+                            <li style="color: #ddd;"><strong>Speak for 1 minute</strong> using your chosen framework</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: #fff; text-align: center; margin: 30px 0 20px 0;"><i class="fas fa-question-circle"></i> 10 Impromptu Questions</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                        <div class="question-card">
+                            <span class="number">1</span>If you could have any superpower, but only for 24 hours, what would it be and what would you do?
+                            <div class="target">Target: Story Sandwich</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">2</span>If you were the Principal of this school for one day, what two rules would you change?
+                            <div class="target">Target: O.R.E.O</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">3</span>Which is better: Being able to fly or being able to turn invisible?
+                            <div class="target">Target: O.R.E.O</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">4</span>If you could live inside any video game or movie, which one would you pick?
+                            <div class="target">Target: Story Sandwich</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">5</span>Is it better to have Summer all year long or Winter all year long?
+                            <div class="target">Target: O.R.E.O</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">6</span>Tell us about a time you tried something new and it didn't go as planned.
+                            <div class="target">Target: Time Traveler</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">7</span>If animals could talk, which animal would be the rudest and why?
+                            <div class="target">Target: Creative/Story</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">8</span>Should kids get paid money for doing chores, or should they do them for free?
+                            <div class="target">Target: O.R.E.O</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">9</span>If you found a magic door in your bedroom, where would it lead?
+                            <div class="target">Target: Story Sandwich</div>
+                        </div>
+                        <div class="question-card">
+                            <span class="number">10</span>What do you think cars and transportation will look like in 50 years?
+                            <div class="target">Target: Time Traveler</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-8" class="slide-section">
+            <div class="container">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <div class="section-icon"><i class="fas fa-star"></i></div>
+                        <div>
+                            <h2>Cooldown & Review</h2>
+                            <div class="duration">5 Minutes</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <h3><i class="fas fa-brain"></i> Quick Review</h3>
+                        <p>"Who can tell me what O.R.E.O. stands for?"</p>
+                        <ul>
+                            <li><strong>O</strong> - Opinion</li>
+                            <li><strong>R</strong> - Reason</li>
+                            <li><strong>E</strong> - Example</li>
+                            <li><strong>O</strong> - Opinion (restate)</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);">
+                        <h4><i class="fas fa-home"></i> Homework Challenge</h4>
+                        <p>"Next time you are at the dinner table and someone asks 'How was school?', don't just say 'Good.' Use the Time Traveler code: 'This morning was tired, Lunch was pizza, and Tomorrow I have a test!'"</p>
+                    </div>
+
+                    <div class="quote-block">
+                        <p>Closing Circle Power Pose + Chant:</p>
+                        <p style="font-size: 2rem; font-weight: 700; margin-top: 20px;">"1, 2, 3... LEVEL UP!"</p>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="young-speakers-academy.html" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #00b894 0%, #55efc4 100%); color: white; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                            <i class="fas fa-check-circle"></i> Complete Session 2
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var sections = $('section');
+            var navDots = $('.nav-dots a');
+
+            $(window).on('scroll', function() {
+                var scrollPos = $(window).scrollTop() + $(window).height() / 2;
+                sections.each(function(i) {
+                    var top = $(this).offset().top;
+                    var bottom = top + $(this).outerHeight();
+                    if (scrollPos >= top && scrollPos <= bottom) {
+                        navDots.removeClass('active');
+                        navDots.eq(i).addClass('active');
+                    }
+                });
+            });
+
+            navDots.on('click', function(e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top
+                }, 800);
+            });
+
+            navDots.first().addClass('active');
+        });
+    </script>
+</body>
+</html>
