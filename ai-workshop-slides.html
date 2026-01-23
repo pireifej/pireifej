@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshop Session 1: The Building Blocks of AI">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Session 1: Building Blocks of AI | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slides-wrapper {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            scroll-snap-align: start;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #1a1a3e 100%);
+            overflow: hidden;
+            padding: 40px;
+        }
+        
+        .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 400px;
+            height: 200px;
+            opacity: 0.3;
+            background: 
+                radial-gradient(ellipse at 100% 100%, transparent 70%, #6c5ce7 100%);
+            pointer-events: none;
+        }
+        
+        .wave-lines {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 100px;
+            opacity: 0.4;
+        }
+        
+        .wave-lines::before,
+        .wave-lines::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6c5ce7, #00d4ff, transparent);
+            border-radius: 50%;
+        }
+        
+        .wave-lines::before {
+            bottom: 0;
+            transform: scaleY(0.5);
+        }
+        
+        .wave-lines::after {
+            bottom: 15px;
+            transform: scaleY(0.3);
+            opacity: 0.6;
+        }
+        
+        .brand-logo {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .brand-logo i {
+            font-size: 1.2rem;
+            color: #a29bfe;
+        }
+        
+        .brand-website {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .nav-dots a {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.3);
+            display: block;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-dots a:hover,
+        .nav-dots a.active {
+            background: #00d4ff;
+            box-shadow: 0 0 15px #00d4ff;
+            transform: scale(1.3);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        /* ============ SLIDE 1: TITLE ============ */
+        .slide-title-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .ai-orb {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ai-orb::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #1a1a3e 0%, transparent 70%);
+            box-shadow: 
+                0 0 60px #00d4ff,
+                0 0 100px rgba(0, 212, 255, 0.5),
+                inset 0 0 60px rgba(0, 212, 255, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .ai-orb::after {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            animation: rotate-ring 10s linear infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 60px #00d4ff, 0 0 100px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 80px #00d4ff, 0 0 140px rgba(0, 212, 255, 0.7); }
+        }
+        
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .ai-text {
+            font-size: 8rem;
+            font-weight: 800;
+            color: transparent;
+            background: linear-gradient(180deg, #00d4ff 0%, #a29bfe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+            z-index: 1;
+            letter-spacing: -5px;
+        }
+        
+        .title-text {
+            text-align: left;
+        }
+        
+        .title-box {
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            padding: 30px 40px;
+            position: relative;
+        }
+        
+        .title-box h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .title-box h1 span {
+            display: block;
+            font-weight: 700;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .title-box p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            margin-top: 15px;
+        }
+        
+        /* ============ SLIDE 2: QUESTION ============ */
+        .slide-question {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .image-container {
+            width: 400px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a3e 0%, #0d0d1a 100%);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 
+                0 0 30px rgba(0, 212, 255, 0.2),
+                inset 0 0 30px rgba(0, 212, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-container .placeholder-icon {
+            font-size: 5rem;
+            color: #00d4ff;
+            opacity: 0.5;
+        }
+        
+        .question-text h2 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #fff;
+        }
+        
+        /* ============ SLIDE 3: SCI-FI ============ */
+        .slide-image-full {
+            max-width: 1000px;
+            width: 90%;
+        }
+        
+        .slide-image-full img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        /* ============ SLIDE 4: HIERARCHY ============ */
+        .slide-hierarchy {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .slide-hierarchy h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: 3px;
+        }
+        
+        .hierarchy-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+        }
+        
+        .cube-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+        
+        .cube {
+            width: 150px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-15deg) rotateY(-20deg);
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid;
+        }
+        
+        .cube-top {
+            background: linear-gradient(135deg, rgba(199, 125, 255, 0.8) 0%, rgba(199, 125, 255, 0.4) 100%);
+            border-color: #c77dff;
+            box-shadow: 0 0 30px rgba(199, 125, 255, 0.5), inset 0 0 20px rgba(199, 125, 255, 0.3);
+            animation: cube-glow-pink 2s ease-in-out infinite;
+        }
+        
+        .cube-middle {
+            background: linear-gradient(135deg, rgba(255, 159, 67, 0.8) 0%, rgba(255, 159, 67, 0.4) 100%);
+            border-color: #ff9f43;
+            box-shadow: 0 0 30px rgba(255, 159, 67, 0.5), inset 0 0 20px rgba(255, 159, 67, 0.3);
+            animation: cube-glow-orange 2s ease-in-out infinite 0.5s;
+        }
+        
+        .cube-bottom {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.8) 0%, rgba(0, 212, 255, 0.4) 100%);
+            border-color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), inset 0 0 20px rgba(0, 212, 255, 0.3);
+            animation: cube-glow-cyan 2s ease-in-out infinite 1s;
+        }
+        
+        @keyframes cube-glow-pink {
+            0%, 100% { box-shadow: 0 0 30px rgba(199, 125, 255, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(199, 125, 255, 0.8); }
+        }
+        
+        @keyframes cube-glow-orange {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 159, 67, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 159, 67, 0.8); }
+        }
+        
+        @keyframes cube-glow-cyan {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(0, 212, 255, 0.8); }
+        }
+        
+        .connector-line {
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(180deg, transparent, #00d4ff, transparent);
+        }
+        
+        .hierarchy-labels {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: left;
+        }
+        
+        .hierarchy-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .hierarchy-label .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .hierarchy-label.neural .icon {
+            background: rgba(199, 125, 255, 0.3);
+            color: #c77dff;
+        }
+        
+        .hierarchy-label.ml .icon {
+            background: rgba(255, 159, 67, 0.3);
+            color: #ff9f43;
+        }
+        
+        .hierarchy-label.ai .icon {
+            background: rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+        }
+        
+        .hierarchy-label h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hierarchy-label.neural h4 { color: #c77dff; }
+        .hierarchy-label.ml h4 { color: #ff9f43; }
+        .hierarchy-label.ai h4 { color: #00d4ff; }
+        
+        .hierarchy-label p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .slide-title-content,
+            .slide-question,
+            .hierarchy-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .ai-orb {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .ai-text {
+                font-size: 5rem;
+            }
+            
+            .title-text {
+                text-align: center;
+            }
+            
+            .title-box h1 {
+                font-size: 2.5rem;
+            }
+            
+            .question-text h2 {
+                font-size: 2.5rem;
+            }
+            
+            .image-container {
+                width: 300px;
+                height: 260px;
+            }
+            
+            .nav-dots {
+                right: 15px;
+            }
+            
+            .hierarchy-labels {
+                text-align: center;
+            }
+            
+            .hierarchy-label {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="slides-hub.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Hub
+    </a>
+
+    <nav class="nav-dots">
+        <a href="#slide-1" title="Title"></a>
+        <a href="#slide-2" title="What is AI?"></a>
+        <a href="#slide-3" title="Sci-Fi Universe"></a>
+        <a href="#slide-4" title="AI Hierarchy"></a>
+    </nav>
+
+    <div class="slides-wrapper">
+        <!-- SLIDE 1: TITLE -->
+        <section id="slide-1" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="brand-website">www.shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-title-content">
+                <div class="ai-orb">
+                    <span class="ai-text">AI</span>
+                </div>
+                <div class="title-text">
+                    <div class="title-box">
+                        <h1>ARTIFICIAL<span>INTELLIGENCE</span></h1>
+                        <p>Exploring the Power of Intelligent Machines</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: WHAT IS AI? -->
+        <section id="slide-2" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-question">
+                <div class="image-container">
+                    <i class="fas fa-hand-pointer placeholder-icon"></i>
+                </div>
+                <div class="question-text">
+                    <h2>What is Artificial<br>Intelligence?</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: SCI-FI AI UNIVERSE -->
+        <section id="slide-3" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-image-full">
+                <img src="attached_assets/Screenshot_2026-01-23_5.18.58_PM_1769206769079.png" alt="Sci-Fi AI Universe">
+            </div>
+        </section>
+
+        <!-- SLIDE 4: AI HIERARCHY -->
+        <section id="slide-4" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-hierarchy">
+                <h2>THE AI HIERARCHY: BUILDING BLOCKS</h2>
+                
+                <div class="hierarchy-container">
+                    <div class="cube-stack">
+                        <div class="cube">
+                            <div class="cube-face cube-top"></div>
+                        </div>
+                        <div class="connector-line"></div>
+                        <div class="cube">
+                            <div class="cube-face cube-middle"></div>
+                        </div>
+                        <div class="connector-line"></div>
+                        <div class="cube">
+                            <div class="cube-face cube-bottom"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="hierarchy-labels">
+                        <div class="hierarchy-label neural">
+                            <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                            <div>
+                                <h4>Neural Networks / Deep Learning</h4>
+                                <p>Powerful learning inspired by the human brain</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hierarchy-label ml">
+                            <div class="icon"><i class="fas fa-cogs"></i></div>
+                            <div>
+                                <h4>Machine Learning (ML)</h4>
+                                <p>Gets smarter by seeing data (not just following rules)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hierarchy-label ai">
+                            <div class="icon"><i class="fas fa-robot"></i></div>
+                            <div>
+                                <h4>Artificial Intelligence (AI)</h4>
+                                <p>Any machine doing something smart</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sections = document.querySelectorAll('.slide');
+            var navDots = document.querySelectorAll('.nav-dots a');
+            var wrapper = document.querySelector('.slides-wrapper');
+
+            wrapper.addEventListener('scroll', function() {
+                var scrollPos = wrapper.scrollTop + window.innerHeight / 2;
+                sections.forEach(function(section, i) {
+                    var top = section.offsetTop;
+                    var bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos <= bottom) {
+                        navDots.forEach(function(dot) { dot.classList.remove('active'); });
+                        navDots[i].classList.add('active');
+                    }
+                });
+            });
+
+            navDots.forEach(function(dot) {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.querySelector(this.getAttribute('href'));
+                    wrapper.scrollTo({
+                        top: target.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            navDots[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>
