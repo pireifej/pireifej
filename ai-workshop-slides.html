@@ -821,6 +821,89 @@
             margin: 0;
         }
         
+        /* Image Top + Text Bottom Slides */
+        .slide-image-text {
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .image-top {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        
+        .image-top img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .text-bottom {
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            padding: 40px 50px;
+            border-radius: 0 0 20px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+        }
+        
+        .text-bottom .left-title {
+            flex-shrink: 0;
+        }
+        
+        .text-bottom .left-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .text-bottom .left-title h2 span {
+            color: #00d4ff;
+            font-style: italic;
+            font-weight: 400;
+        }
+        
+        .text-bottom .left-title h2 .highlight {
+            color: #a29bfe;
+            font-style: normal;
+            font-weight: 800;
+        }
+        
+        .text-bottom .right-content {
+            flex: 1;
+        }
+        
+        .text-bottom .right-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .text-bottom .right-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+        
+        .text-bottom .right-content p em {
+            color: #00d4ff;
+            font-style: italic;
+        }
+        
+        .quote-mark {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: #6c5ce7;
+            opacity: 0.8;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
         /* Responsive */
         @media (max-width: 900px) {
             .slide-title-content,
@@ -914,6 +997,11 @@
         <a href="#slide-10" title="Paul Enlightened"></a>
         <a href="#slide-11" title="Calculator"></a>
         <a href="#slide-12" title="Automation vs AI"></a>
+        <a href="#slide-13" title="AI or Automation"></a>
+        <a href="#slide-14" title="Automatic Door"></a>
+        <a href="#slide-15" title="Door is Automation"></a>
+        <a href="#slide-16" title="Spotify Question"></a>
+        <a href="#slide-17" title="Spotify is AI"></a>
     </nav>
 
     <div class="slides-wrapper">
@@ -1280,6 +1368,124 @@
                                 <p>Unlocks because it learned the patterns of YOUR face.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: A.I. OR JUST AUTOMATION? (Title) -->
+        <section id="slide-13" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.25.14_PM_1769211380003.png" alt="Paul with students">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: THE AUTOMATIC DOOR -->
+        <section id="slide-14" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.25.23_PM_1769211380002.png" alt="Garage door opener">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+                    </div>
+                    <div class="right-content">
+                        <h3>The Automatic Door</h3>
+                        <p>A sliding door opens at the grocery store when you walk near it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: AUTOMATION! (Door Answer) -->
+        <section id="slide-15" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.25.29_PM_1769211380002.png" alt="Garage door opener">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">Automation!</span></h2>
+                    </div>
+                    <div class="right-content">
+                        <p>It uses a simple motion sensor. It opens for anything that breaks the beam (a person, a cart, a dog). It doesn't know <em>you</em>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 16: SPOTIFY QUESTION -->
+        <section id="slide-16" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.26.02_PM_1769211380002.png" alt="Spotify logo">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+                    </div>
+                    <div class="right-content">
+                        <h3>Spotify's "Discover Weekly"</h3>
+                        <p>A playlist appears every Monday with songs you've never heard but likely enjoy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 17: SPOTIFY IS A.I. -->
+        <section id="slide-17" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.26.12_PM_1769211380001.png" alt="Spotify logo">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span></h2>
+                    </div>
+                    <div class="right-content">
+                        <p>It analyzes your listening history and compares it to millions of other users to <em>predict</em> what you will like.</p>
                     </div>
                 </div>
             </div>
