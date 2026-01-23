@@ -603,6 +603,224 @@
             50% { opacity: 1; }
         }
         
+        /* Calculator Slide */
+        .calculator-graphic {
+            width: 220px;
+            background: linear-gradient(135deg, #7ee8bf 0%, #5fd3a3 100%);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(126, 232, 191, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .calc-screen {
+            background: #e8f5f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: right;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        
+        .calc-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .calc-btn.number {
+            background: #f5d79e;
+            color: #333;
+        }
+        
+        .calc-btn.op {
+            background: #ff8a65;
+            color: white;
+        }
+        
+        .calc-btn.special {
+            background: #4db6ac;
+            color: white;
+        }
+        
+        .two-col-content {
+            max-width: 550px;
+        }
+        
+        .two-col-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .two-col-content h2 span {
+            color: #7ee8bf;
+        }
+        
+        .two-col-content .subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+        
+        .content-block {
+            margin-bottom: 20px;
+        }
+        
+        .content-block h4 {
+            color: #f5d79e;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .content-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .content-block ul li {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .content-block ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #7ee8bf;
+        }
+        
+        .content-block ul li strong {
+            color: #fff;
+        }
+        
+        /* Automation vs AI Slide */
+        .automation-slide {
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .automation-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .automation-header .ai-chip {
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #6c5ce7;
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.5);
+            flex-shrink: 0;
+        }
+        
+        .automation-header .ai-chip span {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .automation-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+        }
+        
+        .automation-header h2 span {
+            color: #00d4ff;
+        }
+        
+        .automation-content {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .automation-text {
+            flex: 1;
+        }
+        
+        .automation-text p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .automation-text p strong {
+            color: #fff;
+        }
+        
+        .automation-examples {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .example-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+        }
+        
+        .example-card .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .example-card .icon-circle span {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .example-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f5d79e;
+            margin-bottom: 5px;
+        }
+        
+        .example-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+        }
+        
         /* Responsive */
         @media (max-width: 900px) {
             .slide-title-content,
@@ -693,6 +911,9 @@
         <a href="#slide-7" title="What is Human?"></a>
         <a href="#slide-8" title="Joke"></a>
         <a href="#slide-9" title="Just Kidding"></a>
+        <a href="#slide-10" title="Paul Enlightened"></a>
+        <a href="#slide-11" title="Calculator"></a>
+        <a href="#slide-12" title="Automation vs AI"></a>
     </nav>
 
     <div class="slides-wrapper">
@@ -929,6 +1150,137 @@
                 </div>
                 <div class="content-side">
                     <h2>Just <span>kidding!!!</span></h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: PAUL WAS ENLIGHTENED -->
+        <section id="slide-10" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-photo-content">
+                <div class="photo-frame">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.24.57_PM_1769209662079.png" alt="Paul at beach">
+                </div>
+                <div class="content-side">
+                    <h2>Paul was <span>enlightened</span></h2>
+                    <div class="credential-badges">
+                        <div class="credential-badge">
+                            <i class="fas fa-sun"></i> Worry stops, <strong>Learning</strong> begins!
+                        </div>
+                        <div class="credential-badge">
+                            <i class="fas fa-tools"></i> A.I. is a <strong>tool</strong>, you are in control.
+                        </div>
+                        <div class="credential-badge">
+                            <i class="fas fa-graduation-cap"></i> Curious? Just <strong>learn to use it!</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: KIND OF LIKE A CALCULATOR -->
+        <section id="slide-11" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-photo-content">
+                <div class="calculator-graphic">
+                    <div class="calc-screen">0</div>
+                    <div class="calc-buttons">
+                        <div class="calc-btn number">1</div>
+                        <div class="calc-btn number">2</div>
+                        <div class="calc-btn number">3</div>
+                        <div class="calc-btn op">+</div>
+                        <div class="calc-btn number">4</div>
+                        <div class="calc-btn number">5</div>
+                        <div class="calc-btn number">6</div>
+                        <div class="calc-btn op">-</div>
+                        <div class="calc-btn number">7</div>
+                        <div class="calc-btn number">8</div>
+                        <div class="calc-btn number">9</div>
+                        <div class="calc-btn op">×</div>
+                        <div class="calc-btn special">C</div>
+                        <div class="calc-btn number">0</div>
+                        <div class="calc-btn special">=</div>
+                        <div class="calc-btn op">÷</div>
+                    </div>
+                </div>
+                <div class="two-col-content">
+                    <h2>Kind of like a <span>calculator</span></h2>
+                    <p class="subtitle">Isn't this just a <strong>tool</strong>? We use calculators every day without fear.</p>
+                    
+                    <div class="content-block">
+                        <h4>Calculators in the 1970s</h4>
+                        <ul>
+                            <li>Replaced <strong>manual</strong> math tasks</li>
+                            <li>Some bookkeeping jobs disappeared</li>
+                            <li>People worried about losing skills</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-block">
+                        <h4>New Opportunities Created</h4>
+                        <ul>
+                            <li>Enabled <strong>complex</strong> calculations</li>
+                            <li><strong>Higher-level</strong> accounting emerged</li>
+                            <li>Finance & Engineering advanced</li>
+                            <li>Spreadsheet software was born</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: AUTOMATION VS AI -->
+        <section id="slide-12" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="automation-slide">
+                <div class="automation-header">
+                    <div class="ai-chip">
+                        <span>AI</span>
+                    </div>
+                    <h2>Automation vs. <span>A.I.</span></h2>
+                </div>
+                
+                <div class="automation-content">
+                    <div class="automation-text">
+                        <p><strong>Automation follows a strict recipe.</strong> It executes pre-written "If/Then" rules perfectly but blindly. It cannot judge quality or context—it simply does exactly what it was told to do.</p>
+                        <p><strong>AI is a chef who learns by tasting.</strong> Instead of just following a script, it analyzes data to predict the best outcome. It recognizes patterns and adapts on its own, constantly improving based on experience.</p>
+                    </div>
+                    
+                    <div class="automation-examples">
+                        <div class="example-card">
+                            <div class="icon-circle">
+                                <span>AI</span>
+                            </div>
+                            <div>
+                                <h4>Automatic Door</h4>
+                                <p>Opens when you approach, but doesn't know who you are.</p>
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="icon-circle">
+                                <span>AI</span>
+                            </div>
+                            <div>
+                                <h4>Face ID on Your Phone</h4>
+                                <p>Unlocks because it learned the patterns of YOUR face.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
