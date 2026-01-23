@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshops - Learn Artificial Intelligence, Machine Learning, and ChatGPT">
+    <title>AI Workshops | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .course-wrapper {
+            padding: 140px 0 80px 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f6ff 0%, #f0ebff 100%);
+        }
+        .course-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .course-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+        }
+        .course-header h1 i {
+            color: #6c5ce7;
+            margin-right: 15px;
+        }
+        .course-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+        }
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .course-meta span {
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .course-meta i {
+            color: #6c5ce7;
+        }
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .session-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            display: block;
+        }
+        .session-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.2);
+            text-decoration: none;
+        }
+        .session-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .session-card.locked:hover {
+            transform: none;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .session-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #6c5ce7;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        .session-image {
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .session-image::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .session-image i {
+            font-size: 4rem;
+            color: #00d4ff;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+        .session-content {
+            padding: 25px;
+        }
+        .session-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #232323;
+            margin-bottom: 10px;
+        }
+        .session-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .session-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .session-date {
+            color: #999;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .session-status {
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .session-status.available {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+        }
+        .session-status.coming-soon {
+            background: #f0f0f0;
+            color: #999;
+        }
+        .lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+        }
+        .lock-overlay i {
+            font-size: 2rem;
+            color: #999;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: #5b4cdb;
+            gap: 12px;
+        }
+        .intro-section {
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .intro-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .intro-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .intro-section p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            max-width: 800px;
+            position: relative;
+        }
+        .intro-features {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.9);
+        }
+        .intro-feature i {
+            color: #00d4ff;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .course-header h1 {
+                font-size: 2rem;
+            }
+            .sessions-grid {
+                grid-template-columns: 1fr;
+            }
+            .intro-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {{preloader}}
+    {{header}}
+
+    <main class="course-wrapper">
+        <div class="container">
+            <a href="index.html#workshops" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Workshops
+            </a>
+
+            <div class="course-header">
+                <h1><i class="fas fa-robot"></i> AI Workshops</h1>
+                <p>Explore the fascinating world of Artificial Intelligence, Machine Learning, and learn to harness the power of tools like ChatGPT.</p>
+                <div class="course-meta">
+                    <span><i class="fas fa-layer-group"></i> 5 Sessions</span>
+                    <span><i class="fas fa-clock"></i> 60-90 min each</span>
+                    <span><i class="fas fa-users"></i> All Skill Levels</span>
+                </div>
+            </div>
+
+            <div class="intro-section">
+                <h2>What You'll Learn</h2>
+                <p>From understanding the basics of AI to mastering prompt engineering with ChatGPT, this workshop series takes you on a journey through the most transformative technology of our time. Perfect for beginners and those looking to level up their AI skills.</p>
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <i class="fas fa-brain"></i>
+                        <span>AI Fundamentals</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>ChatGPT Mastery</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-magic"></i>
+                        <span>Prompt Engineering</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-tools"></i>
+                        <span>Practical Projects</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sessions-grid">
+                <a href="ai-workshop-slides.html" class="session-card">
+                    <div class="session-number">1</div>
+                    <div class="session-image">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>The Building Blocks of AI</h3>
+                        <p>What is AI? Explore the hierarchy from Artificial Intelligence to Machine Learning to Neural Networks. Discover how AI appears in sci-fi vs. reality.</p>
+                        <div class="session-meta">
+                            <span class="session-date"><i class="fas fa-calendar"></i> Available Now</span>
+                            <span class="session-status available">Start Learning</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="session-card locked">
+                    <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    <div class="session-number">2</div>
+                    <div class="session-image">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Introduction to ChatGPT</h3>
+                        <p>Meet your AI assistant! Learn how to have conversations with ChatGPT, understand its capabilities and limitations, and try your first prompts.</p>
+                        <div class="session-meta">
+                            <span class="session-date"><i class="fas fa-calendar"></i> Coming Soon</span>
+                            <span class="session-status coming-soon">Locked</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    <div class="session-number">3</div>
+                    <div class="session-image">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Prompt Engineering Basics</h3>
+                        <p>The art of talking to AI. Learn techniques to write effective prompts that get better results. Practice with real-world examples and exercises.</p>
+                        <div class="session-meta">
+                            <span class="session-date"><i class="fas fa-calendar"></i> Coming Soon</span>
+                            <span class="session-status coming-soon">Locked</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    <div class="session-number">4</div>
+                    <div class="session-image">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Advanced AI Applications</h3>
+                        <p>Explore AI beyond chat - image generation, code writing, data analysis. See how professionals use AI tools in their daily work.</p>
+                        <div class="session-meta">
+                            <span class="session-date"><i class="fas fa-calendar"></i> Coming Soon</span>
+                            <span class="session-status coming-soon">Locked</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-card locked">
+                    <div class="lock-overlay"><i class="fas fa-lock"></i></div>
+                    <div class="session-number">5</div>
+                    <div class="session-image">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Your AI-Powered Future</h3>
+                        <p>Put it all together! Build your own AI-assisted project, learn about AI ethics, and explore career paths in the age of artificial intelligence.</p>
+                        <div class="session-meta">
+                            <span class="session-date"><i class="fas fa-calendar"></i> Coming Soon</span>
+                            <span class="session-status coming-soon">Locked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+</body>
+</html>

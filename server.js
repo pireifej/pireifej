@@ -9,9 +9,34 @@ const port = 5000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+// Custom middleware to handle HTML files with template processing
+app.use((req, res, next) => {
+    const url = req.path;
+    if (url.endsWith('.html') || url === '/') {
+        const filename = url === '/' ? 'index.html' : url.substring(1);
+        try {
+            if (fs.existsSync(filename)) {
+                let content = fs.readFileSync(filename, 'utf8');
+                if (content.includes('{{')) {
+                    const preloader = fs.readFileSync('preloader.html', 'utf8');
+                    const header = fs.readFileSync('header.html', 'utf8');
+                    content = content.replace('{{preloader}}', preloader);
+                    content = content.replace('{{header}}', header);
+                }
+                res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+                res.set('Content-Type', 'text/html');
+                return res.send(content);
+            }
+        } catch (error) {
+            console.error(`Error serving ${filename}:`, error);
+        }
+    }
+    next();
+});
+
 // Middleware to serve static files
 app.use(express.static('.', {
-    setHeaders: (res, path, stat) => {
+    setHeaders: (res, filePath, stat) => {
         res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
         res.set('Pragma', 'no-cache');
         res.set('Expires', '0');
@@ -63,6 +88,18 @@ app.get('/workshops.html', (req, res) => {
         res.send(content);
     } catch (error) {
         console.error('Error serving workshops.html:', error);
+        res.status(500).send('Server error');
+    }
+});
+
+// Route to serve ai-workshops-hub.html with template replacements
+app.get('/ai-workshops-hub.html', (req, res) => {
+    try {
+        let content = fs.readFileSync('ai-workshops-hub.html', 'utf8');
+        content = replaceTemplates(content);
+        res.send(content);
+    } catch (error) {
+        console.error('Error serving ai-workshops-hub.html:', error);
         res.status(500).send('Server error');
     }
 });
