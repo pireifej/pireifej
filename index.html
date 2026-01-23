@@ -2029,5 +2029,61 @@ I specialize in bridging the gap between technology and communication, leading d
     </script>
 
     <div class="modal"><!-- Place at bottom of page --></div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 99999; justify-content: center; align-items: center;">
+        <div style="background: #fff; padding: 40px; border-radius: 20px; max-width: 400px; width: 90%; text-align: center; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <button onclick="closeAdminLogin()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">&times;</button>
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+                <i class="fas fa-lock" style="color: white; font-size: 24px;"></i>
+            </div>
+            <h3 style="margin-bottom: 25px; color: #232323;">Admin Access</h3>
+            <input type="text" id="adminUsername" placeholder="Username" style="width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 10px; margin-bottom: 15px; font-size: 16px;">
+            <input type="password" id="adminPassword" placeholder="Password" style="width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 10px; margin-bottom: 20px; font-size: 16px;">
+            <div id="adminLoginError" style="color: #e74c3c; margin-bottom: 15px; display: none;">Invalid credentials</div>
+            <button onclick="attemptAdminLogin()" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;">Login</button>
+        </div>
+    </div>
+
+    <script>
+        // Admin login keyboard shortcut (Ctrl+Shift+P)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'P') {
+                e.preventDefault();
+                document.getElementById('adminLoginModal').style.display = 'flex';
+                document.getElementById('adminUsername').focus();
+            }
+        });
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminLoginError').style.display = 'none';
+        }
+
+        function attemptAdminLogin() {
+            var username = document.getElementById('adminUsername').value;
+            var password = document.getElementById('adminPassword').value;
+            if (username === 'pireifej' && password === 'tenchi') {
+                window.location.href = 'slides-hub.html';
+            } else {
+                document.getElementById('adminLoginError').style.display = 'block';
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') attemptAdminLogin();
+        });
+        document.getElementById('adminUsername').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') document.getElementById('adminPassword').focus();
+        });
+
+        // Close on escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAdminLogin();
+        });
+    </script>
 </body>
 </html>
