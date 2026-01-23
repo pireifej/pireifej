@@ -904,6 +904,111 @@
             line-height: 1;
         }
         
+        /* Split content layout for Machine Learning slide */
+        .slide-split-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            gap: 2rem;
+        }
+        
+        .slide-split-content .split-image {
+            flex: 0 0 35%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 2rem;
+        }
+        
+        .slide-split-content .split-image img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .slide-split-content .split-text {
+            flex: 1;
+            padding: 2rem 1rem;
+        }
+        
+        .slide-split-content .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .slide-split-content .bullet-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .slide-split-content .bullet-list li {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+        
+        .slide-split-content .bullet-list li strong {
+            color: white;
+        }
+        
+        .slide-split-content .subtext {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .comparison-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .compare-box {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            border-radius: 10px;
+            padding: 1rem;
+            gap: 1rem;
+        }
+        
+        .compare-box .box-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .compare-box .box-icon i {
+            font-size: 1.5rem;
+            color: #a78bfa;
+        }
+        
+        .compare-box .box-content h4 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        
+        .compare-box .box-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
         /* Responsive */
         @media (max-width: 900px) {
             .slide-title-content,
@@ -1010,6 +1115,10 @@
         <a href="#slide-23" title="Thermostat Automation"></a>
         <a href="#slide-24" title="Fraud Alert Question"></a>
         <a href="#slide-25" title="Fraud Alert AI"></a>
+        <a href="#slide-26" title="Facebook Tagging"></a>
+        <a href="#slide-27" title="Facebook AI"></a>
+        <a href="#slide-28" title="Summary Question"></a>
+        <a href="#slide-29" title="Machine Learning"></a>
     </nav>
 
     <div class="slides-wrapper">
@@ -1690,6 +1799,125 @@
                     </div>
                     <div class="right-content">
                         <p>It recognized an anomaly. It learned your normal spending pattern (coffee in New Jersey) and flagged this as "weird."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 26: FACEBOOK PHOTO TAGGING QUESTION -->
+        <section id="slide-26" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.36.30_PM_1769212466932.png" alt="Facebook like button">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+                    </div>
+                    <div class="right-content">
+                        <h3>Facebook Photo Tagging</h3>
+                        <p>You upload a group photo and it suggests tagging your friend "John."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 27: FACEBOOK IS A.I. -->
+        <section id="slide-27" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.36.47_PM_1769212466931.png" alt="Facebook like button">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+                    </div>
+                    <div class="right-content">
+                        <h3>A.I. (Neural Network)</h3>
+                        <p>It uses facial recognition to "see" the pixels of the face and match them to patterns it learned from John's other photos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 28: SUMMARY QUESTION -->
+        <section id="slide-28" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            <div class="quote-mark">"</div>
+            
+            <div class="slide-image-text">
+                <div class="image-top">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.36.57_PM_1769212466931.png" alt="Paul with students">
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+                    </div>
+                    <div class="right-content">
+                        <h3>Does the machine get better the more you use it?</h3>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                            <li>No: It's usually Automation.</li>
+                            <li>Yes: It's usually AI/Machine Learning.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 29: MACHINE LEARNING -->
+        <section id="slide-29" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-split-content">
+                <div class="split-image">
+                    <img src="attached_assets/Screenshot_2026-01-23_5.37.06_PM_1769212466930.png" alt="AI concept">
+                </div>
+                <div class="split-text">
+                    <h2 class="section-title">Machine Learning</h2>
+                    <ul class="bullet-list">
+                        <li><strong>Student (The Machine)</strong>: Starts out knowing nothing. It guesses randomly.</li>
+                        <li><strong>Teacher (The Data)</strong>: Holds the "Answer Key."</li>
+                        <li><strong>Process</strong>: The student takes a practice exam, gets answers wrong, looks at the Answer Key to see where they messed up, and adjusts their thinking for the next practice exam.</li>
+                    </ul>
+                    <p class="subtext">If they do this 10,000 times, they eventually figure out the patterns and stop making mistakes.</p>
+                    
+                    <div class="comparison-boxes">
+                        <div class="compare-box">
+                            <div class="box-icon"><i class="fas fa-microchip"></i></div>
+                            <div class="box-content">
+                                <h4>Traditional Coding</h4>
+                                <p>You give the computer the rules.</p>
+                            </div>
+                        </div>
+                        <div class="compare-box">
+                            <div class="box-icon"><i class="fas fa-robot"></i></div>
+                            <div class="box-content">
+                                <h4>Machine Learning</h4>
+                                <p>You give the computer the answers (data) and it figures out the rules.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
