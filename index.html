@@ -563,7 +563,7 @@
                     </div>
 
                      <div class="col-lg-6 thumb" data-wow-delay="900ms">
-                        <img class=" wow fadeInDown" src="img-new/team/v5-removebg-preview.png" alt="Thumb">
+                        <img id="heroImage" class=" wow fadeInDown" src="img-new/team/v5-removebg-preview.png" alt="Thumb">
                         <div class="shape-center">
                             <img src="img-new/shape/7.png" alt="Thumb">
                         </div>
@@ -2084,6 +2084,28 @@ I specialize in bridging the gap between technology and communication, leading d
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeAdminLogin();
         });
+
+        // Triple-tap on hero image for mobile admin access
+        (function() {
+            var heroImage = document.getElementById('heroImage');
+            if (heroImage) {
+                var tapCount = 0;
+                var tapTimeout = null;
+                heroImage.addEventListener('click', function(e) {
+                    tapCount++;
+                    if (tapCount === 1) {
+                        tapTimeout = setTimeout(function() {
+                            tapCount = 0;
+                        }, 600);
+                    } else if (tapCount === 3) {
+                        clearTimeout(tapTimeout);
+                        tapCount = 0;
+                        document.getElementById('adminLoginModal').style.display = 'flex';
+                        document.getElementById('adminUsername').focus();
+                    }
+                });
+            }
+        })();
     </script>
 </body>
 </html>
