@@ -1632,6 +1632,115 @@
             color: #f39c12;
         }
         
+        /* Forest Path Analogy Slide */
+        .forest-path-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        
+        .forest-path-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .forest-comparison {
+            display: flex;
+            gap: 2rem;
+            max-width: 1000px;
+        }
+        
+        .forest-panel {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .forest-panel .panel-header {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        
+        .brain-panel .panel-header {
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+        }
+        
+        .ai-panel .panel-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .forest-panel img {
+            width: 100%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .forest-panel .panel-text {
+            text-align: left;
+        }
+        
+        .forest-panel .panel-text p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
+        }
+        
+        .forest-panel .highlight-text {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .brain-panel .highlight-text {
+            border-left: 4px solid #e91e63;
+        }
+        
+        .ai-panel .highlight-text {
+            border-left: 4px solid #3498db;
+        }
+        
+        .math-forest {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .math-forest .random-numbers {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.5rem;
+        }
+        
+        .math-forest .arrow-down {
+            font-size: 1rem;
+            color: #f39c12;
+            margin: 0.5rem 0;
+        }
+        
+        .math-forest .clear-numbers {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #2ecc71;
+            font-weight: 600;
+        }
+        
         /* Brain vs AI Comparison Table */
         .comparison-table-container {
             display: flex;
@@ -1860,7 +1969,8 @@
         <a href="#slide-36" title="The Node"></a>
         <a href="#slide-37" title="Weights"></a>
         <a href="#slide-38" title="Activation"></a>
-        <a href="#slide-39" title="Brain vs AI"></a>
+        <a href="#slide-39" title="Forest Path"></a>
+        <a href="#slide-40" title="Brain vs AI"></a>
     </nav>
 
     <div class="slides-wrapper">
@@ -2761,45 +2871,86 @@
             <div class="wave-lines"></div>
             
             <div class="activation-container">
-                <h2>Does the Node <span class="highlight">Fire?</span></h2>
-                <p class="subtitle">Adjust the inputs and watch what happens!</p>
+                <h2>Will You <span class="highlight">Pass the Test?</span></h2>
+                <p class="subtitle">Adjust the inputs and see if the node fires!</p>
                 
                 <div class="activation-demo">
                     <div class="input-sliders">
                         <div class="slider-group">
-                            <label><i class="fas fa-dragon" style="color: #e74c3c;"></i> Dragon</label>
-                            <input type="range" id="dragon-slider" min="0" max="10" value="8">
-                            <span class="slider-value" id="dragon-value">8</span>
+                            <label><i class="fas fa-book" style="color: #3498db;"></i> Study Hours</label>
+                            <input type="range" id="study-slider" min="0" max="10" value="6">
+                            <span class="slider-value" id="study-value">6</span>
+                            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">×0.7</span>
                         </div>
                         <div class="slider-group">
-                            <label><i class="fas fa-bug" style="color: #888;"></i> Fly</label>
-                            <input type="range" id="fly-slider" min="0" max="10" value="2">
-                            <span class="slider-value" id="fly-value">2</span>
+                            <label><i class="fas fa-headphones" style="color: #9b59b6;"></i> Class Focus</label>
+                            <input type="range" id="focus-slider" min="0" max="10" value="5">
+                            <span class="slider-value" id="focus-value">5</span>
+                            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">×0.3</span>
                         </div>
                     </div>
                     
                     <div class="calculation-display">
                         <div class="calc-node" id="calc-node">
-                            <span class="sum-value" id="sum-value">9.0</span>
-                            <span class="threshold-label">Sum</span>
+                            <span class="sum-value" id="sum-value">5.7</span>
+                            <span class="threshold-label">Score</span>
                         </div>
                     </div>
                     
                     <div class="output-display">
                         <div class="output-arrow" id="output-arrow"></div>
-                        <div class="output-result" id="output-result">YES!</div>
+                        <div class="output-result" id="output-result">PASS!</div>
                     </div>
                 </div>
                 
                 <p class="threshold-info">
-                    <i class="fas fa-ruler-horizontal"></i> 
-                    Threshold = <strong>5.0</strong> | If sum ≥ 5 → Fire <strong>YES</strong> | If sum < 5 → Output <strong>NO</strong>
+                    <i class="fas fa-graduation-cap"></i> 
+                    Passing Score = <strong>5.0</strong> | Study Hours matter more (×0.7) than Class Focus (×0.3)
                 </p>
             </div>
         </section>
 
-        <!-- SLIDE 32: BRAIN VS AI COMPARISON -->
+        <!-- SLIDE 32: THE FOREST PATH ANALOGY -->
         <section id="slide-32" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="forest-path-container">
+                <h2>The <span class="highlight">Path Through the Woods</span></h2>
+                
+                <div class="forest-comparison">
+                    <div class="forest-panel brain-panel">
+                        <div class="panel-header"><i class="fas fa-brain"></i> Your Brain</div>
+                        <img src="attached_assets/forest-path-learning.png" alt="Forest path analogy">
+                        <div class="panel-text">
+                            <p>Imagine walking through a dense forest. The <strong>first time</strong>, it's hard - weeds and branches everywhere.</p>
+                            <p>But walk that path <strong>every day</strong>, and the grass gets trampled down. It becomes a clear trail!</p>
+                            <p class="highlight-text"><i class="fas fa-lightbulb"></i> This is <strong>"Muscle Memory"</strong> - your brain physically changes!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="forest-panel ai-panel">
+                        <div class="panel-header"><i class="fas fa-robot"></i> Neural Network</div>
+                        <div class="math-forest">
+                            <div class="random-numbers">0.2 → 0.4 → 0.1 → 0.3</div>
+                            <div class="arrow-down"><i class="fas fa-arrow-down"></i> Training</div>
+                            <div class="clear-numbers">0.9 → 0.8 → 0.7 → 0.9</div>
+                        </div>
+                        <div class="panel-text">
+                            <p>At first, the "forest" is a mess of <strong>random numbers</strong>.</p>
+                            <p>Every time the AI gets an answer <strong>right</strong>, it "clears the path" by <strong>increasing the weights</strong> along that route.</p>
+                            <p class="highlight-text"><i class="fas fa-calculator"></i> Not growing cells - just <strong>adjusting math</strong>!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 33: BRAIN VS AI COMPARISON -->
+        <section id="slide-33" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
@@ -2847,24 +2998,24 @@
     <script>
         // Activation slider interactivity
         document.addEventListener('DOMContentLoaded', function() {
-            var dragonSlider = document.getElementById('dragon-slider');
-            var flySlider = document.getElementById('fly-slider');
-            var dragonValue = document.getElementById('dragon-value');
-            var flyValue = document.getElementById('fly-value');
+            var studySlider = document.getElementById('study-slider');
+            var focusSlider = document.getElementById('focus-slider');
+            var studyValue = document.getElementById('study-value');
+            var focusValue = document.getElementById('focus-value');
             var sumValue = document.getElementById('sum-value');
             var calcNode = document.getElementById('calc-node');
             var outputArrow = document.getElementById('output-arrow');
             var outputResult = document.getElementById('output-result');
             
             function updateCalculation() {
-                var dragon = parseFloat(dragonSlider.value);
-                var fly = parseFloat(flySlider.value);
+                var study = parseFloat(studySlider.value);
+                var focus = parseFloat(focusSlider.value);
                 
-                dragonValue.textContent = dragon;
-                flyValue.textContent = fly;
+                studyValue.textContent = study;
+                focusValue.textContent = focus;
                 
-                // Weighted sum: dragon has high weight (0.9), fly has low weight (0.1)
-                var sum = (dragon * 0.9) + (fly * 0.1);
+                // Weighted sum: study hours have high weight (0.7), class focus has lower weight (0.3)
+                var sum = (study * 0.7) + (focus * 0.3);
                 sumValue.textContent = sum.toFixed(1);
                 
                 var threshold = 5.0;
@@ -2872,19 +3023,19 @@
                 if (sum >= threshold) {
                     calcNode.classList.add('firing');
                     outputArrow.classList.add('active');
-                    outputResult.textContent = 'YES!';
+                    outputResult.textContent = 'PASS!';
                     outputResult.className = 'output-result yes';
                 } else {
                     calcNode.classList.remove('firing');
                     outputArrow.classList.remove('active');
-                    outputResult.textContent = 'NO';
+                    outputResult.textContent = 'FAIL';
                     outputResult.className = 'output-result no';
                 }
             }
             
-            if (dragonSlider && flySlider) {
-                dragonSlider.addEventListener('input', updateCalculation);
-                flySlider.addEventListener('input', updateCalculation);
+            if (studySlider && focusSlider) {
+                studySlider.addEventListener('input', updateCalculation);
+                focusSlider.addEventListener('input', updateCalculation);
                 updateCalculation();
             }
         });
