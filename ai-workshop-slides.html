@@ -1868,56 +1868,15 @@
             margin-bottom: 2rem;
         }
         
-        .car-analogy {
-            margin-bottom: 2rem;
+        .car-analogy-image {
+            margin-bottom: 1.5rem;
+            max-width: 800px;
         }
         
-        .car-visual {
-            display: flex;
-            align-items: flex-end;
-            gap: 1rem;
-            position: relative;
-        }
-        
-        .destination, .vehicle, .engine {
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 15px;
-        }
-        
-        .destination {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            min-width: 180px;
-        }
-        
-        .vehicle {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            min-width: 200px;
-            position: relative;
-        }
-        
-        .engine {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            min-width: 200px;
-            transform: translateY(20px);
-        }
-        
-        .dest-icon, .vehicle-icon, .engine-icon {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        .dest-label, .vehicle-label, .engine-label {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 0.3rem;
-        }
-        
-        .dest-desc, .vehicle-desc, .engine-desc {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+        .car-analogy-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
         
         .bigger-picture-quote {
@@ -3436,26 +3395,8 @@
             <div class="bigger-picture-container">
                 <h2>The <span class="highlight">Bigger Picture</span></h2>
                 
-                <div class="car-analogy">
-                    <div class="car-visual">
-                        <div class="destination">
-                            <div class="dest-icon"><i class="fas fa-flag-checkered"></i></div>
-                            <div class="dest-label">AI</div>
-                            <div class="dest-desc">The Destination</div>
-                        </div>
-                        
-                        <div class="vehicle">
-                            <div class="vehicle-icon"><i class="fas fa-car"></i></div>
-                            <div class="vehicle-label">Machine Learning</div>
-                            <div class="vehicle-desc">The Vehicle</div>
-                        </div>
-                        
-                        <div class="engine">
-                            <div class="engine-icon"><i class="fas fa-cogs"></i></div>
-                            <div class="engine-label">Neural Networks</div>
-                            <div class="engine-desc">The High-Performance Engine</div>
-                        </div>
-                    </div>
+                <div class="car-analogy-image">
+                    <img src="img-new/ai-workshop/bigger-picture-car.png" alt="AI is the destination, Machine Learning is the vehicle, Neural Networks are the engine">
                 </div>
                 
                 <div class="bigger-picture-quote">
