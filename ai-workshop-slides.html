@@ -1936,6 +1936,198 @@
             margin: 0 0.5rem;
         }
         
+        /* Quick Draw Exercise Slide */
+        .quickdraw-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 1.5rem;
+        }
+        
+        .quickdraw-container h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .quickdraw-banner {
+            margin-bottom: 1rem;
+        }
+        
+        .quickdraw-link {
+            text-decoration: none;
+        }
+        
+        .quickdraw-visual {
+            background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            border-radius: 20px;
+            padding: 1.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .quickdraw-visual:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(66, 133, 244, 0.4);
+        }
+        
+        .quickdraw-visual .pencil-icon {
+            font-size: 2rem;
+            color: white;
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .quickdraw-visual .brain-icon {
+            font-size: 2rem;
+            color: white;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .quickdraw-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .quickdraw-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .exercise-instructions {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+        
+        .instruction-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f39c12;
+            margin-bottom: 0.8rem;
+        }
+        
+        .instruction-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .step-num {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .what-to-observe {
+            background: rgba(52, 152, 219, 0.2);
+            border: 2px solid rgba(52, 152, 219, 0.5);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .observe-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+        
+        .what-to-observe p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0.5rem 0;
+        }
+        
+        .guess-example {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .guess {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .guess.wrong {
+            background: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+        }
+        
+        .guess.right {
+            background: rgba(46, 204, 113, 0.3);
+            color: #2ecc71;
+            font-weight: 600;
+        }
+        
+        .guess-example i {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .observe-note {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .play-button {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(66, 133, 244, 0.4);
+        }
+        
         /* Brain vs AI Comparison Table */
         .comparison-table-container {
             display: flex;
@@ -3271,6 +3463,65 @@
                     <strong>AI</strong> is the destination, <strong>Machine Learning</strong> is the vehicle, and <strong>Neural Networks</strong> are the high-performance engine inside that vehicle.
                     <i class="fas fa-quote-right"></i>
                 </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 36: QUICK DRAW GROUP EXERCISE -->
+        <section id="slide-36" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="quickdraw-container">
+                <h2><i class="fas fa-users"></i> Group Exercise: <span class="highlight">Quick, Draw!</span></h2>
+                
+                <div class="quickdraw-banner">
+                    <a href="https://quickdraw.withgoogle.com/" target="_blank" class="quickdraw-link">
+                        <div class="quickdraw-visual">
+                            <div class="pencil-icon"><i class="fas fa-pencil-alt"></i></div>
+                            <div class="brain-icon"><i class="fas fa-brain"></i></div>
+                            <div class="quickdraw-title">Quick, Draw!</div>
+                            <div class="quickdraw-subtitle">by Google</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="exercise-instructions">
+                    <div class="instruction-header"><i class="fas fa-gamepad"></i> How It Works</div>
+                    <div class="instruction-steps">
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-text"><strong>One volunteer</strong> plays the game on the big screen</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-text"><strong>Everyone else</strong> watches the text predictions below the drawing</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-text"><strong>Observe</strong> how the AI's guesses change as more lines are drawn!</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="what-to-observe">
+                    <div class="observe-header"><i class="fas fa-eye"></i> What You'll See</div>
+                    <p>Watch the neural network's "thought process" in real-time! As you draw, you'll see guesses like:</p>
+                    <div class="guess-example">
+                        <span class="guess wrong">"circle"</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="guess wrong">"potato"</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="guess right">"smiley face!"</span>
+                    </div>
+                    <p class="observe-note"><i class="fas fa-lightbulb"></i> The AI is using a neural network trained on <strong>millions of drawings</strong> from people around the world!</p>
+                </div>
+                
+                <a href="https://quickdraw.withgoogle.com/" target="_blank" class="play-button">
+                    <i class="fas fa-play"></i> Play Quick, Draw!
+                </a>
             </div>
         </section>
     </div>
