@@ -1101,6 +1101,165 @@
             font-style: italic;
         }
         
+        /* Signal Comparison Slide Styles */
+        .signal-comparison-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .comparison-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+        
+        .signal-toggle-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .signal-btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .signal-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .signal-btn.active[data-signal="weak"] {
+            background: linear-gradient(135deg, #4a90a4, #2d5a6b);
+            border-color: #4a90a4;
+            box-shadow: 0 0 20px rgba(74, 144, 164, 0.5);
+        }
+        
+        .signal-btn.active[data-signal="strong"] {
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            border-color: #f39c12;
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+        }
+        
+        .signal-display {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            min-height: 350px;
+        }
+        
+        .signal-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .signal-panel.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .signal-panel img {
+            width: 45%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+        
+        .signal-explanation {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .signal-explanation h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .weak-signal .signal-explanation h3 {
+            color: #7ec8e3;
+        }
+        
+        .strong-signal .signal-explanation h3 {
+            color: #f39c12;
+        }
+        
+        .signal-explanation p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
+        }
+        
+        .signal-explanation .result {
+            font-size: 1.3rem;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .weak-signal .result {
+            background: rgba(126, 200, 227, 0.2);
+            border-left: 4px solid #7ec8e3;
+        }
+        
+        .strong-signal .result {
+            background: rgba(243, 156, 18, 0.2);
+            border-left: 4px solid #f39c12;
+        }
+        
+        .signal-insight {
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .signal-insight i {
+            color: #f1c40f;
+            font-size: 1.5rem;
+        }
+        
         .comparison-boxes {
             display: flex;
             flex-direction: column;
@@ -1260,6 +1419,8 @@
         <a href="#slide-31" title="Emotion Detector"></a>
         <a href="#slide-32" title="The Clapper"></a>
         <a href="#slide-33" title="Human Joystick"></a>
+        <a href="#slide-34" title="Your Brain's Workers"></a>
+        <a href="#slide-35" title="Signal Strength"></a>
     </nav>
 
     <div class="slides-wrapper">
@@ -2002,11 +2163,104 @@
                 </div>
             </div>
         </section>
+
+        <!-- SLIDE 27: YOUR BRAIN'S WORKERS -->
+        <section id="slide-27" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="slide-image-text">
+                <div class="image-top" style="flex: 1.2;">
+                    <img src="attached_assets/image_1769278831189.png" alt="Workers holding hands - neurons and synapses" style="max-height: 55vh; object-fit: contain;">
+                </div>
+                <div class="text-bottom" style="padding: 1.5rem 3rem;">
+                    <div class="left-title" style="flex: 0.4;">
+                        <h2><span class="highlight">Your Brain's</span><br><span>Workers</span></h2>
+                    </div>
+                    <div class="right-content" style="flex: 0.6;">
+                        <p style="font-size: 1.2rem; margin-bottom: 0.8rem;"><strong style="color: #00d4ff;">Workers = Neurons</strong><br>Each worker is a brain cell that can receive and send messages.</p>
+                        <p style="font-size: 1.2rem; margin-bottom: 0.8rem;"><strong style="color: #00d4ff;">Holding Hands = Synapses</strong><br>The connections between workers where messages pass through.</p>
+                        <p style="font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,0.8);">Your brain has 86 billion of these workers, all connected!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 28: SIGNAL STRENGTH COMPARISON -->
+        <section id="slide-28" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="signal-comparison-container">
+                <h2 class="comparison-title">What Happens When You See Something?</h2>
+                <p class="comparison-subtitle">Click to compare weak vs strong signals</p>
+                
+                <div class="signal-toggle-buttons">
+                    <button class="signal-btn active" data-signal="weak">
+                        <i class="fas fa-bug"></i> See a Fly
+                    </button>
+                    <button class="signal-btn" data-signal="strong">
+                        <i class="fas fa-dragon"></i> See a Dragon
+                    </button>
+                </div>
+                
+                <div class="signal-display">
+                    <div class="signal-panel weak-signal active">
+                        <img src="attached_assets/image_1769278959163.png" alt="Weak signal - fly">
+                        <div class="signal-explanation">
+                            <h3><i class="fas fa-meh"></i> Weak Spark</h3>
+                            <p>The first worker receives a tiny spark. He shrugs - <em>"Meh, just a fly. Not worth bothering everyone."</em></p>
+                            <p class="result">The message <strong>stops</strong>. No chain reaction.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="signal-panel strong-signal">
+                        <img src="attached_assets/image_1769279044313.png" alt="Strong signal - dragon">
+                        <div class="signal-explanation">
+                            <h3><i class="fas fa-bolt"></i> Strong Spark</h3>
+                            <p>The first worker gets hit by lightning! He panics and squeezes his partner's hand - <em>"DRAGON! PASS IT ON!"</em></p>
+                            <p class="result">The message <strong>fires</strong> down the entire chain!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="signal-insight">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>This is how your brain decides what's important - the <strong>strength</strong> of the signal determines if the message gets passed along!</span>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var sections = document.querySelectorAll('.slide');
+            
+            // Signal comparison toggle
+            var signalBtns = document.querySelectorAll('.signal-btn');
+            var signalPanels = document.querySelectorAll('.signal-panel');
+            
+            signalBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var signal = this.getAttribute('data-signal');
+                    
+                    signalBtns.forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    
+                    signalPanels.forEach(function(panel) {
+                        panel.classList.remove('active');
+                        if (panel.classList.contains(signal + '-signal')) {
+                            panel.classList.add('active');
+                        }
+                    });
+                });
+            });
             var navDots = document.querySelectorAll('.nav-dots a');
             var wrapper = document.querySelector('.slides-wrapper');
 
