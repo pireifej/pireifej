@@ -1741,6 +1741,201 @@
             font-weight: 600;
         }
         
+        /* What is a Model Slide */
+        .model-explanation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        
+        .model-explanation-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .chef-analogy {
+            margin-bottom: 2rem;
+        }
+        
+        .analogy-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .analogy-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .analogy-item.process {
+            border: 3px solid #f39c12;
+        }
+        
+        .analogy-item.result {
+            border: 3px solid #2ecc71;
+        }
+        
+        .analogy-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .analogy-item.process .analogy-icon {
+            color: #f39c12;
+        }
+        
+        .analogy-item.result .analogy-icon {
+            color: #2ecc71;
+        }
+        
+        .analogy-label {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .analogy-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+        
+        .analogy-metaphor {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+        
+        .analogy-arrow {
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .model-definition {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+        
+        .model-definition p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0.5rem 0;
+        }
+        
+        .model-summary {
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.3), rgba(52, 152, 219, 0.3));
+            border: 2px solid rgba(155, 89, 182, 0.5);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            color: white;
+            max-width: 700px;
+            text-align: center;
+        }
+        
+        .model-summary i {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 0.5rem;
+        }
+        
+        /* The Bigger Picture Slide */
+        .bigger-picture-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        
+        .bigger-picture-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .car-analogy {
+            margin-bottom: 2rem;
+        }
+        
+        .car-visual {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            position: relative;
+        }
+        
+        .destination, .vehicle, .engine {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+        
+        .destination {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            min-width: 180px;
+        }
+        
+        .vehicle {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            min-width: 200px;
+            position: relative;
+        }
+        
+        .engine {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            min-width: 200px;
+            transform: translateY(20px);
+        }
+        
+        .dest-icon, .vehicle-icon, .engine-icon {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dest-label, .vehicle-label, .engine-label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+        
+        .dest-desc, .vehicle-desc, .engine-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .bigger-picture-quote {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            color: white;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .bigger-picture-quote i {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 0.5rem;
+        }
+        
         /* Brain vs AI Comparison Table */
         .comparison-table-container {
             display: flex;
@@ -2935,13 +3130,13 @@
                     <div class="forest-panel ai-panel">
                         <div class="panel-header"><i class="fas fa-robot"></i> Neural Network</div>
                         <div class="math-forest">
-                            <div class="random-numbers">0.2 → 0.4 → 0.1 → 0.3</div>
+                            <div class="random-numbers">2 → 4 → 1 → 3</div>
                             <div class="arrow-down"><i class="fas fa-arrow-down"></i> Training</div>
-                            <div class="clear-numbers">0.9 → 0.8 → 0.7 → 0.9</div>
+                            <div class="clear-numbers">9 → 8 → 7 → 9</div>
                         </div>
                         <div class="panel-text">
-                            <p>At first, the "forest" is a mess of <strong>random numbers</strong>.</p>
-                            <p>Every time the AI gets an answer <strong>right</strong>, it "clears the path" by <strong>increasing the weights</strong> along that route.</p>
+                            <p>At first, the "forest" is a mess of <strong>weak, random numbers</strong>.</p>
+                            <p>Every time the AI gets an answer <strong>right</strong>, it "clears the path" by making those numbers <strong>bigger and stronger</strong>.</p>
                             <p class="highlight-text"><i class="fas fa-calculator"></i> Not growing cells - just <strong>adjusting math</strong>!</p>
                         </div>
                     </div>
@@ -2991,6 +3186,91 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <!-- SLIDE 34: WHAT IS A MODEL -->
+        <section id="slide-34" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="model-explanation-container">
+                <h2>What is a <span class="highlight">Model?</span></h2>
+                
+                <div class="chef-analogy">
+                    <div class="analogy-row">
+                        <div class="analogy-item process">
+                            <div class="analogy-icon"><i class="fas fa-fire"></i></div>
+                            <div class="analogy-label">Machine Learning</div>
+                            <div class="analogy-desc">The process of learning</div>
+                            <div class="analogy-metaphor"><i class="fas fa-user-chef"></i> The chef cooking</div>
+                        </div>
+                        
+                        <div class="analogy-arrow"><i class="fas fa-arrow-right"></i></div>
+                        
+                        <div class="analogy-item result">
+                            <div class="analogy-icon"><i class="fas fa-file-alt"></i></div>
+                            <div class="analogy-label">The Model</div>
+                            <div class="analogy-desc">The result</div>
+                            <div class="analogy-metaphor"><i class="fas fa-scroll"></i> The final recipe</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-definition">
+                    <p><i class="fas fa-lightbulb"></i> A <strong>model</strong> is simply the file or "brain" that remains <strong>after training is over</strong>.</p>
+                    <p>It's what you actually use to make predictions!</p>
+                </div>
+                
+                <div class="model-summary">
+                    <i class="fas fa-quote-left"></i>
+                    We use <strong>Machine Learning</strong> to create a <strong>Model</strong>, and then we use that <strong>Model</strong> to solve problems.
+                    <i class="fas fa-quote-right"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 35: THE BIGGER PICTURE -->
+        <section id="slide-35" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="bigger-picture-container">
+                <h2>The <span class="highlight">Bigger Picture</span></h2>
+                
+                <div class="car-analogy">
+                    <div class="car-visual">
+                        <div class="destination">
+                            <div class="dest-icon"><i class="fas fa-flag-checkered"></i></div>
+                            <div class="dest-label">AI</div>
+                            <div class="dest-desc">The Destination</div>
+                        </div>
+                        
+                        <div class="vehicle">
+                            <div class="vehicle-icon"><i class="fas fa-car"></i></div>
+                            <div class="vehicle-label">Machine Learning</div>
+                            <div class="vehicle-desc">The Vehicle</div>
+                        </div>
+                        
+                        <div class="engine">
+                            <div class="engine-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="engine-label">Neural Networks</div>
+                            <div class="engine-desc">The High-Performance Engine</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bigger-picture-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <strong>AI</strong> is the destination, <strong>Machine Learning</strong> is the vehicle, and <strong>Neural Networks</strong> are the high-performance engine inside that vehicle.
+                    <i class="fas fa-quote-right"></i>
+                </div>
             </div>
         </section>
     </div>
