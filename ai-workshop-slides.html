@@ -1260,6 +1260,442 @@
             font-size: 1.5rem;
         }
         
+        /* Neural Network Slides Styles */
+        .node-intro-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .node-intro-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .node-intro-container .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+        
+        .node-visual {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .node-visual img {
+            max-width: 280px;
+            border-radius: 20px;
+        }
+        
+        .node-description {
+            text-align: left;
+            max-width: 400px;
+        }
+        
+        .node-description p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+        }
+        
+        .node-description .highlight-box {
+            background: rgba(0, 212, 255, 0.2);
+            border-left: 4px solid #00d4ff;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Weights Slide */
+        .weights-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        
+        .weights-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .weights-visual {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .weight-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .weight-input.dragon {
+            animation: pulse-dragon 2s infinite;
+        }
+        
+        @keyframes pulse-dragon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .weight-input img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .weight-arrow {
+            height: 8px;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .weight-arrow.thick {
+            width: 120px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.5);
+        }
+        
+        .weight-arrow.thin {
+            width: 120px;
+            background: rgba(255, 255, 255, 0.3);
+            height: 3px;
+        }
+        
+        .weight-arrow::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 8px solid transparent;
+            border-left-color: inherit;
+        }
+        
+        .weight-arrow.thick::after {
+            border-left-color: #f39c12;
+        }
+        
+        .weight-arrow.thin::after {
+            border-left-color: rgba(255, 255, 255, 0.3);
+            border-width: 5px;
+            right: -8px;
+        }
+        
+        .weight-label {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        
+        .weight-label.high {
+            background: linear-gradient(135deg, #e74c3c, #f39c12);
+            color: white;
+        }
+        
+        .weight-label.low {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .node-center {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+            flex-direction: column;
+        }
+        
+        .node-center .math-symbols {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .weights-explanation {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .weight-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .weight-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .weight-card.important h4 {
+            color: #f39c12;
+        }
+        
+        .weight-card.ignore h4 {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .weight-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Activation Interactive Slide */
+        .activation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        
+        .activation-container h2 {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .activation-container .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+        
+        .activation-demo {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-sliders {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .slider-group label {
+            min-width: 100px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .slider-group input[type="range"] {
+            width: 150px;
+            height: 8px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #00d4ff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            min-width: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+        
+        .calculation-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .calc-node {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .calc-node.firing {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.7);
+            animation: fire-pulse 0.5s ease;
+        }
+        
+        @keyframes fire-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .calc-node .sum-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .calc-node .threshold-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .output-display {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .output-arrow {
+            width: 60px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+        
+        .output-arrow.active {
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            height: 6px;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+        }
+        
+        .output-result {
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .output-result.yes {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+        
+        .output-result.no {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .threshold-info {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 1rem;
+        }
+        
+        .threshold-info strong {
+            color: #f39c12;
+        }
+        
+        /* Brain vs AI Comparison Table */
+        .comparison-table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+        
+        .comparison-table-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th {
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .comparison-table th:first-child {
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+        }
+        
+        .comparison-table th:nth-child(2) {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .comparison-table th:nth-child(3) {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: #e91e63;
+        }
+        
+        .comparison-table td:nth-child(2) {
+            color: #3498db;
+        }
+        
         .comparison-boxes {
             display: flex;
             flex-direction: column;
@@ -1421,6 +1857,10 @@
         <a href="#slide-33" title="Human Joystick"></a>
         <a href="#slide-34" title="Your Brain's Workers"></a>
         <a href="#slide-35" title="Signal Strength"></a>
+        <a href="#slide-36" title="The Node"></a>
+        <a href="#slide-37" title="Weights"></a>
+        <a href="#slide-38" title="Activation"></a>
+        <a href="#slide-39" title="Brain vs AI"></a>
     </nav>
 
     <div class="slides-wrapper">
@@ -2212,7 +2652,7 @@
                 
                 <div class="signal-display">
                     <div class="signal-panel weak-signal active">
-                        <img src="attached_assets/image_1769278959163.png" alt="Weak signal - fly">
+                        <img src="attached_assets/image_1769279569915.png" alt="Weak signal - fly">
                         <div class="signal-explanation">
                             <h3><i class="fas fa-meh"></i> Weak Spark</h3>
                             <p>The first worker receives a tiny spark. He shrugs - <em>"Meh, just a fly. Not worth bothering everyone."</em></p>
@@ -2221,7 +2661,7 @@
                     </div>
                     
                     <div class="signal-panel strong-signal">
-                        <img src="attached_assets/image_1769279044313.png" alt="Strong signal - dragon">
+                        <img src="attached_assets/image_1769279616812.png" alt="Strong signal - dragon">
                         <div class="signal-explanation">
                             <h3><i class="fas fa-bolt"></i> Strong Spark</h3>
                             <p>The first worker gets hit by lightning! He panics and squeezes his partner's hand - <em>"DRAGON! PASS IT ON!"</em></p>
@@ -2236,9 +2676,218 @@
                 </div>
             </div>
         </section>
+
+        <!-- SLIDE 29: THE NODE -->
+        <section id="slide-29" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="node-intro-container">
+                <h2>Meet the <span class="highlight">Node</span></h2>
+                <p class="subtitle">Your Brain's Worker... But in Math Form!</p>
+                
+                <div class="node-visual">
+                    <img src="attached_assets/image_1769279311356.png" alt="Node - artificial neuron">
+                    <div class="node-description">
+                        <p>Scientists wanted to recreate how the brain works inside a computer.</p>
+                        <p>Instead of a biological brain cell (neuron), they created a <strong>Node</strong> - a circle that does math!</p>
+                        <div class="highlight-box">
+                            <strong>Node = Artificial Neuron</strong><br>
+                            It receives information, calculates, and decides whether to pass a message along.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 30: WEIGHTS -->
+        <section id="slide-30" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="weights-container">
+                <h2>Connections Have <span class="highlight">Weights</span></h2>
+                
+                <div class="weights-visual">
+                    <div class="weight-input dragon">
+                        <i class="fas fa-dragon" style="font-size: 3rem; color: #e74c3c;"></i>
+                        <span class="weight-label high">Weight: 0.9</span>
+                    </div>
+                    <div class="weight-arrow thick"></div>
+                    
+                    <div class="node-center">
+                        <span>NODE</span>
+                        <span class="math-symbols">+ - × ÷</span>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 2rem; margin-left: -2rem;">
+                    </div>
+                </div>
+                
+                <div class="weights-visual" style="margin-top: -1rem;">
+                    <div class="weight-input">
+                        <i class="fas fa-bug" style="font-size: 2rem; color: rgba(255,255,255,0.4);"></i>
+                        <span class="weight-label low">Weight: 0.1</span>
+                    </div>
+                    <div class="weight-arrow thin"></div>
+                    <div style="width: 150px;"></div>
+                </div>
+                
+                <div class="weights-explanation">
+                    <div class="weight-card important">
+                        <h4><i class="fas fa-fire"></i> High Weight = Important!</h4>
+                        <p>Dragon signal × 0.9 = <strong>Strong influence</strong></p>
+                    </div>
+                    <div class="weight-card ignore">
+                        <h4><i class="fas fa-volume-mute"></i> Low Weight = Ignore</h4>
+                        <p>Fly signal × 0.1 = <strong>Barely matters</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 31: ACTIVATION INTERACTIVE -->
+        <section id="slide-31" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="activation-container">
+                <h2>Does the Node <span class="highlight">Fire?</span></h2>
+                <p class="subtitle">Adjust the inputs and watch what happens!</p>
+                
+                <div class="activation-demo">
+                    <div class="input-sliders">
+                        <div class="slider-group">
+                            <label><i class="fas fa-dragon" style="color: #e74c3c;"></i> Dragon</label>
+                            <input type="range" id="dragon-slider" min="0" max="10" value="8">
+                            <span class="slider-value" id="dragon-value">8</span>
+                        </div>
+                        <div class="slider-group">
+                            <label><i class="fas fa-bug" style="color: #888;"></i> Fly</label>
+                            <input type="range" id="fly-slider" min="0" max="10" value="2">
+                            <span class="slider-value" id="fly-value">2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-display">
+                        <div class="calc-node" id="calc-node">
+                            <span class="sum-value" id="sum-value">9.0</span>
+                            <span class="threshold-label">Sum</span>
+                        </div>
+                    </div>
+                    
+                    <div class="output-display">
+                        <div class="output-arrow" id="output-arrow"></div>
+                        <div class="output-result" id="output-result">YES!</div>
+                    </div>
+                </div>
+                
+                <p class="threshold-info">
+                    <i class="fas fa-ruler-horizontal"></i> 
+                    Threshold = <strong>5.0</strong> | If sum ≥ 5 → Fire <strong>YES</strong> | If sum < 5 → Output <strong>NO</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 32: BRAIN VS AI COMPARISON -->
+        <section id="slide-32" class="slide">
+            <div class="brand-logo">
+                <i class="fas fa-brain"></i> Should Call Paul
+            </div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+            
+            <div class="comparison-table-container">
+                <h2><i class="fas fa-brain" style="color: #e91e63;"></i> Brain vs <i class="fas fa-robot" style="color: #3498db;"></i> Neural Network</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-brain"></i> The Human Brain</th>
+                            <th><i class="fas fa-robot"></i> The Neural Network (AI)</th>
+                            <th><i class="fas fa-info-circle"></i> What It Does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Neuron</td>
+                            <td>Node</td>
+                            <td>The individual worker holding a piece of info.</td>
+                        </tr>
+                        <tr>
+                            <td>Synapse</td>
+                            <td>Connection / Weight</td>
+                            <td>How strongly two workers are connected.</td>
+                        </tr>
+                        <tr>
+                            <td>Firing</td>
+                            <td>Activation</td>
+                            <td>Deciding if the information is important enough to pass on.</td>
+                        </tr>
+                        <tr>
+                            <td>Learning</td>
+                            <td>Training</td>
+                            <td>Strengthening the connections that gave the right answer.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
     <script>
+        // Activation slider interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            var dragonSlider = document.getElementById('dragon-slider');
+            var flySlider = document.getElementById('fly-slider');
+            var dragonValue = document.getElementById('dragon-value');
+            var flyValue = document.getElementById('fly-value');
+            var sumValue = document.getElementById('sum-value');
+            var calcNode = document.getElementById('calc-node');
+            var outputArrow = document.getElementById('output-arrow');
+            var outputResult = document.getElementById('output-result');
+            
+            function updateCalculation() {
+                var dragon = parseFloat(dragonSlider.value);
+                var fly = parseFloat(flySlider.value);
+                
+                dragonValue.textContent = dragon;
+                flyValue.textContent = fly;
+                
+                // Weighted sum: dragon has high weight (0.9), fly has low weight (0.1)
+                var sum = (dragon * 0.9) + (fly * 0.1);
+                sumValue.textContent = sum.toFixed(1);
+                
+                var threshold = 5.0;
+                
+                if (sum >= threshold) {
+                    calcNode.classList.add('firing');
+                    outputArrow.classList.add('active');
+                    outputResult.textContent = 'YES!';
+                    outputResult.className = 'output-result yes';
+                } else {
+                    calcNode.classList.remove('firing');
+                    outputArrow.classList.remove('active');
+                    outputResult.textContent = 'NO';
+                    outputResult.className = 'output-result no';
+                }
+            }
+            
+            if (dragonSlider && flySlider) {
+                dragonSlider.addEventListener('input', updateCalculation);
+                flySlider.addEventListener('input', updateCalculation);
+                updateCalculation();
+            }
+        });
         document.addEventListener('DOMContentLoaded', function() {
             var sections = document.querySelectorAll('.slide');
             
