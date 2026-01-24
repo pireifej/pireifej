@@ -907,6 +907,137 @@
             line-height: 1;
         }
         
+        /* Interactive Exercise Slide Styles */
+        .interactive-exercise-slide {
+            padding: 1rem 2rem !important;
+        }
+        
+        .exercise-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+        }
+        
+        .exercise-header h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+        
+        .exercise-header h2 .highlight {
+            color: #a29bfe;
+        }
+        
+        .exercise-instruction {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .flip-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .flip-cards-grid .flip-card:nth-child(5) {
+            grid-column: 2;
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 220px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .flip-card-front {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a1a3e 100%);
+            border: 2px solid rgba(162, 155, 254, 0.3);
+        }
+        
+        .flip-card-front img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+        }
+        
+        .flip-card-front h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #a29bfe;
+            padding: 0.5rem 0.6rem 0.2rem;
+            line-height: 1.2;
+        }
+        
+        .flip-card-front p {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.8);
+            padding: 0 0.6rem 0.5rem;
+            line-height: 1.4;
+            flex: 1;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .flip-card-back.automation-answer {
+            background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+        }
+        
+        .flip-card-back.ai-answer {
+            background: linear-gradient(135deg, #00d4ff 0%, #6c5ce7 100%);
+        }
+        
+        .flip-card-back .answer-label {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .flip-card-back p {
+            font-size: 0.7rem;
+            color: white;
+            line-height: 1.4;
+        }
+        
+        .flip-card-back p em {
+            font-style: italic;
+            color: #fff;
+            font-weight: 600;
+        }
+        
         /* Split content layout for Machine Learning slide */
         .slide-split-content {
             display: flex;
@@ -1499,352 +1630,122 @@
             </div>
         </section>
 
-        <!-- SLIDE 14: THE AUTOMATIC DOOR -->
-        <section id="slide-14" class="slide">
+        <!-- SLIDE 14: INTERACTIVE A.I. OR AUTOMATION EXERCISE -->
+        <section id="slide-14" class="slide interactive-exercise-slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
             <div class="wave-decoration"></div>
             <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
             
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.25.23_PM_1769211380002.png" alt="Garage door opener">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
+            <div class="exercise-header">
+                <h2><span class="highlight">A.I.</span> or just <span>Automation</span>?</h2>
+                <p class="exercise-instruction">Click each card to reveal the answer!</p>
+            </div>
+            
+            <div class="flip-cards-grid">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-auto-door.png" alt="Automatic Door">
+                            <h3>The Automatic Door</h3>
+                            <p>A sliding door opens at the grocery store when you walk near it.</p>
+                        </div>
+                        <div class="flip-card-back automation-answer">
+                            <div class="answer-label">Automation!</div>
+                            <p>It uses a simple motion sensor. It opens for anything that breaks the beam (a person, a cart, a dog). It doesn't know <em>you</em>.</p>
+                        </div>
                     </div>
-                    <div class="right-content">
-                        <h3>The Automatic Door</h3>
-                        <p>A sliding door opens at the grocery store when you walk near it.</p>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-spotify.png" alt="Spotify">
+                            <h3>Spotify's "Discover Weekly"</h3>
+                            <p>A playlist appears every Monday with songs you've never heard but likely enjoy.</p>
+                        </div>
+                        <div class="flip-card-back ai-answer">
+                            <div class="answer-label">A.I.!</div>
+                            <p>It analyzes your listening history and compares it to millions of other users to <em>predict</em> what you will like.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-word-replace.png" alt="Word Find Replace">
+                            <h3>Word "Find & Replace"</h3>
+                            <p>You tell Word to change every "cat" to "dog."</p>
+                        </div>
+                        <div class="flip-card-back automation-answer">
+                            <div class="answer-label">Automation!</div>
+                            <p>It is following a strict command. It will not change "kitten" to "puppy" unless you explicitly tell it to.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-chatgpt.png" alt="ChatGPT">
+                            <h3>ChatGPT / Gemini</h3>
+                            <p>You ask it to write a poem about your dog.</p>
+                        </div>
+                        <div class="flip-card-back ai-answer">
+                            <div class="answer-label">A.I.!</div>
+                            <p>It wasn't pre-programmed with that specific poem. It predicted the next words based on patterns it learned from reading the internet.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-thermostat.png" alt="Thermostat">
+                            <h3>A Thermostat (basic)</h3>
+                            <p>The heat turns on when the room drops below 68°F.</p>
+                        </div>
+                        <div class="flip-card-back automation-answer">
+                            <div class="answer-label">Automation!</div>
+                            <p>It follows a simple "If/Then" rule. (Note: A Nest thermostat that learns your schedule would be AI).</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-fraud-alert.png" alt="Fraud Alert">
+                            <h3>Credit Card Fraud Alert</h3>
+                            <p>Your bank texts you: "Did you just spend $500 in London?"</p>
+                        </div>
+                        <div class="flip-card-back ai-answer">
+                            <div class="answer-label">A.I.!</div>
+                            <p>It recognized an anomaly. It learned your normal spending pattern (coffee in New Jersey) and flagged this as "weird."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="attached_assets/card-facebook-tag.png" alt="Facebook Photo Tagging">
+                            <h3>Facebook Photo Tagging</h3>
+                            <p>You upload a group photo and it suggests tagging your friend "John."</p>
+                        </div>
+                        <div class="flip-card-back ai-answer">
+                            <div class="answer-label">A.I.!</div>
+                            <p>It uses facial recognition to "see" the pixels of the face and match them to patterns it learned from John's other photos.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 15: AUTOMATION! (Door Answer) -->
+        <!-- SLIDE 15: SUMMARY QUESTION -->
         <section id="slide-15" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.25.29_PM_1769211380002.png" alt="Garage door opener">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">Automation!</span></h2>
-                    </div>
-                    <div class="right-content">
-                        <p>It uses a simple motion sensor. It opens for anything that breaks the beam (a person, a cart, a dog). It doesn't know <em>you</em>.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 16: SPOTIFY QUESTION -->
-        <section id="slide-16" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.26.02_PM_1769211380002.png" alt="Spotify logo">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>Spotify's "Discover Weekly"</h3>
-                        <p>A playlist appears every Monday with songs you've never heard but likely enjoy.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 17: SPOTIFY IS A.I. -->
-        <section id="slide-17" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.26.12_PM_1769211380001.png" alt="Spotify logo">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span></h2>
-                    </div>
-                    <div class="right-content">
-                        <p>It analyzes your listening history and compares it to millions of other users to <em>predict</em> what you will like.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 18: WORD FIND & REPLACE QUESTION -->
-        <section id="slide-18" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.34.50_PM_1769211607075.png" alt="Word processor">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>Word Processor "Find & Replace"</h3>
-                        <p>You tell Word to change every "cat" to "dog."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 19: WORD IS AUTOMATION -->
-        <section id="slide-19" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.35.04_PM_1769211607075.png" alt="Word processor">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">Automation!</span></h2>
-                    </div>
-                    <div class="right-content">
-                        <p>It is following a strict command. It will not change "kitten" to "puppy" unless you explicitly tell it to.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 20: CHATGPT QUESTION -->
-        <section id="slide-20" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.35.15_PM_1769211607074.png" alt="ChatGPT logo">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>ChatGPT / Gemini</h3>
-                        <p>You ask it to write a poem about your dog.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 21: CHATGPT IS A.I. -->
-        <section id="slide-21" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.35.22_PM_1769211607074.png" alt="ChatGPT logo">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span></h2>
-                    </div>
-                    <div class="right-content">
-                        <p>It wasn't pre-programmed with that specific poem. It predicted the next words based on patterns it learned from reading the internet.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 22: THERMOSTAT QUESTION -->
-        <section id="slide-22" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.35.51_PM_1769211607074.png" alt="Thermostat">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>A Thermostat (basic)</h3>
-                        <p>The heat turns on when the room drops below 68°F.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 23: THERMOSTAT IS AUTOMATION -->
-        <section id="slide-23" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.35.57_PM_1769211607073.png" alt="Thermostat">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">Automation!</span></h2>
-                    </div>
-                    <div class="right-content">
-                        <p>It follows a simple "If/Then" rule. (Note: A Nest thermostat that learns your schedule would be AI).</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 24: FRAUD ALERT QUESTION -->
-        <section id="slide-24" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.36.08_PM_1769211607073.png" alt="Fraud alert">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>Credit Card Fraud Alert</h3>
-                        <p>Your bank texts you: "Did you just spend $500 in London?"</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 25: FRAUD ALERT IS A.I. -->
-        <section id="slide-25" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.36.19_PM_1769211606980.png" alt="Fraud alert">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span></h2>
-                    </div>
-                    <div class="right-content">
-                        <p>It recognized an anomaly. It learned your normal spending pattern (coffee in New Jersey) and flagged this as "weird."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 26: FACEBOOK PHOTO TAGGING QUESTION -->
-        <section id="slide-26" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.36.30_PM_1769212466932.png" alt="Facebook like button">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>Facebook Photo Tagging</h3>
-                        <p>You upload a group photo and it suggests tagging your friend "John."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 27: FACEBOOK IS A.I. -->
-        <section id="slide-27" class="slide">
-            <div class="brand-logo">
-                <i class="fas fa-brain"></i> Should Call Paul
-            </div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-            <div class="quote-mark">"</div>
-            
-            <div class="slide-image-text">
-                <div class="image-top">
-                    <img src="attached_assets/Screenshot_2026-01-23_5.36.47_PM_1769212466931.png" alt="Facebook like button">
-                </div>
-                <div class="text-bottom">
-                    <div class="left-title">
-                        <h2><span class="highlight">A.I.</span> <span>or just</span><br><span>automation</span>?</h2>
-                    </div>
-                    <div class="right-content">
-                        <h3>A.I. (Neural Network)</h3>
-                        <p>It uses facial recognition to "see" the pixels of the face and match them to patterns it learned from John's other photos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 28: SUMMARY QUESTION -->
-        <section id="slide-28" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
@@ -1871,8 +1772,8 @@
             </div>
         </section>
 
-        <!-- SLIDE 29: MACHINE LEARNING -->
-        <section id="slide-29" class="slide">
+        <!-- SLIDE 16: MACHINE LEARNING -->
+        <section id="slide-16" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
@@ -1912,8 +1813,8 @@
             </div>
         </section>
 
-        <!-- SLIDE 30: GOOGLE TEACHABLE MACHINE -->
-        <section id="slide-30" class="slide">
+        <!-- SLIDE 17: GOOGLE TEACHABLE MACHINE -->
+        <section id="slide-17" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
@@ -1940,8 +1841,8 @@
             </div>
         </section>
 
-        <!-- SLIDE 31: THE EMOTION DETECTOR -->
-        <section id="slide-31" class="slide">
+        <!-- SLIDE 18: THE EMOTION DETECTOR -->
+        <section id="slide-18" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
@@ -1965,8 +1866,8 @@
             </div>
         </section>
 
-        <!-- SLIDE 32: THE CLAPPER -->
-        <section id="slide-32" class="slide">
+        <!-- SLIDE 19: THE CLAPPER -->
+        <section id="slide-19" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
@@ -1992,8 +1893,8 @@
             </div>
         </section>
 
-        <!-- SLIDE 33: THE HUMAN JOYSTICK -->
-        <section id="slide-33" class="slide">
+        <!-- SLIDE 20: THE HUMAN JOYSTICK -->
+        <section id="slide-20" class="slide">
             <div class="brand-logo">
                 <i class="fas fa-brain"></i> Should Call Paul
             </div>
