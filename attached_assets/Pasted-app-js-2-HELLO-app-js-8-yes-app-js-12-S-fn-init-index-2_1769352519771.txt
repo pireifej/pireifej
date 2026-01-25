@@ -1,0 +1,169 @@
+app.js:2 HELLO!
+app.js:8 yes
+app.js:12 S.fn.init
+(index):2021 Speeches count: 18
+(index):1992 Total times on stage: 18 (Workshops: 0 + Speeches: 18 )
+(index):2005 Workshops count: 18
+(index):1992 Total times on stage: 36 (Workshops: 18 + Speeches: 18 )
+app.js:15 YES!
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2
+app.js:33 Uncaught TypeError: Cannot read properties of undefined (reading 'top')
+    at app.js:33:57
+    at dispatch (jquery-3.6.0.min.js:2:43064)
+    at v.handle (jquery-3.6.0.min.js:2:41048)
+(anonymous) @ app.js:33
+dispatch @ jquery-3.6.0.min.js:2
+v.handle @ jquery-3.6.0.min.js:2

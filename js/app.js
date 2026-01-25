@@ -29,7 +29,7 @@ $( document ).ready(function() {
         $("#projects-overlay-content").trigger("mouseover");
         $("#projects-banner").trigger("mouseover");
         // projects
-        if (!projectsLoaded) {
+        if (!projectsLoaded && $('#projects-single-item').length) {
             var hT = $('#projects-single-item').offset().top,
                 hH = $('#projects-single-item').outerHeight(),
                 wH = $(window).height(),
