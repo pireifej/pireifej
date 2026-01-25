@@ -316,19 +316,57 @@
             color: rgba(255,255,255,0.4);
         }
         
-        /* Results Section */
-        .results-section {
+        /* Results Modal Popup */
+        .results-overlay {
             display: none;
-            text-align: center;
-            padding: 40px;
-            background: rgba(138, 43, 226, 0.2);
-            border-radius: 20px;
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            margin-top: 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
         
-        .results-section.show {
-            display: block;
+        .results-overlay.show {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .results-modal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 30px;
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+            animation: popIn 0.5s ease;
+        }
+        
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .confetti {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         .score-circle {
@@ -339,19 +377,69 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
             font-size: 3rem;
             font-weight: bold;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 10px 60px rgba(168, 85, 247, 0.6); }
         }
         
         .results-message {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #a855f7, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .results-detail {
             color: rgba(255,255,255,0.7);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .session2-promo {
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .session2-promo h4 {
+            color: #06b6d4;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .session2-promo p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .session2-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(6, 182, 212, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #06b6d4;
+            font-weight: 600;
+        }
+        
+        .results-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
         }
         
         .back-btn {
@@ -368,6 +456,15 @@
         .back-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
+        }
+        
+        .back-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .back-btn.secondary:hover {
+            background: rgba(255,255,255,0.2);
         }
         
         /* True/False styles */
@@ -599,12 +696,29 @@
             <div class="feedback" id="feedback10"></div>
         </div>
         
-        <!-- Results Section -->
-        <div class="results-section" id="resultsSection">
+    </div>
+    
+    <!-- Celebratory Results Popup -->
+    <div class="results-overlay" id="resultsOverlay">
+        <div class="results-modal">
+            <div class="confetti" id="confettiEmoji">🎉</div>
             <div class="score-circle" id="scoreCircle">0/9</div>
             <div class="results-message" id="resultsMessage">Great effort!</div>
             <div class="results-detail" id="resultsDetail">You answered X out of 9 scored questions correctly.</div>
-            <a href="ai-workshops-hub.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to AI Workshops</a>
+            
+            <div class="session2-promo">
+                <h4><i class="fas fa-rocket"></i> Ready for More?</h4>
+                <p>Join us for Session 2 where we explore how AI touches your daily life - from Netflix to ChatGPT!</p>
+                <div class="session2-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    March 2, 2026
+                </div>
+            </div>
+            
+            <div class="results-buttons">
+                <a href="ai-workshops-hub.html" class="back-btn"><i class="fas fa-home"></i> Back to AI Workshops</a>
+                <a href="ai-workshop-slides.html" class="back-btn secondary"><i class="fas fa-redo"></i> Review Slides Again</a>
+            </div>
         </div>
     </div>
     
@@ -903,26 +1017,30 @@
         }
         
         function showResults() {
-            const resultsSection = document.getElementById('resultsSection');
+            const resultsOverlay = document.getElementById('resultsOverlay');
             const scoreCircle = document.getElementById('scoreCircle');
             const resultsMessage = document.getElementById('resultsMessage');
             const resultsDetail = document.getElementById('resultsDetail');
+            const confettiEmoji = document.getElementById('confettiEmoji');
             
             scoreCircle.textContent = `${score}/${scoredQuestions}`;
             resultsDetail.textContent = `You answered ${score} out of ${scoredQuestions} scored questions correctly.`;
             
             if (score === scoredQuestions) {
-                resultsMessage.textContent = "Perfect Score! You're an AI Expert! 🎉";
+                confettiEmoji.textContent = "🏆";
+                resultsMessage.textContent = "Perfect Score! You're an AI Expert!";
             } else if (score >= 7) {
-                resultsMessage.textContent = "Excellent work! You've got a great grasp of AI basics!";
+                confettiEmoji.textContent = "🌟";
+                resultsMessage.textContent = "Excellent Work! You've Got This!";
             } else if (score >= 5) {
-                resultsMessage.textContent = "Good effort! Review the slides for the ones you missed.";
+                confettiEmoji.textContent = "👍";
+                resultsMessage.textContent = "Good Effort! Keep Learning!";
             } else {
-                resultsMessage.textContent = "Keep learning! Check out the slides again to strengthen your understanding.";
+                confettiEmoji.textContent = "💪";
+                resultsMessage.textContent = "Great Start! Practice Makes Perfect!";
             }
             
-            resultsSection.classList.add('show');
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            resultsOverlay.classList.add('show');
         }
     </script>
 </body>
