@@ -716,7 +716,7 @@
             </div>
             
             <div class="results-buttons">
-                <a href="ai-workshops-hub.html" class="back-btn"><i class="fas fa-home"></i> Back to AI Workshops</a>
+                <a href="https://www.shouldcallpaul.com" class="back-btn"><i class="fas fa-home"></i> Visit ShouldCallPaul.com</a>
                 <a href="ai-workshop-slides.html" class="back-btn secondary"><i class="fas fa-redo"></i> Review Slides Again</a>
             </div>
         </div>
@@ -727,7 +727,7 @@
         let score = 0;
         let answeredCount = 0;
         const totalQuestions = 10;
-        const scoredQuestions = 9; // Question 10 is free text, not scored
+        const scoredQuestions = 10;
         
         // Drag and Drop functionality
         const dragItems = document.querySelectorAll('.drag-item');
@@ -997,6 +997,7 @@
             feedback.className = 'feedback show correct';
             feedback.innerHTML = `<i class="fas fa-check-circle"></i> Great answer! "${input.value}" is a good example. AI is all around us in tools like ChatGPT, Siri, Google Assistant, Netflix recommendations, and more!`;
             card.classList.add('correct');
+            score++;
             
             input.disabled = true;
             document.getElementById('freeTextBtn').disabled = true;
