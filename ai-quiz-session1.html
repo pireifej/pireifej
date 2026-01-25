@@ -287,6 +287,11 @@
             border-radius: 20px;
             font-weight: 600;
             margin-top: 5px;
+            cursor: grab;
+        }
+        
+        .dropped-item:active {
+            cursor: grabbing;
         }
         
         /* Free text styles */
@@ -611,6 +616,7 @@
         // Drag and Drop functionality
         const dragItems = document.querySelectorAll('.drag-item');
         const nestBoxes = document.querySelectorAll('.nest-box');
+        const dragItemsContainer = document.getElementById('dragItems');
         let placements = { outer: null, middle: null, inner: null };
         
         dragItems.forEach(item => {
@@ -624,10 +630,16 @@
             box.addEventListener('drop', handleDrop);
         });
         
+        // Allow dropping back to source container
+        dragItemsContainer.addEventListener('dragover', handleDragOver);
+        dragItemsContainer.addEventListener('dragleave', handleDragLeave);
+        dragItemsContainer.addEventListener('drop', handleDropBack);
+        
         function handleDragStart(e) {
             e.target.classList.add('dragging');
             e.dataTransfer.setData('text/plain', e.target.dataset.value);
-            e.dataTransfer.setData('text/html', e.target.outerHTML);
+            // Store if this is from a nest box
+            e.dataTransfer.setData('fromSlot', e.target.dataset.fromSlot || '');
         }
         
         function handleDragEnd(e) {
@@ -643,6 +655,35 @@
             e.currentTarget.classList.remove('drag-over');
         }
         
+        function handleDropBack(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dragItemsContainer.classList.remove('drag-over');
+            
+            const value = e.dataTransfer.getData('text/plain');
+            
+            // Find which slot this was in and clear it
+            for (const slot in placements) {
+                if (placements[slot] === value) {
+                    placements[slot] = null;
+                    // Remove dropped item from that slot
+                    const nestBox = document.querySelector(`.nest-box[data-slot="${slot}"]`);
+                    const droppedItem = nestBox.querySelector(`.dropped-item[data-value="${value}"]`);
+                    if (droppedItem) droppedItem.remove();
+                }
+            }
+            
+            // Show the original drag item
+            const originalItem = document.querySelector(`.drag-item[data-value="${value}"]`);
+            if (originalItem) {
+                originalItem.style.display = 'block';
+                originalItem.classList.remove('placed');
+            }
+            
+            // Disable check button since not all are placed
+            document.querySelector('#q1 .check-btn').disabled = true;
+        }
+        
         function handleDrop(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -652,31 +693,43 @@
             const slot = box.dataset.slot;
             const value = e.dataTransfer.getData('text/plain');
             
-            // Check if this slot already has an item
+            // First, remove this item from any previous slot it was in
+            for (const s in placements) {
+                if (placements[s] === value) {
+                    placements[s] = null;
+                    const oldBox = document.querySelector(`.nest-box[data-slot="${s}"]`);
+                    const oldDropped = oldBox.querySelector(`.dropped-item[data-value="${value}"]`);
+                    if (oldDropped) oldDropped.remove();
+                }
+            }
+            
+            // Check if this slot already has an item - return it to drag items
             if (placements[slot]) {
-                // Return old item to drag items
                 const oldItem = document.querySelector(`.drag-item[data-value="${placements[slot]}"]`);
                 if (oldItem) {
                     oldItem.style.display = 'block';
                     oldItem.classList.remove('placed');
                 }
-                // Remove old dropped item
                 const oldDropped = box.querySelector('.dropped-item');
                 if (oldDropped) oldDropped.remove();
             }
             
-            // Hide the dragged item
+            // Hide the original drag item
             const draggedItem = document.querySelector(`.drag-item[data-value="${value}"]`);
             if (draggedItem) {
                 draggedItem.style.display = 'none';
                 draggedItem.classList.add('placed');
             }
             
-            // Create dropped item in the box
+            // Create dropped item in the box (draggable)
             const droppedItem = document.createElement('div');
             droppedItem.className = 'dropped-item';
+            droppedItem.draggable = true;
             droppedItem.textContent = value === 'ai' ? 'Artificial Intelligence' : value === 'ml' ? 'Machine Learning' : 'Neural Networks';
             droppedItem.dataset.value = value;
+            droppedItem.dataset.fromSlot = slot;
+            droppedItem.addEventListener('dragstart', handleDragStart);
+            droppedItem.addEventListener('dragend', handleDragEnd);
             
             // Insert after the label
             const label = box.querySelector('.nest-label');
@@ -691,6 +744,8 @@
             // Check if all placed
             if (placements.outer && placements.middle && placements.inner) {
                 document.querySelector('#q1 .check-btn').disabled = false;
+            } else {
+                document.querySelector('#q1 .check-btn').disabled = true;
             }
         }
         
