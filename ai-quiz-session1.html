@@ -512,17 +512,19 @@
             <div class="feedback" id="feedback4"></div>
         </div>
         
-        <!-- Question 5: True/False -->
+        <!-- Question 5: Neural Network Vocab -->
         <div class="question-card" id="q5">
             <div class="question-number">5</div>
             <div class="question-text">
-                True or False: All Machine Learning is AI, but not all AI is Machine Learning.
+                In a neural network, what is the minimum signal strength needed before a node "fires" and sends its output called?
             </div>
-            <div class="tf-options">
-                <div class="tf-option" data-answer="true" onclick="selectTF(this, 5)">TRUE</div>
-                <div class="tf-option" data-answer="false" onclick="selectTF(this, 5)">FALSE</div>
+            <div class="options">
+                <div class="option" data-answer="a" onclick="selectOption(this, 5)">Weight</div>
+                <div class="option" data-answer="b" onclick="selectOption(this, 5)">Threshold</div>
+                <div class="option" data-answer="c" onclick="selectOption(this, 5)">Synapse</div>
+                <div class="option" data-answer="d" onclick="selectOption(this, 5)">Neuron</div>
             </div>
-            <button class="check-btn" onclick="checkTF(5, 'true', 'Correct! ML is a subset of AI. There are AI techniques (like rule-based systems) that don\'t involve learning from data.')" disabled>Check Answer</button>
+            <button class="check-btn" onclick="checkAnswer(5, 'b', 'The threshold is the minimum value the signal must reach before the node activates and fires. Think of it like needing enough votes to pass a decision!')" disabled>Check Answer</button>
             <div class="feedback" id="feedback5"></div>
         </div>
         
