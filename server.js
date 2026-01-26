@@ -11,8 +11,10 @@ app.use(express.json());
 function replaceTemplates(content) {
     const preloader = fs.readFileSync('preloader.html', 'utf8');
     const header = fs.readFileSync('header.html', 'utf8');
+    const sidebar = fs.readFileSync('sidebar.html', 'utf8');
     content = content.replace('{{preloader}}', preloader);
     content = content.replace('{{header}}', header);
+    content = content.replace('{{sidebar}}', sidebar);
     return content;
 }
 
