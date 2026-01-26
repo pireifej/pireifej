@@ -543,6 +543,252 @@
     </div>
     <!-- End Banner -->
 
+    <!-- Start Trusted By Section
+    ============================================= -->
+    <style>
+        .trusted-by-section {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .trusted-by-section .section-label {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        /* Option A: Individual Organizations */
+        .trusted-logos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .trusted-logo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            min-width: 120px;
+            max-width: 150px;
+        }
+        .trusted-logo-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .trusted-logo-item svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+            color: #6c5ce7;
+        }
+        .trusted-logo-item .org-name {
+            font-size: 0.75rem;
+            color: #333;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        
+        /* Option B: Category Groups */
+        .trusted-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .category-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .category-item svg {
+            width: 45px;
+            height: 45px;
+            color: #6c5ce7;
+        }
+        .category-info {
+            text-align: left;
+        }
+        .category-count {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #6c5ce7;
+            line-height: 1;
+        }
+        .category-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .trusted-by-section {
+                padding: 30px 0;
+            }
+            .trusted-logos-grid {
+                gap: 12px;
+            }
+            .trusted-logo-item {
+                min-width: 100px;
+                max-width: 110px;
+                padding: 12px 10px;
+            }
+            .trusted-logo-item svg {
+                width: 32px;
+                height: 32px;
+            }
+            .trusted-logo-item .org-name {
+                font-size: 0.65rem;
+            }
+            .trusted-categories {
+                gap: 15px;
+            }
+            .category-item {
+                padding: 15px 20px;
+                flex: 1 1 calc(50% - 15px);
+                min-width: 140px;
+            }
+            .category-item svg {
+                width: 35px;
+                height: 35px;
+            }
+            .category-count {
+                font-size: 1.5rem;
+            }
+            .category-label {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Toggle visibility - change 'none' to 'block' to switch */
+        .option-a { display: block; }
+        .option-b { display: none; }
+    </style>
+    
+    <div class="trusted-by-section">
+        <div class="section-label">Trusted by educators, libraries & organizations across New Jersey</div>
+        
+        <!-- OPTION A: Individual Organization Logos -->
+        <div class="option-a">
+            <div class="trusted-logos-grid">
+                <!-- Corporate -->
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">AT&T</text></svg>
+                    <div class="org-name">AT&T</div>
+                </div>
+                
+                <!-- Nonprofit -->
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <div class="org-name">Big Brothers Big Sisters</div>
+                </div>
+                
+                <!-- Libraries -->
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm5 0v8h3v-8H9zm5 0v8h3v-8h-3zm5 0v8h3v-8h-3zM2 21h20v2H2v-2z"/></svg>
+                    <div class="org-name">Red Bank Library</div>
+                </div>
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm5 0v8h3v-8H9zm5 0v8h3v-8h-3zm5 0v8h3v-8h-3zM2 21h20v2H2v-2z"/></svg>
+                    <div class="org-name">Matawan Library</div>
+                </div>
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm5 0v8h3v-8H9zm5 0v8h3v-8h-3zm5 0v8h3v-8h-3zM2 21h20v2H2v-2z"/></svg>
+                    <div class="org-name">Hazlet Library</div>
+                </div>
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm5 0v8h3v-8H9zm5 0v8h3v-8h-3zm5 0v8h3v-8h-3zM2 21h20v2H2v-2z"/></svg>
+                    <div class="org-name">Holmdel Library</div>
+                </div>
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm5 0v8h3v-8H9zm5 0v8h3v-8h-3zm5 0v8h3v-8h-3zM2 21h20v2H2v-2z"/></svg>
+                    <div class="org-name">Somerville Library</div>
+                </div>
+                
+                <!-- Schools -->
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    <div class="org-name">Holmdel Schools</div>
+                </div>
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    <div class="org-name">Indian Hill School</div>
+                </div>
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    <div class="org-name">Franklin School</div>
+                </div>
+                
+                <!-- Toastmasters -->
+                <div class="trusted-logo-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    <div class="org-name">Toastmasters District 83</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- OPTION B: Category Groups -->
+        <div class="option-b">
+            <div class="trusted-categories">
+                <div class="category-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm5 0v8h3v-8H9zm5 0v8h3v-8h-3zm5 0v8h3v-8h-3zM2 21h20v2H2v-2z"/></svg>
+                    <div class="category-info">
+                        <div class="category-count">5</div>
+                        <div class="category-label">Public Libraries</div>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    <div class="category-info">
+                        <div class="category-count">3</div>
+                        <div class="category-label">Schools & Districts</div>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+                    <div class="category-info">
+                        <div class="category-count">3+</div>
+                        <div class="category-label">Toastmasters Clubs</div>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <div class="category-info">
+                        <div class="category-count">2</div>
+                        <div class="category-label">Organizations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Trusted By Section -->
+
     <!-- Start Services
     ============================================= -->
     <div id="services" class="services-style-one-area box-layout default-padding bottom-less bg-light">
