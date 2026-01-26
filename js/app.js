@@ -48,7 +48,7 @@ $( document ).ready(function() {
         }
 
         // races
-        if (!racesLoaded) {
+        if (!racesLoaded && $('#race-single-item').length) {
             var hT = $('#race-single-item').offset().top,
                 hH = $('#race-single-item').outerHeight(),
                 wH = $(window).height(),
