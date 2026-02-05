@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Young Speakers Academy - Session 2: Impromptu Speaking Homework Quiz">
+    <title>Impromptu Speaking Homework | Young Speakers Academy</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .lesson-wrapper {
+            padding: 140px 0 60px 0;
+            min-height: 100vh;
+        }
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+        }
+        .lesson-header .subtitle {
+            color: #00b894;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .lesson-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .section-card h2 {
+            color: #232323;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-card h2 .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .section-card h3 {
+            color: #00b894;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+        .section-card p, .section-card li {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .section-card ul {
+            padding-left: 20px;
+        }
+        .section-card li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #e6fcf5 0%, #d3f9d8 100%);
+            border-left: 4px solid #00b894;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: #087f5b;
+        }
+        .quiz-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .quiz-container h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .quiz-option {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quiz-option:hover {
+            border-color: #00b894;
+            transform: translateX(5px);
+        }
+        .quiz-option .option-letter {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .quiz-option.correct {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .quiz-option.correct .option-letter {
+            background: #10b981;
+        }
+        .quiz-option.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .quiz-option.incorrect .option-letter {
+            background: #ef4444;
+        }
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+        .quiz-feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        .quiz-feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        .activity-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .activity-box h4 {
+            color: #92400e;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .activity-box p {
+            color: #78350f;
+            margin: 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .tip-box h4 {
+            color: #1e40af;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-box p, .tip-box li {
+            color: #1e3a8a;
+        }
+        .framework-box {
+            background: linear-gradient(135deg, #e6fcf5 0%, #d3f9d8 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #00b894;
+        }
+        .framework-box h4 {
+            color: #087f5b;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .framework-box p, .framework-box li {
+            color: #087f5b;
+        }
+        .framework-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #00b894;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        .progress-tracker {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .progress-dot.active {
+            background: #00b894;
+            transform: scale(1.3);
+        }
+        .progress-dot:hover {
+            background: #55efc4;
+        }
+        .score-display {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(0, 184, 148, 0.4);
+            z-index: 100;
+        }
+        .drag-match-container {
+            margin: 25px 0;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .drag-match-container h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .drag-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            min-height: 50px;
+            padding: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .drag-item {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: grab;
+            font-weight: 500;
+            font-size: 0.95rem;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+        .drag-item:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+        .drag-item.placed {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .match-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .match-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .match-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 200px;
+            font-size: 1rem;
+        }
+        .match-slot {
+            flex: 1;
+            min-height: 45px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            transition: all 0.3s ease;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .match-slot.drag-over {
+            border-color: #00b894;
+            background: #e6fcf5;
+        }
+        .match-slot.filled {
+            border-style: solid;
+            border-color: #00b894;
+        }
+        .match-slot .drag-item {
+            margin: 0;
+        }
+        .match-slot.correct-match {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        .match-slot.incorrect-match {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        .check-matches-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        .check-matches-btn:hover {
+            transform: scale(1.05);
+        }
+        .check-matches-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        @media (max-width: 768px) {
+            .lesson-wrapper {
+                padding: 120px 15px 40px 15px;
+            }
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+            .section-card {
+                padding: 25px 20px;
+            }
+            .progress-tracker {
+                display: none;
+            }
+            .score-display {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            .match-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .match-label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    {{sidebar}}
+
+    <div class="progress-tracker">
+        <div class="progress-dot active" data-section="1" title="Brain Ping-Pong"></div>
+        <div class="progress-dot" data-section="2" title="The 3 Cheat Codes"></div>
+        <div class="progress-dot" data-section="3" title="O.R.E.O. Deep Dive"></div>
+        <div class="progress-dot" data-section="4" title="Time Traveler & Story Sandwich"></div>
+        <div class="progress-dot" data-section="5" title="Skeleton Run"></div>
+        <div class="progress-dot" data-section="6" title="Review"></div>
+    </div>
+
+    <div class="score-display">
+        Score: <span id="score">0</span> / <span id="total">7</span>
+    </div>
+
+    <div class="lesson-wrapper">
+        <div class="container">
+            <div class="lesson-header">
+                <a href="young-speakers-academy.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Course</a>
+                <div class="subtitle">Young Speakers Academy - Session 2</div>
+                <h1>Impromptu Speaking: Master the Cheat Codes</h1>
+                <p>Review the 3 frameworks for speaking on the spot and test your knowledge with interactive quizzes!</p>
+            </div>
+
+            <div class="section-card" data-section="1">
+                <h2><span class="icon"><i class="fas fa-table-tennis"></i></span> Brain Ping-Pong Warm-Up</h2>
+
+                <h3>The Game</h3>
+                <p>Stand in a circle. Someone throws an imaginary ball and says ONE word (like "Spatula"). You catch it and immediately say the first connected word that pops into your head ("Pancakes"). Keep it going fast!</p>
+
+                <div class="highlight-box">
+                    <p><strong>The big lesson: If you pause to think of the "perfect" word, the game slows down. Impromptu speaking is about trusting your FIRST thought!</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="1">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What is the main lesson from Brain Ping-Pong?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Always think for a long time before answering</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Trust your first thought and don't overthink</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Only say words that start with the same letter</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="2">
+                <h2><span class="icon"><i class="fas fa-gamepad"></i></span> The 3 "Cheat Codes"</h2>
+
+                <h3>What Are Cheat Codes?</h3>
+                <p>When a video game level is too hard, sometimes you use a Cheat Code. In speaking, we use <strong>Frameworks</strong>. If someone asks you a question, don't panic - just pick a code!</p>
+
+                <div class="highlight-box">
+                    <p><strong>You don't need to write a speech - you just need a structure to hang your words on!</strong></p>
+                </div>
+
+                <h3>The 3 Frameworks</h3>
+                <ul>
+                    <li><strong>O.R.E.O.</strong> - Best for "Opinion" questions like "Do you like X?" or "What is your favorite...?"</li>
+                    <li><strong>Time Traveler</strong> - Best for "Tell us about..." questions - great for big topics or history</li>
+                    <li><strong>Story Sandwich</strong> - Best for "What would you do?" questions - hypothetical situations</li>
+                </ul>
+
+                <div class="quiz-container" data-quiz="2">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What are frameworks in impromptu speaking?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Scripts you memorize word-for-word</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Rules that tell you exactly what to say</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Structures (cheat codes) to organize your thoughts quickly</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="drag-match-container" data-match="1">
+                    <h4><i class="fas fa-arrows-alt" style="color: #00b894;"></i> Drag & Match: Which cheat code fits which type of question?</h4>
+                    <div class="drag-items" id="drag-source-1">
+                        <div class="drag-item" draggable="true" data-answer="oreo">O.R.E.O.</div>
+                        <div class="drag-item" draggable="true" data-answer="time">Time Traveler</div>
+                        <div class="drag-item" draggable="true" data-answer="story">Story Sandwich</div>
+                    </div>
+                    <div class="match-slots">
+                        <div class="match-row">
+                            <div class="match-label">"What is your favorite...?"</div>
+                            <div class="match-slot" data-correct="oreo">Drop here</div>
+                        </div>
+                        <div class="match-row">
+                            <div class="match-label">"Tell us about..."</div>
+                            <div class="match-slot" data-correct="time">Drop here</div>
+                        </div>
+                        <div class="match-row">
+                            <div class="match-label">"What would you do if...?"</div>
+                            <div class="match-slot" data-correct="story">Drop here</div>
+                        </div>
+                    </div>
+                    <button class="check-matches-btn" data-match="1" disabled><i class="fas fa-check"></i> Check Answers</button>
+                    <div class="quiz-feedback" id="match-feedback-1"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="3">
+                <h2><span class="icon" style="background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);"><i class="fas fa-cookie"></i></span> Cheat Code #1: O.R.E.O.</h2>
+
+                <h3>The O.R.E.O. Framework</h3>
+                <p>Use this when asked opinion questions like "Do you like X?" or "What is your favorite...?"</p>
+
+                <div class="framework-box">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; display: flex; align-items: center;"><span class="framework-letter">O</span> <strong>Opinion:</strong>&nbsp;State clearly how you feel. <em>"I think Minecraft is the best game ever."</em></li>
+                        <li style="padding: 10px 0; display: flex; align-items: center;"><span class="framework-letter">R</span> <strong>Reason:</strong>&nbsp;Why? <em>"Because you can build anything you can imagine."</em></li>
+                        <li style="padding: 10px 0; display: flex; align-items: center;"><span class="framework-letter">E</span> <strong>Example:</strong>&nbsp;Give a specific detail. <em>"Once, I built a castle that went all the way to the clouds."</em></li>
+                        <li style="padding: 10px 0; display: flex; align-items: center;"><span class="framework-letter">O</span> <strong>Opinion:</strong>&nbsp;Restate it. <em>"That is why Minecraft is the king of games."</em></li>
+                    </ul>
+                </div>
+
+                <div class="quiz-container" data-quiz="3">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What does the "R" in O.R.E.O. stand for?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Repeat</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Reason</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Remember</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="4">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: In O.R.E.O., why do you restate your opinion at the end?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Because you forgot what you said</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>To make your speech longer</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>To wrap up your answer with a strong, complete ending</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="4">
+                <h2><span class="icon" style="background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);"><i class="fas fa-clock"></i></span> Cheat Codes #2 & #3</h2>
+
+                <h3>The Time Traveler</h3>
+                <p>Use this for "Tell us about..." questions - travel through time!</p>
+                <div class="framework-box" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-left-color: #0984e3;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; color: #1e3a8a;"><strong>PAST:</strong> How was it before?</li>
+                        <li style="padding: 8px 0; color: #1e3a8a;"><strong>PRESENT:</strong> How is it now?</li>
+                        <li style="padding: 8px 0; color: #1e3a8a;"><strong>FUTURE:</strong> What do you hope happens?</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Example: "Tell us about how we listen to music."</h4>
+                    <p><strong>PAST:</strong> "My parents carried around giant boomboxes. They could only carry 12 songs!"</p>
+                    <p style="margin-top: 8px;"><strong>PRESENT:</strong> "Today, I have Spotify. 10 million songs in my pocket."</p>
+                    <p style="margin-top: 8px;"><strong>FUTURE:</strong> "In the future, music will be beamed directly to a chip in our ear!"</p>
+                </div>
+
+                <h3 style="color: #e17055;">The Story Sandwich</h3>
+                <p>Use this for "What would you do?" questions - hypothetical situations!</p>
+                <div class="framework-box" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-left-color: #e17055;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; color: #78350f;"><strong>TOP BUN (The Hook):</strong> Start with a bold statement or sound effect</li>
+                        <li style="padding: 8px 0; color: #78350f;"><strong>THE MEAT (The Story):</strong> Tell the story of what you would do</li>
+                        <li style="padding: 8px 0; color: #78350f;"><strong>BOTTOM BUN (The Lesson):</strong> Why does this matter?</li>
+                    </ul>
+                </div>
+
+                <div class="quiz-container" data-quiz="5">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: In the Time Traveler framework, what are the 3 time periods?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Morning, Afternoon, Evening</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Past, Present, Future</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Yesterday, Today, Tomorrow</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="6">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: In the Story Sandwich, what is the "Top Bun"?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">A</span>
+                            <span>A bold statement or sound effect to hook the audience</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>A quiet introduction where you say your name</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>The lesson or moral of the story</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="5">
+                <h2><span class="icon"><i class="fas fa-bone"></i></span> The Skeleton Run</h2>
+
+                <h3>What Is It?</h3>
+                <p>In the Skeleton Run, you DON'T give a full speech. You only give the <strong>skeleton</strong> - your answer plus 3 quick points (the "3 bones"). This builds the muscle of organizing your thoughts quickly.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Example: "What is the best pet?" &rarr; "Dog. Bone 1: They cuddle. Bone 2: They protect the house. Bone 3: They play fetch."</strong></p>
+                </div>
+
+                <div class="activity-box">
+                    <h4><i class="fas fa-home"></i> Try It at Home!</h4>
+                    <p>Ask a family member to give you a random topic. Give your answer + 3 bones as fast as you can. Try these: "Best school lunch?" "Cats vs Dogs?" "Best superpower?"</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="7">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What is the purpose of the Skeleton Run?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>To give a full 5-minute speech with lots of detail</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>To memorize your answer word-for-word</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>To practice organizing your thoughts quickly with just an answer and 3 points</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="6">
+                <h2><span class="icon"><i class="fas fa-check-circle"></i></span> Review & Remember</h2>
+
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li><strong>Trust your first thought</strong> - don't overthink it, just speak!</li>
+                    <li><strong>O.R.E.O.</strong> = Opinion, Reason, Example, Opinion (for "favorite" and opinion questions)</li>
+                    <li><strong>Time Traveler</strong> = Past, Present, Future (for "tell us about" questions)</li>
+                    <li><strong>Story Sandwich</strong> = Hook, Story, Lesson (for "what would you do" questions)</li>
+                    <li><strong>The Skeleton Run</strong> = Answer + 3 Bones (practice organizing fast)</li>
+                </ul>
+
+                <div class="activity-box">
+                    <h4><i class="fas fa-home"></i> Your Homework Challenge</h4>
+                    <p>Next time someone at the dinner table asks "How was school?", don't just say "Good." Use the <strong>Time Traveler</strong> code: "This morning was tired, Lunch was pizza, and Tomorrow I have a test!"</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #00b894 0%, #55efc4 100%); border-radius: 20px; color: #fff;">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Great Job Reviewing Session 2!</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin: 0;">Keep practicing your cheat codes at home. Remember: 1, 2, 3... LEVEL UP!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var totalQuizzes = 7;
+            var answeredQuizzes = {};
+            var matchCompleted = {};
+
+            $('.quiz-option').on('click', function() {
+                var $container = $(this).closest('.quiz-container');
+                var quizId = $container.data('quiz');
+
+                if (answeredQuizzes[quizId]) return;
+                answeredQuizzes[quizId] = true;
+
+                var $options = $container.find('.quiz-option');
+                var $feedback = $container.find('.quiz-feedback');
+                var isCorrect = $(this).data('correct') === true;
+
+                $options.addClass('disabled');
+
+                if (isCorrect) {
+                    $(this).addClass('correct');
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> Correct! Great job!');
+                    score++;
+                } else {
+                    $(this).addClass('incorrect');
+                    $options.filter('[data-correct="true"]').addClass('correct');
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. The correct answer is highlighted in green.');
+                }
+
+                $('#score').text(score);
+            });
+
+            var draggedItem = null;
+
+            $(document).on('dragstart', '.drag-item:not(.placed)', function(e) {
+                draggedItem = this;
+                $(this).css('opacity', '0.5');
+                e.originalEvent.dataTransfer.effectAllowed = 'move';
+            });
+
+            $(document).on('dragend', '.drag-item', function() {
+                $(this).css('opacity', '1');
+                draggedItem = null;
+            });
+
+            $(document).on('dragover', '.match-slot:not(.filled)', function(e) {
+                e.preventDefault();
+                $(this).addClass('drag-over');
+            });
+
+            $(document).on('dragleave', '.match-slot', function() {
+                $(this).removeClass('drag-over');
+            });
+
+            $(document).on('drop', '.match-slot:not(.filled)', function(e) {
+                e.preventDefault();
+                $(this).removeClass('drag-over');
+
+                if (draggedItem) {
+                    var $slot = $(this);
+                    var $item = $(draggedItem).clone();
+                    $item.css('cursor', 'pointer');
+                    $item.removeAttr('draggable');
+
+                    $slot.empty().append($item).addClass('filled');
+                    $slot.data('placed-answer', $(draggedItem).data('answer'));
+
+                    $(draggedItem).addClass('placed');
+
+                    var $container = $slot.closest('.drag-match-container');
+                    var matchId = $container.data('match');
+                    var totalSlots = $container.find('.match-slot').length;
+                    var filledSlots = $container.find('.match-slot.filled').length;
+
+                    if (filledSlots === totalSlots) {
+                        $container.find('.check-matches-btn').prop('disabled', false);
+                    }
+
+                    $item.on('click', function() {
+                        if (matchCompleted[matchId]) return;
+                        var answer = $slot.data('placed-answer');
+                        $slot.removeClass('filled').html('Drop here');
+                        $slot.removeData('placed-answer');
+                        var $source = $('#drag-source-' + matchId);
+                        $source.find('.drag-item[data-answer="' + answer + '"]').removeClass('placed');
+                        $container.find('.check-matches-btn').prop('disabled', true);
+                    });
+                }
+            });
+
+            var touchDragItem = null;
+            var touchClone = null;
+
+            $(document).on('touchstart', '.drag-item:not(.placed)', function(e) {
+                touchDragItem = this;
+                var touch = e.originalEvent.touches[0];
+                touchClone = $(this).clone().css({
+                    position: 'fixed',
+                    top: touch.clientY - 20 + 'px',
+                    left: touch.clientX - 50 + 'px',
+                    zIndex: 9999,
+                    opacity: 0.8,
+                    pointerEvents: 'none'
+                }).appendTo('body');
+                $(this).css('opacity', '0.4');
+            });
+
+            $(document).on('touchmove', function(e) {
+                if (!touchClone) return;
+                e.preventDefault();
+                var touch = e.originalEvent.touches[0];
+                touchClone.css({
+                    top: touch.clientY - 20 + 'px',
+                    left: touch.clientX - 50 + 'px'
+                });
+            });
+
+            $(document).on('touchend', function(e) {
+                if (!touchDragItem || !touchClone) return;
+                var touch = e.originalEvent.changedTouches[0];
+                touchClone.remove();
+                touchClone = null;
+                $(touchDragItem).css('opacity', '1');
+
+                var $target = null;
+                $('.match-slot:not(.filled)').each(function() {
+                    var offset = $(this).offset();
+                    var w = $(this).outerWidth();
+                    var h = $(this).outerHeight();
+                    if (touch.pageX >= offset.left && touch.pageX <= offset.left + w &&
+                        touch.pageY >= offset.top && touch.pageY <= offset.top + h) {
+                        $target = $(this);
+                        return false;
+                    }
+                });
+
+                if ($target) {
+                    var $item = $(touchDragItem).clone();
+                    $item.css('cursor', 'pointer');
+                    $item.removeAttr('draggable');
+                    $target.empty().append($item).addClass('filled');
+                    $target.data('placed-answer', $(touchDragItem).data('answer'));
+                    $(touchDragItem).addClass('placed');
+
+                    var $container = $target.closest('.drag-match-container');
+                    var matchId = $container.data('match');
+                    var totalSlots = $container.find('.match-slot').length;
+                    var filledSlots = $container.find('.match-slot.filled').length;
+
+                    if (filledSlots === totalSlots) {
+                        $container.find('.check-matches-btn').prop('disabled', false);
+                    }
+
+                    $item.on('click touchend', function(ev) {
+                        ev.preventDefault();
+                        if (matchCompleted[matchId]) return;
+                        var answer = $target.data('placed-answer');
+                        $target.removeClass('filled').html('Drop here');
+                        $target.removeData('placed-answer');
+                        var $source = $('#drag-source-' + matchId);
+                        $source.find('.drag-item[data-answer="' + answer + '"]').removeClass('placed');
+                        $container.find('.check-matches-btn').prop('disabled', true);
+                    });
+                }
+
+                touchDragItem = null;
+            });
+
+            $('.check-matches-btn').on('click', function() {
+                var matchId = $(this).data('match');
+                if (matchCompleted[matchId]) return;
+                matchCompleted[matchId] = true;
+
+                var $container = $(this).closest('.drag-match-container');
+                var allCorrect = true;
+
+                $container.find('.match-slot').each(function() {
+                    var placed = $(this).data('placed-answer');
+                    var correct = $(this).data('correct');
+                    if (placed === correct) {
+                        $(this).addClass('correct-match');
+                    } else {
+                        $(this).addClass('incorrect-match');
+                        allCorrect = false;
+                    }
+                });
+
+                var $feedback = $('#match-feedback-' + matchId);
+                if (allCorrect) {
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> All matched correctly! You know your cheat codes!');
+                    score++;
+                    $('#score').text(score);
+                } else {
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Some matches were off. Review the frameworks above and try to remember for next time!');
+                }
+
+                $(this).prop('disabled', true);
+                $container.find('.drag-item').css('pointer-events', 'none');
+            });
+
+            $(window).on('scroll', function() {
+                var scrollPos = $(window).scrollTop();
+                $('.section-card').each(function(index) {
+                    var sectionTop = $(this).offset().top - 200;
+                    var sectionBottom = sectionTop + $(this).outerHeight();
+                    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                        $('.progress-dot').removeClass('active');
+                        $('.progress-dot').eq(index).addClass('active');
+                    }
+                });
+            });
+
+            $('.progress-dot').on('click', function() {
+                var sectionIndex = $(this).index();
+                var $targetSection = $('.section-card').eq(sectionIndex);
+                if ($targetSection.length) {
+                    $('html, body').animate({
+                        scrollTop: $targetSection.offset().top - 100
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
