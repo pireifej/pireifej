@@ -332,14 +332,38 @@
             font-size: 0.95rem;
             margin: 5px 0;
         }
-        .question-card {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        .flip-card {
+            perspective: 800px;
+            cursor: pointer;
+            min-height: 140px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 140px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
             border-radius: 15px;
             padding: 20px;
-            margin: 10px 0;
             color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .question-card .number {
+        .flip-card-front {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+        .flip-card-front .number {
             display: inline-block;
             width: 30px;
             height: 30px;
@@ -349,14 +373,32 @@
             line-height: 30px;
             font-weight: 700;
             margin-right: 15px;
+            flex-shrink: 0;
         }
-        .question-card .target {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            margin-top: 8px;
+        .flip-card-front .question-text {
+            display: flex;
+            align-items: flex-start;
+        }
+        .flip-card-front .tap-hint {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .flip-card-back {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            transform: rotateY(180deg);
+            align-items: center;
+            text-align: center;
+        }
+        .flip-card-back .answer-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        .flip-card-back .answer-name {
+            font-size: 1.5rem;
+            font-weight: 700;
         }
         @media (max-width: 768px) {
             .slide-hero h1 {
@@ -649,50 +691,137 @@
                             <li style="color: #ddd;"><strong>Pick a Cheat Code:</strong> O.R.E.O., Time Traveler, or Story Sandwich</li>
                             <li style="color: #ddd;"><strong>Speak for 1 minute</strong> using your chosen framework</li>
                         </ul>
+                        <h4 style="color: #e74c3c; margin: 15px 0 10px 0;"><i class="fas fa-key"></i> Quick Cheat Code Reminder</h4>
+                        <ul style="color: #ddd;">
+                            <li style="color: #ddd;"><strong style="color: #fdcb6e;">O.R.E.O.</strong> — Use for opinion questions: "What's your favorite...?" or "Which is better...?"</li>
+                            <li style="color: #ddd;"><strong style="color: #74b9ff;">Time Traveler</strong> — Use for "Tell us about..." questions (Past → Present → Future)</li>
+                            <li style="color: #ddd;"><strong style="color: #fab1a0;">Story Sandwich</strong> — Use for "What would you do if...?" questions (Hook → Story → Lesson)</li>
+                        </ul>
                     </div>
 
-                    <h3 style="color: #fff; text-align: center; margin: 30px 0 20px 0;"><i class="fas fa-question-circle"></i> 10 Impromptu Questions</h3>
+                    <h3 style="color: #fff; text-align: center; margin: 30px 0 10px 0;"><i class="fas fa-question-circle"></i> 10 Impromptu Questions</h3>
+                    <p style="color: rgba(255,255,255,0.6); text-align: center; margin-bottom: 20px; font-size: 0.95rem;">Click a card to reveal the best cheat code to use!</p>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                        <div class="question-card">
-                            <span class="number">1</span>If you could have any superpower, but only for 24 hours, what would it be and what would you do?
-                            <div class="target">Target: Story Sandwich</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">1</span><span>If you could have any superpower, but only for 24 hours, what would it be and what would you do?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-hamburger"></i> Story Sandwich</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">2</span>If you were the Principal of this school for one day, what two rules would you change?
-                            <div class="target">Target: O.R.E.O</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">2</span><span>If you were the Principal of this school for one day, what two rules would you change?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-cookie"></i> O.R.E.O.</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">3</span>Which is better: Being able to fly or being able to turn invisible?
-                            <div class="target">Target: O.R.E.O</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">3</span><span>Which is better: Being able to fly or being able to turn invisible?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-cookie"></i> O.R.E.O.</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">4</span>If you could live inside any video game or movie, which one would you pick?
-                            <div class="target">Target: Story Sandwich</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">4</span><span>If you could live inside any video game or movie, which one would you pick?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-hamburger"></i> Story Sandwich</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">5</span>Is it better to have Summer all year long or Winter all year long?
-                            <div class="target">Target: O.R.E.O</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">5</span><span>Is it better to have Summer all year long or Winter all year long?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-cookie"></i> O.R.E.O.</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">6</span>Tell us about a time you tried something new and it didn't go as planned.
-                            <div class="target">Target: Time Traveler</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">6</span><span>Tell us about a time you tried something new and it didn't go as planned.</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-clock"></i> Time Traveler</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">7</span>If animals could talk, which animal would be the rudest and why?
-                            <div class="target">Target: Creative/Story</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">7</span><span>If animals could talk, which animal would be the rudest and why?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-hamburger"></i> Story Sandwich</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">8</span>Should kids get paid money for doing chores, or should they do them for free?
-                            <div class="target">Target: O.R.E.O</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">8</span><span>Should kids get paid money for doing chores, or should they do them for free?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-cookie"></i> O.R.E.O.</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">9</span>If you found a magic door in your bedroom, where would it lead?
-                            <div class="target">Target: Story Sandwich</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">9</span><span>If you found a magic door in your bedroom, where would it lead?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-hamburger"></i> Story Sandwich</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="question-card">
-                            <span class="number">10</span>What do you think cars and transportation will look like in 50 years?
-                            <div class="target">Target: Time Traveler</div>
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="question-text"><span class="number">10</span><span>What do you think cars and transportation will look like in 50 years?</span></div>
+                                    <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="answer-label">Best Cheat Code</div>
+                                    <div class="answer-name"><i class="fas fa-clock"></i> Time Traveler</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
