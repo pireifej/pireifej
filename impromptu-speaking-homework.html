@@ -291,51 +291,22 @@
             box-shadow: 0 5px 20px rgba(0, 184, 148, 0.4);
             z-index: 100;
         }
-        .drag-match-container {
+        .match-container {
             margin: 25px 0;
             background: #f8f9fa;
             border-radius: 15px;
             padding: 25px;
         }
-        .drag-match-container h4 {
+        .match-container h4 {
             color: #232323;
             font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 18px;
         }
-        .drag-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            min-height: 50px;
-            padding: 10px;
-            background: #e2e8f0;
-            border-radius: 10px;
-        }
-        .drag-item {
-            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
-            color: #fff;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: grab;
-            font-weight: 500;
-            font-size: 0.95rem;
-            user-select: none;
-            transition: all 0.2s ease;
-        }
-        .drag-item:active {
-            cursor: grabbing;
-            transform: scale(1.05);
-        }
-        .drag-item.placed {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        .match-slots {
+        .match-rows {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
         .match-row {
             display: flex;
@@ -348,35 +319,27 @@
             min-width: 200px;
             font-size: 1rem;
         }
-        .match-slot {
+        .match-select {
             flex: 1;
-            min-height: 45px;
-            border: 2px dashed #ccc;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
+            font-size: 1rem;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
             transition: all 0.3s ease;
-            color: #999;
-            font-size: 0.9rem;
+            appearance: auto;
         }
-        .match-slot.drag-over {
-            border-color: #00b894;
-            background: #e6fcf5;
-        }
-        .match-slot.filled {
-            border-style: solid;
+        .match-select:focus {
+            outline: none;
             border-color: #00b894;
         }
-        .match-slot .drag-item {
-            margin: 0;
-        }
-        .match-slot.correct-match {
+        .match-select.correct-match {
             border-color: #10b981;
             background: #d1fae5;
         }
-        .match-slot.incorrect-match {
+        .match-select.incorrect-match {
             border-color: #ef4444;
             background: #fee2e2;
         }
@@ -573,25 +536,35 @@
                     <div class="quiz-feedback"></div>
                 </div>
 
-                <div class="drag-match-container" data-match="1">
-                    <h4><i class="fas fa-arrows-alt" style="color: #00b894;"></i> Drag & Match: Which cheat code fits which type of question?</h4>
-                    <div class="drag-items" id="drag-source-1">
-                        <div class="drag-item" draggable="true" data-answer="oreo">O.R.E.O.</div>
-                        <div class="drag-item" draggable="true" data-answer="time">Time Traveler</div>
-                        <div class="drag-item" draggable="true" data-answer="story">Story Sandwich</div>
-                    </div>
-                    <div class="match-slots">
+                <div class="match-container" data-match="1">
+                    <h4><i class="fas fa-list" style="color: #00b894;"></i> Match: Which cheat code fits which type of question?</h4>
+                    <div class="match-rows">
                         <div class="match-row">
                             <div class="match-label">"What is your favorite...?"</div>
-                            <div class="match-slot" data-correct="oreo">Drop here</div>
+                            <select class="match-select" data-correct="oreo">
+                                <option value="">-- Pick a Cheat Code --</option>
+                                <option value="oreo">O.R.E.O.</option>
+                                <option value="time">Time Traveler</option>
+                                <option value="story">Story Sandwich</option>
+                            </select>
                         </div>
                         <div class="match-row">
                             <div class="match-label">"Tell us about..."</div>
-                            <div class="match-slot" data-correct="time">Drop here</div>
+                            <select class="match-select" data-correct="time">
+                                <option value="">-- Pick a Cheat Code --</option>
+                                <option value="oreo">O.R.E.O.</option>
+                                <option value="time">Time Traveler</option>
+                                <option value="story">Story Sandwich</option>
+                            </select>
                         </div>
                         <div class="match-row">
                             <div class="match-label">"What would you do if...?"</div>
-                            <div class="match-slot" data-correct="story">Drop here</div>
+                            <select class="match-select" data-correct="story">
+                                <option value="">-- Pick a Cheat Code --</option>
+                                <option value="oreo">O.R.E.O.</option>
+                                <option value="time">Time Traveler</option>
+                                <option value="story">Story Sandwich</option>
+                            </select>
                         </div>
                     </div>
                     <button class="check-matches-btn" data-match="1" disabled><i class="fas fa-check"></i> Check Answers</button>
@@ -835,140 +808,13 @@
                 $('#score').text(score);
             });
 
-            var draggedItem = null;
-
-            $(document).on('dragstart', '.drag-item:not(.placed)', function(e) {
-                draggedItem = this;
-                $(this).css('opacity', '0.5');
-                e.originalEvent.dataTransfer.effectAllowed = 'move';
-            });
-
-            $(document).on('dragend', '.drag-item', function() {
-                $(this).css('opacity', '1');
-                draggedItem = null;
-            });
-
-            $(document).on('dragover', '.match-slot:not(.filled)', function(e) {
-                e.preventDefault();
-                $(this).addClass('drag-over');
-            });
-
-            $(document).on('dragleave', '.match-slot', function() {
-                $(this).removeClass('drag-over');
-            });
-
-            $(document).on('drop', '.match-slot:not(.filled)', function(e) {
-                e.preventDefault();
-                $(this).removeClass('drag-over');
-
-                if (draggedItem) {
-                    var $slot = $(this);
-                    var $item = $(draggedItem).clone();
-                    $item.css('cursor', 'pointer');
-                    $item.removeAttr('draggable');
-
-                    $slot.empty().append($item).addClass('filled');
-                    $slot.data('placed-answer', $(draggedItem).data('answer'));
-
-                    $(draggedItem).addClass('placed');
-
-                    var $container = $slot.closest('.drag-match-container');
-                    var matchId = $container.data('match');
-                    var totalSlots = $container.find('.match-slot').length;
-                    var filledSlots = $container.find('.match-slot.filled').length;
-
-                    if (filledSlots === totalSlots) {
-                        $container.find('.check-matches-btn').prop('disabled', false);
-                    }
-
-                    $item.on('click', function() {
-                        if (matchCompleted[matchId]) return;
-                        var answer = $slot.data('placed-answer');
-                        $slot.removeClass('filled').html('Drop here');
-                        $slot.removeData('placed-answer');
-                        var $source = $('#drag-source-' + matchId);
-                        $source.find('.drag-item[data-answer="' + answer + '"]').removeClass('placed');
-                        $container.find('.check-matches-btn').prop('disabled', true);
-                    });
-                }
-            });
-
-            var touchDragItem = null;
-            var touchClone = null;
-
-            $(document).on('touchstart', '.drag-item:not(.placed)', function(e) {
-                touchDragItem = this;
-                var touch = e.originalEvent.touches[0];
-                touchClone = $(this).clone().css({
-                    position: 'fixed',
-                    top: touch.clientY - 20 + 'px',
-                    left: touch.clientX - 50 + 'px',
-                    zIndex: 9999,
-                    opacity: 0.8,
-                    pointerEvents: 'none'
-                }).appendTo('body');
-                $(this).css('opacity', '0.4');
-            });
-
-            $(document).on('touchmove', function(e) {
-                if (!touchClone) return;
-                e.preventDefault();
-                var touch = e.originalEvent.touches[0];
-                touchClone.css({
-                    top: touch.clientY - 20 + 'px',
-                    left: touch.clientX - 50 + 'px'
+            $('.match-select').on('change', function() {
+                var $container = $(this).closest('.match-container');
+                var allSelected = true;
+                $container.find('.match-select').each(function() {
+                    if ($(this).val() === '') allSelected = false;
                 });
-            });
-
-            $(document).on('touchend', function(e) {
-                if (!touchDragItem || !touchClone) return;
-                var touch = e.originalEvent.changedTouches[0];
-                touchClone.remove();
-                touchClone = null;
-                $(touchDragItem).css('opacity', '1');
-
-                var $target = null;
-                $('.match-slot:not(.filled)').each(function() {
-                    var offset = $(this).offset();
-                    var w = $(this).outerWidth();
-                    var h = $(this).outerHeight();
-                    if (touch.pageX >= offset.left && touch.pageX <= offset.left + w &&
-                        touch.pageY >= offset.top && touch.pageY <= offset.top + h) {
-                        $target = $(this);
-                        return false;
-                    }
-                });
-
-                if ($target) {
-                    var $item = $(touchDragItem).clone();
-                    $item.css('cursor', 'pointer');
-                    $item.removeAttr('draggable');
-                    $target.empty().append($item).addClass('filled');
-                    $target.data('placed-answer', $(touchDragItem).data('answer'));
-                    $(touchDragItem).addClass('placed');
-
-                    var $container = $target.closest('.drag-match-container');
-                    var matchId = $container.data('match');
-                    var totalSlots = $container.find('.match-slot').length;
-                    var filledSlots = $container.find('.match-slot.filled').length;
-
-                    if (filledSlots === totalSlots) {
-                        $container.find('.check-matches-btn').prop('disabled', false);
-                    }
-
-                    $item.on('click touchend', function(ev) {
-                        ev.preventDefault();
-                        if (matchCompleted[matchId]) return;
-                        var answer = $target.data('placed-answer');
-                        $target.removeClass('filled').html('Drop here');
-                        $target.removeData('placed-answer');
-                        var $source = $('#drag-source-' + matchId);
-                        $source.find('.drag-item[data-answer="' + answer + '"]').removeClass('placed');
-                        $container.find('.check-matches-btn').prop('disabled', true);
-                    });
-                }
-
-                touchDragItem = null;
+                $container.find('.check-matches-btn').prop('disabled', !allSelected);
             });
 
             $('.check-matches-btn').on('click', function() {
@@ -976,13 +822,14 @@
                 if (matchCompleted[matchId]) return;
                 matchCompleted[matchId] = true;
 
-                var $container = $(this).closest('.drag-match-container');
+                var $container = $(this).closest('.match-container');
                 var allCorrect = true;
 
-                $container.find('.match-slot').each(function() {
-                    var placed = $(this).data('placed-answer');
+                $container.find('.match-select').each(function() {
+                    var selected = $(this).val();
                     var correct = $(this).data('correct');
-                    if (placed === correct) {
+                    $(this).prop('disabled', true);
+                    if (selected === correct) {
                         $(this).addClass('correct-match');
                     } else {
                         $(this).addClass('incorrect-match');
@@ -996,11 +843,10 @@
                     score++;
                     $('#score').text(score);
                 } else {
-                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Some matches were off. Review the frameworks above and try to remember for next time!');
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Some matches were off. The correct answers are: "What is your favorite..." = O.R.E.O., "Tell us about..." = Time Traveler, "What would you do if..." = Story Sandwich.');
                 }
 
                 $(this).prop('disabled', true);
-                $container.find('.drag-item').css('pointer-events', 'none');
             });
 
             $(window).on('scroll', function() {
