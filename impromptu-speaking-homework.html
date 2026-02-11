@@ -338,6 +338,9 @@
         .match-select.correct-match {
             border-color: #10b981;
             background: #d1fae5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 30px center;
         }
         .match-select.incorrect-match {
             border-color: #ef4444;
@@ -808,16 +811,28 @@
                 $('#score').text(score);
             });
 
-            $('.match-select').on('change', function() {
-                var $container = $(this).closest('.match-container');
+            $(document).on('change', '.match-select', function() {
+                var $select = $(this);
+                var selected = $select.val();
+                var correct = $select.data('correct');
+
+                $select.removeClass('correct-match incorrect-match');
+                if (selected !== '' && selected === correct) {
+                    $select.addClass('correct-match');
+                } else if (selected !== '') {
+                    $select.removeClass('correct-match');
+                }
+
+                var $container = $select.closest('.match-container');
                 var allSelected = true;
                 $container.find('.match-select').each(function() {
                     if ($(this).val() === '') allSelected = false;
                 });
-                $container.find('.check-matches-btn').prop('disabled', !allSelected);
+                var $btn = $container.find('.check-matches-btn');
+                $btn.prop('disabled', !allSelected);
             });
 
-            $('.check-matches-btn').on('click', function() {
+            $(document).on('click', '.check-matches-btn', function() {
                 var matchId = $(this).data('match');
                 if (matchCompleted[matchId]) return;
                 matchCompleted[matchId] = true;
@@ -829,6 +844,7 @@
                     var selected = $(this).val();
                     var correct = $(this).data('correct');
                     $(this).prop('disabled', true);
+                    $(this).removeClass('correct-match incorrect-match');
                     if (selected === correct) {
                         $(this).addClass('correct-match');
                     } else {
