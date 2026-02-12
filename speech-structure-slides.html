@@ -178,8 +178,8 @@
             opacity: 0.9;
         }
         .definition-box {
-            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
-            color: white;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            color: #2d3436;
             padding: 35px;
             border-radius: 20px;
             margin: 30px 0;
@@ -565,6 +565,22 @@
                         <h4><i class="fas fa-lightbulb"></i> Why Warm Up?</h4>
                         <p>Athletes stretch before a game. Speakers warm up before a speech. Your voice and body are your instruments!</p>
                     </div>
+
+                    <div class="tip-box" style="margin-top: 25px;">
+                        <h4><i class="fas fa-stopwatch"></i> 1-Minute Speech Timer</h4>
+                        <p>If someone prepared a speech, use the timer below! It will warn you as time runs out.</p>
+                    </div>
+
+                    <div class="timer-container">
+                        <h3 style="color: #232323; margin-bottom: 20px;"><i class="fas fa-stopwatch" style="color: #00b894;"></i> Speech Timer</h3>
+                        <div id="timer-circle" class="timer-circle timer-green">
+                            <span id="timer-display">1:00</span>
+                        </div>
+                        <div class="timer-buttons">
+                            <button id="timer-start" class="timer-btn start" onclick="startTimer()"><i class="fas fa-play"></i> Start</button>
+                            <button class="timer-btn reset" onclick="resetTimer()"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -922,21 +938,6 @@
                         </ul>
                     </div>
 
-                    <div class="tip-box">
-                        <h4><i class="fas fa-stopwatch"></i> 1-Minute Speech Timer</h4>
-                        <p>When you're ready, use the timer below to deliver your speech! Try to use all the parts: Hook, 3 Points, and Conclusion.</p>
-                    </div>
-
-                    <div class="timer-container">
-                        <h3 style="color: #232323; margin-bottom: 20px;"><i class="fas fa-stopwatch" style="color: #00b894;"></i> Speech Timer</h3>
-                        <div id="timer-circle" class="timer-circle timer-green">
-                            <span id="timer-display">1:00</span>
-                        </div>
-                        <div class="timer-buttons">
-                            <button id="timer-start" class="timer-btn start" onclick="startTimer()"><i class="fas fa-play"></i> Start</button>
-                            <button class="timer-btn reset" onclick="resetTimer()"><i class="fas fa-redo"></i> Reset</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
