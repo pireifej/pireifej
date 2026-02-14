@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>Slides Hub | Paul Ireifej</title>
+    <title>Public Speaking Hub | Paul Ireifej</title>
     <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
     <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
             padding: 40px 20px;
         }
         .hub-container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             text-align: center;
         }
@@ -36,7 +36,7 @@
         .hub-header .icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -76,20 +76,21 @@
             transform: translateY(-10px);
             background: rgba(255,255,255,0.15);
             box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            text-decoration: none;
         }
-        .hub-card.speaking {
+        .hub-card.professional {
+            border-top: 4px solid #fdcb6e;
+        }
+        .hub-card.professional:hover {
+            border-color: #fdcb6e;
+            box-shadow: 0 25px 60px rgba(253, 203, 110, 0.3);
+        }
+        .hub-card.youth {
             border-top: 4px solid #00b894;
         }
-        .hub-card.speaking:hover {
+        .hub-card.youth:hover {
             border-color: #00b894;
             box-shadow: 0 25px 60px rgba(0, 184, 148, 0.3);
-        }
-        .hub-card.ai {
-            border-top: 4px solid #0984e3;
-        }
-        .hub-card.ai:hover {
-            border-color: #0984e3;
-            box-shadow: 0 25px 60px rgba(9, 132, 227, 0.3);
         }
         .hub-card .card-icon {
             width: 80px;
@@ -102,11 +103,11 @@
             font-size: 2rem;
             color: white;
         }
-        .hub-card.speaking .card-icon {
-            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+        .hub-card.professional .card-icon {
+            background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
         }
-        .hub-card.ai .card-icon {
-            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        .hub-card.youth .card-icon {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
         }
         .hub-card h2 {
             color: #fff;
@@ -127,17 +128,13 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
-        .hub-card.speaking .status {
+        .hub-card.professional .status {
+            background: rgba(253, 203, 110, 0.2);
+            color: #fdcb6e;
+        }
+        .hub-card.youth .status {
             background: rgba(0, 184, 148, 0.2);
             color: #55efc4;
-        }
-        .hub-card.ai .status {
-            background: rgba(9, 132, 227, 0.2);
-            color: #74b9ff;
-        }
-        .hub-card.ai .status.coming-soon {
-            background: rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
         }
         .back-link {
             display: inline-flex;
@@ -150,11 +147,6 @@
         }
         .back-link:hover {
             color: #fff;
-        }
-        .logout-note {
-            margin-top: 30px;
-            color: rgba(255,255,255,0.4);
-            font-size: 0.85rem;
         }
         @media (max-width: 768px) {
             .hub-header h1 {
@@ -170,37 +162,35 @@
     <div class="hub-container">
         <div class="hub-header">
             <div class="icon">
-                <i class="fas fa-chalkboard-teacher"></i>
+                <i class="fas fa-microphone-alt"></i>
             </div>
-            <h1>Slides Hub</h1>
-            <p>Your private collection of workshop presentations</p>
+            <h1>Public Speaking</h1>
+            <p>Workshop presentations for professional and youth audiences</p>
         </div>
 
         <div class="hub-grid">
-            <a href="public-speaking-hub.html" class="hub-card speaking">
+            <div class="hub-card professional" style="cursor: default;">
                 <div class="card-icon">
-                    <i class="fas fa-microphone-alt"></i>
+                    <i class="fas fa-briefcase"></i>
                 </div>
-                <h2>Public Speaking</h2>
-                <p>Professional workshops and Young Speakers Academy sessions covering confidence building, impromptu speaking, and storytelling.</p>
-                <span class="status"><i class="fas fa-check-circle"></i> 3 Presentations Live</span>
-            </a>
+                <h2>Professional Workshops</h2>
+                <p>Adult workshops covering leadership communication, executive presence, and presentation mastery for corporate and community groups.</p>
+                <span class="status"><i class="fas fa-clock"></i> Coming Soon</span>
+            </div>
 
-            <a href="ai-workshops-hub.html" class="hub-card ai">
+            <a href="young-speakers-academy.html" class="hub-card youth">
                 <div class="card-icon">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-child"></i>
                 </div>
-                <h2>AI Workshops</h2>
-                <p>Introduction to AI, ChatGPT for beginners, prompt engineering, and practical AI applications.</p>
-                <span class="status"><i class="fas fa-check-circle"></i> 2 Presentations Live</span>
+                <h2>Young Speakers Academy</h2>
+                <p>8-week confidence building course for grades 4-6. Interactive sessions with slides, activities, and homework assignments.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 3 Sessions Live</span>
             </a>
         </div>
 
-        <a href="index.html" class="back-link">
-            <i class="fas fa-arrow-left"></i> Back to Main Site
+        <a href="slides-hub.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Slides Hub
         </a>
-
-        <p class="logout-note">You are logged in as admin. Close this tab to log out.</p>
     </div>
 </body>
 </html>
