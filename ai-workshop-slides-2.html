@@ -936,6 +936,145 @@
             font-weight: 600;
         }
 
+        /* ============ PERSONA SLIDES ============ */
+        .persona-slide {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .persona-profile {
+            flex: 0 0 280px;
+            text-align: center;
+        }
+
+        .persona-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid;
+            margin-bottom: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .persona-profile h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .persona-profile .persona-desc {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        .persona-right {
+            flex: 1;
+        }
+
+        .persona-right h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .mini-menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .mini-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border: 2px solid rgba(108, 92, 231, 0.2);
+            transition: all 0.5s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .mini-menu-item .mini-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .mini-menu-item .mini-icon {
+            font-size: 1rem;
+            color: #00d4ff;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .mini-menu-item.correct-pick {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            transform: scale(1.03);
+        }
+
+        .mini-menu-item.wrong-pick {
+            opacity: 0.35;
+        }
+
+        .reveal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .reveal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.5);
+        }
+
+        .reveal-btn.revealed {
+            background: linear-gradient(135deg, #00b894, #55efc4);
+        }
+
+        .persona-explanation {
+            padding: 12px 18px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+            display: none;
+        }
+
+        .persona-explanation.show {
+            display: block;
+        }
+
         /* ============ FLIP CARDS ============ */
         .flip-card-single {
             width: 700px;
@@ -1873,6 +2012,20 @@
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 900px) {
+            .persona-slide {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .persona-profile {
+                flex: none;
+            }
+            .persona-photo {
+                width: 150px;
+                height: 150px;
+            }
+            .mini-menu-grid {
+                grid-template-columns: 1fr;
+            }
             .slide-title-content,
             .slide-question,
             .slide-photo-content {
@@ -2271,24 +2424,30 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 11: EARLY RISER FLIP CARD ============ -->
+        <!-- ============ SLIDE 11: EARLY RISER PERSONA ============ -->
         <section class="slide" id="slide11">
-            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div class="card-icon-header" style="background: linear-gradient(135deg, #ff9f43, #f39c12);">
-                            <i class="fas fa-sun"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Persona 1: The Early Riser</h3>
-                            <p>Female, 70s, Retired &middot; 7:00 AM</p>
-                            <div class="tap-hint">Tap to reveal the AI's choice</div>
-                        </div>
+            <div class="persona-slide">
+                <div class="persona-profile">
+                    <img src="img/personas/early-riser.png" alt="The Early Riser" class="persona-photo" style="border-color: #ff9f43;">
+                    <h3 style="color: #ff9f43;"><i class="fas fa-sun"></i> The Early Riser</h3>
+                    <p class="persona-desc">Female, 70s, Retired<br>7:00 AM &middot; Living Room</p>
+                </div>
+                <div class="persona-right">
+                    <h4>Which 2 videos does the AI recommend?</h4>
+                    <div class="mini-menu-grid" id="persona1-grid">
+                        <div class="mini-menu-item" data-num="1"><span class="mini-num">1</span><i class="fas fa-mobile-alt mini-icon"></i> Tech: Smartphone Review</div>
+                        <div class="mini-menu-item" data-num="2"><span class="mini-num">2</span><i class="fas fa-heartbeat mini-icon"></i> Health: Morning Stretch</div>
+                        <div class="mini-menu-item" data-num="3"><span class="mini-num">3</span><i class="fas fa-gamepad mini-icon"></i> Gaming: Esports Highlights</div>
+                        <div class="mini-menu-item" data-num="4"><span class="mini-num">4</span><i class="fas fa-utensils mini-icon"></i> Cooking: Breakfast Ideas</div>
+                        <div class="mini-menu-item" data-num="5"><span class="mini-num">5</span><i class="fas fa-cat mini-icon"></i> Comedy: Cat Videos</div>
+                        <div class="mini-menu-item" data-num="6"><span class="mini-num">6</span><i class="fas fa-chart-bar mini-icon"></i> Finance: Stock Market</div>
+                        <div class="mini-menu-item" data-num="7"><span class="mini-num">7</span><i class="fas fa-moon mini-icon"></i> Relaxation: Sleep Sounds</div>
+                        <div class="mini-menu-item" data-num="8"><span class="mini-num">8</span><i class="fas fa-atom mini-icon"></i> Education: Nuclear Reactor</div>
+                        <div class="mini-menu-item" data-num="9"><span class="mini-num">9</span><i class="fas fa-wrench mini-icon"></i> DIY: Leaky Faucet Repair</div>
+                        <div class="mini-menu-item" data-num="10"><span class="mini-num">10</span><i class="fas fa-cloud-sun mini-icon"></i> News: Weather &amp; Traffic</div>
                     </div>
-                    <div class="flip-card-back ai-answer">
-                        <div class="answer-label">#2 & #10</div>
-                        <p>Morning Stretch + Weather & Traffic. AI assumes a senior morning routine: physical wellness + checking the day's conditions. Bypasses gaming and high-energy comedy.</p>
-                    </div>
+                    <button class="reveal-btn" onclick="revealPersona('persona1-grid', [2,10], this, 'persona1-explain')"><i class="fas fa-eye"></i> Reveal AI's Pick</button>
+                    <div class="persona-explanation" id="persona1-explain"><strong>#2 Morning Stretch + #10 Weather &amp; Traffic.</strong> AI assumes a senior morning routine: physical wellness + checking the day's conditions. Bypasses gaming and high-energy comedy entirely.</div>
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -2297,24 +2456,30 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 12: NIGHT OWL FLIP CARD ============ -->
+        <!-- ============ SLIDE 12: NIGHT OWL PERSONA ============ -->
         <section class="slide" id="slide12">
-            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div class="card-icon-header" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Persona 2: The Night Owl</h3>
-                            <p>Male, 20s, Student/Gamer &middot; 2:00 AM</p>
-                            <div class="tap-hint">Tap to reveal the AI's choice</div>
-                        </div>
+            <div class="persona-slide">
+                <div class="persona-profile">
+                    <img src="img/personas/night-owl.png" alt="The Night Owl" class="persona-photo" style="border-color: #a29bfe;">
+                    <h3 style="color: #a29bfe;"><i class="fas fa-moon"></i> The Night Owl</h3>
+                    <p class="persona-desc">Male, 20s, Student/Gamer<br>2:00 AM &middot; Bedroom</p>
+                </div>
+                <div class="persona-right">
+                    <h4>Which 2 videos does the AI recommend?</h4>
+                    <div class="mini-menu-grid" id="persona2-grid">
+                        <div class="mini-menu-item" data-num="1"><span class="mini-num">1</span><i class="fas fa-mobile-alt mini-icon"></i> Tech: Smartphone Review</div>
+                        <div class="mini-menu-item" data-num="2"><span class="mini-num">2</span><i class="fas fa-heartbeat mini-icon"></i> Health: Morning Stretch</div>
+                        <div class="mini-menu-item" data-num="3"><span class="mini-num">3</span><i class="fas fa-gamepad mini-icon"></i> Gaming: Esports Highlights</div>
+                        <div class="mini-menu-item" data-num="4"><span class="mini-num">4</span><i class="fas fa-utensils mini-icon"></i> Cooking: Breakfast Ideas</div>
+                        <div class="mini-menu-item" data-num="5"><span class="mini-num">5</span><i class="fas fa-cat mini-icon"></i> Comedy: Cat Videos</div>
+                        <div class="mini-menu-item" data-num="6"><span class="mini-num">6</span><i class="fas fa-chart-bar mini-icon"></i> Finance: Stock Market</div>
+                        <div class="mini-menu-item" data-num="7"><span class="mini-num">7</span><i class="fas fa-moon mini-icon"></i> Relaxation: Sleep Sounds</div>
+                        <div class="mini-menu-item" data-num="8"><span class="mini-num">8</span><i class="fas fa-atom mini-icon"></i> Education: Nuclear Reactor</div>
+                        <div class="mini-menu-item" data-num="9"><span class="mini-num">9</span><i class="fas fa-wrench mini-icon"></i> DIY: Leaky Faucet Repair</div>
+                        <div class="mini-menu-item" data-num="10"><span class="mini-num">10</span><i class="fas fa-cloud-sun mini-icon"></i> News: Weather &amp; Traffic</div>
                     </div>
-                    <div class="flip-card-back ai-answer">
-                        <div class="answer-label">#3 & #7</div>
-                        <p>Esports Highlights + Sleep Rain Sounds. A "Split Decision" &mdash; testing Active Mode vs Shutdown Mode. Won't show Finance because stock market is closed at 2 AM.</p>
-                    </div>
+                    <button class="reveal-btn" onclick="revealPersona('persona2-grid', [3,7], this, 'persona2-explain')"><i class="fas fa-eye"></i> Reveal AI's Pick</button>
+                    <div class="persona-explanation" id="persona2-explain"><strong>#3 Esports Highlights + #7 Sleep Rain Sounds.</strong> A "Split Decision" &mdash; testing Active Mode vs Shutdown Mode. Won't show Finance because the stock market is closed at 2 AM.</div>
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -2323,24 +2488,30 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 13: COMMUTER FLIP CARD ============ -->
+        <!-- ============ SLIDE 13: COMMUTER PERSONA ============ -->
         <section class="slide" id="slide13">
-            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div class="card-icon-header" style="background: linear-gradient(135deg, #00d4ff, #0891b2);">
-                            <i class="fas fa-train"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Persona 3: The Commuter</h3>
-                            <p>Male, 30s, Professional &middot; 8:15 AM (train platform)</p>
-                            <div class="tap-hint">Tap to reveal the AI's choice</div>
-                        </div>
+            <div class="persona-slide">
+                <div class="persona-profile">
+                    <img src="img/personas/commuter.png" alt="The Commuter" class="persona-photo" style="border-color: #00d4ff;">
+                    <h3 style="color: #00d4ff;"><i class="fas fa-train"></i> The Commuter</h3>
+                    <p class="persona-desc">Male, 30s, Professional<br>8:15 AM &middot; Train Platform</p>
+                </div>
+                <div class="persona-right">
+                    <h4>Which 2 videos does the AI recommend?</h4>
+                    <div class="mini-menu-grid" id="persona3-grid">
+                        <div class="mini-menu-item" data-num="1"><span class="mini-num">1</span><i class="fas fa-mobile-alt mini-icon"></i> Tech: Smartphone Review</div>
+                        <div class="mini-menu-item" data-num="2"><span class="mini-num">2</span><i class="fas fa-heartbeat mini-icon"></i> Health: Morning Stretch</div>
+                        <div class="mini-menu-item" data-num="3"><span class="mini-num">3</span><i class="fas fa-gamepad mini-icon"></i> Gaming: Esports Highlights</div>
+                        <div class="mini-menu-item" data-num="4"><span class="mini-num">4</span><i class="fas fa-utensils mini-icon"></i> Cooking: Breakfast Ideas</div>
+                        <div class="mini-menu-item" data-num="5"><span class="mini-num">5</span><i class="fas fa-cat mini-icon"></i> Comedy: Cat Videos</div>
+                        <div class="mini-menu-item" data-num="6"><span class="mini-num">6</span><i class="fas fa-chart-bar mini-icon"></i> Finance: Stock Market</div>
+                        <div class="mini-menu-item" data-num="7"><span class="mini-num">7</span><i class="fas fa-moon mini-icon"></i> Relaxation: Sleep Sounds</div>
+                        <div class="mini-menu-item" data-num="8"><span class="mini-num">8</span><i class="fas fa-atom mini-icon"></i> Education: Nuclear Reactor</div>
+                        <div class="mini-menu-item" data-num="9"><span class="mini-num">9</span><i class="fas fa-wrench mini-icon"></i> DIY: Leaky Faucet Repair</div>
+                        <div class="mini-menu-item" data-num="10"><span class="mini-num">10</span><i class="fas fa-cloud-sun mini-icon"></i> News: Weather &amp; Traffic</div>
                     </div>
-                    <div class="flip-card-back ai-answer">
-                        <div class="answer-label">#6 & #4</div>
-                        <p>Finance + Quick Breakfast. The "Commute Window" &mdash; short, information-dense content for mobile. Won't show DIY Repair because you can't fix a faucet on a train.</p>
-                    </div>
+                    <button class="reveal-btn" onclick="revealPersona('persona3-grid', [6,4], this, 'persona3-explain')"><i class="fas fa-eye"></i> Reveal AI's Pick</button>
+                    <div class="persona-explanation" id="persona3-explain"><strong>#6 Finance + #4 Quick Breakfast.</strong> The "Commute Window" &mdash; short, information-dense content for mobile. Won't show DIY Repair because you can't fix a faucet on a train.</div>
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -2894,6 +3065,23 @@
     </div>
 
     <script>
+    function revealPersona(gridId, correctNums, btn, explainId) {
+        var grid = document.getElementById(gridId);
+        var items = grid.querySelectorAll('.mini-menu-item');
+        items.forEach(function(item) {
+            var num = parseInt(item.getAttribute('data-num'));
+            if (correctNums.indexOf(num) !== -1) {
+                item.classList.add('correct-pick');
+            } else {
+                item.classList.add('wrong-pick');
+            }
+        });
+        btn.classList.add('revealed');
+        btn.innerHTML = '<i class="fas fa-check"></i> Revealed!';
+        btn.onclick = null;
+        document.getElementById(explainId).classList.add('show');
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         var sections = document.querySelectorAll('.slide');
         var navDots = document.querySelectorAll('.nav-dots a');
