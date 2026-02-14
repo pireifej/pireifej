@@ -11,7 +11,23 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (December 31, 2025)
+## Recent Changes (February 14, 2026)
+### AI Workshop Session 2 Slideshow
+- Created **ai-workshop-slides-2.html** - Full 35-slide presentation for "From Algorithms to Ethics"
+  - Section 1: Recommendation Systems (Collaborative Filtering, YouTube's 80B signals, Cold Start, Persona flip cards)
+  - Section 2: ChatGPT demystified (Model analogy, Pre-training/RLHF timeline, Reward Model)
+  - Section 3: Ethics (Bias in AI, Hallucination Hunt, 4 ethics scenario flip cards, Transparency Mandate, AI Nutrition Labels, Alert Warning System)
+  - Section 4: Prompt-Off Competition (Prompt Engineering formula slide, 3 challenges)
+  - Interactive flip cards for personas and ethics scenarios
+  - Matches Session 1 purple/cyan dark theme exactly
+- Unlocked Session 2 on **ai-workshops-hub.html** with "Start Slides" button
+
+### Young Speakers Academy Session 3
+- Added Web Audio API timer alerts (warning beeps at 15s/10s/5s, alarm at 0) to speech-structure-slides.html
+- Created **speech-structure-homework.html** - 7 quiz items (5 quizzes + 2 matching exercises) with green theme
+- Unlocked Session 3 on young-speakers-academy.html hub with Homework link
+
+## Previous Changes (December 31, 2025)
 ### Blog System
 - Created **blogs.html** - Blog index page showing all 12 blog posts as cards with thumbnails
 - Created **blog.html** - Individual blog viewer using URL parameter (e.g., blog.html?id=chicago)

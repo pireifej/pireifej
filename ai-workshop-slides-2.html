@@ -1,0 +1,2925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshop Session 2: From Algorithms to Ethics">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Session 2: From Algorithms to Ethics | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slides-wrapper {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            scroll-snap-align: start;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #1a1a3e 100%);
+            overflow: hidden;
+            padding: 40px;
+        }
+        
+        .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 400px;
+            height: 200px;
+            opacity: 0.3;
+            background: 
+                radial-gradient(ellipse at 100% 100%, transparent 70%, #6c5ce7 100%);
+            pointer-events: none;
+        }
+        
+        .wave-lines {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 100px;
+            opacity: 0.4;
+        }
+        
+        .wave-lines::before,
+        .wave-lines::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6c5ce7, #00d4ff, transparent);
+            border-radius: 50%;
+        }
+        
+        .wave-lines::before {
+            bottom: 0;
+            transform: scaleY(0.5);
+        }
+        
+        .wave-lines::after {
+            bottom: 15px;
+            transform: scaleY(0.3);
+            opacity: 0.6;
+        }
+        
+        .brand-logo {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .brand-logo i {
+            font-size: 1.2rem;
+            color: #a29bfe;
+        }
+        
+        .brand-website {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .nav-dots a {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.3);
+            display: block;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-dots a:hover,
+        .nav-dots a.active {
+            background: #00d4ff;
+            box-shadow: 0 0 15px #00d4ff;
+            transform: scale(1.3);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .highlight {
+            color: #a29bfe;
+        }
+
+        /* ============ SLIDE 1: TITLE ============ */
+        .slide-title-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .ai-orb {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ai-orb::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #1a1a3e 0%, transparent 70%);
+            box-shadow: 
+                0 0 60px #00d4ff,
+                0 0 100px rgba(0, 212, 255, 0.5),
+                inset 0 0 60px rgba(0, 212, 255, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .ai-orb::after {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            animation: rotate-ring 10s linear infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 60px #00d4ff, 0 0 100px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 80px #00d4ff, 0 0 140px rgba(0, 212, 255, 0.7); }
+        }
+        
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .ai-text {
+            font-size: 8rem;
+            font-weight: 800;
+            color: transparent;
+            background: linear-gradient(180deg, #00d4ff 0%, #a29bfe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+            z-index: 1;
+            letter-spacing: -5px;
+        }
+        
+        .title-text {
+            text-align: left;
+        }
+        
+        .title-box {
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            padding: 30px 40px;
+            position: relative;
+        }
+        
+        .title-box h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .title-box h1 span {
+            display: block;
+            font-weight: 700;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .title-box p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        /* ============ SLIDE QUESTION ============ */
+        .slide-question {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .image-container {
+            width: 400px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a3e 0%, #0d0d1a 100%);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow: 
+                0 0 30px rgba(0, 212, 255, 0.2),
+                inset 0 0 30px rgba(0, 212, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .image-container .placeholder-icon {
+            font-size: 5rem;
+            color: #00d4ff;
+            opacity: 0.5;
+        }
+        
+        .question-text h2 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .question-text p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        /* ============ PHOTO CONTENT ============ */
+        .slide-photo-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1100px;
+        }
+        
+        .content-side {
+            flex: 1;
+            max-width: 500px;
+        }
+        
+        .content-side h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .content-side h2 span {
+            color: #00d4ff;
+        }
+        
+        .content-side .bullets {
+            list-style: none;
+        }
+        
+        .content-side .bullets li {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.9);
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.4;
+        }
+        
+        .content-side .bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            border-radius: 50%;
+        }
+
+        /* ============ NODE DIAGRAM ============ */
+        .node-diagram {
+            width: 380px;
+            height: 380px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .diagram-node {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .diagram-node.person {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border: 2px solid #a29bfe;
+        }
+
+        .diagram-node.movie {
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            border: 2px solid #00d4ff;
+        }
+
+        .diagram-node.jane { top: 30px; left: 30px; }
+        .diagram-node.bob { top: 30px; right: 30px; }
+        .diagram-node.godfather { bottom: 30px; left: 30px; }
+        .diagram-node.goodfellas { bottom: 30px; right: 30px; }
+
+        .diagram-line {
+            position: absolute;
+            background: linear-gradient(90deg, #6c5ce7, #00d4ff);
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .diagram-line.jane-godfather {
+            width: 3px;
+            height: 180px;
+            top: 90px;
+            left: 74px;
+        }
+
+        .diagram-line.bob-godfather {
+            width: 200px;
+            height: 3px;
+            top: 280px;
+            left: 90px;
+            transform: rotate(-45deg);
+            transform-origin: left center;
+        }
+
+        .diagram-line.bob-goodfellas {
+            width: 3px;
+            height: 180px;
+            top: 90px;
+            right: 74px;
+        }
+
+        .diagram-line.jane-goodfellas {
+            width: 200px;
+            height: 3px;
+            top: 70px;
+            left: 90px;
+            opacity: 0.4;
+            background: linear-gradient(90deg, #ff9f43, #e74c3c);
+            animation: recommend-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes recommend-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ============ AUTOMATION SLIDE ============ */
+        .automation-slide {
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .automation-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .automation-header .ai-chip {
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #6c5ce7;
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.5);
+            flex-shrink: 0;
+        }
+        
+        .automation-header .ai-chip i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .automation-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+        }
+        
+        .automation-header h2 span {
+            color: #00d4ff;
+        }
+
+        .examples-row {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .example-card {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-5px);
+            border-color: #6c5ce7;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .icon-circle.cyan {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+        
+        .icon-circle.purple {
+            background: rgba(108, 92, 231, 0.2);
+            color: #6c5ce7;
+        }
+        
+        .icon-circle.orange {
+            background: rgba(255, 159, 67, 0.2);
+            color: #ff9f43;
+        }
+
+        .icon-circle.green {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .icon-circle.red {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        .icon-circle.gold {
+            background: rgba(245, 215, 158, 0.2);
+            color: #f5d79e;
+        }
+        
+        .example-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .example-card p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        /* ============ TWO COLUMN COMPARISON ============ */
+        .two-col-compare {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .two-col-compare h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .two-col-compare h2 span {
+            color: #00d4ff;
+        }
+
+        .compare-panels {
+            display: flex;
+            gap: 30px;
+        }
+
+        .compare-panel {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(108, 92, 231, 0.3);
+        }
+
+        .compare-panel.highlighted {
+            border-color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .compare-panel h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #a29bfe;
+        }
+
+        .compare-panel.highlighted h3 {
+            color: #00d4ff;
+        }
+
+        .credential-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .credential-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(108, 92, 231, 0.2);
+            border-left: 4px solid #6c5ce7;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .credential-badge i {
+            color: #00d4ff;
+            font-size: 1.1rem;
+        }
+
+        .credential-badge .badge-desc {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* ============ FUNNEL ============ */
+        .funnel-container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .funnel-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .funnel-container h2 span {
+            color: #00d4ff;
+        }
+
+        .funnel-step {
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 5px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .funnel-step.wide {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.4), rgba(162, 155, 254, 0.4));
+            border: 2px solid #a29bfe;
+            max-width: 100%;
+        }
+
+        .funnel-step.medium {
+            background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 159, 67, 0.1));
+            border: 2px solid #ff9f43;
+            box-shadow: 0 0 20px rgba(255, 159, 67, 0.3);
+            max-width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .funnel-step.narrow {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.1));
+            border: 2px solid #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            max-width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .funnel-step .step-desc {
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            display: block;
+            margin-top: 5px;
+        }
+
+        .funnel-arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.4);
+            margin: 8px 0;
+        }
+
+        .funnel-quote {
+            margin-top: 25px;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        /* ============ CALLOUT BOX ============ */
+        .callout-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-left: 4px solid #f1c40f;
+            margin-top: 25px;
+            max-width: 1000px;
+        }
+
+        .callout-box i {
+            font-size: 1.5rem;
+            color: #f1c40f;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .callout-box p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.5;
+        }
+
+        /* ============ SLIDE IMAGE TEXT ============ */
+        .slide-image-text {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .image-area {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-area .overlay-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            z-index: 2;
+        }
+
+        .image-area i {
+            font-size: 4rem;
+            z-index: 2;
+        }
+
+        .text-bottom {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .text-bottom .left-title {
+            flex: 0 0 300px;
+        }
+
+        .text-bottom .left-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .text-bottom .right-content {
+            flex: 1;
+        }
+
+        .text-bottom .right-content a {
+            color: #00d4ff;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        .text-bottom .right-content p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        /* ============ CENTER SLIDE ============ */
+        .slide-center {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .slide-center h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .slide-center h2 span {
+            color: #00d4ff;
+        }
+
+        .slide-center .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+        }
+
+        .slide-center .instruction {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+        }
+
+        .slide-center .glow-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .slide-center .glow-icon.cyan {
+            color: #00d4ff;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .slide-center .glow-icon.gold {
+            color: #f1c40f;
+            text-shadow: 0 0 40px rgba(241, 196, 15, 0.5);
+        }
+
+        .slide-center .glow-icon.warning {
+            color: #ff9f43;
+            text-shadow: 0 0 40px rgba(255, 159, 67, 0.5);
+        }
+
+        .slide-center .glow-icon.purple {
+            color: #a29bfe;
+            text-shadow: 0 0 40px rgba(162, 155, 254, 0.5);
+        }
+
+        /* ============ VIDEO MENU GRID ============ */
+        .video-menu-grid {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .video-menu-grid h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .video-menu-grid h2 span {
+            color: #00d4ff;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:nth-child(even) {
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .menu-item:hover {
+            transform: translateX(5px);
+            border-color: #00d4ff;
+        }
+
+        .menu-item .menu-num {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .menu-item .menu-icon {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .menu-item .menu-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* ============ FLIP CARDS ============ */
+        .flip-card-single {
+            width: 700px;
+            height: 450px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .flip-card-single .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card-single.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-single .flip-card-front,
+        .flip-card-single .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .flip-card-single .flip-card-front {
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            border: 2px solid rgba(108, 92, 231, 0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flip-card-single .flip-card-front .card-icon-header {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+        }
+        
+        .flip-card-single .flip-card-front .card-content {
+            padding: 25px 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .flip-card-single .flip-card-front h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .flip-card-single .flip-card-front p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+        
+        .flip-card-single .flip-card-front .tap-hint {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: auto;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        
+        .flip-card-single .flip-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .flip-card-single .flip-card-back.ai-answer {
+            background: linear-gradient(135deg, #00d4ff 0%, #6c5ce7 100%);
+        }
+
+        .flip-card-single .flip-card-back.ethics-answer {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+        
+        .flip-card-single .flip-card-back .answer-label {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .flip-card-single .flip-card-back p {
+            font-size: 1.2rem;
+            color: white;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 550px;
+        }
+
+        /* ============ MODEL EXPLANATION ============ */
+        .model-explanation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+        }
+
+        .model-explanation-container h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .chef-analogy {
+            margin-bottom: 2rem;
+        }
+
+        .analogy-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .analogy-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .analogy-item.process {
+            border: 3px solid #f39c12;
+        }
+
+        .analogy-item.result {
+            border: 3px solid #2ecc71;
+        }
+
+        .analogy-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .analogy-item.process .analogy-icon {
+            color: #f39c12;
+        }
+
+        .analogy-item.result .analogy-icon {
+            color: #2ecc71;
+        }
+
+        .analogy-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .analogy-item p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .analogy-item .metaphor {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .analogy-arrow {
+            font-size: 2rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .model-definition {
+            max-width: 700px;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* ============ TIMELINE ============ */
+        .timeline-container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .timeline-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .timeline-container h2 span {
+            color: #00d4ff;
+        }
+
+        .timeline-steps {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px;
+        }
+
+        .timeline-dot.cyan {
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .timeline-dot.orange {
+            background: linear-gradient(135deg, #ff9f43, #e67e22);
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 159, 67, 0.5);
+        }
+
+        .timeline-dot.purple {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+        }
+
+        .timeline-content {
+            text-align: left;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        .timeline-line {
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            margin-left: 24px;
+        }
+
+        /* ============ COMPARE BOXES ============ */
+        .compare-boxes {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .compare-boxes h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+        }
+
+        .compare-boxes h2 span {
+            color: #00d4ff;
+        }
+
+        .compare-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .compare-box {
+            flex: 1;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .compare-box i {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .compare-box i.green { color: #2ecc71; }
+        .compare-box i.red { color: #e74c3c; }
+
+        .compare-box h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .compare-box p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+
+        .highlight-box {
+            padding: 20px 25px;
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+            text-align: left;
+            max-width: 900px;
+        }
+
+        /* ============ BIAS SLIDE ============ */
+        .bias-content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .bias-text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .bias-text strong {
+            color: #ff9f43;
+        }
+
+        .bias-cards {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* ============ EXERCISE SLIDE ============ */
+        .exercise-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .exercise-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .exercise-box {
+            padding: 25px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .exercise-box h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .exercise-box p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+
+        .exercise-box code {
+            background: rgba(0, 212, 255, 0.15);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: monospace;
+            color: #00d4ff;
+        }
+
+        /* ============ QUOTE SLIDE ============ */
+        .quote-slide {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .quote-slide .quote-icon {
+            font-size: 4rem;
+            color: rgba(108, 92, 231, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .quote-slide h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .quote-slide h2 span {
+            color: #00d4ff;
+        }
+
+        .quote-slide .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+        }
+
+        .quote-slide .principles {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .quote-slide .principle-badge {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 18px 20px;
+            background: rgba(108, 92, 231, 0.15);
+            border-left: 4px solid #6c5ce7;
+            border-radius: 0 10px 10px 0;
+            text-align: left;
+        }
+
+        .quote-slide .principle-badge i {
+            color: #00d4ff;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .quote-slide .principle-badge h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .quote-slide .principle-badge p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        /* ============ MANDATE SLIDE ============ */
+        .mandate-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .mandate-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .mandate-container h2 span {
+            color: #00d4ff;
+        }
+
+        .mandate-quote {
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 30px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            color: #00d4ff;
+        }
+
+        .mandate-sub {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .nutrition-label {
+            background: #fff;
+            color: #000;
+            padding: 20px 25px;
+            border-radius: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .nutrition-label .nl-header {
+            font-size: 1.5rem;
+            font-weight: 800;
+            border-bottom: 8px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .nutrition-label .nl-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+            font-size: 0.9rem;
+        }
+
+        .nutrition-label .nl-row.bold {
+            font-weight: 700;
+        }
+
+        /* ============ LABELS GRID ============ */
+        .labels-grid {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .labels-grid h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .labels-grid h2 span {
+            color: #00d4ff;
+        }
+
+        .four-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .label-card {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid;
+            text-align: left;
+        }
+
+        .label-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .label-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .label-card .label-example {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        /* ============ TRAFFIC LIGHT ============ */
+        .traffic-light-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .traffic-light-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+        }
+
+        .traffic-light-container h2 span {
+            color: #00d4ff;
+        }
+
+        .traffic-row {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 20px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .traffic-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .traffic-circle.green-light {
+            background: #2ecc71;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+        }
+
+        .traffic-circle.yellow-light {
+            background: #f1c40f;
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+        }
+
+        .traffic-circle.red-light {
+            background: #e74c3c;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+            animation: flash-red 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flash-red {
+            0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(231, 76, 60, 0.5); }
+            50% { opacity: 0.5; box-shadow: 0 0 40px rgba(231, 76, 60, 0.8); }
+        }
+
+        .traffic-info h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .traffic-info p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        .fingerprint-box {
+            padding: 20px 25px;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .fingerprint-box i {
+            font-size: 2rem;
+            color: #a29bfe;
+            flex-shrink: 0;
+        }
+
+        .fingerprint-box p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        /* ============ CLOSING QUOTE ============ */
+        .closing-quote {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .closing-quote h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* ============ PROMPT FORMULA ============ */
+        .prompt-formula {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .prompt-formula h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .prompt-formula h2 span {
+            color: #00d4ff;
+        }
+
+        .prompt-formula .formula-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 25px;
+        }
+
+        .formula-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .formula-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: 1px solid;
+        }
+
+        .formula-card .fc-num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .formula-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            min-width: 100px;
+        }
+
+        .formula-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .formula-card.purple-card { background: rgba(108, 92, 231, 0.15); border-color: rgba(108, 92, 231, 0.4); }
+        .formula-card.purple-card .fc-num { background: #6c5ce7; }
+        .formula-card.purple-card h4 { color: #a29bfe; }
+
+        .formula-card.cyan-card { background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.4); }
+        .formula-card.cyan-card .fc-num { background: #00d4ff; color: #0d0d1a; }
+        .formula-card.cyan-card h4 { color: #00d4ff; }
+
+        .formula-card.orange-card { background: rgba(255, 159, 67, 0.1); border-color: rgba(255, 159, 67, 0.4); }
+        .formula-card.orange-card .fc-num { background: #ff9f43; color: #0d0d1a; }
+        .formula-card.orange-card h4 { color: #ff9f43; }
+
+        .formula-card.green-card { background: rgba(46, 204, 113, 0.1); border-color: rgba(46, 204, 113, 0.4); }
+        .formula-card.green-card .fc-num { background: #2ecc71; color: #0d0d1a; }
+        .formula-card.green-card h4 { color: #2ecc71; }
+
+        .formula-card.gold-card { background: rgba(245, 215, 158, 0.1); border-color: rgba(245, 215, 158, 0.4); }
+        .formula-card.gold-card .fc-num { background: #f5d79e; color: #0d0d1a; }
+        .formula-card.gold-card h4 { color: #f5d79e; }
+
+        .before-after {
+            display: flex;
+            gap: 20px;
+        }
+
+        .ba-box {
+            flex: 1;
+            padding: 18px 22px;
+            border-radius: 12px;
+            border: 2px solid;
+        }
+
+        .ba-box.bad {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .ba-box.good {
+            border-color: #2ecc71;
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .ba-box .ba-label {
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .ba-box.bad .ba-label { color: #e74c3c; }
+        .ba-box.good .ba-label { color: #2ecc71; }
+
+        .ba-box p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* ============ CHALLENGE SLIDE ============ */
+        .challenge-slide {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .challenge-slide .challenge-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #f1c40f;
+            font-weight: 700;
+        }
+
+        .challenge-slide .challenge-header i {
+            font-size: 1.5rem;
+        }
+
+        .challenge-slide h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .challenge-slide h2 span {
+            color: #00d4ff;
+        }
+
+        .challenge-slide .goal {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 25px;
+        }
+
+        .challenge-slide .prompt-example {
+            padding: 20px 25px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #00d4ff;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* ============ FINAL SLIDE ============ */
+        .final-slide {
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .final-slide .coming-next {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 15px;
+        }
+
+        .final-slide h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00d4ff, #6c5ce7, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-slide .session-date {
+            font-size: 1.3rem;
+            color: #ff9f43;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .final-slide .session-desc {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .final-slide .hub-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .final-slide .hub-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            .slide-title-content,
+            .slide-question,
+            .slide-photo-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .ai-orb {
+                width: 200px;
+                height: 200px;
+            }
+            .ai-text {
+                font-size: 5rem;
+            }
+            .title-box h1 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+            .image-container {
+                width: 300px;
+                height: 250px;
+            }
+            .question-text h2 {
+                font-size: 2.5rem;
+            }
+            .compare-panels,
+            .compare-row,
+            .before-after {
+                flex-direction: column;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .four-grid {
+                grid-template-columns: 1fr;
+            }
+            .flip-card-single {
+                width: 90vw;
+                height: 400px;
+            }
+            .quote-slide .principles {
+                flex-direction: column;
+            }
+            .bias-content {
+                flex-direction: column;
+            }
+            .nav-dots {
+                gap: 5px;
+            }
+            .nav-dots a {
+                width: 8px;
+                height: 8px;
+            }
+            .node-diagram {
+                width: 280px;
+                height: 280px;
+            }
+            .analogy-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="ai-workshops-hub.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Hub
+    </a>
+
+    <div class="nav-dots">
+        <a href="#slide1"></a>
+        <a href="#slide2"></a>
+        <a href="#slide3"></a>
+        <a href="#slide4"></a>
+        <a href="#slide5"></a>
+        <a href="#slide6"></a>
+        <a href="#slide7"></a>
+        <a href="#slide8"></a>
+        <a href="#slide9"></a>
+        <a href="#slide10"></a>
+        <a href="#slide11"></a>
+        <a href="#slide12"></a>
+        <a href="#slide13"></a>
+        <a href="#slide14"></a>
+        <a href="#slide15"></a>
+        <a href="#slide16"></a>
+        <a href="#slide17"></a>
+        <a href="#slide18"></a>
+        <a href="#slide19"></a>
+        <a href="#slide20"></a>
+        <a href="#slide21"></a>
+        <a href="#slide22"></a>
+        <a href="#slide23"></a>
+        <a href="#slide24"></a>
+        <a href="#slide25"></a>
+        <a href="#slide26"></a>
+        <a href="#slide27"></a>
+        <a href="#slide28"></a>
+        <a href="#slide29"></a>
+        <a href="#slide30"></a>
+        <a href="#slide31"></a>
+        <a href="#slide32"></a>
+        <a href="#slide33"></a>
+        <a href="#slide34"></a>
+        <a href="#slide35"></a>
+    </div>
+
+    <div class="slides-wrapper">
+
+        <!-- ============ SLIDE 1: TITLE ============ -->
+        <section class="slide" id="slide1">
+            <div class="slide-title-content">
+                <div class="ai-orb">
+                    <span class="ai-text">AI</span>
+                </div>
+                <div class="title-text">
+                    <div class="title-box">
+                        <h1>FROM ALGORITHMS<span>TO ETHICS</span></h1>
+                        <p>Session 2 &middot; AI Workshops &middot; Should Call Paul</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 2: THE INVISIBLE HAND ============ -->
+        <section class="slide" id="slide2">
+            <div class="slide-question">
+                <div class="image-container">
+                    <i class="fas fa-eye placeholder-icon"></i>
+                </div>
+                <div class="question-text">
+                    <h2>The Invisible Hand</h2>
+                    <p>AI decides what you see before you even search</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 3: COLLABORATIVE FILTERING ============ -->
+        <section class="slide" id="slide3">
+            <div class="slide-photo-content">
+                <div class="node-diagram">
+                    <div class="diagram-node person jane">Jane</div>
+                    <div class="diagram-node person bob">Bob</div>
+                    <div class="diagram-node movie godfather">The<br>Godfather</div>
+                    <div class="diagram-node movie goodfellas">Good-<br>fellas</div>
+                    <div class="diagram-line jane-godfather"></div>
+                    <div class="diagram-line bob-goodfellas"></div>
+                    <div class="diagram-line jane-goodfellas" style="width:260px; top:74px; left:74px; transform:rotate(38deg); transform-origin:left center;"></div>
+                    <div class="diagram-line" style="width:260px; height:3px; bottom:74px; left:74px; transform:rotate(-38deg); transform-origin:left center;"></div>
+                </div>
+                <div class="content-side">
+                    <h2>Collaborative <span>Filtering</span></h2>
+                    <ul class="bullets">
+                        <li>Jane watches <strong>The Godfather</strong></li>
+                        <li>Bob also liked <strong>The Godfather</strong> AND <strong>Goodfellas</strong></li>
+                        <li>AI finds "tastes-mates" &mdash; people with similar preferences</li>
+                        <li>Recommends <strong>Goodfellas</strong> to Jane based on Bob's taste</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 4: 80 BILLION SIGNALS ============ -->
+        <section class="slide" id="slide4">
+            <div class="automation-slide">
+                <div class="automation-header">
+                    <div class="ai-chip">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h2>80 Billion <span>Signals</span> Daily</h2>
+                </div>
+                <div class="examples-row">
+                    <div class="example-card">
+                        <div class="icon-circle cyan"><i class="fas fa-clock"></i></div>
+                        <h4>Watch Time</h4>
+                        <p>Did you finish the video or bail after 10 seconds?</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="icon-circle purple"><i class="fas fa-mouse-pointer"></i></div>
+                        <h4>Click-Through Rate</h4>
+                        <p>Did the thumbnail and title make you click?</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="icon-circle orange"><i class="fas fa-mobile-alt"></i></div>
+                        <h4>Context</h4>
+                        <p>Phone at 2 AM or TV at 6 PM? AI knows the difference.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 5: EXPLICIT VS IMPLICIT ============ -->
+        <section class="slide" id="slide5">
+            <div class="two-col-compare">
+                <h2>Explicit vs <span>Implicit</span> Signals</h2>
+                <div class="compare-panels">
+                    <div class="compare-panel">
+                        <h3>Explicit Signals &mdash; What You Tell YouTube</h3>
+                        <div class="credential-badges">
+                            <div class="credential-badge"><i class="fas fa-thumbs-up"></i> Likes / Dislikes</div>
+                            <div class="credential-badge"><i class="fas fa-bell"></i> Subscribes</div>
+                            <div class="credential-badge"><i class="fas fa-ban"></i> "Not Interested" clicks</div>
+                        </div>
+                    </div>
+                    <div class="compare-panel highlighted">
+                        <h3>Implicit Signals &mdash; The Secret Sauce</h3>
+                        <div class="credential-badges">
+                            <div class="credential-badge">
+                                <i class="fas fa-clock"></i>
+                                <div>Watch Time<span class="badge-desc">10 seconds or 10 minutes?</span></div>
+                            </div>
+                            <div class="credential-badge">
+                                <i class="fas fa-redo"></i>
+                                <div>Retention<span class="badge-desc">Did you re-watch a part? (Dopamine Hit)</span></div>
+                            </div>
+                            <div class="credential-badge">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div>Context<span class="badge-desc">Time of day, device type</span></div>
+                            </div>
+                            <div class="credential-badge">
+                                <i class="fas fa-forward"></i>
+                                <div>The "Next" Move<span class="badge-desc">Did you leave or watch 3 more?</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 6: TWO-STAGE FUNNEL ============ -->
+        <section class="slide" id="slide6">
+            <div class="funnel-container">
+                <h2>YouTube's Two-Stage <span>Neural Network</span></h2>
+                <div class="funnel-step wide">800 Million Videos</div>
+                <div class="funnel-arrow"><i class="fas fa-chevron-down"></i></div>
+                <div class="funnel-step medium">Stage 1: Candidate Generation<span class="step-desc">Narrows to thousands</span></div>
+                <div class="funnel-arrow"><i class="fas fa-chevron-down"></i></div>
+                <div class="funnel-step narrow">Stage 2: Ranking<span class="step-desc">Scores with 80B signals &rarr; Your Top 10</span></div>
+                <div class="funnel-quote">"Given Jane's history, there is a 75% chance she will watch this video for at least 5 minutes."</div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 7: COLD START ============ -->
+        <section class="slide" id="slide7">
+            <div class="automation-slide">
+                <div class="automation-header">
+                    <div class="ai-chip"><i class="fas fa-snowflake"></i></div>
+                    <h2>The Cold Start: <span>A Brand New Account</span></h2>
+                </div>
+                <div class="examples-row">
+                    <div class="example-card">
+                        <div class="icon-circle cyan"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4>Demographics & Context</h4>
+                        <p>Location, device, time of day &mdash; the AI knows these instantly</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="icon-circle orange"><i class="fas fa-chart-line"></i></div>
+                        <h4>Popularity & Freshness</h4>
+                        <p>Default to trending content &mdash; the MrBeast effect</p>
+                    </div>
+                    <div class="example-card">
+                        <div class="icon-circle purple"><i class="fas fa-flask"></i></div>
+                        <h4>Exploration Phase</h4>
+                        <p>Intentionally diverse "bait" &mdash; one cooking, one sports, one tech</p>
+                    </div>
+                </div>
+                <div class="callout-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <p><strong>Fun fact:</strong> With Watch History off, YouTube shows a blank homepage &mdash; proving AI is "starved" without your data.</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 8: SAY WHAT YOU SEE ============ -->
+        <section class="slide" id="slide8">
+            <div class="slide-image-text">
+                <div class="image-area" style="background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);">
+                    <i class="fas fa-gamepad" style="color: white;"></i>
+                    <span class="overlay-text" style="color: white;">Say What You See</span>
+                </div>
+                <div class="text-bottom">
+                    <div class="left-title">
+                        <h3>Interactive Activity: Say What You See</h3>
+                    </div>
+                    <div class="right-content">
+                        <a href="https://artsandculture.google.com/experiment/say-what-you-see/jwG3m7wQShZngw?hl=en" target="_blank">artsandculture.google.com/experiment/say-what-you-see</a>
+                        <p>Just as you try to guess the AI's logic, YouTube's algorithm tries to guess YOUR logic.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 9: GROUP ACTIVITY TITLE ============ -->
+        <section class="slide" id="slide9">
+            <div class="slide-center">
+                <h2>The Video <span>Choice Menu</span></h2>
+                <p class="subtitle">Which 2 videos would you show?</p>
+                <p class="instruction">For each persona, select the top 2 videos from the menu</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 10: THE 10 VIDEO MENU ============ -->
+        <section class="slide" id="slide10">
+            <div class="video-menu-grid">
+                <h2>The 10 <span>Video Menu</span></h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <span class="menu-num">1</span>
+                        <i class="fas fa-mobile-alt menu-icon"></i>
+                        <span class="menu-title">Tech: 2026 Smartphone Review</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">2</span>
+                        <i class="fas fa-heartbeat menu-icon"></i>
+                        <span class="menu-title">Health: 10-Minute Morning Stretch</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">3</span>
+                        <i class="fas fa-gamepad menu-icon"></i>
+                        <span class="menu-title">Gaming: High-Stakes Esports Highlights</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">4</span>
+                        <i class="fas fa-utensils menu-icon"></i>
+                        <span class="menu-title">Cooking: Quick 5-Minute Breakfast Ideas</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">5</span>
+                        <i class="fas fa-cat menu-icon"></i>
+                        <span class="menu-title">Comedy: "Try Not To Laugh" Cat Videos</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">6</span>
+                        <i class="fas fa-chart-bar menu-icon"></i>
+                        <span class="menu-title">Finance: Stock Market Opening Bell Report</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">7</span>
+                        <i class="fas fa-moon menu-icon"></i>
+                        <span class="menu-title">Relaxation: Deep Sleep Rain Sounds</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">8</span>
+                        <i class="fas fa-atom menu-icon"></i>
+                        <span class="menu-title">Education: "How a Nuclear Reactor Works"</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">9</span>
+                        <i class="fas fa-wrench menu-icon"></i>
+                        <span class="menu-title">DIY: Repairing a Leaky Faucet</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-num">10</span>
+                        <i class="fas fa-cloud-sun menu-icon"></i>
+                        <span class="menu-title">News: Local Weather & Traffic Update</span>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 11: EARLY RISER FLIP CARD ============ -->
+        <section class="slide" id="slide11">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #ff9f43, #f39c12);">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Persona 1: The Early Riser</h3>
+                            <p>Female, 70s, Retired &middot; 7:00 AM</p>
+                            <div class="tap-hint">Tap to reveal the AI's choice</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ai-answer">
+                        <div class="answer-label">#2 & #10</div>
+                        <p>Morning Stretch + Weather & Traffic. AI assumes a senior morning routine: physical wellness + checking the day's conditions. Bypasses gaming and high-energy comedy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 12: NIGHT OWL FLIP CARD ============ -->
+        <section class="slide" id="slide12">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Persona 2: The Night Owl</h3>
+                            <p>Male, 20s, Student/Gamer &middot; 2:00 AM</p>
+                            <div class="tap-hint">Tap to reveal the AI's choice</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ai-answer">
+                        <div class="answer-label">#3 & #7</div>
+                        <p>Esports Highlights + Sleep Rain Sounds. A "Split Decision" &mdash; testing Active Mode vs Shutdown Mode. Won't show Finance because stock market is closed at 2 AM.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 13: COMMUTER FLIP CARD ============ -->
+        <section class="slide" id="slide13">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #00d4ff, #0891b2);">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Persona 3: The Commuter</h3>
+                            <p>Male, 30s, Professional &middot; 8:15 AM (train platform)</p>
+                            <div class="tap-hint">Tap to reveal the AI's choice</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ai-answer">
+                        <div class="answer-label">#6 & #4</div>
+                        <p>Finance + Quick Breakfast. The "Commute Window" &mdash; short, information-dense content for mobile. Won't show DIY Repair because you can't fix a faucet on a train.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 14: CHATGPT SECTION HEADER ============ -->
+        <section class="slide" id="slide14">
+            <div class="slide-center">
+                <i class="fas fa-robot glow-icon cyan"></i>
+                <h2>ChatGPT &mdash; The <span>Super-Predictor</span></h2>
+                <p class="subtitle">Demystifying the "magic" of the LLM</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 15: WHAT IS A MODEL ============ -->
+        <section class="slide" id="slide15">
+            <div class="model-explanation-container">
+                <h2>What is a <span class="highlight">Model?</span></h2>
+                <div class="chef-analogy">
+                    <div class="analogy-row">
+                        <div class="analogy-item process">
+                            <div class="analogy-icon"><i class="fas fa-book-open"></i></div>
+                            <h4>Pre-Training</h4>
+                            <p>Read the entire internet</p>
+                            <div class="metaphor">&#128218; Read every recipe book</div>
+                        </div>
+                        <div class="analogy-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="analogy-item result">
+                            <div class="analogy-icon"><i class="fas fa-brain"></i></div>
+                            <h4>The Model (ChatGPT)</h4>
+                            <p>Frozen knowledge</p>
+                            <div class="metaphor">&#128104;&zwj;&#127859; A chef who never tasted food</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-definition">
+                    A model has read every recipe book in the world but has never actually tasted food. It predicts what should taste good based on patterns.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 16: THE LEARNING PROCESS ============ -->
+        <section class="slide" id="slide16">
+            <div class="timeline-container">
+                <h2>How ChatGPT <span>Learned</span></h2>
+                <div class="timeline-steps">
+                    <div class="timeline-step">
+                        <div class="timeline-dot cyan"><i class="fas fa-globe"></i></div>
+                        <div class="timeline-content">
+                            <h4 style="color: #00d4ff;">Pre-Training</h4>
+                            <p>Read the open internet: Common Crawl, Wikipedia, books</p>
+                        </div>
+                    </div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot orange"><i class="fas fa-snowflake"></i></div>
+                        <div class="timeline-content">
+                            <h4 style="color: #ff9f43;">Knowledge Cutoff</h4>
+                            <p>Frozen in time. It doesn't learn from your chat in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-step">
+                        <div class="timeline-dot purple"><i class="fas fa-users"></i></div>
+                        <div class="timeline-content">
+                            <h4 style="color: #a29bfe;">RLHF</h4>
+                            <p>Humans ranked its answers: "This is helpful" vs "This is a hallucination"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="callout-box" style="margin-top: 30px;">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Thousands of Data Labelers act as the AI's moral compass and quality control.</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 17: REWARD MODEL ============ -->
+        <section class="slide" id="slide17">
+            <div class="compare-boxes">
+                <h2>The <span>Reward Model</span>: A Digital Human</h2>
+                <div class="compare-row">
+                    <div class="compare-box">
+                        <i class="fas fa-check-circle green"></i>
+                        <div>
+                            <h4 style="color: #2ecc71;">Good Answer</h4>
+                            <p>The Digital Human scores it high. The AI keeps this response.</p>
+                        </div>
+                    </div>
+                    <div class="compare-box">
+                        <i class="fas fa-times-circle red"></i>
+                        <div>
+                            <h4 style="color: #e74c3c;">Hallucination</h4>
+                            <p>The Digital Human flags it. The AI tries again before showing you.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    The AI runs every answer through this "Digital Human" first. If it doesn't score well, the AI rewrites it.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 18: ETHICS SECTION HEADER ============ -->
+        <section class="slide" id="slide18">
+            <div class="slide-center">
+                <i class="fas fa-balance-scale glow-icon warning"></i>
+                <h2>The Ethics <span>Trolley Problem</span></h2>
+                <p class="subtitle" style="color: #ff9f43; font-weight: 600;">Garbage In, Garbage Out</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 19: BIAS IN AI ============ -->
+        <section class="slide" id="slide19">
+            <div class="automation-slide">
+                <div class="automation-header">
+                    <div class="ai-chip"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h2>Bias in <span>A.I.</span></h2>
+                </div>
+                <div class="bias-content">
+                    <div class="bias-text">
+                        <p>The <strong>COMPAS</strong> judicial system used AI to predict recidivism. But the data was biased against specific groups, so the AI was too.</p>
+                        <p style="margin-top: 15px;">AI doesn't have opinions &mdash; it reflects the data it was trained on. If the data is biased, the AI amplifies it.</p>
+                    </div>
+                    <div class="bias-cards">
+                        <div class="example-card">
+                            <div class="icon-circle orange"><i class="fas fa-briefcase"></i></div>
+                            <h4>Hiring Bias</h4>
+                            <p>Resume scanners favor "people like us" &mdash; Sample Bias</p>
+                        </div>
+                        <div class="example-card">
+                            <div class="icon-circle red"><i class="fas fa-heartbeat"></i></div>
+                            <h4>Healthcare Bias</h4>
+                            <p>Algorithms trained on lighter skin tones fail on darker skin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 20: HALLUCINATION HUNT ============ -->
+        <section class="slide" id="slide20">
+            <div class="exercise-container">
+                <h2>Group Exercise: <span class="highlight">Hallucination Hunt</span></h2>
+                <div class="exercise-box">
+                    <h4><i class="fas fa-comment-dots"></i> Instructions</h4>
+                    <p>Ask your AI: <code>"Tell me three facts about Matawan, NJ that are definitely true."</code></p>
+                </div>
+                <div class="exercise-box">
+                    <h4><i class="fas fa-search"></i> What to Observe</h4>
+                    <p>Find one small detail the AI got wrong. This teaches <strong>Transparency</strong> and <strong>Accountability</strong>.</p>
+                </div>
+                <div class="callout-box" style="margin: 20px auto 0; max-width: 600px;">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>AI can sound confident while being completely wrong!</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 21: WEDDING VOWS FLIP CARD ============ -->
+        <section class="slide" id="slide21">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #e91e63, #c2185b);">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Wedding Vows</h3>
+                            <p>Should you use AI to write your wedding vows?</p>
+                            <div class="tap-hint">Tap to reveal the debate</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ethics-answer">
+                        <div class="answer-label">The Debate</div>
+                        <p>If the memories are real, does the editor matter? But consider: is the WORK of writing the gift, or the words themselves? If your spouse found out 10 years later...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 22: BEST MAN'S SPEECH FLIP CARD ============ -->
+        <section class="slide" id="slide22">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Best Man's Speech</h3>
+                            <p>What if you gave AI the personal stories and it structured your speech?</p>
+                            <div class="tap-hint">Tap to reveal the debate</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ethics-answer">
+                        <div class="answer-label">AI-Co-Pilot?</div>
+                        <p>You provided the heart &mdash; the memories, the jokes, how they met. AI just organized it. Is that different from hiring a speechwriter?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 23: VALENTINE'S DAY CARD FLIP CARD ============ -->
+        <section class="slide" id="slide23">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #e91e63, #ff6b6b);">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Valentine's Day Card</h3>
+                            <p>Does handwriting make it "yours"?</p>
+                            <div class="tap-hint">Tap to reveal the debate</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ethics-answer">
+                        <div class="answer-label">Intent vs Execution</div>
+                        <p>You WANT to be sweet &mdash; is that intention enough? Does a handwritten note with bad spelling mean more than a perfectly polished AI message?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 24: HOMEWORK HELP FLIP CARD ============ -->
+        <section class="slide" id="slide24">
+            <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-icon-header" style="background: linear-gradient(135deg, #00b894, #00cec9);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Homework Help</h3>
+                            <p>Do you do your son's homework for him?</p>
+                            <div class="tap-hint">Tap to reveal the debate</div>
+                        </div>
+                    </div>
+                    <div class="flip-card-back ethics-answer">
+                        <div class="answer-label">Learning vs Completion</div>
+                        <p>Is the goal to finish or to understand? Is using a calculator wrong? Does using AI at age 10 prevent mental muscles from developing?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 25: PAUL'S PRINCIPLE ============ -->
+        <section class="slide" id="slide25">
+            <div class="quote-slide">
+                <i class="fas fa-quote-left quote-icon"></i>
+                <h2>AI is a co-pilot, not the pilot.</h2>
+                <p class="subtitle">It can help you find the words, but you must provide the heart.</p>
+                <div class="principles">
+                    <div class="principle-badge">
+                        <i class="fas fa-search"></i>
+                        <div>
+                            <h4>Transparency</h4>
+                            <p>If you use it, do you tell people?</p>
+                        </div>
+                    </div>
+                    <div class="principle-badge">
+                        <i class="fas fa-user-shield"></i>
+                        <div>
+                            <h4>Accountability</h4>
+                            <p>If AI makes a mistake, who is responsible? You are.</p>
+                        </div>
+                    </div>
+                    <div class="principle-badge">
+                        <i class="fas fa-balance-scale"></i>
+                        <div>
+                            <h4>Fairness</h4>
+                            <p>Is it fair to others if you use AI and they don't?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 26: AI TRANSPARENCY MANDATE ============ -->
+        <section class="slide" id="slide26">
+            <div class="mandate-container">
+                <h2>The Paul Ireifej <span>AI Transparency Mandate</span></h2>
+                <div class="mandate-quote">"If it's not 100% human, the human 100% needs to say so."</div>
+                <p class="mandate-sub">We don't hide ingredients in our food. We shouldn't hide them in our thoughts.</p>
+                <div class="nutrition-label">
+                    <div class="nl-header">AI Nutrition Label</div>
+                    <div class="nl-row bold"><span>Content Source</span><span>Amount</span></div>
+                    <div class="nl-row"><span>Human Ideas</span><span>100%</span></div>
+                    <div class="nl-row"><span>AI Structure</span><span>Varies</span></div>
+                    <div class="nl-row"><span>AI Wording</span><span>Varies</span></div>
+                    <div class="nl-row bold"><span>Disclosure Required</span><span>Always</span></div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 27: THE 4 LABELS ============ -->
+        <section class="slide" id="slide27">
+            <div class="labels-grid">
+                <h2>The 4 Categories of <span>Disclosure</span></h2>
+                <div class="four-grid">
+                    <div class="label-card" style="border-color: #e74c3c;">
+                        <h3 style="color: #e74c3c;">[AI-Synthetic]</h3>
+                        <p>AI created the entire thing from a prompt</p>
+                        <span class="label-example">Example: A generic LinkedIn post</span>
+                    </div>
+                    <div class="label-card" style="border-color: #f39c12;">
+                        <h3 style="color: #f39c12;">[AI-Co-Pilot]</h3>
+                        <p>Human had the idea, AI polished it</p>
+                        <span class="label-example">Example: Best Man's speech from your memories</span>
+                    </div>
+                    <div class="label-card" style="border-color: #f1c40f;">
+                        <h3 style="color: #f1c40f;">[AI-Enhanced]</h3>
+                        <p>Real human content cleaned up by AI</p>
+                        <span class="label-example">Example: Removing a stranger from a family photo</span>
+                    </div>
+                    <div class="label-card" style="border-color: #2ecc71;">
+                        <h3 style="color: #2ecc71;">[Human-Only]</h3>
+                        <p>Zero AI. Raw and authentic.</p>
+                        <span class="label-example">Example: A handwritten note</span>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 28: AI ALERT WARNING SYSTEM ============ -->
+        <section class="slide" id="slide28">
+            <div class="traffic-light-container">
+                <h2>The AI Alert <span>Warning System</span></h2>
+                <div class="traffic-row">
+                    <div class="traffic-circle green-light"></div>
+                    <div class="traffic-info">
+                        <h4 style="color: #2ecc71;">Verified</h4>
+                        <p>Content matches reputable sources (.gov/.edu)</p>
+                    </div>
+                </div>
+                <div class="traffic-row">
+                    <div class="traffic-circle yellow-light"></div>
+                    <div class="traffic-info">
+                        <h4 style="color: #f1c40f;">Warning</h4>
+                        <p>Contains unverifiable claims (Potential Hallucination)</p>
+                    </div>
+                </div>
+                <div class="traffic-row">
+                    <div class="traffic-circle red-light"></div>
+                    <div class="traffic-info">
+                        <h4 style="color: #e74c3c;">Alert</h4>
+                        <p>High-probability misinformation or impersonation</p>
+                    </div>
+                </div>
+                <div class="fingerprint-box">
+                    <i class="fas fa-fingerprint"></i>
+                    <p><strong>Digital Fingerprint:</strong> Every AI image should have an invisible watermark. Platforms auto-add a "Ghost Stamp" if missing.</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 29: CLOSING DISCUSSION ============ -->
+        <section class="slide" id="slide29">
+            <div class="closing-quote">
+                <h2>"Transparency isn't about banning AI; it's about preserving the value of the human. If everything is tagged, then a 'Human-Only' message becomes the most valuable thing you can send."</h2>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 30: PROMPT-OFF HEADER ============ -->
+        <section class="slide" id="slide30">
+            <div class="slide-center">
+                <i class="fas fa-trophy glow-icon gold"></i>
+                <h2>The <span>Prompt-Off</span> Competition</h2>
+                <p class="subtitle">You are the judge!</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 31: PROMPT ENGINEERING FORMULA ============ -->
+        <section class="slide" id="slide31">
+            <div class="prompt-formula">
+                <h2>How to Talk to <span>AI</span></h2>
+                <p class="formula-subtitle">Better prompts = better results. Here's the formula.</p>
+                <div class="formula-cards">
+                    <div class="formula-card purple-card">
+                        <span class="fc-num">1</span>
+                        <h4>Role</h4>
+                        <p>"You are a [expert type]..."</p>
+                    </div>
+                    <div class="formula-card cyan-card">
+                        <span class="fc-num">2</span>
+                        <h4>Task</h4>
+                        <p>"I need you to [specific action]..."</p>
+                    </div>
+                    <div class="formula-card orange-card">
+                        <span class="fc-num">3</span>
+                        <h4>Context</h4>
+                        <p>"Here's the background: [details]..."</p>
+                    </div>
+                    <div class="formula-card green-card">
+                        <span class="fc-num">4</span>
+                        <h4>Format</h4>
+                        <p>"Give me the answer as [list / paragraph / table]..."</p>
+                    </div>
+                    <div class="formula-card gold-card">
+                        <span class="fc-num">5</span>
+                        <h4>Constraints</h4>
+                        <p>"Keep it under [X words], use simple language..."</p>
+                    </div>
+                </div>
+                <div class="before-after">
+                    <div class="ba-box bad">
+                        <div class="ba-label"><i class="fas fa-times"></i> BAD</div>
+                        <p>"Write something about dogs"</p>
+                    </div>
+                    <div class="ba-box good">
+                        <div class="ba-label"><i class="fas fa-check"></i> GOOD</div>
+                        <p>"You are a veterinarian. Write 3 fun facts about golden retrievers for a kids' newsletter. Keep each fact to one sentence."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 32: CHALLENGE 1 ============ -->
+        <section class="slide" id="slide32">
+            <div class="challenge-slide">
+                <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 1</div>
+                <h2>The <span>Impossible Invention</span></h2>
+                <p class="goal">Goal: Use AI to describe the most useless but hilarious invention</p>
+                <div class="prompt-example">"Write a sales pitch for a solar-powered flashlight for people who only walk at night."</div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 33: CHALLENGE 2 ============ -->
+        <section class="slide" id="slide33">
+            <div class="challenge-slide">
+                <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 2</div>
+                <h2><span>Roast</span> My Career</h2>
+                <p class="goal">Goal: Get AI to write a 30-second comedy bit about your job</p>
+                <div class="prompt-example">"Write a joke about the struggle of being a middle school principal in 2026."</div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 34: CHALLENGE 3 ============ -->
+        <section class="slide" id="slide34">
+            <div class="challenge-slide">
+                <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 3</div>
+                <h2>The <span>Life Hack</span></h2>
+                <p class="goal">Goal: Generate a prompt that solves a real problem in under 10 seconds</p>
+                <div class="prompt-example">"I have a half-empty jar of pickles, a block of cheddar, and an onion. Give me a snack recipe that doesn't taste like regret."</div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 35: SESSION 3 PREVIEW ============ -->
+        <section class="slide" id="slide35">
+            <div class="final-slide">
+                <p class="coming-next">Coming Next</p>
+                <h2>Session 3: A Look Under the Hood</h2>
+                <p class="session-date">March 30, 2026</p>
+                <p class="session-desc">We'll go deeper into how neural networks actually work, explore real-world AI tools, and build your own mini-AI project.</p>
+                <a href="ai-workshops-hub.html" class="hub-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var sections = document.querySelectorAll('.slide');
+        var navDots = document.querySelectorAll('.nav-dots a');
+        var wrapper = document.querySelector('.slides-wrapper');
+
+        wrapper.addEventListener('scroll', function() {
+            var scrollPos = wrapper.scrollTop + window.innerHeight / 2;
+            sections.forEach(function(section, i) {
+                var top = section.offsetTop;
+                var bottom = top + section.offsetHeight;
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    navDots.forEach(function(dot) { dot.classList.remove('active'); });
+                    if (navDots[i]) navDots[i].classList.add('active');
+                }
+            });
+        });
+
+        navDots.forEach(function(dot) {
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                wrapper.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        navDots[0].classList.add('active');
+    });
+    </script>
+</body>
+</html>
