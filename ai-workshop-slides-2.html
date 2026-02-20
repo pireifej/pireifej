@@ -407,9 +407,16 @@
 
         .diagram-line {
             position: absolute;
-            background: linear-gradient(90deg, #6c5ce7, #00d4ff);
             z-index: 1;
             border-radius: 2px;
+        }
+
+        .diagram-node, .diagram-line {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .diagram-node.anim-show, .diagram-line.anim-show {
+            opacity: 1;
         }
 
         .diagram-line.jane-godfather {
@@ -417,15 +424,17 @@
             height: 180px;
             top: 90px;
             left: 74px;
+            background: linear-gradient(180deg, #a29bfe, #00d4ff);
         }
 
         .diagram-line.bob-godfather {
-            width: 200px;
+            width: 300px;
             height: 3px;
-            top: 280px;
-            left: 90px;
-            transform: rotate(-45deg);
-            transform-origin: left center;
+            top: 75px;
+            right: 74px;
+            transform: rotate(50deg);
+            transform-origin: right center;
+            background: linear-gradient(90deg, #00d4ff, #ff9f43);
         }
 
         .diagram-line.bob-goodfellas {
@@ -433,21 +442,108 @@
             height: 180px;
             top: 90px;
             right: 74px;
+            background: linear-gradient(180deg, #ff9f43, #00d4ff);
         }
 
         .diagram-line.jane-goodfellas {
-            width: 200px;
+            width: 300px;
             height: 3px;
-            top: 70px;
-            left: 90px;
-            opacity: 0.4;
-            background: linear-gradient(90deg, #ff9f43, #e74c3c);
-            animation: recommend-pulse 2s ease-in-out infinite;
+            top: 75px;
+            left: 74px;
+            transform: rotate(50deg);
+            transform-origin: left center;
+            background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+        }
+
+        .line-heart {
+            position: absolute;
+            z-index: 3;
+            font-size: 1rem;
+            opacity: 0;
+        }
+        .line-heart.anim-travel {
+            opacity: 1;
+        }
+        .heart-jane-godfather {
+            color: #a29bfe;
+            left: 68px;
+            animation: travel-jg 1.2s ease forwards;
+        }
+        @keyframes travel-jg {
+            0% { top: 110px; opacity: 1; }
+            100% { top: 260px; opacity: 1; }
+        }
+        .heart-bob-godfather {
+            color: #ff9f43;
+            animation: travel-bgo 1.2s ease forwards;
+        }
+        @keyframes travel-bgo {
+            0% { right: 68px; top: 110px; opacity: 1; }
+            100% { right: 200px; top: 240px; opacity: 1; }
+        }
+        .heart-bob-goodfellas {
+            color: #ff9f43;
+            right: 68px;
+            animation: travel-bgf 1.2s ease forwards;
+        }
+        @keyframes travel-bgf {
+            0% { top: 110px; opacity: 1; }
+            100% { top: 260px; opacity: 1; }
+        }
+        .heart-jane-goodfellas {
+            color: #e74c3c;
+            animation: travel-jgf 1.5s ease forwards;
+        }
+        @keyframes travel-jgf {
+            0% { left: 68px; top: 110px; opacity: 1; }
+            100% { left: 200px; top: 240px; opacity: 1; }
         }
 
         @keyframes recommend-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .diagram-line.jane-goodfellas.anim-show {
+            animation: recommend-pulse 1.5s ease-in-out infinite;
+        }
+
+        .collab-play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        .collab-play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(108, 92, 231, 0.5);
+        }
+        .collab-play-btn.playing {
+            background: linear-gradient(135deg, #0891b2, #00d4ff);
+            pointer-events: none;
+        }
+        .collab-play-btn.done {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            pointer-events: none;
+        }
+
+        .collab-step-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            min-height: 1.4em;
+            margin-top: 8px;
+            transition: color 0.4s ease;
+        }
+        .collab-step-label.active {
+            color: rgba(255,255,255,0.9);
         }
 
         /* ============ AUTOMATION SLIDE ============ */
@@ -2172,24 +2268,30 @@
         <!-- ============ SLIDE 3: COLLABORATIVE FILTERING ============ -->
         <section class="slide" id="slide3">
             <div class="slide-photo-content">
-                <div class="node-diagram">
+                <div class="node-diagram" id="collab-diagram">
                     <div class="diagram-node person jane">Jane</div>
                     <div class="diagram-node person bob">Bob</div>
                     <div class="diagram-node movie godfather">The<br>Godfather</div>
                     <div class="diagram-node movie goodfellas">Good-<br>fellas</div>
                     <div class="diagram-line jane-godfather"></div>
+                    <div class="diagram-line bob-godfather"></div>
                     <div class="diagram-line bob-goodfellas"></div>
-                    <div class="diagram-line jane-goodfellas" style="width:260px; top:74px; left:74px; transform:rotate(38deg); transform-origin:left center;"></div>
-                    <div class="diagram-line" style="width:260px; height:3px; bottom:74px; left:74px; transform:rotate(-38deg); transform-origin:left center;"></div>
+                    <div class="diagram-line jane-goodfellas"></div>
+                    <i class="fas fa-heart line-heart heart-jane-godfather"></i>
+                    <i class="fas fa-heart line-heart heart-bob-godfather"></i>
+                    <i class="fas fa-heart line-heart heart-bob-goodfellas"></i>
+                    <i class="fas fa-heart line-heart heart-jane-goodfellas"></i>
                 </div>
                 <div class="content-side">
                     <h2>Collaborative <span>Filtering</span></h2>
                     <ul class="bullets">
                         <li>Jane watches <strong>The Godfather</strong></li>
                         <li>Bob also liked <strong>The Godfather</strong> AND <strong>Goodfellas</strong></li>
-                        <li>AI finds "tastes-mates" &mdash; people with similar preferences</li>
+                        <li>AI finds people with similar preferences</li>
                         <li>Recommends <strong>Goodfellas</strong> to Jane based on Bob's taste</li>
                     </ul>
+                    <button class="collab-play-btn" id="collab-play-btn" onclick="playCollabAnim()"><i class="fas fa-play"></i> Play Animation</button>
+                    <div class="collab-step-label" id="collab-step-label"></div>
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -3065,6 +3167,68 @@
     </div>
 
     <script>
+    var collabAnimRunning = false;
+    function playCollabAnim() {
+        if (collabAnimRunning) return;
+        collabAnimRunning = true;
+        var diagram = document.getElementById('collab-diagram');
+        var btn = document.getElementById('collab-play-btn');
+        var label = document.getElementById('collab-step-label');
+        btn.classList.add('playing');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Playing...';
+
+        var jane = diagram.querySelector('.jane');
+        var godfather = diagram.querySelector('.godfather');
+        var bob = diagram.querySelector('.bob');
+        var goodfellas = diagram.querySelector('.goodfellas');
+        var lineJG = diagram.querySelector('.jane-godfather');
+        var lineBGo = diagram.querySelector('.bob-godfather');
+        var lineBGf = diagram.querySelector('.bob-goodfellas');
+        var lineJGf = diagram.querySelector('.jane-goodfellas');
+        var heartJG = diagram.querySelector('.heart-jane-godfather');
+        var heartBGo = diagram.querySelector('.heart-bob-godfather');
+        var heartBGf = diagram.querySelector('.heart-bob-goodfellas');
+        var heartJGf = diagram.querySelector('.heart-jane-goodfellas');
+
+        label.textContent = 'Jane appears...';
+        label.classList.add('active');
+        jane.classList.add('anim-show');
+
+        setTimeout(function() {
+            label.textContent = 'Jane loves The Godfather';
+            godfather.classList.add('anim-show');
+            lineJG.classList.add('anim-show');
+            heartJG.classList.add('anim-travel');
+        }, 1500);
+
+        setTimeout(function() {
+            label.textContent = 'Bob also loved The Godfather...';
+            bob.classList.add('anim-show');
+            lineBGo.classList.add('anim-show');
+            heartBGo.classList.add('anim-travel');
+        }, 4000);
+
+        setTimeout(function() {
+            label.textContent = '...and Bob loved Goodfellas too!';
+            goodfellas.classList.add('anim-show');
+            lineBGf.classList.add('anim-show');
+            heartBGf.classList.add('anim-travel');
+        }, 6000);
+
+        setTimeout(function() {
+            label.textContent = 'AI recommends Goodfellas to Jane!';
+            lineJGf.classList.add('anim-show');
+            heartJGf.classList.add('anim-travel');
+        }, 8500);
+
+        setTimeout(function() {
+            btn.classList.remove('playing');
+            btn.classList.add('done');
+            btn.innerHTML = '<i class="fas fa-check"></i> Complete!';
+            label.textContent = 'Jane gets Goodfellas because Bob liked both.';
+        }, 10500);
+    }
+
     function revealPersona(gridId, correctNums, btn, explainId) {
         var grid = document.getElementById(gridId);
         var items = grid.querySelectorAll('.mini-menu-item');
