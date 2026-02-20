@@ -405,106 +405,48 @@
         .diagram-node.godfather { bottom: 30px; left: 30px; }
         .diagram-node.goodfellas { bottom: 30px; right: 30px; }
 
-        .diagram-line {
-            position: absolute;
-            z-index: 1;
-            border-radius: 2px;
-        }
-
-        .diagram-node, .diagram-line {
+        .diagram-node {
             opacity: 0;
             transition: opacity 0.6s ease;
         }
-        .diagram-node.anim-show, .diagram-line.anim-show {
+        .diagram-node.anim-show {
             opacity: 1;
         }
 
-        .diagram-line.jane-godfather {
-            width: 3px;
-            height: 180px;
-            top: 90px;
-            left: 74px;
-            background: linear-gradient(180deg, #a29bfe, #00d4ff);
-        }
-
-        .diagram-line.bob-godfather {
-            width: 300px;
-            height: 3px;
-            top: 75px;
-            right: 74px;
-            transform: rotate(50deg);
-            transform-origin: right center;
-            background: linear-gradient(90deg, #00d4ff, #ff9f43);
-        }
-
-        .diagram-line.bob-goodfellas {
-            width: 3px;
-            height: 180px;
-            top: 90px;
-            right: 74px;
-            background: linear-gradient(180deg, #ff9f43, #00d4ff);
-        }
-
-        .diagram-line.jane-goodfellas {
-            width: 300px;
-            height: 3px;
-            top: 75px;
-            left: 74px;
-            transform: rotate(50deg);
-            transform-origin: left center;
-            background: linear-gradient(90deg, #e74c3c, #ff6b6b);
-        }
-
-        .line-heart {
+        .collab-svg {
             position: absolute;
-            z-index: 3;
-            font-size: 1rem;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .collab-svg line {
+            stroke-width: 3;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            transition: stroke-dashoffset 1s ease;
+        }
+        .collab-svg line.anim-show {
+            stroke-dashoffset: 0;
+        }
+        .collab-svg .line-rec {
+            stroke-dasharray: 8 4;
+            stroke-dashoffset: 400;
+        }
+        .collab-svg .line-rec.anim-show {
+            stroke-dashoffset: 0;
+            animation: dash-pulse 2s linear infinite;
+        }
+        @keyframes dash-pulse {
+            to { stroke-dashoffset: -24; }
+        }
+        .collab-svg text {
             opacity: 0;
+            transition: opacity 0.5s ease;
         }
-        .line-heart.anim-travel {
+        .collab-svg text.anim-show {
             opacity: 1;
-        }
-        .heart-jane-godfather {
-            color: #a29bfe;
-            left: 68px;
-            animation: travel-jg 1.2s ease forwards;
-        }
-        @keyframes travel-jg {
-            0% { top: 110px; opacity: 1; }
-            100% { top: 260px; opacity: 1; }
-        }
-        .heart-bob-godfather {
-            color: #ff9f43;
-            animation: travel-bgo 1.2s ease forwards;
-        }
-        @keyframes travel-bgo {
-            0% { right: 68px; top: 110px; opacity: 1; }
-            100% { right: 200px; top: 240px; opacity: 1; }
-        }
-        .heart-bob-goodfellas {
-            color: #ff9f43;
-            right: 68px;
-            animation: travel-bgf 1.2s ease forwards;
-        }
-        @keyframes travel-bgf {
-            0% { top: 110px; opacity: 1; }
-            100% { top: 260px; opacity: 1; }
-        }
-        .heart-jane-goodfellas {
-            color: #e74c3c;
-            animation: travel-jgf 1.5s ease forwards;
-        }
-        @keyframes travel-jgf {
-            0% { left: 68px; top: 110px; opacity: 1; }
-            100% { left: 200px; top: 240px; opacity: 1; }
-        }
-
-        @keyframes recommend-pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-        .diagram-line.jane-goodfellas.anim-show {
-            animation: recommend-pulse 1.5s ease-in-out infinite;
         }
 
         .collab-fullscreen {
@@ -2516,18 +2458,20 @@
         <section class="slide" id="slide4">
             <div class="collab-fullscreen">
                 <div class="node-diagram collab-diagram-large" id="collab-diagram">
+                    <svg class="collab-svg" viewBox="0 0 450 450">
+                        <line id="svg-jg" x1="75" y1="120" x2="75" y2="330" stroke="#a29bfe" />
+                        <line id="svg-bg" x1="375" y1="120" x2="75" y2="330" stroke="#ff9f43" />
+                        <line id="svg-bf" x1="375" y1="120" x2="375" y2="330" stroke="#ff9f43" />
+                        <line id="svg-jf" class="line-rec" x1="75" y1="120" x2="375" y2="330" stroke="#e74c3c" />
+                        <text id="heart-jg" x="65" y="230" fill="#a29bfe" font-size="22">&#x2764;</text>
+                        <text id="heart-bg" x="215" y="235" fill="#ff9f43" font-size="22">&#x2764;</text>
+                        <text id="heart-bf" x="365" y="230" fill="#ff9f43" font-size="22">&#x2764;</text>
+                        <text id="heart-jf" x="215" y="235" fill="#e74c3c" font-size="22">&#x2764;</text>
+                    </svg>
                     <div class="diagram-node person jane">Jane</div>
                     <div class="diagram-node person bob">Bob</div>
                     <div class="diagram-node movie godfather">The<br>Godfather</div>
                     <div class="diagram-node movie goodfellas">Good-<br>fellas</div>
-                    <div class="diagram-line jane-godfather"></div>
-                    <div class="diagram-line bob-godfather"></div>
-                    <div class="diagram-line bob-goodfellas"></div>
-                    <div class="diagram-line jane-goodfellas"></div>
-                    <i class="fas fa-heart line-heart heart-jane-godfather"></i>
-                    <i class="fas fa-heart line-heart heart-bob-godfather"></i>
-                    <i class="fas fa-heart line-heart heart-bob-goodfellas"></i>
-                    <i class="fas fa-heart line-heart heart-jane-goodfellas"></i>
                 </div>
                 <div class="collab-step-label" id="collab-step-label">Tap Play to see how collaborative filtering works</div>
                 <div class="collab-btn-row">
@@ -3467,6 +3411,10 @@
     var collabAnimRunning = false;
     var collabTimeouts = [];
 
+    function showSvg(id) {
+        document.getElementById(id).classList.add('anim-show');
+    }
+
     function playCollabAnim() {
         if (collabAnimRunning) return;
         collabAnimRunning = true;
@@ -3480,40 +3428,32 @@
         var godfather = diagram.querySelector('.godfather');
         var bob = diagram.querySelector('.bob');
         var goodfellas = diagram.querySelector('.goodfellas');
-        var lineJG = diagram.querySelector('.jane-godfather');
-        var lineBGo = diagram.querySelector('.bob-godfather');
-        var lineBGf = diagram.querySelector('.bob-goodfellas');
-        var lineJGf = diagram.querySelector('.jane-goodfellas');
-        var heartJG = diagram.querySelector('.heart-jane-godfather');
-        var heartBGo = diagram.querySelector('.heart-bob-godfather');
-        var heartBGf = diagram.querySelector('.heart-bob-goodfellas');
-        var heartJGf = diagram.querySelector('.heart-jane-goodfellas');
 
         label.textContent = '1. Jane loves The Godfather';
         label.classList.add('active');
         jane.classList.add('anim-show');
         godfather.classList.add('anim-show');
-        lineJG.classList.add('anim-show');
-        heartJG.classList.add('anim-travel');
+        showSvg('svg-jg');
+        showSvg('heart-jg');
 
         collabTimeouts.push(setTimeout(function() {
             label.textContent = '2. Bob also loves The Godfather';
             bob.classList.add('anim-show');
-            lineBGo.classList.add('anim-show');
-            heartBGo.classList.add('anim-travel');
+            showSvg('svg-bg');
+            showSvg('heart-bg');
         }, 3000));
 
         collabTimeouts.push(setTimeout(function() {
             label.textContent = '3. Bob also loves Goodfellas';
             goodfellas.classList.add('anim-show');
-            lineBGf.classList.add('anim-show');
-            heartBGf.classList.add('anim-travel');
+            showSvg('svg-bf');
+            showSvg('heart-bf');
         }, 5500));
 
         collabTimeouts.push(setTimeout(function() {
             label.textContent = '4. Therefore, AI assumes Jane will also like Goodfellas and recommends it!';
-            lineJGf.classList.add('anim-show');
-            heartJGf.classList.add('anim-travel');
+            showSvg('svg-jf');
+            showSvg('heart-jf');
         }, 8000));
 
         collabTimeouts.push(setTimeout(function() {
@@ -3532,12 +3472,8 @@
         var btn = document.getElementById('collab-play-btn');
         var label = document.getElementById('collab-step-label');
         diagram.querySelectorAll('.anim-show').forEach(function(el) { el.classList.remove('anim-show'); });
-        var hearts = diagram.querySelectorAll('.line-heart');
-        hearts.forEach(function(heart) {
-            heart.classList.remove('anim-travel');
-            var clone = heart.cloneNode(true);
-            heart.parentNode.replaceChild(clone, heart);
-        });
+        var svg = diagram.querySelector('svg');
+        svg.querySelectorAll('.anim-show').forEach(function(el) { el.classList.remove('anim-show'); });
         btn.classList.remove('playing', 'done');
         btn.innerHTML = '<i class="fas fa-play"></i> Play';
         label.classList.remove('active');
