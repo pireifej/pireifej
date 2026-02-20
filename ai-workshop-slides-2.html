@@ -507,19 +507,36 @@
             animation: recommend-pulse 1.5s ease-in-out infinite;
         }
 
+        .collab-fullscreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            gap: 20px;
+        }
+        .collab-diagram-large {
+            width: 450px !important;
+            height: 450px !important;
+        }
+        .collab-btn-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
         .collab-play-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 28px;
+            padding: 14px 32px;
             background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             border: none;
             border-radius: 30px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 15px;
             transition: all 0.3s ease;
         }
         .collab-play-btn:hover {
@@ -534,16 +551,22 @@
             background: linear-gradient(135deg, #27ae60, #2ecc71);
             pointer-events: none;
         }
+        .collab-reset-btn {
+            background: linear-gradient(135deg, #636e72, #b2bec3);
+        }
+        .collab-reset-btn:hover {
+            box-shadow: 0 0 25px rgba(99, 110, 114, 0.5);
+        }
 
         .collab-step-label {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
             min-height: 1.4em;
-            margin-top: 8px;
+            text-align: center;
             transition: color 0.4s ease;
         }
         .collab-step-label.active {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
         }
 
         /* ============ AUTOMATION SLIDE ============ */
@@ -2178,6 +2201,17 @@
                 width: 280px;
                 height: 280px;
             }
+            .collab-diagram-large {
+                width: 300px !important;
+                height: 300px !important;
+            }
+            .collab-play-btn {
+                padding: 10px 24px;
+                font-size: 0.95rem;
+            }
+            .collab-step-label {
+                font-size: 0.9rem;
+            }
             .analogy-row {
                 flex-direction: column;
             }
@@ -2225,6 +2259,7 @@
         <a href="#slide33"></a>
         <a href="#slide34"></a>
         <a href="#slide35"></a>
+        <a href="#slide36"></a>
     </div>
 
     <div class="slides-wrapper">
@@ -2265,10 +2300,30 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 3: COLLABORATIVE FILTERING ============ -->
+        <!-- ============ SLIDE 3: COLLABORATIVE FILTERING (TEXT) ============ -->
         <section class="slide" id="slide3">
-            <div class="slide-photo-content">
-                <div class="node-diagram" id="collab-diagram">
+            <div class="slide-photo-content" style="justify-content: center;">
+                <div class="content-side" style="max-width: 700px;">
+                    <h2>Collaborative <span>Filtering</span></h2>
+                    <ul class="bullets">
+                        <li>Jane watches <strong>The Godfather</strong></li>
+                        <li>Bob also liked <strong>The Godfather</strong> AND <strong>Goodfellas</strong></li>
+                        <li>AI finds people with similar preferences</li>
+                        <li>Recommends <strong>Goodfellas</strong> to Jane based on Bob's taste</li>
+                    </ul>
+                    <p style="margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 0.9rem;"><i class="fas fa-arrow-down"></i> See it in action on the next slide</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 4: COLLABORATIVE FILTERING (ANIMATION) ============ -->
+        <section class="slide" id="slide4">
+            <div class="collab-fullscreen">
+                <div class="node-diagram collab-diagram-large" id="collab-diagram">
                     <div class="diagram-node person jane">Jane</div>
                     <div class="diagram-node person bob">Bob</div>
                     <div class="diagram-node movie godfather">The<br>Godfather</div>
@@ -2282,16 +2337,10 @@
                     <i class="fas fa-heart line-heart heart-bob-goodfellas"></i>
                     <i class="fas fa-heart line-heart heart-jane-goodfellas"></i>
                 </div>
-                <div class="content-side">
-                    <h2>Collaborative <span>Filtering</span></h2>
-                    <ul class="bullets">
-                        <li>Jane watches <strong>The Godfather</strong></li>
-                        <li>Bob also liked <strong>The Godfather</strong> AND <strong>Goodfellas</strong></li>
-                        <li>AI finds people with similar preferences</li>
-                        <li>Recommends <strong>Goodfellas</strong> to Jane based on Bob's taste</li>
-                    </ul>
-                    <button class="collab-play-btn" id="collab-play-btn" onclick="playCollabAnim()"><i class="fas fa-play"></i> Play Animation</button>
-                    <div class="collab-step-label" id="collab-step-label"></div>
+                <div class="collab-step-label" id="collab-step-label">Tap Play to see how collaborative filtering works</div>
+                <div class="collab-btn-row">
+                    <button class="collab-play-btn" id="collab-play-btn" onclick="playCollabAnim()"><i class="fas fa-play"></i> Play</button>
+                    <button class="collab-play-btn collab-reset-btn" id="collab-reset-btn" onclick="resetCollabAnim()"><i class="fas fa-redo"></i> Reset</button>
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -2301,7 +2350,7 @@
         </section>
 
         <!-- ============ SLIDE 4: 80 BILLION SIGNALS ============ -->
-        <section class="slide" id="slide4">
+        <section class="slide" id="slide5">
             <div class="automation-slide">
                 <div class="automation-header">
                     <div class="ai-chip">
@@ -2334,7 +2383,7 @@
         </section>
 
         <!-- ============ SLIDE 5: EXPLICIT VS IMPLICIT ============ -->
-        <section class="slide" id="slide5">
+        <section class="slide" id="slide6">
             <div class="two-col-compare">
                 <h2>Explicit vs <span>Implicit</span> Signals</h2>
                 <div class="compare-panels">
@@ -2376,7 +2425,7 @@
         </section>
 
         <!-- ============ SLIDE 6: TWO-STAGE FUNNEL ============ -->
-        <section class="slide" id="slide6">
+        <section class="slide" id="slide7">
             <div class="funnel-container">
                 <h2>YouTube's Two-Stage <span>Neural Network</span></h2>
                 <div class="funnel-step wide">800 Million Videos</div>
@@ -2393,7 +2442,7 @@
         </section>
 
         <!-- ============ SLIDE 7: COLD START ============ -->
-        <section class="slide" id="slide7">
+        <section class="slide" id="slide8">
             <div class="automation-slide">
                 <div class="automation-header">
                     <div class="ai-chip"><i class="fas fa-snowflake"></i></div>
@@ -2428,7 +2477,7 @@
         </section>
 
         <!-- ============ SLIDE 8: SAY WHAT YOU SEE ============ -->
-        <section class="slide" id="slide8">
+        <section class="slide" id="slide9">
             <div class="slide-image-text">
                 <div class="image-area" style="background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);">
                     <i class="fas fa-gamepad" style="color: white;"></i>
@@ -2451,7 +2500,7 @@
         </section>
 
         <!-- ============ SLIDE 9: GROUP ACTIVITY TITLE ============ -->
-        <section class="slide" id="slide9">
+        <section class="slide" id="slide10">
             <div class="slide-center">
                 <h2>The Video <span>Choice Menu</span></h2>
                 <p class="subtitle">Which 2 videos would you show?</p>
@@ -2464,7 +2513,7 @@
         </section>
 
         <!-- ============ SLIDE 10: THE 10 VIDEO MENU ============ -->
-        <section class="slide" id="slide10">
+        <section class="slide" id="slide11">
             <div class="video-menu-grid">
                 <h2>The 10 <span>Video Menu</span></h2>
                 <div class="menu-grid">
@@ -2527,7 +2576,7 @@
         </section>
 
         <!-- ============ SLIDE 11: EARLY RISER PERSONA ============ -->
-        <section class="slide" id="slide11">
+        <section class="slide" id="slide12">
             <div class="persona-slide">
                 <div class="persona-profile">
                     <img src="img/personas/early-riser.png" alt="The Early Riser" class="persona-photo" style="border-color: #ff9f43;">
@@ -2559,7 +2608,7 @@
         </section>
 
         <!-- ============ SLIDE 12: NIGHT OWL PERSONA ============ -->
-        <section class="slide" id="slide12">
+        <section class="slide" id="slide13">
             <div class="persona-slide">
                 <div class="persona-profile">
                     <img src="img/personas/night-owl.png" alt="The Night Owl" class="persona-photo" style="border-color: #a29bfe;">
@@ -2591,7 +2640,7 @@
         </section>
 
         <!-- ============ SLIDE 13: COMMUTER PERSONA ============ -->
-        <section class="slide" id="slide13">
+        <section class="slide" id="slide14">
             <div class="persona-slide">
                 <div class="persona-profile">
                     <img src="img/personas/commuter.png" alt="The Commuter" class="persona-photo" style="border-color: #00d4ff;">
@@ -2623,7 +2672,7 @@
         </section>
 
         <!-- ============ SLIDE 14: CHATGPT SECTION HEADER ============ -->
-        <section class="slide" id="slide14">
+        <section class="slide" id="slide15">
             <div class="slide-center">
                 <i class="fas fa-robot glow-icon cyan"></i>
                 <h2>ChatGPT &mdash; The <span>Super-Predictor</span></h2>
@@ -2636,7 +2685,7 @@
         </section>
 
         <!-- ============ SLIDE 15: WHAT IS A MODEL ============ -->
-        <section class="slide" id="slide15">
+        <section class="slide" id="slide16">
             <div class="model-explanation-container">
                 <h2>What is a <span class="highlight">Model?</span></h2>
                 <div class="chef-analogy">
@@ -2667,7 +2716,7 @@
         </section>
 
         <!-- ============ SLIDE 16: THE LEARNING PROCESS ============ -->
-        <section class="slide" id="slide16">
+        <section class="slide" id="slide17">
             <div class="timeline-container">
                 <h2>How ChatGPT <span>Learned</span></h2>
                 <div class="timeline-steps">
@@ -2707,7 +2756,7 @@
         </section>
 
         <!-- ============ SLIDE 17: REWARD MODEL ============ -->
-        <section class="slide" id="slide17">
+        <section class="slide" id="slide18">
             <div class="compare-boxes">
                 <h2>The <span>Reward Model</span>: A Digital Human</h2>
                 <div class="compare-row">
@@ -2737,7 +2786,7 @@
         </section>
 
         <!-- ============ SLIDE 18: ETHICS SECTION HEADER ============ -->
-        <section class="slide" id="slide18">
+        <section class="slide" id="slide19">
             <div class="slide-center">
                 <i class="fas fa-balance-scale glow-icon warning"></i>
                 <h2>The Ethics <span>Trolley Problem</span></h2>
@@ -2750,7 +2799,7 @@
         </section>
 
         <!-- ============ SLIDE 19: BIAS IN AI ============ -->
-        <section class="slide" id="slide19">
+        <section class="slide" id="slide20">
             <div class="automation-slide">
                 <div class="automation-header">
                     <div class="ai-chip"><i class="fas fa-exclamation-triangle"></i></div>
@@ -2782,7 +2831,7 @@
         </section>
 
         <!-- ============ SLIDE 20: HALLUCINATION HUNT ============ -->
-        <section class="slide" id="slide20">
+        <section class="slide" id="slide21">
             <div class="exercise-container">
                 <h2>Group Exercise: <span class="highlight">Hallucination Hunt</span></h2>
                 <div class="exercise-box">
@@ -2805,7 +2854,7 @@
         </section>
 
         <!-- ============ SLIDE 21: WEDDING VOWS FLIP CARD ============ -->
-        <section class="slide" id="slide21">
+        <section class="slide" id="slide22">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2831,7 +2880,7 @@
         </section>
 
         <!-- ============ SLIDE 22: BEST MAN'S SPEECH FLIP CARD ============ -->
-        <section class="slide" id="slide22">
+        <section class="slide" id="slide23">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2857,7 +2906,7 @@
         </section>
 
         <!-- ============ SLIDE 23: VALENTINE'S DAY CARD FLIP CARD ============ -->
-        <section class="slide" id="slide23">
+        <section class="slide" id="slide24">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2883,7 +2932,7 @@
         </section>
 
         <!-- ============ SLIDE 24: HOMEWORK HELP FLIP CARD ============ -->
-        <section class="slide" id="slide24">
+        <section class="slide" id="slide25">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2909,7 +2958,7 @@
         </section>
 
         <!-- ============ SLIDE 25: PAUL'S PRINCIPLE ============ -->
-        <section class="slide" id="slide25">
+        <section class="slide" id="slide26">
             <div class="quote-slide">
                 <i class="fas fa-quote-left quote-icon"></i>
                 <h2>AI is a co-pilot, not the pilot.</h2>
@@ -2945,7 +2994,7 @@
         </section>
 
         <!-- ============ SLIDE 26: AI TRANSPARENCY MANDATE ============ -->
-        <section class="slide" id="slide26">
+        <section class="slide" id="slide27">
             <div class="mandate-container">
                 <h2>The Paul Ireifej <span>AI Transparency Mandate</span></h2>
                 <div class="mandate-quote">"If it's not 100% human, the human 100% needs to say so."</div>
@@ -2966,7 +3015,7 @@
         </section>
 
         <!-- ============ SLIDE 27: THE 4 LABELS ============ -->
-        <section class="slide" id="slide27">
+        <section class="slide" id="slide28">
             <div class="labels-grid">
                 <h2>The 4 Categories of <span>Disclosure</span></h2>
                 <div class="four-grid">
@@ -2999,7 +3048,7 @@
         </section>
 
         <!-- ============ SLIDE 28: AI ALERT WARNING SYSTEM ============ -->
-        <section class="slide" id="slide28">
+        <section class="slide" id="slide29">
             <div class="traffic-light-container">
                 <h2>The AI Alert <span>Warning System</span></h2>
                 <div class="traffic-row">
@@ -3035,7 +3084,7 @@
         </section>
 
         <!-- ============ SLIDE 29: CLOSING DISCUSSION ============ -->
-        <section class="slide" id="slide29">
+        <section class="slide" id="slide30">
             <div class="closing-quote">
                 <h2>"Transparency isn't about banning AI; it's about preserving the value of the human. If everything is tagged, then a 'Human-Only' message becomes the most valuable thing you can send."</h2>
             </div>
@@ -3046,7 +3095,7 @@
         </section>
 
         <!-- ============ SLIDE 30: PROMPT-OFF HEADER ============ -->
-        <section class="slide" id="slide30">
+        <section class="slide" id="slide31">
             <div class="slide-center">
                 <i class="fas fa-trophy glow-icon gold"></i>
                 <h2>The <span>Prompt-Off</span> Competition</h2>
@@ -3059,7 +3108,7 @@
         </section>
 
         <!-- ============ SLIDE 31: PROMPT ENGINEERING FORMULA ============ -->
-        <section class="slide" id="slide31">
+        <section class="slide" id="slide32">
             <div class="prompt-formula">
                 <h2>How to Talk to <span>AI</span></h2>
                 <p class="formula-subtitle">Better prompts = better results. Here's the formula.</p>
@@ -3108,7 +3157,7 @@
         </section>
 
         <!-- ============ SLIDE 32: CHALLENGE 1 ============ -->
-        <section class="slide" id="slide32">
+        <section class="slide" id="slide33">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 1</div>
                 <h2>The <span>Impossible Invention</span></h2>
@@ -3122,7 +3171,7 @@
         </section>
 
         <!-- ============ SLIDE 33: CHALLENGE 2 ============ -->
-        <section class="slide" id="slide33">
+        <section class="slide" id="slide34">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 2</div>
                 <h2><span>Roast</span> My Career</h2>
@@ -3136,7 +3185,7 @@
         </section>
 
         <!-- ============ SLIDE 34: CHALLENGE 3 ============ -->
-        <section class="slide" id="slide34">
+        <section class="slide" id="slide35">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 3</div>
                 <h2>The <span>Life Hack</span></h2>
@@ -3150,7 +3199,7 @@
         </section>
 
         <!-- ============ SLIDE 35: SESSION 3 PREVIEW ============ -->
-        <section class="slide" id="slide35">
+        <section class="slide" id="slide36">
             <div class="final-slide">
                 <p class="coming-next">Coming Next</p>
                 <h2>Session 3: A Look Under the Hood</h2>
@@ -3168,6 +3217,8 @@
 
     <script>
     var collabAnimRunning = false;
+    var collabTimeouts = [];
+
     function playCollabAnim() {
         if (collabAnimRunning) return;
         collabAnimRunning = true;
@@ -3194,39 +3245,60 @@
         label.classList.add('active');
         jane.classList.add('anim-show');
 
-        setTimeout(function() {
+        collabTimeouts.push(setTimeout(function() {
             label.textContent = 'Jane loves The Godfather';
             godfather.classList.add('anim-show');
             lineJG.classList.add('anim-show');
             heartJG.classList.add('anim-travel');
-        }, 1500);
+        }, 1500));
 
-        setTimeout(function() {
+        collabTimeouts.push(setTimeout(function() {
             label.textContent = 'Bob also loved The Godfather...';
             bob.classList.add('anim-show');
             lineBGo.classList.add('anim-show');
             heartBGo.classList.add('anim-travel');
-        }, 4000);
+        }, 4000));
 
-        setTimeout(function() {
+        collabTimeouts.push(setTimeout(function() {
             label.textContent = '...and Bob loved Goodfellas too!';
             goodfellas.classList.add('anim-show');
             lineBGf.classList.add('anim-show');
             heartBGf.classList.add('anim-travel');
-        }, 6000);
+        }, 6000));
 
-        setTimeout(function() {
+        collabTimeouts.push(setTimeout(function() {
             label.textContent = 'AI recommends Goodfellas to Jane!';
             lineJGf.classList.add('anim-show');
             heartJGf.classList.add('anim-travel');
-        }, 8500);
+        }, 8500));
 
-        setTimeout(function() {
+        collabTimeouts.push(setTimeout(function() {
             btn.classList.remove('playing');
             btn.classList.add('done');
             btn.innerHTML = '<i class="fas fa-check"></i> Complete!';
             label.textContent = 'Jane gets Goodfellas because Bob liked both.';
-        }, 10500);
+            collabAnimRunning = false;
+        }, 10500));
+    }
+
+    function resetCollabAnim() {
+        collabTimeouts.forEach(function(t) { clearTimeout(t); });
+        collabTimeouts = [];
+        collabAnimRunning = false;
+        var diagram = document.getElementById('collab-diagram');
+        var btn = document.getElementById('collab-play-btn');
+        var label = document.getElementById('collab-step-label');
+        diagram.querySelectorAll('.anim-show').forEach(function(el) { el.classList.remove('anim-show'); });
+        var hearts = diagram.querySelectorAll('.line-heart');
+        hearts.forEach(function(heart) {
+            heart.classList.remove('anim-travel');
+            var clone = heart.cloneNode(true);
+            heart.parentNode.replaceChild(clone, heart);
+        });
+        btn.classList.remove('playing', 'done');
+        btn.innerHTML = '<i class="fas fa-play"></i> Play';
+        label.classList.remove('active');
+        label.textContent = 'Tap Play to see how collaborative filtering works';
     }
 
     function revealPersona(gridId, correctNums, btn, explainId) {
