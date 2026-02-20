@@ -12,6 +12,17 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
 ## Recent Changes (February 20, 2026)
+### AI Workshop Session 2 Homework
+- Created **ai-workshop-homework-2.html** - 5-section homework page with 6 quizzes
+  - Recommendation Systems (collaborative filtering, cold start problem)
+  - Say What You See activity with link to artsandculture.google.com/experiment/say-what-you-see
+  - How ChatGPT Works (3 training stages)
+  - AI Ethics & COMPAS Case (recidivism, ProPublica findings)
+  - Prompt Engineering (formula: Role + Task + Format + Constraints)
+- Added Homework button to Session 2 on **ai-workshops-hub.html**
+- Purple/cyan theme matching Session 2 slides
+- Score tracker (0/6) and progress dots
+
 ### COMPAS Case Study Slides
 - Replaced generic "Bias in AI" slide with **2 dedicated COMPAS case study slides** (slides 21-22)
   - Slide 21: COMPAS intro - black box algorithm, 137 questions, recidivism definition, ProPublica 2016 investigation
