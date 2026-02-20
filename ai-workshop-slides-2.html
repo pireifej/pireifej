@@ -569,6 +569,163 @@
             color: rgba(255,255,255,0.95);
         }
 
+        /* ============ INSIDE THE NODE SLIDE ============ */
+        .node-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            gap: 25px;
+        }
+        .node-slide h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
+        .node-slide h2 span {
+            color: #00d4ff;
+            font-weight: 700;
+        }
+        .neuron-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+        }
+        .neuron-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: flex-end;
+        }
+        .neuron-input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .input-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            text-align: right;
+            min-width: 90px;
+        }
+        .input-weight {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ff9f43;
+            background: rgba(255, 159, 67, 0.15);
+            border: 1px solid rgba(255, 159, 67, 0.3);
+            border-radius: 12px;
+            padding: 3px 10px;
+            min-width: 45px;
+            text-align: center;
+        }
+        .input-arrow {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(108, 92, 231, 0.3), #6c5ce7);
+            position: relative;
+        }
+        .input-arrow::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left: 7px solid #6c5ce7;
+        }
+        .neuron-body {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, #2d1b69, #1a0a3e);
+            border: 3px solid #6c5ce7;
+            box-shadow: 0 0 40px rgba(108, 92, 231, 0.4), inset 0 0 30px rgba(108, 92, 231, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+        .neuron-formula {
+            text-align: center;
+            line-height: 1.6;
+        }
+        .neuron-formula .formula-line {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.7);
+            white-space: nowrap;
+        }
+        .neuron-formula .formula-line .sig {
+            color: #00d4ff;
+        }
+        .neuron-formula .formula-line .wt {
+            color: #ff9f43;
+        }
+        .neuron-formula .formula-plus {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.7rem;
+        }
+        .neuron-formula .formula-dots {
+            color: rgba(255,255,255,0.3);
+            font-size: 1rem;
+            letter-spacing: 3px;
+        }
+        .neuron-formula .formula-equals {
+            border-top: 2px solid rgba(255,255,255,0.2);
+            margin-top: 6px;
+            padding-top: 6px;
+        }
+        .neuron-formula .formula-result {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #2ecc71;
+        }
+        .output-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .output-arrow {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            position: relative;
+        }
+        .output-arrow::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -5px;
+            border: 6px solid transparent;
+            border-left: 8px solid #27ae60;
+        }
+        .output-label {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+        }
+        .node-takeaway {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            max-width: 650px;
+            line-height: 1.5;
+        }
+        .node-takeaway strong {
+            color: #ff9f43;
+        }
+
         /* ============ AUTOMATION SLIDE ============ */
         .automation-slide {
             max-width: 1100px;
@@ -2212,6 +2369,40 @@
             .collab-step-label {
                 font-size: 0.9rem;
             }
+            .neuron-diagram {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .neuron-inputs {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+            }
+            .input-arrow {
+                display: none;
+            }
+            .neuron-body {
+                width: 220px;
+                height: 220px;
+            }
+            .output-section {
+                flex-direction: column;
+            }
+            .output-arrow {
+                width: 3px;
+                height: 30px;
+                background: linear-gradient(180deg, #2ecc71, #27ae60);
+            }
+            .output-arrow::after {
+                right: auto;
+                top: auto;
+                bottom: -1px;
+                left: -4px;
+                border: 5px solid transparent;
+                border-top: 7px solid #27ae60;
+                border-left: 5px solid transparent;
+            }
             .analogy-row {
                 flex-direction: column;
             }
@@ -2260,6 +2451,7 @@
         <a href="#slide34"></a>
         <a href="#slide35"></a>
         <a href="#slide36"></a>
+        <a href="#slide37"></a>
     </div>
 
     <div class="slides-wrapper">
@@ -2424,8 +2616,64 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 6: TWO-STAGE FUNNEL ============ -->
+        <!-- ============ SLIDE 7: INSIDE THE NODE ============ -->
         <section class="slide" id="slide7">
+            <div class="node-slide">
+                <h2>Inside the <span>Node</span></h2>
+                <div class="neuron-diagram">
+                    <div class="neuron-inputs">
+                        <div class="neuron-input-row">
+                            <div class="input-label">Watch Time</div>
+                            <div class="input-weight">&times;0.8</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                        <div class="neuron-input-row">
+                            <div class="input-label">Clicks</div>
+                            <div class="input-weight">&times;0.3</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                        <div class="neuron-input-row">
+                            <div class="input-label">Time of Day</div>
+                            <div class="input-weight">&times;1.2</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                        <div class="neuron-input-row">
+                            <div class="input-label">Device</div>
+                            <div class="input-weight">&times;0.5</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                        <div class="neuron-input-row">
+                            <div class="input-label">Retention</div>
+                            <div class="input-weight">&times;0.9</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                    </div>
+                    <div class="neuron-body">
+                        <div class="neuron-formula">
+                            <div class="formula-line"><span class="sig">S<sub>1</sub></span> &times; <span class="wt">W<sub>1</sub></span> +</div>
+                            <div class="formula-line"><span class="sig">S<sub>2</sub></span> &times; <span class="wt">W<sub>2</sub></span> +</div>
+                            <div class="formula-line"><span class="sig">S<sub>3</sub></span> &times; <span class="wt">W<sub>3</sub></span> +</div>
+                            <div class="formula-dots">...</div>
+                            <div class="formula-equals">
+                                <div class="formula-result">= Total Score</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="output-section">
+                        <div class="output-arrow"></div>
+                        <div class="output-label">Score: 7.4</div>
+                    </div>
+                </div>
+                <p class="node-takeaway">"Learning" = the AI tweaks the <strong>weight numbers</strong> over and over until its predictions get better. That's it.</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 8: TWO-STAGE FUNNEL ============ -->
+        <section class="slide" id="slide8">
             <div class="funnel-container">
                 <h2>YouTube's Two-Stage <span>Neural Network</span></h2>
                 <div class="funnel-step wide">800 Million Videos</div>
@@ -2442,7 +2690,7 @@
         </section>
 
         <!-- ============ SLIDE 7: COLD START ============ -->
-        <section class="slide" id="slide8">
+        <section class="slide" id="slide9">
             <div class="automation-slide">
                 <div class="automation-header">
                     <div class="ai-chip"><i class="fas fa-snowflake"></i></div>
@@ -2477,7 +2725,7 @@
         </section>
 
         <!-- ============ SLIDE 8: SAY WHAT YOU SEE ============ -->
-        <section class="slide" id="slide9">
+        <section class="slide" id="slide10">
             <div class="slide-image-text">
                 <div class="image-area" style="background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);">
                     <i class="fas fa-gamepad" style="color: white;"></i>
@@ -2500,7 +2748,7 @@
         </section>
 
         <!-- ============ SLIDE 9: GROUP ACTIVITY TITLE ============ -->
-        <section class="slide" id="slide10">
+        <section class="slide" id="slide11">
             <div class="slide-center">
                 <h2>The Video <span>Choice Menu</span></h2>
                 <p class="subtitle">Which 2 videos would you show?</p>
@@ -2513,7 +2761,7 @@
         </section>
 
         <!-- ============ SLIDE 10: THE 10 VIDEO MENU ============ -->
-        <section class="slide" id="slide11">
+        <section class="slide" id="slide12">
             <div class="video-menu-grid">
                 <h2>The 10 <span>Video Menu</span></h2>
                 <div class="menu-grid">
@@ -2576,7 +2824,7 @@
         </section>
 
         <!-- ============ SLIDE 11: EARLY RISER PERSONA ============ -->
-        <section class="slide" id="slide12">
+        <section class="slide" id="slide13">
             <div class="persona-slide">
                 <div class="persona-profile">
                     <img src="img/personas/early-riser.png" alt="The Early Riser" class="persona-photo" style="border-color: #ff9f43;">
@@ -2608,7 +2856,7 @@
         </section>
 
         <!-- ============ SLIDE 12: NIGHT OWL PERSONA ============ -->
-        <section class="slide" id="slide13">
+        <section class="slide" id="slide14">
             <div class="persona-slide">
                 <div class="persona-profile">
                     <img src="img/personas/night-owl.png" alt="The Night Owl" class="persona-photo" style="border-color: #a29bfe;">
@@ -2640,7 +2888,7 @@
         </section>
 
         <!-- ============ SLIDE 13: COMMUTER PERSONA ============ -->
-        <section class="slide" id="slide14">
+        <section class="slide" id="slide15">
             <div class="persona-slide">
                 <div class="persona-profile">
                     <img src="img/personas/commuter.png" alt="The Commuter" class="persona-photo" style="border-color: #00d4ff;">
@@ -2672,7 +2920,7 @@
         </section>
 
         <!-- ============ SLIDE 14: CHATGPT SECTION HEADER ============ -->
-        <section class="slide" id="slide15">
+        <section class="slide" id="slide16">
             <div class="slide-center">
                 <i class="fas fa-robot glow-icon cyan"></i>
                 <h2>ChatGPT &mdash; The <span>Super-Predictor</span></h2>
@@ -2685,7 +2933,7 @@
         </section>
 
         <!-- ============ SLIDE 15: WHAT IS A MODEL ============ -->
-        <section class="slide" id="slide16">
+        <section class="slide" id="slide17">
             <div class="model-explanation-container">
                 <h2>What is a <span class="highlight">Model?</span></h2>
                 <div class="chef-analogy">
@@ -2716,7 +2964,7 @@
         </section>
 
         <!-- ============ SLIDE 16: THE LEARNING PROCESS ============ -->
-        <section class="slide" id="slide17">
+        <section class="slide" id="slide18">
             <div class="timeline-container">
                 <h2>How ChatGPT <span>Learned</span></h2>
                 <div class="timeline-steps">
@@ -2756,7 +3004,7 @@
         </section>
 
         <!-- ============ SLIDE 17: REWARD MODEL ============ -->
-        <section class="slide" id="slide18">
+        <section class="slide" id="slide19">
             <div class="compare-boxes">
                 <h2>The <span>Reward Model</span>: A Digital Human</h2>
                 <div class="compare-row">
@@ -2786,7 +3034,7 @@
         </section>
 
         <!-- ============ SLIDE 18: ETHICS SECTION HEADER ============ -->
-        <section class="slide" id="slide19">
+        <section class="slide" id="slide20">
             <div class="slide-center">
                 <i class="fas fa-balance-scale glow-icon warning"></i>
                 <h2>The Ethics <span>Trolley Problem</span></h2>
@@ -2799,7 +3047,7 @@
         </section>
 
         <!-- ============ SLIDE 19: BIAS IN AI ============ -->
-        <section class="slide" id="slide20">
+        <section class="slide" id="slide21">
             <div class="automation-slide">
                 <div class="automation-header">
                     <div class="ai-chip"><i class="fas fa-exclamation-triangle"></i></div>
@@ -2831,7 +3079,7 @@
         </section>
 
         <!-- ============ SLIDE 20: HALLUCINATION HUNT ============ -->
-        <section class="slide" id="slide21">
+        <section class="slide" id="slide22">
             <div class="exercise-container">
                 <h2>Group Exercise: <span class="highlight">Hallucination Hunt</span></h2>
                 <div class="exercise-box">
@@ -2854,7 +3102,7 @@
         </section>
 
         <!-- ============ SLIDE 21: WEDDING VOWS FLIP CARD ============ -->
-        <section class="slide" id="slide22">
+        <section class="slide" id="slide23">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2880,7 +3128,7 @@
         </section>
 
         <!-- ============ SLIDE 22: BEST MAN'S SPEECH FLIP CARD ============ -->
-        <section class="slide" id="slide23">
+        <section class="slide" id="slide24">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2906,7 +3154,7 @@
         </section>
 
         <!-- ============ SLIDE 23: VALENTINE'S DAY CARD FLIP CARD ============ -->
-        <section class="slide" id="slide24">
+        <section class="slide" id="slide25">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2932,7 +3180,7 @@
         </section>
 
         <!-- ============ SLIDE 24: HOMEWORK HELP FLIP CARD ============ -->
-        <section class="slide" id="slide25">
+        <section class="slide" id="slide26">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -2958,7 +3206,7 @@
         </section>
 
         <!-- ============ SLIDE 25: PAUL'S PRINCIPLE ============ -->
-        <section class="slide" id="slide26">
+        <section class="slide" id="slide27">
             <div class="quote-slide">
                 <i class="fas fa-quote-left quote-icon"></i>
                 <h2>AI is a co-pilot, not the pilot.</h2>
@@ -2994,7 +3242,7 @@
         </section>
 
         <!-- ============ SLIDE 26: AI TRANSPARENCY MANDATE ============ -->
-        <section class="slide" id="slide27">
+        <section class="slide" id="slide28">
             <div class="mandate-container">
                 <h2>The Paul Ireifej <span>AI Transparency Mandate</span></h2>
                 <div class="mandate-quote">"If it's not 100% human, the human 100% needs to say so."</div>
@@ -3015,7 +3263,7 @@
         </section>
 
         <!-- ============ SLIDE 27: THE 4 LABELS ============ -->
-        <section class="slide" id="slide28">
+        <section class="slide" id="slide29">
             <div class="labels-grid">
                 <h2>The 4 Categories of <span>Disclosure</span></h2>
                 <div class="four-grid">
@@ -3048,7 +3296,7 @@
         </section>
 
         <!-- ============ SLIDE 28: AI ALERT WARNING SYSTEM ============ -->
-        <section class="slide" id="slide29">
+        <section class="slide" id="slide30">
             <div class="traffic-light-container">
                 <h2>The AI Alert <span>Warning System</span></h2>
                 <div class="traffic-row">
@@ -3084,7 +3332,7 @@
         </section>
 
         <!-- ============ SLIDE 29: CLOSING DISCUSSION ============ -->
-        <section class="slide" id="slide30">
+        <section class="slide" id="slide31">
             <div class="closing-quote">
                 <h2>"Transparency isn't about banning AI; it's about preserving the value of the human. If everything is tagged, then a 'Human-Only' message becomes the most valuable thing you can send."</h2>
             </div>
@@ -3095,7 +3343,7 @@
         </section>
 
         <!-- ============ SLIDE 30: PROMPT-OFF HEADER ============ -->
-        <section class="slide" id="slide31">
+        <section class="slide" id="slide32">
             <div class="slide-center">
                 <i class="fas fa-trophy glow-icon gold"></i>
                 <h2>The <span>Prompt-Off</span> Competition</h2>
@@ -3108,7 +3356,7 @@
         </section>
 
         <!-- ============ SLIDE 31: PROMPT ENGINEERING FORMULA ============ -->
-        <section class="slide" id="slide32">
+        <section class="slide" id="slide33">
             <div class="prompt-formula">
                 <h2>How to Talk to <span>AI</span></h2>
                 <p class="formula-subtitle">Better prompts = better results. Here's the formula.</p>
@@ -3157,7 +3405,7 @@
         </section>
 
         <!-- ============ SLIDE 32: CHALLENGE 1 ============ -->
-        <section class="slide" id="slide33">
+        <section class="slide" id="slide34">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 1</div>
                 <h2>The <span>Impossible Invention</span></h2>
@@ -3171,7 +3419,7 @@
         </section>
 
         <!-- ============ SLIDE 33: CHALLENGE 2 ============ -->
-        <section class="slide" id="slide34">
+        <section class="slide" id="slide35">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 2</div>
                 <h2><span>Roast</span> My Career</h2>
@@ -3185,7 +3433,7 @@
         </section>
 
         <!-- ============ SLIDE 34: CHALLENGE 3 ============ -->
-        <section class="slide" id="slide35">
+        <section class="slide" id="slide36">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 3</div>
                 <h2>The <span>Life Hack</span></h2>
@@ -3199,7 +3447,7 @@
         </section>
 
         <!-- ============ SLIDE 35: SESSION 3 PREVIEW ============ -->
-        <section class="slide" id="slide36">
+        <section class="slide" id="slide37">
             <div class="final-slide">
                 <p class="coming-next">Coming Next</p>
                 <h2>Session 3: A Look Under the Hood</h2>
