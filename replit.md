@@ -11,12 +11,24 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (February 14, 2026)
+## Recent Changes (February 20, 2026)
+### COMPAS Case Study Slides
+- Replaced generic "Bias in AI" slide with **2 dedicated COMPAS case study slides** (slides 21-22)
+  - Slide 21: COMPAS intro - black box algorithm, 137 questions, recidivism definition, ProPublica 2016 investigation
+  - Slide 22: ProPublica findings - 2x bias against Black defendants, low-risk mislabeling for White defendants, key takeaway
+- Total slide count now **38 slides** (up from 37)
+- All slide IDs and navigation dots properly renumbered
+
+### Previous AI Workshop Session 2 Updates
+- SVG-based collaborative filtering animation (slide 4) with proper line drawing from node centers
+- Self-contained persona exercise slides (11-13) with photos, mini-grids, reveal buttons
+- "Inside the Node" neuron diagram slide (slide 7)
+
 ### AI Workshop Session 2 Slideshow
-- Created **ai-workshop-slides-2.html** - Full 35-slide presentation for "From Algorithms to Ethics"
+- Created **ai-workshop-slides-2.html** - Full 38-slide presentation for "From Algorithms to Ethics"
   - Section 1: Recommendation Systems (Collaborative Filtering, YouTube's 80B signals, Cold Start, Persona flip cards)
   - Section 2: ChatGPT demystified (Model analogy, Pre-training/RLHF timeline, Reward Model)
-  - Section 3: Ethics (Bias in AI, Hallucination Hunt, 4 ethics scenario flip cards, Transparency Mandate, AI Nutrition Labels, Alert Warning System)
+  - Section 3: Ethics (COMPAS case study, Hallucination Hunt, 4 ethics scenario flip cards, Transparency Mandate, AI Nutrition Labels, Alert Warning System)
   - Section 4: Prompt-Off Competition (Prompt Engineering formula slide, 3 challenges)
   - Interactive flip cards for personas and ethics scenarios
   - Matches Session 1 purple/cyan dark theme exactly

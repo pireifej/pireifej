@@ -1642,29 +1642,184 @@
             max-width: 900px;
         }
 
-        /* ============ BIAS SLIDE ============ */
-        .bias-content {
+        /* ============ COMPAS CASE STUDY ============ */
+        .compas-layout {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             align-items: flex-start;
+            width: 100%;
+            max-width: 1000px;
         }
 
-        .bias-text {
-            flex: 1;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.85);
+        .compas-left {
+            flex: 1.2;
         }
 
-        .bias-text strong {
-            color: #ff9f43;
-        }
-
-        .bias-cards {
+        .compas-right {
             flex: 1;
             display: flex;
             flex-direction: column;
             gap: 15px;
+        }
+
+        .compas-label {
+            display: inline-block;
+            background: rgba(231,76,60,0.2);
+            border: 1px solid rgba(231,76,60,0.5);
+            color: #e74c3c;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .compas-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .compas-title span {
+            color: #e74c3c;
+        }
+
+        .compas-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .compas-desc {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .compas-desc strong {
+            color: #ff9f43;
+        }
+
+        .compas-info-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 18px 22px;
+        }
+
+        .compas-info-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .compas-info-card h4 i {
+            color: #a29bfe;
+        }
+
+        .compas-info-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+
+        .compas-info-card p strong {
+            color: #00d2d3;
+        }
+
+        .compas-findings {
+            display: flex;
+            gap: 25px;
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .compas-finding-card {
+            flex: 1;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .compas-finding-card.against {
+            background: rgba(231,76,60,0.12);
+            border: 2px solid rgba(231,76,60,0.4);
+        }
+
+        .compas-finding-card.favor {
+            background: rgba(0,210,211,0.08);
+            border: 2px solid rgba(0,210,211,0.3);
+        }
+
+        .compas-finding-card .finding-icon {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .compas-finding-card.against .finding-icon { color: #e74c3c; }
+        .compas-finding-card.favor .finding-icon { color: #00d2d3; }
+
+        .compas-finding-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .compas-finding-card.against h4 { color: #e74c3c; }
+        .compas-finding-card.favor h4 { color: #00d2d3; }
+
+        .compas-finding-card .finding-stat {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 8px 0;
+        }
+
+        .compas-finding-card.against .finding-stat { color: #e74c3c; }
+        .compas-finding-card.favor .finding-stat { color: #00d2d3; }
+
+        .compas-finding-card .finding-desc {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+
+        .compas-takeaway {
+            margin-top: 20px;
+            padding: 16px 24px;
+            background: rgba(162,155,254,0.1);
+            border-left: 4px solid #a29bfe;
+            border-radius: 0 10px 10px 0;
+            max-width: 750px;
+        }
+
+        .compas-takeaway p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .compas-takeaway strong {
+            color: #a29bfe;
+        }
+
+        @media (max-width: 900px) {
+            .compas-layout {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .compas-findings {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .compas-title {
+                font-size: 1.6rem;
+            }
         }
 
         /* ============ EXERCISE SLIDE ============ */
@@ -2394,6 +2549,7 @@
         <a href="#slide35"></a>
         <a href="#slide36"></a>
         <a href="#slide37"></a>
+        <a href="#slide38"></a>
     </div>
 
     <div class="slides-wrapper">
@@ -2990,28 +3146,27 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 19: BIAS IN AI ============ -->
+        <!-- ============ SLIDE 19: COMPAS CASE STUDY (INTRO) ============ -->
         <section class="slide" id="slide21">
             <div class="automation-slide">
-                <div class="automation-header">
-                    <div class="ai-chip"><i class="fas fa-exclamation-triangle"></i></div>
-                    <h2>Bias in <span>A.I.</span></h2>
-                </div>
-                <div class="bias-content">
-                    <div class="bias-text">
-                        <p>The <strong>COMPAS</strong> judicial system used AI to predict recidivism. But the data was biased against specific groups, so the AI was too.</p>
-                        <p style="margin-top: 15px;">AI doesn't have opinions &mdash; it reflects the data it was trained on. If the data is biased, the AI amplifies it.</p>
-                    </div>
-                    <div class="bias-cards">
-                        <div class="example-card">
-                            <div class="icon-circle orange"><i class="fas fa-briefcase"></i></div>
-                            <h4>Hiring Bias</h4>
-                            <p>Resume scanners favor "people like us" &mdash; Sample Bias</p>
+                <div class="compas-layout">
+                    <div class="compas-left">
+                        <div class="compas-label"><i class="fas fa-gavel"></i> Real-World Case Study</div>
+                        <h2 class="compas-title">The <span>COMPAS</span> Algorithm</h2>
+                        <p class="compas-subtitle">Correctional Offender Management Profiling for Alternative Sanctions</p>
+                        <div class="compas-desc">
+                            <p>A <strong>"black box" algorithm</strong> sold by Equivant (formerly Northpointe) and used by courts across the U.S. to predict whether a defendant would commit another crime.</p>
+                            <p style="margin-top: 12px;">It asks <strong>137 questions</strong> &mdash; about family history, employment, education &mdash; and generates a <strong>risk score from 1 to 10</strong>.</p>
                         </div>
-                        <div class="example-card">
-                            <div class="icon-circle red"><i class="fas fa-heartbeat"></i></div>
-                            <h4>Healthcare Bias</h4>
-                            <p>Algorithms trained on lighter skin tones fail on darker skin</p>
+                    </div>
+                    <div class="compas-right">
+                        <div class="compas-info-card">
+                            <h4><i class="fas fa-book"></i> What is Recidivism?</h4>
+                            <p>When a person commits <strong>another crime</strong> after already being punished for a previous one. The AI tried to predict this.</p>
+                        </div>
+                        <div class="compas-info-card">
+                            <h4><i class="fas fa-newspaper"></i> ProPublica Investigation (2016)</h4>
+                            <p>Journalists analyzed the scores of <strong>7,000+ people</strong> arrested in Broward County, Florida and followed them for two years.</p>
                         </div>
                     </div>
                 </div>
@@ -3022,8 +3177,37 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 20: HALLUCINATION HUNT ============ -->
+        <!-- ============ SLIDE 20: COMPAS FINDINGS ============ -->
         <section class="slide" id="slide22">
+            <div class="automation-slide">
+                <div class="compas-label" style="margin-bottom: 15px;"><i class="fas fa-chart-bar"></i> What ProPublica Found</div>
+                <h2 class="compas-title" style="margin-bottom: 25px;">"Machine <span>Bias</span>"</h2>
+                <div class="compas-findings">
+                    <div class="compas-finding-card against">
+                        <div class="finding-icon"><i class="fas fa-arrow-up"></i></div>
+                        <h4>Against Black Defendants</h4>
+                        <div class="finding-stat">2&times;</div>
+                        <p class="finding-desc">More likely to be <strong style="color:#e74c3c;">incorrectly labeled "high risk"</strong> when they actually never re-offended</p>
+                    </div>
+                    <div class="compas-finding-card favor">
+                        <div class="finding-icon"><i class="fas fa-arrow-down"></i></div>
+                        <h4>In Favor of White Defendants</h4>
+                        <div class="finding-stat">Low</div>
+                        <p class="finding-desc">Much more likely to be <strong style="color:#00d2d3;">incorrectly labeled "low risk"</strong> even when they did go on to commit more crimes</p>
+                    </div>
+                </div>
+                <div class="compas-takeaway">
+                    <p><i class="fas fa-lightbulb" style="color:#ff9f43;margin-right:8px;"></i> <strong>Key Lesson:</strong> "Math" isn't always neutral. AI reflects the biases in the data it was trained on &mdash; and can amplify them at scale.</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 21: HALLUCINATION HUNT ============ -->
+        <section class="slide" id="slide23">
             <div class="exercise-container">
                 <h2>Group Exercise: <span class="highlight">Hallucination Hunt</span></h2>
                 <div class="exercise-box">
@@ -3045,8 +3229,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 21: WEDDING VOWS FLIP CARD ============ -->
-        <section class="slide" id="slide23">
+        <!-- ============ SLIDE 22: WEDDING VOWS FLIP CARD ============ -->
+        <section class="slide" id="slide24">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3072,7 +3256,7 @@
         </section>
 
         <!-- ============ SLIDE 22: BEST MAN'S SPEECH FLIP CARD ============ -->
-        <section class="slide" id="slide24">
+        <section class="slide" id="slide25">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3098,7 +3282,7 @@
         </section>
 
         <!-- ============ SLIDE 23: VALENTINE'S DAY CARD FLIP CARD ============ -->
-        <section class="slide" id="slide25">
+        <section class="slide" id="slide26">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3124,7 +3308,7 @@
         </section>
 
         <!-- ============ SLIDE 24: HOMEWORK HELP FLIP CARD ============ -->
-        <section class="slide" id="slide26">
+        <section class="slide" id="slide27">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3150,7 +3334,7 @@
         </section>
 
         <!-- ============ SLIDE 25: PAUL'S PRINCIPLE ============ -->
-        <section class="slide" id="slide27">
+        <section class="slide" id="slide28">
             <div class="quote-slide">
                 <i class="fas fa-quote-left quote-icon"></i>
                 <h2>AI is a co-pilot, not the pilot.</h2>
@@ -3186,7 +3370,7 @@
         </section>
 
         <!-- ============ SLIDE 26: AI TRANSPARENCY MANDATE ============ -->
-        <section class="slide" id="slide28">
+        <section class="slide" id="slide29">
             <div class="mandate-container">
                 <h2>The Paul Ireifej <span>AI Transparency Mandate</span></h2>
                 <div class="mandate-quote">"If it's not 100% human, the human 100% needs to say so."</div>
@@ -3207,7 +3391,7 @@
         </section>
 
         <!-- ============ SLIDE 27: THE 4 LABELS ============ -->
-        <section class="slide" id="slide29">
+        <section class="slide" id="slide30">
             <div class="labels-grid">
                 <h2>The 4 Categories of <span>Disclosure</span></h2>
                 <div class="four-grid">
@@ -3240,7 +3424,7 @@
         </section>
 
         <!-- ============ SLIDE 28: AI ALERT WARNING SYSTEM ============ -->
-        <section class="slide" id="slide30">
+        <section class="slide" id="slide31">
             <div class="traffic-light-container">
                 <h2>The AI Alert <span>Warning System</span></h2>
                 <div class="traffic-row">
@@ -3276,7 +3460,7 @@
         </section>
 
         <!-- ============ SLIDE 29: CLOSING DISCUSSION ============ -->
-        <section class="slide" id="slide31">
+        <section class="slide" id="slide32">
             <div class="closing-quote">
                 <h2>"Transparency isn't about banning AI; it's about preserving the value of the human. If everything is tagged, then a 'Human-Only' message becomes the most valuable thing you can send."</h2>
             </div>
@@ -3287,7 +3471,7 @@
         </section>
 
         <!-- ============ SLIDE 30: PROMPT-OFF HEADER ============ -->
-        <section class="slide" id="slide32">
+        <section class="slide" id="slide33">
             <div class="slide-center">
                 <i class="fas fa-trophy glow-icon gold"></i>
                 <h2>The <span>Prompt-Off</span> Competition</h2>
@@ -3300,7 +3484,7 @@
         </section>
 
         <!-- ============ SLIDE 31: PROMPT ENGINEERING FORMULA ============ -->
-        <section class="slide" id="slide33">
+        <section class="slide" id="slide34">
             <div class="prompt-formula">
                 <h2>How to Talk to <span>AI</span></h2>
                 <p class="formula-subtitle">Better prompts = better results. Here's the formula.</p>
@@ -3349,7 +3533,7 @@
         </section>
 
         <!-- ============ SLIDE 32: CHALLENGE 1 ============ -->
-        <section class="slide" id="slide34">
+        <section class="slide" id="slide35">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 1</div>
                 <h2>The <span>Impossible Invention</span></h2>
@@ -3363,7 +3547,7 @@
         </section>
 
         <!-- ============ SLIDE 33: CHALLENGE 2 ============ -->
-        <section class="slide" id="slide35">
+        <section class="slide" id="slide36">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 2</div>
                 <h2><span>Roast</span> My Career</h2>
@@ -3377,7 +3561,7 @@
         </section>
 
         <!-- ============ SLIDE 34: CHALLENGE 3 ============ -->
-        <section class="slide" id="slide36">
+        <section class="slide" id="slide37">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 3</div>
                 <h2>The <span>Life Hack</span></h2>
@@ -3391,7 +3575,7 @@
         </section>
 
         <!-- ============ SLIDE 35: SESSION 3 PREVIEW ============ -->
-        <section class="slide" id="slide37">
+        <section class="slide" id="slide38">
             <div class="final-slide">
                 <p class="coming-next">Coming Next</p>
                 <h2>Session 3: A Look Under the Hood</h2>
