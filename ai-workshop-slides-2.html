@@ -423,19 +423,21 @@
         }
         .collab-svg line {
             stroke-width: 3;
-            stroke-dasharray: 300;
-            stroke-dashoffset: 300;
-            transition: stroke-dashoffset 1s ease;
+            opacity: 0;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            transition: opacity 0.3s ease, stroke-dashoffset 1s ease;
         }
         .collab-svg line.anim-show {
+            opacity: 1;
             stroke-dashoffset: 0;
         }
         .collab-svg .line-rec {
             stroke-dasharray: 8 4;
-            stroke-dashoffset: 400;
+            stroke-dashoffset: 0;
         }
         .collab-svg .line-rec.anim-show {
-            stroke-dashoffset: 0;
+            opacity: 1;
             animation: dash-pulse 2s linear infinite;
         }
         @keyframes dash-pulse {
