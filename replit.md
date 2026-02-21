@@ -11,7 +11,27 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (February 20, 2026)
+## Recent Changes (February 21, 2026)
+### Young Speakers Academy Session 4
+- Created **vocal-variety-slides.html** - 9-section scroll-based slideshow for "Vocal Variety & Body Language"
+  - Section 1: Physical & Vocal Warm-Up (Big Stretch, Accordion Breath, Vocal Siren, Raspberries, Volume Dial visual)
+  - Section 2: Prepared Speeches with 90-second timer (beeps at 15s/10s/5s, alarm at 0)
+  - Section 3: Vocal Variety (Whisper, Megaphone, Speed Pedal, Character Switch)
+  - Section 4: The Mystery Tone group exercise (4 emotion cards: Surprised, Sarcastic, Suspicious, Exhausted)
+  - Section 5: Body Language (Base Camp, 3 Tool Gestures: Number/Size/Heart, Walk and Plant)
+  - Section 6: The Silent Storyteller exercise (4 acting prompts)
+  - Section 7: Impromptu Speaking Frameworks (OREO, Time Traveler, Sandwich with 6 practice prompts)
+  - Section 8: Mirror Challenge closing + homework assignment
+- Created **vocal-variety-homework.html** - 5-section homework page with 7 quiz items (6 quizzes + 1 matching)
+  - Vocal Variety (whisper timing, character switch)
+  - Body Language (Base Camp, gesture tool matching)
+  - Stage Movement (Tiger in the Cage)
+  - Impromptu Frameworks (OREO vs Time Traveler selection)
+  - Practice & Homework (Silent Watcher assignment)
+- Unlocked Session 4 on **young-speakers-academy.html** with Start Session + Homework links
+- Green gradient theme (#00b894 to #55efc4) matching Sessions 1-3
+
+## Previous Changes (February 20, 2026)
 ### AI Workshop Session 2 Homework
 - Created **ai-workshop-homework-2.html** - 5-section homework page with 6 quizzes
   - Recommendation Systems (collaborative filtering, cold start problem)

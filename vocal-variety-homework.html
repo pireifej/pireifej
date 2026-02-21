@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Young Speakers Academy - Session 4: Vocal Variety & Body Language Homework Quiz">
+    <title>Vocal Variety & Body Language | Young Speakers Academy</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .lesson-wrapper {
+            padding: 140px 0 60px 0;
+            min-height: 100vh;
+        }
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+        }
+        .lesson-header .subtitle {
+            color: #00b894;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .lesson-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            color: #00b894;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .back-link:hover {
+            color: #00a383;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .section-card h2 {
+            color: #232323;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-card h2 .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .section-card h3 {
+            color: #00b894;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+        .section-card p, .section-card li {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .section-card ul {
+            padding-left: 20px;
+        }
+        .section-card li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f8f5 0%, #d1f2eb 100%);
+            border-left: 4px solid #00b894;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: #065f46;
+        }
+        .quiz-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .quiz-container h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .quiz-option {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quiz-option:hover {
+            border-color: #00b894;
+            transform: translateX(5px);
+        }
+        .quiz-option .option-letter {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .quiz-option.correct {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .quiz-option.correct .option-letter {
+            background: #10b981;
+        }
+        .quiz-option.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .quiz-option.incorrect .option-letter {
+            background: #ef4444;
+        }
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+        .quiz-feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        .quiz-feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        .activity-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .activity-box h4 {
+            color: #92400e;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .activity-box p {
+            color: #78350f;
+            margin: 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .tip-box h4 {
+            color: #1e40af;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-box p, .tip-box li {
+            color: #1e3a8a;
+        }
+        .match-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .match-container h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .match-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .match-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 180px;
+            font-size: 1rem;
+        }
+        .match-select {
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #fff;
+            cursor: pointer;
+            flex: 1;
+            min-width: 200px;
+        }
+        .match-select:focus {
+            border-color: #00b894;
+            outline: none;
+        }
+        .match-select.correct-match {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .match-select.incorrect-match {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .check-matches-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .check-matches-btn:hover {
+            transform: scale(1.05);
+        }
+        .check-matches-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .match-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+        .match-feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        .match-feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        .progress-tracker {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .progress-dot.active {
+            background: #00b894;
+            transform: scale(1.3);
+        }
+        .progress-dot:hover {
+            background: #55efc4;
+            transform: scale(1.3);
+        }
+        .score-display {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00b894, #55efc4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,184,148,0.4);
+        }
+        @media (max-width: 768px) {
+            .lesson-wrapper {
+                padding: 120px 0 60px 0;
+            }
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+            .section-card {
+                padding: 25px 20px;
+            }
+            .progress-tracker {
+                display: none;
+            }
+            .match-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .match-label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    {{sidebar}}
+
+    <div class="progress-tracker">
+        <div class="progress-dot active" data-section="1" title="Vocal Variety"></div>
+        <div class="progress-dot" data-section="2" title="Body Language"></div>
+        <div class="progress-dot" data-section="3" title="Stage Movement"></div>
+        <div class="progress-dot" data-section="4" title="Impromptu Frameworks"></div>
+        <div class="progress-dot" data-section="5" title="Practice & Homework"></div>
+    </div>
+
+    <div class="score-display">
+        Score: <span id="score">0</span> / <span id="total">7</span>
+    </div>
+
+    <div class="lesson-wrapper">
+        <div class="container">
+            <div class="lesson-header">
+                <a href="young-speakers-academy.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Young Speakers Academy</a>
+                <div class="subtitle">Young Speakers Academy - Session 4</div>
+                <h1>Vocal Variety &amp; Body Language</h1>
+                <p>Review what you learned about using your voice and body as powerful speaking instruments!</p>
+            </div>
+
+            <div class="section-card" data-section="1">
+                <h2><span class="icon"><i class="fas fa-sliders-h"></i></span> Vocal Variety</h2>
+
+                <h3>The Volume Slider</h3>
+                <p>Great speakers don't stay at one volume. They move between whispering and projecting to keep the audience engaged.</p>
+                <ul>
+                    <li><strong>The Whisper (Level 1):</strong> Makes the audience lean in closer. Use for secrets, scary moments, and surprises.</li>
+                    <li><strong>The Megaphone (Level 5):</strong> Wakes the audience up! Use for the climax, excitement, and big moments.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>The same sentence can feel completely different depending on volume, speed, and emotion. That's the power of vocal variety!</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="1">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: When should you whisper during a speech?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>When you forget your next line</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>To pull the audience in during a secret, scary, or suspenseful moment</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>For your entire speech so people have to listen carefully</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <h3>The Speed Pedal</h3>
+                <p>Your pace controls the audience's heartbeat!</p>
+                <ul>
+                    <li><strong>The Cheetah (Fast):</strong> Use for action and excitement. Makes the audience's heart beat faster!</li>
+                    <li><strong>The Turtle (Slow):</strong> Use for serious moments or right before a big reveal. Builds suspense.</li>
+                </ul>
+
+                <div class="quiz-container" data-quiz="2">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What is the "Character Switch"?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Changing the topic of your speech halfway through</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Letting someone else finish your speech for you</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Changing your voice and posture to play a different character in your story</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="2">
+                <h2><span class="icon"><i class="fas fa-male"></i></span> Body Language</h2>
+
+                <h3>Base Camp</h3>
+                <p>Your "idle animation" when you aren't gesturing. Feet shoulder-width apart, hands relaxed at your sides. No pockets, no crossing arms, no wringing hands.</p>
+
+                <div class="highlight-box">
+                    <p><strong>"If you don't know what to do with your hands, send them to Base Camp."</strong></p>
+                </div>
+
+                <h3>The 3 Tool Gestures</h3>
+                <p>Your hands are tools to help the audience <strong>see</strong> the words:</p>
+                <ul>
+                    <li><strong>The Number Tool:</strong> If you say "I have three reasons," hold up 3 fingers.</li>
+                    <li><strong>The Size Tool:</strong> Tiny? Pinch your fingers. Massive? Stretch your arms wide.</li>
+                    <li><strong>The Heart Tool:</strong> Talking about yourself, your feelings, or your opinion? Bring one hand to your chest.</li>
+                </ul>
+
+                <div class="quiz-container" data-quiz="3">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What is "Base Camp"?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Standing with your hands in your pockets</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Your resting position: feet shoulder-width apart, hands relaxed at your sides</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Crossing your arms while you wait for your turn</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="match-container" data-match="1">
+                    <h4><i class="fas fa-hand-point-right" style="color: #00b894;"></i> Match: Which gesture tool should you use?</h4>
+                    <div class="match-row">
+                        <span class="match-label">"I have two reasons..."</span>
+                        <select class="match-select" data-correct="number">
+                            <option value="">Select...</option>
+                            <option value="number">The Number Tool</option>
+                            <option value="size">The Size Tool</option>
+                            <option value="heart">The Heart Tool</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-label">"It was THIS big!"</span>
+                        <select class="match-select" data-correct="size">
+                            <option value="">Select...</option>
+                            <option value="number">The Number Tool</option>
+                            <option value="size">The Size Tool</option>
+                            <option value="heart">The Heart Tool</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-label">"I believe in my heart..."</span>
+                        <select class="match-select" data-correct="heart">
+                            <option value="">Select...</option>
+                            <option value="number">The Number Tool</option>
+                            <option value="size">The Size Tool</option>
+                            <option value="heart">The Heart Tool</option>
+                        </select>
+                    </div>
+                    <button class="check-matches-btn" data-match="1" disabled><i class="fas fa-check"></i> Check Answers</button>
+                    <div class="match-feedback" id="match-feedback-1"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="3">
+                <h2><span class="icon"><i class="fas fa-walking"></i></span> Stage Movement</h2>
+
+                <h3>"Walk and Plant"</h3>
+                <p>Nervous speakers pace back and forth like a <strong>"Tiger in the Cage."</strong> Great speakers <strong>walk with purpose</strong>.</p>
+
+                <div class="highlight-box">
+                    <p><strong>The Rule: "Walk on a period." Stand still for your point, then take three steps to a new spot, plant your feet like tree roots, and stay there. Never speak while your feet are moving aimlessly.</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="4">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: What is "The Tiger in the Cage"?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>A powerful gesture to show confidence</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>The mistake of pacing back and forth nervously without stopping</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>A warm-up exercise before your speech</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="4">
+                <h2><span class="icon"><i class="fas fa-bolt"></i></span> Impromptu Speaking Frameworks</h2>
+
+                <h3>Pick the Right Framework</h3>
+                <p>When you're asked a question on the spot, grab one of these three frameworks to organize your thoughts quickly:</p>
+                <ul>
+                    <li><strong>OREO</strong> (Opinion, Reason, Example, Opinion) &mdash; Use for <em>opinion questions</em></li>
+                    <li><strong>Time Traveler</strong> (Past, Present, Future) &mdash; Use for questions about <em>how things have changed</em></li>
+                    <li><strong>Sandwich</strong> (Top Bun, Meat, Bottom Bun) &mdash; Use for <em>"Tell us about..."</em> topics</li>
+                </ul>
+
+                <div class="quiz-container" data-quiz="5">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: Which framework would you use for "What is the best holiday and why?"</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">A</span>
+                            <span>OREO &mdash; because it's an opinion question</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Time Traveler &mdash; because holidays change over time</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Sandwich &mdash; because you're telling about a topic</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="6">
+                    <h4><i class="fas fa-question-circle" style="color: #00b894;"></i> Quiz: Which framework would you use for "How has the way we communicate changed?"</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>OREO &mdash; give your opinion on communication</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Time Traveler &mdash; talk about past, present, and future of communication</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Sandwich &mdash; introduce, give details, wrap up</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="5">
+                <h2><span class="icon"><i class="fas fa-home"></i></span> Practice &amp; Homework</h2>
+
+                <div class="activity-box">
+                    <h4><i class="fas fa-eye"></i> Homework: The Silent Watcher</h4>
+                    <p>This week, watch a speech, a movie scene, or a commercial <strong>with the sound OFF</strong>. What can you understand just from body language? Write down 3 things you noticed and bring it to next class!</p>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Remember</h4>
+                    <p>Your face and hands "speak" just as loudly as your voice. Make every movement intentional &mdash; and when in doubt, send your hands to Base Camp!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var answered = {};
+            var matchCompleted = {};
+
+            $(document).on('click', '.quiz-option', function() {
+                var $container = $(this).closest('.quiz-container');
+                var quizId = $container.data('quiz');
+
+                if (answered[quizId]) return;
+                answered[quizId] = true;
+
+                var isCorrect = $(this).data('correct') === true;
+                $container.find('.quiz-option').addClass('disabled');
+
+                if (isCorrect) {
+                    $(this).addClass('correct');
+                    score++;
+                    $('#score').text(score);
+                    $container.find('.quiz-feedback').addClass('correct').html('<i class="fas fa-check-circle"></i> Correct! Great job!');
+                } else {
+                    $(this).addClass('incorrect');
+                    $container.find('.quiz-option').each(function() {
+                        if ($(this).data('correct') === true) {
+                            $(this).addClass('correct');
+                        }
+                    });
+
+                    var explanations = {
+                        1: "Whispering pulls the audience in during secrets, scary moments, and surprises.",
+                        2: "The Character Switch is when you change your voice and posture to play a different character in your story.",
+                        3: "Base Camp is your resting position: feet shoulder-width apart, hands relaxed at your sides. No pockets!",
+                        4: "The Tiger in the Cage is pacing back and forth nervously. The fix is 'Walk and Plant' &mdash; walk with purpose, then plant your feet.",
+                        5: "OREO is for opinion questions: Opinion, Reason, Example, Opinion repeated.",
+                        6: "Time Traveler is for questions about change: Past, Present, Future."
+                    };
+
+                    $container.find('.quiz-feedback').addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. ' + explanations[quizId]);
+                }
+            });
+
+            $(document).on('change', '.match-select', function() {
+                var $select = $(this);
+                $select.removeClass('correct-match incorrect-match');
+
+                var $container = $select.closest('.match-container');
+                var allSelected = true;
+                $container.find('.match-select').each(function() {
+                    if ($(this).val() === '') allSelected = false;
+                });
+                var $btn = $container.find('.check-matches-btn');
+                $btn.prop('disabled', !allSelected);
+            });
+
+            $(document).on('click', '.check-matches-btn', function() {
+                var matchId = $(this).data('match');
+                if (matchCompleted[matchId]) return;
+                matchCompleted[matchId] = true;
+
+                var $container = $(this).closest('.match-container');
+                var allCorrect = true;
+
+                $container.find('.match-select').each(function() {
+                    var selected = $(this).val();
+                    var correct = $(this).data('correct');
+                    $(this).prop('disabled', true);
+                    $(this).removeClass('correct-match incorrect-match');
+                    if (selected === correct) {
+                        $(this).addClass('correct-match');
+                    } else {
+                        $(this).addClass('incorrect-match');
+                        allCorrect = false;
+                    }
+                });
+
+                var $feedback = $('#match-feedback-' + matchId);
+                if (allCorrect) {
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> Perfect! You know your gesture tools!');
+                    score++;
+                    $('#score').text(score);
+                } else {
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. Number Tool = "I have two reasons," Size Tool = "It was THIS big," Heart Tool = "I believe in my heart."');
+                }
+
+                $(this).prop('disabled', true);
+            });
+
+            $(window).on('scroll', function() {
+                var scrollPos = $(window).scrollTop();
+                $('.section-card').each(function(index) {
+                    var sectionTop = $(this).offset().top - 200;
+                    var sectionBottom = sectionTop + $(this).outerHeight();
+                    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                        $('.progress-dot').removeClass('active');
+                        $('.progress-dot').eq(index).addClass('active');
+                    }
+                });
+            });
+
+            $('.progress-dot').on('click', function() {
+                var sectionIndex = $(this).index();
+                var $targetSection = $('.section-card').eq(sectionIndex);
+                if ($targetSection.length) {
+                    $('html, body').animate({
+                        scrollTop: $targetSection.offset().top - 100
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
