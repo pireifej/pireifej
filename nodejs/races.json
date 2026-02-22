@@ -1,7 +1,7 @@
 {
     "records": [
         {
-            "image": "",
+            "image": "https://www.shouldcallpaul.com/img/running/gasparilla_5k_2026.jpg",
             "label": "Tampa's Publix Gasparilla Distance Classic 5K",
             "type": "race",
             "details": {
@@ -15,7 +15,7 @@
             "desc": "<p></p>"
         },
         {
-            "image": "",
+            "image": "https://www.shouldcallpaul.com/img/running/gasparilla_15k_2026.jpg",
             "label": "Tampa's Publix Gasparilla Distance Classic 15K",
             "type": "race",
             "details": {
@@ -29,7 +29,7 @@
             "desc": "<p></p>"
         },
         {
-            "image": "",
+            "image": "https://www.shouldcallpaul.com/img/running/gasparilla_half_marathon_2026.jpg",
             "label": "Tampa's Publix Gasparilla Half Marathon",
             "type": "race",
             "details": {
@@ -43,7 +43,7 @@
             "desc": "<p></p>"
         },
         {
-            "image": "",
+            "image": "https://www.shouldcallpaul.com/img/running/gasparilla_8k_2026.jpg",
             "label": "Tampa's Gasparilla Distance Classic 8K",
             "type": "race",
             "details": {
