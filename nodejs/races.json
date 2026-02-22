@@ -2,6 +2,20 @@
     "records": [
         {
             "image": "",
+            "label": "Tampa's Publix Gasparilla Distance Classic 5K",
+            "type": "race",
+            "details": {
+                "date": "02/21/26",
+                "distance": "3.1 miles",
+                "time": "",
+                "location": "Tampa, FL"
+            },
+            "gallery": ["https://www.shouldcallpaul.com/img/running/gasparilla_5k_2026.jpg"],
+            "link": "",
+            "desc": "<p></p>"
+        },
+        {
+            "image": "",
             "label": "Tampa's Publix Gasparilla Distance Classic 15K",
             "type": "race",
             "details": {
