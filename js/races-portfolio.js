@@ -38,7 +38,7 @@ $(document).ready(function() {
     function renderGrid() {
         var html = '';
         allItems.forEach(function(item, idx) {
-            var img = item.image || 'img-new/banner/2.jpg';
+            var img = item.image || 'assets/img/default-running.jpg';
             var label = item.label || 'Untitled';
             html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
                 '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
@@ -93,6 +93,7 @@ $(document).ready(function() {
                 if (item.gallery[j] !== item.image) allImages.push(item.gallery[j]);
             }
         }
+        if (allImages.length === 0) allImages.push('assets/img/default-running.jpg');
         var pictureHtml = '';
         if (allImages.length > 1) {
             pictureHtml = '<div class="swiper modal-image-swiper" style="border-radius: 10px; overflow: hidden;">' +
