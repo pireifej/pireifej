@@ -24,6 +24,8 @@ $(document).ready(function() {
             renderGrid();
             setupFilterHandlers();
             setupModalHandlers();
+            ModalNav.init(allItems, openModal);
+            ModalNav.bindEvents();
         },
         error: function() {
             $('#workshop-grid').html('<div class="loading-spinner">Failed to load workshops.</div>');
@@ -72,7 +74,7 @@ $(document).ready(function() {
         $(document).on('click', '.portfolio-card', function() {
             var index = $(this).data('index');
             var item = allItems[index];
-            if (item) openModal(item);
+            if (item) openModal(item, index);
         });
     }
 
@@ -82,7 +84,8 @@ $(document).ready(function() {
         });
     }
 
-    function openModal(item) {
+    function openModal(item, index) {
+        if (typeof index !== 'undefined') ModalNav.setCurrent(index);
         var detailsHtml = '';
         if (item.details) {
             for (var key in item.details) {
@@ -104,7 +107,9 @@ $(document).ready(function() {
         if (item.link) {
             linkButtonHtml = '<a class="btn btn-md circle btn-theme" href="' + item.link + '" target="_blank" style="margin-top: 20px; width: 100%; text-align: center; display: block;">Learn More</a>';
         }
-        var modalContent = '<div class="container"><div class="row">' +
+        ModalNav.injectStyleOnce();
+        var modalContent = ModalNav.getNavButtonsHtml() +
+            '<div class="container"><div class="row">' +
             '<div class="col-12 d-md-none" style="margin-bottom: 20px; padding-top: 60px;">' +
             '<a class="btn btn-md circle portfolio-modal-close-btn" style="width: 100%; text-align: center; display: block; background: #fff; color: #333; cursor: pointer;">Close</a></div>' +
             '<div class="col-12 d-none d-md-block" style="margin-bottom: 20px;">' +
@@ -118,8 +123,10 @@ $(document).ready(function() {
             '<div class="skill-list" style="margin-bottom: 25px;"><ul style="color: #fff;">' + detailsHtml + '</ul></div>' +
             linkButtonHtml + '</div></div></div>';
         $('#portfolioModalContent').html(modalContent);
-        var portfolioModal = new bootstrap.Modal(document.getElementById('portfolioModal'));
+        var modalEl = document.getElementById('portfolioModal');
+        var portfolioModal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
         portfolioModal.show();
+        $('#portfolioModalContent').scrollTop(0);
         $('.portfolio-modal-close-btn').on('click', function() { portfolioModal.hide(); });
     }
 });
