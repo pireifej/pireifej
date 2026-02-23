@@ -86,14 +86,27 @@ $(document).ready(function() {
                     '<div class="content"><h4>' + toTitleCase(key) + '</h4><span>' + item.details[key] + '</span></div></li>';
             }
         }
-        var pictureHtml = '';
-        if (item.image) {
-            pictureHtml = '<div class="thumb"><img src="' + item.image + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
-        }
+        var allImages = [];
+        if (item.image) allImages.push(item.image);
         if (item.gallery && item.gallery.length > 0) {
             for (var j = 0; j < item.gallery.length; j++) {
-                pictureHtml += '<div class="thumb" style="margin-top: 15px;"><img src="' + item.gallery[j] + '" alt="Gallery" style="max-width: 100%; border-radius: 10px;"></div>';
+                if (item.gallery[j] !== item.image) allImages.push(item.gallery[j]);
             }
+        }
+        var pictureHtml = '';
+        if (allImages.length > 1) {
+            pictureHtml = '<div class="swiper modal-image-swiper" style="border-radius: 10px; overflow: hidden;">' +
+                '<div class="swiper-wrapper">';
+            for (var k = 0; k < allImages.length; k++) {
+                pictureHtml += '<div class="swiper-slide"><img src="' + allImages[k] + '" alt="Photo ' + (k+1) + '" style="width: 100%; display: block; border-radius: 10px;"></div>';
+            }
+            pictureHtml += '</div>' +
+                '<div class="swiper-button-prev"></div>' +
+                '<div class="swiper-button-next"></div>' +
+                '<div class="swiper-pagination"></div>' +
+                '</div>';
+        } else if (allImages.length === 1) {
+            pictureHtml = '<div class="thumb"><img src="' + allImages[0] + '" alt="Image" style="max-width: 100%; border-radius: 10px;"></div>';
         }
         var linkButtonHtml = '';
         if (item.link) {
@@ -115,6 +128,15 @@ $(document).ready(function() {
             '<div class="skill-list" style="margin-bottom: 25px;"><ul style="color: #fff;">' + detailsHtml + '</ul></div>' +
             linkButtonHtml + '</div></div></div>';
         $('#portfolioModalContent').html(modalContent);
+        if (allImages.length > 1) {
+            new Swiper('.modal-image-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                pagination: { el: '.swiper-pagination', clickable: true }
+            });
+        }
         var modalEl = document.getElementById('portfolioModal');
         var portfolioModal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
         portfolioModal.show();
