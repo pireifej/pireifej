@@ -1427,67 +1427,85 @@
         .analogy-row {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .analogy-item {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 1.2rem 1rem;
             text-align: center;
-            min-width: 200px;
+            min-width: 0;
+            flex: 1;
         }
 
         .analogy-item.process {
             border: 3px solid #f39c12;
         }
 
+        .analogy-item.post-train {
+            border: 3px solid #e056fd;
+        }
+
         .analogy-item.result {
+            border: 3px solid #00d4ff;
+        }
+
+        .analogy-item.deploy {
             border: 3px solid #2ecc71;
         }
 
         .analogy-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
         }
 
         .analogy-item.process .analogy-icon {
             color: #f39c12;
         }
 
+        .analogy-item.post-train .analogy-icon {
+            color: #e056fd;
+        }
+
         .analogy-item.result .analogy-icon {
+            color: #00d4ff;
+        }
+
+        .analogy-item.deploy .analogy-icon {
             color: #2ecc71;
         }
 
         .analogy-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
         }
 
         .analogy-item p {
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             color: rgba(255,255,255,0.8);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .analogy-item .metaphor {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
         }
 
         .analogy-arrow {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: rgba(255,255,255,0.5);
+            flex-shrink: 0;
         }
 
         .model-definition {
-            max-width: 700px;
-            padding: 1.5rem 2rem;
+            max-width: 800px;
+            padding: 1.2rem 1.5rem;
             background: rgba(0, 212, 255, 0.1);
             border: 2px solid rgba(0, 212, 255, 0.3);
             border-radius: 15px;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
             color: rgba(255,255,255,0.9);
         }
@@ -3043,7 +3061,7 @@
         <!-- ============ SLIDE 15: WHAT IS A MODEL ============ -->
         <section class="slide" id="slide17">
             <div class="model-explanation-container">
-                <h2>What is a <span class="highlight">Model?</span></h2>
+                <h2>How a <span class="highlight">Model</span> Is Built</h2>
                 <div class="chef-analogy">
                     <div class="analogy-row">
                         <div class="analogy-item process">
@@ -3053,16 +3071,30 @@
                             <div class="metaphor">&#128218; Read every recipe book</div>
                         </div>
                         <div class="analogy-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="analogy-item post-train">
+                            <div class="analogy-icon"><i class="fas fa-users"></i></div>
+                            <h4>Post-Training (RLHF)</h4>
+                            <p>Human raters score outputs</p>
+                            <div class="metaphor">&#128104;&zwj;&#127859; Food critics taste-test dishes</div>
+                        </div>
+                        <div class="analogy-arrow"><i class="fas fa-arrow-right"></i></div>
                         <div class="analogy-item result">
                             <div class="analogy-icon"><i class="fas fa-brain"></i></div>
                             <h4>The Model (LLM)</h4>
-                            <p>Frozen knowledge</p>
-                            <div class="metaphor">&#128104;&zwj;&#127859; A chef who never tasted food</div>
+                            <p>Tuned knowledge ready to serve</p>
+                            <div class="metaphor">&#127775; A trained chef with real feedback</div>
+                        </div>
+                        <div class="analogy-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="analogy-item deploy">
+                            <div class="analogy-icon"><i class="fas fa-rocket"></i></div>
+                            <h4>Deployment</h4>
+                            <p>Released to millions of users</p>
+                            <div class="metaphor">&#127869; The restaurant opens</div>
                         </div>
                     </div>
                 </div>
                 <div class="model-definition">
-                    A model has read every recipe book in the world but has never actually tasted food. It predicts what should taste good based on patterns.
+                    Pre-training reads the data. Post-training teaches the model <em>how</em> to be helpful and safe using human feedback (RLHF). Then it's deployed for the world to use.
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
