@@ -2664,14 +2664,14 @@
                         <p>Did you finish the video or bail after 10 seconds?</p>
                     </div>
                     <div class="example-card">
-                        <div class="icon-circle purple"><i class="fas fa-mouse-pointer"></i></div>
-                        <h4>Click-Through Rate</h4>
-                        <p>Did the thumbnail and title make you click?</p>
+                        <div class="icon-circle purple"><i class="fas fa-hourglass-half"></i></div>
+                        <h4>Session Time</h4>
+                        <p>Did you stay on YouTube after watching? That's the #1 signal.</p>
                     </div>
                     <div class="example-card">
-                        <div class="icon-circle orange"><i class="fas fa-mobile-alt"></i></div>
-                        <h4>Context</h4>
-                        <p>Phone at 2 AM or TV at 6 PM? AI knows the difference.</p>
+                        <div class="icon-circle orange"><i class="fas fa-thumbs-up"></i></div>
+                        <h4>Engagement</h4>
+                        <p>Likes, comments, shares, and subscribes after watching.</p>
                     </div>
                 </div>
             </div>
@@ -2702,16 +2702,16 @@
                                 <div>Watch Time<span class="badge-desc">10 seconds or 10 minutes?</span></div>
                             </div>
                             <div class="credential-badge">
-                                <i class="fas fa-redo"></i>
-                                <div>Retention<span class="badge-desc">Did you re-watch a part? (Dopamine Hit)</span></div>
+                                <i class="fas fa-hourglass-half"></i>
+                                <div>Session Time<span class="badge-desc">Did you stay on YouTube or leave?</span></div>
                             </div>
                             <div class="credential-badge">
-                                <i class="fas fa-mobile-alt"></i>
-                                <div>Context<span class="badge-desc">Time of day, device type</span></div>
+                                <i class="fas fa-mouse-pointer"></i>
+                                <div>Click-Through Rate<span class="badge-desc">Did the thumbnail make you click?</span></div>
                             </div>
                             <div class="credential-badge">
-                                <i class="fas fa-forward"></i>
-                                <div>The "Next" Move<span class="badge-desc">Did you leave or watch 3 more?</span></div>
+                                <i class="fas fa-fire"></i>
+                                <div>Freshness<span class="badge-desc">New content gets a temporary boost</span></div>
                             </div>
                         </div>
                     </div>
@@ -2730,28 +2730,28 @@
                 <div class="neuron-diagram">
                     <div class="neuron-inputs">
                         <div class="neuron-input-row">
-                            <div class="input-label">Watch Time</div>
-                            <div class="input-weight">&times;0.8</div>
-                            <div class="input-arrow"></div>
-                        </div>
-                        <div class="neuron-input-row">
-                            <div class="input-label">Clicks</div>
-                            <div class="input-weight">&times;0.3</div>
-                            <div class="input-arrow"></div>
-                        </div>
-                        <div class="neuron-input-row">
-                            <div class="input-label">Time of Day</div>
+                            <div class="input-label">Session Time</div>
                             <div class="input-weight">&times;1.2</div>
                             <div class="input-arrow"></div>
                         </div>
                         <div class="neuron-input-row">
-                            <div class="input-label">Device</div>
-                            <div class="input-weight">&times;0.5</div>
+                            <div class="input-label">Watch Time</div>
+                            <div class="input-weight">&times;0.9</div>
                             <div class="input-arrow"></div>
                         </div>
                         <div class="neuron-input-row">
-                            <div class="input-label">Retention</div>
-                            <div class="input-weight">&times;0.9</div>
+                            <div class="input-label">Engagement</div>
+                            <div class="input-weight">&times;0.8</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                        <div class="neuron-input-row">
+                            <div class="input-label">Click-Through</div>
+                            <div class="input-weight">&times;0.7</div>
+                            <div class="input-arrow"></div>
+                        </div>
+                        <div class="neuron-input-row">
+                            <div class="input-label">Freshness</div>
+                            <div class="input-weight">&times;0.5</div>
                             <div class="input-arrow"></div>
                         </div>
                     </div>
@@ -2768,10 +2768,11 @@
                     </div>
                     <div class="output-section">
                         <div class="output-arrow"></div>
-                        <div class="output-label">Score: 7.4</div>
+                        <div class="output-label">Score: 0.82</div>
                     </div>
                 </div>
                 <p class="node-takeaway">"Learning" = the AI tweaks the <strong>weight numbers</strong> over and over until its predictions get better. That's it.</p>
+                <p style="font-size: 0.65rem; color: rgba(255,255,255,0.35); margin-top: 10px; text-align: center;">Source: "Deep Neural Networks for YouTube Recommendations" &mdash; Covington, Adams & Sargin, Google, 2016</p>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
             <div class="brand-website">shouldcallpaul.com</div>
