@@ -47,7 +47,7 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - Replaced generic "Bias in AI" slide with **2 dedicated COMPAS case study slides** (slides 21-22)
   - Slide 21: COMPAS intro - black box algorithm, 137 questions, recidivism definition, ProPublica 2016 investigation
   - Slide 22: ProPublica findings - 2x bias against Black defendants, low-risk mislabeling for White defendants, key takeaway
-- Total slide count now **42 slides** (up from 37)
+- Total slide count now **43 slides** (up from 37)
 - All slide IDs and navigation dots properly renumbered
 
 ### Previous AI Workshop Session 2 Updates

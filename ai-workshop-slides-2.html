@@ -2556,6 +2556,7 @@
         <a href="#slide40"></a>
         <a href="#slide41"></a>
         <a href="#slide42"></a>
+        <a href="#slide43"></a>
     </div>
 
     <div class="slides-wrapper">
@@ -3069,8 +3070,54 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 16: THE LEARNING PROCESS ============ -->
+        <!-- ============ SLIDE 16: AI TRAINING DATA PIE CHART ============ -->
         <section class="slide" id="slide18">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 50px; max-width: 1100px; width: 100%;">
+                <div style="flex-shrink: 0;">
+                    <svg viewBox="0 0 320 320" width="320" height="320" style="filter: drop-shadow(0 0 25px rgba(0,212,255,0.3));">
+                        <!-- C = 2*pi*100 = 628.32; start at top: offset = C/4 = 157.08 -->
+                        <!-- 60% Common Crawl -->
+                        <circle r="100" cx="160" cy="160" fill="transparent" stroke="#6c5ce7" stroke-width="65" stroke-dasharray="376.99 251.33" stroke-dashoffset="157.08" />
+                        <!-- 20% Curated Web -->
+                        <circle r="100" cx="160" cy="160" fill="transparent" stroke="#00d4ff" stroke-width="65" stroke-dasharray="125.66 502.65" stroke-dashoffset="-219.91" />
+                        <!-- 15% Books -->
+                        <circle r="100" cx="160" cy="160" fill="transparent" stroke="#ff9f43" stroke-width="65" stroke-dasharray="94.25 534.07" stroke-dashoffset="-345.58" />
+                        <!-- 5% Scientific -->
+                        <circle r="100" cx="160" cy="160" fill="transparent" stroke="#2ecc71" stroke-width="65" stroke-dasharray="31.42 596.90" stroke-dashoffset="-439.82" />
+                        <text x="160" y="155" text-anchor="middle" fill="white" font-size="16" font-weight="800" font-family="Inter, sans-serif">AI Training</text>
+                        <text x="160" y="178" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="Inter, sans-serif">Data Mix</text>
+                    </svg>
+                </div>
+                <div style="flex: 1; max-width: 520px;">
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 24px;">Where Does AI Get <span class="highlight">Its Info?</span></h2>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; background: rgba(108,92,231,0.15); border-left: 4px solid #6c5ce7; border-radius: 0 10px 10px 0;">
+                            <div style="min-width: 50px; font-size: 1.4rem; font-weight: 900; color: #a29bfe;">60%</div>
+                            <div><strong style="color: #a29bfe;">Common Crawl</strong><br><span style="color: rgba(255,255,255,0.65); font-size: 0.85rem;">Reddit, blogs, news sites, forums, general websites</span></div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; background: rgba(0,212,255,0.1); border-left: 4px solid #00d4ff; border-radius: 0 10px 10px 0;">
+                            <div style="min-width: 50px; font-size: 1.4rem; font-weight: 900; color: #00d4ff;">20%</div>
+                            <div><strong style="color: #00d4ff;">Curated Web</strong><br><span style="color: rgba(255,255,255,0.65); font-size: 0.85rem;">YouTube transcripts, top-voted threads, Wikipedia</span></div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; background: rgba(255,159,67,0.1); border-left: 4px solid #ff9f43; border-radius: 0 10px 10px 0;">
+                            <div style="min-width: 50px; font-size: 1.4rem; font-weight: 900; color: #ff9f43;">15%</div>
+                            <div><strong style="color: #ff9f43;">Books & Literature</strong><br><span style="color: rgba(255,255,255,0.65); font-size: 0.85rem;">Digitized libraries, fiction, non-fiction, textbooks</span></div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; background: rgba(46,204,113,0.1); border-left: 4px solid #2ecc71; border-radius: 0 10px 10px 0;">
+                            <div style="min-width: 50px; font-size: 1.4rem; font-weight: 900; color: #2ecc71;">5%</div>
+                            <div><strong style="color: #2ecc71;">Scientific & Academic</strong><br><span style="color: rgba(255,255,255,0.65); font-size: 0.85rem;">Peer-reviewed research, medical journals, legal docs</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 17: THE LEARNING PROCESS ============ -->
+        <section class="slide" id="slide19">
             <div class="timeline-container">
                 <h2>How AI Models <span>Learn</span></h2>
                 <div class="timeline-steps">
@@ -3110,7 +3157,7 @@
         </section>
 
         <!-- ============ SLIDE 17: REWARD MODEL ============ -->
-        <section class="slide" id="slide19">
+        <section class="slide" id="slide20">
             <div class="compare-boxes">
                 <h2>The <span>Reward Model</span>: A Digital Human</h2>
                 <div class="compare-row">
@@ -3140,7 +3187,7 @@
         </section>
 
         <!-- ============ SLIDE 18: ETHICS SECTION HEADER ============ -->
-        <section class="slide" id="slide20">
+        <section class="slide" id="slide21">
             <div class="slide-center">
                 <i class="fas fa-balance-scale glow-icon warning"></i>
                 <h2>The Ethics <span>Trolley Problem</span></h2>
@@ -3153,7 +3200,7 @@
         </section>
 
         <!-- ============ SLIDE 19: COMPAS CASE STUDY (INTRO) ============ -->
-        <section class="slide" id="slide21">
+        <section class="slide" id="slide22">
             <div class="automation-slide">
                 <div class="compas-layout">
                     <div class="compas-left">
@@ -3184,7 +3231,7 @@
         </section>
 
         <!-- ============ SLIDE 20: COMPAS FINDINGS ============ -->
-        <section class="slide" id="slide22">
+        <section class="slide" id="slide23">
             <div class="automation-slide">
                 <div class="compas-label" style="margin-bottom: 15px;"><i class="fas fa-chart-bar"></i> What ProPublica Found</div>
                 <h2 class="compas-title" style="margin-bottom: 25px;">"Machine <span>Bias</span>"</h2>
@@ -3213,7 +3260,7 @@
         </section>
 
         <!-- ============ SLIDE 21: WHAT HAPPENED AFTER COMPAS ============ -->
-        <section class="slide" id="slide23">
+        <section class="slide" id="slide24">
             <div class="timeline-container">
                 <h2>What Happened <span>After COMPAS?</span></h2>
                 <div class="timeline-steps">
@@ -3248,7 +3295,7 @@
         </section>
 
         <!-- ============ SLIDE 22: FIXING THE PROCESS ============ -->
-        <section class="slide" id="slide24">
+        <section class="slide" id="slide25">
             <div class="exercise-container" style="max-width: 900px;">
                 <h2>It Didn't Clear Bias &mdash; But It <span class="highlight">Fixed the Process</span></h2>
                 <div style="display: flex; flex-direction: column; gap: 14px; max-width: 800px; margin: 0 auto;">
@@ -3273,7 +3320,7 @@
         </section>
 
         <!-- ============ SLIDE 23: HALLUCINATION TRAP ============ -->
-        <section class="slide" id="slide25">
+        <section class="slide" id="slide26">
             <div class="exercise-container">
                 <h2>We Asked AI About <span class="highlight">Dr. Alistair P. Henderson</span></h2>
                 <div class="exercise-box" style="text-align: left; max-width: 700px; margin: 0 auto 18px; background: rgba(99,110,114,0.25); border-left: 4px solid #a29bfe;">
@@ -3287,7 +3334,7 @@
         </section>
 
         <!-- ============ SLIDE 22: HALLUCINATION REVEAL ============ -->
-        <section class="slide" id="slide26">
+        <section class="slide" id="slide27">
             <div class="exercise-container">
                 <h2>The <span class="highlight">Fact-Check Reveal</span></h2>
                 <div style="display: flex; flex-direction: column; gap: 14px; max-width: 700px; margin: 0 auto 18px;">
@@ -3316,7 +3363,7 @@
         </section>
 
         <!-- ============ SLIDE 22: WEDDING VOWS FLIP CARD ============ -->
-        <section class="slide" id="slide27">
+        <section class="slide" id="slide28">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3342,7 +3389,7 @@
         </section>
 
         <!-- ============ SLIDE 22: BEST MAN'S SPEECH FLIP CARD ============ -->
-        <section class="slide" id="slide28">
+        <section class="slide" id="slide29">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3368,7 +3415,7 @@
         </section>
 
         <!-- ============ SLIDE 23: VALENTINE'S DAY CARD FLIP CARD ============ -->
-        <section class="slide" id="slide29">
+        <section class="slide" id="slide30">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3394,7 +3441,7 @@
         </section>
 
         <!-- ============ SLIDE 24: HOMEWORK HELP FLIP CARD ============ -->
-        <section class="slide" id="slide30">
+        <section class="slide" id="slide31">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3420,7 +3467,7 @@
         </section>
 
         <!-- ============ SLIDE 25: AI REPLACING JOBS FLIP CARD ============ -->
-        <section class="slide" id="slide31">
+        <section class="slide" id="slide32">
             <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -3451,7 +3498,7 @@
         </section>
 
         <!-- ============ SLIDE 26: PAUL'S PRINCIPLE ============ -->
-        <section class="slide" id="slide32">
+        <section class="slide" id="slide33">
             <div class="quote-slide">
                 <i class="fas fa-quote-left quote-icon"></i>
                 <h2>AI is a co-pilot, not the pilot.</h2>
@@ -3487,7 +3534,7 @@
         </section>
 
         <!-- ============ SLIDE 26: AI TRANSPARENCY MANDATE ============ -->
-        <section class="slide" id="slide33">
+        <section class="slide" id="slide34">
             <div class="mandate-container">
                 <h2>The Paul Ireifej <span>AI Transparency Mandate</span></h2>
                 <div class="mandate-quote">"If it's not 100% human, the human 100% needs to say so."</div>
@@ -3509,7 +3556,7 @@
         </section>
 
         <!-- ============ SLIDE 27: THE 4 LABELS ============ -->
-        <section class="slide" id="slide34">
+        <section class="slide" id="slide35">
             <div class="labels-grid">
                 <h2>The 4 Categories of <span>Disclosure</span></h2>
                 <div class="four-grid">
@@ -3542,7 +3589,7 @@
         </section>
 
         <!-- ============ SLIDE 28: AI ALERT WARNING SYSTEM ============ -->
-        <section class="slide" id="slide35">
+        <section class="slide" id="slide36">
             <div class="traffic-light-container">
                 <h2>The AI Alert <span>Warning System</span></h2>
                 <div class="traffic-row">
@@ -3578,7 +3625,7 @@
         </section>
 
         <!-- ============ SLIDE 29: CLOSING DISCUSSION ============ -->
-        <section class="slide" id="slide36">
+        <section class="slide" id="slide37">
             <div class="closing-quote">
                 <h2>"Transparency isn't about banning AI; it's about preserving the value of the human. If everything is tagged, then a 'Human-Only' message becomes the most valuable thing you can send."</h2>
             </div>
@@ -3589,7 +3636,7 @@
         </section>
 
         <!-- ============ SLIDE 30: PROMPT-OFF HEADER ============ -->
-        <section class="slide" id="slide37">
+        <section class="slide" id="slide38">
             <div class="slide-center">
                 <i class="fas fa-trophy glow-icon gold"></i>
                 <h2>The <span>Prompt-Off</span> Competition</h2>
@@ -3602,7 +3649,7 @@
         </section>
 
         <!-- ============ SLIDE 31: PROMPT ENGINEERING FORMULA ============ -->
-        <section class="slide" id="slide38">
+        <section class="slide" id="slide39">
             <div class="prompt-formula">
                 <h2>How to Talk to <span>AI</span></h2>
                 <p class="formula-subtitle">Better prompts = better results. Here's the formula.</p>
@@ -3651,7 +3698,7 @@
         </section>
 
         <!-- ============ SLIDE 32: CHALLENGE 1 ============ -->
-        <section class="slide" id="slide39">
+        <section class="slide" id="slide40">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 1</div>
                 <h2>The <span>Impossible Invention</span></h2>
@@ -3665,7 +3712,7 @@
         </section>
 
         <!-- ============ SLIDE 33: CHALLENGE 2 ============ -->
-        <section class="slide" id="slide40">
+        <section class="slide" id="slide41">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 2</div>
                 <h2><span>Roast</span> My Career</h2>
@@ -3679,7 +3726,7 @@
         </section>
 
         <!-- ============ SLIDE 34: CHALLENGE 3 ============ -->
-        <section class="slide" id="slide41">
+        <section class="slide" id="slide42">
             <div class="challenge-slide">
                 <div class="challenge-header"><i class="fas fa-trophy"></i> Challenge 3</div>
                 <h2>The <span>Life Hack</span></h2>
@@ -3693,7 +3740,7 @@
         </section>
 
         <!-- ============ SLIDE 35: SESSION 3 PREVIEW ============ -->
-        <section class="slide" id="slide42">
+        <section class="slide" id="slide43">
             <div class="final-slide">
                 <p class="coming-next">Coming Next</p>
                 <h2>Session 3: A Look Under the Hood</h2>
