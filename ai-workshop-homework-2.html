@@ -444,16 +444,17 @@
             <div class="section-card" data-section="3">
                 <h2><span class="icon"><i class="fas fa-robot"></i></span> How AI Models Work</h2>
 
-                <h3>The 3 Stages of Training</h3>
-                <p>AI models like ChatGPT and Gemini don't "think" like a human. They predict the most likely next word based on patterns learned from billions of pages of text. They are trained in three stages:</p>
+                <h3>How a Model Is Built (4 Steps)</h3>
+                <p>AI models like ChatGPT and Gemini don't "think" like a human. They predict the most likely next word based on patterns learned from billions of pages of text. Building a model takes four steps:</p>
                 <ul>
-                    <li><strong>Pre-Training:</strong> It read a huge chunk of the internet to learn language patterns</li>
-                    <li><strong>Fine-Tuning (RLHF):</strong> Humans rated its answers to teach it what "good" and "bad" responses look like</li>
-                    <li><strong>Reward Model:</strong> It learned to prefer helpful, harmless, and honest answers</li>
+                    <li><strong>Pre-Training:</strong> The model reads trillions of words from the open internet &mdash; Common Crawl, Wikipedia, books, scientific papers. It learns patterns in language but has no concept of right or wrong.</li>
+                    <li><strong>Post-Training (RLHF):</strong> Thousands of human data labelers rank the model's answers: "This is helpful" vs "This is a hallucination." The model learns what humans actually want through Reinforcement Learning from Human Feedback.</li>
+                    <li><strong>The Model (LLM):</strong> The model is now frozen in time with a knowledge cutoff. It doesn't learn from your chat in real-time &mdash; it predicts based on everything it has already learned.</li>
+                    <li><strong>Deployment:</strong> The model is released to the world via apps and APIs. Gemini, ChatGPT, Claude &mdash; they all went through these same four steps.</li>
                 </ul>
 
                 <div class="highlight-box">
-                    <p><strong>A "model" is like a recipe &mdash; the data is the ingredients, and training is the cooking process. The final dish is the AI you interact with.</strong></p>
+                    <p><strong>Think of it like a chef: Pre-training = reading every recipe book. Post-training = food critics taste-testing dishes. The Model = a trained chef with real feedback. Deployment = the restaurant opens.</strong></p>
                 </div>
 
                 <div class="quiz-container" data-quiz="3">
