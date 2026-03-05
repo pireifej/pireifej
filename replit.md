@@ -11,7 +11,26 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (February 21, 2026)
+## Recent Changes (March 5, 2026)
+### Young Speakers Academy Session 5
+- Created **storytelling-slides.html** - 6-section scroll-based slideshow for "Storytelling & Personal Narrative"
+  - Section 1: Physical & Vocal Warm-Up (Big Stretch, Accordion Breath, Vocal Siren, Volume Dial with Level 1-5)
+  - Section 2: Prepared Speeches with 90-second timer (beeps at 15s/10s/5s, alarm at 0), focus on Projection + peer volume feedback
+  - Section 3: Anatomy of a Personal Story (Hook, Conflict, Resolution cards + Hook vs No Hook examples)
+  - Section 4: The 3-Sentence Story crafting exercise (Setup/Problem/Takeaway)
+  - Section 5: Hero's Pose closing + homework (practice 3-sentence story at Level 5 volume)
+- Unlocked Session 5 on **young-speakers-academy.html** with Start Session link
+- Green gradient theme (#00b894 to #55efc4) matching Sessions 1-4
+
+### AI Workshop Session 2 Updates
+- Updated YouTube recommendation signals to real weights from Google's 2016 paper (Session Time ×1.2, Watch Time ×0.9, Engagement ×0.8, Click-Through ×0.7, Freshness ×0.5)
+- Split "How a Model is Built" into 4 individual slides (Pre-Training, Post-Training/RLHF, The Model, Deployment) with step progress dots
+- Removed redundant "How AI Models Learn" timeline slide
+- Updated Session 2 homework to match 4-step model pipeline
+- Changed homework back links to shouldcallpaul.com (hiding hub pages from students)
+- Total slide count: 45
+
+## Previous Changes (February 21, 2026)
 ### Young Speakers Academy Session 4
 - Created **vocal-variety-slides.html** - 9-section scroll-based slideshow for "Vocal Variety & Body Language"
   - Section 1: Physical & Vocal Warm-Up (Big Stretch, Accordion Breath, Vocal Siren, Raspberries, Volume Dial visual)
