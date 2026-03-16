@@ -11,7 +11,25 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 - **Data**: JSON files in `/nodejs/` directory for dynamic content loading
 - **SEO Files**: sitemap.xml, robots.txt for search engine optimization
 
-## Recent Changes (March 5, 2026)
+## Recent Changes (March 16, 2026)
+### Young Speakers Academy Session 6
+- Created **speech-evaluation-slides.html** - 8-section scroll-based slideshow for "Speech Evaluation & Feedback"
+  - Section 1: Full Speaker's Warm-Up (all exercises from Sessions 1-5: Big Stretch, Accordion Breath, Vocal Siren, Raspberries & Lip Trills, Volume Dial)
+  - Section 2: Prepared Speeches with 60-second timer (beeps at 15s/10s/5s, alarm at 0), finale prep
+  - Section 3: What Is a Speech Evaluation? (Be Kind, Be Specific, Be Helpful cards)
+  - Section 4: The Feedback Sandwich (compliment → suggestion → encouragement, Feedback vs Criticism examples)
+  - Section 5: Evaluation Practice (6-item checklist + live evaluation round)
+  - Section 6: How to Receive Feedback (Listen, Thank You, Don't Defend, Write It Down + Thank You Challenge)
+  - Section 7: Hero's Pose closing + homework (practice finale speech, get Feedback Sandwich from family)
+- Unlocked Session 6 on **young-speakers-academy.html** with Start Session link (counter: 6 Sessions Live)
+- Green gradient theme (#00b894 to #55efc4) matching Sessions 1-5
+
+### Navigation Updates
+- Workshops nav link now goes to workshops.html page (updated in header.html, sidebar.html, index.html, speak.html, speak-register.html, portfolio.html)
+- Resume nav link now directly downloads PDF (sidebar.html, index.html)
+- Resume PDF updated to "Paul Ireifej - Speaker & Workshop Facilitator.pdf"
+
+## Previous Changes (March 5, 2026)
 ### Young Speakers Academy Session 5
 - Created **storytelling-slides.html** - 6-section scroll-based slideshow for "Storytelling & Personal Narrative"
   - Section 1: Physical & Vocal Warm-Up (Big Stretch, Accordion Breath, Vocal Siren, Volume Dial with Level 1-5)
