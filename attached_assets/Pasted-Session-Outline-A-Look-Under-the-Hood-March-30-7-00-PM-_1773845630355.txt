@@ -1,0 +1,61 @@
+Session Outline: A Look Under the Hood
+March 30 @ 7:00 PM
+I. The Beginning: The "Smart Autocomplete" Hook (15 Mins)
+Goal: Demystify the "magic" by comparing it to something everyone already uses.
+The Analogy: Compare an LLM to the autocomplete on a smartphone, but "on steroids."
+The Library Metaphor: Imagine a librarian who has read every book ever written but doesn't actually "understand" the stories—they just know which words usually follow each other.
+Opening Exercise: "Human Autocomplete"
+Display a few common phrases on the screen and have the audience shout out the next word:
+"Everything happens for a..." (Reason)
+"The early bird gets the..." (Worm)
+"I’d like a cup of..." (Coffee/Tea/Water)
+The Point: Explain that you just did what ChatGPT does. You didn't "think"; your brain just calculated the most likely next word based on your "training data" (life experience).
+Stochastic Parrot is a metaphor used to describe Large Language Models (LLMs). It was coined by linguist Emily M. Bender and AI ethics researcher Timnit Gebru in a famous 2021 research paper.
+Stochastic: A fancy word for "random" or "probabilistic." It refers to the math you taught them—predicting the next word based on probability.
+Parrot: Refers to the bird’s ability to mimic human speech perfectly without having any idea what the words actually mean.
+The Core Argument: An AI doesn't "know" that Paris is in France. It simply knows that in its billions of pages of training data, the word "Paris" is mathematically likely to be followed by "is the capital of France." It is "parroting" the patterns of human language using "stochastic" (probabilistic) math.
+
+
+II. The Middle: Tokens, Patterns, and Pixels (25 Mins)
+Goal: Explain the mechanics of text and image generation without technical jargon.
+How Text Works (Tokens): Explain that AI doesn't see words; it sees "tokens" (chunks of characters).
+Visual: Show the word "unhappiness" broken into un- happi- -ness.
+Key Concept: It’s all math. Every word is assigned a number, and the AI calculates the probability of the next number.
+How Images Work (The "Statues in the Marble" Analogy):
+Explain Diffusion: The AI starts with a screen of "static" (like a TV with no signal). It slowly "denoises" the image, removing the static until a sharp image remains that matches your prompt.
+Analogy: It’s like a sculptor looking at a block of marble and "removing" everything that isn't a David.
+Use Visuals: For the image section, a 3-second GIF of a diffusion model generating an image from noise is incredibly effective.
+Group Exercise: The Predictive Story Chain (Your requested activity)
+Setup: Break into small groups. Give each group a paper with a different "Incomplete Story Starter" (e.g., "The old key turned in the lock, and as the door creaked open, I saw...").
+The Rules: Each person adds only one word and passes it to the right.
+The Twist: They must choose the most boring/likely word possible (to mimic a low-creativity AI) for 3 rounds, then the most unexpected word (to mimic "high temperature" or creative AI) for 3 rounds.
+Discussion: Read the stories aloud. Did they make sense? This illustrates how "predicting the next word" creates a narrative.
+
+III. The End: The "Hallucination" Reality Check (15 Mins)
+Goal: Use the "under the hood" knowledge to explain why AI fails.
+Why it "Lies" (Hallucinations): Since it only predicts the next word, it doesn't care about the truth. If "The capital of New Jersey is..." is followed by "Trenton" 99% of the time, it says Trenton. If you ask about a fake fact, it will still try to find the "most likely" word to complete the sentence, even if it has to make it up.
+Closing Exercise: Truth or Probability?
+Show two AI-generated paragraphs: one factual, one a confident-sounding lie. Ask the group to guess which is which based on the "predictive nature" they just learned.
+Q&A & Wrap-up: Preview Session 4 (Prompt Engineering).
+
+Terms to familiarize yourself with
+responsible AI
+Safety manual, brakes, ethical principles
+Fairness, transparency, accountability, privacy
+machine learning
+Subset of AI
+Computer is not explicitly programmed with rules
+Learns from data
+Needs a human to say “look for the wheels to identify a car”
+deep learning
+Uses neural networks
+Signals, weights, nodes
+Computers handle complex data like photos, voices, long paragraphs
+“Looks at a photo of a car on its own and figures out that wheels are a key feature to a car”
+generative AI
+Doesn’t just analyze data, creates new data
+Discriminative vs creative - “looks at a photo and says that’s a cat” vs. “give me a photo of a cat”
+Generate a simple graphic for this to use in a single slide:
+"AI is the goal, Machine Learning is the method, Deep Learning is the math, and Generative AI is the creative output. Responsible AI is how we make sure it doesn't cause harm while doing all of that."
+
+

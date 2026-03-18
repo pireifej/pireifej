@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshop Session 3: A Look Under the Hood">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Session 3: A Look Under the Hood | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        html {
+            font-size: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .slides-wrapper {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            scroll-snap-align: start;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #1a1a3e 100%);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 400px;
+            height: 200px;
+            opacity: 0.3;
+            background:
+                radial-gradient(ellipse at 100% 100%, transparent 70%, #6c5ce7 100%);
+            pointer-events: none;
+        }
+
+        .wave-lines {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 100px;
+            opacity: 0.4;
+        }
+
+        .wave-lines::before,
+        .wave-lines::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6c5ce7, #00d4ff, transparent);
+            border-radius: 50%;
+        }
+
+        .wave-lines::before {
+            bottom: 0;
+            transform: scaleY(0.5);
+        }
+
+        .wave-lines::after {
+            bottom: 15px;
+            transform: scaleY(0.3);
+            opacity: 0.6;
+        }
+
+        .brand-logo {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .brand-logo i {
+            font-size: 1.2rem;
+            color: #a29bfe;
+        }
+
+        .brand-website {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-dots a {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.3);
+            display: block;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-dots a:hover,
+        .nav-dots a.active {
+            background: #00d4ff;
+            box-shadow: 0 0 15px #00d4ff;
+            transform: scale(1.3);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .highlight {
+            color: #a29bfe;
+        }
+
+        /* ============ SLIDE 1: TITLE ============ */
+        .slide-title-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .ai-orb {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-orb::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #1a1a3e 0%, transparent 70%);
+            box-shadow:
+                0 0 60px #00d4ff,
+                0 0 100px rgba(0, 212, 255, 0.5),
+                inset 0 0 60px rgba(0, 212, 255, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .ai-orb::after {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            animation: rotate-ring 10s linear infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 60px #00d4ff, 0 0 100px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 80px #00d4ff, 0 0 140px rgba(0, 212, 255, 0.7); }
+        }
+
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .ai-text {
+            font-size: 8rem;
+            font-weight: 800;
+            color: transparent;
+            background: linear-gradient(180deg, #00d4ff 0%, #a29bfe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+            z-index: 1;
+            letter-spacing: -5px;
+        }
+
+        .title-text {
+            text-align: left;
+        }
+
+        .title-box {
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            padding: 30px 40px;
+            position: relative;
+        }
+
+        .title-box h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .title-box h1 span {
+            display: block;
+            font-weight: 700;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .title-box p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        /* ============ SLIDE QUESTION ============ */
+        .slide-question {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .image-container {
+            width: 400px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a3e 0%, #0d0d1a 100%);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            box-shadow:
+                0 0 30px rgba(0, 212, 255, 0.2),
+                inset 0 0 30px rgba(0, 212, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .image-container .placeholder-icon {
+            font-size: 5rem;
+            color: #00d4ff;
+            opacity: 0.5;
+        }
+
+        .question-text h2 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #fff;
+        }
+
+        .question-text p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        /* ============ PHOTO CONTENT ============ */
+        .slide-photo-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1100px;
+        }
+
+        .content-side {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .content-side h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .content-side h2 span {
+            color: #00d4ff;
+        }
+
+        .content-side .bullets {
+            list-style: none;
+        }
+
+        .content-side .bullets li {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.9);
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .content-side .bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            border-radius: 50%;
+        }
+
+        /* ============ CENTERED CONTENT ============ */
+        .centered-content {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .centered-content h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .centered-content h2 span {
+            color: #00d4ff;
+        }
+
+        .centered-content p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* ============ AUTOCOMPLETE EXERCISE ============ */
+        .autocomplete-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .autocomplete-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .autocomplete-container h2 span {
+            color: #00d4ff;
+        }
+
+        .phrase-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .phrase-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 16px;
+            padding: 25px 40px;
+            width: 100%;
+            max-width: 700px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phrase-card:hover {
+            border-color: #6c5ce7;
+            transform: scale(1.02);
+        }
+
+        .phrase-card .phrase-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .phrase-card .phrase-answer {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #6c5ce7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .phrase-card.revealed .phrase-answer {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phrase-card.revealed {
+            border-color: #00d4ff;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .phrase-card .click-hint {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .phrase-card.revealed .click-hint {
+            opacity: 0;
+        }
+
+        /* ============ STOCHASTIC PARROT ============ */
+        .parrot-container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .parrot-visual {
+            flex-shrink: 0;
+            position: relative;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parrot-icon {
+            font-size: 8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+            user-select: none;
+        }
+
+        .parrot-icon:hover {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .parrot-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent 70%);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .squawk-bubble {
+            position: absolute;
+            top: -20px;
+            right: -40px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+            padding: 15px 22px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            max-width: 250px;
+            line-height: 1.4;
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .squawk-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            border: 10px solid transparent;
+            border-top-color: #6c5ce7;
+        }
+
+        .squawk-bubble.show {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .parrot-text {
+            flex: 1;
+        }
+
+        .parrot-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .parrot-text h2 span {
+            color: #00d4ff;
+        }
+
+        .parrot-text .definition {
+            margin-bottom: 20px;
+        }
+
+        .parrot-text .definition dt {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #a29bfe;
+            margin-bottom: 4px;
+        }
+
+        .parrot-text .definition dd {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+            margin-left: 0;
+            margin-bottom: 14px;
+        }
+
+        .parrot-text .core-argument {
+            padding: 20px 25px;
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        .parrot-text .core-argument strong {
+            color: #00d4ff;
+        }
+
+        /* ============ TOKENIZATION ============ */
+        .token-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .token-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .token-container h2 span {
+            color: #00d4ff;
+        }
+
+        .token-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+        }
+
+        .token-demo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .token-word {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .token-word.split {
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .token-pieces {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .token-pieces.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .token-piece {
+            padding: 20px 30px;
+            border-radius: 16px;
+            font-size: 2rem;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .token-piece:nth-child(1) {
+            background: rgba(108, 92, 231, 0.3);
+            border: 2px solid #6c5ce7;
+            color: #a29bfe;
+        }
+
+        .token-piece:nth-child(2) {
+            background: rgba(0, 212, 255, 0.3);
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+        }
+
+        .token-piece:nth-child(3) {
+            background: rgba(46, 204, 113, 0.3);
+            border: 2px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .token-piece .token-id {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: rgba(255, 159, 67, 0.9);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .token-split-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .token-split-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(108, 92, 231, 0.5);
+        }
+
+        .token-split-btn.done {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            pointer-events: none;
+        }
+
+        .token-explanation {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .token-explain-card {
+            flex: 1;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+
+        .token-explain-card i {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .token-explain-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .token-explain-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        /* ============ DIFFUSION ============ */
+        .diffusion-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .diffusion-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .diffusion-container h2 span {
+            color: #00d4ff;
+        }
+
+        .diffusion-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 30px;
+        }
+
+        .diffusion-demo {
+            position: relative;
+            width: 500px;
+            height: 400px;
+            margin: 0 auto 30px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(108, 92, 231, 0.4);
+        }
+
+        .diffusion-noise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            transition: opacity 3s ease;
+        }
+
+        .diffusion-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .diffusion-image .statue-art {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a3e, #2d1b4e);
+        }
+
+        .statue-svg {
+            width: 80%;
+            height: 80%;
+        }
+
+        .diffusion-demo.active .diffusion-noise {
+            opacity: 0;
+        }
+
+        .diffusion-progress {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .diffusion-progress-bar {
+            width: 300px;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .diffusion-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #00d4ff);
+            border-radius: 4px;
+            transition: width 3s ease;
+        }
+
+        .diffusion-demo.active .diffusion-progress-fill {
+            width: 100%;
+        }
+
+        .diffusion-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            min-width: 100px;
+        }
+
+        .diffusion-start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .diffusion-start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(108, 92, 231, 0.5);
+        }
+
+        .diffusion-start-btn.running {
+            background: linear-gradient(135deg, #0891b2, #00d4ff);
+            pointer-events: none;
+        }
+
+        .diffusion-start-btn.done {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            pointer-events: none;
+        }
+
+        .diffusion-analogy {
+            padding: 20px 25px;
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ============ STORY CHAIN ============ */
+        .story-chain-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .story-chain-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .story-chain-container h2 span {
+            color: #00d4ff;
+        }
+
+        .story-rules {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .story-rule {
+            flex: 1;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .story-rule .rule-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin: 0 auto 12px auto;
+        }
+
+        .story-rule h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .story-rule p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        .story-starters {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .story-starter {
+            padding: 20px 30px;
+            background: rgba(108, 92, 231, 0.15);
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 14px;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+            text-align: left;
+        }
+
+        .story-starter i {
+            color: #a29bfe;
+            margin-right: 10px;
+        }
+
+        /* ============ TEMPERATURE ============ */
+        .temperature-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .temperature-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .temperature-container h2 span {
+            color: #00d4ff;
+        }
+
+        .temp-comparison {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .temp-card {
+            flex: 1;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: left;
+        }
+
+        .temp-card.low {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .temp-card.high {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .temp-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .temp-card.low h3 {
+            color: #00d4ff;
+        }
+
+        .temp-card.high h3 {
+            color: #e74c3c;
+        }
+
+        .temp-card p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        .temp-card .temp-example {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+        }
+
+        /* ============ FLIP CARDS ============ */
+        .flip-cards-row {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .flip-card-single {
+            width: 400px;
+            height: 350px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-single .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-single.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-single .flip-card-front,
+        .flip-card-single .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .flip-card-single .flip-card-front {
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 100%);
+            border: 2px solid rgba(108, 92, 231, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .flip-card-single .flip-card-front .card-icon-header {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .flip-card-single .flip-card-front h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .flip-card-single .flip-card-front p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        .flip-card-single .flip-card-front .tap-hint {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 20px;
+        }
+
+        .flip-card-single .flip-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .flip-card-single .flip-card-back.fact-answer {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+
+        .flip-card-single .flip-card-back.hallucination-answer {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .flip-card-single .flip-card-back .answer-label {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .flip-card-single .flip-card-back .answer-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .flip-card-single .flip-card-back p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.5;
+        }
+
+        /* ============ AI LAYERS DIAGRAM ============ */
+        .layers-container {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .layers-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+        }
+
+        .layers-container h2 span {
+            color: #00d4ff;
+        }
+
+        .layers-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .layer-block {
+            padding: 25px 30px;
+            border-radius: 16px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .layer-block h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .layer-block p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .layer-block.ai-layer {
+            background: rgba(0, 212, 255, 0.2);
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+        }
+
+        .layer-block.ml-layer {
+            background: rgba(255, 159, 67, 0.2);
+            border: 2px solid #ff9f43;
+            color: #ff9f43;
+        }
+
+        .layer-block.dl-layer {
+            background: rgba(199, 125, 255, 0.2);
+            border: 2px solid #c77dff;
+            color: #c77dff;
+        }
+
+        .layer-block.gen-layer {
+            background: rgba(46, 204, 113, 0.2);
+            border: 2px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .layer-block.resp-layer {
+            background: rgba(231, 76, 60, 0.2);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .layer-arrow {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .layers-quote {
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .layers-quote strong {
+            color: #00d4ff;
+        }
+
+        /* ============ HALLUCINATION SLIDE ============ */
+        .hallucination-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hallucination-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .hallucination-container h2 span {
+            color: #e74c3c;
+        }
+
+        .hallucination-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hallucination-example {
+            padding: 25px 30px;
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid rgba(231, 76, 60, 0.3);
+            border-radius: 16px;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .hallucination-example h4 {
+            font-size: 1.1rem;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hallucination-example p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* ============ Q&A SLIDE ============ */
+        .qa-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .qa-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .qa-container h2 span {
+            color: #00d4ff;
+        }
+
+        .qa-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .qa-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .qa-item:hover {
+            border-color: #6c5ce7;
+        }
+
+        .qa-question {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .qa-question i {
+            color: #a29bfe;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .qa-item.open .qa-question i {
+            transform: rotate(90deg);
+        }
+
+        .qa-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+
+        .qa-item.open .qa-answer {
+            max-height: 300px;
+        }
+
+        .qa-answer-inner {
+            padding: 0 25px 20px 25px;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+
+        /* ============ CLOSING / FINAL ============ */
+        .closing-quote {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .closing-quote h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .closing-quote i {
+            font-size: 2rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .final-slide {
+            text-align: center;
+        }
+
+        .final-slide .coming-next {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .final-slide h2 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #a855f7, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .final-slide .session-date {
+            font-size: 1.5rem;
+            color: #06b6d4;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .final-slide .session-desc {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        .hub-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .hub-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ============ SECTION DIVIDER ============ */
+        .section-divider {
+            text-align: center;
+        }
+
+        .section-divider .section-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 15px;
+        }
+
+        .section-divider h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+
+        .section-divider h2 span {
+            color: #00d4ff;
+        }
+
+        .section-divider p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 15px;
+        }
+
+        /* ============ LIBRARY METAPHOR ============ */
+        .library-container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .library-visual {
+            flex-shrink: 0;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .library-visual .book-icon {
+            font-size: 7rem;
+            color: #a29bfe;
+            position: relative;
+            z-index: 2;
+        }
+
+        .library-visual::before {
+            content: '';
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(162, 155, 254, 0.2), transparent 70%);
+        }
+
+        .library-text {
+            flex: 1;
+        }
+
+        .library-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .library-text h2 span {
+            color: #a29bfe;
+        }
+
+        .library-text p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .library-text .key-point {
+            padding: 15px 20px;
+            background: rgba(162, 155, 254, 0.1);
+            border-left: 4px solid #a29bfe;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.5;
+        }
+
+        /* ============ PROBABILITY SLIDE ============ */
+        .probability-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .probability-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .probability-container h2 span {
+            color: #00d4ff;
+        }
+
+        .probability-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .prob-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .prob-word {
+            width: 120px;
+            text-align: right;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .prob-bar-track {
+            flex: 1;
+            height: 35px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .prob-bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .prob-bar-fill.high {
+            background: linear-gradient(90deg, #6c5ce7, #00d4ff);
+            width: 85%;
+        }
+
+        .prob-bar-fill.medium {
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            width: 45%;
+        }
+
+        .prob-bar-fill.low {
+            background: linear-gradient(90deg, #6c5ce7, #ff9f43);
+            width: 20%;
+        }
+
+        .prob-bar-fill.tiny {
+            background: linear-gradient(90deg, #6c5ce7, #e74c3c);
+            width: 8%;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="ai-workshops-hub.html" class="back-btn"><i class="fas fa-arrow-left"></i> Hub</a>
+
+    <div class="nav-dots">
+        <a href="#slide1"></a>
+        <a href="#slide2"></a>
+        <a href="#slide3"></a>
+        <a href="#slide4"></a>
+        <a href="#slide5"></a>
+        <a href="#slide6"></a>
+        <a href="#slide7"></a>
+        <a href="#slide8"></a>
+        <a href="#slide9"></a>
+        <a href="#slide10"></a>
+        <a href="#slide11"></a>
+        <a href="#slide12"></a>
+        <a href="#slide13"></a>
+        <a href="#slide14"></a>
+        <a href="#slide15"></a>
+        <a href="#slide16"></a>
+        <a href="#slide17"></a>
+        <a href="#slide18"></a>
+        <a href="#slide19"></a>
+        <a href="#slide20"></a>
+        <a href="#slide21"></a>
+        <a href="#slide22"></a>
+        <a href="#slide23"></a>
+        <a href="#slide24"></a>
+        <a href="#slide25"></a>
+    </div>
+
+    <div class="slides-wrapper">
+
+        <!-- ============ SLIDE 1: TITLE ============ -->
+        <section class="slide" id="slide1">
+            <div class="slide-title-content">
+                <div class="ai-orb">
+                    <span class="ai-text">AI</span>
+                </div>
+                <div class="title-text">
+                    <div class="title-box">
+                        <h1>A LOOK<span>UNDER THE HOOD</span></h1>
+                        <p>Session 3 &middot; AI Workshops &middot; Should Call Paul</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 2: SECTION I DIVIDER ============ -->
+        <section class="slide" id="slide2">
+            <div class="section-divider">
+                <div class="section-label">Part I</div>
+                <h2>The <span>"Smart Autocomplete"</span> Hook</h2>
+                <p>Demystify the "magic" by comparing it to something everyone already uses</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 3: THE ANALOGY ============ -->
+        <section class="slide" id="slide3">
+            <div class="slide-question">
+                <div class="image-container">
+                    <i class="fas fa-keyboard placeholder-icon"></i>
+                </div>
+                <div class="question-text">
+                    <h2>Autocomplete on <span style="color:#00d4ff;">Steroids</span></h2>
+                    <p>An LLM is like the autocomplete on your phone... but it's read every book, article, and webpage ever written.</p>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 4: LIBRARY METAPHOR ============ -->
+        <section class="slide" id="slide4">
+            <div class="library-container">
+                <div class="library-visual">
+                    <i class="fas fa-book-open book-icon"></i>
+                </div>
+                <div class="library-text">
+                    <h2>The <span>Librarian</span> Metaphor</h2>
+                    <p>Imagine a librarian who has read every book ever written but doesn't actually <strong style="color:#00d4ff;">understand</strong> the stories.</p>
+                    <p>They just know which words usually follow each other.</p>
+                    <div class="key-point">
+                        <i class="fas fa-lightbulb" style="color: #ff9f43; margin-right: 8px;"></i>
+                        They can quote any passage perfectly, but if you ask them what the story <em>means</em>, they'll just give you more quotes.
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 5: HUMAN AUTOCOMPLETE EXERCISE ============ -->
+        <section class="slide" id="slide5">
+            <div class="autocomplete-container">
+                <h2><i class="fas fa-users" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Human Autocomplete</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">Click each phrase to reveal the answer. Shout it out first!</p>
+                <div class="phrase-cards">
+                    <div class="phrase-card" onclick="revealPhrase(this)">
+                        <div class="phrase-text">"Everything happens for a..." <span class="phrase-answer">Reason</span></div>
+                        <div class="click-hint"><i class="fas fa-hand-pointer"></i> Click to reveal</div>
+                    </div>
+                    <div class="phrase-card" onclick="revealPhrase(this)">
+                        <div class="phrase-text">"The early bird gets the..." <span class="phrase-answer">Worm</span></div>
+                        <div class="click-hint"><i class="fas fa-hand-pointer"></i> Click to reveal</div>
+                    </div>
+                    <div class="phrase-card" onclick="revealPhrase(this)">
+                        <div class="phrase-text">"I'd like a cup of..." <span class="phrase-answer">Coffee</span></div>
+                        <div class="click-hint"><i class="fas fa-hand-pointer"></i> Click to reveal</div>
+                    </div>
+                    <div class="phrase-card" onclick="revealPhrase(this)">
+                        <div class="phrase-text">"Break a..." <span class="phrase-answer">Leg</span></div>
+                        <div class="click-hint"><i class="fas fa-hand-pointer"></i> Click to reveal</div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 6: THE POINT ============ -->
+        <section class="slide" id="slide6">
+            <div class="centered-content">
+                <h2>You Just Did What <span>ChatGPT</span> Does</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 25px;">You didn't "think." Your brain calculated the <strong style="color: #00d4ff;">most likely next word</strong> based on your "training data" (life experience).</p>
+                <p style="font-size: 1.15rem;">ChatGPT does the same thing&mdash;but its training data is <strong style="color: #a29bfe;">the entire internet</strong>.</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 7: STOCHASTIC PARROT ============ -->
+        <section class="slide" id="slide7">
+            <div class="parrot-container">
+                <div class="parrot-visual" id="parrot-area">
+                    <div class="parrot-glow"></div>
+                    <div class="parrot-icon" id="parrot-icon">&#x1F99C;</div>
+                    <div class="squawk-bubble" id="squawk-bubble">
+                        "The capital of France is... <strong style="color: #ffd700;">Paris!</strong>" (92% probability)
+                    </div>
+                </div>
+                <div class="parrot-text">
+                    <h2>The <span>Stochastic Parrot</span></h2>
+                    <dl class="definition">
+                        <dt><i class="fas fa-dice" style="margin-right: 8px;"></i> Stochastic</dt>
+                        <dd>A fancy word for "random" or "probabilistic." Predicting the next word based on probability.</dd>
+                        <dt><i class="fas fa-feather-alt" style="margin-right: 8px;"></i> Parrot</dt>
+                        <dd>Mimics human speech perfectly without having any idea what the words actually mean.</dd>
+                    </dl>
+                    <div class="core-argument">
+                        <strong>The Core Argument:</strong> An AI doesn't "know" that Paris is in France. It simply knows that in billions of pages of training data, the word "Paris" is mathematically likely to be followed by "is the capital of France."
+                        <div style="margin-top: 12px; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-style: italic;">
+                            Coined by Emily Bender &amp; Timnit Gebru in their 2021 research paper
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 8: PROBABILITY VISUALIZATION ============ -->
+        <section class="slide" id="slide8">
+            <div class="probability-container">
+                <h2>Next Word <span>Probability</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">"The capital of France is..."</p>
+                <div class="probability-bars">
+                    <div class="prob-bar-row">
+                        <div class="prob-word" style="color: #00d4ff;">Paris</div>
+                        <div class="prob-bar-track">
+                            <div class="prob-bar-fill high">85%</div>
+                        </div>
+                    </div>
+                    <div class="prob-bar-row">
+                        <div class="prob-word" style="color: #a29bfe;">known</div>
+                        <div class="prob-bar-track">
+                            <div class="prob-bar-fill medium">8%</div>
+                        </div>
+                    </div>
+                    <div class="prob-bar-row">
+                        <div class="prob-word" style="color: #ff9f43;">located</div>
+                        <div class="prob-bar-track">
+                            <div class="prob-bar-fill low">4%</div>
+                        </div>
+                    </div>
+                    <div class="prob-bar-row">
+                        <div class="prob-word" style="color: #e74c3c;">pizza</div>
+                        <div class="prob-bar-track">
+                            <div class="prob-bar-fill tiny">0.01%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diffusion-analogy">
+                    <i class="fas fa-calculator" style="color: #00d4ff; margin-right: 8px;"></i>
+                    <strong>It's all math.</strong> Every word is assigned a number, and the AI calculates the probability of the next number. It doesn't "understand"&mdash;it just picks the highest probability.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 9: SECTION II DIVIDER ============ -->
+        <section class="slide" id="slide9">
+            <div class="section-divider">
+                <div class="section-label">Part II</div>
+                <h2>Tokens, Patterns, <span>and Pixels</span></h2>
+                <p>The mechanics of text and image generation without technical jargon</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 10: TOKENIZATION ============ -->
+        <section class="slide" id="slide10">
+            <div class="token-container">
+                <h2>How AI Sees <span>Words</span></h2>
+                <p class="token-subtitle">AI doesn't read words. It sees "tokens"&mdash;chunks of characters assigned to numbers.</p>
+                <div class="token-demo">
+                    <div class="token-word" id="token-word">unhappiness</div>
+                    <div class="token-pieces" id="token-pieces">
+                        <div class="token-piece">un-<span class="token-id">471</span></div>
+                        <div class="token-piece">happi-<span class="token-id">8293</span></div>
+                        <div class="token-piece">-ness<span class="token-id">1042</span></div>
+                    </div>
+                    <button class="token-split-btn" id="token-btn" onclick="splitToken()">
+                        <i class="fas fa-cut"></i> Split into Tokens
+                    </button>
+                </div>
+                <div class="token-explanation">
+                    <div class="token-explain-card">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h4>Why Tokens?</h4>
+                        <p>Breaking words into smaller pieces lets AI handle any word&mdash;even ones it's never seen before&mdash;by combining known chunks.</p>
+                    </div>
+                    <div class="token-explain-card">
+                        <i class="fas fa-hashtag"></i>
+                        <h4>Numbers, Not Letters</h4>
+                        <p>Each token gets a unique number. AI does math on these numbers to predict what comes next.</p>
+                    </div>
+                    <div class="token-explain-card">
+                        <i class="fas fa-calculator"></i>
+                        <h4>Scale</h4>
+                        <p>GPT-4 has a vocabulary of ~100,000 tokens. Every response is a sequence of predicted token numbers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 11: DIFFUSION ============ -->
+        <section class="slide" id="slide11">
+            <div class="diffusion-container">
+                <h2>How Images Work: <span>Diffusion</span></h2>
+                <p class="diffusion-subtitle">The "Statues in the Marble" Analogy</p>
+                <button class="diffusion-start-btn" id="diffusion-btn" onclick="startDiffusion()">
+                    <i class="fas fa-magic"></i> Start Denoising
+                </button>
+                <div class="diffusion-demo" id="diffusion-demo">
+                    <canvas class="diffusion-noise" id="noise-canvas" width="500" height="400"></canvas>
+                    <div class="diffusion-image">
+                        <div class="statue-art">
+                            <svg class="statue-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="statueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#a29bfe;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#6c5ce7;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <ellipse cx="200" cy="85" rx="45" ry="55" fill="url(#statueGrad)" opacity="0.9"/>
+                                <rect x="175" y="135" width="50" height="10" rx="5" fill="#a29bfe" opacity="0.7"/>
+                                <path d="M160 145 Q200 140 240 145 L235 280 Q200 290 165 280 Z" fill="url(#statueGrad)" opacity="0.85"/>
+                                <rect x="140" y="155" width="25" height="90" rx="10" fill="#a29bfe" opacity="0.7" transform="rotate(-15 152 200)"/>
+                                <rect x="235" y="155" width="25" height="90" rx="10" fill="#a29bfe" opacity="0.7" transform="rotate(15 248 200)"/>
+                                <rect x="170" y="275" width="28" height="90" rx="8" fill="url(#statueGrad)" opacity="0.85"/>
+                                <rect x="202" y="275" width="28" height="90" rx="8" fill="url(#statueGrad)" opacity="0.85"/>
+                                <rect x="130" y="360" width="140" height="15" rx="5" fill="#a29bfe" opacity="0.5"/>
+                                <text x="200" y="395" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">"David" by Michelangelo</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="diffusion-progress">
+                    <div class="diffusion-label" id="diffusion-label">Pure Noise</div>
+                    <div class="diffusion-progress-bar">
+                        <div class="diffusion-progress-fill" id="diffusion-fill"></div>
+                    </div>
+                    <div class="diffusion-label" style="text-align: right;" id="diffusion-status">Ready</div>
+                </div>
+                <div class="diffusion-analogy">
+                    <i class="fas fa-hammer" style="color: #a29bfe; margin-right: 8px;"></i>
+                    Like a sculptor looking at a block of marble and "removing" everything that isn't a David. The AI starts with static and slowly removes the noise until a sharp image remains.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 12: AI LAYERS DIAGRAM ============ -->
+        <section class="slide" id="slide12">
+            <div class="layers-container">
+                <h2>The <span>Big Picture</span></h2>
+                <div class="layers-diagram">
+                    <div class="layer-block ai-layer">
+                        <h4><i class="fas fa-bullseye"></i> AI</h4>
+                        <p>The Goal</p>
+                    </div>
+                    <div class="layer-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="layer-block ml-layer">
+                        <h4><i class="fas fa-cogs"></i> Machine Learning</h4>
+                        <p>The Method</p>
+                    </div>
+                    <div class="layer-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="layer-block dl-layer">
+                        <h4><i class="fas fa-brain"></i> Deep Learning</h4>
+                        <p>The Math</p>
+                    </div>
+                    <div class="layer-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="layer-block gen-layer">
+                        <h4><i class="fas fa-paint-brush"></i> Generative AI</h4>
+                        <p>The Creative Output</p>
+                    </div>
+                </div>
+                <div class="layer-block resp-layer" style="margin: 0 auto 30px auto; max-width: 350px;">
+                    <h4><i class="fas fa-shield-alt"></i> Responsible AI</h4>
+                    <p>The Safety Net&mdash;making sure it doesn't cause harm</p>
+                </div>
+                <div class="layers-quote">
+                    <i class="fas fa-quote-left" style="color: #6c5ce7; margin-right: 8px;"></i>
+                    <strong>AI</strong> is the goal, <strong>Machine Learning</strong> is the method, <strong>Deep Learning</strong> is the math, and <strong>Generative AI</strong> is the creative output. <strong style="color: #e74c3c;">Responsible AI</strong> is how we make sure it doesn't cause harm while doing all of that.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 13: KEY TERMS - ML ============ -->
+        <section class="slide" id="slide13">
+            <div class="slide-photo-content" style="justify-content: center;">
+                <div class="content-side" style="max-width: 800px;">
+                    <h2><i class="fas fa-cogs" style="color: #ff9f43; margin-right: 10px;"></i> <span>Machine Learning</span></h2>
+                    <ul class="bullets">
+                        <li>A subset of AI&mdash;the computer is <strong style="color:#00d4ff;">not explicitly programmed</strong> with rules</li>
+                        <li>Instead, it <strong style="color:#a29bfe;">learns from data</strong></li>
+                        <li>Needs a human to say "look for the wheels to identify a car"</li>
+                        <li><strong style="color:#ff9f43;">Discriminative:</strong> "Looks at a photo and says that's a cat"</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 14: KEY TERMS - DEEP LEARNING ============ -->
+        <section class="slide" id="slide14">
+            <div class="slide-photo-content" style="justify-content: center;">
+                <div class="content-side" style="max-width: 800px;">
+                    <h2><i class="fas fa-brain" style="color: #c77dff; margin-right: 10px;"></i> <span>Deep Learning</span></h2>
+                    <ul class="bullets">
+                        <li>Uses <strong style="color:#00d4ff;">neural networks</strong>&mdash;signals, weights, and nodes</li>
+                        <li>Computers handle complex data like photos, voices, and long paragraphs</li>
+                        <li>"Looks at a photo of a car on its own and <strong style="color:#c77dff;">figures out</strong> that wheels are a key feature"</li>
+                        <li>No human needed to tell it what to look for</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 15: KEY TERMS - GENERATIVE AI ============ -->
+        <section class="slide" id="slide15">
+            <div class="slide-photo-content" style="justify-content: center;">
+                <div class="content-side" style="max-width: 800px;">
+                    <h2><i class="fas fa-paint-brush" style="color: #2ecc71; margin-right: 10px;"></i> <span>Generative AI</span></h2>
+                    <ul class="bullets">
+                        <li>Doesn't just <strong>analyze</strong> data&mdash;it <strong style="color:#2ecc71;">creates new data</strong></li>
+                        <li><strong style="color:#ff9f43;">Discriminative:</strong> "Looks at a photo and says that's a cat"</li>
+                        <li><strong style="color:#2ecc71;">Generative:</strong> "Give me a photo of a cat wearing a top hat"</li>
+                        <li>Text, images, code, music&mdash;all generated from patterns</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 16: STORY CHAIN EXERCISE ============ -->
+        <section class="slide" id="slide16">
+            <div class="story-chain-container">
+                <h2><i class="fas fa-users" style="color: #a29bfe; margin-right: 10px;"></i> Group Exercise: <span>Predictive Story Chain</span></h2>
+                <div class="story-rules">
+                    <div class="story-rule">
+                        <div class="rule-num">1</div>
+                        <h4>Setup</h4>
+                        <p>Break into groups. Each group gets a different story starter.</p>
+                    </div>
+                    <div class="story-rule">
+                        <div class="rule-num">2</div>
+                        <h4>The Rule</h4>
+                        <p>Each person adds <strong>only one word</strong> and passes it to the right.</p>
+                    </div>
+                    <div class="story-rule">
+                        <div class="rule-num">3</div>
+                        <h4>The Twist</h4>
+                        <p>3 rounds: pick the <strong style="color:#00d4ff;">most boring</strong> word. Then 3 rounds: pick the <strong style="color:#e74c3c;">most unexpected</strong> word.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 17: STORY STARTERS ============ -->
+        <section class="slide" id="slide17">
+            <div class="story-chain-container">
+                <h2>Story <span>Starters</span></h2>
+                <div class="story-starters">
+                    <div class="story-starter"><i class="fas fa-key"></i> "The old key turned in the lock, and as the door creaked open, I saw..."</div>
+                    <div class="story-starter"><i class="fas fa-paw"></i> "The dog ran across the field and suddenly stopped because..."</div>
+                    <div class="story-starter"><i class="fas fa-moon"></i> "At exactly midnight, my phone rang and a voice said..."</div>
+                    <div class="story-starter"><i class="fas fa-utensils"></i> "The chef tasted the soup and immediately..."</div>
+                </div>
+                <div class="diffusion-analogy" style="margin-top: 25px;">
+                    <i class="fas fa-lightbulb" style="color: #ff9f43; margin-right: 8px;"></i>
+                    <strong>Discussion:</strong> Read the stories aloud. Did they make sense? The "boring" rounds mimic low-temperature AI (predictable). The "unexpected" rounds mimic high-temperature AI (creative).
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 18: TEMPERATURE ============ -->
+        <section class="slide" id="slide18">
+            <div class="temperature-container">
+                <h2>AI <span>"Temperature"</span></h2>
+                <div class="temp-comparison">
+                    <div class="temp-card low">
+                        <h3><i class="fas fa-snowflake"></i> Low Temperature</h3>
+                        <p>Predictable, safe, boring. Always picks the highest-probability word.</p>
+                        <div class="temp-example">"The cat sat on the <strong>mat</strong>."</div>
+                    </div>
+                    <div class="temp-card high">
+                        <h3><i class="fas fa-fire"></i> High Temperature</h3>
+                        <p>Creative, surprising, sometimes nonsensical. Picks less likely words more often.</p>
+                        <div class="temp-example">"The cat sat on the <strong>chandelier of existential dread</strong>."</div>
+                    </div>
+                </div>
+                <div class="diffusion-analogy">
+                    <i class="fas fa-sliders-h" style="color: #a29bfe; margin-right: 8px;"></i>
+                    <strong>The Takeaway:</strong> Temperature is a dial between "predictable" and "creative." Your boring-word rounds were low temperature. Your wild-word rounds were high temperature.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 19: SECTION III DIVIDER ============ -->
+        <section class="slide" id="slide19">
+            <div class="section-divider">
+                <div class="section-label">Part III</div>
+                <h2>The <span>"Hallucination"</span> Reality Check</h2>
+                <p>Using our "under the hood" knowledge to explain why AI fails</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 20: WHY AI LIES ============ -->
+        <section class="slide" id="slide20">
+            <div class="hallucination-container">
+                <h2>Why AI <span>"Lies"</span></h2>
+                <p class="hallucination-subtitle">Since it only predicts the next word, it doesn't care about the truth. It cares about probability.</p>
+                <div class="hallucination-example">
+                    <h4><i class="fas fa-check-circle" style="color: #2ecc71;"></i> When It Works</h4>
+                    <p>"The capital of New Jersey is..." &rarr; <strong style="color: #2ecc71;">Trenton</strong> (99% probability, happens to be correct)</p>
+                </div>
+                <div class="hallucination-example" style="border-color: rgba(231,76,60,0.5);">
+                    <h4><i class="fas fa-times-circle"></i> When It Fails</h4>
+                    <p>Ask about something rare or fake, and it will still try to find the "most likely" words to complete the sentence&mdash;even if it has to <strong style="color: #e74c3c;">make it up</strong>.</p>
+                </div>
+                <div class="diffusion-analogy" style="border-left-color: #e74c3c; background: rgba(231,76,60,0.1);">
+                    <i class="fas fa-exclamation-triangle" style="color: #e74c3c; margin-right: 8px;"></i>
+                    <strong>Key insight:</strong> AI hallucinations aren't "lies." The model doesn't know what's true. It only knows what words are statistically likely to follow other words.
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 21: TRUTH OR PROBABILITY EXERCISE ============ -->
+        <section class="slide" id="slide21">
+            <div class="centered-content">
+                <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">Two AI-generated paragraphs. One is factual. One is a confident-sounding lie. Click to flip and find out!</p>
+                <div class="flip-cards-row">
+                    <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon-header">&#x1F4C4;</div>
+                                <h3>Paragraph A</h3>
+                                <p>"The Great Wall of China is over 13,000 miles long and was built over many centuries, starting in the 7th century BC. It was primarily constructed to protect against invasions from northern nomadic groups."</p>
+                                <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                            </div>
+                            <div class="flip-card-back fact-answer">
+                                <div class="answer-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="answer-label">FACT</div>
+                                <p>This is accurate. The Great Wall spans over 13,000 miles and construction began in the 7th century BC.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-icon-header">&#x1F4C4;</div>
+                                <h3>Paragraph B</h3>
+                                <p>"The Golden Gate Bridge in San Francisco was designed by Leonardo da Vinci in 1502 as part of his visionary urban planning portfolio. Construction was completed in 1937 using da Vinci's original blueprints."</p>
+                                <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                            </div>
+                            <div class="flip-card-back hallucination-answer">
+                                <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
+                                <div class="answer-label">HALLUCINATION</div>
+                                <p>The Golden Gate Bridge was designed by Joseph Strauss, not Leonardo da Vinci. The AI confidently mixed real facts (1937 completion) with fabricated ones.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 22: KEY TERMS RECAP ============ -->
+        <section class="slide" id="slide22">
+            <div class="qa-container">
+                <h2>Key Terms <span>Recap</span></h2>
+                <div class="qa-items">
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> What is Responsible AI?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">A safety manual for AI: fairness, transparency, accountability, and privacy. It's the brakes on the car&mdash;making sure AI doesn't cause harm.</div></div>
+                    </div>
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> What is Machine Learning?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">A subset of AI where the computer learns from data instead of being explicitly programmed. A human says "look for wheels to identify a car."</div></div>
+                    </div>
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> What is Deep Learning?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">Uses neural networks (signals, weights, nodes) so computers can handle complex data like photos, voices, and long paragraphs. The computer figures out on its own that wheels are a key feature of a car.</div></div>
+                    </div>
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> What is Generative AI?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">AI that doesn't just analyze data&mdash;it creates new data. Discriminative says "that's a cat." Generative says "here's a new photo of a cat wearing a top hat."</div></div>
+                    </div>
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> What is a Hallucination?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">When AI generates confident-sounding text that is factually wrong. It happens because the model predicts probable words, not truthful ones.</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 23: CLOSING QUOTE ============ -->
+        <section class="slide" id="slide23">
+            <div class="closing-quote">
+                <i class="fas fa-quote-left"></i>
+                <h2>"AI doesn't think. It calculates. And there's a world of difference between the two."</h2>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 24: Q&A ============ -->
+        <section class="slide" id="slide24">
+            <div class="qa-container">
+                <h2><i class="fas fa-comments" style="color: #a29bfe; margin-right: 10px;"></i> <span>Q&A</span></h2>
+                <p style="font-size: 1.2rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">Click any question to reveal the answer</p>
+                <div class="qa-items">
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> Can AI ever truly "understand" language?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">Current AI models don't understand language the way humans do. They recognize patterns and predict sequences. Whether "understanding" can emerge from enough pattern recognition is one of the biggest debates in AI research.</div></div>
+                    </div>
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> How do we stop hallucinations?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">We can't completely stop them because they're built into how the model works&mdash;it predicts probable text, not truthful text. Solutions include retrieval-augmented generation (RAG), fact-checking layers, and teaching users to verify AI output.</div></div>
+                    </div>
+                    <div class="qa-item" onclick="toggleQA(this)">
+                        <div class="qa-question"><i class="fas fa-chevron-right"></i> Is AI actually creative?</div>
+                        <div class="qa-answer"><div class="qa-answer-inner">AI can produce novel combinations of existing patterns, which looks creative. But it can't have intent, emotion, or lived experience. It's "creative" the way a kaleidoscope is creative&mdash;it rearranges existing pieces into new patterns.</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 25: SESSION 4 PREVIEW ============ -->
+        <section class="slide" id="slide25">
+            <div class="final-slide">
+                <p class="coming-next">Coming Next</p>
+                <h2>Session 4: Prompt Engineering</h2>
+                <p class="session-date"><i class="fas fa-calendar-alt"></i> April 27, 2026</p>
+                <p class="session-desc">Master the art of talking to AI. Learn prompt formulas, chain-of-thought techniques, and compete in the ultimate Prompt Engineering challenge.</p>
+                <a href="ai-workshops-hub.html" class="hub-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+    </div>
+
+    <script>
+    function revealPhrase(card) {
+        card.classList.add('revealed');
+    }
+
+    function splitToken() {
+        var word = document.getElementById('token-word');
+        var pieces = document.getElementById('token-pieces');
+        var btn = document.getElementById('token-btn');
+
+        word.classList.add('split');
+        pieces.classList.add('show');
+        btn.classList.add('done');
+        btn.innerHTML = '<i class="fas fa-check"></i> Tokenized!';
+    }
+
+    function startDiffusion() {
+        var demo = document.getElementById('diffusion-demo');
+        var btn = document.getElementById('diffusion-btn');
+        var label = document.getElementById('diffusion-label');
+        var status = document.getElementById('diffusion-status');
+        var fill = document.getElementById('diffusion-fill');
+
+        btn.classList.add('running');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Denoising...';
+
+        demo.classList.add('active');
+        fill.style.width = '100%';
+        label.textContent = 'Removing noise...';
+        status.textContent = 'Generating...';
+
+        setTimeout(function() {
+            btn.classList.remove('running');
+            btn.classList.add('done');
+            btn.innerHTML = '<i class="fas fa-check"></i> Complete!';
+            label.textContent = 'Sharp Image';
+            status.textContent = 'Done!';
+        }, 3000);
+    }
+
+    function toggleQA(item) {
+        var wasOpen = item.classList.contains('open');
+        var allItems = item.parentNode.querySelectorAll('.qa-item');
+        allItems.forEach(function(i) { i.classList.remove('open'); });
+        if (!wasOpen) {
+            item.classList.add('open');
+        }
+    }
+
+    var squawkPhrases = [
+        '"The capital of France is... <strong>Paris!</strong>" (92%)',
+        '"To be or not to be, that is the... <strong>question!</strong>" (97%)',
+        '"An apple a day keeps the... <strong>doctor away!</strong>" (89%)',
+        '"The mitochondria is the powerhouse of the... <strong>cell!</strong>" (94%)',
+        '"Houston, we have a... <strong>problem!</strong>" (91%)',
+        '"I think, therefore I... <strong>am!</strong>" (96%)'
+    ];
+    var squawkIndex = 0;
+    var squawkTimeout;
+
+    function setupParrot() {
+        var parrotArea = document.getElementById('parrot-area');
+        var bubble = document.getElementById('squawk-bubble');
+
+        parrotArea.addEventListener('mouseenter', function() {
+            bubble.innerHTML = squawkPhrases[squawkIndex];
+            bubble.classList.add('show');
+            squawkIndex = (squawkIndex + 1) % squawkPhrases.length;
+        });
+
+        parrotArea.addEventListener('mouseleave', function() {
+            bubble.classList.remove('show');
+        });
+    }
+
+    function drawNoise(canvas, opacity) {
+        var ctx = canvas.getContext('2d');
+        var w = canvas.width;
+        var h = canvas.height;
+        var imgData = ctx.createImageData(w, h);
+        var data = imgData.data;
+        for (var i = 0; i < data.length; i += 4) {
+            var val = Math.random() * 255;
+            data[i] = val * 0.4;
+            data[i + 1] = val * 0.3;
+            data[i + 2] = val * 0.6;
+            data[i + 3] = opacity * 255;
+        }
+        ctx.putImageData(imgData, 0, 0);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var sections = document.querySelectorAll('.slide');
+        var navDots = document.querySelectorAll('.nav-dots a');
+        var wrapper = document.querySelector('.slides-wrapper');
+
+        wrapper.addEventListener('scroll', function() {
+            var scrollPos = wrapper.scrollTop + window.innerHeight / 2;
+            sections.forEach(function(section, i) {
+                var top = section.offsetTop;
+                var bottom = top + section.offsetHeight;
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    navDots.forEach(function(dot) { dot.classList.remove('active'); });
+                    if (navDots[i]) navDots[i].classList.add('active');
+                }
+            });
+        });
+
+        navDots.forEach(function(dot) {
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                wrapper.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        navDots[0].classList.add('active');
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                var currentIndex = getCurrentSlideIndex();
+                if (currentIndex < sections.length - 1) {
+                    wrapper.scrollTo({
+                        top: sections[currentIndex + 1].offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                var currentIndex = getCurrentSlideIndex();
+                if (currentIndex > 0) {
+                    wrapper.scrollTo({
+                        top: sections[currentIndex - 1].offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+
+        function getCurrentSlideIndex() {
+            var scrollPos = wrapper.scrollTop + window.innerHeight / 2;
+            for (var i = 0; i < sections.length; i++) {
+                var top = sections[i].offsetTop;
+                var bottom = top + sections[i].offsetHeight;
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        setupParrot();
+
+        var noiseCanvas = document.getElementById('noise-canvas');
+        if (noiseCanvas) {
+            drawNoise(noiseCanvas, 1);
+        }
+    });
+    </script>
+</body>
+</html>
