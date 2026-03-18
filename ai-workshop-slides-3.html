@@ -1669,6 +1669,11 @@
         <a href="#slide23"></a>
         <a href="#slide24"></a>
         <a href="#slide25"></a>
+        <a href="#slide26"></a>
+        <a href="#slide27"></a>
+        <a href="#slide28"></a>
+        <a href="#slide29"></a>
+        <a href="#slide30"></a>
     </div>
 
     <div class="slides-wrapper">
@@ -1712,7 +1717,7 @@
                     <i class="fas fa-keyboard placeholder-icon"></i>
                 </div>
                 <div class="question-text">
-                    <h2>Autocomplete on <span style="color:#00d4ff;">Steroids</span></h2>
+                    <h2>Autocomplete on <span style="color:#00d4ff;">Caffeine</span></h2>
                     <p>An LLM is like the autocomplete on your phone... but it's read every book, article, and webpage ever written.</p>
                 </div>
             </div>
@@ -1882,9 +1887,9 @@
                 <div class="token-demo">
                     <div class="token-word" id="token-word">unhappiness</div>
                     <div class="token-pieces" id="token-pieces">
-                        <div class="token-piece">un-<span class="token-id">471</span></div>
-                        <div class="token-piece">happi-<span class="token-id">8293</span></div>
-                        <div class="token-piece">-ness<span class="token-id">1042</span></div>
+                        <div class="token-piece">un<span class="token-id">359</span></div>
+                        <div class="token-piece">h<span class="token-id">71</span></div>
+                        <div class="token-piece">appiness<span class="token-id">67391</span></div>
                     </div>
                     <button class="token-split-btn" id="token-btn" onclick="splitToken()">
                         <i class="fas fa-cut"></i> Split into Tokens
@@ -1893,18 +1898,18 @@
                 <div class="token-explanation">
                     <div class="token-explain-card">
                         <i class="fas fa-puzzle-piece"></i>
-                        <h4>Why Tokens?</h4>
-                        <p>Breaking words into smaller pieces lets AI handle any word&mdash;even ones it's never seen before&mdash;by combining known chunks.</p>
+                        <h4>Surprise!</h4>
+                        <p>These are <strong style="color:#00d4ff;">real GPT-4 token IDs</strong>. Notice AI doesn't split words the way humans would&mdash;"un / h / appiness" instead of "un / happi / ness."</p>
                     </div>
                     <div class="token-explain-card">
                         <i class="fas fa-hashtag"></i>
-                        <h4>Numbers, Not Letters</h4>
-                        <p>Each token gets a unique number. AI does math on these numbers to predict what comes next.</p>
+                        <h4>Why Those Numbers?</h4>
+                        <p>Token IDs are assigned by frequency. "un" is common (low ID: 359). "h" is very common (ID: 71). "appiness" is rare (high ID: 67,391).</p>
                     </div>
                     <div class="token-explain-card">
                         <i class="fas fa-calculator"></i>
                         <h4>Scale</h4>
-                        <p>GPT-4 has a vocabulary of ~100,000 tokens. Every response is a sequence of predicted token numbers.</p>
+                        <p>GPT-4 has a vocabulary of ~100,000 tokens. Every response you've ever received is a sequence of predicted token numbers.</p>
                     </div>
                 </div>
             </div>
@@ -2064,22 +2069,22 @@
         <!-- ============ SLIDE 16: STORY CHAIN EXERCISE ============ -->
         <section class="slide" id="slide16">
             <div class="story-chain-container">
-                <h2><i class="fas fa-users" style="color: #a29bfe; margin-right: 10px;"></i> Group Exercise: <span>Predictive Story Chain</span></h2>
+                <h2><i class="fas fa-users" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Predictive Story Chain</span></h2>
                 <div class="story-rules">
                     <div class="story-rule">
                         <div class="rule-num">1</div>
-                        <h4>Setup</h4>
-                        <p>Break into groups. Each group gets a different story starter.</p>
+                        <h4>I Read the Starter</h4>
+                        <p>I'll read a story opener out loud. Then we go around the room.</p>
                     </div>
                     <div class="story-rule">
                         <div class="rule-num">2</div>
-                        <h4>The Rule</h4>
-                        <p>Each person adds <strong>only one word</strong> and passes it to the right.</p>
+                        <h4>One Word Each</h4>
+                        <p>When I point to you, say <strong>one word</strong> to continue the story. Just one! Then I move to the next person.</p>
                     </div>
                     <div class="story-rule">
                         <div class="rule-num">3</div>
-                        <h4>The Twist</h4>
-                        <p>3 rounds: pick the <strong style="color:#00d4ff;">most boring</strong> word. Then 3 rounds: pick the <strong style="color:#e74c3c;">most unexpected</strong> word.</p>
+                        <h4>Two Rounds</h4>
+                        <p><strong style="color:#00d4ff;">Round 1:</strong> Pick the most <em>obvious, predictable</em> word you can think of.<br><strong style="color:#e74c3c;">Round 2:</strong> Pick the <em>weirdest, most unexpected</em> word possible.</p>
                     </div>
                 </div>
             </div>
@@ -2101,7 +2106,7 @@
                 </div>
                 <div class="diffusion-analogy" style="margin-top: 25px;">
                     <i class="fas fa-lightbulb" style="color: #ff9f43; margin-right: 8px;"></i>
-                    <strong>Discussion:</strong> Read the stories aloud. Did they make sense? The "boring" rounds mimic low-temperature AI (predictable). The "unexpected" rounds mimic high-temperature AI (creative).
+                    <strong>The Point:</strong> Your "boring" round is exactly how a low-temperature AI works&mdash;predictable and safe. Your "wild" round is high-temperature AI&mdash;creative but risky. Both came from the same story starter!
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -2174,40 +2179,23 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 21: TRUTH OR PROBABILITY EXERCISE ============ -->
+        <!-- ============ SLIDE 21: HALLUCINATION PROMPT 1 ============ -->
         <section class="slide" id="slide21">
             <div class="centered-content">
-                <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
-                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">Two AI-generated paragraphs. One is factual. One is a confident-sounding lie. Click to flip and find out!</p>
-                <div class="flip-cards-row">
-                    <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="card-icon-header">&#x1F4C4;</div>
-                                <h3>Paragraph A</h3>
-                                <p>"The Great Wall of China is over 13,000 miles long and was built over many centuries, starting in the 7th century BC. It was primarily constructed to protect against invasions from northern nomadic groups."</p>
-                                <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
-                            </div>
-                            <div class="flip-card-back fact-answer">
-                                <div class="answer-icon"><i class="fas fa-check-circle"></i></div>
-                                <div class="answer-label">FACT</div>
-                                <p>This is accurate. The Great Wall spans over 13,000 miles and construction began in the 7th century BC.</p>
-                            </div>
+                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
+                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
+                            <h3>Prompt 1</h3>
+                            <p style="font-size: 1.15rem; padding: 0 10px;">"Tell me about the 1954 Nobel Prize in Literature winner's famous speech about the moon landing."</p>
+                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
                         </div>
-                    </div>
-                    <div class="flip-card-single" onclick="this.classList.toggle('flipped')">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="card-icon-header">&#x1F4C4;</div>
-                                <h3>Paragraph B</h3>
-                                <p>"The Golden Gate Bridge in San Francisco was designed by Leonardo da Vinci in 1502 as part of his visionary urban planning portfolio. Construction was completed in 1937 using da Vinci's original blueprints."</p>
-                                <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
-                            </div>
-                            <div class="flip-card-back hallucination-answer">
-                                <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
-                                <div class="answer-label">HALLUCINATION</div>
-                                <p>The Golden Gate Bridge was designed by Joseph Strauss, not Leonardo da Vinci. The AI confidently mixed real facts (1937 completion) with fabricated ones.</p>
-                            </div>
+                        <div class="flip-card-back hallucination-answer">
+                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
+                            <div class="answer-label">HALLUCINATION</div>
+                            <p style="font-size: 1.05rem;">The 1954 winner was Ernest Hemingway. He never gave a speech about the moon landing&mdash;it didn't happen until 1969! AI will often fabricate an entire speech because the sentence pattern is plausible.</p>
                         </div>
                     </div>
                 </div>
@@ -2218,8 +2206,143 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 22: KEY TERMS RECAP ============ -->
+        <!-- ============ SLIDE 22: HALLUCINATION PROMPT 2 ============ -->
         <section class="slide" id="slide22">
+            <div class="centered-content">
+                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
+                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
+                            <h3>Prompt 2</h3>
+                            <p style="font-size: 1.15rem; padding: 0 10px;">"Summarize the scientific paper: 'The Effects of Quantum Entanglement on Baking Sourdough Bread.'"</p>
+                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
+                        </div>
+                        <div class="flip-card-back hallucination-answer">
+                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
+                            <div class="answer-label">HALLUCINATION</div>
+                            <p style="font-size: 1.05rem;">This paper does not exist. But AI will confidently "summarize" it&mdash;complete with fake authors, fake journals, and fake conclusions&mdash;because it's predicting likely-sounding academic language.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 23: HALLUCINATION PROMPT 3 ============ -->
+        <section class="slide" id="slide23">
+            <div class="centered-content">
+                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
+                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
+                            <h3>Prompt 3</h3>
+                            <p style="font-size: 1.15rem; padding: 0 10px;">"What did Albert Einstein say in his 1998 interview with The New York Times?"</p>
+                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
+                        </div>
+                        <div class="flip-card-back hallucination-answer">
+                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
+                            <div class="answer-label">HALLUCINATION</div>
+                            <p style="font-size: 1.05rem;">Albert Einstein died in 1955. He couldn't have given a 1998 interview. But AI may invent a plausible-sounding quote because "Einstein" + "interview" + "New York Times" is a high-probability pattern.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 24: HALLUCINATION PROMPT 4 ============ -->
+        <section class="slide" id="slide24">
+            <div class="centered-content">
+                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
+                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
+                            <h3>Prompt 4</h3>
+                            <p style="font-size: 1.15rem; padding: 0 10px;">"List 5 books by Malcolm Gladwell that were published before the year 2000."</p>
+                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
+                        </div>
+                        <div class="flip-card-back hallucination-answer">
+                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
+                            <div class="answer-label">HALLUCINATION</div>
+                            <p style="font-size: 1.05rem;">Malcolm Gladwell only published one book before 2000: <em>The Tipping Point</em> (2000, barely). AI will often invent convincing-sounding titles to fill the list because it's completing a pattern, not checking facts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 25: TRUTH OR PROBABILITY - FACT ============ -->
+        <section class="slide" id="slide25">
+            <div class="centered-content">
+                <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 25px;">AI-generated paragraph. Is it factual or a confident-sounding lie? Click to find out!</p>
+                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon-header">&#x1F4C4;</div>
+                            <h3>Paragraph A</h3>
+                            <p style="font-size: 1.1rem; padding: 0 10px;">"The Great Wall of China is over 13,000 miles long and was built over many centuries, starting in the 7th century BC. It was primarily constructed to protect against invasions from northern nomadic groups."</p>
+                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                        </div>
+                        <div class="flip-card-back fact-answer">
+                            <div class="answer-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="answer-label">FACT</div>
+                            <p style="font-size: 1.1rem;">This is accurate. The Great Wall spans over 13,000 miles and construction began in the 7th century BC. AI got this right because "Great Wall" + "13,000 miles" is a well-established pattern in its training data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 26: TRUTH OR PROBABILITY - HALLUCINATION ============ -->
+        <section class="slide" id="slide26">
+            <div class="centered-content">
+                <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 25px;">AI-generated paragraph. Is it factual or a confident-sounding lie? Click to find out!</p>
+                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon-header">&#x1F4C4;</div>
+                            <h3>Paragraph B</h3>
+                            <p style="font-size: 1.1rem; padding: 0 10px;">"The Golden Gate Bridge in San Francisco was designed by Leonardo da Vinci in 1502 as part of his visionary urban planning portfolio. Construction was completed in 1937 using da Vinci's original blueprints."</p>
+                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal</div>
+                        </div>
+                        <div class="flip-card-back hallucination-answer">
+                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
+                            <div class="answer-label">HALLUCINATION</div>
+                            <p style="font-size: 1.1rem;">The Golden Gate Bridge was designed by Joseph Strauss, not da Vinci. AI confidently mixed real facts (1937 completion) with fabricated ones&mdash;because "famous person + famous structure" is a high-probability pattern.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 27: KEY TERMS RECAP ============ -->
+        <section class="slide" id="slide27">
             <div class="qa-container">
                 <h2>Key Terms <span>Recap</span></h2>
                 <div class="qa-items">
@@ -2251,8 +2374,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 23: CLOSING QUOTE ============ -->
-        <section class="slide" id="slide23">
+        <!-- ============ SLIDE 28: CLOSING QUOTE ============ -->
+        <section class="slide" id="slide28">
             <div class="closing-quote">
                 <i class="fas fa-quote-left"></i>
                 <h2>"AI doesn't think. It calculates. And there's a world of difference between the two."</h2>
@@ -2263,8 +2386,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 24: Q&A ============ -->
-        <section class="slide" id="slide24">
+        <!-- ============ SLIDE 29: Q&A ============ -->
+        <section class="slide" id="slide29">
             <div class="qa-container">
                 <h2><i class="fas fa-comments" style="color: #a29bfe; margin-right: 10px;"></i> <span>Q&A</span></h2>
                 <p style="font-size: 1.2rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">Click any question to reveal the answer</p>
@@ -2289,14 +2412,14 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 25: SESSION 4 PREVIEW ============ -->
-        <section class="slide" id="slide25">
+        <!-- ============ SLIDE 30: SESSION 4 PREVIEW ============ -->
+        <section class="slide" id="slide30">
             <div class="final-slide">
                 <p class="coming-next">Coming Next</p>
                 <h2>Session 4: Prompt Engineering</h2>
                 <p class="session-date"><i class="fas fa-calendar-alt"></i> April 27, 2026</p>
                 <p class="session-desc">Master the art of talking to AI. Learn prompt formulas, chain-of-thought techniques, and compete in the ultimate Prompt Engineering challenge.</p>
-                <a href="ai-workshops-hub.html" class="hub-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+                <a href="https://shouldcallpaul.com" class="hub-btn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
             <div class="brand-website">shouldcallpaul.com</div>

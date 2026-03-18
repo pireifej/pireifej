@@ -13,27 +13,33 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
 
 ## Recent Changes (March 18, 2026)
 ### AI Workshop Session 3
-- Created **ai-workshop-slides-3.html** - 25-slide presentation for "A Look Under the Hood"
+- Created **ai-workshop-slides-3.html** - 30-slide presentation for "A Look Under the Hood"
   - Part I: The "Smart Autocomplete" Hook (slides 1-8)
-    - Title slide, section divider, autocomplete analogy, library metaphor
+    - Title slide, section divider, "Autocomplete on Caffeine" analogy, library metaphor
     - Human Autocomplete exercise (click-to-reveal phrase cards)
     - Stochastic Parrot slide with hover squawk bubble (cycles probabilistic completions)
     - Next-word probability visualization with animated bars
   - Part II: Tokens, Patterns, and Pixels (slides 9-18)
-    - Tokenization animation ("unhappiness" → "un-" / "happi-" / "-ness" on click)
+    - Tokenization animation with real GPT-4 token IDs: "un"(359) + "h"(71) + "appiness"(67391)
+    - Token explanation: IDs assigned by frequency (common = low ID, rare = high ID)
     - Diffusion demo (canvas noise → SVG statue over 3s with progress bar)
     - AI Layers diagram (AI → ML → Deep Learning → Generative AI + Responsible AI)
     - Key terms: Machine Learning, Deep Learning, Generative AI
-    - Predictive Story Chain group exercise with story starters
+    - Predictive Story Chain: facilitator-led whole-room exercise (Round 1: boring/predictable, Round 2: weird/unexpected)
     - Temperature comparison (low vs high, boring vs creative words)
-  - Part III: The "Hallucination" Reality Check (slides 19-25)
+  - Part III: The "Hallucination" Reality Check (slides 19-30)
     - Why AI "lies" explanation with examples
-    - Truth or Probability flip cards (Fact vs Hallucination, click to flip)
+    - 4 Live Hallucination Prompts (slides 21-24): audience types into ChatGPT, flip card reveals truth
+      - Prompt 1: 1954 Nobel winner's moon landing speech (Hemingway, impossible timeline)
+      - Prompt 2: Quantum sourdough paper (fake paper, AI fabricates summary)
+      - Prompt 3: Einstein 1998 NYT interview (died 1955)
+      - Prompt 4: Malcolm Gladwell books before 2000 (only 1 exists)
+    - Truth or Probability: split into 2 separate slides (25=Fact, 26=Hallucination)
     - Key Terms Recap (click-to-reveal Q&A accordion)
-    - Q&A section (click-to-reveal accordion)
-    - Session 4 preview (Prompt Engineering, April 27, 2026)
-  - Interactive features: keyboard arrow navigation, nav dots, click-to-reveal, flip cards, hover parrot
+    - Closing quote, Q&A section, Session 4 preview (Prompt Engineering, April 27, 2026)
+  - Interactive features: keyboard arrow navigation, 30 nav dots, click-to-reveal, flip cards, hover parrot
   - Purple/cyan dark theme matching Sessions 1-2 exactly
+  - Back link goes to shouldcallpaul.com (hiding hub from students)
 - Unlocked Session 3 on **ai-workshops-hub.html** with Start Slides button
 
 ## Previous Changes (March 16, 2026)
