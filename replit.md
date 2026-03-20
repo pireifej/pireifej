@@ -22,7 +22,8 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
   - Part II: Tokens, Patterns, and Pixels (slides 9-19)
     - Tokenization animation with real GPT-4 token IDs: "un"(359) + "h"(71) + "appiness"(67391)
     - Token explanation: IDs assigned by frequency (common = low ID, rare = high ID)
-    - Strawberry Lab interactive slide (slide 11): Zone 1 shows [STRAW][BERRY] blocks → wrong answer (2 r's), Zone 2 shatters into individual letter blocks → count reveals 3 r's with glow animation
+    - OpenAI Tokenizer demo slide (slide 11): clickable link to platform.openai.com/tokenizer with try-it suggestions (strawberry, unhappiness, other languages)
+    - Strawberry Lab interactive slide (slide 12): Zone 1 shows [STRAW][BERRY] blocks → wrong answer (2 r's), Zone 2 shatters into individual letter blocks → count reveals 3 r's with glow animation
     - Diffusion demo (canvas noise → SVG statue over 3s with progress bar)
     - AI Layers diagram (AI → ML → Deep Learning → Generative AI + Responsible AI)
     - Key terms: Machine Learning, Deep Learning, Generative AI
@@ -39,7 +40,7 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
     - Key Terms Recap (click-to-reveal Q&A accordion)
     - Closing quotes (John Searle paraphrase + Dijkstra submarine quote)
     - Q&A section, Session 4 preview (Prompt Engineering, April 27, 2026)
-  - Interactive features: keyboard arrow navigation, 32 nav dots, click-to-reveal, flip cards, hover parrot
+  - Interactive features: keyboard arrow navigation, 33 nav dots, click-to-reveal, flip cards, hover parrot, clickable story starters
   - Purple/cyan dark theme matching Sessions 1-2 exactly
   - Back link goes to shouldcallpaul.com (hiding hub from students)
 - Unlocked Session 3 on **ai-workshops-hub.html** with Start Slides button
