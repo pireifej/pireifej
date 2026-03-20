@@ -755,6 +755,191 @@
             line-height: 1.5;
         }
 
+        /* ============ STRAWBERRY LAB ============ */
+        .strawberry-lab {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .strawberry-lab h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .strawberry-lab h2 span {
+            color: #00d4ff;
+        }
+
+        .strawberry-lab .lab-subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 25px;
+        }
+
+        .zone-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a29bfe;
+            margin-bottom: 10px;
+        }
+
+        .zone-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 22px 28px;
+            margin-bottom: 18px;
+        }
+
+        .prompt-display {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 18px;
+            font-family: 'Inter', monospace;
+        }
+
+        .blocks-row {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            min-height: 60px;
+            flex-wrap: wrap;
+            transition: all 0.5s ease;
+        }
+
+        .token-block {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .token-block.standard { font-size: 1.3rem; }
+
+        .letter-block {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(0.3) rotate(15deg);
+        }
+
+        .letter-block.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .letter-block.glow-r {
+            background: linear-gradient(135deg, #2ecc71, #00d4ff);
+            box-shadow: 0 0 20px rgba(0,212,255,0.6);
+            transform: scale(1.15);
+        }
+
+        .token-block.shatter {
+            opacity: 0;
+            transform: scale(0.2) rotate(-20deg);
+        }
+
+        .thought-bubble {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 14px;
+            display: none;
+            animation: fadeSlideUp 0.4s ease;
+        }
+
+        .thought-bubble.show { display: block; }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lab-btn.primary {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+        }
+
+        .lab-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(108,92,231,0.4); }
+
+        .lab-btn.success {
+            background: linear-gradient(135deg, #00b894, #2ecc71);
+            color: #fff;
+        }
+
+        .lab-btn.success:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(46,204,113,0.4); }
+
+        .lab-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .key-insight-reveal {
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        .insight-content {
+            background: rgba(0,212,255,0.08);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 12px 12px 0;
+            padding: 16px 22px;
+            margin-top: 12px;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            display: none;
+            animation: fadeSlideUp 0.4s ease;
+        }
+
+        .insight-content.show { display: block; }
+
+        .insight-content strong { color: #00d4ff; }
+
         /* ============ DIFFUSION ============ */
         .diffusion-container {
             max-width: 900px;
@@ -1675,6 +1860,7 @@
         <a href="#slide29"></a>
         <a href="#slide30"></a>
         <a href="#slide31"></a>
+        <a href="#slide32"></a>
     </div>
 
     <div class="slides-wrapper">
@@ -1919,8 +2105,65 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 11: DIFFUSION ============ -->
+        <!-- ============ SLIDE 11: STRAWBERRY LAB ============ -->
         <section class="slide" id="slide11">
+            <div class="strawberry-lab">
+                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Lab: <span>The Strawberry Test</span></h2>
+                <p class="lab-subtitle">Breaking the building blocks to find what's hidden inside</p>
+
+                <div class="zone-card">
+                    <div class="zone-label"><i class="fas fa-cube" style="margin-right: 6px;"></i> Zone 1 &mdash; The "Standard" View</div>
+                    <div class="prompt-display"><i class="fas fa-keyboard" style="color: #00d4ff; margin-right: 8px;"></i> How many 'r's are in strawberry?</div>
+                    <div class="blocks-row" id="standard-blocks">
+                        <div class="token-block standard" id="block-straw">STRAW</div>
+                        <div class="token-block standard" id="block-berry">BERRY</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="lab-btn primary" id="run-standard-btn" onclick="runStandardCalc()"><i class="fas fa-play"></i> Run Standard Calculation</button>
+                    </div>
+                    <div class="thought-bubble" id="standard-thought">
+                        <i class="fas fa-robot" style="color: #a29bfe; margin-right: 8px;"></i> <em>"I see 'berry', which usually has 2 'r's."</em> &rarr; Result: <strong style="color: #e74c3c; font-size: 1.3rem;">2</strong>
+                    </div>
+                </div>
+
+                <div class="zone-card">
+                    <div class="zone-label"><i class="fas fa-bomb" style="margin-right: 6px;"></i> Zone 2 &mdash; The "Exploded" View</div>
+                    <div class="blocks-row" id="exploded-blocks">
+                        <div class="letter-block" data-letter="s">s</div>
+                        <div class="letter-block" data-letter="t">t</div>
+                        <div class="letter-block" data-letter="r">r</div>
+                        <div class="letter-block" data-letter="a">a</div>
+                        <div class="letter-block" data-letter="w">w</div>
+                        <div class="letter-block" data-letter="b">b</div>
+                        <div class="letter-block" data-letter="e">e</div>
+                        <div class="letter-block" data-letter="r">r</div>
+                        <div class="letter-block" data-letter="r">r</div>
+                        <div class="letter-block" data-letter="y">y</div>
+                    </div>
+                    <div style="text-align: center; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <button class="lab-btn primary" id="break-btn" onclick="breakBlocks()"><i class="fas fa-hammer"></i> Break the Building Blocks</button>
+                        <button class="lab-btn success" id="count-btn" onclick="countRs()" disabled><i class="fas fa-search"></i> Count 'r's</button>
+                    </div>
+                    <div class="thought-bubble" id="exploded-thought">
+                        <i class="fas fa-robot" style="color: #2ecc71; margin-right: 8px;"></i> <em>"Scanning each letter&hellip; r &hellip; r &hellip; r &hellip;"</em> &rarr; Result: <strong style="color: #2ecc71; font-size: 1.3rem;">3</strong>
+                    </div>
+                </div>
+
+                <div class="key-insight-reveal" style="text-align: center;">
+                    <button class="lab-btn primary" onclick="revealInsight()"><i class="fas fa-lightbulb"></i> Reveal Key Insight</button>
+                    <div class="insight-content" id="strawberry-insight">
+                        <strong>AI doesn't read letters; it calculates blocks.</strong> When the blocks are too big, the details (like the letter 'r') get lost in the math. This is why AI famously struggled to count letters in "strawberry"&mdash;it never saw the individual letters at all.
+                    </div>
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 12: DIFFUSION ============ -->
+        <section class="slide" id="slide12">
             <div class="diffusion-container">
                 <h2>How Images Work: <span>Diffusion</span></h2>
                 <p class="diffusion-subtitle">The "Statues in the Marble" Analogy</p>
@@ -1946,7 +2189,7 @@
                                 <rect x="170" y="275" width="28" height="90" rx="8" fill="url(#statueGrad)" opacity="0.85"/>
                                 <rect x="202" y="275" width="28" height="90" rx="8" fill="url(#statueGrad)" opacity="0.85"/>
                                 <rect x="130" y="360" width="140" height="15" rx="5" fill="#a29bfe" opacity="0.5"/>
-                                <text x="200" y="395" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">"David" by Michelangelo</text>
+                                <text x="200" y="395" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">Statue</text>
                             </svg>
                         </div>
                     </div>
@@ -1960,7 +2203,7 @@
                 </div>
                 <div class="diffusion-analogy">
                     <i class="fas fa-hammer" style="color: #a29bfe; margin-right: 8px;"></i>
-                    Like a sculptor looking at a block of marble and "removing" everything that isn't a David. The AI starts with static and slowly removes the noise until a sharp image remains.
+                    Like a sculptor looking at a block of marble and "removing" everything that isn't a statue. The AI starts with static and slowly removes the noise until a sharp image remains.
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -1969,8 +2212,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 12: AI LAYERS DIAGRAM ============ -->
-        <section class="slide" id="slide12">
+        <!-- ============ SLIDE 13: AI LAYERS DIAGRAM ============ -->
+        <section class="slide" id="slide13">
             <div class="layers-container">
                 <h2>The <span>Big Picture</span></h2>
                 <div class="layers-diagram">
@@ -2009,8 +2252,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 13: KEY TERMS - ML ============ -->
-        <section class="slide" id="slide13">
+        <!-- ============ SLIDE 14: KEY TERMS - ML ============ -->
+        <section class="slide" id="slide14">
             <div class="slide-photo-content" style="justify-content: center;">
                 <div class="content-side" style="max-width: 800px;">
                     <h2><i class="fas fa-cogs" style="color: #ff9f43; margin-right: 10px;"></i> <span>Machine Learning</span></h2>
@@ -2028,8 +2271,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 14: KEY TERMS - DEEP LEARNING ============ -->
-        <section class="slide" id="slide14">
+        <!-- ============ SLIDE 15: KEY TERMS - DEEP LEARNING ============ -->
+        <section class="slide" id="slide15">
             <div class="slide-photo-content" style="justify-content: center;">
                 <div class="content-side" style="max-width: 800px;">
                     <h2><i class="fas fa-brain" style="color: #c77dff; margin-right: 10px;"></i> <span>Deep Learning</span></h2>
@@ -2047,8 +2290,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 15: KEY TERMS - GENERATIVE AI ============ -->
-        <section class="slide" id="slide15">
+        <!-- ============ SLIDE 16: KEY TERMS - GENERATIVE AI ============ -->
+        <section class="slide" id="slide16">
             <div class="slide-photo-content" style="justify-content: center;">
                 <div class="content-side" style="max-width: 800px;">
                     <h2><i class="fas fa-paint-brush" style="color: #2ecc71; margin-right: 10px;"></i> <span>Generative AI</span></h2>
@@ -2066,8 +2309,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 16: STORY CHAIN EXERCISE ============ -->
-        <section class="slide" id="slide16">
+        <!-- ============ SLIDE 17: STORY CHAIN EXERCISE ============ -->
+        <section class="slide" id="slide17">
             <div class="story-chain-container">
                 <h2><i class="fas fa-users" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Predictive Story Chain</span></h2>
                 <div class="story-rules">
@@ -2094,8 +2337,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 17: STORY STARTERS ============ -->
-        <section class="slide" id="slide17">
+        <!-- ============ SLIDE 18: STORY STARTERS ============ -->
+        <section class="slide" id="slide18">
             <div class="story-chain-container">
                 <h2>Story <span>Starters</span></h2>
                 <div class="story-starters">
@@ -2115,8 +2358,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 18: TEMPERATURE ============ -->
-        <section class="slide" id="slide18">
+        <!-- ============ SLIDE 19: TEMPERATURE ============ -->
+        <section class="slide" id="slide19">
             <div class="temperature-container">
                 <h2>AI <span>"Temperature"</span></h2>
                 <div class="temp-comparison">
@@ -2142,8 +2385,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 19: SECTION III DIVIDER ============ -->
-        <section class="slide" id="slide19">
+        <!-- ============ SLIDE 20: SECTION III DIVIDER ============ -->
+        <section class="slide" id="slide20">
             <div class="section-divider">
                 <div class="section-label">Part III</div>
                 <h2>The <span>"Hallucination"</span> Reality Check</h2>
@@ -2155,8 +2398,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 20: WHY AI LIES ============ -->
-        <section class="slide" id="slide20">
+        <!-- ============ SLIDE 21: WHY AI LIES ============ -->
+        <section class="slide" id="slide21">
             <div class="hallucination-container">
                 <h2>Why AI <span>"Lies"</span></h2>
                 <p class="hallucination-subtitle">Since it only predicts the next word, it doesn't care about the truth. It cares about probability.</p>
@@ -2179,8 +2422,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 21: HALLUCINATION PROMPT 1 ============ -->
-        <section class="slide" id="slide21">
+        <!-- ============ SLIDE 22: HALLUCINATION PROMPT 1 ============ -->
+        <section class="slide" id="slide22">
             <div class="centered-content">
                 <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
                 <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
@@ -2206,8 +2449,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 22: HALLUCINATION PROMPT 2 ============ -->
-        <section class="slide" id="slide22">
+        <!-- ============ SLIDE 23: HALLUCINATION PROMPT 2 ============ -->
+        <section class="slide" id="slide23">
             <div class="centered-content">
                 <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
                 <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
@@ -2233,8 +2476,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 23: HALLUCINATION PROMPT 3 ============ -->
-        <section class="slide" id="slide23">
+        <!-- ============ SLIDE 24: HALLUCINATION PROMPT 3 ============ -->
+        <section class="slide" id="slide24">
             <div class="centered-content">
                 <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
                 <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
@@ -2260,8 +2503,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 24: HALLUCINATION PROMPT 4 ============ -->
-        <section class="slide" id="slide24">
+        <!-- ============ SLIDE 25: HALLUCINATION PROMPT 4 ============ -->
+        <section class="slide" id="slide25">
             <div class="centered-content">
                 <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
                 <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
@@ -2287,8 +2530,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 25: TRUTH OR PROBABILITY - FACT ============ -->
-        <section class="slide" id="slide25">
+        <!-- ============ SLIDE 26: TRUTH OR PROBABILITY - FACT ============ -->
+        <section class="slide" id="slide26">
             <div class="centered-content">
                 <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
                 <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 25px;">AI-generated paragraph. Is it factual or a confident-sounding lie? Click to find out!</p>
@@ -2314,8 +2557,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 26: TRUTH OR PROBABILITY - HALLUCINATION ============ -->
-        <section class="slide" id="slide26">
+        <!-- ============ SLIDE 27: TRUTH OR PROBABILITY - HALLUCINATION ============ -->
+        <section class="slide" id="slide27">
             <div class="centered-content">
                 <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
                 <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 25px;">AI-generated paragraph. Is it factual or a confident-sounding lie? Click to find out!</p>
@@ -2341,8 +2584,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 27: KEY TERMS RECAP ============ -->
-        <section class="slide" id="slide27">
+        <!-- ============ SLIDE 28: KEY TERMS RECAP ============ -->
+        <section class="slide" id="slide28">
             <div class="qa-container">
                 <h2>Key Terms <span>Recap</span></h2>
                 <div class="qa-items">
@@ -2374,8 +2617,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 28: CLOSING QUOTE ============ -->
-        <section class="slide" id="slide28">
+        <!-- ============ SLIDE 29: CLOSING QUOTE ============ -->
+        <section class="slide" id="slide29">
             <div class="closing-quote">
                 <i class="fas fa-quote-left"></i>
                 <h2>"AI doesn't think. It calculates. And there's a world of difference between the two."</h2>
@@ -2387,8 +2630,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 29: DIJKSTRA QUOTE ============ -->
-        <section class="slide" id="slide29">
+        <!-- ============ SLIDE 30: DIJKSTRA QUOTE ============ -->
+        <section class="slide" id="slide30">
             <div class="closing-quote">
                 <i class="fas fa-quote-left"></i>
                 <h2>"The question of whether a computer can think is no more interesting than the question of whether a submarine can swim."</h2>
@@ -2400,8 +2643,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 30: Q&A ============ -->
-        <section class="slide" id="slide30">
+        <!-- ============ SLIDE 31: Q&A ============ -->
+        <section class="slide" id="slide31">
             <div class="qa-container">
                 <h2><i class="fas fa-comments" style="color: #a29bfe; margin-right: 10px;"></i> <span>Q&A</span></h2>
                 <p style="font-size: 1.2rem; color: rgba(255,255,255,0.6); margin-bottom: 30px;">Click any question to reveal the answer</p>
@@ -2426,8 +2669,8 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 31: SESSION 4 PREVIEW ============ -->
-        <section class="slide" id="slide31">
+        <!-- ============ SLIDE 32: SESSION 4 PREVIEW ============ -->
+        <section class="slide" id="slide32">
             <div class="final-slide">
                 <p class="coming-next">Coming Next</p>
                 <h2>Session 4: Prompt Engineering</h2>
@@ -2446,6 +2689,70 @@
     <script>
     function revealPhrase(card) {
         card.classList.add('revealed');
+    }
+
+    function runStandardCalc() {
+        var btn = document.getElementById('run-standard-btn');
+        var thought = document.getElementById('standard-thought');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculating...';
+        setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-check"></i> Done';
+            thought.classList.add('show');
+        }, 800);
+    }
+
+    function breakBlocks() {
+        var btn = document.getElementById('break-btn');
+        var countBtn = document.getElementById('count-btn');
+        var standardBlocks = document.querySelectorAll('#standard-blocks .token-block');
+        var letterBlocks = document.querySelectorAll('#exploded-blocks .letter-block');
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Breaking...';
+
+        standardBlocks.forEach(function(b) { b.classList.add('shatter'); });
+
+        setTimeout(function() {
+            letterBlocks.forEach(function(block, i) {
+                setTimeout(function() {
+                    block.classList.add('visible');
+                }, i * 80);
+            });
+            btn.innerHTML = '<i class="fas fa-check"></i> Broken!';
+            setTimeout(function() {
+                countBtn.disabled = false;
+            }, letterBlocks.length * 80 + 200);
+        }, 500);
+    }
+
+    function countRs() {
+        var btn = document.getElementById('count-btn');
+        var thought = document.getElementById('exploded-thought');
+        var letterBlocks = document.querySelectorAll('#exploded-blocks .letter-block');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Counting...';
+
+        var rBlocks = [];
+        letterBlocks.forEach(function(block) {
+            if (block.getAttribute('data-letter') === 'r') rBlocks.push(block);
+        });
+
+        rBlocks.forEach(function(block, i) {
+            setTimeout(function() {
+                block.classList.add('glow-r');
+            }, (i + 1) * 500);
+        });
+
+        setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-check"></i> Found 3!';
+            thought.classList.add('show');
+        }, (rBlocks.length + 1) * 500);
+    }
+
+    function revealInsight() {
+        var insight = document.getElementById('strawberry-insight');
+        insight.classList.add('show');
     }
 
     function splitToken() {
