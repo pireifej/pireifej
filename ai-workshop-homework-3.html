@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshop Session 3: A Look Under the Hood - Homework & Review">
+    <title>A Look Under the Hood - Homework | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .lesson-wrapper {
+            padding: 140px 0 60px 0;
+            min-height: 100vh;
+        }
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 15px;
+        }
+        .lesson-header .subtitle {
+            color: #7c3aed;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .lesson-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            color: #7c3aed;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .back-link:hover {
+            color: #5b21b6;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .section-card h2 {
+            color: #232323;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-card h2 .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .section-card h3 {
+            color: #7c3aed;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+        .section-card p, .section-card li {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .section-card ul {
+            padding-left: 20px;
+        }
+        .section-card li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-left: 4px solid #7c3aed;
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+            color: #4c1d95;
+        }
+        .quiz-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .quiz-container h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .quiz-option {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quiz-option:hover {
+            border-color: #7c3aed;
+            transform: translateX(5px);
+        }
+        .quiz-option .option-letter {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .quiz-option.correct {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        .quiz-option.correct .option-letter {
+            background: #10b981;
+        }
+        .quiz-option.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .quiz-option.incorrect .option-letter {
+            background: #ef4444;
+        }
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+        .quiz-feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        .quiz-feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        .matching-exercise {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .matching-exercise h4 {
+            color: #232323;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .matching-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .matching-term {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-width: 160px;
+            text-align: center;
+        }
+        .matching-select {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        .matching-select:focus {
+            border-color: #7c3aed;
+            outline: none;
+        }
+        .matching-select.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        .matching-select.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        .matching-check-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .matching-check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+        }
+        .matching-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+        .matching-feedback.show {
+            display: block;
+        }
+        .matching-feedback.all-correct {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .matching-feedback.has-errors {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .tip-box h4 {
+            color: #3730a3;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tip-box p, .tip-box li {
+            color: #312e81;
+        }
+        .progress-tracker {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .progress-dot.active {
+            background: #7c3aed;
+            transform: scale(1.3);
+        }
+        .progress-dot:hover {
+            background: #a78bfa;
+            transform: scale(1.3);
+        }
+        .score-display {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+        }
+        .layers-diagram-hw {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        .layer-pill {
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #fff;
+            text-align: center;
+        }
+        .layer-pill.ai { background: #6366f1; }
+        .layer-pill.ml { background: #8b5cf6; }
+        .layer-pill.dl { background: #a78bfa; }
+        .layer-pill.gen { background: #c084fc; }
+        .layer-pill.resp { background: #e879f9; }
+        .layer-arrow-hw {
+            color: #a78bfa;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .lesson-wrapper {
+                padding: 120px 0 60px 0;
+            }
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+            .section-card {
+                padding: 25px 20px;
+            }
+            .progress-tracker {
+                display: none;
+            }
+            .matching-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .matching-term {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    {{sidebar}}
+
+    <div class="progress-tracker">
+        <div class="progress-dot active" data-section="1" title="The Big Picture"></div>
+        <div class="progress-dot" data-section="2" title="Terminology Deep Dive"></div>
+        <div class="progress-dot" data-section="3" title="Discriminative vs Generative"></div>
+        <div class="progress-dot" data-section="4" title="Tokens & Hallucinations"></div>
+        <div class="progress-dot" data-section="5" title="Putting It All Together"></div>
+    </div>
+
+    <div class="score-display">
+        Score: <span id="score">0</span> / <span id="total">7</span>
+    </div>
+
+    <div class="lesson-wrapper">
+        <div class="container">
+            <div class="lesson-header">
+                <a href="https://shouldcallpaul.com" class="back-link"><i class="fas fa-arrow-left"></i> Back to Should Call Paul</a>
+                <div class="subtitle">AI Workshop - Session 3</div>
+                <h1>A Look Under the Hood: Homework</h1>
+                <p>Review the key terminology and concepts from Session 3. How well do you understand the layers of AI?</p>
+            </div>
+
+            <div class="section-card" data-section="1">
+                <h2><span class="icon"><i class="fas fa-layer-group"></i></span> The Big Picture</h2>
+
+                <h3>The Layers of AI</h3>
+                <p>In Session 3, we learned that "AI" isn't just one thing &mdash; it's a set of layers, each building on the one before it. Here's the stack:</p>
+
+                <div class="layers-diagram-hw">
+                    <div class="layer-pill ai">AI</div>
+                    <div class="layer-arrow-hw"><i class="fas fa-arrow-right"></i></div>
+                    <div class="layer-pill ml">Machine Learning</div>
+                    <div class="layer-arrow-hw"><i class="fas fa-arrow-right"></i></div>
+                    <div class="layer-pill dl">Deep Learning</div>
+                    <div class="layer-arrow-hw"><i class="fas fa-arrow-right"></i></div>
+                    <div class="layer-pill gen">Generative AI</div>
+                </div>
+
+                <p>And running alongside all of them:</p>
+                <div class="layers-diagram-hw">
+                    <div class="layer-pill resp">Responsible AI</div>
+                </div>
+
+                <ul>
+                    <li><strong>AI (Artificial Intelligence):</strong> The big goal &mdash; making machines that can perform tasks that normally require human intelligence.</li>
+                    <li><strong>Machine Learning:</strong> A method for achieving AI. Instead of programming rules by hand, the computer <strong>learns from data</strong>. A human tells it what to look for (e.g., "look for wheels to identify a car").</li>
+                    <li><strong>Deep Learning:</strong> A more advanced kind of Machine Learning that uses <strong>neural networks</strong> (signals, weights, and nodes). The computer figures out on its own what features matter &mdash; no human needed to point them out.</li>
+                    <li><strong>Generative AI:</strong> AI that doesn't just analyze data &mdash; it <strong>creates new data</strong>. Text, images, code, music, video &mdash; all generated from patterns it learned.</li>
+                    <li><strong>Responsible AI:</strong> The safety manual &mdash; fairness, transparency, accountability, and privacy. It's the brakes on the car, making sure AI doesn't cause harm.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Think of it this way: AI is the goal. Machine Learning is the method. Deep Learning is the advanced method. Generative AI is the creative output. Responsible AI is the safety manual.</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="1">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is Machine Learning?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>A machine that is programmed with every rule it needs to follow</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>A method where the computer learns patterns from data instead of being explicitly programmed</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>An AI that can create images and text from scratch</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="2">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What makes Deep Learning different from regular Machine Learning?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>It uses bigger computers</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>It was invented more recently</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>It uses neural networks and figures out important features on its own, without a human pointing them out</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="2">
+                <h2><span class="icon"><i class="fas fa-book-open"></i></span> Terminology Deep Dive</h2>
+
+                <h3>Match Each Term to Its Definition</h3>
+                <p>Drag your memory from Session 3 and match each term to the correct definition.</p>
+
+                <div class="matching-exercise" data-match="1">
+                    <h4><i class="fas fa-puzzle-piece" style="color: #7c3aed;"></i> Matching: The Layers of AI</h4>
+
+                    <div class="matching-row">
+                        <div class="matching-term">AI</div>
+                        <select class="matching-select" data-answer="goal">
+                            <option value="">Select a definition...</option>
+                            <option value="goal">The big goal: machines performing tasks that require human intelligence</option>
+                            <option value="method">A method where computers learn from data</option>
+                            <option value="neural">Uses neural networks to figure out features on its own</option>
+                            <option value="creates">Creates new content like text, images, and code</option>
+                            <option value="safety">The safety manual: fairness, transparency, accountability</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Machine Learning</div>
+                        <select class="matching-select" data-answer="method">
+                            <option value="">Select a definition...</option>
+                            <option value="goal">The big goal: machines performing tasks that require human intelligence</option>
+                            <option value="method">A method where computers learn from data</option>
+                            <option value="neural">Uses neural networks to figure out features on its own</option>
+                            <option value="creates">Creates new content like text, images, and code</option>
+                            <option value="safety">The safety manual: fairness, transparency, accountability</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Deep Learning</div>
+                        <select class="matching-select" data-answer="neural">
+                            <option value="">Select a definition...</option>
+                            <option value="goal">The big goal: machines performing tasks that require human intelligence</option>
+                            <option value="method">A method where computers learn from data</option>
+                            <option value="neural">Uses neural networks to figure out features on its own</option>
+                            <option value="creates">Creates new content like text, images, and code</option>
+                            <option value="safety">The safety manual: fairness, transparency, accountability</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Generative AI</div>
+                        <select class="matching-select" data-answer="creates">
+                            <option value="">Select a definition...</option>
+                            <option value="goal">The big goal: machines performing tasks that require human intelligence</option>
+                            <option value="method">A method where computers learn from data</option>
+                            <option value="neural">Uses neural networks to figure out features on its own</option>
+                            <option value="creates">Creates new content like text, images, and code</option>
+                            <option value="safety">The safety manual: fairness, transparency, accountability</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Responsible AI</div>
+                        <select class="matching-select" data-answer="safety">
+                            <option value="">Select a definition...</option>
+                            <option value="goal">The big goal: machines performing tasks that require human intelligence</option>
+                            <option value="method">A method where computers learn from data</option>
+                            <option value="neural">Uses neural networks to figure out features on its own</option>
+                            <option value="creates">Creates new content like text, images, and code</option>
+                            <option value="safety">The safety manual: fairness, transparency, accountability</option>
+                        </select>
+                    </div>
+
+                    <button class="matching-check-btn" onclick="checkMatching(this)"><i class="fas fa-check"></i> Check Answers</button>
+                    <div class="matching-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="3">
+                <h2><span class="icon"><i class="fas fa-exchange-alt"></i></span> Discriminative vs Generative</h2>
+
+                <h3>Two Types of AI Thinking</h3>
+                <p>One of the most important distinctions in AI is the difference between <strong>discriminative</strong> and <strong>generative</strong> models:</p>
+
+                <ul>
+                    <li><strong>Discriminative AI:</strong> Looks at data and <strong>classifies</strong> it. "That's a cat." "That email is spam." "This X-ray shows a fracture." It sorts things into categories.</li>
+                    <li><strong>Generative AI:</strong> <strong>Creates new data</strong> that didn't exist before. "Here's a photo of a cat wearing a top hat." "Here's a 500-word essay about climate change." It produces, not just labels.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Easy way to remember: Discriminative = "What is this?" &nbsp;&nbsp; Generative = "Make me one."</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="3">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: A photo app that automatically tags your pictures as "beach," "birthday," or "pet" is using what type of AI?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">A</span>
+                            <span>Discriminative AI &mdash; it's classifying photos into categories</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Generative AI &mdash; it's creating new photos</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Responsible AI &mdash; it's making sure the photos are safe</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="4">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: You ask ChatGPT to "write a poem about the ocean." What type of AI is this?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Discriminative AI &mdash; it's analyzing the ocean</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Generative AI &mdash; it's creating something new that didn't exist before</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Deep Learning &mdash; it's using neural networks</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="4">
+                <h2><span class="icon"><i class="fas fa-puzzle-piece"></i></span> Tokens &amp; Hallucinations</h2>
+
+                <h3>How AI Sees Words</h3>
+                <p>AI doesn't read words like we do. It breaks text into <strong>tokens</strong> &mdash; chunks of characters, each assigned a number. For example, GPT-4 splits "unhappiness" into three tokens: <strong>"un"</strong> (ID: 359), <strong>"h"</strong> (ID: 71), and <strong>"appiness"</strong> (ID: 67,391).</p>
+                <p>Token IDs are assigned by frequency &mdash; common chunks get low numbers, rare chunks get high numbers. And notice: AI doesn't split words the way humans would! "un / h / appiness" is not how we'd break it up.</p>
+
+                <div class="highlight-box">
+                    <p><strong>AI calculates numbers, not meaning. It predicts the most likely next token &mdash; and sometimes that prediction is wrong. That's a hallucination.</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="5">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Why does AI "hallucinate" (make things up)?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Because it's trying to be creative and imaginative</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Because it searches the internet and finds wrong information</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Because it predicts the most probable next word, not the most truthful one</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="6">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Why did AI famously struggle to count the r's in "strawberry"?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Because it can't read English</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Because it processes tokens (chunks), not individual letters &mdash; so the details get lost in the blocks</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Because "strawberry" is too long of a word for AI to handle</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="5">
+                <h2><span class="icon"><i class="fas fa-trophy"></i></span> Putting It All Together</h2>
+
+                <h3>The Big Question</h3>
+                <p>Session 3 was all about understanding that AI doesn't <em>think</em> &mdash; it <em>calculates</em>. It predicts text by finding the most probable next token. It generates images by removing noise. And when it gets something wrong, it's not lying &mdash; it's just doing math on patterns.</p>
+
+                <div class="quiz-container" data-quiz="7">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Which statement best describes how an LLM (like ChatGPT) generates a response?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>It understands your question, thinks about the answer, and writes a thoughtful response</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>It searches the internet for the best answer and copies it</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>It predicts the most likely next word over and over, based on patterns learned from training data</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Remember This</h4>
+                    <p>As John Searle (paraphrased) put it: <strong>"AI doesn't think. It calculates. And there's a world of difference between the two."</strong></p>
+                    <p style="margin-top: 10px;">And Edsger W. Dijkstra: <strong>"The question of whether a computer can think is no more interesting than the question of whether a submarine can swim."</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var answered = {};
+
+            $(document).on('click', '.quiz-option', function() {
+                var $container = $(this).closest('.quiz-container');
+                var quizId = $container.data('quiz');
+
+                if (answered[quizId]) return;
+                answered[quizId] = true;
+
+                var isCorrect = $(this).data('correct') === true;
+                var $feedback = $container.find('.quiz-feedback');
+
+                $container.find('.quiz-option').addClass('disabled');
+
+                if (isCorrect) {
+                    $(this).addClass('correct');
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> Correct!');
+                    score++;
+                    $('#score').text(score);
+                } else {
+                    $(this).addClass('incorrect');
+                    $container.find('.quiz-option[data-correct="true"]').addClass('correct');
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. The correct answer is highlighted in green.');
+                }
+            });
+
+            var sections = document.querySelectorAll('.section-card');
+            var dots = document.querySelectorAll('.progress-dot');
+
+            window.addEventListener('scroll', function() {
+                var scrollPos = window.scrollY + window.innerHeight / 2;
+                sections.forEach(function(section, i) {
+                    var top = section.offsetTop;
+                    var bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos <= bottom) {
+                        dots.forEach(function(dot) { dot.classList.remove('active'); });
+                        if (dots[i]) dots[i].classList.add('active');
+                    }
+                });
+            });
+
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var sectionNum = this.getAttribute('data-section');
+                    var target = document.querySelector('.section-card[data-section="' + sectionNum + '"]');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+
+        function checkMatching(btn) {
+            var $exercise = $(btn).closest('.matching-exercise');
+            var $selects = $exercise.find('.matching-select');
+            var $feedback = $exercise.find('.matching-feedback');
+            var allCorrect = true;
+            var matchScore = 0;
+
+            $selects.each(function() {
+                var selected = $(this).val();
+                var answer = $(this).data('answer');
+                $(this).removeClass('correct incorrect');
+                if (selected === answer) {
+                    $(this).addClass('correct');
+                    matchScore++;
+                } else {
+                    $(this).addClass('incorrect');
+                    allCorrect = false;
+                }
+            });
+
+            $feedback.removeClass('all-correct has-errors').addClass('show');
+            if (allCorrect) {
+                $feedback.addClass('all-correct').html('<i class="fas fa-check-circle"></i> All correct! You know your AI layers!');
+            } else {
+                $feedback.addClass('has-errors').html('<i class="fas fa-times-circle"></i> ' + matchScore + ' out of 5 correct. Review the definitions and try again!');
+            }
+        }
+    </script>
+</body>
+</html>

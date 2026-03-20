@@ -43,6 +43,15 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
   - Purple/cyan dark theme matching Sessions 1-2 exactly
   - Back link goes to shouldcallpaul.com (hiding hub from students)
 - Unlocked Session 3 on **ai-workshops-hub.html** with Start Slides button
+- Created **ai-workshop-homework-3.html** - 5-section homework page with 7 quizzes + 1 matching
+  - The Big Picture: AI layers diagram, quizzes on Machine Learning and Deep Learning definitions
+  - Terminology Deep Dive: 5-term matching exercise (AI, ML, Deep Learning, Generative AI, Responsible AI)
+  - Discriminative vs Generative: classification vs creation quizzes with real-world examples
+  - Tokens & Hallucinations: tokenization explanation, strawberry problem, hallucination quiz
+  - Putting It All Together: LLM generation quiz, closing quotes (Searle + Dijkstra)
+  - Score tracker (0/7) and progress dots
+  - Purple/cyan theme matching Sessions 1-2 homework
+- Added Homework button to Session 3 on **ai-workshops-hub.html**
 
 ## Previous Changes (March 16, 2026)
 ### Young Speakers Academy Session 6
