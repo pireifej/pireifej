@@ -1163,6 +1163,25 @@
             color: rgba(255,255,255,0.9);
             font-style: italic;
             text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .story-starter:hover {
+            background: rgba(108, 92, 231, 0.25);
+            border-color: rgba(108, 92, 231, 0.5);
+        }
+
+        .story-starter.active {
+            background: rgba(108, 92, 231, 0.4);
+            border-color: #a29bfe;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.4), inset 0 0 15px rgba(108, 92, 231, 0.1);
+            transform: scale(1.02);
+            color: #fff;
+        }
+
+        .story-starter.active i {
+            color: #00d4ff;
         }
 
         .story-starter i {
@@ -2842,6 +2861,13 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.story-starter').forEach(function(starter) {
+            starter.addEventListener('click', function() {
+                document.querySelectorAll('.story-starter').forEach(function(s) { s.classList.remove('active'); });
+                starter.classList.add('active');
+            });
+        });
+
         var sections = document.querySelectorAll('.slide');
         var navDots = document.querySelectorAll('.nav-dots a');
         var wrapper = document.querySelector('.slides-wrapper');
