@@ -940,114 +940,50 @@
 
         .insight-content strong { color: #00d4ff; }
 
-        /* ============ DIFFUSION ============ */
-        .diffusion-container {
-            max-width: 900px;
+        /* ============ DIFFUSION LAB ============ */
+        .diffusion-lab-layout {
+            display: flex;
+            gap: 40px;
+            max-width: 1100px;
             width: 100%;
+            align-items: flex-start;
+        }
+        .diffusion-lab-left {
+            flex: 1;
             text-align: center;
         }
-
-        .diffusion-container h2 {
-            font-size: 2.5rem;
+        .diffusion-lab-left h2 {
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
-
-        .diffusion-container h2 span {
-            color: #00d4ff;
-        }
-
-        .diffusion-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 30px;
-        }
-
-        .diffusion-demo {
-            position: relative;
-            width: 500px;
-            height: 400px;
-            margin: 0 auto 30px auto;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(108, 92, 231, 0.4);
-        }
-
-        .diffusion-noise {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            transition: opacity 3s ease;
-        }
-
-        .diffusion-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
+        .diffusion-lab-left h2 span { color: #00d4ff; }
+        .diffusion-prompt-display {
+            padding: 12px 20px;
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+            margin-bottom: 15px;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            z-index: 1;
         }
-
-        .diffusion-image .statue-art {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a1a3e, #2d1b4e);
+        #diffusion-canvas {
+            border-radius: 14px;
+            border: 2px solid rgba(108,92,231,0.4);
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
         }
-
-        .statue-svg {
-            width: 80%;
-            height: 80%;
-        }
-
-        .diffusion-demo.active .diffusion-noise {
-            opacity: 0;
-        }
-
-        .diffusion-progress {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .diffusion-progress-bar {
-            width: 300px;
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .diffusion-progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #6c5ce7, #00d4ff);
-            border-radius: 4px;
-            transition: width 3s ease;
-        }
-
-        .diffusion-demo.active .diffusion-progress-fill {
-            width: 100%;
-        }
-
-        .diffusion-label {
+        .diffusion-step-counter {
+            color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
-            min-width: 100px;
+            margin-top: 10px;
         }
-
-        .diffusion-start-btn {
+        .diffusion-lab-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -1060,22 +996,203 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 25px;
+            margin-top: 12px;
         }
-
-        .diffusion-start-btn:hover {
+        .diffusion-lab-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(108, 92, 231, 0.5);
+            box-shadow: 0 0 25px rgba(108,92,231,0.5);
         }
-
-        .diffusion-start-btn.running {
-            background: linear-gradient(135deg, #0891b2, #00d4ff);
-            pointer-events: none;
-        }
-
-        .diffusion-start-btn.done {
+        .diffusion-lab-btn.done {
             background: linear-gradient(135deg, #27ae60, #2ecc71);
             pointer-events: none;
+        }
+        .diffusion-lab-right {
+            flex: 0 0 320px;
+            padding-top: 60px;
+        }
+        .diffusion-step-text {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 12px 15px;
+            background: rgba(108,92,231,0.08);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            opacity: 0.2;
+            transform: translateX(10px);
+            transition: all 0.5s ease;
+        }
+        .diffusion-step-text.revealed {
+            opacity: 1;
+            transform: translateX(0);
+            background: rgba(108,92,231,0.2);
+            border-left: 3px solid #a29bfe;
+        }
+        .step-num {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .diffusion-step-text p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        /* ============ LLM GENERATION FLOW ============ */
+        .generation-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .gen-step {
+            background: rgba(108,92,231,0.1);
+            border: 1px solid rgba(108,92,231,0.2);
+            border-radius: 14px;
+            padding: 18px 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .gen-step:hover {
+            border-color: rgba(108,92,231,0.4);
+        }
+        .gen-step.open {
+            background: rgba(108,92,231,0.2);
+            border-color: #a29bfe;
+        }
+        .gen-step h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .gen-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        .gen-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 0 0 48px;
+        }
+        .gen-step.open .gen-detail {
+            max-height: 300px;
+            padding: 12px 0 5px 48px;
+        }
+        .gen-detail p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+        }
+        .gen-example {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .gen-token {
+            padding: 6px 12px;
+            background: rgba(0,212,255,0.15);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #00d4ff;
+            font-family: monospace;
+        }
+
+        /* ============ GENERATION LOOP ============ */
+        .loop-demo {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .loop-step {
+            background: rgba(108,92,231,0.1);
+            border: 1px solid rgba(108,92,231,0.2);
+            border-radius: 14px;
+            padding: 15px 20px;
+            transition: all 0.5s ease;
+        }
+        .loop-step.hidden {
+            opacity: 0;
+            max-height: 0;
+            padding: 0 20px;
+            overflow: hidden;
+            margin: 0;
+        }
+        .loop-step.visible {
+            opacity: 1;
+            max-height: 200px;
+        }
+        .loop-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .loop-tokens {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .loop-token {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: monospace;
+        }
+        .loop-token.input {
+            background: rgba(108,92,231,0.15);
+            border: 1px solid rgba(108,92,231,0.3);
+            color: rgba(255,255,255,0.7);
+        }
+        .loop-token.output {
+            background: rgba(0,212,255,0.15);
+            border: 1px solid rgba(0,212,255,0.3);
+            color: #00d4ff;
+        }
+        .loop-token.output.new {
+            animation: tokenPop 0.4s ease;
+        }
+        .loop-token.output.highlight {
+            background: rgba(0,212,255,0.3);
+            border-color: #00d4ff;
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(0,212,255,0.4);
+        }
+        @keyframes tokenPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .loop-explanation {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+            font-style: italic;
         }
 
         .diffusion-analogy {
@@ -2217,48 +2334,71 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 13: DIFFUSION ============ -->
+        <!-- ============ SLIDE 13: DIFFUSION LAB ============ -->
         <section class="slide" id="slide13">
-            <div class="diffusion-container">
-                <h2>How Images Work: <span>Diffusion</span></h2>
-                <p class="diffusion-subtitle">The "Statues in the Marble" Analogy</p>
-                <button class="diffusion-start-btn" id="diffusion-btn" onclick="startDiffusion()">
-                    <i class="fas fa-magic"></i> Start Denoising
-                </button>
-                <div class="diffusion-demo" id="diffusion-demo">
-                    <canvas class="diffusion-noise" id="noise-canvas" width="500" height="400"></canvas>
-                    <div class="diffusion-image">
-                        <div class="statue-art">
-                            <svg class="statue-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="statueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#a29bfe;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#6c5ce7;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <ellipse cx="200" cy="85" rx="45" ry="55" fill="url(#statueGrad)" opacity="0.9"/>
-                                <rect x="175" y="135" width="50" height="10" rx="5" fill="#a29bfe" opacity="0.7"/>
-                                <path d="M160 145 Q200 140 240 145 L235 280 Q200 290 165 280 Z" fill="url(#statueGrad)" opacity="0.85"/>
-                                <rect x="140" y="155" width="25" height="90" rx="10" fill="#a29bfe" opacity="0.7" transform="rotate(-15 152 200)"/>
-                                <rect x="235" y="155" width="25" height="90" rx="10" fill="#a29bfe" opacity="0.7" transform="rotate(15 248 200)"/>
-                                <rect x="170" y="275" width="28" height="90" rx="8" fill="url(#statueGrad)" opacity="0.85"/>
-                                <rect x="202" y="275" width="28" height="90" rx="8" fill="url(#statueGrad)" opacity="0.85"/>
-                                <rect x="130" y="360" width="140" height="15" rx="5" fill="#a29bfe" opacity="0.5"/>
-                                <text x="200" y="395" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="12" font-family="Inter">Statue</text>
-                            </svg>
-                        </div>
+            <div class="diffusion-lab-layout">
+                <div class="diffusion-lab-left">
+                    <h2><i class="fas fa-flask" style="color: #00d4ff; margin-right: 10px;"></i> The Diffusion Lab: <span>Sculpting from Static</span></h2>
+                    <div class="diffusion-prompt-display">
+                        <i class="fas fa-keyboard" style="color: #00d4ff; margin-right: 8px;"></i>
+                        <span>Prompt: "A beautiful sunset over the ocean."</span>
+                    </div>
+                    <canvas id="diffusion-canvas" width="400" height="400"></canvas>
+                    <div class="diffusion-step-counter" id="diffusion-step-counter">Step 0 / 5</div>
+                    <button class="diffusion-lab-btn" id="diffusion-lab-btn" onclick="runDenoisingStep()">
+                        <i class="fas fa-magic"></i> Run 10 Denoising Steps
+                    </button>
+                </div>
+                <div class="diffusion-lab-right">
+                    <h3 style="color: #a29bfe; margin-bottom: 20px;"><i class="fas fa-eye" style="margin-right: 8px;"></i> What the AI Sees</h3>
+                    <div class="diffusion-step-text" id="step-text-1">
+                        <div class="step-num">1</div>
+                        <p>The AI identifies "blob" patterns that might be the sun.</p>
+                    </div>
+                    <div class="diffusion-step-text" id="step-text-2">
+                        <div class="step-num">2</div>
+                        <p>The math reinforces the orange and blue colors.</p>
+                    </div>
+                    <div class="diffusion-step-text" id="step-text-3">
+                        <div class="step-num">3</div>
+                        <p>The AI "chips away" the static that doesn't look like water.</p>
+                    </div>
+                    <div class="diffusion-step-text" id="step-text-4">
+                        <div class="step-num">4</div>
+                        <p>Edges sharpen. The horizon line emerges from the noise.</p>
+                    </div>
+                    <div class="diffusion-step-text" id="step-text-5">
+                        <div class="step-num">5</div>
+                        <p>The pattern is complete. No more noise, just the image.</p>
                     </div>
                 </div>
-                <div class="diffusion-progress">
-                    <div class="diffusion-label" id="diffusion-label">Pure Noise</div>
-                    <div class="diffusion-progress-bar">
-                        <div class="diffusion-progress-fill" id="diffusion-fill"></div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 14: DIFFUSION TAKEAWAY ============ -->
+        <section class="slide" id="slide14">
+            <div class="centered-content">
+                <h2><i class="fas fa-hammer" style="color: #a29bfe; margin-right: 10px;"></i> The Sculptor <span>Analogy</span></h2>
+                <div style="display: flex; gap: 30px; align-items: center; justify-content: center; flex-wrap: wrap; margin: 30px 0;">
+                    <div style="background: rgba(108, 92, 231, 0.15); border: 2px solid rgba(108, 92, 231, 0.3); border-radius: 16px; padding: 30px; text-align: center; flex: 1; min-width: 250px; max-width: 350px;">
+                        <i class="fas fa-tv" style="font-size: 3rem; color: rgba(255,255,255,0.3); margin-bottom: 15px; display: block;"></i>
+                        <h3 style="color: #a29bfe; margin-bottom: 10px;">Start</h3>
+                        <p style="color: rgba(255,255,255,0.7);">A block of pure static&mdash;random noise, like a TV with no signal.</p>
                     </div>
-                    <div class="diffusion-label" style="text-align: right;" id="diffusion-status">Ready</div>
+                    <i class="fas fa-arrow-right" style="font-size: 2rem; color: #00d4ff;"></i>
+                    <div style="background: rgba(0, 212, 255, 0.1); border: 2px solid rgba(0, 212, 255, 0.3); border-radius: 16px; padding: 30px; text-align: center; flex: 1; min-width: 250px; max-width: 350px;">
+                        <i class="fas fa-image" style="font-size: 3rem; color: #00d4ff; margin-bottom: 15px; display: block;"></i>
+                        <h3 style="color: #00d4ff; margin-bottom: 10px;">Finish</h3>
+                        <p style="color: rgba(255,255,255,0.7);">A sharp, clear image&mdash;the AI "found" the pattern hiding in the chaos.</p>
+                    </div>
                 </div>
-                <div class="diffusion-analogy">
-                    <i class="fas fa-hammer" style="color: #a29bfe; margin-right: 8px;"></i>
-                    Like a sculptor looking at a block of marble and "removing" everything that isn't a statue. The AI starts with static and slowly removes the noise until a sharp image remains.
+                <div class="diffusion-analogy" style="max-width: 800px; margin: 20px auto 0; font-size: 1.1rem;">
+                    <i class="fas fa-lightbulb" style="color: #f1c40f; margin-right: 8px;"></i>
+                    <strong>The Takeaway:</strong> Image AI doesn't "draw"&mdash;it recognizes a pattern hidden in the chaos and removes everything else. Like a sculptor who looks at a block of marble and chips away everything that isn't the statue.
                 </div>
             </div>
             <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
@@ -2268,7 +2408,7 @@
         </section>
 
         <!-- ============ SLIDE 14: AI LAYERS DIAGRAM ============ -->
-        <section class="slide" id="slide14">
+        <section class="slide" id="slide15">
             <div class="layers-container">
                 <h2>The <span>Big Picture</span></h2>
                 <div class="layers-diagram">
@@ -2308,7 +2448,7 @@
         </section>
 
         <!-- ============ SLIDE 15: KEY TERMS - ML ============ -->
-        <section class="slide" id="slide15">
+        <section class="slide" id="slide16">
             <div class="slide-photo-content" style="justify-content: center;">
                 <div class="content-side" style="max-width: 800px;">
                     <h2><i class="fas fa-cogs" style="color: #ff9f43; margin-right: 10px;"></i> <span>Machine Learning</span></h2>
@@ -2327,7 +2467,7 @@
         </section>
 
         <!-- ============ SLIDE 16: KEY TERMS - DEEP LEARNING ============ -->
-        <section class="slide" id="slide16">
+        <section class="slide" id="slide17">
             <div class="slide-photo-content" style="justify-content: center;">
                 <div class="content-side" style="max-width: 800px;">
                     <h2><i class="fas fa-brain" style="color: #c77dff; margin-right: 10px;"></i> <span>Deep Learning</span></h2>
@@ -2346,7 +2486,7 @@
         </section>
 
         <!-- ============ SLIDE 17: KEY TERMS - GENERATIVE AI ============ -->
-        <section class="slide" id="slide17">
+        <section class="slide" id="slide18">
             <div class="slide-photo-content" style="justify-content: center;">
                 <div class="content-side" style="max-width: 800px;">
                     <h2><i class="fas fa-paint-brush" style="color: #2ecc71; margin-right: 10px;"></i> <span>Generative AI</span></h2>
@@ -2365,7 +2505,7 @@
         </section>
 
         <!-- ============ SLIDE 18: STORY CHAIN EXERCISE ============ -->
-        <section class="slide" id="slide18">
+        <section class="slide" id="slide19">
             <div class="story-chain-container">
                 <h2><i class="fas fa-users" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Predictive Story Chain</span></h2>
                 <div class="story-rules">
@@ -2393,7 +2533,7 @@
         </section>
 
         <!-- ============ SLIDE 19: STORY STARTERS ============ -->
-        <section class="slide" id="slide19">
+        <section class="slide" id="slide20">
             <div class="story-chain-container">
                 <h2>Story <span>Starters</span></h2>
                 <div class="story-starters">
@@ -2414,7 +2554,7 @@
         </section>
 
         <!-- ============ SLIDE 20: TEMPERATURE ============ -->
-        <section class="slide" id="slide20">
+        <section class="slide" id="slide21">
             <div class="temperature-container">
                 <h2>AI <span>"Temperature"</span></h2>
                 <div class="temp-comparison">
@@ -2440,8 +2580,150 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 21: SECTION III DIVIDER ============ -->
-        <section class="slide" id="slide21">
+        <!-- ============ SLIDE 21: SIGNALS & WEIGHTS ============ -->
+        <section class="slide" id="slide22">
+            <div class="centered-content">
+                <h2><i class="fas fa-bolt" style="color: #f1c40f; margin-right: 10px;"></i> How It Actually <span>Works</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 25px;">What happens from the moment you hit "Send" on a prompt?</p>
+                <div class="generation-flow">
+                    <div class="gen-step" id="gen-step-1" onclick="revealGenStep(1)">
+                        <div class="gen-icon"><i class="fas fa-keyboard"></i></div>
+                        <h3>1. Your Words Become Numbers</h3>
+                        <div class="gen-detail">
+                            <p>Your prompt gets converted into tokens (numbers). Think of it as a burst of electricity hitting the first layer of the neural network.</p>
+                            <div class="gen-example">
+                                <span class="gen-token">"What</span>
+                                <span class="gen-token">is</span>
+                                <span class="gen-token">the</span>
+                                <span class="gen-token">capital</span>
+                                <span class="gen-token">of</span>
+                                <span class="gen-token">France?"</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gen-step" id="gen-step-2" onclick="revealGenStep(2)">
+                        <div class="gen-icon"><i class="fas fa-weight-hanging"></i></div>
+                        <h3>2. The Weights React</h3>
+                        <div class="gen-detail">
+                            <p>Each node in the network has a <strong style="color: #00d4ff;">weight</strong> (a multiplier). "Capital" boosts Geography and Government nodes. Cooking and Sports nodes stay quiet.</p>
+                            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                                <span style="padding: 8px 16px; background: rgba(0,212,255,0.3); border-radius: 20px; font-size: 0.85rem;"><i class="fas fa-globe" style="margin-right: 5px;"></i> Geography &uarr;&uarr;&uarr;</span>
+                                <span style="padding: 8px 16px; background: rgba(0,212,255,0.2); border-radius: 20px; font-size: 0.85rem;"><i class="fas fa-landmark" style="margin-right: 5px;"></i> Government &uarr;&uarr;</span>
+                                <span style="padding: 8px 16px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.85rem; opacity: 0.4;"><i class="fas fa-utensils" style="margin-right: 5px;"></i> Cooking &darr;</span>
+                                <span style="padding: 8px 16px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.85rem; opacity: 0.4;"><i class="fas fa-football-ball" style="margin-right: 5px;"></i> Sports &darr;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gen-step" id="gen-step-3" onclick="revealGenStep(3)">
+                        <div class="gen-icon"><i class="fas fa-filter"></i></div>
+                        <h3>3. The "Attention" Filter</h3>
+                        <div class="gen-detail">
+                            <p>The AI uses <strong style="color: #a29bfe;">Attention</strong> to decide which parts of your question matter most. It identifies that "Capital" and "France" are the strongest signals.</p>
+                            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
+                                <span style="padding: 10px 20px; background: rgba(162,155,254,0.4); border: 2px solid #a29bfe; border-radius: 10px; font-weight: 700; font-size: 1.1rem;">Capital</span>
+                                <span style="font-size: 1.5rem; color: #a29bfe; align-self: center;">+</span>
+                                <span style="padding: 10px 20px; background: rgba(162,155,254,0.4); border: 2px solid #a29bfe; border-radius: 10px; font-weight: 700; font-size: 1.1rem;">France</span>
+                                <span style="font-size: 1.5rem; color: #00d4ff; align-self: center;">&rarr;</span>
+                                <span style="padding: 10px 20px; background: rgba(0,212,255,0.3); border: 2px solid #00d4ff; border-radius: 10px; font-weight: 700; font-size: 1.1rem; color: #00d4ff;">Paris</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 15px;"><i class="fas fa-hand-pointer" style="margin-right: 5px;"></i> Click each step to expand</p>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 22: THE GENERATION LOOP ============ -->
+        <section class="slide" id="slide23">
+            <div class="centered-content">
+                <h2><i class="fas fa-sync-alt" style="color: #00d4ff; margin-right: 10px;"></i> The Generation <span>Loop</span></h2>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 20px;">AI doesn't write the whole answer at once. It loops&mdash;one word at a time.</p>
+                <div class="loop-demo">
+                    <div class="loop-step" id="loop-step-0">
+                        <div class="loop-label">Your Question</div>
+                        <div class="loop-tokens">
+                            <span class="loop-token input">What is the capital of France?</span>
+                        </div>
+                    </div>
+                    <div class="loop-step hidden" id="loop-step-1">
+                        <div class="loop-label">Step 1</div>
+                        <div class="loop-tokens">
+                            <span class="loop-token input">What is the capital of France?</span>
+                            <span class="loop-token output new">The</span>
+                        </div>
+                        <div class="loop-explanation">Math runs through all the weights. Winner: <strong>"The"</strong></div>
+                    </div>
+                    <div class="loop-step hidden" id="loop-step-2">
+                        <div class="loop-label">Step 2</div>
+                        <div class="loop-tokens">
+                            <span class="loop-token input">What is the capital of France?</span>
+                            <span class="loop-token output">The</span>
+                            <span class="loop-token output new">capital</span>
+                        </div>
+                        <div class="loop-explanation">Feeds <em>everything so far</em> back in. Next winner: <strong>"capital"</strong></div>
+                    </div>
+                    <div class="loop-step hidden" id="loop-step-3">
+                        <div class="loop-label">Step 3</div>
+                        <div class="loop-tokens">
+                            <span class="loop-token input">What is the capital of France?</span>
+                            <span class="loop-token output">The</span>
+                            <span class="loop-token output">capital</span>
+                            <span class="loop-token output new">of</span>
+                            <span class="loop-token output new">France</span>
+                            <span class="loop-token output new">is</span>
+                            <span class="loop-token output highlight">Paris.</span>
+                        </div>
+                        <div class="loop-explanation">The signal gets stronger with each loop until the answer appears: <strong style="color: #00d4ff;">"Paris."</strong></div>
+                    </div>
+                </div>
+                <button class="diffusion-lab-btn" id="loop-btn" onclick="advanceLoop()" style="margin-top: 20px;">
+                    <i class="fas fa-step-forward"></i> Next Step
+                </button>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 23: THE SUMMARY ============ -->
+        <section class="slide" id="slide24">
+            <div class="centered-content">
+                <h2><i class="fas fa-puzzle-piece" style="color: #a29bfe; margin-right: 10px;"></i> Putting It <span>Together</span></h2>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin: 25px 0;">
+                    <div style="background: rgba(241,196,15,0.1); border: 2px solid rgba(241,196,15,0.3); border-radius: 16px; padding: 25px; text-align: center; flex: 1; min-width: 200px; max-width: 280px;">
+                        <i class="fas fa-bolt" style="font-size: 2rem; color: #f1c40f; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="color: #f1c40f; margin-bottom: 8px;">Signals</h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Your words, converted to numbers (tokens)</p>
+                    </div>
+                    <div style="background: rgba(0,212,255,0.1); border: 2px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 25px; text-align: center; flex: 1; min-width: 200px; max-width: 280px;">
+                        <i class="fas fa-weight-hanging" style="font-size: 2rem; color: #00d4ff; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="color: #00d4ff; margin-bottom: 8px;">Weights</h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">The AI's "knowledge"&mdash;stored patterns from training</p>
+                    </div>
+                    <div style="background: rgba(162,155,254,0.1); border: 2px solid rgba(162,155,254,0.3); border-radius: 16px; padding: 25px; text-align: center; flex: 1; min-width: 200px; max-width: 280px;">
+                        <i class="fas fa-sync-alt" style="font-size: 2rem; color: #a29bfe; margin-bottom: 10px; display: block;"></i>
+                        <h4 style="color: #a29bfe; margin-bottom: 8px;">The Loop</h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">The engine running the math over and over, one token at a time</p>
+                    </div>
+                </div>
+                <div class="diffusion-analogy" style="max-width: 800px; margin: 20px auto 0; font-size: 1.05rem;">
+                    <i class="fas fa-quote-left" style="color: #a29bfe; margin-right: 8px;"></i>
+                    "The Signals are your words, the Weights are the AI's knowledge, and the Token Generation is the engine running the math over and over until the story is finished."
+                </div>
+            </div>
+            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
+            <div class="brand-website">shouldcallpaul.com</div>
+            <div class="wave-decoration"></div>
+            <div class="wave-lines"></div>
+        </section>
+
+        <!-- ============ SLIDE 24: SECTION III DIVIDER ============ -->
+        <section class="slide" id="slide25">
             <div class="section-divider">
                 <div class="section-label">Part III</div>
                 <h2>The <span>"Hallucination"</span> Reality Check</h2>
@@ -2454,7 +2736,7 @@
         </section>
 
         <!-- ============ SLIDE 22: WHY AI LIES ============ -->
-        <section class="slide" id="slide22">
+        <section class="slide" id="slide26">
             <div class="hallucination-container">
                 <h2>Why AI <span>"Lies"</span></h2>
                 <p class="hallucination-subtitle">Since it only predicts the next word, it doesn't care about the truth. It cares about probability.</p>
@@ -2477,115 +2759,7 @@
             <div class="wave-lines"></div>
         </section>
 
-        <!-- ============ SLIDE 23: HALLUCINATION PROMPT 1 ============ -->
-        <section class="slide" id="slide23">
-            <div class="centered-content">
-                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
-                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
-                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
-                            <h3>Prompt 1</h3>
-                            <p style="font-size: 1.15rem; padding: 0 10px;">"Tell me about the 1954 Nobel Prize in Literature winner's famous speech about the moon landing."</p>
-                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
-                        </div>
-                        <div class="flip-card-back hallucination-answer">
-                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
-                            <div class="answer-label">HALLUCINATION</div>
-                            <p style="font-size: 1.05rem;">The 1954 winner was Ernest Hemingway. He never gave a speech about the moon landing&mdash;it didn't happen until 1969! AI will often fabricate an entire speech because the sentence pattern is plausible.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
-            <div class="brand-website">shouldcallpaul.com</div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-        </section>
-
-        <!-- ============ SLIDE 24: HALLUCINATION PROMPT 2 ============ -->
-        <section class="slide" id="slide24">
-            <div class="centered-content">
-                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
-                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
-                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
-                            <h3>Prompt 2</h3>
-                            <p style="font-size: 1.15rem; padding: 0 10px;">"Summarize the scientific paper: 'The Effects of Quantum Entanglement on Baking Sourdough Bread.'"</p>
-                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
-                        </div>
-                        <div class="flip-card-back hallucination-answer">
-                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
-                            <div class="answer-label">HALLUCINATION</div>
-                            <p style="font-size: 1.05rem;">This paper does not exist. But AI will confidently "summarize" it&mdash;complete with fake authors, fake journals, and fake conclusions&mdash;because it's predicting likely-sounding academic language.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
-            <div class="brand-website">shouldcallpaul.com</div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-        </section>
-
-        <!-- ============ SLIDE 25: HALLUCINATION PROMPT 3 ============ -->
-        <section class="slide" id="slide25">
-            <div class="centered-content">
-                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
-                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
-                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
-                            <h3>Prompt 3</h3>
-                            <p style="font-size: 1.15rem; padding: 0 10px;">"What did Albert Einstein say in his 1998 interview with The New York Times?"</p>
-                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
-                        </div>
-                        <div class="flip-card-back hallucination-answer">
-                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
-                            <div class="answer-label">HALLUCINATION</div>
-                            <p style="font-size: 1.05rem;">Albert Einstein died in 1955. He couldn't have given a 1998 interview. But AI may invent a plausible-sounding quote because "Einstein" + "interview" + "New York Times" is a high-probability pattern.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
-            <div class="brand-website">shouldcallpaul.com</div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-        </section>
-
-        <!-- ============ SLIDE 26: HALLUCINATION PROMPT 4 ============ -->
-        <section class="slide" id="slide26">
-            <div class="centered-content">
-                <h2><i class="fas fa-flask" style="color: #e74c3c; margin-right: 10px;"></i> Live Test: <span>Catch the Hallucination</span></h2>
-                <p style="font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 25px;">Someone type this prompt into ChatGPT and read the response out loud. Then we flip the card.</p>
-                <div class="flip-card-single" style="width: 700px; height: 400px; margin: 0 auto;" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="card-icon-header" style="font-size: 2.5rem;"><i class="fas fa-terminal" style="color: #00d4ff;"></i></div>
-                            <h3>Prompt 4</h3>
-                            <p style="font-size: 1.15rem; padding: 0 10px;">"List 5 books by Malcolm Gladwell that were published before the year 2000."</p>
-                            <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to reveal the truth</div>
-                        </div>
-                        <div class="flip-card-back hallucination-answer">
-                            <div class="answer-icon"><i class="fas fa-times-circle"></i></div>
-                            <div class="answer-label">HALLUCINATION</div>
-                            <p style="font-size: 1.05rem;">Malcolm Gladwell only published one book before 2000: <em>The Tipping Point</em> (2000, barely). AI will often invent convincing-sounding titles to fill the list because it's completing a pattern, not checking facts.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="brand-logo"><i class="fas fa-brain"></i> Should Call Paul</div>
-            <div class="brand-website">shouldcallpaul.com</div>
-            <div class="wave-decoration"></div>
-            <div class="wave-lines"></div>
-        </section>
-
-        <!-- ============ SLIDE 27: TRUTH OR PROBABILITY - FACT ============ -->
+        <!-- ============ SLIDE 23: TRUTH OR PROBABILITY - FACT ============ -->
         <section class="slide" id="slide27">
             <div class="centered-content">
                 <h2><i class="fas fa-balance-scale" style="color: #a29bfe; margin-right: 10px;"></i> Exercise: <span>Truth or Probability?</span></h2>
@@ -2821,28 +2995,158 @@
         btn.innerHTML = '<i class="fas fa-check"></i> Tokenized!';
     }
 
-    function startDiffusion() {
-        var demo = document.getElementById('diffusion-demo');
-        var btn = document.getElementById('diffusion-btn');
-        var label = document.getElementById('diffusion-label');
-        var status = document.getElementById('diffusion-status');
-        var fill = document.getElementById('diffusion-fill');
+    var diffusionStep = 0;
+    var diffusionCanvas, diffusionCtx;
+    var sunsetImageData = null;
 
-        btn.classList.add('running');
+    function initDiffusionLab() {
+        diffusionCanvas = document.getElementById('diffusion-canvas');
+        if (!diffusionCanvas) return;
+        diffusionCtx = diffusionCanvas.getContext('2d');
+        generateSunsetImage();
+        drawNoise(1.0);
+    }
+
+    function generateSunsetImage() {
+        var w = 400, h = 400;
+        var tempCanvas = document.createElement('canvas');
+        tempCanvas.width = w;
+        tempCanvas.height = h;
+        var ctx = tempCanvas.getContext('2d');
+
+        var skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.65);
+        skyGrad.addColorStop(0, '#1a0533');
+        skyGrad.addColorStop(0.3, '#4a1a6b');
+        skyGrad.addColorStop(0.5, '#e85d3a');
+        skyGrad.addColorStop(0.7, '#f4a62a');
+        skyGrad.addColorStop(1, '#ffd700');
+        ctx.fillStyle = skyGrad;
+        ctx.fillRect(0, 0, w, h * 0.65);
+
+        ctx.beginPath();
+        ctx.arc(w * 0.5, h * 0.52, 50, 0, Math.PI * 2);
+        var sunGrad = ctx.createRadialGradient(w * 0.5, h * 0.52, 5, w * 0.5, h * 0.52, 55);
+        sunGrad.addColorStop(0, '#fffbe6');
+        sunGrad.addColorStop(0.5, '#ffd700');
+        sunGrad.addColorStop(1, 'rgba(255,165,0,0)');
+        ctx.fillStyle = sunGrad;
+        ctx.fill();
+
+        var sunReflGrad = ctx.createRadialGradient(w * 0.5, h * 0.48, 0, w * 0.5, h * 0.48, 120);
+        sunReflGrad.addColorStop(0, 'rgba(255,220,100,0.4)');
+        sunReflGrad.addColorStop(1, 'rgba(255,165,0,0)');
+        ctx.fillStyle = sunReflGrad;
+        ctx.fillRect(0, h * 0.3, w, h * 0.35);
+
+        var waterGrad = ctx.createLinearGradient(0, h * 0.6, 0, h);
+        waterGrad.addColorStop(0, '#1a3a5c');
+        waterGrad.addColorStop(0.3, '#0d2137');
+        waterGrad.addColorStop(1, '#0a1628');
+        ctx.fillStyle = waterGrad;
+        ctx.fillRect(0, h * 0.6, w, h * 0.4);
+
+        ctx.strokeStyle = 'rgba(255,200,80,0.15)';
+        ctx.lineWidth = 1.5;
+        for (var i = 0; i < 20; i++) {
+            var y = h * 0.62 + i * (h * 0.38 / 20);
+            ctx.beginPath();
+            var reflW = 30 + i * 3;
+            ctx.moveTo(w * 0.5 - reflW, y);
+            ctx.lineTo(w * 0.5 + reflW, y);
+            ctx.stroke();
+        }
+
+        for (var c = 0; c < 5; c++) {
+            ctx.beginPath();
+            var cx = 50 + Math.random() * 300;
+            var cy = 40 + Math.random() * 100;
+            ctx.ellipse(cx, cy, 40 + Math.random() * 30, 10 + Math.random() * 8, 0, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(180,100,50,' + (0.15 + Math.random() * 0.15) + ')';
+            ctx.fill();
+        }
+
+        sunsetImageData = ctx.getImageData(0, 0, w, h);
+    }
+
+    function drawNoise(noiseAmount) {
+        if (!diffusionCtx || !sunsetImageData) return;
+        var w = 400, h = 400;
+        var imgData = diffusionCtx.createImageData(w, h);
+        var src = sunsetImageData.data;
+        var dst = imgData.data;
+
+        for (var i = 0; i < dst.length; i += 4) {
+            var noise = Math.random() * 255;
+            dst[i] = Math.round(src[i] * (1 - noiseAmount) + noise * noiseAmount);
+            dst[i+1] = Math.round(src[i+1] * (1 - noiseAmount) + noise * noiseAmount);
+            dst[i+2] = Math.round(src[i+2] * (1 - noiseAmount) + noise * noiseAmount);
+            dst[i+3] = 255;
+        }
+        diffusionCtx.putImageData(imgData, 0, 0);
+    }
+
+    function runDenoisingStep() {
+        if (diffusionStep >= 5) return;
+        diffusionStep++;
+        var btn = document.getElementById('diffusion-lab-btn');
+        var counter = document.getElementById('diffusion-step-counter');
+        var stepText = document.getElementById('step-text-' + diffusionStep);
+
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Denoising...';
+        btn.style.pointerEvents = 'none';
 
-        demo.classList.add('active');
-        fill.style.width = '100%';
-        label.textContent = 'Removing noise...';
-        status.textContent = 'Generating...';
+        var noiseStart = 1 - (diffusionStep - 1) * 0.2;
+        var noiseEnd = 1 - diffusionStep * 0.2;
+        var frames = 30;
+        var frame = 0;
 
-        setTimeout(function() {
-            btn.classList.remove('running');
+        function animateFrame() {
+            frame++;
+            var progress = frame / frames;
+            var currentNoise = noiseStart + (noiseEnd - noiseStart) * progress;
+            drawNoise(currentNoise);
+            if (frame < frames) {
+                requestAnimationFrame(animateFrame);
+            } else {
+                counter.textContent = 'Step ' + diffusionStep + ' / 5';
+                if (stepText) stepText.classList.add('revealed');
+
+                if (diffusionStep >= 5) {
+                    btn.classList.add('done');
+                    btn.innerHTML = '<i class="fas fa-check"></i> Complete!';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-magic"></i> Run 10 Denoising Steps';
+                    btn.style.pointerEvents = 'auto';
+                }
+            }
+        }
+        requestAnimationFrame(animateFrame);
+    }
+
+    function revealGenStep(num) {
+        var step = document.getElementById('gen-step-' + num);
+        if (step.classList.contains('open')) {
+            step.classList.remove('open');
+        } else {
+            document.querySelectorAll('.gen-step').forEach(function(s) { s.classList.remove('open'); });
+            step.classList.add('open');
+        }
+    }
+
+    var loopStep = 0;
+    function advanceLoop() {
+        if (loopStep >= 3) return;
+        loopStep++;
+        var el = document.getElementById('loop-step-' + loopStep);
+        if (el) {
+            el.classList.remove('hidden');
+            el.classList.add('visible');
+        }
+        if (loopStep >= 3) {
+            var btn = document.getElementById('loop-btn');
             btn.classList.add('done');
             btn.innerHTML = '<i class="fas fa-check"></i> Complete!';
-            label.textContent = 'Sharp Image';
-            status.textContent = 'Done!';
-        }, 3000);
+        }
     }
 
     function toggleQA(item) {
@@ -2880,23 +3184,9 @@
         });
     }
 
-    function drawNoise(canvas, opacity) {
-        var ctx = canvas.getContext('2d');
-        var w = canvas.width;
-        var h = canvas.height;
-        var imgData = ctx.createImageData(w, h);
-        var data = imgData.data;
-        for (var i = 0; i < data.length; i += 4) {
-            var val = Math.random() * 255;
-            data[i] = val * 0.4;
-            data[i + 1] = val * 0.3;
-            data[i + 2] = val * 0.6;
-            data[i + 3] = opacity * 255;
-        }
-        ctx.putImageData(imgData, 0, 0);
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
+        initDiffusionLab();
+
         document.querySelectorAll('.story-starter').forEach(function(starter) {
             starter.addEventListener('click', function() {
                 document.querySelectorAll('.story-starter').forEach(function(s) { s.classList.remove('active'); });
@@ -2969,10 +3259,6 @@
 
         setupParrot();
 
-        var noiseCanvas = document.getElementById('noise-canvas');
-        if (noiseCanvas) {
-            drawNoise(noiseCanvas, 1);
-        }
     });
     </script>
 </body>

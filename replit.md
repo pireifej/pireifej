@@ -24,19 +24,18 @@ This is a portfolio website showcasing Paul Ireifej's work as a public speaker, 
     - Token explanation: IDs assigned by frequency (common = low ID, rare = high ID)
     - OpenAI Tokenizer demo slide (slide 11): clickable link to platform.openai.com/tokenizer with try-it suggestions (strawberry, unhappiness, other languages)
     - Strawberry Lab interactive slide (slide 12): Zone 1 shows [STRAW][BERRY] blocks → wrong answer (2 r's), Zone 2 shatters into individual letter blocks → count reveals 3 r's with glow animation
-    - Diffusion demo (canvas noise → SVG statue over 3s with progress bar)
+    - Diffusion Lab interactive slide (slide 13): p5.js canvas noise → procedural sunset over 5 clicks, with step-by-step explanation bullets
+    - Diffusion Takeaway slide (slide 14): Sculptor analogy (Start: static → Finish: pattern found)
     - AI Layers diagram (AI → ML → Deep Learning → Generative AI + Responsible AI)
     - Key terms: Machine Learning, Deep Learning, Generative AI
     - Predictive Story Chain: facilitator-led whole-room exercise (Round 1: boring/predictable, Round 2: weird/unexpected)
     - Temperature comparison (low vs high, boring vs creative words)
-  - Part III: The "Hallucination" Reality Check (slides 20-32)
+    - How It Actually Works: 3-step interactive accordion (Signals/Weights/Attention) with click-to-expand
+    - The Generation Loop: step-by-step token generation demo ("What is the capital of France?" → Paris)
+    - Putting It Together: Signals + Weights + Loop summary with closing quote
+  - Part III: The "Hallucination" Reality Check (slides 25-33)
     - Why AI "lies" explanation with examples
-    - 4 Live Hallucination Prompts (slides 22-25): audience types into ChatGPT, flip card reveals truth
-      - Prompt 1: 1954 Nobel winner's moon landing speech (Hemingway, impossible timeline)
-      - Prompt 2: Quantum sourdough paper (fake paper, AI fabricates summary)
-      - Prompt 3: Einstein 1998 NYT interview (died 1955)
-      - Prompt 4: Malcolm Gladwell books before 2000 (only 1 exists)
-    - Truth or Probability: split into 2 separate slides (26=Fact, 27=Hallucination)
+    - Truth or Probability: split into 2 separate slides (Fact + Hallucination flip cards)
     - Key Terms Recap (click-to-reveal Q&A accordion)
     - Closing quotes (John Searle paraphrase + Dijkstra submarine quote)
     - Q&A section, Session 4 preview (Prompt Engineering, April 27, 2026)

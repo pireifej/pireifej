@@ -1,0 +1,40 @@
+The Question is the "Input Signal"
+When you type a prompt, the AI doesn't "read" it like a human. It converts your words into a long string of numbers (tokens).
+
+The Signal: Think of your question as a massive burst of electricity hitting the first layer of the neural network.
+
+The Weight: Each "node" in the network has a weight (a multiplier). If your signal is "Capital," the nodes related to "Geography" and "Government" get a huge boost, while the nodes for "Cooking" or "Sports" stay quiet.
+
+2. The "Attention" Filter
+This is the part that makes it feel "smart." The AI uses a layer called Attention to decide which parts of your signal matter most.
+
+If you ask: "What is the capital of France?"
+
+The math identifies that "Capital" and "France" are the strongest signals.
+
+The "Weights" act like a funnel, pushing the probability toward words that sit at the intersection of those two concepts.
+
+3. The Real-Time Generation Loop
+This is where the "Next Token" part happens. The AI doesn't generate the whole paragraph at once; it does it in a loop:
+
+Step 1: It takes your question and runs the math through the weights. The "Winner" of the probability contest is the word "The."
+
+Step 2: It then takes your original question PLUS the word "The" and feeds that new, longer signal back into the start.
+
+Step 3: Now the signal is stronger. The math says the next most likely word is "capital."
+
+Step 4: It feeds the whole thing back in again: "What is the capital of France? The capital..."
+
+4. Why it feels like it "Answers" you
+It feels like it's answering because your question stays in its "short-term memory" (the context window) the whole time.
+
+Every single word I am typing to you right now is a result of me:
+
+Looking at your specific question.
+
+Looking at every word I’ve already written in this specific response.
+
+Calculating which token is the 0.0001% most likely to come next based on those two things.
+
+Summary for your Workshop:
+"The Signals are your words, the Weights are the AI's 'knowledge' (stored patterns), and the Token Generation is the engine running the math over and over until the story is finished."
