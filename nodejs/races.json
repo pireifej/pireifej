@@ -72,6 +72,20 @@
         },
         {
             "image": "",
+            "label": "Hot Chocolate Run Philadelphia 15K",
+            "type": "race",
+            "details": {
+                "date": "04/05/25",
+                "distance": "9.3 miles",
+                "time": "1 hour 35 min 33 sec",
+                "location": "Philadelphia, PA"
+            },
+            "gallery": ["img/running/hot_chocolate_15k_finish.jpg","img/running/hot_chocolate_15k_podium.jpg","img/running/hot_chocolate_15k_medals.jpg","img/running/hot_chocolate_15k_banana.jpg"],
+            "link": "",
+            "desc": "<p>The Hot Chocolate Run is a unique race experience featuring a sweet finish line celebration with hot chocolate, fondue, and treats. Ran the 15K through the streets of Philadelphia on a beautiful spring day.</p>"
+        },
+        {
+            "image": "",
             "label": "Spring Forward 5K",
             "type": "race",
             "details": {
