@@ -1357,192 +1357,166 @@ I specialize in bridging the gap between technology and communication, leading d
     </div>
     <!-- End Brand -->
 
-    <!-- Start Testimonials 
+    <!-- Start Testimonials Preview
     ============================================= -->
-    <div class="testimonial-area default-padding">
-
+    <style>
+        .testimonial-preview-area {
+            padding: 80px 0;
+        }
+        .testimonial-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .testimonial-preview-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .testimonial-preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .testimonial-preview-card .tp-quote-icon {
+            font-size: 1.8rem;
+            color: #6c5ce7;
+            opacity: 0.3;
+            margin-bottom: 12px;
+        }
+        .testimonial-preview-card .tp-context {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+        .testimonial-preview-card .tp-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #444;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+        .testimonial-preview-card .tp-provider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 18px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .testimonial-preview-card .tp-provider img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .testimonial-preview-card .tp-provider h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0 0 2px;
+        }
+        .testimonial-preview-card .tp-provider span {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .testimonial-see-all {
+            text-align: center;
+        }
+        .testimonial-see-all a {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108,92,231,0.3);
+        }
+        .testimonial-see-all a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108,92,231,0.4);
+            color: #fff;
+        }
+        @media (max-width: 991px) {
+            .testimonial-preview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <div class="testimonial-preview-area" id="testimonials">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="site-heading text-center">
-                        <h4 class="sub-title">My Expertise</h4>
+                        <h4 class="sub-title">What People Say</h4>
                         <h2 class="title">Testimonials</h2>
                         <div class="devider"></div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="testimonial-style-one-box text-center">
-                <div class="row align-center">
-                    <div class="col-lg-8 offset-lg-2">
-                        <div class="testimonial-style-one-carousel swiper">
-                            <!-- Additional required wrapper -->
-                            <div class="swiper-wrapper">
-                                <!-- Single item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-style-one">
-                                        
-                                        <div class="item">
-                                            
-                                            <div class="thumb">
-                                                <img src="img/joshd.jpeg" alt="Thumb">
-<!--                                                <div class="shape">
-                                                    <img src="img-new/shape/15.png" alt="Shape">
-                                                </div>-->
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    “Paul and I worked together at AMD. His abilities to quickly adapt to new situations, readily grasp new programming concepts and constructs, and work easily with others are great assets to any business. Paul is the type of engineer that brings teams together because he clearly appreciates the contributions of individuals he works with while being patient with their shortcomings. You can tell from working with him that he takes pride in the quality of his work and I would love to have him on any team I'd work with.”
-                                                </p>
-                                            </div>
-                                            <div class="provider">
-                                                <div class="info">
-                                                    <h4>Joshua D.</h4>
-                                                    <span>Principal Architect</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single item -->
-                                <!-- Single item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-style-one">
-                                        
-                                        <div class="item">
-                                            
-                                            <div class="thumb">
-                                                <img src="img/jennaa.png" alt="Thumb">
-<!--                                                <div class="shape">
-                                                    <img src="img-new/shape/15.png" alt="Shape">
-                                                </div>-->
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    “THANK YOU!!!  You did an amazing job with that poem - just WOW!  I am in awe. Thanks for dedicating so much time to making our class party so special for each and every one of the kids. This will especially be something that Gabriel remembers - what a special moment. Wishing you and yours a wonderful holiday season!”
-                                                </p>
-                                            </div>
-                                            <div class="provider">
-                                                <div class="info">
-                                                    <h4>Jenna A.</h4>
-                                                    <span>Teacher</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single item -->
-                                <!-- Single item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-style-one">
-                                        
-                                        <div class="item">
-                                            
-                                            <div class="thumb">
-                                                <img src="img/eva.jpg" alt="Thumb">
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    “Hi Paul, I just wanted to let you know about one of my many experiences after joining your leadership program. Going to your classes has helped me a lot! It has helped me with my public speaking, my confidence, and my overall presentation skills. The school recently had tryouts for a theater show in fall. After the first casting, I got a part. Not just any part but one of the main parts of the play. Getting one of the main parts is very important because you need a memorize a lot of your lines. You also need to be confident when going on stage and doing the play in front of all the parents. You have help me with my public speaking and my confidence before going on stage. I thank you for teaching me all the techniques to fight off all the nerves when on the big stage. Thank you and appreciate all your help.”
-                                                </p>
-                                            </div>
-                                            <div class="provider">
-                                                <div class="info">
-                                                    <h4>Eva M.</h4>
-                                                    <span>Jr. High School Student</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single item -->
-                                <!-- Single item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-style-one">
-                                        <div class="item">
-                                            <div class="thumb">
-                                                <img src="img/jamesa.jpeg" alt="Thumb">
-<!--                                                <div class="shape">
-                                                    <img src="img-new/shape/15.png" alt="Shape">
-                                                </div>-->
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    “Paul is a dedicated individual who strived to do the best work possible on any task given to him. In the time I was his manager, he worked relentlessly to complete projects on time, and always took constructive feedback in a very positive manner. He has shown a very high potential, and I expect him to grow into an outstanding engineer. It is for these reasons among others that I recommend Paul for employment for a position he qualifies for.”
-                                                </p>
-                                            </div>
-                                            <div class="provider">
-                                                <div class="info">
-                                                    <h4>James A.</h4>
-                                                    <span>Lead/Manager Software Tools Engineering</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single item -->
-                                <!-- Single item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-style-one">
-                                        <div class="item">
-                                            
-                                            <div class="thumb">
-                                                <img src="img-new/team/v5-removebg-preview.png" alt="Thumb">
-<!--                                                <div class="shape">
-                                                    <img src="img-new/shape/15.png" alt="Shape">
-                                                </div>-->
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    “Your presentations were wonderful. Just the right amount of humor to keep peoples attention on your message. You did great and what you are doing is great!”
-                                                </p>
-                                            </div>
-                                            <div class="provider">
-                                                <div class="info">
-                                                    <h4>Margaret R.</h4>
-                                                    <span>Pastoral Minister for Church Management and Sacrament Coordination</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single item -->
-                                <!-- Single item -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-style-one">
-                                        <div class="item">
-                                            <div class="thumb">
-                                                <img src="img/k.png" alt="Thumb">
-<!--                                                <div class="shape">
-                                                    <img src="img-new/shape/15.png" alt="Shape">
-                                                </div>-->
-                                            </div>
-                                            <div class="content">
-                                                <p>
-                                                    “Paul!!!!!! Franklin school is buzzing about what a great assembly was provided  to them this morning!!!! Both impactful and lively.... I thank you with all my heart. You made a difference today. I am so grateful for that. I will tag you  on socials for Franklin. Have a wonderful day and yes, expect another call.”
-                                                </p>
-                                            </div>
-                                            <div class="provider">
-                                                <div class="info">
-                                                    <h4>Konstantina H.</h4>
-                                                    <span>School Counselor</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single item -->
-                            </div>
+            <div class="testimonial-preview-grid">
+                <div class="testimonial-preview-card">
+                    <div class="tp-quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <span class="tp-context">Week of Respect Assembly</span>
+                    <div class="tp-text">
+                        "Franklin school is buzzing about what a great assembly was provided to them this morning!!!! Both impactful and lively.... I thank you with all my heart. You made a difference today."
+                    </div>
+                    <div class="tp-provider">
+                        <img src="img/k.png" alt="Konstantina H.">
+                        <div>
+                            <h4>Konstantina H.</h4>
+                            <span>School Counselor</span>
                         </div>
                     </div>
-                    
                 </div>
+                <div class="testimonial-preview-card">
+                    <div class="tp-quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <span class="tp-context">Young Speakers Academy</span>
+                    <div class="tp-text">
+                        "Going to your classes has helped me a lot! It has helped me with my public speaking, my confidence, and my overall presentation skills. I got one of the main parts of the play. Thank you for teaching me all the techniques to fight off all the nerves."
+                    </div>
+                    <div class="tp-provider">
+                        <img src="img/eva.jpg" alt="Eva M.">
+                        <div>
+                            <h4>Eva M.</h4>
+                            <span>Jr. High School Student</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-preview-card">
+                    <div class="tp-quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <span class="tp-context">Public Speaking Workshop</span>
+                    <div class="tp-text">
+                        "Your presentations were wonderful. Just the right amount of humor to keep peoples attention on your message. You did great and what you are doing is great!"
+                    </div>
+                    <div class="tp-provider">
+                        <img src="img-new/team/v5-removebg-preview.png" alt="Margaret R.">
+                        <div>
+                            <h4>Margaret R.</h4>
+                            <span>Pastoral Minister</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-see-all">
+                <a href="testimonials.html">See All Testimonials <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
             </div>
         </div>
     </div>
-    <!-- End Testimonails Area -->
+    <!-- End Testimonials Preview -->
 
     <!-- Start Available 
     ============================================= -->

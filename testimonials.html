@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Testimonials for Paul Ireifej - Hear from workshop attendees, students, colleagues, and educators about their experience working with Paul.">
+    <title>Testimonials | Paul Ireifej</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .testimonials-page {
+            padding: 40px 0 80px;
+        }
+
+        .testimonials-page .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .testimonials-page .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .testimonials-page .page-header p {
+            font-size: 1.15rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-page .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #6c5ce7;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .testimonials-page .back-link:hover {
+            color: #a29bfe;
+            transform: translateX(-5px);
+        }
+
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6c5ce7;
+        }
+
+        .category-header i {
+            font-size: 1.5rem;
+            color: #6c5ce7;
+        }
+
+        .category-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .testimonial-card .quote-icon {
+            font-size: 2rem;
+            color: #6c5ce7;
+            opacity: 0.3;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .testimonial-card .context-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .testimonial-card .quote-text {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            color: #444;
+            flex-grow: 1;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-card .quote-text.expandable {
+            max-height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-card .quote-text.expandable::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, #fff);
+        }
+
+        .testimonial-card .quote-text.expanded {
+            max-height: none;
+        }
+
+        .testimonial-card .quote-text.expanded::after {
+            display: none;
+        }
+
+        .testimonial-card .read-more {
+            background: none;
+            border: none;
+            color: #6c5ce7;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .testimonial-card .read-more:hover {
+            color: #a29bfe;
+        }
+
+        .testimonial-card .provider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .testimonial-card .provider img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-card .provider .info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 3px;
+        }
+
+        .testimonial-card .provider .info span {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #6c5ce7;
+            display: block;
+        }
+
+        .stat-item .stat-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                gap: 30px;
+            }
+
+            .stat-item .stat-number {
+                font-size: 2rem;
+            }
+
+            .testimonials-page .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    {{sidebar}}
+
+    <div class="portfolio-page-wrapper">
+        <div class="container">
+            <div class="testimonials-page">
+                <div class="page-header">
+                    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                    <h1>What People Are Saying</h1>
+                    <p>Feedback from workshop attendees, students, colleagues, and educators who have worked with Paul.</p>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Testimonials</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Positive</span>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <div class="category-header">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h2>Educators & School Staff</h2>
+                    </div>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <span class="context-tag">Week of Respect Assembly</span>
+                            <div class="quote-text">
+                                "Paul!!!!!! Franklin school is buzzing about what a great assembly was provided to them this morning!!!! Both impactful and lively.... I thank you with all my heart. You made a difference today. I am so grateful for that. I will tag you on socials for Franklin. Have a wonderful day and yes, expect another call."
+                            </div>
+                            <div class="provider">
+                                <img src="img/k.png" alt="Konstantina H.">
+                                <div class="info">
+                                    <h4>Konstantina H.</h4>
+                                    <span>School Counselor</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <span class="context-tag">Classroom Poetry Event</span>
+                            <div class="quote-text">
+                                "THANK YOU!!! You did an amazing job with that poem - just WOW! I am in awe. Thanks for dedicating so much time to making our class party so special for each and every one of the kids. This will especially be something that Gabriel remembers - what a special moment. Wishing you and yours a wonderful holiday season!"
+                            </div>
+                            <div class="provider">
+                                <img src="img/jennaa.png" alt="Jenna A.">
+                                <div class="info">
+                                    <h4>Jenna A.</h4>
+                                    <span>Teacher</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <div class="category-header">
+                        <i class="fas fa-user-graduate"></i>
+                        <h2>Students</h2>
+                    </div>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <span class="context-tag">Young Speakers Academy</span>
+                            <div class="quote-text expandable" id="eva-quote">
+                                "Hi Paul, I just wanted to let you know about one of my many experiences after joining your leadership program. Going to your classes has helped me a lot! It has helped me with my public speaking, my confidence, and my overall presentation skills. The school recently had tryouts for a theater show in fall. After the first casting, I got a part. Not just any part but one of the main parts of the play. Getting one of the main parts is very important because you need to memorize a lot of your lines. You also need to be confident when going on stage and doing the play in front of all the parents. You have helped me with my public speaking and my confidence before going on stage. I thank you for teaching me all the techniques to fight off all the nerves when on the big stage. Thank you and appreciate all your help."
+                            </div>
+                            <button class="read-more" onclick="toggleExpand('eva-quote', this)">Read more</button>
+                            <div class="provider">
+                                <img src="img/eva.jpg" alt="Eva M.">
+                                <div class="info">
+                                    <h4>Eva M.</h4>
+                                    <span>Jr. High School Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <div class="category-header">
+                        <i class="fas fa-microphone-alt"></i>
+                        <h2>Workshop & Event Attendees</h2>
+                    </div>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <span class="context-tag">Public Speaking Workshop</span>
+                            <div class="quote-text">
+                                "Your presentations were wonderful. Just the right amount of humor to keep peoples attention on your message. You did great and what you are doing is great!"
+                            </div>
+                            <div class="provider">
+                                <img src="img-new/team/v5-removebg-preview.png" alt="Margaret R.">
+                                <div class="info">
+                                    <h4>Margaret R.</h4>
+                                    <span>Pastoral Minister for Church Management</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <div class="category-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Colleagues</h2>
+                    </div>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <span class="context-tag">AMD - Engineering Team</span>
+                            <div class="quote-text expandable" id="josh-quote">
+                                "Paul and I worked together at AMD. His abilities to quickly adapt to new situations, readily grasp new programming concepts and constructs, and work easily with others are great assets to any business. Paul is the type of engineer that brings teams together because he clearly appreciates the contributions of individuals he works with while being patient with their shortcomings. You can tell from working with him that he takes pride in the quality of his work and I would love to have him on any team I'd work with."
+                            </div>
+                            <button class="read-more" onclick="toggleExpand('josh-quote', this)">Read more</button>
+                            <div class="provider">
+                                <img src="img/joshd.jpeg" alt="Joshua D.">
+                                <div class="info">
+                                    <h4>Joshua D.</h4>
+                                    <span>Principal Architect</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <span class="context-tag">AMD - Manager Recommendation</span>
+                            <div class="quote-text expandable" id="james-quote">
+                                "Paul is a dedicated individual who strived to do the best work possible on any task given to him. In the time I was his manager, he worked relentlessly to complete projects on time, and always took constructive feedback in a very positive manner. He has shown a very high potential, and I expect him to grow into an outstanding engineer. It is for these reasons among others that I recommend Paul for employment for a position he qualifies for."
+                            </div>
+                            <button class="read-more" onclick="toggleExpand('james-quote', this)">Read more</button>
+                            <div class="provider">
+                                <img src="img/jamesa.jpeg" alt="James A.">
+                                <div class="info">
+                                    <h4>James A.</h4>
+                                    <span>Lead/Manager Software Tools Engineering</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script src="js/modal-nav.js"></script>
+    <script>
+        function toggleExpand(id, btn) {
+            var el = document.getElementById(id);
+            el.classList.toggle('expanded');
+            btn.textContent = el.classList.contains('expanded') ? 'Read less' : 'Read more';
+        }
+    </script>
+</body>
+</html>

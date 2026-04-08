@@ -17,6 +17,22 @@ The project is structured as a static HTML/CSS/JavaScript frontend served by an 
 - **Portfolio Structure**: The portfolio is categorized into dedicated pages for technical work, speech competitions, workshops, and running races, enhancing navigation and content organization.
 - **SEO**: Comprehensive SEO measures are implemented, including meta tags, Schema.org structured data, Open Graph, Twitter Cards, XML sitemap, and `robots.txt`, to optimize visibility for local searches (e.g., "public speaker Monmouth County NJ").
 
+## Recent Changes (April 8, 2026)
+### Testimonials Redesign
+- Replaced homepage Swiper carousel with 3 static preview cards (Konstantina, Eva, Margaret) + "See All Testimonials" button
+- Subtitle changed from "My Expertise" to "What People Say"
+- Created **testimonials.html** — dedicated testimonials page with stats bar, 4 categorized sections (Educators, Students, Workshop Attendees, Colleagues), context tags, and expandable long quotes
+- Follows site template pattern (sidebar, preloader, portfolio-page-wrapper)
+
+### AI Workshop Session 4
+- Created **session-4/index.html** — 24-slide Reveal.js 5.x presentation "Securing the Future" (fraud, deepfakes, security)
+- Unlocked Session 4 on **ai-workshops-hub.html** (counter: 4 Presentations Live)
+
+### Other Changes
+- Removed Fiverr link from Mobile App & Web Development tile and "Let's Work Together" button
+- Moved Young Speakers Academy from Coming Soon to Already Completed
+- Expanded Session 3 homework from 7 to 12 quizzes
+
 ## External Dependencies
 - **express**: Used as the web server framework for serving static files and handling template replacements.
 - **multer**: Integrated for handling file uploads (though its direct application in the current static site context might be for future expansion or specific interactive features).
