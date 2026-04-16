@@ -271,21 +271,21 @@
         .card-box {
             background: rgba(0,0,0,0.3);
             border: 2px solid rgba(108,92,231,0.3);
-            border-radius: 16px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 32px;
             transition: all 0.3s ease;
         }
 
         .card-box h3 {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             color: #00d4ff;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .card-box p, .card-box li {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.5;
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.55;
         }
 
         .card-box.highlight-card {
@@ -306,20 +306,20 @@
         .email-block {
             background: rgba(0,0,0,0.4);
             border: 1px solid rgba(108,92,231,0.3);
-            border-radius: 12px;
-            padding: 20px;
-            font-size: 0.8rem;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.85);
+            border-radius: 14px;
+            padding: 28px 32px;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.9);
             position: relative;
         }
 
         .email-block .email-header {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
         }
 
         .email-block .email-header strong {
@@ -328,17 +328,17 @@
 
         .reveal-btn {
             display: inline-block;
-            padding: 10px 24px;
+            padding: 14px 32px;
             background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             border: none;
             border-radius: 30px;
             color: #fff;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 1.05rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
-            margin-top: 12px;
+            margin-top: 16px;
         }
 
         .reveal-btn:hover {
@@ -348,11 +348,12 @@
 
         .reveal-answer {
             display: none;
-            margin-top: 12px;
-            padding: 12px 18px;
-            border-radius: 10px;
+            margin-top: 14px;
+            padding: 18px 24px;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 1.1rem;
+            line-height: 1.55;
         }
 
         .reveal-answer.shown {
@@ -446,16 +447,22 @@
         }
 
         .artifact-tip {
-            background: rgba(0,0,0,0.3);
-            border-left: 3px solid #00d4ff;
-            padding: 10px 15px;
-            margin: 8px 0;
-            font-size: 0.8rem;
-            border-radius: 0 8px 8px 0;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(0,212,255,0.25);
+            border-left: 5px solid #00d4ff;
+            padding: 22px 26px;
+            font-size: 1.05rem;
+            line-height: 1.55;
+            border-radius: 0 14px 14px 0;
+            height: 100%;
+            box-sizing: border-box;
         }
 
         .artifact-tip strong {
             color: #00d4ff;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .three-col {
@@ -968,43 +975,50 @@
 
             <section>
                 <div class="slide-inner content-slide">
-                    <h2><i class="fas fa-envelope" style="color: #6c5ce7;"></i> Emails: <span class="hl">Real or AI?</span></h2>
-                    <div class="two-col">
-                        <div>
-                            <h3 style="color: #a29bfe;">Email A</h3>
-                            <div class="email-block">
-                                <div class="email-header">
-                                    <strong>From:</strong> security@bankofamerica-alerts.com<br>
-                                    <strong>Subject:</strong> Urgent: Verify Your Account Immediately
-                                </div>
-                                <p>Dear Valued Customer,</p>
-                                <p>Our advanced security system has detected suspicious activity on your account. To prevent unauthorized access, please verify your identity immediately by clicking the secure link below.</p>
-                                <p>If you do not verify within 24 hours, your account will be temporarily suspended for your protection.</p>
-                                <p>Verify Now: <span style="color: #00d4ff; text-decoration: underline;">https://boa-secure-verify.com/auth</span></p>
-                                <p>Thank you for your prompt attention,<br>Bank of America Security Team</p>
+                    <h2><i class="fas fa-envelope" style="color: #6c5ce7;"></i> Emails: <span class="hl">Real or AI?</span> &mdash; <span style="color: #a29bfe;">Email A</span></h2>
+                    <div style="max-width: 950px; margin: 0 auto;">
+                        <div class="email-block">
+                            <div class="email-header">
+                                <strong>From:</strong> security@bankofamerica-alerts.com<br>
+                                <strong>Subject:</strong> Urgent: Verify Your Account Immediately
                             </div>
-                            <button class="reveal-btn" onclick="revealAnswer('email-a-answer')"><i class="fas fa-eye"></i> Reveal</button>
-                            <div class="reveal-answer fake" id="email-a-answer">
-                                <i class="fas fa-times-circle"></i> AI PHISHING &mdash; Too-perfect grammar, fake domain (bankofamerica-<em>alerts</em>.com), urgency pressure, suspicious link, no account-specific details
-                            </div>
+                            <p>Dear Valued Customer,</p>
+                            <p>Our advanced security system has detected suspicious activity on your account. To prevent unauthorized access, please verify your identity immediately by clicking the secure link below.</p>
+                            <p>If you do not verify within 24 hours, your account will be temporarily suspended for your protection.</p>
+                            <p>Verify Now: <span style="color: #00d4ff; text-decoration: underline;">https://boa-secure-verify.com/auth</span></p>
+                            <p>Thank you for your prompt attention,<br>Bank of America Security Team</p>
                         </div>
-                        <div>
-                            <h3 style="color: #a29bfe;">Email B</h3>
-                            <div class="email-block">
-                                <div class="email-header">
-                                    <strong>From:</strong> no-reply@chase.com<br>
-                                    <strong>Subject:</strong> New sign-in to your Chase account
-                                </div>
-                                <p>Hi Paul,</p>
-                                <p>We noticed a sign-in to your Chase account from a new device on April 15, 2026 at 3:42 PM ET.</p>
-                                <p><strong>Device:</strong> iPhone 16, Safari<br><strong>Location:</strong> Red Bank, NJ</p>
-                                <p>If this was you, no action is needed. If you don't recognize this activity, please call us at 1-800-935-9935.</p>
-                                <p>Thanks,<br>Chase Security</p>
+                        <div style="text-align: center;">
+                            <button class="reveal-btn" onclick="revealAnswer('email-a-answer')" style="font-size: 1.2rem; padding: 16px 40px;"><i class="fas fa-eye"></i> Reveal</button>
+                        </div>
+                        <div class="reveal-answer fake" id="email-a-answer" style="font-size: 1.3rem; text-align: center; padding: 24px 30px;">
+                            <i class="fas fa-times-circle"></i> AI PHISHING &mdash; Too-perfect grammar, fake domain (bankofamerica-<em>alerts</em>.com), urgency pressure, suspicious link, no account-specific details
+                        </div>
+                    </div>
+                    <div class="wave-decoration"></div>
+                </div>
+            </section>
+
+            <section>
+                <div class="slide-inner content-slide">
+                    <h2><i class="fas fa-envelope" style="color: #6c5ce7;"></i> Emails: <span class="hl">Real or AI?</span> &mdash; <span style="color: #a29bfe;">Email B</span></h2>
+                    <div style="max-width: 950px; margin: 0 auto;">
+                        <div class="email-block">
+                            <div class="email-header">
+                                <strong>From:</strong> no-reply@chase.com<br>
+                                <strong>Subject:</strong> New sign-in to your Chase account
                             </div>
-                            <button class="reveal-btn" onclick="revealAnswer('email-b-answer')"><i class="fas fa-eye"></i> Reveal</button>
-                            <div class="reveal-answer real" id="email-b-answer">
-                                <i class="fas fa-check-circle"></i> REAL &mdash; Uses your name, specific device/location details, legitimate domain, no suspicious links, provides a phone number (not a link) to call
-                            </div>
+                            <p>Hi Paul,</p>
+                            <p>We noticed a sign-in to your Chase account from a new device on April 15, 2026 at 3:42 PM ET.</p>
+                            <p><strong>Device:</strong> iPhone 16, Safari<br><strong>Location:</strong> Red Bank, NJ</p>
+                            <p>If this was you, no action is needed. If you don't recognize this activity, please call us at 1-800-935-9935.</p>
+                            <p>Thanks,<br>Chase Security</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <button class="reveal-btn" onclick="revealAnswer('email-b-answer')" style="font-size: 1.2rem; padding: 16px 40px;"><i class="fas fa-eye"></i> Reveal</button>
+                        </div>
+                        <div class="reveal-answer real" id="email-b-answer" style="font-size: 1.3rem; text-align: center; padding: 24px 30px;">
+                            <i class="fas fa-check-circle"></i> REAL &mdash; Uses your name, specific device/location details, legitimate domain, no suspicious links, provides a phone number (not a link) to call
                         </div>
                     </div>
                     <div class="wave-decoration"></div>
@@ -1047,35 +1061,31 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2><span class="hl">Artifact Hunt:</span> Tips for Spotting Fakes</h2>
-                    <p style="margin-bottom: 15px;">Don&rsquo;t look at the face as a whole &mdash; scan the <strong>edges</strong> and <strong>non-human details</strong>:</p>
-                    <div class="two-col">
-                        <div>
-                            <div class="artifact-tip">
-                                <strong><i class="fas fa-ghost"></i> The &ldquo;Third Person&rdquo; Glitch</strong><br>
-                                Look at the background for &ldquo;flesh blobs&rdquo; or distorted partial faces near the edges.
-                            </div>
-                            <div class="artifact-tip">
-                                <strong><i class="fas fa-gem"></i> Earrings &amp; Glasses</strong><br>
-                                AI struggles with symmetry. One hoop + one stud? Frames that merge into skin?
-                            </div>
-                            <div class="artifact-tip">
-                                <strong><i class="fas fa-eye"></i> The &ldquo;Void&rdquo; in the Eyes</strong><br>
-                                Check the white reflection dots. In real photos, both eyes reflect the same light source.
-                            </div>
+                    <p style="margin-bottom: 28px; font-size: 1.2rem;">Don&rsquo;t look at the face as a whole &mdash; scan the <strong>edges</strong> and <strong>non-human details</strong>:</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px;">
+                        <div class="artifact-tip">
+                            <strong><i class="fas fa-ghost"></i> The &ldquo;Third Person&rdquo; Glitch</strong>
+                            Look at the background for &ldquo;flesh blobs&rdquo; or distorted partial faces near the edges.
                         </div>
-                        <div>
-                            <div class="artifact-tip">
-                                <strong><i class="fas fa-cut"></i> Hair Messiness</strong><br>
-                                Real hair is chaotic but follows physics. AI hair turns into &ldquo;pixel soup&rdquo; or looks painted on.
-                            </div>
-                            <div class="artifact-tip">
-                                <strong><i class="fas fa-image"></i> Background Surrealism</strong><br>
-                                Blurred colors that don&rsquo;t represent real places. A window that leads to a brick wall?
-                            </div>
-                            <div class="artifact-tip">
-                                <strong><i class="fas fa-layer-group"></i> Occlusion Failures</strong><br>
-                                When one object is in front of another (microphone, helmet strap), AI gets confused.
-                            </div>
+                        <div class="artifact-tip">
+                            <strong><i class="fas fa-gem"></i> Earrings &amp; Glasses</strong>
+                            AI struggles with symmetry. One hoop + one stud? Frames that merge into skin?
+                        </div>
+                        <div class="artifact-tip">
+                            <strong><i class="fas fa-eye"></i> The &ldquo;Void&rdquo; in the Eyes</strong>
+                            Check the white reflection dots. In real photos, both eyes reflect the same light source.
+                        </div>
+                        <div class="artifact-tip">
+                            <strong><i class="fas fa-cut"></i> Hair Messiness</strong>
+                            Real hair is chaotic but follows physics. AI hair turns into &ldquo;pixel soup&rdquo; or looks painted on.
+                        </div>
+                        <div class="artifact-tip">
+                            <strong><i class="fas fa-image"></i> Background Surrealism</strong>
+                            Blurred colors that don&rsquo;t represent real places. A window that leads to a brick wall?
+                        </div>
+                        <div class="artifact-tip">
+                            <strong><i class="fas fa-layer-group"></i> Occlusion Failures</strong>
+                            When one object is in front of another (microphone, helmet strap), AI gets confused.
                         </div>
                     </div>
                     <div class="wave-decoration"></div>
