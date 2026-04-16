@@ -66,7 +66,7 @@ $( document ).ready(function() {
         }
 
         // speech
-        if (!speechLoaded) {
+        if (!speechLoaded && $('#speech-single-item').length) {
             var hT = $('#speech-single-item').offset().top,
                 hH = $('#speech-single-item').outerHeight(),
                 wH = $(window).height(),
@@ -84,7 +84,7 @@ $( document ).ready(function() {
         }
 
         // conference
-        if (!conferenceLoaded) {
+        if (!conferenceLoaded && $('#conference-single-item').length) {
             var hT = $('#conference-single-item').offset().top,
                 hH = $('#conference-single-item').outerHeight(),
                 wH = $(window).height(),
@@ -102,7 +102,7 @@ $( document ).ready(function() {
         }
 
         // patents
-        if (!patentLoaded) {
+        if (!patentLoaded && $('#patent-single-item').length) {
             var hT = $('#patent-single-item').offset().top,
                 hH = $('#patent-single-item').outerHeight(),
                 wH = $(window).height(),
@@ -120,7 +120,7 @@ $( document ).ready(function() {
         }
 
         // hackathon
-        if (!hackathonLoaded) {
+        if (!hackathonLoaded && $('#hackathon-single-item').length) {
             var hT = $('#hackathon-single-item').offset().top,
                 hH = $('#hackathon-single-item').outerHeight(),
                 wH = $(window).height(),
