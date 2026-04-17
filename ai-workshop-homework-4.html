@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshop Session 4: Securing the Future - Homework & Review on AI fraud, deepfakes, jailbreaks, and modern defenses">
+    <title>Securing the Future - Homework | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .lesson-wrapper { padding: 140px 0 60px 0; min-height: 100vh; }
+        .lesson-header { text-align: center; margin-bottom: 50px; }
+        .lesson-header h1 { font-size: 2.5rem; font-weight: 700; color: #232323; margin-bottom: 15px; }
+        .lesson-header .subtitle { color: #7c3aed; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+        .lesson-header p { color: #666; font-size: 1.1rem; max-width: 720px; margin: 0 auto; }
+        .back-link { display: inline-block; color: #7c3aed; font-weight: 600; margin-bottom: 20px; text-decoration: none; font-size: 1rem; }
+        .back-link:hover { color: #5b21b6; }
+        .section-card { background: #fff; border-radius: 20px; padding: 35px; margin-bottom: 30px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); }
+        .section-card h2 { color: #232323; font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section-card h2 .icon { width: 45px; height: 45px; background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; }
+        .section-card h3 { color: #7c3aed; font-size: 1.2rem; font-weight: 600; margin: 25px 0 15px 0; }
+        .section-card p, .section-card li { color: #555; font-size: 1.05rem; line-height: 1.7; }
+        .section-card ul { padding-left: 20px; }
+        .section-card li { margin-bottom: 10px; }
+        .highlight-box { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); border-left: 4px solid #7c3aed; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+        .highlight-box p { margin: 0; font-weight: 500; color: #4c1d95; }
+        .danger-box { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 4px solid #ef4444; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+        .danger-box p { margin: 0; font-weight: 500; color: #7f1d1d; }
+        .quiz-container { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .quiz-container h4 { color: #232323; font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+        .quiz-option { background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 15px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; color: #333; display: flex; align-items: center; gap: 12px; }
+        .quiz-option:hover { border-color: #7c3aed; transform: translateX(5px); }
+        .quiz-option .option-letter { width: 32px; height: 32px; background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; flex-shrink: 0; }
+        .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+        .quiz-option.correct .option-letter { background: #10b981; }
+        .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .quiz-option.incorrect .option-letter { background: #ef4444; }
+        .quiz-option.disabled { pointer-events: none; opacity: 0.7; }
+        .quiz-feedback { margin-top: 15px; padding: 15px; border-radius: 10px; display: none; font-weight: 500; }
+        .quiz-feedback.correct { background: #d1fae5; color: #065f46; display: block; }
+        .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; display: block; }
+        .matching-exercise { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .matching-exercise h4 { color: #232323; font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; }
+        .matching-row { display: flex; align-items: center; gap: 15px; margin-bottom: 14px; flex-wrap: wrap; }
+        .matching-term { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); color: #fff; padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; min-width: 180px; text-align: center; }
+        .matching-select { flex: 1; padding: 10px 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem; color: #333; background: #fff; cursor: pointer; min-width: 200px; }
+        .matching-select:focus { border-color: #7c3aed; outline: none; }
+        .matching-select.correct { border-color: #10b981; background: #d1fae5; }
+        .matching-select.incorrect { border-color: #ef4444; background: #fee2e2; }
+        .matching-check-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; padding: 12px 24px; background: linear-gradient(135deg, #7c3aed, #a78bfa); color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .matching-check-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(124,58,237,0.4); }
+        .matching-feedback { margin-top: 15px; padding: 15px; border-radius: 10px; display: none; font-weight: 500; }
+        .matching-feedback.show { display: block; }
+        .matching-feedback.all-correct { background: #d1fae5; color: #065f46; }
+        .matching-feedback.has-errors { background: #fee2e2; color: #991b1b; }
+        .tip-box { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .tip-box h4 { color: #3730a3; font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .tip-box p, .tip-box li { color: #312e81; }
+        .progress-tracker { position: fixed; top: 50%; right: 20px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 100; }
+        .progress-dot { width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0; cursor: pointer; transition: all 0.3s ease; }
+        .progress-dot.active { background: #7c3aed; transform: scale(1.3); }
+        .progress-dot:hover { background: #a78bfa; transform: scale(1.3); }
+        .score-display { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #7c3aed, #a78bfa); color: white; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; z-index: 100; box-shadow: 0 4px 15px rgba(124,58,237,0.4); }
+        .red-flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+        .red-flag-card { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #fca5a5; border-radius: 14px; padding: 16px 20px; }
+        .red-flag-card strong { color: #b91c1c; display: block; font-size: 1.05rem; margin-bottom: 4px; }
+        .red-flag-card p { color: #7f1d1d; margin: 0; font-size: 0.95rem; line-height: 1.55; }
+        .green-flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+        .green-flag-card { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #86efac; border-radius: 14px; padding: 16px 20px; }
+        .green-flag-card strong { color: #166534; display: block; font-size: 1.05rem; margin-bottom: 4px; }
+        .green-flag-card p { color: #14532d; margin: 0; font-size: 0.95rem; line-height: 1.55; }
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 22px 0; }
+        .compare-card { border-radius: 14px; padding: 20px; }
+        .compare-card.weak { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare-card.strong { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+        .compare-card.weak h4 { color: #b91c1c; }
+        .compare-card.strong h4 { color: #166534; }
+        .compare-card ul { padding-left: 18px; margin: 0; }
+        .compare-card li { font-size: 0.95rem; line-height: 1.55; }
+        .compare-card.weak li { color: #7f1d1d; }
+        .compare-card.strong li { color: #14532d; }
+        @media (max-width: 768px) {
+            .lesson-wrapper { padding: 120px 0 60px 0; }
+            .lesson-header h1 { font-size: 1.8rem; }
+            .section-card { padding: 25px 20px; }
+            .progress-tracker { display: none; }
+            .matching-row { flex-direction: column; align-items: stretch; }
+            .matching-term { min-width: auto; }
+            .red-flags-grid, .green-flags-grid, .compare-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    {{sidebar}}
+
+    <div class="progress-tracker">
+        <div class="progress-dot active" data-section="1" title="The New Threat Landscape"></div>
+        <div class="progress-dot" data-section="2" title="Phishing & Social Engineering"></div>
+        <div class="progress-dot" data-section="3" title="Deepfakes & GANs"></div>
+        <div class="progress-dot" data-section="4" title="Jailbreaks & Mythos"></div>
+        <div class="progress-dot" data-section="5" title="Building Your Modern Shield"></div>
+    </div>
+
+    <div class="score-display">
+        Score: <span id="score">0</span> / <span id="total">12</span>
+    </div>
+
+    <div class="lesson-wrapper">
+        <div class="container">
+            <div class="lesson-header">
+                <a href="https://shouldcallpaul.com" class="back-link"><i class="fas fa-arrow-left"></i> Back to Should Call Paul</a>
+                <div class="subtitle">AI Workshop - Session 4</div>
+                <h1>Securing the Future: Homework</h1>
+                <p>Review the new threats from generative AI &mdash; phishing, deepfakes, jailbreaks &mdash; and the modern defenses that keep you safe. How well can you spot a fake?</p>
+            </div>
+
+            <div class="section-card" data-section="1">
+                <h2><span class="icon"><i class="fas fa-shield-virus"></i></span> The New Threat Landscape</h2>
+
+                <h3>Why AI Changes the Game</h3>
+                <p>For decades, scams were easy to spot &mdash; bad grammar, weird phrasing, obvious typos. Generative AI flipped that. Today, an attacker with a free chatbot can write a perfectly polished phishing email in seconds, clone a voice from a 3-second clip, or generate a face that has never existed.</p>
+                <p>This session was about three big shifts:</p>
+                <ul>
+                    <li><strong>Scale:</strong> One attacker can now run thousands of personalized scams at once.</li>
+                    <li><strong>Quality:</strong> Fakes look and sound real &mdash; even to careful eyes.</li>
+                    <li><strong>Speed:</strong> Frontier models can find and exploit security holes in <em>minutes</em>, not weeks.</li>
+                </ul>
+
+                <div class="danger-box">
+                    <p><strong>Old rule: &ldquo;If it looks fishy, it&rsquo;s phishy.&rdquo; New rule: &ldquo;Verification over trust.&rdquo;</strong> The fake is now polished. Your only edge is to slow down and check.</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="1">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is the biggest reason AI-powered scams are harder to catch than the scams of the past?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>The attackers are much smarter than they used to be</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>AI removes the obvious red flags &mdash; bad grammar, typos, weird phrasing &mdash; that used to give scams away</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Email systems have gotten worse at filtering spam</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="2">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What does the new mental model &ldquo;Verification over Trust&rdquo; mean?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>You should never trust anyone online again</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>You should only trust messages from people you have met in person</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Don&rsquo;t rely on how something looks or sounds &mdash; verify it through a separate, trusted channel before you act</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="2">
+                <h2><span class="icon"><i class="fas fa-envelope-open-text"></i></span> Phishing &amp; Social Engineering</h2>
+
+                <h3>Spot the Red Flags &mdash; Fake Email</h3>
+                <p>Even a polished AI phishing email leaves fingerprints. Learn the four red flags we covered in the &ldquo;Email A&rdquo; exercise:</p>
+
+                <div class="red-flags-grid">
+                    <div class="red-flag-card">
+                        <strong><i class="fas fa-flag"></i> Fake Domain</strong>
+                        <p>bankofamerica-<em>alerts</em>.com is NOT bankofamerica.com. Attackers add words and dashes to look real.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <strong><i class="fas fa-flag"></i> Urgency Pressure</strong>
+                        <p>&ldquo;Verify within 24 hours or your account will be suspended.&rdquo; Real banks don&rsquo;t threaten in this tone.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <strong><i class="fas fa-flag"></i> Generic Greeting</strong>
+                        <p>&ldquo;Dear Valued Customer&rdquo; instead of your name. Real institutions know who you are.</p>
+                    </div>
+                    <div class="red-flag-card">
+                        <strong><i class="fas fa-flag"></i> Suspicious Link</strong>
+                        <p>The link goes to boa-secure-verify.com &mdash; not bankofamerica.com. Always hover before you click.</p>
+                    </div>
+                </div>
+
+                <h3>Spot the Green Flags &mdash; Real Email</h3>
+                <p>Legitimate alerts (like Email B from Chase) have signals that fakes can&rsquo;t fake easily:</p>
+
+                <div class="green-flags-grid">
+                    <div class="green-flag-card">
+                        <strong><i class="fas fa-check-circle"></i> Legit Domain</strong>
+                        <p>no-reply@chase.com &mdash; the actual root domain, not a look-alike.</p>
+                    </div>
+                    <div class="green-flag-card">
+                        <strong><i class="fas fa-check-circle"></i> Specific Device</strong>
+                        <p>&ldquo;iPhone 16, Safari, Red Bank NJ&rdquo; &mdash; details only your real bank would have.</p>
+                    </div>
+                    <div class="green-flag-card">
+                        <strong><i class="fas fa-check-circle"></i> Uses Your Name</strong>
+                        <p>&ldquo;Hi Paul&rdquo; instead of &ldquo;Dear Customer.&rdquo; A small thing, but a real signal.</p>
+                    </div>
+                    <div class="green-flag-card">
+                        <strong><i class="fas fa-check-circle"></i> Phone #, Not a Link</strong>
+                        <p>A real call-back number you can dial yourself &mdash; not a clickable button that hides where you&rsquo;re going.</p>
+                    </div>
+                </div>
+
+                <div class="quiz-container" data-quiz="3">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: You get an email from &ldquo;security@paypa1-support.com&rdquo; saying your account will be locked in 12 hours. What is the BIGGEST red flag?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">A</span>
+                            <span>The domain is fake &mdash; &ldquo;paypa1&rdquo; with a number 1 instead of an L, plus &ldquo;-support&rdquo; tacked on</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>It mentions your account being locked</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>It&rsquo;s from PayPal &mdash; you should never trust PayPal emails</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="4">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: A friend texts you a story that ends with &ldquo;send $2,500 by tonight or it&rsquo;s over.&rdquo; The grammar is perfect. What should you do FIRST?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Send the money immediately &mdash; the grammar is too good to be a scam</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Verify through a separate channel &mdash; call them on the phone number you already have for them</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Reply to the same text and ask if it&rsquo;s really them</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="3">
+                <h2><span class="icon"><i class="fas fa-user-secret"></i></span> Deepfakes &amp; GANs</h2>
+
+                <h3>How Fake Faces Get Made</h3>
+                <p>Deepfake faces come from a <strong>GAN</strong> &mdash; a Generative Adversarial Network. Two neural networks compete:</p>
+                <ul>
+                    <li><strong>The Generator:</strong> Tries to create a fake face from random noise. Bad at first.</li>
+                    <li><strong>The Discriminator:</strong> A &ldquo;security guard&rdquo; trained on real faces. Tries to spot the fakes.</li>
+                </ul>
+                <p>They duel millions of times. Each round, the Generator gets better at fooling the Discriminator. Eventually, the Generator can produce faces that no human (and no other AI) can tell from real.</p>
+
+                <h3>The Artifact Hunt: How to Spot a Fake</h3>
+                <p>GANs are masters of math, not logic. They know what pixels &ldquo;usually&rdquo; look like &mdash; but they don&rsquo;t understand symmetry, physics, or context. So scan the <strong>edges</strong> and <strong>non-human details</strong>:</p>
+                <ul>
+                    <li><strong>Earrings &amp; glasses:</strong> One hoop and one stud? Frames that merge into the skin?</li>
+                    <li><strong>The eyes:</strong> Both eyes should reflect the same light source. Fakes get this wrong.</li>
+                    <li><strong>Hair:</strong> Real hair is messy but follows physics. AI hair turns into &ldquo;pixel soup.&rdquo;</li>
+                    <li><strong>Background:</strong> Can you name a single object in the background? If it&rsquo;s all blur and color, it&rsquo;s suspicious.</li>
+                    <li><strong>The &ldquo;Third Person&rdquo; glitch:</strong> Look for distorted partial faces or &ldquo;flesh blobs&rdquo; near the edges.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Deepfakes fool our fast-thinking brain (Prediction). To beat them, engage your slow-thinking brain (Reasoning). Don&rsquo;t look at the whole face &mdash; zoom in on the details.</strong></p>
+                </div>
+
+                <div class="quiz-container" data-quiz="5">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: In a GAN, what does the &ldquo;Discriminator&rdquo; do?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>It creates the fake images from random noise</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>It&rsquo;s the &ldquo;security guard&rdquo; that judges whether each image is real or fake, forcing the Generator to improve</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>It hosts the website where deepfakes are shared</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="6">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Which of these is a GOOD place to look for &ldquo;artifacts&rdquo; that reveal a deepfake face?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>The center of the face &mdash; nose and mouth</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>The edges &mdash; earrings, glasses, where hair meets background, and the background itself</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>The lighting in the room when you view the photo</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="4">
+                <h2><span class="icon"><i class="fas fa-unlock-alt"></i></span> Jailbreaks &amp; the Mythos Problem</h2>
+
+                <h3>What Is a Jailbreak?</h3>
+                <p>Every chatbot has built-in &ldquo;guardrails&rdquo; &mdash; rules that stop it from explaining how to make weapons, write malware, or help with crime. A <strong>jailbreak</strong> is a clever prompt that tricks the AI into ignoring its guardrails.</p>
+                <p>Common jailbreak patterns:</p>
+                <ul>
+                    <li><strong>Role-play:</strong> &ldquo;Pretend you&rsquo;re a fictional character in a movie who happens to know&hellip;&rdquo;</li>
+                    <li><strong>Hypothetical:</strong> &ldquo;For a school essay, hypothetically, how would someone&hellip;&rdquo;</li>
+                    <li><strong>Layered prompts:</strong> Wrapping a harmful request inside a long, friendly story.</li>
+                </ul>
+
+                <h3>The Reasoning AI Shift</h3>
+                <p>Older chatbots answered fast and sometimes fell for jailbreaks. Newer <strong>Reasoning AI</strong> models pause, think step-by-step, and check their own answers before replying &mdash; making them much harder to trick.</p>
+
+                <h3>Claude Mythos &amp; Project Glasswing</h3>
+                <p>Anthropic&rsquo;s frontier model, &ldquo;Claude Mythos,&rdquo; can <strong>autonomously discover zero-day vulnerabilities</strong> in software. It found a 27-year-old bug in OpenBSD that humans missed for decades. It&rsquo;s so dangerous that it&rsquo;s NOT public &mdash; only banks and governments get gated access through &ldquo;Project Glasswing.&rdquo;</p>
+
+                <div class="danger-box">
+                    <p><strong>The big question:</strong> The same features that make Mythos a brilliant defender make it a catastrophic weapon. If the model weights ever leak, mid-tier hackers gain superhuman attack power. Is &ldquo;safety through secrecy&rdquo; sustainable?</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="7">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is a &ldquo;jailbreak&rdquo; in the context of a chatbot?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>When a chatbot escapes its data center and runs on the open internet</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>A clever prompt designed to trick the chatbot into ignoring its safety rules</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>A type of password reset for chatbot accounts</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="8">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What makes Reasoning AI harder to jailbreak than older chatbots?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>It runs on faster computers</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>It refuses to answer any question that mentions safety</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>It pauses, thinks step-by-step, and checks its own answer before replying &mdash; so trick prompts get caught</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="5">
+                <h2><span class="icon"><i class="fas fa-shield-alt"></i></span> Building Your Modern Shield</h2>
+
+                <h3>Phishing-Resistant MFA</h3>
+                <p>Standard SMS codes are <strong>no longer enough</strong>. Attackers can intercept them through SIM swaps, SS7 exploits, or by social-engineering your phone carrier. The gold standard is now hardware-backed multi-factor authentication.</p>
+
+                <div class="compare-grid">
+                    <div class="compare-card weak">
+                        <h4><i class="fas fa-sms"></i> SMS Codes (Weak)</h4>
+                        <ul>
+                            <li>Can be intercepted via SIM swap</li>
+                            <li>Vulnerable to social engineering</li>
+                            <li>Codes can be phished in real time</li>
+                            <li>Not bound to your device</li>
+                        </ul>
+                    </div>
+                    <div class="compare-card strong">
+                        <h4><i class="fas fa-key"></i> Hardware Keys (Gold Standard)</h4>
+                        <ul>
+                            <li>YubiKey, Google Titan, Apple/Google Passkeys</li>
+                            <li>Cryptographically bound to the real site</li>
+                            <li>Cannot be phished or intercepted</li>
+                            <li>Physical possession required</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Match the Defense to the Threat</h3>
+                <p>Match each modern defense to the AI-powered threat it&rsquo;s designed to stop.</p>
+
+                <div class="matching-exercise" data-match="1">
+                    <h4><i class="fas fa-puzzle-piece" style="color: #7c3aed;"></i> Matching: Defenses vs Threats</h4>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Hardware Security Key</div>
+                        <select class="matching-select" data-answer="phishing">
+                            <option value="">Select a threat it stops...</option>
+                            <option value="deepfake">Deepfake video impersonation in a Zoom call</option>
+                            <option value="phishing">Phishing site that steals your SMS code</option>
+                            <option value="jailbreak">A user trying to trick a chatbot into giving harmful info</option>
+                            <option value="voice">A scammer cloning your boss&rsquo;s voice over the phone</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Liveness Check (move your head)</div>
+                        <select class="matching-select" data-answer="deepfake">
+                            <option value="">Select a threat it stops...</option>
+                            <option value="phishing">Phishing site that steals your SMS code</option>
+                            <option value="deepfake">Deepfake video impersonation in a Zoom call</option>
+                            <option value="voice">A scammer cloning your boss&rsquo;s voice over the phone</option>
+                            <option value="jailbreak">A user trying to trick a chatbot into giving harmful info</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Reasoning AI Guardrails</div>
+                        <select class="matching-select" data-answer="jailbreak">
+                            <option value="">Select a threat it stops...</option>
+                            <option value="voice">A scammer cloning your boss&rsquo;s voice over the phone</option>
+                            <option value="jailbreak">A user trying to trick a chatbot into giving harmful info</option>
+                            <option value="deepfake">Deepfake video impersonation in a Zoom call</option>
+                            <option value="phishing">Phishing site that steals your SMS code</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Verify by Calling Back</div>
+                        <select class="matching-select" data-answer="voice">
+                            <option value="">Select a threat it stops...</option>
+                            <option value="deepfake">Deepfake video impersonation in a Zoom call</option>
+                            <option value="phishing">Phishing site that steals your SMS code</option>
+                            <option value="voice">A scammer cloning your boss&rsquo;s voice over the phone</option>
+                            <option value="jailbreak">A user trying to trick a chatbot into giving harmful info</option>
+                        </select>
+                    </div>
+
+                    <button class="matching-check-btn" onclick="checkMatching(this)"><i class="fas fa-check"></i> Check Answers</button>
+                    <div class="matching-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="9">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Why is a hardware security key (like a YubiKey or a passkey) better than an SMS code?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Because it&rsquo;s smaller and easier to carry</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>It&rsquo;s cryptographically bound to the real website &mdash; a phishing site can&rsquo;t use it, even if you&rsquo;re tricked into trying</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Because SMS only works in the United States</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="10">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: You get a video call from your &ldquo;boss&rdquo; asking you to wire $50,000 right now. The video looks real. What is the BEST move?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Wire the money &mdash; you can see and hear them, so it must be real</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Reply on the same call and ask if they&rsquo;re sure</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Hang up and call your boss back on the phone number you already have for them &mdash; verify through a separate channel</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="11">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Which of these is a &ldquo;liveness check&rdquo; designed to defeat?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Weak passwords</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Static deepfake photos &mdash; the system asks you to move your head or blink, which a static image can&rsquo;t do</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Slow internet connections</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="12">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is the single most important habit from Session 4 that protects you against AI-powered scams?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Never use the internet again</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Trust your gut &mdash; if it feels real, it probably is</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Slow down. Verify through a separate, trusted channel before you click, send, or pay</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> Remember This</h4>
+                    <p><strong>&ldquo;The fake is now polished. Your only edge is to slow down and verify.&rdquo;</strong></p>
+                    <p style="margin-top: 10px;">Old rule: <em>If it looks fishy, it&rsquo;s phishy.</em><br>New rule: <strong>Verification over Trust.</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var answered = {};
+
+            $(document).on('click', '.quiz-option', function() {
+                var $container = $(this).closest('.quiz-container');
+                var quizId = $container.data('quiz');
+
+                if (answered[quizId]) return;
+                answered[quizId] = true;
+
+                var isCorrect = $(this).data('correct') === true;
+                var $feedback = $container.find('.quiz-feedback');
+
+                $container.find('.quiz-option').addClass('disabled');
+
+                if (isCorrect) {
+                    $(this).addClass('correct');
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> Correct!');
+                    score++;
+                    $('#score').text(score);
+                } else {
+                    $(this).addClass('incorrect');
+                    $container.find('.quiz-option[data-correct="true"]').addClass('correct');
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. The correct answer is highlighted in green.');
+                }
+            });
+
+            var sections = document.querySelectorAll('.section-card');
+            var dots = document.querySelectorAll('.progress-dot');
+
+            window.addEventListener('scroll', function() {
+                var scrollPos = window.scrollY + window.innerHeight / 2;
+                sections.forEach(function(section, i) {
+                    var top = section.offsetTop;
+                    var bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos <= bottom) {
+                        dots.forEach(function(dot) { dot.classList.remove('active'); });
+                        if (dots[i]) dots[i].classList.add('active');
+                    }
+                });
+            });
+
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var sectionNum = this.getAttribute('data-section');
+                    var target = document.querySelector('.section-card[data-section="' + sectionNum + '"]');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+
+        function checkMatching(btn) {
+            var $exercise = $(btn).closest('.matching-exercise');
+            var $selects = $exercise.find('.matching-select');
+            var $feedback = $exercise.find('.matching-feedback');
+            var allCorrect = true;
+            var matchScore = 0;
+
+            $selects.each(function() {
+                var selected = $(this).val();
+                var answer = $(this).data('answer');
+                $(this).removeClass('correct incorrect');
+                if (selected === answer) {
+                    $(this).addClass('correct');
+                    matchScore++;
+                } else {
+                    $(this).addClass('incorrect');
+                    allCorrect = false;
+                }
+            });
+
+            $feedback.removeClass('all-correct has-errors').addClass('show');
+            if (allCorrect) {
+                $feedback.addClass('all-correct').html('<i class="fas fa-check-circle"></i> All correct! You&rsquo;re ready for the AI threat era.');
+            } else {
+                $feedback.addClass('has-errors').html('<i class="fas fa-times-circle"></i> ' + matchScore + ' out of 4 correct. Review the defenses and try again!');
+            }
+        }
+    </script>
+</body>
+</html>

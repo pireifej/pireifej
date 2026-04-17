@@ -25,8 +25,10 @@ The project is structured as a static HTML/CSS/JavaScript frontend served by an 
 - Follows site template pattern (sidebar, preloader, portfolio-page-wrapper)
 
 ### AI Workshop Session 4
-- Created **session-4/index.html** — 24-slide Reveal.js 5.x presentation "Securing the Future" (fraud, deepfakes, security)
-- Unlocked Session 4 on **ai-workshops-hub.html** (counter: 4 Presentations Live)
+- Created **session-4/index.html** — 30-slide Reveal.js 5.x presentation "Securing the Future" (fraud, deepfakes, security, jailbreaks, Claude Mythos)
+- Interactive elements: Slide 4 red-flag email tags, Slide 5 Traditional→Reasoning AI flip, Slide 9 Gemini accordion, Slide 16 MFA click-to-swap (SMS shatters → Hardware Keys slide in), Slides 18/19 Email A/B click-to-reveal red/green flag callouts with verdict
+- Created **ai-workshop-homework-4.html** — 12 quizzes + 4-term defenses-vs-threats matching exercise across 5 sections (threat landscape, phishing, deepfakes/GANs, jailbreaks/Mythos, modern shield)
+- Unlocked Session 4 + Homework link on **ai-workshops-hub.html**
 
 ### Other Changes
 - Removed Fiverr link from Mobile App & Web Development tile and "Let's Work Together" button

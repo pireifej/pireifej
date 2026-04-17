@@ -647,6 +647,58 @@
         .rf-tag-4 { bottom: 8px; right: -50px; transition-delay: 0.50s; }
         .rf-tag-4::after { left: -6px; top: 50%; margin-top: -7px; }
 
+        /* Green legitimate-flag callouts (Email B) */
+        .gf-tag {
+            position: absolute;
+            background: linear-gradient(135deg, #55efc4, #26c281);
+            color: #0b3a2c;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(85,239,196,0.55);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.34,1.56,.64,1);
+            pointer-events: none;
+            z-index: 10;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        .gf-tag i { margin-right: 6px; }
+        .gf-tag::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #26c281;
+            transform: rotate(45deg);
+        }
+        .gf-shown .gf-tag { opacity: 1; transform: scale(1); }
+        .gf-tag-1 { top: 14px;   left: -50px;  transition-delay: 0.05s; }
+        .gf-tag-1::after { right: -6px; top: 50%; margin-top: -7px; }
+        .gf-tag-2 { top: 38%;    right: -50px; transition-delay: 0.20s; }
+        .gf-tag-2::after { left: -6px; top: 50%; margin-top: -7px; }
+        .gf-tag-3 { bottom: 30%; left: -50px;  transition-delay: 0.35s; }
+        .gf-tag-3::after { right: -6px; top: 50%; margin-top: -7px; }
+        .gf-tag-4 { bottom: 8px; right: -50px; transition-delay: 0.50s; }
+        .gf-tag-4::after { left: -6px; top: 50%; margin-top: -7px; }
+
+        /* MFA shatter / swap */
+        .mfa-stage { position: relative; max-width: 760px; margin: 30px auto 0; min-height: 420px; cursor: pointer; perspective: 1400px; }
+        .mfa-card-wrap {
+            position: absolute; inset: 0;
+            transition: opacity 0.7s ease, transform 0.85s cubic-bezier(.5,0,.2,1), filter 0.6s ease;
+            transform-style: preserve-3d;
+        }
+        .mfa-stage .mfa-sms .card-box { padding: 38px 44px; }
+        .mfa-stage .mfa-keys .card-box { padding: 38px 44px; }
+        .mfa-stage .mfa-keys { opacity: 0; transform: translateY(60px) scale(0.9); }
+        .mfa-stage.swapped .mfa-sms { opacity: 0; transform: rotateZ(-8deg) translateY(60px) scale(0.85); filter: blur(4px); }
+        .mfa-stage.swapped .mfa-keys { opacity: 1; transform: translateY(0) scale(1); }
+        .mfa-stage h3 { font-size: 1.85rem !important; margin-bottom: 18px; }
+        .mfa-stage ul.bullets li { font-size: 1.3rem !important; line-height: 1.6 !important; margin-bottom: 8px; }
+
         /* Slide 9 Gemini accordion */
         .gem-step {
             margin-top: 14px;
@@ -1094,25 +1146,27 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2><i class="fas fa-envelope" style="color: #6c5ce7;"></i> Emails: <span class="hl">Real or AI?</span> &mdash; <span style="color: #a29bfe;">Email A</span></h2>
-                    <div style="max-width: 950px; margin: 0 auto;">
-                        <div class="email-block">
+                    <div id="email-a-wrap" onclick="revealEmailA()" style="position: relative; max-width: 880px; margin: 0 auto; cursor: pointer;">
+                        <div class="email-block" style="font-size: 1rem;">
                             <div class="email-header">
                                 <strong>From:</strong> security@bankofamerica-alerts.com<br>
                                 <strong>Subject:</strong> Urgent: Verify Your Account Immediately
                             </div>
                             <p>Dear Valued Customer,</p>
                             <p>Our advanced security system has detected suspicious activity on your account. To prevent unauthorized access, please verify your identity immediately by clicking the secure link below.</p>
-                            <p>If you do not verify within 24 hours, your account will be temporarily suspended for your protection.</p>
+                            <p>If you do not verify within 24 hours, your account will be temporarily suspended.</p>
                             <p>Verify Now: <span style="color: #00d4ff; text-decoration: underline;">https://boa-secure-verify.com/auth</span></p>
-                            <p>Thank you for your prompt attention,<br>Bank of America Security Team</p>
+                            <p>Thanks,<br>Bank of America Security Team</p>
                         </div>
-                        <div style="text-align: center;">
-                            <button class="reveal-btn" onclick="revealAnswer('email-a-answer')" style="font-size: 1.2rem; padding: 16px 40px;"><i class="fas fa-eye"></i> Reveal</button>
-                        </div>
-                        <div class="reveal-answer fake" id="email-a-answer" style="font-size: 1.3rem; text-align: center; padding: 24px 30px;">
-                            <i class="fas fa-times-circle"></i> AI PHISHING &mdash; Too-perfect grammar, fake domain (bankofamerica-<em>alerts</em>.com), urgency pressure, suspicious link, no account-specific details
-                        </div>
+                        <div class="rf-tag rf-tag-1"><i class="fas fa-flag"></i> FAKE DOMAIN</div>
+                        <div class="rf-tag rf-tag-2"><i class="fas fa-flag"></i> URGENCY PRESSURE</div>
+                        <div class="rf-tag rf-tag-3"><i class="fas fa-flag"></i> GENERIC GREETING</div>
+                        <div class="rf-tag rf-tag-4"><i class="fas fa-flag"></i> SUSPICIOUS LINK</div>
                     </div>
+                    <div id="email-a-verdict" class="reveal-answer fake" style="display: none; max-width: 880px; margin: 22px auto 0; font-size: 1.45rem; text-align: center; padding: 22px 30px;">
+                        <i class="fas fa-times-circle"></i> <strong class="hlr">AI PHISHING</strong> &mdash; Too-perfect grammar, fake domain (bankofamerica-<em>alerts</em>.com), urgency, fake link, no personal details
+                    </div>
+                    <p id="email-a-hint" style="text-align: center; margin: 18px 0 0; font-size: 1.15rem; color: #ff6b6b; opacity: 0.85; font-weight: 600;"><i class="fas fa-hand-pointer"></i> Click the email to flag the Red Flags &amp; reveal the verdict</p>
                     <div class="wave-decoration"></div>
                 </div>
             </section>
@@ -1120,8 +1174,8 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2><i class="fas fa-envelope" style="color: #6c5ce7;"></i> Emails: <span class="hl">Real or AI?</span> &mdash; <span style="color: #a29bfe;">Email B</span></h2>
-                    <div style="max-width: 950px; margin: 0 auto;">
-                        <div class="email-block">
+                    <div id="email-b-wrap" onclick="revealEmailB()" style="position: relative; max-width: 880px; margin: 0 auto; cursor: pointer;">
+                        <div class="email-block" style="font-size: 1rem;">
                             <div class="email-header">
                                 <strong>From:</strong> no-reply@chase.com<br>
                                 <strong>Subject:</strong> New sign-in to your Chase account
@@ -1132,13 +1186,15 @@
                             <p>If this was you, no action is needed. If you don't recognize this activity, please call us at 1-800-935-9935.</p>
                             <p>Thanks,<br>Chase Security</p>
                         </div>
-                        <div style="text-align: center;">
-                            <button class="reveal-btn" onclick="revealAnswer('email-b-answer')" style="font-size: 1.2rem; padding: 16px 40px;"><i class="fas fa-eye"></i> Reveal</button>
-                        </div>
-                        <div class="reveal-answer real" id="email-b-answer" style="font-size: 1.3rem; text-align: center; padding: 24px 30px;">
-                            <i class="fas fa-check-circle"></i> REAL &mdash; Uses your name, specific device/location details, legitimate domain, no suspicious links, provides a phone number (not a link) to call
-                        </div>
+                        <div class="gf-tag gf-tag-1"><i class="fas fa-check-circle"></i> LEGIT DOMAIN</div>
+                        <div class="gf-tag gf-tag-2"><i class="fas fa-check-circle"></i> SPECIFIC DEVICE</div>
+                        <div class="gf-tag gf-tag-3"><i class="fas fa-check-circle"></i> USES YOUR NAME</div>
+                        <div class="gf-tag gf-tag-4"><i class="fas fa-check-circle"></i> CALL #, NO LINK</div>
                     </div>
+                    <div id="email-b-verdict" class="reveal-answer real" style="display: none; max-width: 880px; margin: 22px auto 0; font-size: 1.45rem; text-align: center; padding: 22px 30px;">
+                        <i class="fas fa-check-circle"></i> <strong class="hlg">REAL</strong> &mdash; Personal greeting, specific device &amp; location, legitimate domain, no suspicious links, real phone number to call
+                    </div>
+                    <p id="email-b-hint" style="text-align: center; margin: 18px 0 0; font-size: 1.15rem; color: #55efc4; opacity: 0.9; font-weight: 600;"><i class="fas fa-hand-pointer"></i> Click the email to mark the Green Flags &amp; reveal why it&rsquo;s real</p>
                     <div class="wave-decoration"></div>
                 </div>
             </section>
@@ -1267,11 +1323,11 @@
             <section>
                 <div class="slide-inner content-slide" style="text-align: center;">
                     <h2>The <span class="hl">Entity</span> &mdash; Kind of Real Now</h2>
-                    <p style="font-size: 1.35rem; max-width: 1050px; margin: 0 auto 18px; line-height: 1.55;">Remember <strong>&ldquo;The Entity&rdquo;</strong> from <em>Mission: Impossible &mdash; Dead Reckoning</em>? An autonomous, self-aware AI that could rewrite identities, predict moves, and slip past every defense&hellip;</p>
-                    <div style="max-width: 920px; margin: 0 auto;">
-                        <img src="img/mi-entity.png" alt="The Entity from Mission Impossible Dead Reckoning" style="width: 100%; border-radius: 16px; max-height: 48vh; object-fit: cover; box-shadow: 0 14px 50px rgba(0,212,255,0.35); border: 2px solid rgba(0,212,255,0.3);">
+                    <p style="font-size: 1.7rem; max-width: 1100px; margin: 0 auto 22px; line-height: 1.5;">Remember <strong>&ldquo;The Entity&rdquo;</strong> from <em>Mission: Impossible &mdash; Dead Reckoning</em>? An autonomous, self-aware AI that could rewrite identities, predict moves, and slip past every defense&hellip;</p>
+                    <div style="max-width: 880px; margin: 0 auto;">
+                        <img src="img/mi-entity.png" alt="The Entity from Mission Impossible Dead Reckoning" style="width: 100%; border-radius: 16px; max-height: 42vh; object-fit: cover; box-shadow: 0 14px 50px rgba(0,212,255,0.35); border: 2px solid rgba(0,212,255,0.3);">
                     </div>
-                    <p style="font-size: 1.4rem; margin-top: 22px; color: #a29bfe;"><strong style="color: #00d4ff;">It&rsquo;s not just a movie plot anymore.</strong> Frontier AI models are now demonstrating capabilities that would have looked like pure science fiction just two years ago.</p>
+                    <p style="font-size: 1.7rem; margin-top: 24px; color: #a29bfe;"><strong style="color: #00d4ff;">It&rsquo;s not just a movie plot anymore.</strong> Frontier AI models are now demonstrating capabilities that looked like pure science fiction just two years ago.</p>
                     <div class="wave-decoration"></div>
                 </div>
             </section>
@@ -1279,23 +1335,23 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2>Meet <span class="hlr">Claude Mythos</span> &mdash; Project Glasswing</h2>
-                    <p style="font-size: 1.3rem; margin-bottom: 18px; line-height: 1.55;">Anthropic&rsquo;s frontier model that <strong class="hlr">autonomously discovers zero-day vulnerabilities</strong> in operating systems and browsers. So powerful, it&rsquo;s <strong>not public</strong> &mdash; only banks, governments, and a few &ldquo;critical industry partners&rdquo; get gated access via <em>Project Glasswing</em>.</p>
+                    <p style="font-size: 1.5rem; margin-bottom: 22px; line-height: 1.55;">Anthropic&rsquo;s frontier model that <strong class="hlr">autonomously discovers zero-day vulnerabilities</strong>. So powerful, it&rsquo;s <strong>not public</strong> &mdash; only banks, governments, and &ldquo;critical industry partners&rdquo; get gated access via <em>Project Glasswing</em>.</p>
                     <div class="three-col">
                         <div class="card-box danger-card">
-                            <h3 style="color: #ff6b6b;"><i class="fas fa-bug"></i> Autonomous Exploits</h3>
-                            <p style="font-size: 1.1rem;">Found a <strong>27-year-old</strong> bug in OpenBSD and a <strong>16-year-old</strong> flaw in FFmpeg that automated tools missed for decades. It doesn&rsquo;t just spot bugs &mdash; it figures out how to exploit them.</p>
+                            <h3 style="color: #ff6b6b; font-size: 1.5rem;"><i class="fas fa-bug"></i> Autonomous Exploits</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.55;">Found a <strong>27-year-old</strong> bug in OpenBSD and a <strong>16-year-old</strong> flaw in FFmpeg that tools missed for decades. It figures out how to exploit them.</p>
                         </div>
                         <div class="card-box danger-card">
-                            <h3 style="color: #ff6b6b;"><i class="fas fa-bolt"></i> Speed of Attack</h3>
-                            <p style="font-size: 1.1rem;">Humans take <strong>days or weeks</strong> to chain exploits and take over a system. Mythos can do it in <strong class="hlr">minutes</strong> &mdash; opening the door to a wave of high-speed automated cyberattacks.</p>
+                            <h3 style="color: #ff6b6b; font-size: 1.5rem;"><i class="fas fa-bolt"></i> Speed of Attack</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.55;">Humans take <strong>days or weeks</strong> to chain exploits. Mythos does it in <strong class="hlr">minutes</strong> &mdash; opening the door to high-speed automated cyberattacks.</p>
                         </div>
                         <div class="card-box danger-card">
-                            <h3 style="color: #ff6b6b;"><i class="fas fa-question-circle"></i> The &ldquo;Unknown Unknown&rdquo;</h3>
-                            <p style="font-size: 1.1rem;">Regulators at the <strong>US Treasury</strong> and <strong>Bank of England</strong> warn: if the model weights ever leak, mid-tier hackers gain <strong class="hlr">superhuman</strong> ability to crash infrastructure or drain banks.</p>
+                            <h3 style="color: #ff6b6b; font-size: 1.5rem;"><i class="fas fa-question-circle"></i> Unknown Unknown</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.55;"><strong>US Treasury</strong> and <strong>Bank of England</strong> warn: if weights leak, mid-tier hackers gain <strong class="hlr">superhuman</strong> attack power.</p>
                         </div>
                     </div>
-                    <div class="quote-box" style="margin-top: 20px; font-size: 1.2rem;">
-                        <strong>The Big Question:</strong> The same features that make Mythos a great <em>defender</em> make it a catastrophic <em>weapon</em>. Is &ldquo;safety through secrecy&rdquo; sustainable &mdash; or will open-source models eventually catch up, leaving us unprotected?
+                    <div class="quote-box" style="margin-top: 22px; font-size: 1.4rem; padding: 22px 28px;">
+                        <strong>The Big Question:</strong> Same features that make Mythos a great <em>defender</em> make it a catastrophic <em>weapon</em>. Is &ldquo;safety through secrecy&rdquo; sustainable?
                     </div>
                     <div class="wave-decoration"></div>
                 </div>
@@ -1314,27 +1370,32 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2>Phishing-Resistant <span class="hl">MFA</span></h2>
-                    <p>Standard SMS codes are <strong class="hlr">no longer enough</strong>. Attackers can intercept them via SIM-swapping, SS7 exploits, or social engineering your carrier.</p>
-                    <div class="two-col" style="margin-top: 20px;">
-                        <div class="card-box danger-card">
-                            <h3 style="color: #ff6b6b;"><i class="fas fa-sms"></i> SMS Codes (Weak)</h3>
-                            <ul class="bullets" style="padding: 0;">
-                                <li>Can be intercepted via SIM swap</li>
-                                <li>Vulnerable to social engineering</li>
-                                <li>Code can be phished in real-time</li>
-                                <li>Not bound to the device</li>
-                            </ul>
+                    <p style="font-size: 1.4rem;">Standard SMS codes are <strong class="hlr">no longer enough</strong>. SIM-swap, SS7 exploits, social engineering &mdash; attackers can intercept them.</p>
+                    <div class="mfa-stage" id="mfa-stage" onclick="swapMFA(this)">
+                        <div class="mfa-card-wrap mfa-sms">
+                            <div class="card-box danger-card">
+                                <h3 style="color: #ff6b6b;"><i class="fas fa-sms"></i> SMS Codes (Weak)</h3>
+                                <ul class="bullets" style="padding: 0;">
+                                    <li>Can be intercepted via SIM swap</li>
+                                    <li>Vulnerable to social engineering</li>
+                                    <li>Code can be phished in real-time</li>
+                                    <li>Not bound to the device</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card-box success-card">
-                            <h3 style="color: #55efc4;"><i class="fas fa-key"></i> Hardware Keys (Gold Standard)</h3>
-                            <ul class="bullets" style="padding: 0;">
-                                <li>YubiKey, Google Titan</li>
-                                <li>Cryptographically bound to the site</li>
-                                <li>Cannot be phished or intercepted</li>
-                                <li>Physical possession required</li>
-                            </ul>
+                        <div class="mfa-card-wrap mfa-keys">
+                            <div class="card-box success-card">
+                                <h3 style="color: #55efc4;"><i class="fas fa-key"></i> Hardware Keys (Gold Standard)</h3>
+                                <ul class="bullets" style="padding: 0;">
+                                    <li>YubiKey, Google Titan</li>
+                                    <li>Cryptographically bound to the site</li>
+                                    <li>Cannot be phished or intercepted</li>
+                                    <li>Physical possession required</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+                    <p id="mfa-hint" style="text-align: center; margin: 22px 0 0; font-size: 1.15rem; color: #ff6b6b; opacity: 0.9; font-weight: 600;"><i class="fas fa-hand-pointer"></i> Click to break the SMS code &amp; reveal the Hardware Key fix</p>
                     <div class="wave-decoration"></div>
                 </div>
             </section>
@@ -1460,6 +1521,34 @@
             if (wrap) wrap.classList.add('rf-shown');
             if (box) box.style.display = 'block';
             if (hint) hint.style.display = 'none';
+        }
+
+        function revealEmailA() {
+            var wrap = document.getElementById('email-a-wrap');
+            var v = document.getElementById('email-a-verdict');
+            var h = document.getElementById('email-a-hint');
+            if (wrap) wrap.classList.add('rf-shown');
+            if (v) v.style.display = 'block';
+            if (h) h.style.display = 'none';
+        }
+
+        function revealEmailB() {
+            var wrap = document.getElementById('email-b-wrap');
+            var v = document.getElementById('email-b-verdict');
+            var h = document.getElementById('email-b-hint');
+            if (wrap) wrap.classList.add('gf-shown');
+            if (v) v.style.display = 'block';
+            if (h) h.style.display = 'none';
+        }
+
+        function swapMFA(stage) {
+            if (stage.classList.contains('swapped')) return;
+            stage.classList.add('swapped');
+            var hint = document.getElementById('mfa-hint');
+            if (hint) {
+                hint.style.color = '#55efc4';
+                hint.innerHTML = '<i class="fas fa-shield-alt"></i> Hardware Keys &mdash; cryptographically bound, can&rsquo;t be phished';
+            }
         }
 
         function flipReasoningCard(container) {
