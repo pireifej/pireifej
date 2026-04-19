@@ -35,10 +35,37 @@ $(document).ready(function() {
     function getWorkshopCategory(title) {
         if (!title) return 'speaking';
         var t = title.toLowerCase();
-        if (t.includes('ai') || t.includes('chatgpt') || t.includes('artificial') || t.includes('machine learning') || t.includes('prompt')) {
+        if (t.indexOf(' ai ') !== -1 || t.indexOf('ai ') === 0 || t.indexOf(' ai') === t.length - 3 ||
+            t.indexOf('chatgpt') !== -1 || t.indexOf('artificial') !== -1 ||
+            t.indexOf('machine learning') !== -1 || t.indexOf('prompt') !== -1) {
             return 'ai';
         }
+        if (t.indexOf('career day') !== -1 || t.indexOf('youth leadership') !== -1 ||
+            t.indexOf('week of respect') !== -1 || t.indexOf('school') !== -1 ||
+            t.indexOf('grades') !== -1) {
+            return 'youth';
+        }
         return 'speaking';
+    }
+
+    function getInitialFilter() {
+        var match = window.location.search.match(/[?&]filter=([^&]+)/);
+        if (!match) return 'all';
+        var f = decodeURIComponent(match[1]).toLowerCase();
+        if (f === 'ai' || f === 'speaking' || f === 'youth' || f === 'all') return f;
+        return 'all';
+    }
+
+    function applyFilter(filter) {
+        $('.filter-btn').removeClass('active');
+        $('.filter-btn[data-filter="' + filter + '"]').addClass('active');
+        if (filter === 'all') {
+            $('.portfolio-card').show();
+        } else {
+            $('.portfolio-card').each(function() {
+                $(this).toggle($(this).data('category') === filter);
+            });
+        }
     }
 
     function renderGrid() {
@@ -46,27 +73,21 @@ $(document).ready(function() {
         allItems.forEach(function(item, idx) {
             var img = getWorkshopImage(item);
             var label = item.label || 'Untitled';
-            var categoryLabel = item._category === 'ai' ? 'AI Workshop' : 'Public Speaking';
+            var categoryLabel = item._category === 'ai' ? 'AI Workshop'
+                : item._category === 'youth' ? 'Youth & Community'
+                : 'Public Speaking';
             html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
                 '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
                 '<div class="card-content"><h5>' + label + '</h5>' +
                 '<span class="card-category">' + categoryLabel + '</span></div></div>';
         });
         $('#workshop-grid').html(html);
+        applyFilter(getInitialFilter());
     }
 
     function setupFilterHandlers() {
         $('.filter-btn').on('click', function() {
-            var filter = $(this).data('filter');
-            $('.filter-btn').removeClass('active');
-            $(this).addClass('active');
-            if (filter === 'all') {
-                $('.portfolio-card').show();
-            } else {
-                $('.portfolio-card').each(function() {
-                    $(this).toggle($(this).data('category') === filter);
-                });
-            }
+            applyFilter($(this).data('filter'));
         });
     }
 

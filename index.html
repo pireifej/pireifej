@@ -1103,9 +1103,89 @@ I specialize in bridging the gap between technology and communication, leading d
     </div>
     <!-- End About -->
 
-    <!-- Start Resume 
-    ============================================= -->
-    <div id="resume" class="resume-area default-padding-top">
+    <!-- Start Resume (NEW Background section) -->
+    <style>
+        .background-section { padding: 90px 0 40px 0; position: relative; }
+        .bg-section-heading { text-align: center; margin-bottom: 50px; }
+        .bg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+        .bg-panel { background: #fff; border-radius: 18px; padding: 32px 32px 28px 32px; box-shadow: 0 8px 30px rgba(108, 92, 231, 0.10); border: 1px solid rgba(108, 92, 231, 0.08); }
+        .bg-panel-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid rgba(108, 92, 231, 0.10); }
+        .bg-panel-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; flex-shrink: 0; }
+        .bg-panel-title { margin: 0; font-size: 1.3rem; font-weight: 700; color: #232323; }
+        .bg-panel-sub { margin: 2px 0 0 0; font-size: 0.85rem; color: #6a6a78; }
+        .bg-cat-list { list-style: none; padding: 0; margin: 0; }
+        .bg-cat-list li { display: flex; align-items: center; gap: 16px; padding: 14px 14px; border-radius: 12px; transition: background 0.2s ease; }
+        .bg-cat-list li:hover { background: rgba(108, 92, 231, 0.06); }
+        .bg-cat-list li + li { margin-top: 4px; }
+        .bg-cat-icon { width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, rgba(108,92,231,0.12) 0%, rgba(162,155,254,0.12) 100%); color: #6c5ce7; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+        .bg-cat-info { flex: 1; min-width: 0; }
+        .bg-cat-name { font-size: 1rem; font-weight: 600; color: #232323; margin: 0 0 2px 0; }
+        .bg-cat-meta { font-size: 0.82rem; color: #6a6a78; margin: 0; }
+        .bg-cat-link { color: #6c5ce7; font-weight: 600; font-size: 0.85rem; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s ease; }
+        .bg-cat-link:hover { gap: 8px; color: #4834d4; }
+        .bg-edu-list { list-style: none; padding: 0; margin: 0; position: relative; }
+        .bg-edu-list::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, #6c5ce7 0%, #a29bfe 100%); border-radius: 2px; }
+        .bg-edu-list li { position: relative; padding: 6px 0 24px 36px; }
+        .bg-edu-list li:last-child { padding-bottom: 0; }
+        .bg-edu-list li::before { content: ''; position: absolute; left: 5px; top: 12px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid #6c5ce7; box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15); }
+        .bg-edu-degree { font-size: 1rem; font-weight: 700; color: #232323; margin: 0 0 4px 0; line-height: 1.35; }
+        .bg-edu-school { font-size: 0.92rem; color: #6c5ce7; font-weight: 600; margin: 0 0 4px 0; }
+        .bg-edu-year { display: inline-block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); padding: 3px 10px; border-radius: 12px; }
+        @media (max-width: 991px) { .bg-grid { grid-template-columns: 1fr; } }
+    </style>
+    <div id="resume" class="background-section">
+        <div class="container">
+            <div class="bg-section-heading">
+                <h5 class="sub-title">Background</h5>
+                <h2 class="title">Workshop Categories &amp; Education</h2>
+            </div>
+            <div class="bg-grid">
+                <div class="bg-panel">
+                    <div class="bg-panel-header">
+                        <div class="bg-panel-icon"><i class="fas fa-layer-group"></i></div>
+                        <div>
+                            <h4 class="bg-panel-title">Workshop Categories</h4>
+                            <p class="bg-panel-sub">Live count from delivered sessions</p>
+                        </div>
+                    </div>
+                    <ul class="bg-cat-list" id="bg-cat-list">
+                        <li><div class="bg-cat-icon"><i class="fas fa-microchip"></i></div><div class="bg-cat-info"><h5 class="bg-cat-name">AI Literacy</h5><p class="bg-cat-meta">Loading&hellip;</p></div></li>
+                        <li><div class="bg-cat-icon"><i class="fas fa-microphone-alt"></i></div><div class="bg-cat-info"><h5 class="bg-cat-name">Public Speaking</h5><p class="bg-cat-meta">Loading&hellip;</p></div></li>
+                        <li><div class="bg-cat-icon"><i class="fas fa-users"></i></div><div class="bg-cat-info"><h5 class="bg-cat-name">Youth &amp; Community</h5><p class="bg-cat-meta">Loading&hellip;</p></div></li>
+                    </ul>
+                </div>
+                <div class="bg-panel">
+                    <div class="bg-panel-header">
+                        <div class="bg-panel-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h4 class="bg-panel-title">Education</h4>
+                            <p class="bg-panel-sub">Degrees &amp; certifications</p>
+                        </div>
+                    </div>
+                    <ul class="bg-edu-list">
+                        <li>
+                            <h5 class="bg-edu-degree">B.S. &mdash; Computer &amp; Systems Engineering and Computer Science</h5>
+                            <p class="bg-edu-school">Rensselaer Polytechnic Institute</p>
+                            <span class="bg-edu-year">2007</span>
+                        </li>
+                        <li>
+                            <h5 class="bg-edu-degree">M.S. &mdash; Information Technology and Software Design</h5>
+                            <p class="bg-edu-school">Rensselaer Polytechnic Institute</p>
+                            <span class="bg-edu-year">2009</span>
+                        </li>
+                        <li>
+                            <h5 class="bg-edu-degree">Front End Web Developer</h5>
+                            <p class="bg-edu-school">Udacity</p>
+                            <span class="bg-edu-year">2015</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Old Resume tab section (hidden, kept for reference) -->
+    <div id="resume-old" class="resume-area default-padding-top" style="display:none;">
         <div class="shape-right-top-extra">
             <img src="img-new/shape/14.png" alt="Shape">
         </div>
@@ -1250,7 +1330,10 @@ I specialize in bridging the gap between technology and communication, leading d
         .sp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: stretch; margin-bottom: 40px; }
         .sp-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 30px rgba(108, 92, 231, 0.10); display: flex; flex-direction: column; transition: all 0.35s ease; border: 1px solid rgba(108, 92, 231, 0.08); }
         .sp-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(108, 92, 231, 0.22); }
-        .sp-header { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: #fff; padding: 28px 26px 24px 26px; }
+        .sp-header { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: #fff; padding: 28px 26px 24px 26px; position: relative; overflow: hidden; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .sp-header-img { position: absolute; inset: 0; background-position: center; background-size: cover; opacity: 0.85; z-index: 0; }
+        .sp-header-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108, 92, 231, 0.25) 0%, rgba(108, 92, 231, 0.78) 65%, rgba(108, 92, 231, 0.95) 100%); z-index: 1; }
+        .sp-header > * { position: relative; z-index: 2; }
         .sp-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,0.18); display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #fff; margin-bottom: 14px; }
         .sp-eyebrow { display: block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.9; margin-bottom: 6px; color: #fff; }
         .sp-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0 0 8px 0; line-height: 1.25; }
@@ -2191,9 +2274,9 @@ I specialize in bridging the gap between technology and communication, leading d
         // Signature Programs (homepage workshops section) — API-driven
         $(document).ready(function() {
             var SP_PROGRAMS = [
-                { key: 'ai', icon: 'fas fa-microchip', title: 'AI Literacy Series', tagline: 'Demystifying AI for educators, leaders, and curious adults.' },
-                { key: 'speaking', icon: 'fas fa-microphone-alt', title: 'Public Speaking Programs', tagline: 'Find your voice, structure your message, captivate any room.' },
-                { key: 'youth', icon: 'fas fa-users', title: 'Youth & Community Leadership', tagline: 'Career inspiration, respect, and leadership programs for K\u201312 audiences.' }
+                { key: 'ai', icon: 'fas fa-microchip', title: 'AI Literacy Series', tagline: 'Demystifying AI for educators, leaders, and curious adults.', image: 'img/future_school_ai_group.jpg', ctaLabel: 'See all AI sessions' },
+                { key: 'speaking', icon: 'fas fa-microphone-alt', title: 'Public Speaking Programs', tagline: 'Find your voice, structure your message, captivate any room.', image: 'img-new/workshops/public_speaking_workshop_bell_works.png', ctaLabel: 'See all Public Speaking sessions' },
+                { key: 'youth', icon: 'fas fa-users', title: 'Youth & Community Leadership', tagline: 'Career inspiration, respect, and leadership programs for K\u201312 audiences.', image: 'img/gallery/careerday2025-1.jpg', ctaLabel: 'See all Youth sessions' }
             ];
             function spCategory(title) {
                 if (!title) return 'speaking';
@@ -2237,6 +2320,8 @@ I specialize in bridging the gap between technology and communication, leading d
                     }
                     html += '<div class="sp-card">' +
                         '<div class="sp-header">' +
+                            '<div class="sp-header-img" style="background-image: url(\'' + prog.image + '\');"></div>' +
+                            '<div class="sp-header-overlay"></div>' +
                             '<div class="sp-icon"><i class="' + prog.icon + '"></i></div>' +
                             '<span class="sp-eyebrow">Signature Program</span>' +
                             '<h4 class="sp-title">' + spEsc(prog.title) + '</h4>' +
@@ -2248,11 +2333,25 @@ I specialize in bridging the gap between technology and communication, leading d
                                 (attendees ? '<div class="sp-stat"><strong>' + attendees + '+</strong><span>attendees</span></div>' : '') +
                             '</div>' +
                             lines +
-                            '<div class="sp-cta-row"><a href="workshops.html">See all ' + spEsc(prog.title.split(' ')[0]) + ' sessions <i class="fas fa-arrow-right"></i></a></div>' +
+                            '<div class="sp-cta-row"><a href="workshops.html?filter=' + prog.key + '">' + spEsc(prog.ctaLabel) + ' <i class="fas fa-arrow-right"></i></a></div>' +
                         '</div>' +
                     '</div>';
                 });
                 $('#sp-grid').html(html);
+                // Update the Background section's Workshop Categories panel with live counts
+                var $bgList = $('#bg-cat-list');
+                if ($bgList.length) {
+                    SP_PROGRAMS.forEach(function(prog, idx) {
+                        var pItems = items.filter(function(i) { return i._cat === prog.key; });
+                        var att = spTotalAttendees(pItems);
+                        var meta = pItems.length + ' session' + (pItems.length === 1 ? '' : 's') + (att ? ' &middot; ' + att + '+ attendees' : '');
+                        var $li = $bgList.find('li').eq(idx);
+                        $li.find('.bg-cat-meta').html(meta);
+                        if (!$li.find('.bg-cat-link').length) {
+                            $li.append('<a class="bg-cat-link" href="workshops.html?filter=' + prog.key + '">View <i class="fas fa-arrow-right"></i></a>');
+                        }
+                    });
+                }
             }
             $.ajax({
                 url: 'https://shouldcallpaul.replit.app/resume/workshops',
