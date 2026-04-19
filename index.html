@@ -1241,7 +1241,67 @@ I specialize in bridging the gap between technology and communication, leading d
 
     <!-- Start Workshops 
     ============================================= -->
-    <div id="workshops" class="pricing-area default-padding-top">
+    <!-- ============================================
+         New Signature Programs section (API-driven)
+         ============================================ -->
+    <style>
+        .signature-programs-home { padding: 90px 0 60px 0; }
+        .signature-programs-home .heading-left { margin-bottom: 50px; }
+        .sp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: stretch; margin-bottom: 40px; }
+        .sp-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 30px rgba(108, 92, 231, 0.10); display: flex; flex-direction: column; transition: all 0.35s ease; border: 1px solid rgba(108, 92, 231, 0.08); }
+        .sp-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(108, 92, 231, 0.22); }
+        .sp-header { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: #fff; padding: 28px 26px 24px 26px; }
+        .sp-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,0.18); display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #fff; margin-bottom: 14px; }
+        .sp-eyebrow { display: block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.9; margin-bottom: 6px; color: #fff; }
+        .sp-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0 0 8px 0; line-height: 1.25; }
+        .sp-tagline { color: rgba(255,255,255,0.92); font-size: 0.92rem; line-height: 1.5; margin: 0; }
+        .sp-body { padding: 22px 26px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+        .sp-stats { display: flex; gap: 22px; padding: 12px 14px; background: linear-gradient(135deg, rgba(108,92,231,0.06) 0%, rgba(162,155,254,0.06) 100%); border-radius: 12px; margin-bottom: 18px; }
+        .sp-stat { display: flex; flex-direction: column; }
+        .sp-stat strong { font-size: 1.4rem; font-weight: 700; color: #6c5ce7; line-height: 1; }
+        .sp-stat span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6a6a78; margin-top: 4px; }
+        .sp-line { padding: 12px 0; border-top: 1px solid rgba(108, 92, 231, 0.10); }
+        .sp-line:first-of-type { border-top: none; padding-top: 4px; }
+        .sp-line-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: #8a8a99; margin-bottom: 4px; display: block; }
+        .sp-line-text { color: #2d2d3a; font-size: 0.9rem; line-height: 1.45; font-weight: 500; }
+        .sp-line-meta { color: #6a6a78; font-size: 0.78rem; margin-top: 2px; }
+        .sp-line.coming .sp-line-label { color: #6c5ce7; }
+        .sp-cta-row { margin-top: auto; padding-top: 18px; }
+        .sp-cta-row a { display: inline-flex; align-items: center; gap: 6px; color: #6c5ce7; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: gap 0.2s ease; }
+        .sp-cta-row a:hover { gap: 10px; color: #4834d4; }
+        .sp-bottom-cta { background: #fff; border-radius: 18px; padding: 28px 32px; box-shadow: 0 8px 30px rgba(108, 92, 231, 0.10); border: 1px solid rgba(108, 92, 231, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .sp-bottom-cta h4 { color: #232323; font-size: 1.2rem; font-weight: 700; margin: 0 0 4px 0; }
+        .sp-bottom-cta p { color: #6a6a78; margin: 0; font-size: 0.92rem; }
+        .sp-bottom-cta .btn { flex-shrink: 0; white-space: nowrap; }
+        .sp-loading { grid-column: 1 / -1; text-align: center; padding: 40px; color: #6a6a78; }
+        @media (max-width: 991px) {
+            .sp-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+            .sp-bottom-cta { flex-direction: column; text-align: center; align-items: stretch; }
+            .sp-bottom-cta .btn { align-self: center; }
+        }
+    </style>
+    <div id="workshops" class="signature-programs-home">
+        <div class="container">
+            <div class="heading-left text-center">
+                <h5 class="sub-title">Workshops</h5>
+                <h2 class="title">Three Signature Programs</h2>
+                <p style="color: #4a4a55; font-size: 1.05rem; max-width: 720px; margin: 18px auto 0 auto;">Every engagement pulls from one of three signature programs &mdash; built across schools, libraries, and community spaces in Monmouth County and beyond.</p>
+            </div>
+            <div class="sp-grid" id="sp-grid">
+                <div class="sp-loading">Loading programs&hellip;</div>
+            </div>
+            <div class="sp-bottom-cta">
+                <div>
+                    <h4>Have an audience that needs one of these?</h4>
+                    <p>Sessions are tailored to your group, venue, and time. Most are offered free to community partners.</p>
+                </div>
+                <a href="#contact-paul-now" class="btn btn-md circle btn-theme">Book Paul to Speak <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Old workshops section (hidden, kept for reference) -->
+    <div id="workshops-old" class="pricing-area default-padding-top" style="display:none;">
         <div class="container">
             <div class="pricing-box">
                 <div class="row">
@@ -2128,6 +2188,89 @@ I specialize in bridging the gap between technology and communication, leading d
     <script src="js/skills.js"></script>
 
     <script>
+        // Signature Programs (homepage workshops section) — API-driven
+        $(document).ready(function() {
+            var SP_PROGRAMS = [
+                { key: 'ai', icon: 'fas fa-microchip', title: 'AI Literacy Series', tagline: 'Demystifying AI for educators, leaders, and curious adults.' },
+                { key: 'speaking', icon: 'fas fa-microphone-alt', title: 'Public Speaking Programs', tagline: 'Find your voice, structure your message, captivate any room.' },
+                { key: 'youth', icon: 'fas fa-users', title: 'Youth & Community Leadership', tagline: 'Career inspiration, respect, and leadership programs for K\u201312 audiences.' }
+            ];
+            function spCategory(title) {
+                if (!title) return 'speaking';
+                var t = title.toLowerCase();
+                if (t.indexOf(' ai ') !== -1 || t.indexOf('ai ') === 0 || t.indexOf(' ai') === t.length - 3 ||
+                    t.indexOf('chatgpt') !== -1 || t.indexOf('artificial') !== -1 ||
+                    t.indexOf('machine learning') !== -1 || t.indexOf('prompt') !== -1) return 'ai';
+                if (t.indexOf('career day') !== -1 || t.indexOf('youth leadership') !== -1 ||
+                    t.indexOf('week of respect') !== -1 || t.indexOf('school') !== -1 ||
+                    t.indexOf('grades') !== -1) return 'youth';
+                return 'speaking';
+            }
+            function spParseDate(s) { if (!s) return 0; var d = new Date(s); var t = d.getTime(); return isNaN(t) ? 0 : t; }
+            function spShortDate(s) { if (!s) return ''; var d = new Date(s); if (isNaN(d.getTime())) return s; return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }); }
+            function spShortLoc(l) { if (!l) return ''; return l.split(',')[0].trim(); }
+            function spEsc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+            function spTotalAttendees(items) { var sum = 0; items.forEach(function(i){ var a = i.details && i.details.attendees; if(!a) return; var m = String(a).match(/\d+/); if(m) sum += parseInt(m[0],10); }); return sum; }
+            function spRender(items) {
+                var now = Date.now();
+                var html = '';
+                SP_PROGRAMS.forEach(function(prog) {
+                    var pItems = items.filter(function(i){ return i._cat === prog.key; });
+                    pItems.sort(function(a,b){ return b._ts - a._ts; });
+                    var recent = null;
+                    for (var i = 0; i < pItems.length; i++) { if (pItems[i]._ts && pItems[i]._ts <= now) { recent = pItems[i]; break; } }
+                    var upcoming = pItems.filter(function(i){ return i._ts && i._ts > now; }).sort(function(a,b){ return a._ts - b._ts; })[0];
+                    var attendees = spTotalAttendees(pItems);
+                    var lines = '';
+                    if (upcoming) {
+                        lines += '<div class="sp-line coming"><span class="sp-line-label"><i class="fas fa-calendar-plus" style="margin-right:4px;"></i> Coming Up</span>' +
+                                 '<div class="sp-line-text">' + spEsc(upcoming.label) + '</div>' +
+                                 '<div class="sp-line-meta">' + spEsc(spShortDate(upcoming.details && upcoming.details.date)) + (upcoming.details && upcoming.details.location ? ' &middot; ' + spEsc(spShortLoc(upcoming.details.location)) : '') + '</div></div>';
+                    }
+                    if (recent) {
+                        lines += '<div class="sp-line"><span class="sp-line-label">Most Recent</span>' +
+                                 '<div class="sp-line-text">' + spEsc(recent.label) + '</div>' +
+                                 '<div class="sp-line-meta">' + spEsc(spShortDate(recent.details && recent.details.date)) + (recent.details && recent.details.location ? ' &middot; ' + spEsc(spShortLoc(recent.details.location)) : '') + '</div></div>';
+                    }
+                    if (!lines) {
+                        lines = '<div class="sp-line"><div class="sp-line-meta">New sessions being scheduled.</div></div>';
+                    }
+                    html += '<div class="sp-card">' +
+                        '<div class="sp-header">' +
+                            '<div class="sp-icon"><i class="' + prog.icon + '"></i></div>' +
+                            '<span class="sp-eyebrow">Signature Program</span>' +
+                            '<h4 class="sp-title">' + spEsc(prog.title) + '</h4>' +
+                            '<p class="sp-tagline">' + spEsc(prog.tagline) + '</p>' +
+                        '</div>' +
+                        '<div class="sp-body">' +
+                            '<div class="sp-stats">' +
+                                '<div class="sp-stat"><strong>' + pItems.length + '</strong><span>session' + (pItems.length === 1 ? '' : 's') + '</span></div>' +
+                                (attendees ? '<div class="sp-stat"><strong>' + attendees + '+</strong><span>attendees</span></div>' : '') +
+                            '</div>' +
+                            lines +
+                            '<div class="sp-cta-row"><a href="workshops.html">See all ' + spEsc(prog.title.split(' ')[0]) + ' sessions <i class="fas fa-arrow-right"></i></a></div>' +
+                        '</div>' +
+                    '</div>';
+                });
+                $('#sp-grid').html(html);
+            }
+            $.ajax({
+                url: 'https://shouldcallpaul.replit.app/resume/workshops',
+                type: 'get', dataType: 'json', cache: false,
+                success: function(data) {
+                    var items = (data.records || []).map(function(i) {
+                        i._cat = spCategory(i.label || i.title);
+                        i._ts = spParseDate(i.details && i.details.date);
+                        return i;
+                    });
+                    spRender(items);
+                },
+                error: function() {
+                    $('#sp-grid').html('<div class="sp-loading">Could not load programs right now.</div>');
+                }
+            });
+        });
+
         // Handle hash navigation on page load
         $(document).ready(function() {
             if (window.location.hash) {

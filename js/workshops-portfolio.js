@@ -7,48 +7,6 @@ $(document).ready(function() {
         'Youth Leadership Program - Coordinator': 'img/PXL_20240824_152158036.MP.jpg'
     };
 
-    var PROGRAMS = [
-        {
-            key: 'ai',
-            icon: 'fas fa-microchip',
-            title: 'AI Literacy Series',
-            tagline: 'Demystifying AI for educators, leaders, and curious adults.',
-            audience: 'Educators · Library patrons · School leadership',
-            promise: 'A practical, no-jargon onramp. Attendees leave with prompts, workflows, and the confidence to use AI in real work.',
-            bullets: [
-                'Hands-on with ChatGPT, Claude, and Gemini',
-                'Bring-your-own real task — leave with a finished draft',
-                'Frameworks for evaluating AI output critically'
-            ]
-        },
-        {
-            key: 'speaking',
-            icon: 'fas fa-microphone-alt',
-            title: 'Public Speaking Programs',
-            tagline: 'Find your voice, structure your message, captivate any room.',
-            audience: 'Teens · Adults · Professionals',
-            promise: 'Interactive labs combining impromptu drills, real-time feedback, and proven frameworks for stage fright, structure, and delivery.',
-            bullets: [
-                'Compelling speech structure: intro, body, conclusion',
-                'Vocal variety, body language, and stage presence',
-                'Breath, visualization, and stage-fright techniques'
-            ]
-        },
-        {
-            key: 'youth',
-            icon: 'fas fa-users',
-            title: 'Youth & Community Leadership',
-            tagline: 'Career inspiration, respect, and leadership programs for K–12 audiences.',
-            audience: 'Grades 4–12 · Youth Leadership Programs',
-            promise: 'Multi-session coordination and one-off keynotes that meet kids where they are — career talks, leadership coaching, and Week-of-Respect programming.',
-            bullets: [
-                'Career Day talks: software engineering for grades 4–6',
-                'Youth Leadership Program — coordinator & guest speaker',
-                'Week of Respect keynote — kindness, friendship, responsibility'
-            ]
-        }
-    ];
-
     function getWorkshopImage(item) {
         var label = item.label || '';
         if (customWorkshopImages[label]) {
@@ -57,197 +15,63 @@ $(document).ready(function() {
         return item.image || 'img-new/banner/2.jpg';
     }
 
-    function getWorkshopCategory(title) {
-        if (!title) return 'speaking';
-        var t = title.toLowerCase();
-        if (t.indexOf(' ai ') !== -1 || t.indexOf('ai ') === 0 || t.indexOf(' ai') === t.length - 3 ||
-            t.indexOf('chatgpt') !== -1 || t.indexOf('artificial') !== -1 ||
-            t.indexOf('machine learning') !== -1 || t.indexOf('prompt') !== -1) {
-            return 'ai';
-        }
-        if (t.indexOf('career day') !== -1 || t.indexOf('youth leadership') !== -1 ||
-            t.indexOf('week of respect') !== -1 || t.indexOf('school') !== -1 ||
-            t.indexOf('grades') !== -1) {
-            return 'youth';
-        }
-        return 'speaking';
-    }
-
-    function escapeHtml(s) {
-        return String(s == null ? '' : s)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    }
-
-    function parseDateForSort(dateStr) {
-        if (!dateStr) return 0;
-        var d = new Date(dateStr);
-        var t = d.getTime();
-        if (!isNaN(t)) return t;
-        // fallback: try to extract year
-        var m = String(dateStr).match(/(\d{4})/);
-        return m ? parseInt(m[1], 10) * 10000 : 0;
-    }
-
-    function totalAttendees(items) {
-        var sum = 0;
-        items.forEach(function(item) {
-            var a = item.details && item.details.attendees;
-            if (!a) return;
-            var m = String(a).match(/\d+/);
-            if (m) sum += parseInt(m[0], 10);
-        });
-        return sum;
-    }
-
-    function shortLocation(loc) {
-        if (!loc) return '';
-        return loc.split(',')[0].trim();
-    }
-
-    function shortDate(dateStr) {
-        if (!dateStr) return '';
-        var d = new Date(dateStr);
-        if (isNaN(d.getTime())) return dateStr;
-        return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-    }
-
     $.ajax({ url: API_BASE + 'workshops', type: 'get', dataType: 'json', cache: false,
         success: function(data) {
             allItems = data.records || [];
-            allItems.forEach(function(item, idx) {
+            allItems.forEach(function(item) {
                 item._category = getWorkshopCategory(item.label || item.title);
-                item._index = idx;
-                item._sortTs = parseDateForSort(item.details && item.details.date);
             });
-            renderPrograms();
+            renderGrid();
+            setupFilterHandlers();
             setupModalHandlers();
             ModalNav.init(allItems, openModal);
             ModalNav.bindEvents();
         },
         error: function() {
-            $('#signature-programs').html('<div class="loading-spinner">Failed to load workshops.</div>');
+            $('#workshop-grid').html('<div class="loading-spinner">Failed to load workshops.</div>');
         }
     });
 
-    function renderPrograms() {
-        var html = '<div class="programs-intro"><p>Every workshop pulls from one of three signature programs &mdash; built over <strong>' + allItems.length + '</strong> engagements across schools, libraries, and community spaces in Monmouth County and beyond.</p></div>';
-        html += '<div class="programs-grid">';
-        PROGRAMS.forEach(function(prog) {
-            html += renderProgramCard(prog);
+    function getWorkshopCategory(title) {
+        if (!title) return 'speaking';
+        var t = title.toLowerCase();
+        if (t.includes('ai') || t.includes('chatgpt') || t.includes('artificial') || t.includes('machine learning') || t.includes('prompt')) {
+            return 'ai';
+        }
+        return 'speaking';
+    }
+
+    function renderGrid() {
+        var html = '';
+        allItems.forEach(function(item, idx) {
+            var img = getWorkshopImage(item);
+            var label = item.label || 'Untitled';
+            var categoryLabel = item._category === 'ai' ? 'AI Workshop' : 'Public Speaking';
+            html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
+                '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
+                '<div class="card-content"><h5>' + label + '</h5>' +
+                '<span class="card-category">' + categoryLabel + '</span></div></div>';
         });
-        html += '</div>';
-        html += renderCtaStrip();
-        $('#signature-programs').html(html);
-        bindProgramHandlers();
+        $('#workshop-grid').html(html);
     }
 
-    function renderProgramCard(prog) {
-        var items = allItems.filter(function(i) { return i._category === prog.key; });
-        items.sort(function(a, b) { return b._sortTs - a._sortTs; });
-        var featured = items[0];
-        var others = items.slice(1);
-        var attendees = totalAttendees(items);
-
-        var bulletsHtml = prog.bullets.map(function(b) {
-            return '<li><i class="fas fa-check-circle"></i><span>' + escapeHtml(b) + '</span></li>';
-        }).join('');
-
-        var featuredHtml = '';
-        if (featured) {
-            var fImg = getWorkshopImage(featured);
-            var fLoc = (featured.details && featured.details.location) || '';
-            var fDate = (featured.details && featured.details.date) || '';
-            var fAtt = (featured.details && featured.details.attendees) || '';
-            featuredHtml =
-                '<div class="program-featured" data-index="' + featured._index + '">' +
-                    '<div class="program-featured-image"><img src="' + escapeHtml(fImg) + '" alt="' + escapeHtml(featured.label) + '" loading="lazy"></div>' +
-                    '<div class="program-featured-body">' +
-                        '<span class="program-featured-tag">Featured Engagement</span>' +
-                        '<h6>' + escapeHtml(featured.label) + '</h6>' +
-                        '<div class="program-featured-meta">' +
-                            (fDate ? '<span><i class="fas fa-calendar-alt"></i>' + escapeHtml(shortDate(fDate)) + '</span>' : '') +
-                            (fLoc ? '<span><i class="fas fa-map-marker-alt"></i>' + escapeHtml(shortLocation(fLoc)) + '</span>' : '') +
-                            (fAtt ? '<span><i class="fas fa-users"></i>' + escapeHtml(fAtt) + '</span>' : '') +
-                        '</div>' +
-                    '</div>' +
-                '</div>';
-        }
-
-        var othersHtml = '';
-        if (others.length) {
-            othersHtml = '<div class="program-archive collapsed">' +
-                '<button type="button" class="program-archive-toggle" aria-expanded="false">' +
-                    '<span class="archive-toggle-text">View all ' + items.length + ' sessions</span>' +
-                    '<i class="fas fa-chevron-down"></i>' +
-                '</button>' +
-                '<ul class="program-archive-list">';
-            others.forEach(function(item) {
-                var loc = (item.details && item.details.location) || '';
-                var date = (item.details && item.details.date) || '';
-                othersHtml +=
-                    '<li class="archive-item" data-index="' + item._index + '">' +
-                        '<div class="archive-item-title">' + escapeHtml(item.label) + '</div>' +
-                        '<div class="archive-item-meta">' +
-                            (date ? '<span>' + escapeHtml(shortDate(date)) + '</span>' : '') +
-                            (loc ? '<span>· ' + escapeHtml(shortLocation(loc)) + '</span>' : '') +
-                        '</div>' +
-                    '</li>';
-            });
-            othersHtml += '</ul></div>';
-        }
-
-        return '<div class="program-card program-' + prog.key + '">' +
-            '<div class="program-header">' +
-                '<div class="program-icon"><i class="' + prog.icon + '"></i></div>' +
-                '<span class="program-eyebrow">Signature Program</span>' +
-                '<h4 class="program-title">' + escapeHtml(prog.title) + '</h4>' +
-                '<p class="program-tagline">' + escapeHtml(prog.tagline) + '</p>' +
-            '</div>' +
-            '<div class="program-body">' +
-                '<div class="program-meta-row">' +
-                    '<div class="program-stat"><strong>' + items.length + '</strong><span>session' + (items.length === 1 ? '' : 's') + ' delivered</span></div>' +
-                    (attendees ? '<div class="program-stat"><strong>' + attendees + '+</strong><span>attendees reached</span></div>' : '') +
-                '</div>' +
-                '<div class="program-section-label">For</div>' +
-                '<div class="program-audience">' + escapeHtml(prog.audience) + '</div>' +
-                '<div class="program-section-label">The Promise</div>' +
-                '<p class="program-promise">' + escapeHtml(prog.promise) + '</p>' +
-                '<ul class="program-bullets">' + bulletsHtml + '</ul>' +
-                featuredHtml +
-                othersHtml +
-            '</div>' +
-        '</div>';
-    }
-
-    function renderCtaStrip() {
-        return '<div class="programs-cta">' +
-            '<div class="programs-cta-text">' +
-                '<h4>Have an audience that needs one of these?</h4>' +
-                '<p>Sessions are tailored to your group, venue, and time. Most are offered free to community partners.</p>' +
-            '</div>' +
-            '<a href="index.html#contact-paul-now" class="btn btn-md circle btn-theme">Book Paul to Speak <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a>' +
-        '</div>';
-    }
-
-    function bindProgramHandlers() {
-        $('.program-archive-toggle').on('click', function() {
-            var $wrap = $(this).closest('.program-archive');
-            var collapsed = $wrap.hasClass('collapsed');
-            $wrap.toggleClass('collapsed', !collapsed);
-            $(this).attr('aria-expanded', String(collapsed));
-            var total = $wrap.find('.archive-item').length;
-            $(this).find('.archive-toggle-text').text(collapsed ? 'Hide sessions' : 'View all ' + (total + 1) + ' sessions');
+    function setupFilterHandlers() {
+        $('.filter-btn').on('click', function() {
+            var filter = $(this).data('filter');
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
+            if (filter === 'all') {
+                $('.portfolio-card').show();
+            } else {
+                $('.portfolio-card').each(function() {
+                    $(this).toggle($(this).data('category') === filter);
+                });
+            }
         });
     }
 
     function setupModalHandlers() {
-        $(document).on('click', '.program-featured, .archive-item', function(e) {
-            // ignore clicks on the archive toggle button
-            if ($(e.target).closest('.program-archive-toggle').length) return;
+        $(document).on('click', '.portfolio-card', function() {
             var index = $(this).data('index');
             var item = allItems[index];
             if (item) openModal(item, index);
