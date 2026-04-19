@@ -6,62 +6,33 @@ import {
   Clock,
   ArrowRight,
   Mic2,
-  GraduationCap,
   Handshake,
   Quote,
   Star,
+  GraduationCap,
 } from "lucide-react";
+import { workshops, catMeta, totals, type Cat } from "./_data";
 
-const featured = {
-  category: "AI Literacy",
-  label: "The Future of School Leadership with AI",
-  date: "August 25, 2025",
-  location: "Holmdel School District",
-  attendees: "20 administrators",
-  duration: "1.5 hours",
-  desc: "School leaders use AI to draft real administrative work — newsletters, evaluations, family comms — refined live through prompt engineering.",
+const featured = workshops[0];
+
+const highlightSelections = [
+  workshops.find((w) => w.label.startsWith("Teen Talk"))!,
+  workshops.find((w) => w.label.startsWith("AI for Beginners"))!,
+  workshops.find((w) => w.label.startsWith("Week of Respect"))!,
+];
+
+const highlightIcon: Record<Cat, typeof Sparkles> = {
+  ai: Sparkles,
+  speaking: Mic2,
+  youth: Handshake,
 };
 
-const highlights = [
-  {
-    label: "Teen Talk: Mastering Public Speaking",
-    venue: "Hazlet Public Library",
-    date: "Jul 2025",
-    audience: "Teens",
-    icon: Mic2,
-  },
-  {
-    label: "AI for Beginners",
-    venue: "Red Bank Public Library",
-    date: "Mar 2025",
-    audience: "Adults",
-    icon: Sparkles,
-  },
-  {
-    label: "Week of Respect Keynote",
-    venue: "Franklin School, North Bergen",
-    date: "Oct 2024",
-    audience: "100+ students",
-    icon: Handshake,
-  },
-];
-
-const venues = [
-  "Holmdel School District",
-  "Hazlet Public Library",
-  "Red Bank Public Library",
-  "Matawan Aberdeen Public Library",
-  "Holmdel Public Library",
-  "Indian Hill School",
-  "Franklin School • N. Bergen",
-  "Bell Works",
-  "SCLSNJ Somerville Branch",
-];
+const venues = Array.from(new Set(workshops.map((w) => w.location)));
 
 const stats = [
-  { n: "13", l: "Workshops Delivered" },
-  { n: "270+", l: "Attendees Reached" },
-  { n: "9", l: "NJ Venues" },
+  { n: String(totals.count), l: "Workshops Delivered" },
+  { n: totals.attendees, l: "Attendees Reached" },
+  { n: String(venues.length), l: "NJ Venues" },
   { n: "100%", l: "Free to Community" },
 ];
 
@@ -87,10 +58,10 @@ export function UpNextLogoWall() {
           rooms from <span className="text-emerald-400">curious</span> to{" "}
           <span className="text-emerald-400">capable.</span>
         </h1>
-        <p className="text-slate-400 text-lg max-w-2xl">
-          From school leadership cohorts to teen public-speaking labs, every session
-          ships with practice, feedback, and something the audience can use Monday
-          morning.
+        <p className="text-slate-300 text-lg max-w-2xl">
+          From school leadership cohorts to teen public-speaking labs, every
+          session ships with practice, feedback, and something the audience can
+          use Monday morning.
         </p>
       </div>
 
@@ -103,16 +74,16 @@ export function UpNextLogoWall() {
                 <Sparkles className="w-3.5 h-3.5" />
                 Featured Engagement
               </div>
-              <div className="text-emerald-300/80 text-sm font-medium mb-2">
-                {featured.category}
+              <div className="text-emerald-300/90 text-sm font-medium mb-2">
+                {catMeta[featured.cat].label}
               </div>
               <h2 className="text-3xl font-bold mb-4 leading-tight">
                 {featured.label}
               </h2>
-              <p className="text-slate-300 text-base leading-relaxed mb-7">
+              <p className="text-slate-200 text-base leading-relaxed mb-7">
                 {featured.desc}
               </p>
-              <div className="grid grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-300 mb-8">
+              <div className="grid grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-200 mb-8">
                 <div className="flex items-center gap-2.5">
                   <Calendar className="w-4 h-4 text-emerald-400" />
                   {featured.date}
@@ -123,7 +94,7 @@ export function UpNextLogoWall() {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Users className="w-4 h-4 text-emerald-400" />
-                  {featured.attendees}
+                  {featured.attendees ?? "Open enrollment"}
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Clock className="w-4 h-4 text-emerald-400" />
@@ -131,20 +102,26 @@ export function UpNextLogoWall() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <button className="bg-emerald-400 text-slate-950 font-semibold px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-emerald-300 transition">
+                <a
+                  href="#book"
+                  className="bg-emerald-400 text-slate-950 font-semibold px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-emerald-300 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                >
                   Book Paul to Speak
                   <ArrowRight className="w-4 h-4" />
-                </button>
-                <button className="border border-slate-700 text-slate-200 px-6 py-3 rounded-full hover:border-slate-500 transition">
+                </a>
+                <a
+                  href={featured.link ?? "#all-workshops"}
+                  className="border border-slate-600 text-slate-100 px-6 py-3 rounded-full hover:border-slate-400 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+                >
                   Workshop details
-                </button>
+                </a>
               </div>
             </div>
             <div className="col-span-2 bg-slate-900/60 border-l border-slate-800 p-8 flex flex-col justify-center">
-              <div className="text-xs uppercase tracking-widest text-slate-500 mb-4">
+              <div className="text-xs uppercase tracking-widest text-slate-300 mb-4">
                 What you'll leave with
               </div>
-              <ul className="space-y-3 text-sm text-slate-200">
+              <ul className="space-y-3 text-sm text-slate-100">
                 {[
                   "A draft of one real admin task you brought in",
                   "A reusable prompt template, vetted live",
@@ -170,12 +147,12 @@ export function UpNextLogoWall() {
             href="#all-workshops"
             className="text-sm text-emerald-400 hover:text-emerald-300 inline-flex items-center gap-1"
           >
-            See all 13 workshops <ArrowRight className="w-3.5 h-3.5" />
+            See all {totals.count} workshops <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
         <div className="grid grid-cols-3 gap-5">
-          {highlights.map((h) => {
-            const Icon = h.icon;
+          {highlightSelections.map((h) => {
+            const Icon = highlightIcon[h.cat];
             return (
               <div
                 key={h.label}
@@ -184,14 +161,14 @@ export function UpNextLogoWall() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5" />
                 </div>
-                <div className="text-base font-semibold leading-snug mb-2">
+                <div className="text-base font-semibold leading-snug mb-2 text-white">
                   {h.label}
                 </div>
-                <div className="text-sm text-slate-400">{h.venue}</div>
-                <div className="text-xs text-slate-500 mt-3 flex items-center gap-3">
-                  <span>{h.date}</span>
+                <div className="text-sm text-slate-300">{h.location}</div>
+                <div className="text-xs text-slate-300 mt-3 flex items-center gap-3">
+                  <span>{h.shortDate} · {h.year}</span>
                   <span>•</span>
-                  <span>{h.audience}</span>
+                  <span>{catMeta[h.cat].label}</span>
                 </div>
               </div>
             );
@@ -205,7 +182,7 @@ export function UpNextLogoWall() {
           {stats.map((s) => (
             <div key={s.l} className="p-7 text-center">
               <div className="text-3xl font-bold text-emerald-400">{s.n}</div>
-              <div className="text-xs uppercase tracking-widest text-slate-500 mt-2">
+              <div className="text-xs uppercase tracking-widest text-slate-300 mt-2">
                 {s.l}
               </div>
             </div>
@@ -216,7 +193,7 @@ export function UpNextLogoWall() {
       {/* Logo wall — venues */}
       <div className="max-w-6xl mx-auto px-10 pb-14">
         <div className="text-center mb-6">
-          <div className="text-xs uppercase tracking-[0.25em] text-slate-500 mb-2">
+          <div className="text-xs uppercase tracking-[0.25em] text-slate-300 mb-2">
             Trusted by libraries, schools, and community programs across NJ
           </div>
         </div>
@@ -224,19 +201,68 @@ export function UpNextLogoWall() {
           {venues.map((v) => (
             <div
               key={v}
-              className="border border-slate-800 rounded-xl py-5 text-center text-sm text-slate-300 bg-slate-900/30 hover:bg-slate-900/60 transition"
+              className="border border-slate-800 rounded-xl py-5 text-center text-sm text-slate-100 bg-slate-900/30 hover:bg-slate-900/60 transition"
             >
-              <GraduationCap className="w-4 h-4 inline -mt-0.5 mr-2 text-emerald-400/70" />
+              <GraduationCap className="w-4 h-4 inline -mt-0.5 mr-2 text-emerald-400/80" />
               {v}
             </div>
           ))}
         </div>
       </div>
 
+      {/* Complete archive */}
+      <div id="all-workshops" className="max-w-6xl mx-auto px-10 pb-14">
+        <div className="flex items-baseline justify-between mb-5">
+          <h3 className="text-xl font-semibold">
+            Complete Archive · {totals.count} engagements
+          </h3>
+          <span className="text-xs uppercase tracking-widest text-slate-300">
+            {totals.yearSpan}
+          </span>
+        </div>
+        <div className="rounded-2xl border border-slate-800 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-900/60 text-slate-300 uppercase text-[10px] tracking-widest">
+              <tr>
+                <th className="text-left px-5 py-3 font-medium">Date</th>
+                <th className="text-left px-5 py-3 font-medium">Engagement</th>
+                <th className="text-left px-5 py-3 font-medium">Venue</th>
+                <th className="text-left px-5 py-3 font-medium">Audience</th>
+                <th className="text-left px-5 py-3 font-medium">Track</th>
+              </tr>
+            </thead>
+            <tbody>
+              {workshops.map((w, i) => (
+                <tr
+                  key={`${w.label}-${i}`}
+                  className="border-t border-slate-800 bg-slate-950/40 hover:bg-slate-900/40 transition"
+                >
+                  <td className="px-5 py-3 text-slate-200 whitespace-nowrap">
+                    {w.shortDate} · {w.year}
+                  </td>
+                  <td className="px-5 py-3 text-white">{w.label}</td>
+                  <td className="px-5 py-3 text-slate-200">{w.location}</td>
+                  <td className="px-5 py-3 text-slate-200">
+                    {w.attendees ?? "—"}
+                  </td>
+                  <td className="px-5 py-3">
+                    <span
+                      className={`text-[10px] font-semibold uppercase tracking-widest border px-2 py-0.5 rounded-full ${catMeta[w.cat].pill}`}
+                    >
+                      {catMeta[w.cat].label}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* Testimonial */}
       <div className="max-w-6xl mx-auto px-10 pb-20">
         <div className="rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-10 relative">
-          <Quote className="w-10 h-10 text-emerald-400/30 absolute top-6 left-6" />
+          <Quote className="w-10 h-10 text-emerald-400/40 absolute top-6 left-6" />
           <div className="pl-14">
             <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
@@ -249,8 +275,8 @@ export function UpNextLogoWall() {
             <p className="text-xl text-slate-100 leading-relaxed font-light italic mb-5">
               "{testimonial.quote}"
             </p>
-            <div className="text-sm text-slate-400">
-              <span className="text-slate-200 font-medium">
+            <div className="text-sm text-slate-300">
+              <span className="text-slate-100 font-medium">
                 {testimonial.author}
               </span>{" "}
               · {testimonial.venue}
