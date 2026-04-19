@@ -1330,10 +1330,8 @@ I specialize in bridging the gap between technology and communication, leading d
         .sp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: stretch; margin-bottom: 40px; }
         .sp-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 30px rgba(108, 92, 231, 0.10); display: flex; flex-direction: column; transition: all 0.35s ease; border: 1px solid rgba(108, 92, 231, 0.08); }
         .sp-card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(108, 92, 231, 0.22); }
-        .sp-header { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: #fff; padding: 28px 26px 24px 26px; position: relative; overflow: hidden; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; }
-        .sp-header-img { position: absolute; inset: 0; background-position: center; background-size: cover; opacity: 0.85; z-index: 0; }
-        .sp-header-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(108, 92, 231, 0.25) 0%, rgba(108, 92, 231, 0.78) 65%, rgba(108, 92, 231, 0.95) 100%); z-index: 1; }
-        .sp-header > * { position: relative; z-index: 2; }
+        .sp-photo { width: 100%; height: 200px; background-position: center; background-size: cover; background-repeat: no-repeat; background-color: #f0eef9; }
+        .sp-header { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: #fff; padding: 22px 26px 20px 26px; }
         .sp-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,0.18); display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #fff; margin-bottom: 14px; }
         .sp-eyebrow { display: block; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.9; margin-bottom: 6px; color: #fff; }
         .sp-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0 0 8px 0; line-height: 1.25; }
@@ -2290,7 +2288,23 @@ I specialize in bridging the gap between technology and communication, leading d
                 for (var j = 0; j < youthPatterns.length; j++) { if (youthPatterns[j].test(hay)) return 'youth'; }
                 return 'speaking';
             }
-            function spParseDate(s) { if (!s) return 0; var d = new Date(s); var t = d.getTime(); return isNaN(t) ? 0 : t; }
+            function spParseDate(s) {
+                if (!s) return 0;
+                var d = new Date(s); var t = d.getTime();
+                if (!isNaN(t)) return t;
+                // Handle ranges like "February 4 – March 24, 2026" or "July & August 2024"
+                // Strategy: find the LAST "Month Day, Year" or "Month Year" substring and parse it.
+                var months = '(January|February|March|April|May|June|July|August|September|October|November|December)';
+                var re = new RegExp(months + '\\s+(\\d{1,2},\\s*)?(\\d{4})', 'gi');
+                var last = null, m;
+                while ((m = re.exec(s)) !== null) { last = m[0]; }
+                if (last) {
+                    var d2 = new Date(last);
+                    var t2 = d2.getTime();
+                    if (!isNaN(t2)) return t2;
+                }
+                return 0;
+            }
             function spShortDate(s) { if (!s) return ''; var d = new Date(s); if (isNaN(d.getTime())) return s; return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }); }
             function spShortLoc(l) { if (!l) return ''; return l.split(',')[0].trim(); }
             function spEsc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -2324,9 +2338,8 @@ I specialize in bridging the gap between technology and communication, leading d
                                  || (pItems[0] && (pItems[0].image || (pItems[0].gallery && pItems[0].gallery[0])))
                                  || prog.image;
                     html += '<div class="sp-card">' +
+                        '<div class="sp-photo" style="background-image: url(\'' + headerImg + '\');"></div>' +
                         '<div class="sp-header">' +
-                            '<div class="sp-header-img" style="background-image: url(\'' + headerImg + '\');"></div>' +
-                            '<div class="sp-header-overlay"></div>' +
                             '<div class="sp-icon"><i class="' + prog.icon + '"></i></div>' +
                             '<span class="sp-eyebrow">Signature Program</span>' +
                             '<h4 class="sp-title">' + spEsc(prog.title) + '</h4>' +
