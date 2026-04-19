@@ -1367,8 +1367,8 @@ I specialize in bridging the gap between technology and communication, leading d
         <div class="container">
             <div class="heading-left text-center">
                 <h5 class="sub-title">Workshops</h5>
-                <h2 class="title">Three Signature Programs</h2>
-                <p style="color: #4a4a55; font-size: 1.05rem; max-width: 720px; margin: 18px auto 0 auto;">Every engagement pulls from one of three signature programs &mdash; built across schools, libraries, and community spaces in Monmouth County and beyond.</p>
+                <h2 class="title">The Lineup</h2>
+                <p style="color: #4a4a55; font-size: 1.05rem; max-width: 720px; margin: 18px auto 0 auto;">Three signature programs &mdash; delivered across schools, libraries, and community spaces in Monmouth County and beyond.</p>
             </div>
             <div class="sp-grid" id="sp-grid">
                 <div class="sp-loading">Loading programs&hellip;</div>
@@ -2319,9 +2319,13 @@ I specialize in bridging the gap between technology and communication, leading d
                     if (!lines) {
                         lines = '<div class="sp-line"><div class="sp-line-meta">New sessions being scheduled.</div></div>';
                     }
+                    var headerImg = (recent && (recent.image || (recent.gallery && recent.gallery[0])))
+                                 || (upcoming && (upcoming.image || (upcoming.gallery && upcoming.gallery[0])))
+                                 || (pItems[0] && (pItems[0].image || (pItems[0].gallery && pItems[0].gallery[0])))
+                                 || prog.image;
                     html += '<div class="sp-card">' +
                         '<div class="sp-header">' +
-                            '<div class="sp-header-img" style="background-image: url(\'' + prog.image + '\');"></div>' +
+                            '<div class="sp-header-img" style="background-image: url(\'' + headerImg + '\');"></div>' +
                             '<div class="sp-header-overlay"></div>' +
                             '<div class="sp-icon"><i class="' + prog.icon + '"></i></div>' +
                             '<span class="sp-eyebrow">Signature Program</span>' +
