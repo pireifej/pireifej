@@ -2359,7 +2359,8 @@ I specialize in bridging the gap between technology and communication, leading d
                 type: 'get', dataType: 'json', cache: false,
                 success: function(data) {
                     var items = (data.records || []).map(function(i) {
-                        i._cat = spCategory(i);
+                        var c = (i.category || '').toLowerCase();
+                        i._cat = (c === 'ai' || c === 'speaking' || c === 'youth') ? c : spCategory(i);
                         i._ts = spParseDate(i.details && i.details.date);
                         return i;
                     });

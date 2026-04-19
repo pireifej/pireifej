@@ -19,7 +19,12 @@ $(document).ready(function() {
         success: function(data) {
             allItems = data.records || [];
             allItems.forEach(function(item) {
-                item._category = getWorkshopCategory(item);
+                var cat = (item.category || '').toLowerCase();
+                if (cat === 'ai' || cat === 'speaking' || cat === 'youth') {
+                    item._category = cat;
+                } else {
+                    item._category = getWorkshopCategory(item);
+                }
             });
             renderGrid();
             setupFilterHandlers();
