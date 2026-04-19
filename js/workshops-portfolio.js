@@ -19,7 +19,7 @@ $(document).ready(function() {
         success: function(data) {
             allItems = data.records || [];
             allItems.forEach(function(item) {
-                item._category = getWorkshopCategory(item.label || item.title);
+                item._category = getWorkshopCategory(item);
             });
             renderGrid();
             setupFilterHandlers();
@@ -32,19 +32,32 @@ $(document).ready(function() {
         }
     });
 
-    function getWorkshopCategory(title) {
-        if (!title) return 'speaking';
-        var t = title.toLowerCase();
-        if (t.indexOf(' ai ') !== -1 || t.indexOf('ai ') === 0 || t.indexOf(' ai') === t.length - 3 ||
-            t.indexOf('chatgpt') !== -1 || t.indexOf('artificial') !== -1 ||
-            t.indexOf('machine learning') !== -1 || t.indexOf('prompt') !== -1) {
-            return 'ai';
+    function getWorkshopCategory(item) {
+        if (!item) return 'speaking';
+        var label = (item.label || item.title || '').toLowerCase();
+        var desc = (item.desc || '').toLowerCase();
+        var link = (item.link || '').toLowerCase();
+        var hay = label + ' ' + desc + ' ' + link;
+
+        var aiPatterns = [
+            /\bai\b/, /\ba\.i\.\b/, /chatgpt/, /artificial intelligence/,
+            /machine learning/, /\bllm\b/, /large language model/,
+            /generative/, /prompt engineering/, /deepfake/,
+            /look under the hood/, /ai-workshop/, /ai_workshop/
+        ];
+        for (var i = 0; i < aiPatterns.length; i++) {
+            if (aiPatterns[i].test(hay)) return 'ai';
         }
-        if (t.indexOf('career day') !== -1 || t.indexOf('youth leadership') !== -1 ||
-            t.indexOf('week of respect') !== -1 || t.indexOf('school') !== -1 ||
-            t.indexOf('grades') !== -1) {
-            return 'youth';
+
+        var youthPatterns = [
+            /career day/, /youth leadership/, /week of respect/,
+            /\bgrades?\b/, /\bk-?12\b/, /elementary/, /middle school/,
+            /high school/, /\bschool district\b/, /young speakers academy/
+        ];
+        for (var j = 0; j < youthPatterns.length; j++) {
+            if (youthPatterns[j].test(hay)) return 'youth';
         }
+
         return 'speaking';
     }
 
