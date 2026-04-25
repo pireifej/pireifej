@@ -486,6 +486,49 @@
             margin-bottom: 10px;
         }
 
+        .audio-player-inline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 14px 0 16px;
+        }
+        .audio-play-btn {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: #fff;
+            font-size: 1.7rem;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(108, 92, 231, 0.45);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .audio-play-btn:hover { transform: scale(1.07); box-shadow: 0 6px 24px rgba(108, 92, 231, 0.65); }
+        .audio-play-btn.playing {
+            background: linear-gradient(135deg, #00d4ff 0%, #6c5ce7 100%);
+            animation: audio-pulse 1.4s ease-in-out infinite;
+        }
+        @keyframes audio-pulse {
+            0%, 100% { box-shadow: 0 4px 18px rgba(108, 92, 231, 0.55); }
+            50%      { box-shadow: 0 4px 30px rgba(0, 212, 255, 0.85); }
+        }
+        .audio-status {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            min-height: 1em;
+        }
+        .audio-disabled {
+            opacity: 0.45;
+            cursor: not-allowed !important;
+        }
+
         .fake-paul-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1117,25 +1160,34 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2><i class="fas fa-headphones" style="color: #6c5ce7;"></i> Voice Clips: <span class="hl">Real or Fake?</span></h2>
+                    <p style="text-align: center; font-size: 1rem; color: rgba(255,255,255,0.75); margin: 0 0 14px;">Both clips are <strong>Tom Cruise</strong>. One is real audio. One is an AI voice clone. <span style="color: #a29bfe;">Listen carefully &mdash; then guess.</span></p>
                     <div class="two-col">
                         <div class="voice-card" id="voice-a">
                             <i class="fas fa-microphone"></i>
                             <h3>Voice A</h3>
-                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px;">&ldquo;Hi, this is your bank calling about unusual activity on your account. We need to verify your identity before we can proceed.&rdquo;</p>
-                            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4);">Listen for: pacing, breathing, background noise, emotional tone</p>
+                            <div class="audio-player-inline">
+                                <button class="audio-play-btn" id="voice-a-btn" onclick="toggleAudio('voice-a-audio','voice-a-btn','voice-a-status')" aria-label="Play Voice A"><i class="fas fa-play"></i></button>
+                                <div class="audio-status" id="voice-a-status">Click to play</div>
+                                <audio id="voice-a-audio" preload="none" src="audio/tom-cruise-ai-voice.mp3"></audio>
+                            </div>
+                            <p style="font-size: 0.78rem; color: rgba(255,255,255,0.45);">Listen for: pacing, breathing, vocal texture, background noise</p>
                             <button class="reveal-btn" onclick="revealAnswer('voice-a-answer')"><i class="fas fa-eye"></i> Reveal</button>
-                            <div class="reveal-answer real" id="voice-a-answer">
-                                <i class="fas fa-check-circle"></i> REAL &mdash; Natural breathing pauses, slight vocal fry, ambient office sounds, inconsistent pacing (like a real person reading a script)
+                            <div class="reveal-answer fake" id="voice-a-answer">
+                                <i class="fas fa-times-circle"></i> AI-GENERATED &mdash; Speechify Tom Cruise impersonation. Tells: too-even pacing, no real breath, dead-quiet background, slight metallic shimmer.
                             </div>
                         </div>
                         <div class="voice-card" id="voice-b">
                             <i class="fas fa-microphone"></i>
                             <h3>Voice B</h3>
-                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px;">&ldquo;Hello, I&rsquo;m calling from your bank&rsquo;s fraud department. There has been suspicious activity and we need to verify your social security number immediately.&rdquo;</p>
-                            <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4);">Listen for: pacing, breathing, background noise, emotional tone</p>
+                            <div class="audio-player-inline">
+                                <button class="audio-play-btn" id="voice-b-btn" onclick="toggleAudio('voice-b-audio','voice-b-btn','voice-b-status',217)" aria-label="Play Voice B"><i class="fas fa-play"></i></button>
+                                <div class="audio-status" id="voice-b-status">Click to play</div>
+                                <audio id="voice-b-audio" preload="none" src="https://traffic.omny.fm/d/clips/d5d8b1d2-6c31-48c0-8625-a959004fd8f1/c345cba3-d5bb-4faf-b221-ab920037823e/b0e30eb8-f2a3-46d3-b970-b2dd01218ab1/audio.mp3"></audio>
+                            </div>
+                            <p style="font-size: 0.78rem; color: rgba(255,255,255,0.45);">Listen for: pacing, breathing, vocal texture, background noise</p>
                             <button class="reveal-btn" onclick="revealAnswer('voice-b-answer')"><i class="fas fa-eye"></i> Reveal</button>
-                            <div class="reveal-answer fake" id="voice-b-answer">
-                                <i class="fas fa-times-circle"></i> AI-GENERATED &mdash; Artifacts: perfectly even pacing (no natural hesitation), no breathing sounds, slightly metallic undertone, urgency feels rehearsed not real
+                            <div class="reveal-answer real" id="voice-b-answer">
+                                <i class="fas fa-check-circle"></i> REAL &mdash; Tom Cruise on the Breakfast Club Podcast (NZ). Tells: live laughter, breath bursts, room reverb, irregular cadence.
                             </div>
                         </div>
                     </div>
@@ -1512,6 +1564,83 @@
         function revealAnswer(id) {
             var el = document.getElementById(id);
             el.classList.toggle('shown');
+        }
+
+        function toggleAudio(audioId, btnId, statusId, startTime) {
+            var audio = document.getElementById(audioId);
+            var btn = document.getElementById(btnId);
+            var status = document.getElementById(statusId);
+            if (!audio || !btn) return;
+
+            // Pause any other audio that's playing on this slide
+            document.querySelectorAll('audio').forEach(function(a) {
+                if (a !== audio && !a.paused) {
+                    a.pause();
+                    var otherBtn = document.querySelector('[onclick*="' + a.id + '"]');
+                    if (otherBtn) {
+                        otherBtn.classList.remove('playing');
+                        var icon = otherBtn.querySelector('i');
+                        if (icon) { icon.classList.remove('fa-pause'); icon.classList.add('fa-play'); }
+                    }
+                    var otherStatusId = a.id.replace('-audio','-status');
+                    var otherStatus = document.getElementById(otherStatusId);
+                    if (otherStatus) otherStatus.textContent = 'Click to play';
+                }
+            });
+
+            if (audio.paused) {
+                if (typeof startTime === 'number' && audio.currentTime < startTime) {
+                    try { audio.currentTime = startTime; } catch (e) {}
+                }
+                var p = audio.play();
+                if (p && p.catch) {
+                    p.catch(function(err) {
+                        btn.classList.add('audio-disabled');
+                        if (status) status.textContent = 'Audio unavailable';
+                        console.warn('Audio play blocked:', err);
+                    });
+                }
+                btn.classList.add('playing');
+                btn.querySelector('i').classList.remove('fa-play');
+                btn.querySelector('i').classList.add('fa-pause');
+                if (status) status.textContent = 'Playing\u2026 (click to pause)';
+            } else {
+                audio.pause();
+                btn.classList.remove('playing');
+                btn.querySelector('i').classList.remove('fa-pause');
+                btn.querySelector('i').classList.add('fa-play');
+                if (status) status.textContent = 'Paused';
+            }
+
+            // Reset state when audio ends
+            audio.onended = function() {
+                btn.classList.remove('playing');
+                btn.querySelector('i').classList.remove('fa-pause');
+                btn.querySelector('i').classList.add('fa-play');
+                if (status) status.textContent = 'Click to play';
+                if (typeof startTime === 'number') { try { audio.currentTime = startTime; } catch(e) {} }
+            };
+            audio.onerror = function() {
+                btn.classList.add('audio-disabled');
+                if (status) status.textContent = 'Audio not loaded';
+            };
+        }
+
+        // Auto-pause all audio when leaving the slide
+        if (window.Reveal) {
+            Reveal.on('slidechanged', function() {
+                document.querySelectorAll('audio').forEach(function(a) {
+                    if (!a.paused) a.pause();
+                });
+                document.querySelectorAll('.audio-play-btn.playing').forEach(function(b) {
+                    b.classList.remove('playing');
+                    var icon = b.querySelector('i');
+                    if (icon) { icon.classList.remove('fa-pause'); icon.classList.add('fa-play'); }
+                });
+                document.querySelectorAll('.audio-status').forEach(function(s) {
+                    s.textContent = 'Click to play';
+                });
+            });
         }
 
         function revealRedFlags() {
