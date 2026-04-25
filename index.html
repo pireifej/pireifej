@@ -543,6 +543,235 @@
     </div>
     <!-- End Banner -->
 
+    <!-- Start Featured On Toastmasters Section
+    ============================================= -->
+    <style>
+        .featured-on-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a0a1f 0%, #1a1a3e 50%, #0a0a1f 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-on-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(108, 92, 231, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(0, 212, 255, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .featured-on-section .container { position: relative; z-index: 1; }
+        .featured-on-section .section-eyebrow {
+            display: inline-block;
+            font-size: 0.78rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #a29bfe;
+            font-weight: 700;
+            margin-bottom: 14px;
+            padding: 6px 16px;
+            border: 1px solid rgba(162, 155, 254, 0.4);
+            border-radius: 30px;
+            background: rgba(108, 92, 231, 0.08);
+        }
+        .featured-on-section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin: 0 0 12px;
+            line-height: 1.2;
+            color: #fff;
+        }
+        .featured-on-section h2 .accent {
+            background: linear-gradient(135deg, #6c5ce7 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .featured-on-section .section-intro {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 760px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .featured-on-header { text-align: center; margin-bottom: 50px; }
+
+        .featured-on-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .featured-video-wrap {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(108, 92, 231, 0.3);
+        }
+        .featured-video-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .featured-quote-block {
+            color: #fff;
+        }
+        .featured-quote-block .quote-mark {
+            font-size: 4rem;
+            line-height: 0.6;
+            color: #6c5ce7;
+            font-family: Georgia, serif;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .featured-quote-block blockquote {
+            font-size: 1.25rem;
+            line-height: 1.55;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.92);
+            margin: 0 0 22px;
+            border: 0;
+            padding: 0;
+            font-style: italic;
+        }
+        .featured-quote-block blockquote.placeholder {
+            color: rgba(255, 255, 255, 0.45);
+            font-style: italic;
+        }
+        .featured-quote-cite {
+            font-size: 0.95rem;
+            color: #a29bfe;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .featured-credits {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px;
+        }
+        .featured-credits li {
+            position: relative;
+            padding: 8px 0 8px 28px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.97rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .featured-credits li:last-child { border-bottom: 0; }
+        .featured-credits li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0; top: 9px;
+            color: #00d4ff;
+            font-size: 0.85rem;
+        }
+        .featured-credits strong { color: #fff; font-weight: 600; }
+
+        .featured-photo-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+        .featured-photo {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .featured-photo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(108, 92, 231, 0.3);
+        }
+        .featured-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 16 / 10;
+        }
+        .featured-photo-caption {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 20px 18px 14px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 991px) {
+            .featured-on-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .featured-on-section h2 { font-size: 1.9rem; }
+            .featured-photo-strip { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .featured-on-section { padding: 50px 0; }
+            .featured-on-section h2 { font-size: 1.55rem; }
+            .featured-quote-block blockquote { font-size: 1.05rem; }
+        }
+    </style>
+
+    <section class="featured-on-section" id="featured-on">
+        <div class="container">
+            <div class="featured-on-header">
+                <span class="section-eyebrow"><i class="fas fa-star" style="color: #00d4ff; margin-right: 6px;"></i> Featured On</span>
+                <h2>The <span class="accent">Toastmasters International</span> Convention Panel</h2>
+                <p class="section-intro">Selected by Toastmasters International &mdash; the global authority on public speaking &mdash; to speak on the convention panel and feature in their official Journey Workshop Speaker series.</p>
+            </div>
+
+            <div class="featured-on-grid">
+                <div class="featured-video-wrap">
+                    <iframe
+                        src="https://player.cloudinary.com/embed/?cloud_name=toastmasters&secure_distribution=content.toastmasters.org&private_cdn=true&public_id=toastmasters-journey-workshop-promo&profile=journey-workshop&poster=https%3A%2F%2Fcontent.toastmasters.org%2Fimage%2Fupload%2Fv1760461187%2Ftoastmasters-journey-workshop-promo-thumbnail.png"
+                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                        allowfullscreen
+                        title="Paul Ireifej &mdash; Toastmasters Journey Workshop Speaker"
+                        loading="lazy"></iframe>
+                </div>
+
+                <div class="featured-quote-block">
+                    <span class="quote-mark">&ldquo;</span>
+                    <blockquote class="placeholder">[Quote coming soon &mdash; Paul will add the official Toastmasters quote here.]</blockquote>
+                    <div class="featured-quote-cite">&mdash; Toastmasters International</div>
+
+                    <ul class="featured-credits">
+                        <li><strong>Convention Panel Speaker</strong> &mdash; International Convention</li>
+                        <li><strong>Journey Workshop Featured Speaker</strong> &mdash; Official series</li>
+                        <li><strong>DTM</strong> &mdash; Distinguished Toastmaster (highest education award)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="featured-photo-strip">
+                <div class="featured-photo">
+                    <img src="img-new/toastmasters/panel.jpg" alt="Paul Ireifej on the Toastmasters International Convention panel" loading="lazy">
+                    <div class="featured-photo-caption">On the convention panel stage</div>
+                </div>
+                <div class="featured-photo">
+                    <img src="img-new/toastmasters/selfie.jpg" alt="Paul speaking to the audience at Toastmasters International Convention" loading="lazy">
+                    <div class="featured-photo-caption">Speaking to the convention audience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Featured On Toastmasters Section -->
+
     <!-- Start Trusted By Section
     ============================================= -->
     <style>

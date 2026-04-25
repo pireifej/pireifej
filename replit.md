@@ -17,6 +17,16 @@ The project is structured as a static HTML/CSS/JavaScript frontend served by an 
 - **Portfolio Structure**: The portfolio is categorized into dedicated pages for technical work, speech competitions, workshops, and running races, enhancing navigation and content organization.
 - **SEO**: Comprehensive SEO measures are implemented, including meta tags, Schema.org structured data, Open Graph, Twitter Cards, XML sitemap, and `robots.txt`, to optimize visibility for local searches (e.g., "public speaker Monmouth County NJ").
 
+## Recent Changes (April 25, 2026)
+### Featured On Toastmasters Band (Homepage)
+- New dark band immediately after the hero on `index.html` (`section#featured-on`)
+- Two-column layout (collapses to one on tablet/mobile):
+  - Left: embedded Cloudinary video player for the official "Toastmasters Journey Workshop Speaker" reel (iframe, lazy-loaded, 16:9 responsive)
+  - Right: pull-quote block with **placeholder text** marked `[Quote coming soon — Paul will add the official Toastmasters quote here.]` plus a 3-item credentials list (Convention Panel Speaker, Journey Workshop Featured Speaker, DTM)
+- Below grid: 2-photo strip — `img-new/toastmasters/panel.jpg` (panel-of-4 stage shot, Paul leftmost) and `img-new/toastmasters/selfie.jpg` (audience-facing selfie with countdown clock + QR code)
+- Photos processed via `scripts/process-toastmasters-photos.js` (sharp pipeline: brightness/contrast/saturation polish, sharpen, downscale to 1600px, JPG + WebP). Panel image cropped to 16:9 to drop most of the audience-back-of-heads foreground.
+- Theme: dark navy gradient with purple/cyan radial glows and gradient-text accent on "Toastmasters International" — matches the existing portfolio brand palette (#6c5ce7 / #00d4ff)
+
 ## Recent Changes (April 8, 2026)
 ### Testimonials Redesign
 - Replaced homepage Swiper carousel with 3 static preview cards (Konstantina, Eva, Margaret) + "See All Testimonials" button
