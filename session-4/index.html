@@ -1180,7 +1180,7 @@
                             <i class="fas fa-microphone"></i>
                             <h3>Voice B</h3>
                             <div class="audio-player-inline">
-                                <button class="audio-play-btn" id="voice-b-btn" onclick="toggleAudio('voice-b-audio','voice-b-btn','voice-b-status',217)" aria-label="Play Voice B"><i class="fas fa-play"></i></button>
+                                <button class="audio-play-btn" id="voice-b-btn" onclick="toggleAudio('voice-b-audio','voice-b-btn','voice-b-status',225,250)" aria-label="Play Voice B"><i class="fas fa-play"></i></button>
                                 <div class="audio-status" id="voice-b-status">Click to play</div>
                                 <audio id="voice-b-audio" preload="none" src="https://traffic.omny.fm/d/clips/d5d8b1d2-6c31-48c0-8625-a959004fd8f1/c345cba3-d5bb-4faf-b221-ab920037823e/b0e30eb8-f2a3-46d3-b970-b2dd01218ab1/audio.mp3"></audio>
                             </div>
@@ -1566,7 +1566,7 @@
             el.classList.toggle('shown');
         }
 
-        function toggleAudio(audioId, btnId, statusId, startTime) {
+        function toggleAudio(audioId, btnId, statusId, startTime, endTime) {
             var audio = document.getElementById(audioId);
             var btn = document.getElementById(btnId);
             var status = document.getElementById(statusId);
@@ -1589,8 +1589,25 @@
             });
 
             if (audio.paused) {
-                if (typeof startTime === 'number' && audio.currentTime < startTime) {
+                if (typeof startTime === 'number' &&
+                    (audio.currentTime < startTime ||
+                     (typeof endTime === 'number' && audio.currentTime >= endTime))) {
                     try { audio.currentTime = startTime; } catch (e) {}
+                }
+                // Auto-stop at endTime if provided
+                if (typeof endTime === 'number') {
+                    audio.ontimeupdate = function() {
+                        if (audio.currentTime >= endTime) {
+                            audio.pause();
+                            try { audio.currentTime = (typeof startTime === 'number' ? startTime : 0); } catch(e) {}
+                            btn.classList.remove('playing');
+                            btn.querySelector('i').classList.remove('fa-pause');
+                            btn.querySelector('i').classList.add('fa-play');
+                            if (status) status.textContent = 'Click to play';
+                        }
+                    };
+                } else {
+                    audio.ontimeupdate = null;
                 }
                 var p = audio.play();
                 if (p && p.catch) {
