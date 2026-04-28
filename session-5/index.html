@@ -200,27 +200,83 @@
         .card-box.success-card   { border-color: rgba(85,239,196,0.5);  background: rgba(85,239,196,0.08); }
         .card-box.warn-card      { border-color: rgba(255,234,167,0.5); background: rgba(255,234,167,0.08); }
 
-        /* Big number cards (displacement stats) */
+        /* Big number cards (displacement stats) — flippable */
         .stat-card {
+            background: transparent;
+            border: none;
+            border-radius: 18px;
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            perspective: 1000px;
+            min-height: 200px;
+            position: relative;
+        }
+        .stat-card .stat-flip {
+            position: relative;
+            width: 100%;
+            min-height: 200px;
+            transition: transform 0.7s cubic-bezier(.5,0,.2,1);
+            transform-style: preserve-3d;
+        }
+        .stat-card.flipped .stat-flip { transform: rotateY(180deg); }
+        .stat-card .stat-front,
+        .stat-card .stat-back {
+            position: absolute; inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             background: rgba(0,0,0,0.35);
             border: 2px solid rgba(255,107,107,0.35);
             border-radius: 18px;
-            padding: 22px 18px;
-            text-align: center;
-            transition: all 0.3s ease;
+            padding: 18px 14px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: box-shadow 0.3s ease;
         }
-        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(255,107,107,0.25); }
+        .stat-card .stat-back {
+            transform: rotateY(180deg);
+            background: rgba(20,5,30,0.85);
+            border-color: rgba(0,212,255,0.45);
+            justify-content: flex-start;
+        }
+        .stat-card:hover .stat-front,
+        .stat-card:hover .stat-back { box-shadow: 0 10px 30px rgba(255,107,107,0.25); }
         .stat-card .stat-company {
             font-size: 0.85rem; color: #a29bfe;
             text-transform: uppercase; letter-spacing: 3px;
-            font-weight: 700; margin-bottom: 8px;
+            font-weight: 700; margin-bottom: 6px;
         }
         .stat-card .stat-number {
             font-size: 2.6rem; font-weight: 800; color: #ff6b6b;
             text-shadow: 0 0 20px rgba(255,107,107,0.45);
-            line-height: 1; margin: 6px 0 8px;
+            line-height: 1; margin: 4px 0 6px;
         }
-        .stat-card .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; }
+        .stat-card .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.35; }
+        .stat-card .stat-flip-hint {
+            position: absolute; bottom: 6px; left: 0; right: 0;
+            font-size: 0.6rem; color: rgba(255,255,255,0.45);
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+        .stat-card .stat-back .back-title {
+            font-size: 0.78rem; color: #00d4ff;
+            text-transform: uppercase; letter-spacing: 2px;
+            font-weight: 700; margin-bottom: 8px;
+            border-bottom: 1px solid rgba(0,212,255,0.3);
+            padding-bottom: 6px; width: 100%;
+        }
+        .stat-card .stat-back ul {
+            list-style: none; padding: 0; margin: 0;
+            text-align: left; width: 100%;
+        }
+        .stat-card .stat-back ul li {
+            font-size: 0.78rem; color: rgba(255,255,255,0.88);
+            padding: 3px 0 3px 14px;
+            position: relative; line-height: 1.35;
+        }
+        .stat-card .stat-back ul li::before {
+            content: '▸'; position: absolute; left: 0; top: 2px;
+            color: #ff6b6b; font-size: 0.7rem;
+        }
 
         /* Icon-tile cards (safe zones, fix steps) */
         .icon-tile {
@@ -506,34 +562,110 @@
                     <h2>The <span class="hlr">Reality Check</span> &mdash; Who&rsquo;s Being Displaced?</h2>
                     <p style="font-size: 1.15rem; color: rgba(255,255,255,0.7); margin-bottom: 14px;">The Great Re-Tooling of 2025&ndash;2026: billions shifting from payroll to compute.</p>
                     <div class="four-col" style="grid-template-columns: repeat(5, 1fr); gap: 16px;">
-                        <div class="stat-card">
-                            <div class="stat-company">Oracle</div>
-                            <div class="stat-number">12K+</div>
-                            <div class="stat-label">roles cut for &ldquo;autonomous&rdquo; cloud</div>
+                        <div class="stat-card" onclick="this.classList.toggle('flipped')">
+                            <div class="stat-flip">
+                                <div class="stat-front">
+                                    <div class="stat-company">Oracle</div>
+                                    <div class="stat-number">12K+</div>
+                                    <div class="stat-label">roles cut for &ldquo;autonomous&rdquo; cloud</div>
+                                    <div class="stat-flip-hint"><i class="fas fa-sync-alt"></i> tap to see roles</div>
+                                </div>
+                                <div class="stat-back">
+                                    <div class="back-title">Roles Cut</div>
+                                    <ul>
+                                        <li>Cloud database admins</li>
+                                        <li>Manual systems engineers</li>
+                                        <li>Mid-level support &amp; ops</li>
+                                        <li>Routine sysadmin work</li>
+                                        <li>Tier-1 customer support</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-company">Amazon</div>
-                            <div class="stat-number">30K</div>
-                            <div class="stat-label">corporate roles &mdash; AI runs middle mgmt</div>
+                        <div class="stat-card" onclick="this.classList.toggle('flipped')">
+                            <div class="stat-flip">
+                                <div class="stat-front">
+                                    <div class="stat-company">Amazon</div>
+                                    <div class="stat-number">30K</div>
+                                    <div class="stat-label">corporate roles &mdash; AI runs middle mgmt</div>
+                                    <div class="stat-flip-hint"><i class="fas fa-sync-alt"></i> tap to see roles</div>
+                                </div>
+                                <div class="stat-back">
+                                    <div class="back-title">Roles Cut</div>
+                                    <ul>
+                                        <li>Middle managers</li>
+                                        <li>HR &amp; recruiting coordinators</li>
+                                        <li>Corporate analysts</li>
+                                        <li>Marketing ops &amp; planners</li>
+                                        <li>Internal program managers</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-company">Intel</div>
-                            <div class="stat-number">24K</div>
-                            <div class="stat-label">cut to fund AI chip foundries</div>
+                        <div class="stat-card" onclick="this.classList.toggle('flipped')">
+                            <div class="stat-flip">
+                                <div class="stat-front">
+                                    <div class="stat-company">Intel</div>
+                                    <div class="stat-number">24K</div>
+                                    <div class="stat-label">cut to fund AI chip foundries</div>
+                                    <div class="stat-flip-hint"><i class="fas fa-sync-alt"></i> tap to see roles</div>
+                                </div>
+                                <div class="stat-back">
+                                    <div class="back-title">Roles Cut</div>
+                                    <ul>
+                                        <li>Legacy chip designers</li>
+                                        <li>Manufacturing line techs</li>
+                                        <li>Quality assurance ops</li>
+                                        <li>Mid-level marketing</li>
+                                        <li>Sales support staff</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-company">Chegg</div>
-                            <div class="stat-number">45%</div>
-                            <div class="stat-label">workforce gone &mdash; students use GenAI</div>
+                        <div class="stat-card" onclick="this.classList.toggle('flipped')">
+                            <div class="stat-flip">
+                                <div class="stat-front">
+                                    <div class="stat-company">Chegg</div>
+                                    <div class="stat-number">45%</div>
+                                    <div class="stat-label">workforce gone &mdash; students use GenAI</div>
+                                    <div class="stat-flip-hint"><i class="fas fa-sync-alt"></i> tap to see roles</div>
+                                </div>
+                                <div class="stat-back">
+                                    <div class="back-title">Roles Cut</div>
+                                    <ul>
+                                        <li>Subject-matter experts (SMEs)</li>
+                                        <li>Tutors &amp; question writers</li>
+                                        <li>Content moderators</li>
+                                        <li>Editorial staff</li>
+                                        <li>Customer success reps</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-company">Block</div>
-                            <div class="stat-number">6K cap</div>
-                            <div class="stat-label">&ldquo;40% fewer people&rdquo; thanks to AI</div>
+                        <div class="stat-card" onclick="this.classList.toggle('flipped')">
+                            <div class="stat-flip">
+                                <div class="stat-front">
+                                    <div class="stat-company">Block</div>
+                                    <div class="stat-number">6K cap</div>
+                                    <div class="stat-label">&ldquo;40% fewer people&rdquo; thanks to AI</div>
+                                    <div class="stat-flip-hint"><i class="fas fa-sync-alt"></i> tap to see roles</div>
+                                </div>
+                                <div class="stat-back">
+                                    <div class="back-title">Roles Cut</div>
+                                    <ul>
+                                        <li>Compliance reviewers</li>
+                                        <li>Fraud-screening analysts</li>
+                                        <li>Junior software engineers</li>
+                                        <li>Product ops &amp; PMs</li>
+                                        <li>Customer support agents</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="quote-box" style="margin-top: 22px;">
-                        If a job is a <strong>routine task</strong>, it&rsquo;s being automated. Notice what they&rsquo;re <em>not</em> cutting: leadership, ethics, and high-level strategy.
+                    <div class="quote-box" style="margin-top: 18px;">
+                        <i class="fas fa-hand-pointer" style="color: #00d4ff; margin-right: 6px;"></i>
+                        <strong>Tap any card</strong> to see the specific job categories being cut. If a job is a <strong>routine task</strong>, it&rsquo;s being automated. Notice what they&rsquo;re <em>not</em> cutting: leadership, ethics, and high-level strategy.
                     </div>
                     <div class="wave-decoration"></div>
                 </div>
@@ -858,7 +990,44 @@
                 </div>
             </section>
 
-            <!-- Slide 15: Closing - Being Human is the Premium -->
+            <!-- Slide 15: Left Brain vs Right Brain (YouTube Short) -->
+            <section>
+                <div class="slide-inner content-slide" style="text-align: center;">
+                    <div style="font-size: 0.95rem; color: #a29bfe; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 8px;">
+                        <i class="fas fa-brain" style="margin-right: 8px;"></i> One More Thing
+                    </div>
+                    <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Left Brain <span class="hl">vs</span> Right Brain</h2>
+                    <div style="display: grid; grid-template-columns: 360px 1fr; gap: 36px; align-items: center; max-width: 1100px; margin: 10px auto 0;">
+                        <div style="position: relative; width: 360px; aspect-ratio: 9/16; max-height: 56vh; margin: 0 auto; border-radius: 22px; overflow: hidden; box-shadow: 0 12px 40px rgba(108,92,231,0.45); border: 2px solid rgba(0,212,255,0.35);">
+                            <iframe
+                                src="https://www.youtube.com/embed/1BUaR2JMx7w?rel=0"
+                                title="Left Brain vs Right Brain"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                                style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"></iframe>
+                        </div>
+                        <div style="text-align: left;">
+                            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.92); line-height: 1.55; margin-bottom: 18px;">
+                                AI can replicate the <span class="hl">left brain</span> &mdash; logic, calculation, pattern-matching.
+                            </p>
+                            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.92); line-height: 1.55; margin-bottom: 18px;">
+                                What it can&rsquo;t (yet) replicate: the <span class="hlw">right brain</span> &mdash; intuition, creativity, the human spark.
+                            </p>
+                            <div class="trait-row" style="justify-content: flex-start; margin-top: 16px;">
+                                <span class="trait-pill"><i class="fas fa-cogs"></i> Logic</span>
+                                <span class="trait-pill" style="color:#ffeaa7; border-color: rgba(255,234,167,0.5); background: rgba(255,234,167,0.1);"><i class="fas fa-palette"></i> Creativity</span>
+                            </div>
+                            <a href="https://youtube.com/shorts/1BUaR2JMx7w" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 24px; background: rgba(0,212,255,0.1); border: 2px solid rgba(0,212,255,0.4); border-radius: 30px; color: #00d4ff; text-decoration: none; font-weight: 600; font-size: 0.95rem;">
+                                <i class="fab fa-youtube"></i> Open on YouTube
+                            </a>
+                        </div>
+                    </div>
+                    <div class="wave-decoration"></div>
+                </div>
+            </section>
+
+            <!-- Slide 16: Closing - Being Human is the Premium -->
             <section>
                 <div class="slide-inner finale-slide">
                     <div class="ai-orb" style="width: 130px; height: 130px; margin: 0 auto 14px;"><i class="fas fa-infinity" style="font-size: 2.6rem;"></i></div>
