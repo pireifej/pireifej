@@ -1,0 +1,415 @@
+/* ============================================================
+   MONMOUTH COUNTY PRESENTATION STYLES — "Canva Sticker" Look
+   Used by:
+     /monmouth-county/public-speaking.html
+     /monmouth-county/active-listening.html
+   Loads after Reveal.js core CSS to override defaults.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* ---------- Base ---------- */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    color: #2d3142;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.reveal {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 32px;
+    color: #2d3142;
+}
+
+.reveal .slides { text-align: left; }
+
+.reveal .slides section {
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    box-sizing: border-box;
+    top: 0 !important;
+    left: 0 !important;
+    color: #2d3142;
+}
+
+.reveal .slides section .slide-inner {
+    width: 100%;
+    max-width: 1500px;
+    max-height: 92vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+/* Per-deck themes set on <body class="theme-..."> */
+body.theme-coral .reveal .slides section {
+    background: linear-gradient(135deg, #FFF4E6 0%, #FFE5D9 50%, #FFD6B0 100%);
+}
+body.theme-mint .reveal .slides section {
+    background: linear-gradient(135deg, #E8F8F1 0%, #D9F0EA 50%, #C7E8E0 100%);
+}
+
+/* Reveal UI tweaks */
+.reveal .progress { color: #FF7E67; height: 5px; }
+.reveal .controls { color: #FF7E67; }
+body.theme-mint .reveal .progress,
+body.theme-mint .reveal .controls { color: #4ECDC4; }
+.reveal .slide-number {
+    color: #2d3142;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 30px;
+    right: 18px; bottom: 18px;
+}
+
+/* ---------- Back button + brand ---------- */
+.back-btn {
+    position: fixed;
+    top: 22px; left: 22px;
+    z-index: 1001;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    padding: 12px 22px;
+    border-radius: 30px;
+    color: #2d3142;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    font-family: 'Quicksand', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+    transition: all 0.25s ease;
+    border: 2px solid rgba(255,126,103,0.3);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+body.theme-mint .back-btn { border-color: rgba(78,205,196,0.4); }
+.back-btn:hover {
+    transform: translateY(-2px);
+    color: #FF7E67;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(255,126,103,0.25);
+}
+body.theme-mint .back-btn:hover {
+    color: #4ECDC4;
+    box-shadow: 0 6px 20px rgba(78,205,196,0.25);
+}
+
+.brand-website {
+    position: fixed;
+    bottom: 22px; right: 90px;
+    color: #2d3142;
+    opacity: 0.5;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 1001;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #2d3142;
+    line-height: 1.15;
+    margin: 0 0 22px 0;
+}
+h1 { font-weight: 800; font-size: 4.5rem; letter-spacing: -1px; }   /* ~60pt-equivalent for big slides */
+h2 { font-weight: 700; font-size: 3.4rem; letter-spacing: -0.5px; }
+h3 { font-weight: 700; font-size: 1.9rem; }
+
+.reveal p, .reveal li {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.32rem;     /* ~32pt-equivalent body */
+    line-height: 1.55;
+    color: #2d3142;
+    font-weight: 500;
+}
+
+/* Inline highlight spans */
+.hl-coral   { color: #FF7E67; font-weight: 700; }
+.hl-mint    { color: #4ECDC4; font-weight: 700; }
+.hl-yellow  { color: #FFC857; font-weight: 700; }
+.hl-lavender{ color: #A084DC; font-weight: 700; }
+.hl-pink    { color: #FF8FAB; font-weight: 700; }
+.hl-blue    { color: #5DADE2; font-weight: 700; }
+
+/* ---------- Canva-Card (glassmorphism) ---------- */
+.canva-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 2px solid rgba(255,255,255,0.85);
+    border-radius: 25px;
+    padding: 32px 36px;
+    box-shadow: 0 12px 40px rgba(45,49,66,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.canva-card:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(45,49,66,0.18); }
+
+.canva-card.solid-coral    { background: linear-gradient(135deg, #FF7E67 0%, #FF9A82 100%); color: #fff; border: none; }
+.canva-card.solid-mint     { background: linear-gradient(135deg, #4ECDC4 0%, #6FE0D7 100%); color: #fff; border: none; }
+.canva-card.solid-yellow   { background: linear-gradient(135deg, #FFC857 0%, #FFD97A 100%); color: #2d3142; border: none; }
+.canva-card.solid-lavender { background: linear-gradient(135deg, #A084DC 0%, #BBA0E8 100%); color: #fff; border: none; }
+.canva-card.solid-pink     { background: linear-gradient(135deg, #FF8FAB 0%, #FFB1C4 100%); color: #fff; border: none; }
+.canva-card.solid-blue     { background: linear-gradient(135deg, #5DADE2 0%, #85C5EA 100%); color: #fff; border: none; }
+.canva-card.solid-coral *,
+.canva-card.solid-mint *,
+.canva-card.solid-lavender *,
+.canva-card.solid-pink *,
+.canva-card.solid-blue * { color: #fff !important; }
+
+.canva-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-bottom: 14px;
+}
+.canva-card p, .canva-card li { font-size: 1.15rem; line-height: 1.5; }
+
+/* ---------- Layout helpers ---------- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; margin-top: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 18px; }
+
+.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0 0;
+}
+.bullets li {
+    padding: 10px 0 10px 38px;
+    position: relative;
+    font-size: 1.3rem;
+}
+.bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF7E67, #FFC857);
+}
+body.theme-mint .bullets li::before {
+    background: linear-gradient(135deg, #4ECDC4, #A084DC);
+}
+
+/* ---------- Pills, badges, tags ---------- */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 4px 6px;
+    background: rgba(255,255,255,0.85);
+    color: #2d3142;
+    border: 2px solid rgba(45,49,66,0.1);
+}
+.pill.coral    { background: #FFE1D6; color: #C8462E; border-color: #FF7E67; }
+.pill.mint     { background: #D6F2EE; color: #1F7A72; border-color: #4ECDC4; }
+.pill.yellow   { background: #FFF1CD; color: #8B6914; border-color: #FFC857; }
+.pill.lavender { background: #ECE2F8; color: #5C3F95; border-color: #A084DC; }
+.pill.pink     { background: #FFE0E8; color: #B23B5E; border-color: #FF8FAB; }
+.pill.blue     { background: #DCEFFA; color: #2A6F9C; border-color: #5DADE2; }
+
+/* ---------- Title slide ---------- */
+.slide-title { text-align: center; padding-top: 20px; }
+.slide-title .eyebrow {
+    display: inline-block;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 1.05rem;
+    padding: 10px 24px;
+    border-radius: 30px;
+    margin-bottom: 28px;
+    background: rgba(255,255,255,0.75);
+    color: #FF7E67;
+    border: 2px solid rgba(255,126,103,0.3);
+}
+body.theme-mint .slide-title .eyebrow { color: #4ECDC4; border-color: rgba(78,205,196,0.4); }
+.slide-title h1 {
+    font-size: 5.4rem;
+    line-height: 1.05;
+    margin-bottom: 28px;
+}
+.slide-title h1 .accent { color: #FF7E67; display: inline-block; }
+body.theme-mint .slide-title h1 .accent { color: #4ECDC4; }
+.slide-title .subtitle {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: rgba(45,49,66,0.78);
+    max-width: 950px;
+    margin: 0 auto 22px;
+}
+.slide-title .meta {
+    margin-top: 16px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: rgba(45,49,66,0.6);
+}
+
+/* ---------- Closing slide ---------- */
+.slide-closing { text-align: center; }
+.slide-closing h1 {
+    font-size: 4.6rem;
+    margin-bottom: 22px;
+}
+.slide-closing .contact-card {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 28px 44px;
+}
+.slide-closing .contact-row {
+    display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;
+    margin-top: 14px;
+}
+.slide-closing .contact-row a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+.slide-closing .contact-row a i { margin-right: 8px; }
+
+/* ---------- Stickers (floating SVG illustrations) ---------- */
+.sticker {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform;
+}
+.sticker svg { display: block; width: 100%; height: 100%; }
+
+@keyframes subtle-float {
+    0%,100% { transform: translateY(0)    rotate(var(--rot, 0deg)); }
+    50%     { transform: translateY(-9px) rotate(var(--rot, 0deg)); }
+}
+@keyframes subtle-float-alt {
+    0%,100% { transform: translateY(0)   rotate(var(--rot, 0deg)); }
+    50%     { transform: translateY(8px) rotate(var(--rot, 0deg)); }
+}
+.sticker.float       { animation: subtle-float 4s ease-in-out infinite; }
+.sticker.float-slow  { animation: subtle-float 6s ease-in-out infinite; }
+.sticker.float-fast  { animation: subtle-float 3s ease-in-out infinite; }
+.sticker.float-alt   { animation: subtle-float-alt 5s ease-in-out infinite; }
+
+/* Small abstract decorative shapes (positioned via inline style per-slide) */
+.deco-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.55;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ---------- Big quote ---------- */
+.big-quote {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(14px);
+    border-radius: 25px;
+    padding: 38px 46px;
+    border-left: 8px solid #FF7E67;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.35;
+    color: #2d3142;
+    max-width: 1100px;
+    margin: 24px auto;
+    box-shadow: 0 12px 36px rgba(45,49,66,0.1);
+}
+body.theme-mint .big-quote { border-left-color: #4ECDC4; }
+.big-quote .quote-mark { font-size: 3rem; color: #FF7E67; line-height: 0.4; vertical-align: -0.4em; margin-right: 8px; }
+body.theme-mint .big-quote .quote-mark { color: #4ECDC4; }
+
+/* ---------- Number badges (technique steps) ---------- */
+.num-badge {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF7E67 0%, #FFC857 100%);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.7rem;
+    box-shadow: 0 6px 18px rgba(255,126,103,0.35);
+    margin-bottom: 12px;
+}
+body.theme-mint .num-badge {
+    background: linear-gradient(135deg, #4ECDC4 0%, #A084DC 100%);
+    box-shadow: 0 6px 18px rgba(78,205,196,0.35);
+}
+
+/* ---------- Exercise / Activity card ---------- */
+.exercise-card {
+    background: linear-gradient(135deg, rgba(255,200,87,0.95) 0%, rgba(255,143,171,0.9) 100%);
+    border-radius: 25px;
+    padding: 36px 42px;
+    color: #2d3142;
+    border: 3px dashed rgba(255,255,255,0.7);
+    position: relative;
+    box-shadow: 0 14px 40px rgba(255,143,171,0.3);
+}
+body.theme-mint .exercise-card {
+    background: linear-gradient(135deg, rgba(78,205,196,0.95) 0%, rgba(160,132,220,0.9) 100%);
+    color: #fff;
+    box-shadow: 0 14px 40px rgba(78,205,196,0.35);
+}
+body.theme-mint .exercise-card * { color: #fff; }
+.exercise-card .exercise-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.85);
+    color: #C8462E;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+}
+body.theme-mint .exercise-card .exercise-label { color: #1F7A72; }
+.exercise-card h2 {
+    font-size: 2.6rem;
+    margin-bottom: 14px;
+}
+.exercise-card .timer-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(45,49,66,0.85);
+    color: #FFE9C4;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 14px;
+}
+body.theme-mint .exercise-card .timer-pill { background: rgba(45,49,66,0.85); color: #fff; }
+
+/* ---------- Responsive guard ---------- */
+@media (max-width: 900px) {
+    .reveal .slides section { padding: 32px 28px; }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 14px; }
+    .sticker { display: none; }
+}

@@ -1,0 +1,49 @@
+I want to add two new presentation modules to my existing project.
+
+MATCH THE ARCHITECTURE OF "AI WORKSHOP SESSION 4":
+- Use Reveal.js with 'discrete' slide navigation (one slide per viewport, arrow-key navigation).
+- Transition: 'Slide' or 'Fade'. No scrolling.
+
+PROJECT STRUCTURE:
+- Create folder: /monmouth-county/
+- Create files: /monmouth-county/public-speaking.html and /monmouth-county/active-listening.html
+- Create CSS: /shared-assets/monmouth-style.css
+
+AESTHETIC: THE "CANVA STICKER" LOOK
+- Style: Friendly, colorful, and personality-driven.
+- Components: Use .canva-card classes for content with 25px rounded corners and glassmorphism.
+- Floating Illustrations: Use SVG spot illustrations (referencing the 'Humaaans' style). 
+- Animations: Create a CSS keyframe animation called 'subtle-float'. Apply it to the SVG characters so they gently bob up and down (5-10px) to mimic Canva's animated elements.
+- Typography: Use 'Quicksand' for a friendly vibe and 'Montserrat' for headers. Large audience size (Header 60pt, Body 32pt).
+
+---
+DECK 1: PUBLIC SPEAKING & CONFIDENCE (10 Slides Max)
+1. Title: "Finding Your Voice: Speaking with Confidence at Monmouth County"
+2. The Connection Factor: Why speaking is about people, not just words.
+3. Taming the Butterflies: Simple techniques to manage public speaking nerves.
+4. The Power of Your Story: How sharing experiences makes your message stick.
+5. Body Language Basics: Using your presence to build trust.
+6. **GROUP EXERCISE**: "The Human Commercial" - Spend 30 seconds 'pitching' your partner to your table based on one fun fact about them.
+7. Visuals that Work: Keeping slides simple so the focus stays on YOU.
+8. Engaging Your Audience: Tips for reading a room of 70+ people.
+9. Leading through Communication: How speaking builds leadership within the County.
+10. Closing: "Should Call Paul" contact info and Q&A.
+
+---
+DECK 2: ACTIVE LISTENING & BETTER WORKPLACE COMMUNICATION (10 Slides Max)
+1. Title: "Listening First: Building Better Connections at Work"
+2. Hearing vs. Listening: Why the distinction matters for teamwork.
+3. Common Roadblocks: Identifying what stops us from truly hearing others.
+4. Reading the Unspoken: Understanding non-verbal cues and tone.
+5. The Mirror Technique: How to clarify and confirm information effectively.
+6. **GROUP EXERCISE**: "The Telephone Improv" - A group 'Yes, And' chain to practice receiving and building on ideas.
+7. Empathy in Action: Seeing things from a colleague's or citizen's perspective.
+8. The Power of the Pause: Using silence to allow for better processing.
+9. Better Meetings: How active listening saves time and reduces stress.
+10. Closing: "Should Call Paul" contact info and Q&A.
+
+---
+TECHNICAL DELIVERY:
+1. Provide the HTML for both files using the Reveal.js boilerplate.
+2. Provide 'monmouth-style.css' including the 'subtle-float' animation and .sticker classes.
+3. Provide the HTML snippet to add two new 'Canva-style' cards to my existing main Hub navigation.
