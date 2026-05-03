@@ -8,6 +8,77 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+/* ---------- Photo Cards (real-people stock photos) ---------- */
+.photo-card {
+    position: absolute;
+    border-radius: 25px;
+    border: 5px solid #fff;
+    box-shadow: 0 14px 34px rgba(45,49,66,0.20), 0 4px 10px rgba(45,49,66,0.08);
+    overflow: hidden;
+    background: #fff;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.photo-card.tilt-l { transform: rotate(-2.5deg); }
+.photo-card.tilt-r { transform: rotate(2.5deg); }
+.photo-card:hover { transform: rotate(0deg) scale(1.04); z-index: 5; }
+
+/* ---------- Closing slide: QR-code layout ---------- */
+.closing-grid {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+.qr-card {
+    background: #fff;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 16px 38px rgba(45,49,66,0.22), 0 4px 10px rgba(45,49,66,0.10);
+    text-align: center;
+    flex-shrink: 0;
+}
+.qr-card img {
+    display: block;
+    width: 280px;
+    height: 280px;
+    border-radius: 14px;
+}
+.qr-card .qr-label {
+    margin-top: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #2d3142;
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+}
+.qr-card .qr-sub {
+    color: #6b6f80;
+    font-size: 0.88rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Responsive: shrink photo cards + QR on small screens / projectors */
+@media (max-width: 1100px) {
+    .photo-card { width: 180px !important; height: 120px !important; }
+    .qr-card img { width: 220px; height: 220px; }
+    .closing-grid { gap: 24px; }
+}
+@media (max-width: 760px) {
+    .photo-card { display: none; }
+    .qr-card img { width: 180px; height: 180px; }
+    .qr-card { padding: 14px; }
+}
+
 /* ---------- Base ---------- */
 html, body {
     margin: 0;

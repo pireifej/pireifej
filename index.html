@@ -496,12 +496,45 @@
                         </div>
                     </div>
 
-                     <div class="col-lg-6 thumb" data-wow-delay="900ms">
+                     <div class="col-lg-6 thumb" data-wow-delay="900ms" style="position: relative;">
                         <img id="heroImage" class=" wow fadeInDown" src="img-new/team/paul-stage-removebg.png" alt="Paul Ireifej speaking on stage">
                         <div class="shape-center">
                             <img src="img-new/shape/7.png" alt="Thumb">
                         </div>
+                        <!-- Cute bouncing sparkle to cover the arm chunk on the stage photo -->
+                        <div class="hero-sparkle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="sparkGrad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#FFD93D"/>
+                                        <stop offset="100%" stop-color="#FF6B9D"/>
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#sparkGrad)" d="M32 2 L37 25 L60 30 L37 35 L32 60 L27 35 L4 30 L27 25 Z"/>
+                                <circle cx="32" cy="30" r="3" fill="#fff" opacity="0.9"/>
+                            </svg>
+                        </div>
                     </div>
+                    <style>
+                        .hero-sparkle {
+                            position: absolute;
+                            width: 70px;
+                            height: 70px;
+                            left: 28%;
+                            top: 60%;
+                            z-index: 5;
+                            pointer-events: none;
+                            animation: heroSparkleBounce 2.6s ease-in-out infinite;
+                            filter: drop-shadow(0 6px 14px rgba(255, 107, 157, 0.45));
+                        }
+                        @keyframes heroSparkleBounce {
+                            0%, 100% { transform: translateY(0) rotate(-12deg) scale(1); }
+                            50%      { transform: translateY(-18px) rotate(14deg) scale(1.08); }
+                        }
+                        @media (max-width: 991px) {
+                            .hero-sparkle { width: 54px; height: 54px; left: 30%; top: 58%; }
+                        }
+                    </style>
                     
                 </div>
                 <div class="personal-social">
