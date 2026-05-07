@@ -139,6 +139,22 @@
             background: rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.5);
         }
+        .hub-card.fallen {
+            border-top: 4px solid #c41e3a;
+            background: linear-gradient(180deg, rgba(20, 8, 24, 0.55), rgba(8, 4, 13, 0.65));
+        }
+        .hub-card.fallen:hover {
+            border-color: #c41e3a;
+            box-shadow: 0 25px 60px rgba(196, 30, 58, 0.4), 0 0 40px rgba(138, 62, 199, 0.25);
+        }
+        .hub-card.fallen .card-icon {
+            background: linear-gradient(135deg, #4a1564 0%, #c41e3a 100%);
+            box-shadow: 0 0 24px rgba(196, 30, 58, 0.5);
+        }
+        .hub-card.fallen .status {
+            background: rgba(196, 30, 58, 0.2);
+            color: #ff7a96;
+        }
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -193,6 +209,15 @@
                 <h2>AI Workshops</h2>
                 <p>Introduction to AI, ChatGPT for beginners, prompt engineering, and practical AI applications.</p>
                 <span class="status"><i class="fas fa-check-circle"></i> 5 Presentations Live</span>
+            </a>
+
+            <a href="fire-emblem-heroes/" class="hub-card fallen">
+                <div class="card-icon">
+                    <i class="fas fa-skull"></i>
+                </div>
+                <h2>Fire Emblem Heroes</h2>
+                <p>A creative side project &mdash; every Fallen Hero ever released, organized by banner from 2018 to 2025.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> All Fallen Units</span>
             </a>
         </div>
 

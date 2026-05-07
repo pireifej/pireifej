@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Fire Emblem Heroes — Every Fallen Hero ever released, organized by banner.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Fire Emblem Heroes &mdash; All Fallen Units</title>
+    <link rel="shortcut icon" href="/img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reveal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #08040d;
+            --bg-mid: #150818;
+            --crimson: #c41e3a;
+            --crimson-glow: #ff3a5e;
+            --purple-deep: #4a1564;
+            --purple-glow: #8a3ec7;
+            --gold: #c9a14a;
+            --parchment: #e8d5b7;
+            --bone: #d6cdb8;
+        }
+        html, body { margin:0; padding:0; height:100%; background:#000; color:var(--parchment); font-family:'Cormorant Garamond', serif; }
+        body {
+            background:
+                radial-gradient(ellipse 60% 50% at 20% 20%, rgba(138, 62, 199, 0.18), transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 80%, rgba(196, 30, 58, 0.22), transparent 70%),
+                radial-gradient(ellipse 70% 60% at 50% 50%, rgba(20, 8, 24, 1), rgba(8, 4, 13, 1));
+            background-attachment: fixed;
+        }
+        .reveal { color: var(--parchment); }
+        .reveal .slides { text-align: left; }
+        .reveal section { padding: 0 !important; }
+        .slide-inner {
+            position: relative;
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 50px 70px;
+            box-sizing: border-box;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        /* Decorative ornate corner brackets */
+        .ornate-corner {
+            position: absolute; width: 90px; height: 90px;
+            border: 2px solid var(--gold);
+            opacity: 0.55;
+            pointer-events: none;
+        }
+        .ornate-corner.tl { top: 24px; left: 24px; border-right: none; border-bottom: none; }
+        .ornate-corner.tr { top: 24px; right: 24px; border-left: none; border-bottom: none; }
+        .ornate-corner.bl { bottom: 24px; left: 24px; border-right: none; border-top: none; }
+        .ornate-corner.br { bottom: 24px; right: 24px; border-left: none; border-top: none; }
+        .ornate-corner::before {
+            content: ''; position: absolute; width: 14px; height: 14px;
+            border: 2px solid var(--crimson-glow);
+            box-shadow: 0 0 12px var(--crimson-glow);
+        }
+        .ornate-corner.tl::before { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+        .ornate-corner.tr::before { top: -8px; right: -8px; border-left: none; border-bottom: none; }
+        .ornate-corner.bl::before { bottom: -8px; left: -8px; border-right: none; border-top: none; }
+        .ornate-corner.br::before { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Cinzel Decorative', 'Cinzel', serif;
+            color: var(--bone);
+            text-shadow: 0 2px 18px rgba(196, 30, 58, 0.5), 0 0 2px rgba(0,0,0,0.8);
+            letter-spacing: 1.5px;
+        }
+        h1 { font-size: 5rem; font-weight: 900; margin: 0 0 14px; line-height: 1.05; }
+        h2 { font-size: 3.2rem; font-weight: 700; margin: 0 0 18px; line-height: 1.1; }
+        h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 8px; letter-spacing: 1px; }
+        .reveal p, .reveal li { font-size: 1.4rem; line-height: 1.55; color: var(--parchment); }
+
+        .crimson { color: var(--crimson-glow); text-shadow: 0 0 14px rgba(255, 58, 94, 0.6); }
+        .purple  { color: var(--purple-glow);  text-shadow: 0 0 14px rgba(138, 62, 199, 0.6); }
+        .gold    { color: var(--gold);         text-shadow: 0 0 10px rgba(201, 161, 74, 0.5); }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 6px;
+            color: var(--gold);
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            margin-bottom: 22px;
+        }
+        .date-badge {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            letter-spacing: 4px;
+            color: var(--bone);
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.25), rgba(74, 21, 100, 0.4));
+            padding: 6px 22px;
+            border: 1px solid var(--crimson);
+            border-radius: 2px;
+            margin: 0 0 22px;
+            box-shadow: 0 0 20px rgba(196, 30, 58, 0.35), inset 0 0 18px rgba(0,0,0,0.5);
+        }
+
+        /* Banner image (top of each section slide) */
+        .banner-frame {
+            position: relative;
+            display: block;
+            margin: 0 auto 32px;
+            max-width: 880px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 2px var(--gold),
+                0 0 0 6px var(--bg-deep),
+                0 0 0 7px var(--crimson),
+                0 20px 60px rgba(196, 30, 58, 0.45),
+                0 0 80px rgba(138, 62, 199, 0.3);
+        }
+        .banner-frame img { display: block; width: 100%; height: auto; }
+        .banner-frame::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.45) 100%);
+            pointer-events: none;
+        }
+
+        /* Hero portrait grid */
+        .hero-grid {
+            display: grid;
+            gap: 22px;
+            margin-top: 24px;
+        }
+        .hero-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .hero-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .hero-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .hero-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+        .hero-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(20, 8, 24, 0.85), rgba(10, 4, 14, 0.95));
+            border: 1px solid var(--crimson);
+            border-radius: 4px;
+            padding: 8px 8px 14px;
+            text-align: center;
+            box-shadow:
+                0 0 0 1px rgba(201, 161, 74, 0.4),
+                0 12px 28px rgba(0,0,0,0.7),
+                0 0 24px rgba(196, 30, 58, 0.18);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 0 0 1px var(--gold),
+                0 16px 32px rgba(0,0,0,0.8),
+                0 0 36px rgba(255, 58, 94, 0.45);
+        }
+        .hero-card img {
+            display: block;
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid rgba(201, 161, 74, 0.5);
+        }
+        .hero-card.tall img { height: 220px; object-fit: contain; background: #fff; }
+        .hero-card .hero-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: var(--bone);
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+        .hero-card .hero-name::before {
+            content: '✦ ';
+            color: var(--crimson-glow);
+        }
+
+        /* Title slide */
+        .slide-title { display: flex; flex-direction: column; justify-content: center; padding: 80px 100px; min-height: 100vh; }
+        .title-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+        .title-hero-img {
+            width: 100%;
+            border-radius: 6px;
+            box-shadow:
+                0 0 0 2px var(--gold),
+                0 0 0 6px var(--bg-deep),
+                0 0 0 7px var(--crimson),
+                0 30px 80px rgba(196, 30, 58, 0.5),
+                0 0 100px rgba(138, 62, 199, 0.4);
+        }
+        .title-divider {
+            display: block;
+            width: 280px;
+            height: 2px;
+            margin: 22px 0;
+            background: linear-gradient(90deg, transparent, var(--crimson), var(--gold), var(--crimson), transparent);
+            box-shadow: 0 0 12px var(--crimson-glow);
+        }
+        .title-meta {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-top: 30px;
+        }
+
+        /* Closing slide */
+        .closing-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+        .closing-grid img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 3px;
+            border: 1px solid var(--crimson);
+            opacity: 0.85;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .closing-grid img:hover { opacity: 1; transform: scale(1.05); }
+
+        /* Reveal nav tweaks */
+        .reveal .progress { color: var(--crimson); }
+        .reveal .controls { color: var(--gold); }
+        .reveal .slide-number {
+            background: rgba(8, 4, 13, 0.7);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            border: 1px solid var(--crimson);
+        }
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            z-index: 100;
+            background: rgba(8, 4, 13, 0.85);
+            color: var(--bone);
+            padding: 10px 18px;
+            border: 1px solid var(--crimson);
+            border-radius: 2px;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 0 18px rgba(196, 30, 58, 0.4);
+            transition: all 0.3s;
+        }
+        .back-btn:hover { background: var(--crimson); color: #fff; box-shadow: 0 0 28px var(--crimson-glow); }
+
+        @media (max-width: 1100px) {
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.2rem; }
+            .title-grid { grid-template-columns: 1fr; gap: 30px; }
+            .slide-inner { padding: 40px 30px; }
+            .hero-grid.cols-5 { grid-template-columns: repeat(3, 1fr); }
+            .hero-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .closing-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<a href="/slides-hub.html" class="back-btn"><i class="fas fa-skull"></i> &nbsp;Back</a>
+
+<div class="reveal">
+    <div class="slides">
+
+        <!-- ========== SLIDE 1: TITLE ========== -->
+        <section>
+            <div class="slide-inner slide-title">
+                <span class="ornate-corner tl"></span>
+                <span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span>
+                <span class="ornate-corner br"></span>
+                <div class="title-grid">
+                    <div>
+                        <span class="eyebrow">Fire Emblem Heroes</span>
+                        <h1>All <span class="crimson">Fallen</span><br>Units</h1>
+                        <span class="title-divider"></span>
+                        <p style="font-size: 1.5rem; font-style: italic; color: var(--bone); max-width: 500px;">
+                            Every corrupted hero, every shadowed banner &mdash; chronicled from <span class="gold">2018</span> to <span class="gold">2025</span>.
+                        </p>
+                        <p class="title-meta">A Showcase by Paul</p>
+                    </div>
+                    <div>
+                        <img src="img/title-hero.jpg" alt="Fallen Hero" class="title-hero-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 2: 2018 Fallen Heroes ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner I &bull; The First Fall</span>
+                    <h2>Fallen <span class="crimson">Heroes</span></h2>
+                    <span class="date-badge">02 &bull; 21 &bull; 2018</span>
+                </div>
+                <div class="banner-frame"><img src="img/2018-banner.jpg" alt="Fallen Heroes 2018 banner"></div>
+                <div class="hero-grid cols-4">
+                    <div class="hero-card"><img src="img/2018-celica.jpg" alt="Fallen Celica"><div class="hero-name">Celica</div></div>
+                    <div class="hero-card"><img src="img/2018-takumi.jpg" alt="Fallen Takumi"><div class="hero-name">Takumi</div></div>
+                    <div class="hero-card"><img src="img/2018-hardin.jpg" alt="Fallen Hardin"><div class="hero-name">Hardin</div></div>
+                    <div class="hero-card"><img src="img/2018-robin.jpg" alt="Fallen Robin"><div class="hero-name">Robin</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 3: 2019 Darkness Within ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner II</span>
+                    <h2><span class="purple">Darkness</span> Within</h2>
+                    <span class="date-badge">05 &bull; 10 &bull; 2019</span>
+                </div>
+                <div class="banner-frame"><img src="img/2019-banner.jpg" alt="Darkness Within banner"></div>
+                <div class="hero-grid cols-5">
+                    <div class="hero-card"><img src="img/2019-berkut.jpg" alt="Fallen Berkut"><div class="hero-name">Berkut</div></div>
+                    <div class="hero-card"><img src="img/2019-mareeta.jpg" alt="Fallen Mareeta"><div class="hero-name">Mareeta</div></div>
+                    <div class="hero-card"><img src="img/2019-corrin.jpg" alt="Fallen Corrin"><div class="hero-name">Corrin</div></div>
+                    <div class="hero-card"><img src="img/2019-tiki.jpg" alt="Fallen Tiki"><div class="hero-name">Tiki</div></div>
+                    <div class="hero-card"><img src="img/2019-delthea.jpg" alt="Fallen Delthea"><div class="hero-name">Delthea</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 4: 2020 Dark Burdens ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner III</span>
+                    <h2>Dark <span class="crimson">Burdens</span></h2>
+                    <span class="date-badge">05 &bull; 08 &bull; 2020</span>
+                </div>
+                <div class="banner-frame"><img src="img/2020-banner.jpg" alt="Dark Burdens banner"></div>
+                <div class="hero-grid cols-5">
+                    <div class="hero-card"><img src="img/2020-corrin.jpg" alt="Fallen Corrin"><div class="hero-name">Corrin</div></div>
+                    <div class="hero-card"><img src="img/2020-julia.jpg" alt="Fallen Julia"><div class="hero-name">Julia</div></div>
+                    <div class="hero-card"><img src="img/2020-ike.jpg" alt="Fallen Ike"><div class="hero-name">Ike</div></div>
+                    <div class="hero-card"><img src="img/2020-lyon.jpg" alt="Fallen Lyon"><div class="hero-name">Lyon</div></div>
+                    <div class="hero-card"><img src="img/2020-ashnard.jpg" alt="Fallen Ashnard"><div class="hero-name">Ashnard</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 5: 2021 Forces of Will ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner IV</span>
+                    <h2>Forces <span class="purple">of Will</span></h2>
+                    <span class="date-badge">05 &bull; 07 &bull; 2021</span>
+                </div>
+                <div class="banner-frame"><img src="img/2021-banner.jpg" alt="Forces of Will banner"></div>
+                <div class="hero-grid cols-4">
+                    <div class="hero-card"><img src="img/2021-dimitri.jpg" alt="Fallen Dimitri"><div class="hero-name">Dimitri</div></div>
+                    <div class="hero-card"><img src="img/2021-edelgard.jpg" alt="Fallen Edelgard"><div class="hero-name">Edelgard</div></div>
+                    <div class="hero-card"><img src="img/2021-morgan-m.jpg" alt="Fallen Morgan (M)"><div class="hero-name">Morgan (M)</div></div>
+                    <div class="hero-card"><img src="img/2021-morgan-f.jpg" alt="Fallen Morgan (F)"><div class="hero-name">Morgan (F)</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 6: 2022 Beyond Control ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner V</span>
+                    <h2>Beyond <span class="crimson">Control</span></h2>
+                    <span class="date-badge">05 &bull; 10 &bull; 2022</span>
+                </div>
+                <div class="banner-frame"><img src="img/2022-banner.jpg" alt="Beyond Control banner"></div>
+                <div class="hero-grid cols-4">
+                    <div class="hero-card"><img src="img/2022-lilith.jpg" alt="Fallen Lilith"><div class="hero-name">Lilith</div></div>
+                    <div class="hero-card"><img src="img/2022-ninian.jpg" alt="Fallen Ninian"><div class="hero-name">Ninian</div></div>
+                    <div class="hero-card"><img src="img/2022-gustav.jpg" alt="Fallen Gustav"><div class="hero-name">Gustav</div></div>
+                    <div class="hero-card"><img src="img/2022-rhea.jpg" alt="Fallen Rhea"><div class="hero-name">Rhea</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 7: 2023 Depths of Despair ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner VI</span>
+                    <h2>Depths <span class="purple">of Despair</span></h2>
+                    <span class="date-badge">05 &bull; 09 &bull; 2023</span>
+                </div>
+                <div class="banner-frame"><img src="img/2023-banner.jpg" alt="Depths of Despair banner"></div>
+                <div class="hero-grid cols-4">
+                    <div class="hero-card tall"><img src="img/2023-chrom.jpg" alt="Fallen Chrom"><div class="hero-name">Chrom</div></div>
+                    <div class="hero-card tall"><img src="img/2023-byleth.jpg" alt="Fallen Byleth"><div class="hero-name">Byleth</div></div>
+                    <div class="hero-card tall"><img src="img/2023-maria.jpg" alt="Fallen Maria"><div class="hero-name">Maria</div></div>
+                    <div class="hero-card tall"><img src="img/2023-anankos.jpg" alt="Fallen Anankos"><div class="hero-name">Anankos</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 8: 2024 Fallen Heroes ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner VII</span>
+                    <h2>Fallen <span class="crimson">Heroes</span> 2024</h2>
+                    <span class="date-badge">05 &bull; 08 &bull; 2024</span>
+                </div>
+                <div class="banner-frame"><img src="img/2024-banner.jpg" alt="Fallen Heroes 2024 banner"></div>
+                <div class="hero-grid cols-4">
+                    <div class="hero-card tall"><img src="img/2024-ursula.jpg" alt="Fallen Ursula"><div class="hero-name">Ursula</div></div>
+                    <div class="hero-card tall"><img src="img/2024-veyle.jpg" alt="Fallen Veyle"><div class="hero-name">Veyle</div></div>
+                    <div class="hero-card tall"><img src="img/2024-lumera.jpg" alt="Fallen Lumera"><div class="hero-name">Lumera</div></div>
+                    <div class="hero-card tall"><img src="img/2024-nergal.jpg" alt="Fallen Nergal"><div class="hero-name">Nergal</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 9: 2025 New Heroes & Rearmed Dedue ========== -->
+        <section>
+            <div class="slide-inner">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">Banner VIII &bull; The Latest</span>
+                    <h2>New Heroes &amp; <span class="purple">Rearmed Dedue</span></h2>
+                    <span class="date-badge">05 &bull; 07 &bull; 2025</span>
+                </div>
+                <div class="banner-frame"><img src="img/2025-banner.jpg" alt="New Heroes 2025 banner"></div>
+                <div class="hero-grid cols-4">
+                    <div class="hero-card tall"><img src="img/2025-alear-m.jpg" alt="Fallen Alear (M)"><div class="hero-name">Alear (M)</div></div>
+                    <div class="hero-card tall"><img src="img/2025-alear-f.jpg" alt="Fallen Alear (F)"><div class="hero-name">Alear (F)</div></div>
+                    <div class="hero-card tall"><img src="img/2025-dedue.jpg" alt="Fallen Dedue"><div class="hero-name">Dedue</div></div>
+                    <div class="hero-card tall"><img src="img/2025-lena.jpg" alt="Fallen Lena"><div class="hero-name">Lena</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SLIDE 10: CLOSING / GALLERY ========== -->
+        <section>
+            <div class="slide-inner" style="display:flex; flex-direction:column; justify-content:center; min-height:100vh;">
+                <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
+                <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
+                <div style="text-align:center;">
+                    <span class="eyebrow">8 Banners &bull; 35 Heroes &bull; 7 Years</span>
+                    <h1 style="font-size: 4rem;">The <span class="crimson">Fallen</span> <span class="purple">Pantheon</span></h1>
+                    <span class="title-divider" style="margin: 22px auto;"></span>
+                    <p style="font-size: 1.6rem; font-style: italic; max-width: 800px; margin: 0 auto 30px;">
+                        From <span class="gold">Celica</span> to <span class="gold">Lena</span> &mdash; corruption, ambition, and twisted reflections of every hero we&rsquo;ve ever loved.
+                    </p>
+                </div>
+                <div class="closing-grid">
+                    <img src="img/2018-celica.jpg" alt=""><img src="img/2019-berkut.jpg" alt=""><img src="img/2020-ike.jpg" alt=""><img src="img/2021-edelgard.jpg" alt=""><img src="img/2022-rhea.jpg" alt="">
+                    <img src="img/2018-robin.jpg" alt=""><img src="img/2019-tiki.jpg" alt=""><img src="img/2020-ashnard.jpg" alt=""><img src="img/2021-dimitri.jpg" alt=""><img src="img/2022-ninian.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://unpkg.com/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        slideNumber: 'c/t',
+        center: false,
+        disableLayout: true,
+        transition: 'fade',
+        backgroundTransition: 'fade',
+        keyboard: {
+            87: 'prev',  // W
+            65: 'prev',  // A
+            83: 'next',  // S
+            68: 'next'   // D
+        }
+    });
+</script>
+</body>
+</html>
