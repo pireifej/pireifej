@@ -278,6 +278,124 @@
             color: #ff6b6b; font-size: 0.7rem;
         }
 
+        /* AI-Proof Homework flip cards (one big centered card per slide) */
+        .hw-stage { perspective: 1800px; max-width: 880px; margin: 18px auto 0; }
+        .hw-card {
+            position: relative;
+            width: 100%;
+            min-height: 380px;
+            transform-style: preserve-3d;
+            transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+            cursor: pointer;
+        }
+        .hw-card.flipped { transform: rotateY(180deg); }
+        .hw-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 18px;
+            padding: 28px 36px 56px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(0,0,0,0.45);
+        }
+        .hw-face.front {
+            border: 2px dashed rgba(255,107,107,0.55);
+            box-shadow: 0 0 30px rgba(255,107,107,0.15) inset;
+        }
+        .hw-face.back {
+            transform: rotateY(180deg);
+            background: rgba(10,30,40,0.85);
+            border: 2px solid rgba(0,212,255,0.55);
+            box-shadow: 0 0 40px rgba(0,212,255,0.2) inset;
+        }
+        .hw-subject {
+            font-size: 0.82rem;
+            color: #a29bfe;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hw-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 14px;
+            line-height: 1.25;
+        }
+        .hw-assignment {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            font-style: italic;
+            color: rgba(255,255,255,0.92);
+            background: rgba(255,255,255,0.06);
+            border-left: 3px solid rgba(255,107,107,0.6);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .hw-problem {
+            font-size: 0.95rem;
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+        .hw-face.back .hw-answer {
+            font-size: 1.05rem;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.95);
+            background: rgba(0,212,255,0.08);
+            border-left: 3px solid rgba(0,212,255,0.7);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .hw-why {
+            font-size: 0.92rem;
+            font-style: italic;
+            color: #55efc4;
+        }
+        .hw-hint {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,212,255,0.18);
+            color: #00d4ff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+            border: 1px solid rgba(0,212,255,0.4);
+            animation: hw-pulse 1.8s ease-in-out infinite;
+        }
+        @keyframes hw-pulse {
+            0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+            50%      { opacity: 1;    transform: translateX(-50%) scale(1.05); }
+        }
+        .round-badge {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            background: linear-gradient(135deg, #6c5ce7, #00d4ff);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 18px rgba(108,92,231,0.45);
+            z-index: 4;
+        }
+
         /* Icon-tile cards (safe zones, fix steps) */
         .icon-tile {
             background: rgba(0,0,0,0.3);
@@ -839,6 +957,87 @@
                         </div>
                     </div>
                     <div class="wave-decoration"></div>
+                </div>
+            </section>
+
+            <!-- Slide 9.5a: Group Exercise - AI-Proof Homework (Round 1: English) -->
+            <section>
+                <div class="slide-inner content-slide" style="position: relative;">
+                    <span class="round-badge">Round 1 of 3</span>
+                    <h2 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #00d4ff;"></i> Group Exercise &mdash; <span class="hl">AI-Proof Homework</span></h2>
+                    <p style="font-size: 1.05rem; color: rgba(255,255,255,0.82); text-align: center; margin: 4px auto 0; max-width: 980px;"><em>&ldquo;AI can write the essay. AI can&rsquo;t be your kid.&rdquo;</em> &mdash; <strong>Your turn:</strong> 60 seconds with your neighbor. How would YOU make this homework AI-proof? Then I&rsquo;ll click to reveal one answer.</p>
+
+                    <div class="hw-stage">
+                        <div class="hw-card" onclick="this.classList.toggle('flipped')">
+                            <div class="hw-face front">
+                                <div class="hw-subject"><i class="fas fa-book"></i> &nbsp; English &middot; 5th Grade</div>
+                                <h3>The Book Report</h3>
+                                <div class="hw-assignment">&ldquo;Write a 500-word book report on a novel of your choice.&rdquo;</div>
+                                <div class="hw-problem"><i class="fas fa-exclamation-triangle"></i> &nbsp; The Problem: ChatGPT writes a flawless one in 8 seconds.</div>
+                                <div class="hw-hint"><i class="fas fa-hand-pointer"></i> &nbsp; Click to reveal Paul&rsquo;s version</div>
+                            </div>
+                            <div class="hw-face back">
+                                <div class="hw-subject" style="color: #00d4ff;"><i class="fas fa-shield-alt"></i> &nbsp; AI-Proof Version</div>
+                                <h3>Read Aloud, In Your Voice</h3>
+                                <div class="hw-answer">Record a <strong>3-minute video</strong> of yourself reading aloud your favorite passage from the book &mdash; then explain in your own words why you picked it, and one moment in YOUR life it reminded you of.</div>
+                                <div class="hw-why"><strong>Why it works:</strong> AI can summarize the book. AI can&rsquo;t read in your voice, and it doesn&rsquo;t know your life story.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9.5b: Round 2 - Math -->
+            <section>
+                <div class="slide-inner content-slide" style="position: relative;">
+                    <span class="round-badge">Round 2 of 3</span>
+                    <h2 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #00d4ff;"></i> Group Exercise &mdash; <span class="hl">AI-Proof Homework</span></h2>
+                    <p style="font-size: 1.05rem; color: rgba(255,255,255,0.82); text-align: center; margin: 4px auto 0; max-width: 980px;"><strong>Same drill:</strong> 60 seconds. Brainstorm with your neighbor. How do you make <em>this</em> one AI-proof?</p>
+
+                    <div class="hw-stage">
+                        <div class="hw-card" onclick="this.classList.toggle('flipped')">
+                            <div class="hw-face front">
+                                <div class="hw-subject"><i class="fas fa-square-root-variable"></i> &nbsp; Math &middot; 8th Grade Algebra</div>
+                                <h3>The Problem Set</h3>
+                                <div class="hw-assignment">&ldquo;Complete problems 1&ndash;20 from Chapter 7. Show your work.&rdquo;</div>
+                                <div class="hw-problem"><i class="fas fa-exclamation-triangle"></i> &nbsp; The Problem: Photomath and ChatGPT solve it instantly &mdash; <em>with</em> the steps.</div>
+                                <div class="hw-hint"><i class="fas fa-hand-pointer"></i> &nbsp; Click to reveal Paul&rsquo;s version</div>
+                            </div>
+                            <div class="hw-face back">
+                                <div class="hw-subject" style="color: #00d4ff;"><i class="fas fa-shield-alt"></i> &nbsp; AI-Proof Version</div>
+                                <h3>Teach the Class, Live</h3>
+                                <div class="hw-answer">Pick the <strong>ONE problem you struggled with most this week</strong>. Friday in class, walk to the whiteboard and teach the room how to solve it &mdash; including the wrong turns you took and how you caught them. Use AI as a tutor at home. You can&rsquo;t use it at the board.</div>
+                                <div class="hw-why"><strong>Why it works:</strong> AI can solve the problem. AI can&rsquo;t teach the class through YOUR mistakes, live, in real time.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9.5c: Round 3 - History -->
+            <section>
+                <div class="slide-inner content-slide" style="position: relative;">
+                    <span class="round-badge">Round 3 of 3</span>
+                    <h2 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #00d4ff;"></i> Group Exercise &mdash; <span class="hl">AI-Proof Homework</span></h2>
+                    <p style="font-size: 1.05rem; color: rgba(255,255,255,0.82); text-align: center; margin: 4px auto 0; max-width: 980px;"><strong>Last round.</strong> 60 seconds. Toughest one yet &mdash; the classic 5-page essay.</p>
+
+                    <div class="hw-stage">
+                        <div class="hw-card" onclick="this.classList.toggle('flipped')">
+                            <div class="hw-face front">
+                                <div class="hw-subject"><i class="fas fa-landmark"></i> &nbsp; Social Studies &middot; High School</div>
+                                <h3>The Research Paper</h3>
+                                <div class="hw-assignment">&ldquo;Write a 5-page essay on a person who shaped American history.&rdquo;</div>
+                                <div class="hw-problem"><i class="fas fa-exclamation-triangle"></i> &nbsp; The Problem: Polished, footnoted essay in 30 seconds.</div>
+                                <div class="hw-hint"><i class="fas fa-hand-pointer"></i> &nbsp; Click to reveal Paul&rsquo;s version</div>
+                            </div>
+                            <div class="hw-face back">
+                                <div class="hw-subject" style="color: #00d4ff;"><i class="fas fa-shield-alt"></i> &nbsp; AI-Proof Version</div>
+                                <h3>Interview a Real Human</h3>
+                                <div class="hw-answer">Interview a <strong>real person in your community</strong> whose life touches the era you&rsquo;re studying &mdash; a veteran, a small business owner, a teacher, a grandparent. Submit the audio recording, your three best questions, and a one-page reflection on what surprised you. Brainstorm questions with AI; the conversation has to be human.</div>
+                                <div class="hw-why"><strong>Why it works:</strong> AI can fake an essay. It can&rsquo;t fake a relationship with a real person in your town.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
