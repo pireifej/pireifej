@@ -194,13 +194,13 @@ h1, h2, h3 {
     line-height: 1.15;
     margin: 0 0 22px 0;
 }
-h1 { font-weight: 800; font-size: 4.5rem; letter-spacing: -1px; }   /* ~60pt-equivalent for big slides */
-h2 { font-weight: 700; font-size: 3.4rem; letter-spacing: -0.5px; }
-h3 { font-weight: 700; font-size: 1.9rem; }
+h1 { font-weight: 800; font-size: 5.1rem; letter-spacing: -1px; }
+h2 { font-weight: 700; font-size: 3.9rem; letter-spacing: -0.5px; }
+h3 { font-weight: 700; font-size: 2.15rem; }
 
 .reveal p, .reveal li {
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.32rem;     /* ~32pt-equivalent body */
+    font-size: 1.5rem;     /* enlarged body — readable from the back of the room */
     line-height: 1.55;
     color: #2d3142;
     font-weight: 500;
@@ -242,10 +242,10 @@ h3 { font-weight: 700; font-size: 1.9rem; }
 .canva-card h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.7rem;
+    font-size: 1.95rem;
     margin-bottom: 14px;
 }
-.canva-card p, .canva-card li { font-size: 1.15rem; line-height: 1.5; }
+.canva-card p, .canva-card li { font-size: 1.3rem; line-height: 1.5; }
 
 /* ---------- Layout helpers ---------- */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
