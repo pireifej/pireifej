@@ -11,6 +11,124 @@
     <link href="/css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reveal.css">
     <link rel="stylesheet" href="/shared-assets/monmouth-style.css">
+    <style>
+        /* Flip-card mechanic for AI-Proof Homework group exercise */
+        .flip-stage { perspective: 1800px; max-width: 820px; margin: 18px auto 0; }
+        .flip-card {
+            position: relative;
+            width: 100%;
+            min-height: 430px;
+            transform-style: preserve-3d;
+            transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+            cursor: pointer;
+        }
+        .flip-card.flipped { transform: rotateY(180deg); }
+        .flip-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 25px;
+            padding: 32px 38px 60px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        .flip-face.front {
+            background: linear-gradient(135deg, #FFE5C2 0%, #FFC857 100%);
+            color: #2d3142;
+            border: 3px dashed rgba(45, 49, 66, 0.3);
+        }
+        .flip-face.back {
+            background: linear-gradient(135deg, #C2F5DA 0%, #6FE3B0 100%);
+            color: #1f3a2c;
+            transform: rotateY(180deg);
+            border: 3px solid rgba(31, 58, 44, 0.3);
+        }
+        .flip-subject {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.75;
+            margin-bottom: 10px;
+        }
+        .flip-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.6rem;
+            margin: 0 0 16px;
+            line-height: 1.25;
+        }
+        .flip-assignment {
+            font-size: 1.15rem;
+            line-height: 1.5;
+            font-style: italic;
+            background: rgba(255,255,255,0.6);
+            padding: 14px 18px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+        }
+        .flip-problem {
+            font-size: 1rem;
+            color: #c0392b;
+            font-weight: 600;
+        }
+        .flip-face.back .flip-answer {
+            font-size: 1.1rem;
+            line-height: 1.55;
+            background: rgba(255,255,255,0.65);
+            padding: 16px 20px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+        }
+        .flip-why {
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        .flip-hint {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(45, 49, 66, 0.88);
+            color: #fff;
+            padding: 7px 18px;
+            border-radius: 20px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+            animation: pulse-hint 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse-hint {
+            0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+        .round-badge {
+            position: absolute;
+            top: 28px;
+            right: 36px;
+            background: #FF7E67;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 18px rgba(255, 126, 103, 0.45);
+            z-index: 4;
+        }
+    </style>
 </head>
 <body class="theme-coral">
 
@@ -341,7 +459,94 @@
                 </div>
             </section>
 
-            <!-- Slide 10: Closing - Should Call Paul + Q&A -->
+            <!-- Slide 10: Group Exercise - AI-Proof Homework (Round 1: English) -->
+            <section>
+                <div class="slide-inner">
+                    <span class="round-badge">Round 1 of 3</span>
+
+                    <span class="eyebrow" style="margin-top: 4px;">Group Exercise &bull; AI-Proof Homework</span>
+                    <h2 style="max-width: 900px; margin-top: 2px;">Make It <span class="hl-coral">Real</span> Again</h2>
+                    <p style="font-size: 1.1rem; max-width: 980px; margin-top: 2px;"><em>&ldquo;AI can write the essay. AI can&rsquo;t be your kid.&rdquo;</em> &nbsp;&mdash;&nbsp; <strong>Your turn:</strong> 60 seconds with your neighbor. How would YOU make this homework AI-proof? Then I&rsquo;ll click to reveal one answer.</p>
+
+                    <div class="flip-stage">
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-face front">
+                                <div class="flip-subject"><i class="fas fa-book"></i> &nbsp; English &middot; 5th Grade</div>
+                                <h3>The Book Report</h3>
+                                <div class="flip-assignment">&ldquo;Write a 500-word book report on a novel of your choice.&rdquo;</div>
+                                <div class="flip-problem"><i class="fas fa-exclamation-triangle"></i> &nbsp; The Problem: ChatGPT writes a flawless one in 8 seconds.</div>
+                                <div class="flip-hint"><i class="fas fa-hand-pointer"></i> &nbsp; Click to reveal Paul&rsquo;s version</div>
+                            </div>
+                            <div class="flip-face back">
+                                <div class="flip-subject"><i class="fas fa-shield-alt"></i> &nbsp; AI-Proof Version</div>
+                                <h3>Read Aloud, In Your Voice</h3>
+                                <div class="flip-answer">Record a <strong>3-minute video</strong> of yourself reading aloud your favorite passage from the book &mdash; then explain in your own words why you picked it, and one moment in YOUR life it reminded you of.</div>
+                                <div class="flip-why"><strong>Why it works:</strong> AI can summarize the book. AI can&rsquo;t read in your voice, and it doesn&rsquo;t know your life story.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 11: Round 2 - Math -->
+            <section>
+                <div class="slide-inner">
+                    <span class="round-badge">Round 2 of 3</span>
+
+                    <span class="eyebrow" style="margin-top: 4px;">Group Exercise &bull; AI-Proof Homework</span>
+                    <h2 style="max-width: 900px; margin-top: 2px;">Make It <span class="hl-coral">Real</span> Again</h2>
+                    <p style="font-size: 1.1rem; max-width: 980px; margin-top: 2px;"><strong>Same drill:</strong> 60 seconds. Brainstorm with your neighbor. How do you make <em>this</em> one AI-proof?</p>
+
+                    <div class="flip-stage">
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-face front">
+                                <div class="flip-subject"><i class="fas fa-square-root-variable"></i> &nbsp; Math &middot; 8th Grade Algebra</div>
+                                <h3>The Problem Set</h3>
+                                <div class="flip-assignment">&ldquo;Complete problems 1&ndash;20 from Chapter 7. Show your work.&rdquo;</div>
+                                <div class="flip-problem"><i class="fas fa-exclamation-triangle"></i> &nbsp; The Problem: Photomath and ChatGPT solve it instantly &mdash; <em>with</em> the steps.</div>
+                                <div class="flip-hint"><i class="fas fa-hand-pointer"></i> &nbsp; Click to reveal Paul&rsquo;s version</div>
+                            </div>
+                            <div class="flip-face back">
+                                <div class="flip-subject"><i class="fas fa-shield-alt"></i> &nbsp; AI-Proof Version</div>
+                                <h3>Teach the Class, Live</h3>
+                                <div class="flip-answer">Pick the <strong>ONE problem you struggled with most this week</strong>. Friday in class, walk to the whiteboard and teach the room how to solve it &mdash; including the wrong turns you took and how you caught them. Use AI as a tutor at home. You can&rsquo;t use it at the board.</div>
+                                <div class="flip-why"><strong>Why it works:</strong> AI can solve the problem. AI can&rsquo;t teach the class through YOUR mistakes, live, in real time.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 12: Round 3 - History -->
+            <section>
+                <div class="slide-inner">
+                    <span class="round-badge">Round 3 of 3</span>
+
+                    <span class="eyebrow" style="margin-top: 4px;">Group Exercise &bull; AI-Proof Homework</span>
+                    <h2 style="max-width: 900px; margin-top: 2px;">Make It <span class="hl-coral">Real</span> Again</h2>
+                    <p style="font-size: 1.1rem; max-width: 980px; margin-top: 2px;"><strong>Last round.</strong> 60 seconds. Toughest one yet &mdash; the classic 5-page essay.</p>
+
+                    <div class="flip-stage">
+                        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                            <div class="flip-face front">
+                                <div class="flip-subject"><i class="fas fa-landmark"></i> &nbsp; Social Studies &middot; High School</div>
+                                <h3>The Research Paper</h3>
+                                <div class="flip-assignment">&ldquo;Write a 5-page essay on a person who shaped American history.&rdquo;</div>
+                                <div class="flip-problem"><i class="fas fa-exclamation-triangle"></i> &nbsp; The Problem: Polished, footnoted essay in 30 seconds.</div>
+                                <div class="flip-hint"><i class="fas fa-hand-pointer"></i> &nbsp; Click to reveal Paul&rsquo;s version</div>
+                            </div>
+                            <div class="flip-face back">
+                                <div class="flip-subject"><i class="fas fa-shield-alt"></i> &nbsp; AI-Proof Version</div>
+                                <h3>Interview a Real Human</h3>
+                                <div class="flip-answer">Interview a <strong>real person in our community</strong> whose life touches the era you&rsquo;re studying &mdash; a veteran, a small business owner, a teacher, a grandparent. Submit the audio recording, your three best questions, and a one-page reflection on what surprised you. Brainstorm questions with AI; the conversation has to be human.</div>
+                                <div class="flip-why"><strong>Why it works:</strong> AI can fake an essay. It can&rsquo;t fake a relationship with a real person in your town.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 13: Closing - Should Call Paul + Q&A -->
             <section>
                 <div class="slide-inner slide-closing">
                     <span class="deco-blob" style="width: 220px; height: 220px; background: #FFC857; top: -50px; right: -40px;"></span>
