@@ -126,8 +126,10 @@ $(document).ready(function() {
     function openModal(item, index) {
         if (typeof index !== 'undefined') ModalNav.setCurrent(index);
         var detailsHtml = '';
+        var hiddenDetailKeys = /^(cost|price|fee|investment|rate|pricing|amount)$/i;
         if (item.details) {
             for (var key in item.details) {
+                if (hiddenDetailKeys.test(key)) continue;
                 detailsHtml += '<li><div class="icon"><i class="fas fa-chevron-right"></i></div>' +
                     '<div class="content"><h4>' + toTitleCase(key) + '</h4><span>' + item.details[key] + '</span></div></li>';
             }
