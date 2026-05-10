@@ -1331,10 +1331,41 @@
         <div class="container">
             <div class="row align-center">
                 <div class="about-style-six col-lg-5">
-                    <div class="thumb">
-                        <img class="wow fadeInUp" src="img-new/illustration/IMG_1922.png" alt="Thumb">
+                    <div class="thumb" style="position: relative;">
+                        <img class="wow fadeInUp" src="img-new/illustration/IMG_1922.png" alt="Paul Ireifej holding a microphone">
+                        <svg class="paul-cloud" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             style="position: absolute; left: -6%; top: 48%; width: 42%; height: auto; pointer-events: none; filter: drop-shadow(0 8px 18px rgba(255, 105, 180, 0.35)); animation: paulCloudFloat 6s ease-in-out infinite;">
+                            <defs>
+                                <radialGradient id="paulCloudGrad" cx="50%" cy="40%" r="60%">
+                                    <stop offset="0%" stop-color="#ffffff"/>
+                                    <stop offset="55%" stop-color="#ffe1ee"/>
+                                    <stop offset="100%" stop-color="#ffb6d5"/>
+                                </radialGradient>
+                            </defs>
+                            <g fill="url(#paulCloudGrad)" stroke="#ff8fc1" stroke-width="1.4" stroke-opacity="0.55">
+                                <ellipse cx="55"  cy="70" rx="32" ry="26"/>
+                                <ellipse cx="95"  cy="55" rx="38" ry="32"/>
+                                <ellipse cx="135" cy="62" rx="34" ry="28"/>
+                                <ellipse cx="160" cy="78" rx="26" ry="22"/>
+                                <ellipse cx="80"  cy="85" rx="28" ry="20"/>
+                                <ellipse cx="120" cy="88" rx="30" ry="20"/>
+                            </g>
+                            <g fill="#ffffff" opacity="0.75">
+                                <ellipse cx="80"  cy="48" rx="10" ry="6"/>
+                                <ellipse cx="118" cy="40" rx="8"  ry="5"/>
+                            </g>
+                        </svg>
                     </div>
                 </div>
+                <style>
+                    @keyframes paulCloudFloat {
+                        0%, 100% { transform: translateY(0) rotate(-1deg); }
+                        50%      { transform: translateY(-8px) rotate(1.5deg); }
+                    }
+                    @media (max-width: 575px) {
+                        .paul-cloud { left: -4% !important; top: 52% !important; width: 46% !important; }
+                    }
+                </style>
                 <div class="about-style-six col-lg-6 offset-lg-1">
                     <h4 class="sub-title">About Me</h4>
                     <h2 class="title"><a href="background.html" style="color: inherit; text-decoration: none;">I'm Paul Ireifej, <br>Founder of Should Call Paul, LLC</a></h2>
