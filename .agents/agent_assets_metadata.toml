@@ -1,14 +1,3 @@
 uploads = []
 generated = []
-
-[[outputs]]
-id = "c_PNPAVb1bqBIRScziL9H"
-uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pdf"
-type = "pdf"
-title = "Finding Your Voice — Public Speaking (Monmouth County)"
-
-[[outputs]]
-id = "dztK_f10I6d6TisYhZiiL"
-uri = "file://exports/Paul-Ireifej-Monmouth-County-Active-Listening.pdf"
-type = "pdf"
-title = "Listening First — Active Listening (Monmouth County)"
+outputs = []
