@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Workshop Session 5: The Future of Thinking - Homework & Review on AI layoffs, the Purpose Economy, AI-proof learning, protecting kids, and why being human is the premium">
+    <title>The Future of Thinking - Homework | Should Call Paul</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link href="css/flaticon-set.css" rel="stylesheet" type="text/css">
+    <link href="css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/validnavs.css" rel="stylesheet" type="text/css">
+    <link href="css/helper.css" rel="stylesheet" type="text/css">
+    <link href="css/unit-test.css" rel="stylesheet" type="text/css">
+    <link href="css/style.new.css" rel="stylesheet" type="text/css">
+    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <link href="css/portfolio-pages.css" rel="stylesheet" type="text/css">
+    <style>
+        .lesson-wrapper { padding: 140px 0 60px 0; min-height: 100vh; }
+        .lesson-header { text-align: center; margin-bottom: 50px; }
+        .lesson-header h1 { font-size: 2.5rem; font-weight: 700; color: #232323; margin-bottom: 15px; }
+        .lesson-header .subtitle { color: #7c3aed; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+        .lesson-header p { color: #666; font-size: 1.1rem; max-width: 720px; margin: 0 auto; }
+        .back-link { display: inline-block; color: #7c3aed; font-weight: 600; margin-bottom: 20px; text-decoration: none; font-size: 1rem; }
+        .back-link:hover { color: #5b21b6; }
+        .section-card { background: #fff; border-radius: 20px; padding: 35px; margin-bottom: 30px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); }
+        .section-card h2 { color: #232323; font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section-card h2 .icon { width: 45px; height: 45px; background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; }
+        .section-card h3 { color: #7c3aed; font-size: 1.2rem; font-weight: 600; margin: 25px 0 15px 0; }
+        .section-card p, .section-card li { color: #555; font-size: 1.05rem; line-height: 1.7; }
+        .section-card ul { padding-left: 20px; }
+        .section-card li { margin-bottom: 10px; }
+        .highlight-box { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); border-left: 4px solid #7c3aed; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+        .highlight-box p { margin: 0; font-weight: 500; color: #4c1d95; }
+        .danger-box { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 4px solid #ef4444; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+        .danger-box p { margin: 0; font-weight: 500; color: #7f1d1d; }
+        .success-box { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-left: 4px solid #10b981; padding: 20px 25px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+        .success-box p { margin: 0; font-weight: 500; color: #065f46; }
+        .quiz-container { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .quiz-container h4 { color: #232323; font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+        .quiz-option { background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 15px 20px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; color: #333; display: flex; align-items: center; gap: 12px; }
+        .quiz-option:hover { border-color: #7c3aed; transform: translateX(5px); }
+        .quiz-option .option-letter { width: 32px; height: 32px; background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; flex-shrink: 0; }
+        .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+        .quiz-option.correct .option-letter { background: #10b981; }
+        .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+        .quiz-option.incorrect .option-letter { background: #ef4444; }
+        .quiz-option.disabled { pointer-events: none; opacity: 0.7; }
+        .quiz-feedback { margin-top: 15px; padding: 15px; border-radius: 10px; display: none; font-weight: 500; }
+        .quiz-feedback.correct { background: #d1fae5; color: #065f46; display: block; }
+        .quiz-feedback.incorrect { background: #fee2e2; color: #991b1b; display: block; }
+        .matching-exercise { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .matching-exercise h4 { color: #232323; font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; }
+        .matching-row { display: flex; align-items: center; gap: 15px; margin-bottom: 14px; flex-wrap: wrap; }
+        .matching-term { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); color: #fff; padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; min-width: 220px; text-align: center; }
+        .matching-select { flex: 1; padding: 10px 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem; color: #333; background: #fff; cursor: pointer; min-width: 200px; }
+        .matching-select:focus { border-color: #7c3aed; outline: none; }
+        .matching-select.correct { border-color: #10b981; background: #d1fae5; }
+        .matching-select.incorrect { border-color: #ef4444; background: #fee2e2; }
+        .matching-check-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; padding: 12px 24px; background: linear-gradient(135deg, #7c3aed, #a78bfa); color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .matching-check-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(124,58,237,0.4); }
+        .matching-feedback { margin-top: 15px; padding: 15px; border-radius: 10px; display: none; font-weight: 500; }
+        .matching-feedback.show { display: block; }
+        .matching-feedback.all-correct { background: #d1fae5; color: #065f46; }
+        .matching-feedback.has-errors { background: #fee2e2; color: #991b1b; }
+        .tip-box { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); border-radius: 15px; padding: 25px; margin: 25px 0; }
+        .tip-box h4 { color: #3730a3; font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .tip-box p, .tip-box li { color: #312e81; }
+        .progress-tracker { position: fixed; top: 50%; right: 20px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 100; }
+        .progress-dot { width: 12px; height: 12px; border-radius: 50%; background: #e2e8f0; cursor: pointer; transition: all 0.3s ease; }
+        .progress-dot.active { background: #7c3aed; transform: scale(1.3); }
+        .progress-dot:hover { background: #a78bfa; transform: scale(1.3); }
+        .score-display { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #7c3aed, #a78bfa); color: white; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 1.1rem; z-index: 100; box-shadow: 0 4px 15px rgba(124,58,237,0.4); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 22px 0; }
+        .stat-tile { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #fca5a5; border-radius: 14px; padding: 18px 16px; text-align: center; }
+        .stat-tile .stat-co { font-size: 0.8rem; color: #7c3aed; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+        .stat-tile .stat-num { font-size: 2rem; font-weight: 800; color: #b91c1c; line-height: 1; margin: 4px 0 6px; }
+        .stat-tile .stat-cap { font-size: 0.85rem; color: #7f1d1d; line-height: 1.4; }
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 22px 0; }
+        .compare-card { border-radius: 14px; padding: 20px; }
+        .compare-card.weak { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare-card.strong { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+        .compare-card.weak h4 { color: #b91c1c; }
+        .compare-card.strong h4 { color: #166534; }
+        .compare-card ul { padding-left: 18px; margin: 0; }
+        .compare-card li { font-size: 0.95rem; line-height: 1.55; }
+        .compare-card.weak li { color: #7f1d1d; }
+        .compare-card.strong li { color: #14532d; }
+        .safe-zones-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 22px 0; }
+        .safe-zone-card { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #86efac; border-radius: 14px; padding: 18px; }
+        .safe-zone-card .sz-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; margin-bottom: 10px; }
+        .safe-zone-card strong { color: #166534; display: block; font-size: 1.05rem; margin-bottom: 4px; }
+        .safe-zone-card p { color: #14532d; margin: 0; font-size: 0.92rem; line-height: 1.5; }
+        .flow-bar { display: flex; align-items: center; gap: 8px; margin: 22px 0; flex-wrap: wrap; justify-content: center; }
+        .flow-step { background: linear-gradient(135deg, #ede9fe, #ddd6fe); border: 2px solid #c4b5fd; color: #4c1d95; padding: 12px 22px; border-radius: 30px; font-weight: 700; font-size: 0.95rem; }
+        .flow-step.harm { background: linear-gradient(135deg, #fee2e2, #fecaca); border-color: #fca5a5; color: #991b1b; }
+        .flow-arrow { color: #7c3aed; font-size: 1.2rem; }
+        .quote-callout { background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%); border-left: 4px solid #a855f7; padding: 22px 28px; border-radius: 0 14px 14px 0; margin: 22px 0; font-style: italic; font-size: 1.15rem; color: #581c87; line-height: 1.55; }
+        .quote-callout .attribution { display: block; margin-top: 10px; font-style: normal; font-weight: 600; font-size: 0.9rem; color: #7c3aed; letter-spacing: 1px; }
+        @media (max-width: 768px) {
+            .lesson-wrapper { padding: 120px 0 60px 0; }
+            .lesson-header h1 { font-size: 1.8rem; }
+            .section-card { padding: 25px 20px; }
+            .progress-tracker { display: none; }
+            .matching-row { flex-direction: column; align-items: stretch; }
+            .matching-term { min-width: auto; }
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="bg-fixed" style="background-image: url(img-new/shape/banner-1.jpg);">
+    <div id="preloader">
+        <div id="ambrox-preloader" class="ambrox-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">P</span>
+                    <span data-text-preloader="A" class="letters-loading">A</span>
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header id="home">
+        <nav class="navbar mobile-sidenav onepage-menu mobile-nav-only attr-border navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img-new/logo/paulTryAgain.png" class="logo" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <img src="img-new/logo/paulTryAgain.png" alt="Logo">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="bg-fixed"><img src="img/close-1511-svgrepo-com.svg" style="height:50%;width:50%;margin-top:10px" alt="Icon"></i>
+                    </button>
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a class="smooth-menu" href="index.html">Home</a></li>
+                        <li><a class="smooth-menu" href="index.html#services">Services</a></li>
+                        <li><a class="smooth-menu" href="index.html#portfolio">Portfolio</a></li>
+                        <li><a class="smooth-menu" href="index.html#about">About</a></li>
+                        <li><a class="smooth-menu" href="index.html#contact-paul-now">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="overlay-screen"></div>
+        </nav>
+    </header>
+
+    {{sidebar}}
+
+    <div class="progress-tracker">
+        <div class="progress-dot active" data-section="1" title="Reality Check: AI &amp; Layoffs"></div>
+        <div class="progress-dot" data-section="2" title="The Safe Zones &amp; New Contract"></div>
+        <div class="progress-dot" data-section="3" title="Editor-in-Chief Education"></div>
+        <div class="progress-dot" data-section="4" title="Protecting Our Kids"></div>
+        <div class="progress-dot" data-section="5" title="Being Human is the Premium"></div>
+    </div>
+
+    <div class="score-display">
+        Score: <span id="score">0</span> / <span id="total">12</span>
+    </div>
+
+    <div class="lesson-wrapper">
+        <div class="container">
+            <div class="lesson-header">
+                <a href="https://shouldcallpaul.com" class="back-link"><i class="fas fa-arrow-left"></i> Back to Should Call Paul</a>
+                <div class="subtitle">AI Workshop - Session 5</div>
+                <h1>The Future of Thinking: Homework</h1>
+                <p>Five sessions in &mdash; this is the big-picture review. Layoffs, the Purpose Economy, AI-proof learning, protecting kids, and why <em>being human</em> is the premium.</p>
+            </div>
+
+            <div class="section-card" data-section="1">
+                <h2><span class="icon"><i class="fas fa-chart-line"></i></span> Reality Check: AI &amp; the Layoff Wave</h2>
+
+                <h3>What the Numbers Are Telling Us</h3>
+                <p>In 2026, the largest companies in the world cut tens of thousands of corporate roles &mdash; not because business was bad, but because AI quietly absorbed the work. Here&rsquo;s the snapshot we covered:</p>
+
+                <div class="stats-grid">
+                    <div class="stat-tile">
+                        <div class="stat-co">Oracle</div>
+                        <div class="stat-num">12K+</div>
+                        <div class="stat-cap">cloud, sales &amp; support</div>
+                    </div>
+                    <div class="stat-tile">
+                        <div class="stat-co">Amazon</div>
+                        <div class="stat-num">30K</div>
+                        <div class="stat-cap">corporate &mdash; AI runs middle mgmt</div>
+                    </div>
+                    <div class="stat-tile">
+                        <div class="stat-co">Intel</div>
+                        <div class="stat-num">24K</div>
+                        <div class="stat-cap">cut to fund AI chip foundries</div>
+                    </div>
+                    <div class="stat-tile">
+                        <div class="stat-co">Chegg</div>
+                        <div class="stat-num">45%</div>
+                        <div class="stat-cap">workforce gone &mdash; students use GenAI</div>
+                    </div>
+                    <div class="stat-tile">
+                        <div class="stat-co">Block</div>
+                        <div class="stat-num">6K cap</div>
+                        <div class="stat-cap">&ldquo;40% fewer people&rdquo; thanks to AI</div>
+                    </div>
+                </div>
+
+                <p><strong>The pattern:</strong> if a job is a <em>routine task</em> &mdash; middle management, content moderation, scheduling, rote analysis, junior coding &mdash; it&rsquo;s being automated.</p>
+
+                <h3>What They&rsquo;re NOT Cutting</h3>
+                <p>Three categories every CEO is keeping (and growing):</p>
+                <ul>
+                    <li><strong>Leadership</strong> &mdash; the call no model can make.</li>
+                    <li><strong>Ethics</strong> &mdash; the conscience the algorithm doesn&rsquo;t have.</li>
+                    <li><strong>Strategy</strong> &mdash; the long game; chess, not checkers.</li>
+                </ul>
+
+                <div class="danger-box">
+                    <p><strong>The takeaway:</strong> &ldquo;Move <em>up</em> the value chain.&rdquo; Routine tasks are gone. Judgment, leadership, and ethics are the human moat.</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="1">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What do the Oracle, Amazon, Intel, Chegg, and Block layoffs have in COMMON?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>The companies were all losing money and had to cut costs</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>They cut routine, repeatable roles &mdash; middle management, content, support, junior coding &mdash; that AI can now absorb</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>They moved jobs overseas to save on labor</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="2">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Which THREE categories of work are companies <em>not</em> cutting &mdash; and in many cases growing?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Data entry, customer support, content moderation</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Leadership, ethics, and strategy &mdash; the calls only humans can make</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Marketing copywriting, paralegal research, and graphic design</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="2">
+                <h2><span class="icon"><i class="fas fa-shield-alt"></i></span> The Safe Zones &amp; The New Contract with Work</h2>
+
+                <h3>AI-Resilient Industries</h3>
+                <p>Some jobs aren&rsquo;t going anywhere. Why? Because they require something AI <strong>structurally cannot do</strong> &mdash; physical variability, real human empathy, or legal accountability.</p>
+
+                <div class="safe-zones-grid">
+                    <div class="safe-zone-card">
+                        <div class="sz-icon"><i class="fas fa-tools"></i></div>
+                        <strong>Skilled Trades</strong>
+                        <p>Plumbers, electricians, HVAC. AI can&rsquo;t crawl under your sink.</p>
+                    </div>
+                    <div class="safe-zone-card">
+                        <div class="sz-icon"><i class="fas fa-heartbeat"></i></div>
+                        <strong>High-Touch Healthcare</strong>
+                        <p>Nurses, PTs, surgeons. The human touch heals.</p>
+                    </div>
+                    <div class="safe-zone-card">
+                        <div class="sz-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <strong>Specialized Education</strong>
+                        <p>Special ed &amp; counselors. Emotional complexity is human-only.</p>
+                    </div>
+                    <div class="safe-zone-card">
+                        <div class="sz-icon"><i class="fas fa-gavel"></i></div>
+                        <strong>Accountability Roles</strong>
+                        <p>CEOs, judges. You can&rsquo;t sue or jail an algorithm.</p>
+                    </div>
+                </div>
+
+                <p>The shared trait: each one needs <strong>physical variability</strong>, <strong>high empathy</strong>, or <strong>accountability</strong> (&ldquo;one neck to choke&rdquo; when things go wrong).</p>
+
+                <h3>The Old Contract vs The New Contract</h3>
+                <p>For the last 200 years, work meant: <em>trade your hours for a paycheck so you can eat, shelter, and heal</em>. AI is rewriting that deal.</p>
+
+                <div class="compare-grid">
+                    <div class="compare-card weak">
+                        <h4><i class="fas fa-clock"></i> Old Contract: Work to Survive</h4>
+                        <ul>
+                            <li>Trade hours for a paycheck</li>
+                            <li>Identity = job title</li>
+                            <li>Value = salary</li>
+                            <li>Productivity is the goal</li>
+                        </ul>
+                    </div>
+                    <div class="compare-card strong">
+                        <h4><i class="fas fa-heart"></i> New Contract: Create to Thrive</h4>
+                        <ul>
+                            <li>AI generates the wealth</li>
+                            <li>You choose how to contribute</li>
+                            <li>Value = what you create &amp; connect</li>
+                            <li>Universal Basic Income / optional career</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <p><strong>Welcome to the Purpose Economy:</strong> Your value is defined by what you contribute to OTHERS &mdash; not by what you do for a boss.</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="3">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is the SHARED trait that makes Skilled Trades, High-Touch Healthcare, Special Ed, and CEO/Judge roles AI-resilient?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>They all pay very well</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>They all require an advanced college degree</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>They each need physical variability, deep empathy, or legal accountability &mdash; things AI structurally can&rsquo;t do</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="4">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What does the &ldquo;New Contract&rdquo; with work look like in the Purpose Economy?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Nobody works anymore &mdash; humans become obsolete</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>AI generates the wealth, and you choose how to contribute, create, and connect &mdash; with a safety net like UBI underneath</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>You work harder than ever to compete with the bots</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="3">
+                <h2><span class="icon"><i class="fas fa-user-graduate"></i></span> Editor-in-Chief Education</h2>
+
+                <h3>Why Learn If Information Is Free?</h3>
+                <p>Every fact in human history is one prompt away. So why send kids to school?</p>
+
+                <div class="quote-callout">
+                    Information is FREE. Wisdom is EXPENSIVE.
+                    <span class="attribution">&mdash; The new premium currency</span>
+                </div>
+
+                <p>AI doesn&rsquo;t <em>understand</em> &mdash; it <em>re-mixes</em>. It needs new, messy, human ideas to keep from becoming a stagnant echo chamber. The next generation&rsquo;s job isn&rsquo;t to <strong>memorize</strong> the answer &mdash; it&rsquo;s to <strong>validate</strong> it.</p>
+
+                <h3>Old School vs New School</h3>
+                <div class="compare-grid">
+                    <div class="compare-card weak">
+                        <h4><i class="fas fa-times-circle"></i> Old School</h4>
+                        <ul>
+                            <li>Memorize the answer</li>
+                            <li>Recall on the test</li>
+                            <li>Trust the textbook</li>
+                        </ul>
+                    </div>
+                    <div class="compare-card strong">
+                        <h4><i class="fas fa-check-circle"></i> New School &mdash; Editor-in-Chief Mindset</h4>
+                        <ul>
+                            <li>Question the AI&rsquo;s answer</li>
+                            <li>Spot the hallucination</li>
+                            <li>Add the original idea</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>AI-Proof Homework: The Three Examples</h3>
+                <p>Old assignments break in seconds. The fix is to require something <strong>only YOUR kid can do</strong> &mdash; live, in their voice, with a real human, or about their own life.</p>
+                <ul>
+                    <li><strong>English (Book Report):</strong> Old &mdash; &ldquo;Write 500 words.&rdquo; AI-proof &mdash; <em>Record a 3-min video of yourself reading aloud your favorite passage and explain one moment in YOUR life it reminded you of.</em></li>
+                    <li><strong>Math (Problem Set):</strong> Old &mdash; &ldquo;Complete problems 1&ndash;20.&rdquo; AI-proof &mdash; <em>Pick the one problem you struggled with most this week. Walk to the whiteboard Friday and teach the room how to solve it &mdash; including the wrong turns.</em></li>
+                    <li><strong>Social Studies (Research Paper):</strong> Old &mdash; &ldquo;Write a 5-page essay.&rdquo; AI-proof &mdash; <em>Interview a real person in your community whose life touches the era. Submit the audio + a one-page reflection on what surprised you.</em></li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>The pattern:</strong> Make it <em>live</em>, <em>in your voice</em>, <em>about your life</em>, or <em>with a real human</em>. AI can write the essay. AI can&rsquo;t be your kid.</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="5">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is the &ldquo;new premium currency&rdquo; in the AI age?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Information &mdash; the more facts you know, the more valuable you are</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Wisdom &mdash; the ability to judge, validate, and add an original idea on top of the AI&rsquo;s answer</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Speed &mdash; the faster you can prompt the AI, the better</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="6">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What does the &ldquo;Editor-in-Chief mindset&rdquo; mean for kids growing up with AI?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>They should never use AI &mdash; it ruins their thinking</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>They should trust the AI&rsquo;s answer because it&rsquo;s usually right</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Question the AI&rsquo;s answer, spot the hallucination, and add the original idea &mdash; think independently of the bot so you can fuel it, not be fueled by it</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="7">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: Which of these &ldquo;AI-proof&rdquo; homework strategies works because AI literally can&rsquo;t fake it?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Asking for a 1,000-word essay instead of a 500-word essay</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Interview a real person in your community, submit the audio, and reflect on what surprised you</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Banning ChatGPT in the classroom and hoping kids don&rsquo;t use it at home</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="4">
+                <h2><span class="icon"><i class="fas fa-baby"></i></span> Protecting Our Kids</h2>
+
+                <h3>The &ldquo;Engagement&rdquo; Trap</h3>
+                <p>Recent compromises have shown chatbots <strong>encouraging self-harm</strong> and <strong>harmful behavior</strong> in children &mdash; because they&rsquo;re trained to be <em>agreeable</em>, not <em>safe</em>. Why? Follow the money.</p>
+
+                <h3>The Profit-Over-People Cycle</h3>
+                <div class="flow-bar">
+                    <div class="flow-step"><i class="fas fa-eye"></i> Engagement</div>
+                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="flow-step"><i class="fas fa-clock"></i> Retention</div>
+                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="flow-step"><i class="fas fa-dollar-sign"></i> Revenue</div>
+                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="flow-step harm"><i class="fas fa-exclamation"></i> Harm</div>
+                </div>
+                <p style="text-align:center; font-style: italic;">AI companies want kids <strong>addicted</strong> to the platform &mdash; often at the cost of safety.</p>
+
+                <h3>The Two-Part Fix</h3>
+                <div class="compare-grid">
+                    <div class="compare-card strong">
+                        <h4><i class="fas fa-shield-alt"></i> Walled Gardens</h4>
+                        <ul>
+                            <li>Locally-hosted or strictly-filtered &ldquo;Kid-Safe&rdquo; AI models</li>
+                            <li>No open chatbots without supervision</li>
+                            <li>Family-friendly platforms only (Khan Academy, school-approved tools)</li>
+                        </ul>
+                    </div>
+                    <div class="compare-card strong">
+                        <h4><i class="fas fa-user-check"></i> Verification</h4>
+                        <ul>
+                            <li>Never treat a bot as a therapist or moral guide</li>
+                            <li>Verify advice with a real human you trust</li>
+                            <li>Make AI conversations a family conversation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="danger-box">
+                    <p><strong>Treat AI like a powerful, soulless tool &mdash; not a friend.</strong> The bot has no conscience. The grown-ups in the room do.</p>
+                </div>
+
+                <div class="quiz-container" data-quiz="8">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: In the &ldquo;Profit-Over-People&rdquo; cycle, what is the correct order?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">A</span>
+                            <span>Engagement &rarr; Retention &rarr; Revenue &rarr; Harm</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Revenue &rarr; Engagement &rarr; Harm &rarr; Retention</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Harm &rarr; Engagement &rarr; Revenue &rarr; Retention</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="9">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is a &ldquo;Walled Garden&rdquo; approach to kids and AI?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Banning your kids from ever touching a computer</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>Letting kids use only locally-hosted or strictly-filtered &ldquo;Kid-Safe&rdquo; AI tools &mdash; no open chatbots without supervision</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Setting up a literal garden in the backyard with no Wi-Fi</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="10">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is the right mental model for how to treat an AI chatbot?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>A best friend &mdash; it knows you better than anyone</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>A therapist &mdash; cheaper than a real one and always available</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>A powerful, soulless tool &mdash; not a friend, not a moral guide. Verify big advice with a real human you trust</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+            </div>
+
+            <div class="section-card" data-section="5">
+                <h2><span class="icon"><i class="fas fa-infinity"></i></span> Being Human Is the Premium</h2>
+
+                <h3>Left Brain vs Right Brain</h3>
+                <p>Here&rsquo;s the simplest way to think about your edge:</p>
+
+                <div class="compare-grid">
+                    <div class="compare-card weak">
+                        <h4><i class="fas fa-cogs"></i> Left Brain &mdash; AI Wins</h4>
+                        <ul>
+                            <li>Logic &amp; calculation</li>
+                            <li>Pattern matching</li>
+                            <li>Speed &amp; recall</li>
+                            <li>Routine analysis</li>
+                        </ul>
+                    </div>
+                    <div class="compare-card strong">
+                        <h4><i class="fas fa-palette"></i> Right Brain &mdash; You Win</h4>
+                        <ul>
+                            <li>Intuition &amp; creativity</li>
+                            <li>Empathy &amp; connection</li>
+                            <li>Original ideas the AI can&rsquo;t remix</li>
+                            <li>The human spark</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Match the Strategy to the AI Risk</h3>
+                <p>Match each Session 5 strategy to the AI risk it&rsquo;s designed to handle.</p>
+
+                <div class="matching-exercise" data-match="1">
+                    <h4><i class="fas fa-puzzle-piece" style="color: #7c3aed;"></i> Matching: Strategies vs Risks</h4>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Walled Gardens</div>
+                        <select class="matching-select" data-answer="kids">
+                            <option value="">Select the AI risk it addresses...</option>
+                            <option value="layoffs">Routine job automation across whole industries</option>
+                            <option value="kids">Open chatbots that encourage harm in kids</option>
+                            <option value="hallucination">AI confidently giving wrong answers</option>
+                            <option value="purpose">Losing your sense of meaning when work disappears</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Editor-in-Chief Mindset</div>
+                        <select class="matching-select" data-answer="hallucination">
+                            <option value="">Select the AI risk it addresses...</option>
+                            <option value="kids">Open chatbots that encourage harm in kids</option>
+                            <option value="hallucination">AI confidently giving wrong answers</option>
+                            <option value="layoffs">Routine job automation across whole industries</option>
+                            <option value="purpose">Losing your sense of meaning when work disappears</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Move Up the Value Chain</div>
+                        <select class="matching-select" data-answer="layoffs">
+                            <option value="">Select the AI risk it addresses...</option>
+                            <option value="purpose">Losing your sense of meaning when work disappears</option>
+                            <option value="layoffs">Routine job automation across whole industries</option>
+                            <option value="kids">Open chatbots that encourage harm in kids</option>
+                            <option value="hallucination">AI confidently giving wrong answers</option>
+                        </select>
+                    </div>
+
+                    <div class="matching-row">
+                        <div class="matching-term">Purpose Economy (Create to Thrive)</div>
+                        <select class="matching-select" data-answer="purpose">
+                            <option value="">Select the AI risk it addresses...</option>
+                            <option value="hallucination">AI confidently giving wrong answers</option>
+                            <option value="kids">Open chatbots that encourage harm in kids</option>
+                            <option value="purpose">Losing your sense of meaning when work disappears</option>
+                            <option value="layoffs">Routine job automation across whole industries</option>
+                        </select>
+                    </div>
+
+                    <button class="matching-check-btn" onclick="checkMatching(this)"><i class="fas fa-check"></i> Check Answers</button>
+                    <div class="matching-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="11">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: When it comes to &ldquo;Left Brain vs Right Brain,&rdquo; what&rsquo;s the human edge over AI?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Humans are faster at calculation and pattern-matching</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">B</span>
+                            <span>The right brain &mdash; intuition, creativity, empathy, original ideas. AI can replicate logic; it can&rsquo;t (yet) replicate the human spark</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">C</span>
+                            <span>Humans don&rsquo;t need electricity</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="quiz-container" data-quiz="12">
+                    <h4><i class="fas fa-question-circle" style="color: #7c3aed;"></i> Quiz: What is the SINGLE most important habit from Session 5 to thrive in the AI era?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">A</span>
+                            <span>Avoid AI entirely &mdash; refuse to use it at home or work</span>
+                        </div>
+                        <div class="quiz-option" data-correct="false">
+                            <span class="option-letter">B</span>
+                            <span>Try to out-compete the AI on speed and recall</span>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <span class="option-letter">C</span>
+                            <span>Move UP the value chain &mdash; lead with judgment, ethics, creativity, and connection. Let AI do the routine; you do the human</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback"></div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="fas fa-infinity"></i> The Final Word</h4>
+                    <p><strong>&ldquo;Being Human is the Premium.&rdquo;</strong></p>
+                    <p style="margin-top: 10px;">Five sessions. One community. The best way to predict the future is to <strong>create</strong> it.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.appear.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/modernizr.custom.13711.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/progress-bar.min.js"></script>
+    <script src="js/circle-progress.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/count-to.js"></script>
+    <script src="js/jquery.scrolla.min.js"></script>
+    <script src="js/YTPlayer.min.js"></script>
+    <script src="js/validnavs.js"></script>
+    <script src="js/main-new.js"></script>
+    <script>
+        $(document).ready(function() {
+            var score = 0;
+            var answered = {};
+
+            $(document).on('click', '.quiz-option', function() {
+                var $container = $(this).closest('.quiz-container');
+                var quizId = $container.data('quiz');
+
+                if (answered[quizId]) return;
+                answered[quizId] = true;
+
+                var isCorrect = $(this).data('correct') === true;
+                var $feedback = $container.find('.quiz-feedback');
+
+                $container.find('.quiz-option').addClass('disabled');
+
+                if (isCorrect) {
+                    $(this).addClass('correct');
+                    $feedback.addClass('correct').html('<i class="fas fa-check-circle"></i> Correct!');
+                    score++;
+                    $('#score').text(score);
+                } else {
+                    $(this).addClass('incorrect');
+                    $container.find('.quiz-option[data-correct="true"]').addClass('correct');
+                    $feedback.addClass('incorrect').html('<i class="fas fa-times-circle"></i> Not quite. The correct answer is highlighted in green.');
+                }
+            });
+
+            var sections = document.querySelectorAll('.section-card');
+            var dots = document.querySelectorAll('.progress-dot');
+
+            window.addEventListener('scroll', function() {
+                var scrollPos = window.scrollY + window.innerHeight / 2;
+                sections.forEach(function(section, i) {
+                    var top = section.offsetTop;
+                    var bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos <= bottom) {
+                        dots.forEach(function(dot) { dot.classList.remove('active'); });
+                        if (dots[i]) dots[i].classList.add('active');
+                    }
+                });
+            });
+
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var sectionNum = this.getAttribute('data-section');
+                    var target = document.querySelector('.section-card[data-section="' + sectionNum + '"]');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+
+        function checkMatching(btn) {
+            var $exercise = $(btn).closest('.matching-exercise');
+            var $selects = $exercise.find('.matching-select');
+            var $feedback = $exercise.find('.matching-feedback');
+            var allCorrect = true;
+            var matchScore = 0;
+
+            $selects.each(function() {
+                var selected = $(this).val();
+                var answer = $(this).data('answer');
+                $(this).removeClass('correct incorrect');
+                if (selected === answer) {
+                    $(this).addClass('correct');
+                    matchScore++;
+                } else {
+                    $(this).addClass('incorrect');
+                    allCorrect = false;
+                }
+            });
+
+            $feedback.removeClass('all-correct has-errors').addClass('show');
+            if (allCorrect) {
+                $feedback.addClass('all-correct').html('<i class="fas fa-check-circle"></i> All correct! You&rsquo;re ready to thrive in the AI era.');
+            } else {
+                $feedback.addClass('has-errors').html('<i class="fas fa-times-circle"></i> ' + matchScore + ' out of 4 correct. Review the strategies and try again!');
+            }
+        }
+    </script>
+</body>
+</html>
