@@ -209,13 +209,13 @@
             text-align: center;
             cursor: pointer;
             perspective: 1000px;
-            min-height: 200px;
+            min-height: 260px;
             position: relative;
         }
         .stat-card .stat-flip {
             position: relative;
             width: 100%;
-            min-height: 200px;
+            min-height: 260px;
             transition: transform 0.7s cubic-bezier(.5,0,.2,1);
             transform-style: preserve-3d;
         }
@@ -242,23 +242,23 @@
         .stat-card:hover .stat-front,
         .stat-card:hover .stat-back { box-shadow: 0 10px 30px rgba(255,107,107,0.25); }
         .stat-card .stat-company {
-            font-size: 0.85rem; color: #a29bfe;
+            font-size: 1.1rem; color: #a29bfe;
             text-transform: uppercase; letter-spacing: 3px;
             font-weight: 700; margin-bottom: 6px;
         }
         .stat-card .stat-number {
-            font-size: 2.6rem; font-weight: 800; color: #ff6b6b;
+            font-size: 3.4rem; font-weight: 800; color: #ff6b6b;
             text-shadow: 0 0 20px rgba(255,107,107,0.45);
             line-height: 1; margin: 4px 0 6px;
         }
-        .stat-card .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.35; }
+        .stat-card .stat-label { font-size: 1.1rem; color: rgba(255,255,255,0.78); line-height: 1.35; }
         .stat-card .stat-flip-hint {
             position: absolute; bottom: 6px; left: 0; right: 0;
-            font-size: 0.6rem; color: rgba(255,255,255,0.45);
+            font-size: 0.85rem; color: rgba(255,255,255,0.55);
             text-transform: uppercase; letter-spacing: 2px;
         }
         .stat-card .stat-back .back-title {
-            font-size: 0.78rem; color: #00d4ff;
+            font-size: 1.05rem; color: #00d4ff;
             text-transform: uppercase; letter-spacing: 2px;
             font-weight: 700; margin-bottom: 8px;
             border-bottom: 1px solid rgba(0,212,255,0.3);
@@ -269,9 +269,9 @@
             text-align: left; width: 100%;
         }
         .stat-card .stat-back ul li {
-            font-size: 0.78rem; color: rgba(255,255,255,0.88);
-            padding: 3px 0 3px 14px;
-            position: relative; line-height: 1.35;
+            font-size: 1.05rem; color: rgba(255,255,255,0.92);
+            padding: 4px 0 4px 16px;
+            position: relative; line-height: 1.4;
         }
         .stat-card .stat-back ul li::before {
             content: '▸'; position: absolute; left: 0; top: 2px;
@@ -283,7 +283,7 @@
         .hw-card {
             position: relative;
             width: 100%;
-            min-height: 380px;
+            min-height: 460px;
             transform-style: preserve-3d;
             transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
             cursor: pointer;
@@ -313,7 +313,7 @@
             box-shadow: 0 0 40px rgba(0,212,255,0.2) inset;
         }
         .hw-subject {
-            font-size: 0.82rem;
+            font-size: 1.1rem;
             color: #a29bfe;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -321,42 +321,44 @@
             margin-bottom: 10px;
         }
         .hw-card h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: #fff;
             margin: 0 0 14px;
             line-height: 1.25;
         }
         .hw-assignment {
-            font-size: 1.05rem;
+            font-size: 1.45rem;
             line-height: 1.5;
             font-style: italic;
-            color: rgba(255,255,255,0.92);
+            color: rgba(255,255,255,0.95);
             background: rgba(255,255,255,0.06);
             border-left: 3px solid rgba(255,107,107,0.6);
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .hw-problem {
-            font-size: 0.95rem;
+            font-size: 1.25rem;
             color: #ff6b6b;
             font-weight: 600;
+            line-height: 1.4;
         }
         .hw-face.back .hw-answer {
-            font-size: 1.05rem;
+            font-size: 1.45rem;
             line-height: 1.55;
             color: rgba(255,255,255,0.95);
             background: rgba(0,212,255,0.08);
             border-left: 3px solid rgba(0,212,255,0.7);
-            padding: 14px 18px;
+            padding: 16px 20px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .hw-why {
-            font-size: 0.92rem;
+            font-size: 1.25rem;
             font-style: italic;
             color: #55efc4;
+            line-height: 1.45;
         }
         .hw-hint {
             position: absolute;
@@ -367,7 +369,7 @@
             color: #00d4ff;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -388,7 +390,7 @@
             color: #fff;
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.72rem;
+            font-size: 0.95rem;
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -435,13 +437,13 @@
             background: rgba(0,212,255,0.12);
             border: 1px solid rgba(0,212,255,0.4);
             border-radius: 30px;
-            padding: 10px 22px;
-            font-size: 1rem;
+            padding: 12px 26px;
+            font-size: 1.3rem;
             color: #00d4ff;
             font-weight: 600;
             display: inline-flex; align-items: center; gap: 8px;
         }
-        .trait-pill i { font-size: 0.9rem; }
+        .trait-pill i { font-size: 1.15rem; }
 
         /* Big quote / hero quote */
         .hero-quote {
@@ -489,7 +491,7 @@
         .flip-stage.swapped .flip-new { opacity: 1; transform: translateY(0) scale(1); }
         .flip-hint {
             text-align: center; margin-top: 18px;
-            font-size: 0.9rem; color: #a29bfe; opacity: 0.8;
+            font-size: 1.15rem; color: #a29bfe; opacity: 0.85;
         }
 
         /* Step flow */
@@ -501,30 +503,30 @@
             background: rgba(108,92,231,0.3);
             border: 1px solid rgba(108,92,231,0.5);
             border-radius: 30px;
-            padding: 14px 26px;
-            font-size: 1.1rem;
+            padding: 16px 30px;
+            font-size: 1.5rem;
             font-weight: 600;
             color: #fff;
             text-align: center;
         }
         .step-pill.danger { background: rgba(255,107,107,0.25); border-color: rgba(255,107,107,0.5); color: #ff9696; }
-        .step-arrow { color: #00d4ff; font-size: 1.4rem; }
+        .step-arrow { color: #00d4ff; font-size: 1.8rem; }
 
         /* Quote box (smaller) */
         .quote-box {
             background: rgba(0,0,0,0.3);
             border-left: 4px solid #a29bfe;
-            padding: 20px 26px;
+            padding: 22px 30px;
             border-radius: 0 12px 12px 0;
             margin: 18px 0;
             font-style: italic;
-            color: rgba(255,255,255,0.88);
-            font-size: 1.1rem;
+            color: rgba(255,255,255,0.92);
+            font-size: 1.5rem;
             line-height: 1.55;
         }
         .quote-box .attribution {
             font-style: normal; color: #a29bfe;
-            font-size: 0.85rem; margin-top: 8px; display: block;
+            font-size: 1.1rem; margin-top: 8px; display: block;
         }
 
         /* Reveal button + hidden answer */
@@ -579,11 +581,11 @@
             box-shadow: 0 0 25px rgba(255,234,167,0.6);
         }
         .star-card .star-name {
-            font-size: 1.35rem; font-weight: 700; color: #fff;
-            margin: 6px 0 2px;
+            font-size: 1.85rem; font-weight: 700; color: #fff;
+            margin: 8px 0 4px;
         }
         .star-card .star-tag {
-            font-size: 0.78rem; color: #ffeaa7;
+            font-size: 1.05rem; color: #ffeaa7;
             text-transform: uppercase; letter-spacing: 3px;
         }
 
@@ -593,9 +595,9 @@
             background: rgba(85,239,196,0.12);
             border: 1px solid rgba(85,239,196,0.5);
             border-radius: 30px;
-            padding: 10px 22px;
+            padding: 12px 26px;
             color: #55efc4; font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.3rem;
             display: inline-flex; align-items: center; gap: 8px;
         }
 
@@ -909,19 +911,19 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2>Paul&rsquo;s Take &mdash; Is <span class="hl">Work</span> Still Necessary?</h2>
-                    <p style="font-size: 1.15rem; color: rgba(255,255,255,0.78); text-align: center;">Click the card to see the shift &rarr;</p>
+                    <p style="font-size: 1.5rem; color: rgba(255,255,255,0.85); text-align: center;">Click the card to see the shift &rarr;</p>
                     <div class="flip-stage" onclick="this.classList.toggle('swapped')">
                         <div class="flip-card flip-old">
                             <div class="card-box danger-card" style="text-align: center;">
-                                <h3 style="color: #ff6b6b; font-size: 1.6rem;"><i class="fas fa-clock"></i> Old Contract: Work to Survive</h3>
-                                <p style="font-size: 1.3rem; margin: 16px 0;">Trade your hours for a paycheck so you can <strong>eat</strong>, <strong>shelter</strong>, and <strong>heal</strong>.</p>
-                                <p style="font-size: 1.05rem; color: rgba(255,107,107,0.85);">Identity = Job Title. Value = Salary.</p>
+                                <h3 style="color: #ff6b6b; font-size: 2.1rem;"><i class="fas fa-clock"></i> Old Contract: Work to Survive</h3>
+                                <p style="font-size: 1.7rem; margin: 18px 0;">Trade your hours for a paycheck so you can <strong>eat</strong>, <strong>shelter</strong>, and <strong>heal</strong>.</p>
+                                <p style="font-size: 1.4rem; color: rgba(255,107,107,0.92);">Identity = Job Title. Value = Salary.</p>
                             </div>
                         </div>
                         <div class="flip-card flip-new">
                             <div class="card-box success-card" style="text-align: center;">
-                                <h3 style="color: #55efc4; font-size: 1.6rem;"><i class="fas fa-heart"></i> New Contract: Create to Thrive</h3>
-                                <p style="font-size: 1.3rem; margin: 16px 0;">AI generates the wealth &mdash; you choose how to <strong>contribute</strong>, <strong>create</strong>, and <strong>connect</strong>.</p>
+                                <h3 style="color: #55efc4; font-size: 2.1rem;"><i class="fas fa-heart"></i> New Contract: Create to Thrive</h3>
+                                <p style="font-size: 1.7rem; margin: 18px 0;">AI generates the wealth &mdash; you choose how to <strong>contribute</strong>, <strong>create</strong>, and <strong>connect</strong>.</p>
                                 <div class="trait-row" style="margin-top: 14px;">
                                     <span class="trait-pill" style="color:#55efc4; border-color: rgba(85,239,196,0.5); background: rgba(85,239,196,0.1);"><i class="fas fa-money-bill-wave"></i> Universal Basic Income</span>
                                     <span class="trait-pill" style="color:#55efc4; border-color: rgba(85,239,196,0.5); background: rgba(85,239,196,0.1);"><i class="fas fa-star"></i> The Optional Career</span>
@@ -968,14 +970,14 @@
             <section>
                 <div class="slide-inner content-slide" style="text-align: center;">
                     <h2>The <span class="hlw">Education Crisis</span> &mdash; Why Learn?</h2>
-                    <p style="font-size: 1.3rem; color: rgba(255,255,255,0.78);">Information is now <strong>infinite</strong> and <strong>free</strong>. So what do we go to school for?</p>
+                    <p style="font-size: 1.65rem; color: rgba(255,255,255,0.85);">Information is now <strong>infinite</strong> and <strong>free</strong>. So what do we go to school for?</p>
                     <div class="hero-quote">
                         <span class="open-quote">&ldquo;</span>
                         Information is <span class="hl">FREE.</span><br>
                         Wisdom is <span class="hlw">EXPENSIVE.</span>
                         <span class="attribution">&mdash; The new premium currency</span>
                     </div>
-                    <p style="font-size: 1.2rem; color: rgba(255,255,255,0.85); margin-top: 12px;">
+                    <p style="font-size: 1.55rem; color: rgba(255,255,255,0.9); margin-top: 14px;">
                         AI doesn&rsquo;t <em>understand</em> &mdash; it <em>re-mixes</em>. It needs new, messy, human ideas to keep from becoming a stagnant echo chamber.
                     </p>
                     <div class="wave-decoration"></div>
@@ -986,24 +988,24 @@
             <section>
                 <div class="slide-inner content-slide">
                     <h2>Raise <span class="hl">Editors-in-Chief</span>, Not Memorizers</h2>
-                    <p style="font-size: 1.2rem; color: rgba(255,255,255,0.78); text-align: center;">The next generation&rsquo;s job isn&rsquo;t to <em>know</em> the facts &mdash; it&rsquo;s to <strong>validate</strong> them.</p>
+                    <p style="font-size: 1.55rem; color: rgba(255,255,255,0.85); text-align: center;">The next generation&rsquo;s job isn&rsquo;t to <em>know</em> the facts &mdash; it&rsquo;s to <strong>validate</strong> them.</p>
                     <div class="two-col" style="margin-top: 24px;">
                         <div class="card-box danger-card" style="text-align: center;">
-                            <h3 style="color: #ff6b6b;"><i class="fas fa-times-circle"></i> Old School</h3>
-                            <p style="font-size: 1.15rem;">Memorize the answer.</p>
-                            <p style="font-size: 1.15rem;">Recall on the test.</p>
-                            <p style="font-size: 1.15rem;">Trust the textbook.</p>
+                            <h3 style="color: #ff6b6b; font-size: 2rem;"><i class="fas fa-times-circle"></i> Old School</h3>
+                            <p style="font-size: 1.55rem;">Memorize the answer.</p>
+                            <p style="font-size: 1.55rem;">Recall on the test.</p>
+                            <p style="font-size: 1.55rem;">Trust the textbook.</p>
                         </div>
                         <div class="card-box success-card" style="text-align: center;">
-                            <h3 style="color: #55efc4;"><i class="fas fa-check-circle"></i> New School</h3>
-                            <p style="font-size: 1.15rem;">Question the AI&rsquo;s answer.</p>
-                            <p style="font-size: 1.15rem;">Spot the hallucination.</p>
-                            <p style="font-size: 1.15rem;">Add the original idea.</p>
+                            <h3 style="color: #55efc4; font-size: 2rem;"><i class="fas fa-check-circle"></i> New School</h3>
+                            <p style="font-size: 1.55rem;">Question the AI&rsquo;s answer.</p>
+                            <p style="font-size: 1.55rem;">Spot the hallucination.</p>
+                            <p style="font-size: 1.55rem;">Add the original idea.</p>
                         </div>
                     </div>
                     <div style="text-align: center; margin-top: 20px;">
                         <button class="reveal-btn" onclick="revealAnswer('editor-takeaway')"><i class="fas fa-lightbulb"></i> The Takeaway</button>
-                        <div class="reveal-answer neutral" id="editor-takeaway" style="max-width: 880px; margin: 14px auto 0;">
+                        <div class="reveal-answer neutral" id="editor-takeaway" style="max-width: 880px; margin: 14px auto 0; font-size: 1.5rem;">
                             Teach kids to think <strong>independently of the bot</strong> so they can fuel the AI &mdash; rather than just being fueled by it.
                         </div>
                     </div>
@@ -1016,7 +1018,7 @@
                 <div class="slide-inner content-slide" style="position: relative;">
                     <span class="round-badge">Round 1 of 3</span>
                     <h2 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #00d4ff;"></i> Group Exercise &mdash; <span class="hl">AI-Proof Homework</span></h2>
-                    <p style="font-size: 1.05rem; color: rgba(255,255,255,0.82); text-align: center; margin: 4px auto 0; max-width: 980px;"><em>&ldquo;AI can write the essay. AI can&rsquo;t be your kid.&rdquo;</em> &mdash; <strong>Your turn:</strong> 60 seconds with your neighbor. How would YOU make this homework AI-proof? Then I&rsquo;ll click to reveal one answer.</p>
+                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.9); text-align: center; margin: 6px auto 0; max-width: 1080px; line-height: 1.45;"><em>&ldquo;AI can write the essay. AI can&rsquo;t be your kid.&rdquo;</em> &mdash; <strong>Your turn:</strong> 60 seconds with your neighbor. How would YOU make this homework AI-proof? Then I&rsquo;ll click to reveal one answer.</p>
 
                     <div class="hw-stage">
                         <div class="hw-card" onclick="this.classList.toggle('flipped')">
@@ -1043,7 +1045,7 @@
                 <div class="slide-inner content-slide" style="position: relative;">
                     <span class="round-badge">Round 2 of 3</span>
                     <h2 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #00d4ff;"></i> Group Exercise &mdash; <span class="hl">AI-Proof Homework</span></h2>
-                    <p style="font-size: 1.05rem; color: rgba(255,255,255,0.82); text-align: center; margin: 4px auto 0; max-width: 980px;"><strong>Same drill:</strong> 60 seconds. Brainstorm with your neighbor. How do you make <em>this</em> one AI-proof?</p>
+                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.9); text-align: center; margin: 6px auto 0; max-width: 1080px; line-height: 1.45;"><strong>Same drill:</strong> 60 seconds. Brainstorm with your neighbor. How do you make <em>this</em> one AI-proof?</p>
 
                     <div class="hw-stage">
                         <div class="hw-card" onclick="this.classList.toggle('flipped')">
@@ -1070,7 +1072,7 @@
                 <div class="slide-inner content-slide" style="position: relative;">
                     <span class="round-badge">Round 3 of 3</span>
                     <h2 style="margin-top: 0;"><i class="fas fa-shield-alt" style="color: #00d4ff;"></i> Group Exercise &mdash; <span class="hl">AI-Proof Homework</span></h2>
-                    <p style="font-size: 1.05rem; color: rgba(255,255,255,0.82); text-align: center; margin: 4px auto 0; max-width: 980px;"><strong>Last round.</strong> 60 seconds. Toughest one yet &mdash; the classic 5-page essay.</p>
+                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.9); text-align: center; margin: 6px auto 0; max-width: 1080px; line-height: 1.45;"><strong>Last round.</strong> 60 seconds. Toughest one yet &mdash; the classic 5-page essay.</p>
 
                     <div class="hw-stage">
                         <div class="hw-card" onclick="this.classList.toggle('flipped')">
@@ -1097,10 +1099,10 @@
                 <div class="slide-inner content-slide">
                     <h2><i class="fas fa-exclamation-triangle" style="color: #ff6b6b;"></i> Protecting Our Kids &mdash; The <span class="hlr">&ldquo;Engagement&rdquo; Trap</span></h2>
                     <div class="card-box danger-card" style="margin-top: 16px;">
-                        <h3 style="color: #ff6b6b;"><i class="fas fa-skull-crossbones"></i> The Warning</h3>
-                        <p style="font-size: 1.2rem;">Recent compromises: chatbots have encouraged <strong>self-harm</strong> and <strong>harmful behavior</strong> in children &mdash; because they&rsquo;re trained to be <em>agreeable</em>, not <em>safe</em>.</p>
+                        <h3 style="color: #ff6b6b; font-size: 2rem;"><i class="fas fa-skull-crossbones"></i> The Warning</h3>
+                        <p style="font-size: 1.6rem;">Recent compromises: chatbots have encouraged <strong>self-harm</strong> and <strong>harmful behavior</strong> in children &mdash; because they&rsquo;re trained to be <em>agreeable</em>, not <em>safe</em>.</p>
                     </div>
-                    <h3 style="margin-top: 20px; font-size: 1.35rem; color: #ffeaa7; text-align: center;">The Profit-Over-People Cycle</h3>
+                    <h3 style="margin-top: 20px; font-size: 1.75rem; color: #ffeaa7; text-align: center;">The Profit-Over-People Cycle</h3>
                     <div class="step-flow">
                         <div class="step-pill"><i class="fas fa-eye"></i> Engagement</div>
                         <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
@@ -1110,7 +1112,7 @@
                         <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
                         <div class="step-pill danger"><i class="fas fa-exclamation"></i> Harm</div>
                     </div>
-                    <p style="text-align: center; font-size: 1.1rem; color: rgba(255,255,255,0.78); font-style: italic; margin-top: 6px;">
+                    <p style="text-align: center; font-size: 1.5rem; color: rgba(255,255,255,0.85); font-style: italic; margin-top: 8px;">
                         AI companies want kids <strong>addicted</strong> to the platform &mdash; often at the cost of safety.
                     </p>
                     <div class="wave-decoration"></div>
@@ -1190,15 +1192,15 @@
             <!-- Slide 13: Break-Time Tip - Suno -->
             <section>
                 <div class="slide-inner content-slide" style="text-align: center;">
-                    <div style="font-size: 0.9rem; color: #ffeaa7; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 8px;">Break-Time Activity</div>
+                    <div style="font-size: 1.2rem; color: #ffeaa7; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 10px;">Break-Time Activity</div>
                     <h2>Use <span class="hl">Suno.com</span> to Compose a Song About Our Town</h2>
                     <div class="ai-orb" style="width: 130px; height: 130px; margin: 18px auto;">
                         <i class="fas fa-music"></i>
                     </div>
-                    <p style="font-size: 1.4rem; color: rgba(255,255,255,0.85); max-width: 900px; margin: 0 auto;">
+                    <p style="font-size: 1.75rem; color: rgba(255,255,255,0.92); max-width: 1000px; margin: 0 auto; line-height: 1.5;">
                         It&rsquo;s the perfect demo of <strong>AI as a tool for passion</strong> &mdash; you keep the <strong>vision</strong>, the AI handles the <strong>production</strong>.
                     </p>
-                    <a href="https://suno.com" target="_blank" rel="noopener" style="display: inline-block; margin-top: 24px; padding: 14px 36px; background: linear-gradient(135deg, #6c5ce7, #00d4ff); border-radius: 30px; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 6px 22px rgba(108,92,231,0.5);">
+                    <a href="https://suno.com" target="_blank" rel="noopener" style="display: inline-block; margin-top: 26px; padding: 16px 40px; background: linear-gradient(135deg, #6c5ce7, #00d4ff); border-radius: 30px; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.45rem; box-shadow: 0 6px 22px rgba(108,92,231,0.5);">
                         <i class="fas fa-external-link-alt"></i>&nbsp; Try Suno
                     </a>
                     <div class="wave-decoration"></div>
@@ -1208,11 +1210,11 @@
             <!-- Slide 14: All-Star Recognition -->
             <section>
                 <div class="slide-inner content-slide" style="text-align: center;">
-                    <div style="font-size: 0.95rem; color: #ffeaa7; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 8px;">
+                    <div style="font-size: 1.25rem; color: #ffeaa7; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 10px;">
                         <i class="fas fa-trophy" style="margin-right: 8px;"></i> All-Star Recognition
                     </div>
-                    <h2 style="font-size: 2.8rem;">Four Sessions, <span class="hlw">All In</span></h2>
-                    <p style="font-size: 1.3rem; color: rgba(255,255,255,0.85); max-width: 950px; margin: 0 auto;">
+                    <h2 style="font-size: 3.2rem;">Four Sessions, <span class="hlw">All In</span></h2>
+                    <p style="font-size: 1.65rem; color: rgba(255,255,255,0.92); max-width: 1050px; margin: 0 auto; line-height: 1.5;">
                         These three showed up for <strong>every single session</strong> &mdash; thank you for being part of this journey.
                     </p>
                     <div class="star-row">
@@ -1232,7 +1234,7 @@
                             <div class="star-tag">All-Star Attendee</div>
                         </div>
                     </div>
-                    <p style="margin-top: 28px; font-size: 1.15rem; color: #a29bfe; font-style: italic;">
+                    <p style="margin-top: 28px; font-size: 1.5rem; color: #a29bfe; font-style: italic; line-height: 1.5;">
                         You&rsquo;ve seen the full picture &mdash; from the fear of layoffs to the hope of a world where we work because we <em>want</em> to.<br>
                         <strong style="color: #fff;">You are the leaders now.</strong>
                     </p>
@@ -1243,10 +1245,10 @@
             <!-- Slide 15: Left Brain vs Right Brain (YouTube Short) -->
             <section>
                 <div class="slide-inner content-slide" style="text-align: center;">
-                    <div style="font-size: 0.95rem; color: #a29bfe; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 8px;">
+                    <div style="font-size: 1.25rem; color: #a29bfe; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 10px;">
                         <i class="fas fa-brain" style="margin-right: 8px;"></i> One More Thing
                     </div>
-                    <h2 style="font-size: 2.4rem; margin-bottom: 12px;">Left Brain <span class="hl">vs</span> Right Brain</h2>
+                    <h2 style="font-size: 2.8rem; margin-bottom: 14px;">Left Brain <span class="hl">vs</span> Right Brain</h2>
                     <div style="display: grid; grid-template-columns: 360px 1fr; gap: 36px; align-items: center; max-width: 1100px; margin: 10px auto 0;">
                         <div style="position: relative; width: 360px; aspect-ratio: 9/16; max-height: 56vh; margin: 0 auto; border-radius: 22px; overflow: hidden; box-shadow: 0 12px 40px rgba(108,92,231,0.45); border: 2px solid rgba(0,212,255,0.35);">
                             <iframe
@@ -1258,17 +1260,17 @@
                                 style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"></iframe>
                         </div>
                         <div style="text-align: left;">
-                            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.92); line-height: 1.55; margin-bottom: 18px;">
+                            <p style="font-size: 1.65rem; color: rgba(255,255,255,0.95); line-height: 1.55; margin-bottom: 20px;">
                                 AI can replicate the <span class="hl">left brain</span> &mdash; logic, calculation, pattern-matching.
                             </p>
-                            <p style="font-size: 1.3rem; color: rgba(255,255,255,0.92); line-height: 1.55; margin-bottom: 18px;">
+                            <p style="font-size: 1.65rem; color: rgba(255,255,255,0.95); line-height: 1.55; margin-bottom: 20px;">
                                 What it can&rsquo;t (yet) replicate: the <span class="hlw">right brain</span> &mdash; intuition, creativity, the human spark.
                             </p>
                             <div class="trait-row" style="justify-content: flex-start; margin-top: 16px;">
                                 <span class="trait-pill"><i class="fas fa-cogs"></i> Logic</span>
                                 <span class="trait-pill" style="color:#ffeaa7; border-color: rgba(255,234,167,0.5); background: rgba(255,234,167,0.1);"><i class="fas fa-palette"></i> Creativity</span>
                             </div>
-                            <a href="https://youtube.com/shorts/1BUaR2JMx7w" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 24px; background: rgba(0,212,255,0.1); border: 2px solid rgba(0,212,255,0.4); border-radius: 30px; color: #00d4ff; text-decoration: none; font-weight: 600; font-size: 0.95rem;">
+                            <a href="https://youtube.com/shorts/1BUaR2JMx7w" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 14px 28px; background: rgba(0,212,255,0.1); border: 2px solid rgba(0,212,255,0.4); border-radius: 30px; color: #00d4ff; text-decoration: none; font-weight: 600; font-size: 1.25rem;">
                                 <i class="fab fa-youtube"></i> Open on YouTube
                             </a>
                         </div>
