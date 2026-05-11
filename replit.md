@@ -8,6 +8,33 @@ This portfolio website showcases Paul Ireifej's professional work as a public sp
 - Express.js for serving files
 - Port 5000 for frontend
 - Template-based architecture for reusable components
+- No emojis in slides or copy unless explicitly requested
+- Casual, non-technical tone in chat replies
+- Never regenerate PDF/PPTX exports unless explicitly asked
+
+## How-To: Export Slide Decks to PPTX (for email / Google Drive)
+Use this whenever the user asks for a PowerPoint version of any Reveal.js deck on the site (Monmouth County, AI Workshop sessions, etc.). Output is image-based PPTX (one high-res image per slide) — opens in PowerPoint, Google Slides, Keynote. Email-safe (~5-10 MB per deck).
+
+**Script:** `scripts/export-pptx.js` (already in repo). Edit the `DECKS` array at the top to add/remove decks — each entry needs `{ url, title, out }`.
+
+**Run:**
+```bash
+# 1. Make sure Portfolio Server workflow is running on :5000
+# 2. Install deps if missing (they're not in package.json by design — only needed for exports):
+npm install puppeteer-core pptxgenjs --no-save
+# 3. Run the export:
+node scripts/export-pptx.js
+```
+
+**Output:** `exports/<deck-name>.pptx` (1920×1080 widescreen, 16:9 PPT layout).
+
+**Key technical bits:**
+- Uses `puppeteer-core` + system Chromium at `/nix/store/qa9cnw4v5xkxyip6mb9kxqfq1z4x2dx1-chromium-138.0.7204.100/bin/chromium`
+- Navigates each Reveal.js slide via `Reveal.slide(i)`, screenshots viewport, embeds full-bleed image into a `pptxgenjs` slide
+- 600ms wait per slide for animations/orbs to settle
+- Background color `#0F0E2E` set behind images (matches dark theme so any rounding gaps don't show white)
+
+**For PDF exports** (also email-friendly): use the same puppeteer flow but with `?print-pdf` query param + `page.pdf()`, then compress with `gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook` (Ghostscript at `/nix/store/.../ghostscript-with-X-10.05.1/bin/gs`). The `/ebook` preset typically shrinks 49 MB → 1-2 MB.
 
 ## System Architecture
 The project is structured as a static HTML/CSS/JavaScript frontend served by an Express.js server.
