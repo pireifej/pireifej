@@ -2,25 +2,13 @@ uploads = []
 generated = []
 
 [[outputs]]
-id = "chDZtiLdiwwYfDtkp0vkF"
-uri = "file://exports/Paul-Ireifej-Monmouth-County-Active-Listening.pdf"
-type = "pdf"
-title = "Listening First — Active Listening (12 slides)"
+id = "PkAbsr8cMq9-jfszORuYY"
+uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
+type = "slides"
+title = "Public Speaking — PowerPoint (5.1 MB)"
 
 [[outputs]]
-id = "l8Y0RNMlKK3kvZfvHr5mo"
-uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pdf"
-type = "pdf"
-title = "Finding Your Voice — Public Speaking (10 slides)"
-
-[[outputs]]
-id = "wchIIYP4GFqF6HHjQFZfs"
-uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking-email.pdf"
-type = "pdf"
-title = "Public Speaking — Email Version (1.2 MB)"
-
-[[outputs]]
-id = "4Ld7qkJp64kJ50tPt9SSa"
-uri = "file://exports/Paul-Ireifej-Monmouth-County-Active-Listening-email.pdf"
-type = "pdf"
-title = "Active Listening — Email Version (1.9 MB)"
+id = "nlUftyvPxbc0316Y8scnd"
+uri = "file://exports/Paul-Ireifej-Monmouth-County-Active-Listening.pptx"
+type = "slides"
+title = "Active Listening — PowerPoint (7.2 MB)"
