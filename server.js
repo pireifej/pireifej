@@ -8,6 +8,48 @@ const port = 5000;
 
 app.use(express.json());
 
+const PROTECTED_PATTERNS = [
+    /^\/ai-workshops-hub\.html$/i,
+    /^\/session-[^/]+(\/.*)?$/i,
+    /^\/monmouth-county(\/.*)?$/i
+];
+
+function isProtected(reqPath) {
+    return PROTECTED_PATTERNS.some(re => re.test(reqPath));
+}
+
+function requireAdmin(req, res, next) {
+    if (!isProtected(req.path)) return next();
+
+    const expectedUser = process.env.ADMIN_USERNAME;
+    const expectedPass = process.env.ADMIN_PASSWORD;
+
+    if (!expectedUser || !expectedPass) {
+        console.error('ADMIN_USERNAME/ADMIN_PASSWORD not set — blocking protected route');
+        res.set('WWW-Authenticate', 'Basic realm="Paul Slides"');
+        return res.status(401).send('Auth not configured');
+    }
+
+    const header = req.headers.authorization || '';
+    if (header.startsWith('Basic ')) {
+        try {
+            const decoded = Buffer.from(header.slice(6), 'base64').toString('utf8');
+            const idx = decoded.indexOf(':');
+            const user = decoded.slice(0, idx);
+            const pass = decoded.slice(idx + 1);
+            if (user === expectedUser && pass === expectedPass) {
+                return next();
+            }
+        } catch (e) { /* fall through */ }
+    }
+
+    res.set('WWW-Authenticate', 'Basic realm="Paul Slides"');
+    res.set('Cache-Control', 'no-store');
+    return res.status(401).send('Authentication required');
+}
+
+app.use(requireAdmin);
+
 function replaceTemplates(content) {
     const preloader = fs.readFileSync('preloader.html', 'utf8');
     const header = fs.readFileSync('header.html', 'utf8');
