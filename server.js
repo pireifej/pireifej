@@ -10,6 +10,8 @@ app.use(express.json());
 
 const PROTECTED_PATTERNS = [
     /^\/ai-workshops-hub\.html$/i,
+    /^\/slides-hub\.html$/i,
+    /^\/public-speaking-hub\.html$/i,
     /^\/session-[^/]+(\/.*)?$/i,
     /^\/monmouth-county(\/.*)?$/i
 ];
