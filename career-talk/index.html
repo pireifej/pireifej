@@ -292,6 +292,57 @@
         .sticker.lg { width: 70px; height: 70px; font-size: 1.8rem; }
         .sticker.md { width: 56px; height: 56px; font-size: 1.4rem; }
     }
+    /* ===== STORY MAKER (slide 29) ===== */
+    .sm-label {
+        display:block; font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
+        color: var(--cyan); margin-bottom: 6px;
+    }
+    .sm-input {
+        width: 100%; box-sizing: border-box;
+        background: rgba(13, 13, 26, 0.6);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 10px; padding: 11px 14px;
+        color: var(--bone); font-family: 'Inter', sans-serif; font-size: 1rem;
+        outline: none; transition: all 0.2s ease;
+    }
+    .sm-input:focus {
+        border-color: var(--cyan);
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.18);
+        background: rgba(13, 13, 26, 0.85);
+    }
+    .sm-input::placeholder { color: rgba(154, 165, 184, 0.55); }
+    .sm-btn {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-family: 'Montserrat', sans-serif; font-weight: 700;
+        font-size: 1.05rem; letter-spacing: 0.5px;
+        padding: 13px 28px; border-radius: 12px; cursor: pointer;
+        border: 2px solid transparent; transition: all 0.2s ease;
+    }
+    .sm-btn.primary {
+        background: linear-gradient(135deg, var(--cyan), var(--coral));
+        color: #0d0d1a; box-shadow: 0 8px 26px rgba(0, 212, 255, 0.4);
+    }
+    .sm-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(0, 212, 255, 0.55); }
+    .sm-btn.primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .sm-btn.ghost {
+        background: rgba(255,255,255,0.04); color: var(--bone);
+        border-color: rgba(255,255,255,0.2);
+    }
+    .sm-btn.ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+    .sm-spinner {
+        display: inline-block; width: 56px; height: 56px;
+        border: 4px solid rgba(0,212,255,0.18);
+        border-top-color: var(--cyan); border-right-color: var(--coral);
+        border-radius: 50%; animation: sm-spin 0.9s linear infinite;
+    }
+    @keyframes sm-spin { to { transform: rotate(360deg); } }
+    .sm-dots span {
+        display: inline-block; animation: sm-blink 1.4s infinite both;
+    }
+    .sm-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .sm-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes sm-blink { 0%, 80%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
 </style>
 </head>
 <body>
@@ -893,24 +944,75 @@
 </section>
 
 <!-- 29 STORY GENERATOR EXERCISE -->
-<section>
-    <div class="slide-inner center">
-        <span class="eyebrow coral">// live demo &middot; ~5 min</span>
-        <h2>Now <span class="grad-cyan-coral">YOU</span> are the prompt.</h2>
-        <p style="color: var(--muted); margin-top: 6px; font-size: 1.2rem;">Volunteer comes up. AI writes a story starring you.</p>
-        <div class="ex-card" style="margin-top: 26px;">
-            <span class="ex-tag">STORY MAKER</span>
-            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: 1.4rem;">Tell me four things:</div>
-            <div class="ex-steps">
-                <div class="ex-step"><div class="n">01</div><div class="t">Your name</div><div class="d">(stage name OK)</div></div>
-                <div class="ex-step"><div class="n">02</div><div class="t">Two things you LIKE</div><div class="d">(pizza, soccer, dragons...)</div></div>
-                <div class="ex-step"><div class="n">03</div><div class="t">One thing you DISLIKE</div><div class="d">(broccoli? mondays?)</div></div>
-                <div class="ex-step"><div class="n">04</div><div class="t">A scenario</div><div class="d">("...on a spaceship")</div></div>
+<section data-state="story-slide">
+    <div class="slide-inner" style="justify-content: flex-start; padding-top: 5vh;">
+        <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding-left: 110px;">
+            <span class="eyebrow coral">// live demo</span>
+            <h2 style="font-size: clamp(1.6rem, 4vh, 3rem);">Now <span class="grad-cyan-coral">YOU</span> are the prompt.</h2>
+        </div>
+
+        <!-- INPUT VIEW -->
+        <div id="story-inputs" class="glass cyan-edge" style="margin-top: 14px; padding: 18px 22px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1.3fr; gap: 14px;">
+                <div>
+                    <label class="sm-label">Your name</label>
+                    <input id="sm-name" class="sm-input" type="text" placeholder="e.g. Maya" maxlength="40">
+                </div>
+                <div>
+                    <label class="sm-label">You LOVE</label>
+                    <input id="sm-likes" class="sm-input" type="text" placeholder="pizza, dragons" maxlength="100">
+                </div>
+                <div>
+                    <label class="sm-label">You HATE</label>
+                    <input id="sm-dislikes" class="sm-input" type="text" placeholder="broccoli" maxlength="80">
+                </div>
+                <div>
+                    <label class="sm-label">Scenario</label>
+                    <input id="sm-scenario" class="sm-input" type="text" placeholder="on a spaceship" maxlength="120">
+                </div>
+            </div>
+            <div style="display:flex; gap:14px; justify-content:center; margin-top: 16px; flex-wrap: wrap;">
+                <button id="sm-go" class="sm-btn primary">
+                    <i class="fas fa-bolt"></i>&nbsp; Generate Story
+                </button>
+                <button id="sm-random" class="sm-btn ghost" title="Fill with silly randoms">
+                    <i class="fas fa-dice"></i>&nbsp; Randomize
+                </button>
+            </div>
+            <div id="sm-error" style="display:none; margin-top:10px; text-align:center; color: var(--coral); font-family:'JetBrains Mono', monospace; font-size: 0.85rem;"></div>
+        </div>
+
+        <!-- LOADING VIEW -->
+        <div id="story-loading" style="display:none; margin-top: 22px; text-align: center;">
+            <div class="sm-spinner"></div>
+            <p class="mono cyan" style="margin-top: 14px; font-size: 0.95rem;">&gt; gpt-4o-mini is writing...&nbsp;<span class="sm-dots"><span>.</span><span>.</span><span>.</span></span></p>
+            <p class="mono" style="color: var(--muted); font-size: 0.78rem; margin-top: 4px;">&gt; searching pexels for a matching photo...</p>
+        </div>
+
+        <!-- RESULT VIEW -->
+        <div id="story-result" style="display:none; margin-top: 14px; flex: 1; min-height: 0;">
+            <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 18px; height: 100%;">
+                <div class="glass coral-edge" style="padding: 18px 22px; overflow-y: auto; max-height: 60vh;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+                        <span class="ex-tag" style="background: rgba(255,143,171,0.12); border-color: rgba(255,143,171,0.4); color: var(--coral);">THE STORY</span>
+                        <span id="sm-style-pill" class="mono" style="color: var(--muted); font-size: 0.7rem;"></span>
+                    </div>
+                    <div id="sm-story-text" style="font-family: 'Inter', sans-serif; font-size: clamp(0.95rem, 1.7vh, 1.2rem); line-height: 1.55;"></div>
+                </div>
+                <div class="glass cyan-edge" style="padding: 14px; display:flex; flex-direction:column; align-items:stretch;">
+                    <span class="ex-tag" style="align-self:flex-start; margin-bottom: 8px;">THE PICTURE</span>
+                    <div id="sm-image-wrap" style="flex:1; min-height:0; border-radius: 14px; overflow: hidden; background: rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; position: relative;">
+                        <img id="sm-image" style="width:100%; height:100%; object-fit: cover; display:none;" alt="Story illustration">
+                        <p id="sm-image-fallback" style="color: var(--muted); font-family:'JetBrains Mono', monospace; font-size: 0.85rem; padding: 14px; text-align:center;">No matching photo found.</p>
+                    </div>
+                    <p id="sm-image-credit" style="margin: 6px 0 0; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-align: right;"></p>
+                </div>
+            </div>
+            <div style="display:flex; gap:12px; justify-content:center; margin-top: 14px;">
+                <button id="sm-again" class="sm-btn primary"><i class="fas fa-redo"></i>&nbsp; Try Another</button>
+                <button id="sm-regen" class="sm-btn ghost"><i class="fas fa-sync"></i>&nbsp; Same kid, new story</button>
             </div>
         </div>
-        <p style="margin-top: 22px; text-align: center;">
-            <span class="mono cyan">&gt; shouldcallpaul.com/story-maker</span>
-        </p>
     </div>
 </section>
 
@@ -1049,6 +1151,106 @@
         runForSlide(Reveal.getCurrentSlide());
         Reveal.on('slidechanged', function (e) { runForSlide(e.currentSlide); });
     });
+
+    // ===== STORY MAKER (slide 29) =====
+    (function () {
+        var RANDOMS = {
+            names: ['Maya', 'Jaxon', 'Aria', 'Theo', 'Zoe', 'Kai', 'Nora', 'Leo', 'Ivy', 'Milo'],
+            likes: ['pizza and dragons', 'soccer and slime', 'cats and rollercoasters', 'video games and tacos', 'horses and lightning', 'sharks and pancakes', 'space and pickles'],
+            dislikes: ['broccoli', 'mondays', 'long car rides', 'spiders', 'homework', 'getting splashed', 'loud chewing'],
+            scenarios: ['on a spaceship that runs on jelly', 'at a mall where the floors are lava', 'inside a giant robot', 'on a class trip to the moon', 'at a haunted bowling alley', 'on a submarine made of cheese', 'at a sleepover in a castle']
+        };
+        function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+        var $ = function (id) { return document.getElementById(id); };
+        var goBtn = $('sm-go'), rndBtn = $('sm-random'), againBtn = $('sm-again'), regenBtn = $('sm-regen');
+        if (!goBtn) return; // slide not rendered yet
+
+        function show(view) {
+            $('story-inputs').style.display = view === 'input' ? 'block' : 'none';
+            $('story-loading').style.display = view === 'loading' ? 'block' : 'none';
+            $('story-result').style.display = view === 'result' ? 'block' : 'none';
+        }
+
+        function setError(msg) {
+            var el = $('sm-error');
+            if (!msg) { el.style.display = 'none'; el.textContent = ''; return; }
+            el.style.display = 'block'; el.textContent = '> ' + msg;
+        }
+
+        rndBtn.addEventListener('click', function () {
+            $('sm-name').value = pick(RANDOMS.names);
+            $('sm-likes').value = pick(RANDOMS.likes);
+            $('sm-dislikes').value = pick(RANDOMS.dislikes);
+            $('sm-scenario').value = pick(RANDOMS.scenarios);
+        });
+
+        async function generate() {
+            setError('');
+            var payload = {
+                name: $('sm-name').value.trim(),
+                likes: $('sm-likes').value.trim(),
+                dislikes: $('sm-dislikes').value.trim(),
+                scenario: $('sm-scenario').value.trim()
+            };
+            if (!payload.name) { setError('At least give me a name.'); return; }
+            show('loading');
+            goBtn.disabled = true;
+            try {
+                var resp = await fetch('/api/story', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                var data = await resp.json();
+                if (!resp.ok || !data.story) {
+                    setError(data.error || 'Something broke. Try again.');
+                    show('input');
+                    return;
+                }
+                $('sm-story-text').textContent = data.story;
+                $('sm-style-pill').textContent = data.style ? '// voice: ' + data.style : '';
+                var img = $('sm-image'), fb = $('sm-image-fallback'), credit = $('sm-image-credit');
+                if (data.imageUrl) {
+                    img.onload = function () { img.style.display = 'block'; fb.style.display = 'none'; };
+                    img.onerror = function () { img.style.display = 'none'; fb.style.display = 'block'; fb.textContent = 'Image failed to load.'; };
+                    img.src = data.imageUrl;
+                    credit.textContent = data.imageCredit ? 'photo: ' + data.imageCredit.photographer + ' / pexels' : '';
+                } else {
+                    img.style.display = 'none'; img.removeAttribute('src');
+                    fb.style.display = 'block'; fb.textContent = 'No matching photo found (story still works).';
+                    credit.textContent = '';
+                }
+                show('result');
+            } catch (err) {
+                console.error(err);
+                setError('Network hiccup. Try again.');
+                show('input');
+            } finally {
+                goBtn.disabled = false;
+            }
+        }
+
+        goBtn.addEventListener('click', generate);
+        regenBtn.addEventListener('click', generate);
+        againBtn.addEventListener('click', function () {
+            $('sm-name').value = '';
+            $('sm-likes').value = '';
+            $('sm-dislikes').value = '';
+            $('sm-scenario').value = '';
+            $('sm-image').style.display = 'none';
+            $('sm-image').removeAttribute('src');
+            show('input');
+            setTimeout(function () { $('sm-name').focus(); }, 100);
+        });
+
+        // Enter key in any input triggers generate
+        ['sm-name', 'sm-likes', 'sm-dislikes', 'sm-scenario'].forEach(function (id) {
+            $(id).addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') { e.preventDefault(); generate(); }
+            });
+        });
+    })();
 </script>
 </body>
 </html>
