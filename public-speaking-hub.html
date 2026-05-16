@@ -295,11 +295,111 @@
             color: #fff;
             border-color: #4ECDC4;
         }
+        /* ---------- Dark Tech x Canva hybrid (Career Talks) ---------- */
+        .dt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+        .dt-hub-card {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #1a1a3e 100%);
+            border: 1px solid rgba(0, 212, 255, 0.35);
+            border-radius: 22px;
+            padding: 38px 32px 30px;
+            text-align: left;
+            text-decoration: none;
+            color: #e8ecf1;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            transition: all 0.35s ease;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 30px rgba(0, 212, 255, 0.12);
+        }
+        .dt-hub-card:hover {
+            transform: translateY(-8px);
+            color: #e8ecf1;
+            text-decoration: none;
+            border-color: rgba(0, 212, 255, 0.7);
+            box-shadow: 0 22px 55px rgba(0,0,0,0.5), 0 0 50px rgba(0, 212, 255, 0.28);
+        }
+        .dt-hub-card .dt-glow {
+            position: absolute; inset: 0; pointer-events: none; border-radius: 22px;
+            background: radial-gradient(ellipse 60% 40% at 80% 0%, rgba(0,212,255,0.18), transparent 70%),
+                        radial-gradient(ellipse 50% 40% at 10% 100%, rgba(255,143,171,0.15), transparent 70%);
+        }
+        .dt-hub-card .dt-sticker {
+            position: absolute;
+            top: -14px; right: -10px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.9rem;
+            color: #00d4ff;
+            background: #0d0d1a;
+            border: 2px solid #00d4ff;
+            box-shadow: 0 0 24px rgba(0, 212, 255, 0.5);
+            animation: subtle-float-hub 4s ease-in-out infinite;
+            transform: rotate(8deg);
+        }
+        .dt-hub-card .dt-tag {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.08);
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid rgba(0, 212, 255, 0.35);
+            border-radius: 6px;
+            margin-bottom: 18px;
+            position: relative; z-index: 1;
+        }
+        .dt-hub-card h2 {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            color: #e8ecf1;
+            font-size: 1.65rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.15;
+            position: relative; z-index: 1;
+        }
+        .dt-hub-card .dt-grad {
+            background: linear-gradient(90deg, #00d4ff, #FF8FAB);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .dt-hub-card p {
+            color: rgba(232, 236, 241, 0.78);
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            line-height: 1.55;
+            margin-bottom: 18px;
+            position: relative; z-index: 1;
+        }
+        .dt-hub-card .dt-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            position: relative; z-index: 1;
+            transition: gap 0.3s;
+        }
+        .dt-hub-card:hover .dt-cta { gap: 14px; }
+
         @media (max-width: 768px) {
             .canva-hub-card { padding: 32px 24px 26px; }
             .canva-sticker { width: 64px; height: 64px; font-size: 1.6rem; }
+            .dt-hub-card { padding: 32px 24px 26px; }
+            .dt-hub-card .dt-sticker { width: 64px; height: 64px; font-size: 1.6rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -352,6 +452,22 @@
                 <h2>Listening First</h2>
                 <p>Active listening &amp; better workplace communication. The mirror technique, empathy, and the telephone improv.</p>
                 <span class="canva-cta">Start Slides <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <!-- School Career Talks (Dark Tech x Canva hybrid) -->
+        <div class="section-divider" id="career-talks">
+            <span><i class="fas fa-graduation-cap"></i> &nbsp; School Career Talks</span>
+        </div>
+
+        <div class="dt-grid">
+            <a href="career-talk/" class="dt-hub-card">
+                <div class="dt-glow"></div>
+                <div class="dt-sticker"><i class="fas fa-code"></i></div>
+                <span class="dt-tag">Indian Hill School &middot; ~32 Slides</span>
+                <h2>My Career <span class="dt-grad">in Code</span></h2>
+                <p>45-min career talk for grades 4-6. From ZZT-OOP at age 6 to AI at AT&amp;T. Drawing Telephone, Suno songs, live AI Story Maker.</p>
+                <span class="dt-cta">Start Slides <i class="fas fa-arrow-right"></i></span>
             </a>
         </div>
 
