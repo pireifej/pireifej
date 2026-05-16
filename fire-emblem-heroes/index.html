@@ -39,11 +39,20 @@
             width: 100%;
             max-width: 1500px;
             margin: 0 auto;
-            padding: 50px 70px;
+            padding: 2.5vh 4vw;
             box-sizing: border-box;
+            height: 100vh;
             min-height: 100vh;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
+        /* Banner-pattern slides (2-9): fit-to-viewport flex layout */
+        .slide-inner.banner-slide { gap: 1.5vh; justify-content: flex-start; }
+        .banner-slide .slide-header { flex: 0 0 auto; text-align: center; }
+        .banner-slide .slide-header .eyebrow { margin-bottom: 10px; }
+        .banner-slide .slide-header h2 { margin: 0 0 8px; }
+        .banner-slide .slide-header .date-badge { margin: 0 0 4px; }
         /* Decorative ornate corner brackets */
         .ornate-corner {
             position: absolute; width: 90px; height: 90px;
@@ -110,11 +119,15 @@
         /* Banner image (top of each section slide) */
         .banner-frame {
             position: relative;
-            display: block;
-            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
             max-width: 880px;
+            width: 100%;
             border-radius: 6px;
             overflow: hidden;
+            background: var(--bg-deep);
             box-shadow:
                 0 0 0 2px var(--gold),
                 0 0 0 6px var(--bg-deep),
@@ -122,7 +135,16 @@
                 0 20px 60px rgba(196, 30, 58, 0.45),
                 0 0 80px rgba(138, 62, 199, 0.3);
         }
-        .banner-frame img { display: block; width: 100%; height: auto; }
+        .banner-slide .banner-frame { flex: 1 1 auto; min-height: 0; }
+        .banner-frame img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: opacity 0.25s ease;
+        }
         .banner-frame::after {
             content: ''; position: absolute; inset: 0;
             background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.45) 100%);
@@ -132,8 +154,9 @@
         /* Hero portrait grid */
         .hero-grid {
             display: grid;
-            gap: 22px;
-            margin-top: 24px;
+            gap: 1.2vw;
+            margin-top: 0;
+            flex: 0 0 auto;
         }
         .hero-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
         .hero-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -145,13 +168,14 @@
             background: linear-gradient(180deg, rgba(20, 8, 24, 0.85), rgba(10, 4, 14, 0.95));
             border: 1px solid var(--crimson);
             border-radius: 4px;
-            padding: 8px 8px 14px;
+            padding: 6px 6px 8px;
             text-align: center;
+            cursor: pointer;
             box-shadow:
                 0 0 0 1px rgba(201, 161, 74, 0.4),
                 0 12px 28px rgba(0,0,0,0.7),
                 0 0 24px rgba(196, 30, 58, 0.18);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
         .hero-card:hover {
             transform: translateY(-4px);
@@ -160,15 +184,29 @@
                 0 16px 32px rgba(0,0,0,0.8),
                 0 0 36px rgba(255, 58, 94, 0.45);
         }
+        .hero-card.active {
+            border-color: var(--gold);
+            box-shadow:
+                0 0 0 2px var(--gold),
+                0 0 36px rgba(201, 161, 74, 0.7),
+                0 0 60px rgba(255, 58, 94, 0.4);
+            transform: translateY(-4px);
+        }
         .hero-card img {
             display: block;
             width: 100%;
-            height: 130px;
+            height: 14vh;
+            max-height: 130px;
             object-fit: cover;
             border-radius: 2px;
             border: 1px solid rgba(201, 161, 74, 0.5);
+            pointer-events: none;
         }
-        .hero-card.tall img { height: 220px; object-fit: contain; background: #fff; }
+        .hero-card.tall img { height: 18vh; max-height: 220px; object-fit: contain; background: #fff; }
+        .hero-card .hero-name {
+            margin-top: 6px !important;
+            font-size: clamp(0.7rem, 1.2vh, 1rem) !important;
+        }
         .hero-card .hero-name {
             font-family: 'Cinzel', serif;
             font-weight: 700;
@@ -266,10 +304,28 @@
             h1 { font-size: 3.5rem; }
             h2 { font-size: 2.2rem; }
             .title-grid { grid-template-columns: 1fr; gap: 30px; }
-            .slide-inner { padding: 40px 30px; }
-            .hero-grid.cols-5 { grid-template-columns: repeat(3, 1fr); }
-            .hero-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .slide-inner { padding: 2vh 4vw; }
+            .hero-card img { height: 12vh; }
+            .hero-card.tall img { height: 14vh; }
             .closing-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 700px) {
+            h1 { font-size: 2.4rem; }
+            h2 { font-size: 1.6rem; }
+            .reveal p, .reveal li { font-size: 1.05rem; }
+            .eyebrow { font-size: 0.75rem; letter-spacing: 3px; padding: 5px 10px; margin-bottom: 10px; }
+            .date-badge { font-size: 0.8rem; letter-spacing: 2px; padding: 4px 14px; margin: 0 0 10px; }
+            .slide-inner { padding: 1.5vh 3vw; }
+            .hero-grid { gap: 2vw; }
+            .hero-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+            .hero-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+            .hero-card { padding: 4px 4px 6px; }
+            .hero-card img { height: 10vh; border-radius: 2px; }
+            .hero-card.tall img { height: 11vh; }
+            .hero-card .hero-name { font-size: 0.6rem !important; letter-spacing: 1px; margin-top: 4px !important; }
+            .hero-card .hero-name::before { content: '' !important; }
+            .ornate-corner { width: 40px; height: 40px; }
+            .banner-frame { box-shadow: 0 0 0 2px var(--gold), 0 0 0 4px var(--bg-deep), 0 0 0 5px var(--crimson), 0 10px 30px rgba(196, 30, 58, 0.4); }
         }
     </style>
 </head>
@@ -306,10 +362,10 @@
 
         <!-- ========== SLIDE 2: 2018 Fallen Heroes ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner I &bull; The First Fall</span>
                     <h2>Fallen <span class="crimson">Heroes</span></h2>
                     <span class="date-badge">02 &bull; 21 &bull; 2018</span>
@@ -326,10 +382,10 @@
 
         <!-- ========== SLIDE 3: 2019 Darkness Within ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner II</span>
                     <h2><span class="purple">Darkness</span> Within</h2>
                     <span class="date-badge">05 &bull; 10 &bull; 2019</span>
@@ -347,10 +403,10 @@
 
         <!-- ========== SLIDE 4: 2020 Dark Burdens ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner III</span>
                     <h2>Dark <span class="crimson">Burdens</span></h2>
                     <span class="date-badge">05 &bull; 08 &bull; 2020</span>
@@ -368,10 +424,10 @@
 
         <!-- ========== SLIDE 5: 2021 Forces of Will ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner IV</span>
                     <h2>Forces <span class="purple">of Will</span></h2>
                     <span class="date-badge">05 &bull; 07 &bull; 2021</span>
@@ -388,10 +444,10 @@
 
         <!-- ========== SLIDE 6: 2022 Beyond Control ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner V</span>
                     <h2>Beyond <span class="crimson">Control</span></h2>
                     <span class="date-badge">05 &bull; 10 &bull; 2022</span>
@@ -408,10 +464,10 @@
 
         <!-- ========== SLIDE 7: 2023 Depths of Despair ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner VI</span>
                     <h2>Depths <span class="purple">of Despair</span></h2>
                     <span class="date-badge">05 &bull; 09 &bull; 2023</span>
@@ -428,10 +484,10 @@
 
         <!-- ========== SLIDE 8: 2024 Fallen Heroes ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner VII</span>
                     <h2>Fallen <span class="crimson">Heroes</span> 2024</h2>
                     <span class="date-badge">05 &bull; 08 &bull; 2024</span>
@@ -448,10 +504,10 @@
 
         <!-- ========== SLIDE 9: 2025 New Heroes & Rearmed Dedue ========== -->
         <section>
-            <div class="slide-inner">
+            <div class="slide-inner banner-slide">
                 <span class="ornate-corner tl"></span><span class="ornate-corner tr"></span>
                 <span class="ornate-corner bl"></span><span class="ornate-corner br"></span>
-                <div style="text-align:center;">
+                <div class="slide-header">
                     <span class="eyebrow">Banner VIII &bull; The Latest</span>
                     <h2>New Heroes &amp; <span class="purple">Rearmed Dedue</span></h2>
                     <span class="date-badge">05 &bull; 07 &bull; 2025</span>
@@ -506,6 +562,42 @@
             83: 'next',  // S
             68: 'next'   // D
         }
+    });
+
+    // Click/tap a hero portrait -> swap the banner image at top of that slide.
+    // Sticky-until-next-click: stays on the selected hero until you tap another.
+    // If a hero card has a data-full attribute on its <img>, that larger image is used.
+    document.querySelectorAll('.banner-slide').forEach(function (slide) {
+        var banner = slide.querySelector('.banner-frame img');
+        if (!banner) return;
+        if (!banner.dataset.original) banner.dataset.original = banner.getAttribute('src');
+
+        slide.querySelectorAll('.hero-card').forEach(function (card) {
+            var img = card.querySelector('img');
+            if (!img) return;
+
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', 'Show ' + (img.alt || 'hero') + ' as banner');
+
+            function activate() {
+                var newSrc = img.dataset.full || img.getAttribute('src');
+                if (banner.getAttribute('src') === newSrc) return;
+                banner.style.opacity = '0';
+                setTimeout(function () {
+                    banner.setAttribute('src', newSrc);
+                    banner.alt = img.alt || '';
+                    banner.style.opacity = '1';
+                }, 220);
+                slide.querySelectorAll('.hero-card.active').forEach(function (c) { c.classList.remove('active'); });
+                card.classList.add('active');
+            }
+
+            card.addEventListener('click', activate);
+            card.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+            });
+        });
     });
 </script>
 </body>
