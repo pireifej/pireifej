@@ -69,12 +69,58 @@
 - Wants to land on: "I help design REQUIREMENTS — I understand business needs and figure out how best to solve them"
 - This is the honest answer after all the jokes
 
+### S5 — "Honestly... a little bit of everything"
+- Admits he does a bit of everything
+- Lists: Network Security, Computer Programming, [more to come]
+- Transitions into the live exercise
+
+### S5a — LIVE EXERCISE: "Code Me to Brush My Teeth"
+- Cute cartoon toothbrush brushing its own teeth on slide
+- Paul brings real toothbrush + toothpaste to class
+- Kids give step-by-step instructions; Paul takes them literally
+  (e.g., "open the toothpaste" — he tries to open the cap without removing it, etc.)
+- Tons of laughs and engagement
+- **Paul wants to RETIRE the toothbrush bit** — done it 2 years in a row.
+- Wants a NEW exercise — possibly leaning into AI demo instead of "strict coding"
+  since kids may not need to learn raw coding anymore.
+- **TODO: brainstorm replacement exercise(s)** — see chat for ideas.
+
+### S5b — Back to the "I do everything" list
+- Adds two more items after the exercise:
+  - "Helping others"
+  - "Explaining things"
+
+### S6 — "So what?" (the artifacts of his job)
+
+#### S6a — Websites
+- Side-by-side: shouldcallpaul.com desktop vs mobile view
+- Point: websites must be designed mobile-friendly
+- Contrast slide: a NJ.gov-style site that looks IDENTICAL on desktop and mobile
+  (i.e., not mobile-optimized) — "this is what you don't want"
+
+#### S6b — Apps
+- Back to "So what?" framing
+- Asks kids: what apps do you use daily?
+- Open class conversation
+
+#### S6c — Games
+- Same conversational format
+- Kids share favorite games
+
+#### S6d — Tools
+- Calculator, alarm clock, health apps
+- Also ChatGPT, Gemini — frames AI as just another tool
+
 ---
 
 ## TBD from Paul
-- Rest of slides
-- Photos to upload (kid Paul, Gabriel & Raphael at iCode)
+- Rest of slides after S6d
+- Photos to upload (kid Paul, Gabriel & Raphael at iCode, ZZT-OOP screenshot,
+  Tom Cruise MI hacker shot, coder-in-the-dark animation source,
+  tech support headset guy, kid helping grandma, cartoon toothbrush,
+  shouldcallpaul.com desktop+mobile screenshots, NJ.gov non-responsive example)
 - Whether the school has wifi for him
+- Decision on the toothbrush-replacement exercise
 
 ---
 
