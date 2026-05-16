@@ -111,6 +111,80 @@
 - Calculator, alarm clock, health apps
 - Also ChatGPT, Gemini — frames AI as just another tool
 
+### S7 — AT&T (title slide w/ logo)
+- Just the AT&T logo on screen
+- Transitions into "what I do specifically for AT&T"
+- Challenge: relating this work to kids' world — needs relatable stories/analogies
+
+### S7a — What Paul Does at AT&T
+- **Fraud** — protecting customers from scams/fake activity
+- **Compliance** — rules & regulations:
+  - No passwords in code
+  - Code scans
+  - Penetration testing
+  - Keeping software patched & up to date
+  - Following security protocols
+- **Management (less now)**:
+  - Uses iTrack, makes cards for work, manages tickets
+  - Used to manage people; now there are 2-3 technical people managing his group
+  - He's more of an individual contributor now — enjoys it more
+  - Still gets asked for overall DevOps strategy occasionally
+- TODO: find kid-relatable analogies for fraud / compliance / ticket mgmt
+  (e.g., fraud = catching kids cheating on a test; compliance = lunchroom rules;
+  tickets = chore chart on the fridge)
+
+### S8 — AI (title slide)
+- Just says "AI"
+- Setup for the joke reveal
+
+### S8a — "What does AI stand for?" (joke)
+- Asks the kids — they say "Artificial Intelligence"
+- Paul jokes "you're crazy, you're wrong"
+- Next slide: picture of Apples & Ice Cream — "It stands for THIS"
+- Bit: "and the flavors are revolutionary and have changed the world"
+- Kids laugh
+
+### S8b — GPT meaning (NEW slide Paul wants)
+- Most kids use ChatGPT — explain what GPT stands for
+- **G** = Generative
+- **P** = Pre-trained
+- **T** = Transformer
+- Cite the Google "Attention Is All You Need" transformer paper (2017)
+- Give examples for each letter
+- Then admit AI = Artificial Intelligence after all (they were right)
+
+### S8c — AI Timeline
+- **1950s** — Alan Turing & the Turing Test (briefly explain: a machine that
+  can fool you into thinking it's human in conversation)
+- **1956** — AI gets its name at the Dartmouth College conference. Definition:
+  "machines that can think and learn"
+- **1950s–1990s/2000s** — Slow learning era. Computers play chess, solve
+  puzzles, but aren't that smart yet
+- **2000s** — Smarter computers. AI helps search the internet, recognize faces,
+  recommend movies & songs
+- **Today** — AI can talk, draw, play games, help doctors, even write stories
+  (e.g., ChatGPT)
+- **Future** — AI helps drive cars, explore space, solve big world problems
+
+### S9 — How AI Works
+- [Paul will continue here]
+
+### S10 — Jobs & AI (realistic but optimistic)
+- Audience: kids grades 4, 5, 6
+- Paul wants: NOT scary, kid-friendly, realistic but optimistic
+- Maybe ask kids if their parents' jobs have been impacted by AI
+- Admit big companies are firing lots of people
+- Be honest about jobs going away
+- But end with a positive spin / what to focus on instead
+- **TODO**: craft the positive spin — possible angles:
+  - "Jobs change, they don't disappear" (mention old jobs that don't exist:
+    elevator operator, switchboard, milkman)
+  - "AI is a power tool — people who learn to use it have the advantage"
+  - "Creative + people-focused work is safer" (ties back to Paul's
+    "helping others, explaining things")
+  - Reference Paul's own AI Workshop Session 5 content (already covered
+    Oracle/Amazon/Intel layoffs + safe zones — could reuse those visuals)
+
 ---
 
 ## TBD from Paul
