@@ -43,10 +43,10 @@
     .slide-inner.center-all { justify-content: center; align-items: center; text-align: center; }
 
     h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--bone); margin: 0; letter-spacing: -0.5px; }
-    h1 { font-size: clamp(2.6rem, 6.5vh, 6rem); font-weight: 900; line-height: 1.02; }
-    h2 { font-size: clamp(1.9rem, 4.8vh, 3.8rem); font-weight: 800; line-height: 1.08; }
-    h3 { font-size: clamp(1.2rem, 2.4vh, 1.9rem); font-weight: 700; }
-    .reveal p, .reveal li { font-size: clamp(1rem, 1.85vh, 1.4rem); line-height: 1.55; color: var(--bone); }
+    h1 { font-size: clamp(3.4rem, 8.5vh, 7.5rem); font-weight: 900; line-height: 1.02; }
+    h2 { font-size: clamp(2.5rem, 6.2vh, 5rem); font-weight: 800; line-height: 1.08; }
+    h3 { font-size: clamp(1.55rem, 3.1vh, 2.4rem); font-weight: 700; }
+    .reveal p, .reveal li { font-size: clamp(1.3rem, 2.45vh, 1.85rem); line-height: 1.55; color: var(--bone); }
     .mono { font-family: 'JetBrains Mono', monospace; }
     .grad-cyan-coral { background: linear-gradient(90deg, var(--cyan), var(--coral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .grad-cyan-sun { background: linear-gradient(90deg, var(--cyan), var(--sun)); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -953,10 +953,14 @@
 
         <!-- INPUT VIEW -->
         <div id="story-inputs" class="glass cyan-edge" style="margin-top: 14px; padding: 18px 22px;">
-            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1.3fr; gap: 14px;">
+            <div style="display:grid; grid-template-columns: 1fr 1.3fr 1fr 1fr 1.3fr; gap: 12px;">
                 <div>
                     <label class="sm-label">Your name</label>
                     <input id="sm-name" class="sm-input" type="text" placeholder="e.g. Maya" maxlength="40">
+                </div>
+                <div>
+                    <label class="sm-label">You look like</label>
+                    <input id="sm-looks" class="sm-input" type="text" placeholder="9, curly hair, glasses" maxlength="140" title="age, hair, skin, anything else">
                 </div>
                 <div>
                     <label class="sm-label">You LOVE</label>
@@ -1159,6 +1163,7 @@
     (function () {
         var RANDOMS = {
             names: ['Maya', 'Jaxon', 'Aria', 'Theo', 'Zoe', 'Kai', 'Nora', 'Leo', 'Ivy', 'Milo'],
+            looks: ['10, brown skin, curly hair, glasses', '9, freckles, red hair, missing front tooth', '11, tall, braids, big smile', '10, short, black hair, baseball cap', '9, light skin, ponytail, hoodie', '11, brown skin, buzz cut, soccer jersey', '10, hijab, big brown eyes, friendly'],
             likes: ['pizza and dragons', 'soccer and slime', 'cats and rollercoasters', 'video games and tacos', 'horses and lightning', 'sharks and pancakes', 'space and pickles'],
             dislikes: ['broccoli', 'mondays', 'long car rides', 'spiders', 'homework', 'getting splashed', 'loud chewing'],
             scenarios: ['on a spaceship that runs on jelly', 'at a mall where the floors are lava', 'inside a giant robot', 'on a class trip to the moon', 'at a haunted bowling alley', 'on a submarine made of cheese', 'at a sleepover in a castle']
@@ -1183,6 +1188,7 @@
 
         rndBtn.addEventListener('click', function () {
             $('sm-name').value = pick(RANDOMS.names);
+            $('sm-looks').value = pick(RANDOMS.looks);
             $('sm-likes').value = pick(RANDOMS.likes);
             $('sm-dislikes').value = pick(RANDOMS.dislikes);
             $('sm-scenario').value = pick(RANDOMS.scenarios);
@@ -1192,6 +1198,7 @@
             setError('');
             var payload = {
                 name: $('sm-name').value.trim(),
+                looks: $('sm-looks').value.trim(),
                 likes: $('sm-likes').value.trim(),
                 dislikes: $('sm-dislikes').value.trim(),
                 scenario: $('sm-scenario').value.trim()
@@ -1239,6 +1246,7 @@
         regenBtn.addEventListener('click', generate);
         againBtn.addEventListener('click', function () {
             $('sm-name').value = '';
+            $('sm-looks').value = '';
             $('sm-likes').value = '';
             $('sm-dislikes').value = '';
             $('sm-scenario').value = '';
@@ -1249,7 +1257,7 @@
         });
 
         // Enter key in any input triggers generate
-        ['sm-name', 'sm-likes', 'sm-dislikes', 'sm-scenario'].forEach(function (id) {
+        ['sm-name', 'sm-looks', 'sm-likes', 'sm-dislikes', 'sm-scenario'].forEach(function (id) {
             $(id).addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') { e.preventDefault(); generate(); }
             });

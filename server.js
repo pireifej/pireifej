@@ -169,8 +169,9 @@ app.post('/api/story', async (req, res) => {
             return res.status(429).json({ error: 'Too many stories — try again in a few minutes.' });
         }
 
-        const { name, likes, dislikes, scenario } = req.body || {};
+        const { name, looks, likes, dislikes, scenario } = req.body || {};
         const cleanName = (name || 'the kid').toString().slice(0, 40).trim() || 'the kid';
+        const cleanLooks = (looks || '').toString().slice(0, 140).trim();
         const cleanLikes = (likes || 'pizza, dragons').toString().slice(0, 100).trim();
         const cleanDislikes = (dislikes || 'broccoli').toString().slice(0, 80).trim();
         const cleanScenario = (scenario || 'on a wild adventure').toString().slice(0, 120).trim();
@@ -191,7 +192,7 @@ ABSOLUTE HARD RULES — VIOLATIONS WILL BE REJECTED:
 3. NEVER end with "the end", "and they lived", "learned a lesson", "from that day on", or any moral wrap-up. End on a cliffhanger, a weird image, or a question.
 4. BANNED WORDS (do not use): happy, sad, fun, amazing, beautiful, wonderful, friendship, learned, lesson, journey, adventure (the word itself), suddenly, magical.
 5. Narrate in this voice the whole way through: ${style}. Commit hard to it. The voice should be obvious from the first sentence.
-6. The hero is ${cleanName}. Name appears 2-3 times max.
+6. The hero is ${cleanName}${cleanLooks ? ` (appearance: ${cleanLooks})` : ''}. Name appears 2-3 times max. ${cleanLooks ? 'You may mention 1-2 specific physical details from the appearance once in the story (not a full description).' : ''}
 7. Include the love (${cleanLikes}) as a plot driver AND the hate (${cleanDislikes}) as a comedic obstacle. Setting: ${cleanScenario}.
 8. One absurd surprise twist required (talking object, sudden swap, ridiculous coincidence).
 9. School-appropriate. No violence, no scary content.
@@ -203,7 +204,7 @@ STORY:
 <the story as one or two paragraphs of flowing prose, 90-130 words>
 
 IMAGE_PROMPT:
-<one rich sentence (20-35 words) describing the MOST VIVID single moment from the story for an AI image generator. Include the hero, the loves, the setting, and one absurd detail. Style suffix MUST be: "vibrant kid-friendly digital illustration, colorful storybook art, no text". Example: "A curly-haired girl named Maya surfing on a giant pizza slice through a glowing jelly spaceship corridor with a small green dragon on her shoulder, vibrant kid-friendly digital illustration, colorful storybook art, no text">
+<one rich sentence (25-45 words) describing the MOST VIVID single moment from the story for an AI image generator. Include: (a) the hero with their FULL appearance (${cleanLooks ? `MUST match: ${cleanLooks}` : 'invent something cute and kid-aged'}), (b) the loves, (c) the setting, (d) one absurd visual detail. Style suffix MUST be: "vibrant kid-friendly digital illustration, colorful storybook art, no text". Example: "A 10-year-old girl named Maya with brown skin, curly black hair and round glasses, surfing on a giant pizza slice through a glowing jelly spaceship corridor with a small green dragon on her shoulder, vibrant kid-friendly digital illustration, colorful storybook art, no text">
 
 Example of a correct reply (the entire reply, nothing else):
 
@@ -213,7 +214,7 @@ Detective Maya squinted through the jelly fog of cargo bay seven, where her pet 
 IMAGE_PROMPT:
 A curly-haired detective girl named Maya holding a small purple dragon while surfing on a pizza slice through a jelly-flooded spaceship corridor with a startled broccoli waving its leaves, vibrant kid-friendly digital illustration, colorful storybook art, no text`;
 
-        const userContent = `Hero: ${cleanName}. Loves: ${cleanLikes}. Hates: ${cleanDislikes}. Setting: ${cleanScenario}. Write the story now in the exact STORY: / IMAGE_PROMPT: format.`;
+        const userContent = `Hero: ${cleanName}.${cleanLooks ? ` Appearance: ${cleanLooks}.` : ''} Loves: ${cleanLikes}. Hates: ${cleanDislikes}. Setting: ${cleanScenario}. Write the story now in the exact STORY: / IMAGE_PROMPT: format. The IMAGE_PROMPT MUST include the appearance details so the picture looks like the real kid.`;
 
         const credentials = Buffer.from(`${username}:${password}`).toString('base64');
         const scpResponse = await fetch('https://shouldcallpaul.replit.app/getChatCompletion', {
@@ -283,7 +284,10 @@ A curly-haired detective girl named Maya holding a small purple dragon while sur
         // If GPT didn't return one, build a fallback from the inputs
         let finalPrompt = imagePrompt;
         if (!finalPrompt || finalPrompt.length < 15) {
-            finalPrompt = `A kid named ${cleanName} who loves ${cleanLikes} ${cleanScenario}, vibrant kid-friendly digital illustration, colorful storybook art, no text`;
+            finalPrompt = `A kid named ${cleanName}${cleanLooks ? ' (' + cleanLooks + ')' : ''} who loves ${cleanLikes} ${cleanScenario}, vibrant kid-friendly digital illustration, colorful storybook art, no text`;
+        } else if (cleanLooks && !finalPrompt.toLowerCase().includes(cleanLooks.toLowerCase().split(',')[0].trim())) {
+            // Belt-and-suspenders: if GPT forgot the appearance, splice it in
+            finalPrompt = finalPrompt.replace(/^([A-Za-z\s-]*?(?:kid|girl|boy|child|hero)[A-Za-z\s-]*?(?:named\s+\w+)?)/i, '$1 (' + cleanLooks + ')');
         }
         // Hard cap length and ensure style suffix is present
         finalPrompt = finalPrompt.slice(0, 400);
