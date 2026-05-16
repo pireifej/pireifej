@@ -136,6 +136,24 @@
                 0 0 80px rgba(138, 62, 199, 0.3);
         }
         .banner-slide .banner-frame { flex: 1 1 auto; min-height: 0; }
+        /* Caption that appears below banner when a hero card is clicked */
+        .banner-caption {
+            flex: 0 0 auto;
+            text-align: center;
+            min-height: 1.5em;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: clamp(0.9rem, 1.8vh, 1.3rem);
+            color: var(--bone);
+            margin: 0;
+        }
+        .banner-caption.visible { opacity: 1; }
+        .banner-caption .cap-name { color: var(--crimson-glow); font-weight: 700; text-shadow: 0 0 12px rgba(255, 58, 94, 0.5); }
+        .banner-caption .cap-sep { color: var(--gold); margin: 0 10px; opacity: 0.7; }
+        .banner-caption .cap-title { color: var(--gold); font-style: italic; font-family: 'Cormorant Garamond', serif; text-transform: none; letter-spacing: 1px; }
         .banner-frame img {
             display: block;
             width: auto;
@@ -206,6 +224,17 @@
         .hero-card .hero-name {
             margin-top: 6px !important;
             font-size: clamp(0.7rem, 1.2vh, 1rem) !important;
+        }
+        .hero-card .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(0.65rem, 1vh, 0.85rem);
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+            line-height: 1.15;
+            min-height: 1em;
+            opacity: 0.85;
         }
         .hero-card .hero-name {
             font-family: 'Cinzel', serif;
@@ -371,11 +400,12 @@
                     <span class="date-badge">02 &bull; 21 &bull; 2018</span>
                 </div>
                 <div class="banner-frame"><img src="img/2018-banner.jpg" alt="Fallen Heroes 2018 banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-4">
-                    <div class="hero-card"><img src="img/2018-celica.jpg" alt="Fallen Celica"><div class="hero-name">Celica</div></div>
-                    <div class="hero-card"><img src="img/2018-takumi.jpg" alt="Fallen Takumi"><div class="hero-name">Takumi</div></div>
-                    <div class="hero-card"><img src="img/2018-hardin.jpg" alt="Fallen Hardin"><div class="hero-name">Hardin</div></div>
-                    <div class="hero-card"><img src="img/2018-robin.jpg" alt="Fallen Robin"><div class="hero-name">Robin</div></div>
+                    <div class="hero-card"><img src="img/2018-celica.jpg" alt="Celica" data-title="Imprisoned Soul"><div class="hero-name">Celica</div><div class="hero-title">Imprisoned Soul</div></div>
+                    <div class="hero-card"><img src="img/2018-takumi.jpg" alt="Hardin" data-title=""><div class="hero-name">Hardin</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2018-hardin.jpg" alt="Robin" data-title=""><div class="hero-name">Robin</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2018-robin.jpg" alt="Takumi" data-title=""><div class="hero-name">Takumi</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -391,12 +421,13 @@
                     <span class="date-badge">05 &bull; 10 &bull; 2019</span>
                 </div>
                 <div class="banner-frame"><img src="img/2019-banner.jpg" alt="Darkness Within banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-5">
-                    <div class="hero-card"><img src="img/2019-berkut.jpg" alt="Fallen Berkut"><div class="hero-name">Berkut</div></div>
-                    <div class="hero-card"><img src="img/2019-mareeta.jpg" alt="Fallen Mareeta"><div class="hero-name">Mareeta</div></div>
-                    <div class="hero-card"><img src="img/2019-corrin.jpg" alt="Fallen Corrin"><div class="hero-name">Corrin</div></div>
-                    <div class="hero-card"><img src="img/2019-tiki.jpg" alt="Fallen Tiki"><div class="hero-name">Tiki</div></div>
-                    <div class="hero-card"><img src="img/2019-delthea.jpg" alt="Fallen Delthea"><div class="hero-name">Delthea</div></div>
+                    <div class="hero-card"><img src="img/2019-berkut.jpg" alt="Berkut" data-title=""><div class="hero-name">Berkut</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2019-mareeta.jpg" alt="Mareeta" data-title=""><div class="hero-name">Mareeta</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2019-corrin.jpg" alt="Corrin" data-title=""><div class="hero-name">Corrin</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2019-tiki.jpg" alt="Tiki" data-title=""><div class="hero-name">Tiki</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2019-delthea.jpg" alt="Delthea" data-title=""><div class="hero-name">Delthea</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -412,12 +443,13 @@
                     <span class="date-badge">05 &bull; 08 &bull; 2020</span>
                 </div>
                 <div class="banner-frame"><img src="img/2020-banner.jpg" alt="Dark Burdens banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-5">
-                    <div class="hero-card"><img src="img/2020-corrin.jpg" alt="Fallen Corrin"><div class="hero-name">Corrin</div></div>
-                    <div class="hero-card"><img src="img/2020-julia.jpg" alt="Fallen Julia"><div class="hero-name">Julia</div></div>
-                    <div class="hero-card"><img src="img/2020-ike.jpg" alt="Fallen Ike"><div class="hero-name">Ike</div></div>
-                    <div class="hero-card"><img src="img/2020-lyon.jpg" alt="Fallen Lyon"><div class="hero-name">Lyon</div></div>
-                    <div class="hero-card"><img src="img/2020-ashnard.jpg" alt="Fallen Ashnard"><div class="hero-name">Ashnard</div></div>
+                    <div class="hero-card"><img src="img/2020-corrin.jpg" alt="Corrin" data-title=""><div class="hero-name">Corrin</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2020-julia.jpg" alt="Ike" data-title=""><div class="hero-name">Ike</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2020-ike.jpg" alt="Julia" data-title=""><div class="hero-name">Julia</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2020-lyon.jpg" alt="Lyon" data-title=""><div class="hero-name">Lyon</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2020-ashnard.jpg" alt="Ashnard" data-title=""><div class="hero-name">Ashnard</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -433,11 +465,12 @@
                     <span class="date-badge">05 &bull; 07 &bull; 2021</span>
                 </div>
                 <div class="banner-frame"><img src="img/2021-banner.jpg" alt="Forces of Will banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-4">
-                    <div class="hero-card"><img src="img/2021-dimitri.jpg" alt="Fallen Dimitri"><div class="hero-name">Dimitri</div></div>
-                    <div class="hero-card"><img src="img/2021-edelgard.jpg" alt="Fallen Edelgard"><div class="hero-name">Edelgard</div></div>
-                    <div class="hero-card"><img src="img/2021-morgan-m.jpg" alt="Fallen Morgan (M)"><div class="hero-name">Morgan (M)</div></div>
-                    <div class="hero-card"><img src="img/2021-morgan-f.jpg" alt="Fallen Morgan (F)"><div class="hero-name">Morgan (F)</div></div>
+                    <div class="hero-card"><img src="img/2021-dimitri.jpg" alt="Dimitri" data-title=""><div class="hero-name">Dimitri</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2021-edelgard.jpg" alt="Edelgard" data-title=""><div class="hero-name">Edelgard</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2021-morgan-m.jpg" alt="Morgan (F)" data-title=""><div class="hero-name">Morgan (F)</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2021-morgan-f.jpg" alt="Morgan (M)" data-title=""><div class="hero-name">Morgan (M)</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -453,11 +486,12 @@
                     <span class="date-badge">05 &bull; 10 &bull; 2022</span>
                 </div>
                 <div class="banner-frame"><img src="img/2022-banner.jpg" alt="Beyond Control banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-4">
-                    <div class="hero-card"><img src="img/2022-lilith.jpg" alt="Fallen Lilith"><div class="hero-name">Lilith</div></div>
-                    <div class="hero-card"><img src="img/2022-ninian.jpg" alt="Fallen Ninian"><div class="hero-name">Ninian</div></div>
-                    <div class="hero-card"><img src="img/2022-gustav.jpg" alt="Fallen Gustav"><div class="hero-name">Gustav</div></div>
-                    <div class="hero-card"><img src="img/2022-rhea.jpg" alt="Fallen Rhea"><div class="hero-name">Rhea</div></div>
+                    <div class="hero-card"><img src="img/2022-lilith.jpg" alt="Lilith" data-title=""><div class="hero-name">Lilith</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2022-ninian.jpg" alt="Ninian" data-title=""><div class="hero-name">Ninian</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2022-gustav.jpg" alt="Gustav" data-title=""><div class="hero-name">Gustav</div><div class="hero-title"></div></div>
+                    <div class="hero-card"><img src="img/2022-rhea.jpg" alt="Rhea" data-title=""><div class="hero-name">Rhea</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -473,11 +507,12 @@
                     <span class="date-badge">05 &bull; 09 &bull; 2023</span>
                 </div>
                 <div class="banner-frame"><img src="img/2023-banner.jpg" alt="Depths of Despair banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-4">
-                    <div class="hero-card tall"><img src="img/2023-chrom.jpg" alt="Fallen Chrom"><div class="hero-name">Chrom</div></div>
-                    <div class="hero-card tall"><img src="img/2023-byleth.jpg" alt="Fallen Byleth"><div class="hero-name">Byleth</div></div>
-                    <div class="hero-card tall"><img src="img/2023-maria.jpg" alt="Fallen Maria"><div class="hero-name">Maria</div></div>
-                    <div class="hero-card tall"><img src="img/2023-anankos.jpg" alt="Fallen Anankos"><div class="hero-name">Anankos</div></div>
+                    <div class="hero-card tall"><img src="img/2023-chrom.jpg" alt="Byleth" data-title=""><div class="hero-name">Byleth</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2023-byleth.jpg" alt="Chrom" data-title=""><div class="hero-name">Chrom</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2023-maria.jpg" alt="Anankos" data-title=""><div class="hero-name">Anankos</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2023-anankos.jpg" alt="Maria" data-title=""><div class="hero-name">Maria</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -493,11 +528,12 @@
                     <span class="date-badge">05 &bull; 08 &bull; 2024</span>
                 </div>
                 <div class="banner-frame"><img src="img/2024-banner.jpg" alt="Fallen Heroes 2024 banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-4">
-                    <div class="hero-card tall"><img src="img/2024-ursula.jpg" alt="Fallen Ursula"><div class="hero-name">Ursula</div></div>
-                    <div class="hero-card tall"><img src="img/2024-veyle.jpg" alt="Fallen Veyle"><div class="hero-name">Veyle</div></div>
-                    <div class="hero-card tall"><img src="img/2024-lumera.jpg" alt="Fallen Lumera"><div class="hero-name">Lumera</div></div>
-                    <div class="hero-card tall"><img src="img/2024-nergal.jpg" alt="Fallen Nergal"><div class="hero-name">Nergal</div></div>
+                    <div class="hero-card tall"><img src="img/2024-ursula.jpg" alt="Ursula" data-title=""><div class="hero-name">Ursula</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2024-veyle.jpg" alt="Veyle" data-title=""><div class="hero-name">Veyle</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2024-lumera.jpg" alt="Lumera" data-title=""><div class="hero-name">Lumera</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2024-nergal.jpg" alt="Nergal" data-title=""><div class="hero-name">Nergal</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -513,11 +549,12 @@
                     <span class="date-badge">05 &bull; 07 &bull; 2025</span>
                 </div>
                 <div class="banner-frame"><img src="img/2025-banner.jpg" alt="New Heroes 2025 banner"></div>
+                <div class="banner-caption"></div>
                 <div class="hero-grid cols-4">
-                    <div class="hero-card tall"><img src="img/2025-alear-m.jpg" alt="Fallen Alear (M)"><div class="hero-name">Alear (M)</div></div>
-                    <div class="hero-card tall"><img src="img/2025-alear-f.jpg" alt="Fallen Alear (F)"><div class="hero-name">Alear (F)</div></div>
-                    <div class="hero-card tall"><img src="img/2025-dedue.jpg" alt="Fallen Dedue"><div class="hero-name">Dedue</div></div>
-                    <div class="hero-card tall"><img src="img/2025-lena.jpg" alt="Fallen Lena"><div class="hero-name">Lena</div></div>
+                    <div class="hero-card tall"><img src="img/2025-alear-m.jpg" alt="Alear (F)" data-title=""><div class="hero-name">Alear (F)</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2025-alear-f.jpg" alt="Alear (M)" data-title=""><div class="hero-name">Alear (M)</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2025-dedue.jpg" alt="Dedue" data-title=""><div class="hero-name">Dedue</div><div class="hero-title"></div></div>
+                    <div class="hero-card tall"><img src="img/2025-lena.jpg" alt="Lena" data-title=""><div class="hero-name">Lena</div><div class="hero-title"></div></div>
                 </div>
             </div>
         </section>
@@ -580,15 +617,26 @@
             card.setAttribute('tabindex', '0');
             card.setAttribute('aria-label', 'Show ' + (img.alt || 'hero') + ' as banner');
 
+            var caption = slide.querySelector('.banner-caption');
+
             function activate() {
                 var newSrc = img.dataset.full || img.getAttribute('src');
-                if (banner.getAttribute('src') === newSrc) return;
-                banner.style.opacity = '0';
-                setTimeout(function () {
-                    banner.setAttribute('src', newSrc);
-                    banner.alt = img.alt || '';
-                    banner.style.opacity = '1';
-                }, 220);
+                var name = img.alt || '';
+                var title = img.dataset.title || '';
+                if (banner.getAttribute('src') !== newSrc) {
+                    banner.style.opacity = '0';
+                    setTimeout(function () {
+                        banner.setAttribute('src', newSrc);
+                        banner.alt = name;
+                        banner.style.opacity = '1';
+                    }, 220);
+                }
+                if (caption) {
+                    var html = '<span class="cap-name">' + name + '</span>';
+                    if (title) html += '<span class="cap-sep">&bull;</span><span class="cap-title">' + title + '</span>';
+                    caption.innerHTML = html;
+                    caption.classList.add('visible');
+                }
                 slide.querySelectorAll('.hero-card.active').forEach(function (c) { c.classList.remove('active'); });
                 card.classList.add('active');
             }
