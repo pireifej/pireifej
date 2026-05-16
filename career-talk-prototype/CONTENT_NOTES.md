@@ -166,8 +166,67 @@
   (e.g., ChatGPT)
 - **Future** — AI helps drive cars, explore space, solve big world problems
 
-### S9 — How AI Works
-- [Paul will continue here]
+### S9 — How AI Works (the CAT explanation)
+
+#### S9a — "Big Cat, Small Cat, Fluffy Cat"
+- Slide with 3 cat photos
+- Setup: "AI looks at large data sets like this"
+
+#### S9b — Step 1: Show It Lots of Cats
+- Big collage of cat photos
+- "Show it thousands of pictures of cats — big cats, small cats, fluffy cats, silly cats"
+- "AI learns like a kid"
+
+#### S9c — Step 2: Look for Patterns
+- Cat picture with circles drawn on ears, nose, body
+- "It starts to notice things: pointy ears, whiskers, furry body, cute little nose"
+
+#### S9d — Step 3: Learn What a Cat Is
+- Picture of cat wearing glasses reading a book
+- "Now the AI says: hmm this picture has cat-like stuff. It must be a cat."
+- Show a new picture: "Is this a cat?"
+- AI answers: "Yes, this is a cat" / "No, this is a dog"
+- Tagline: "That's machine learning! AI gets smarter the more examples we give it."
+
+### S10 — "Glorified Pattern Recognition" (big-text reveal)
+- Huge bold words on screen: **GLORIFIED PATTERN RECOGNITION**
+- Tells the kids: "Go home and tell your family you learned what AI is.
+  It's nothing more than glorified pattern recognition."
+- **Paul's question**: with ChatGPT's reasoning models, is this still accurate?
+  → Short answer: YES, still 90% true. Reasoning models add a
+  "think-out-loud" step before answering, but the underlying engine is still
+  pattern recognition on text — patterns of HOW people reason, learned from
+  billions of examples. The phrase still lands. Maybe soften slightly:
+  "Glorified pattern recognition — and getting better at faking thinking."
+
+### S11 — GROUP EXERCISE: AI Story Generator
+- Bring up a volunteer
+- Gather inputs from them:
+  - Their name
+  - 2 things they like
+  - 1 thing they dislike
+  - A scenario
+- Feed into ChatGPT (or similar) → generates a custom story
+- Original website Paul used is gone now
+- IMPORTANT: Paul realized he used his PHONE for this last time
+  → he probably DOES have internet in the classroom
+- **TODO**: pick the live tool — ChatGPT directly, a custom page on
+  shouldcallpaul.com that prompts the API, or build a clean little
+  story-generator page on this site
+
+### S12 — Jobs slide (was S10 above — re-order: this comes AFTER cats/pattern recognition)
+- See earlier notes; moved to land after AI explanation so kids have context
+
+### S13 — Learn More! (closing)
+- Resources:
+  - Code Ninja
+  - iCode (where his kids went)
+  - YouTube
+  - shouldcallpaul.com
+- QR code to his site
+- "Tell your parents about me!"
+- "I do workshops on AI, public speaking, etc."
+- Q&A / mic drop
 
 ### S10 — Jobs & AI (realistic but optimistic)
 - Audience: kids grades 4, 5, 6
