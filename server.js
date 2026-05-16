@@ -189,19 +189,26 @@ app.post('/api/story', async (req, res) => {
 ABSOLUTE HARD RULES — VIOLATIONS WILL BE REJECTED:
 1. MAX 120 WORDS in the story. Count carefully. Under 120 is fine. Over 120 is FAILURE.
 2. NEVER begin with "Once upon a time", "There was", "In a [place]", "Long ago", or any traditional opener. Start MID-SCENE with action or dialogue.
-3. NEVER end with "the end", "and they lived", "learned a lesson", "from that day on", or any moral wrap-up. End on a cliffhanger, a weird image, or a question.
+3. STRUCTURE — TWO ACTS, NO MORAL WRAP-UP:
+   ACT 1 (first ~80-100 words): set the scene mid-action, introduce the absurd surprise twist, build tension.
+   ACT 2 (final 1-2 sentences ONLY): land HARD on a cliffhanger. The very LAST sentence MUST be exactly one of these four types (pick the funniest fit):
+     (a) A sudden weird SOUND in italics or quotes (e.g. "THWACK." or "*plorp*" — a noise nobody can explain).
+     (b) A character speaks ONE shocked sentence of dialogue in quotes (e.g. "...that's not a banana.").
+     (c) A thing turns into another thing mid-sentence (e.g. "...and the steering wheel slowly became a goldfish.").
+     (d) A direct question fired at the reader (e.g. "Now what?" or "What would YOU do?").
+   FORBIDDEN endings: "the end", "and they lived", "learned a lesson", "from that day on", "and that's how", any moral, any tidy resolution, any explanation of what happens next.
 4. BANNED WORDS (do not use): happy, sad, fun, amazing, beautiful, wonderful, friendship, learned, lesson, journey, adventure (the word itself), suddenly, magical.
 5. Narrate in this voice the whole way through: ${style}. Commit hard to it. The voice should be obvious from the first sentence.
 6. The hero is ${cleanName}${cleanLooks ? ` (appearance: ${cleanLooks})` : ''}. Name appears 2-3 times max. ${cleanLooks ? 'You may mention 1-2 specific physical details from the appearance once in the story (not a full description).' : ''}
 7. Include the love (${cleanLikes}) as a plot driver AND the hate (${cleanDislikes}) as a comedic obstacle. Setting: ${cleanScenario}.
-8. One absurd surprise twist required (talking object, sudden swap, ridiculous coincidence).
+8. One absurd surprise twist required in ACT 1 (talking object, sudden swap, ridiculous coincidence).
 9. School-appropriate. No violence, no scary content.
 
 OUTPUT FORMAT — follow EXACTLY:
 Your entire reply must be plain text in this exact shape, with these exact uppercase labels on their own lines, and nothing else (no markdown, no code fences, no preamble):
 
 STORY:
-<the story as one or two paragraphs of flowing prose, 90-130 words>
+<the story as one or two paragraphs of flowing prose, 90-120 words, ending on the cliffhanger as specified>
 
 IMAGE_PROMPT:
 <one rich sentence (25-45 words) describing the MOST VIVID single moment from the story for an AI image generator. Include: (a) the hero with their FULL appearance (${cleanLooks ? `MUST match: ${cleanLooks}` : 'invent something cute and kid-aged'}), (b) the loves, (c) the setting, (d) one absurd visual detail. Style suffix MUST be: "vibrant kid-friendly digital illustration, colorful storybook art, no text". Example: "A 10-year-old girl named Maya with brown skin, curly black hair and round glasses, surfing on a giant pizza slice through a glowing jelly spaceship corridor with a small green dragon on her shoulder, vibrant kid-friendly digital illustration, colorful storybook art, no text">
@@ -214,7 +221,17 @@ Detective Maya squinted through the jelly fog of cargo bay seven, where her pet 
 IMAGE_PROMPT:
 A curly-haired detective girl named Maya holding a small purple dragon while surfing on a pizza slice through a jelly-flooded spaceship corridor with a startled broccoli waving its leaves, vibrant kid-friendly digital illustration, colorful storybook art, no text`;
 
-        const userContent = `Hero: ${cleanName}.${cleanLooks ? ` Appearance: ${cleanLooks}.` : ''} Loves: ${cleanLikes}. Hates: ${cleanDislikes}. Setting: ${cleanScenario}. Write the story now in the exact STORY: / IMAGE_PROMPT: format. The IMAGE_PROMPT MUST include the appearance details so the picture looks like the real kid.`;
+        const userContent = `Hero: ${cleanName}.${cleanLooks ? ` Appearance: ${cleanLooks}.` : ''} Loves: ${cleanLikes}. Hates: ${cleanDislikes}. Setting: ${cleanScenario}.
+
+Write the story now in the exact STORY: / IMAGE_PROMPT: format.
+
+CRITICAL REMINDERS before you write:
+- Start MID-ACTION. No "Once upon a time", no scene-setting intros, no "She had always been curious...". First sentence is something HAPPENING.
+- Maximum 120 words total. Be punchy. Short sentences.
+- The absurd twist (talking object / sudden swap / ridiculous coincidence) must show up by word ~60.
+- The VERY LAST SENTENCE must be ONE of: (a) a weird sound like "THWACK." or "*plorp*", (b) shocked one-line dialogue in quotes, (c) "...became a/turned into a [thing]", or (d) a direct "?" question to the reader. NOTHING ELSE. No "they laughed and rode off". No "what an adventure". No "she smiled". Cut hard, land weird, stop.
+- BANNED words include: adventure, happy, fun, amazing, beautiful, magical, suddenly, learned, lesson, friendship. Do not use any of them.
+- IMAGE_PROMPT MUST include the appearance details so the picture looks like the real kid.`;
 
         const credentials = Buffer.from(`${username}:${password}`).toString('base64');
         const scpResponse = await fetch('https://shouldcallpaul.replit.app/getChatCompletion', {
