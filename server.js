@@ -202,18 +202,18 @@ Your entire reply must be plain text in this exact shape, with these exact upper
 STORY:
 <the story as one or two paragraphs of flowing prose, 90-130 words>
 
-IMAGE_QUERY:
-<3 to 6 words for a stock-photo search that captures the visual vibe — e.g. "astronaut kid space adventure" or "pizza floating colorful" — NOT a literal description>
+IMAGE_PROMPT:
+<one rich sentence (20-35 words) describing the MOST VIVID single moment from the story for an AI image generator. Include the hero, the loves, the setting, and one absurd detail. Style suffix MUST be: "vibrant kid-friendly digital illustration, colorful storybook art, no text". Example: "A curly-haired girl named Maya surfing on a giant pizza slice through a glowing jelly spaceship corridor with a small green dragon on her shoulder, vibrant kid-friendly digital illustration, colorful storybook art, no text">
 
 Example of a correct reply (the entire reply, nothing else):
 
 STORY:
 Detective Maya squinted through the jelly fog of cargo bay seven, where her pet dragon Pickles had eaten three pizzas and was now jiggling suspiciously. A talking broccoli cleared its throat from the airlock. "Hand over the cheese," it demanded. Maya gasped. Pickles burped a small fireball. Somewhere, an alarm started playing kazoo music. The spaceship lurched. A jelly tsunami rolled down the corridor, scooping the broccoli mid-monologue. Maya grabbed Pickles and surfed a pizza slice toward the bridge, where the captain was crying because the steering wheel had turned into a banana.
 
-IMAGE_QUERY:
-astronaut kid dragon space`;
+IMAGE_PROMPT:
+A curly-haired detective girl named Maya holding a small purple dragon while surfing on a pizza slice through a jelly-flooded spaceship corridor with a startled broccoli waving its leaves, vibrant kid-friendly digital illustration, colorful storybook art, no text`;
 
-        const userContent = `Hero: ${cleanName}. Loves: ${cleanLikes}. Hates: ${cleanDislikes}. Setting: ${cleanScenario}. Write the story now in the exact STORY: / IMAGE_QUERY: format.`;
+        const userContent = `Hero: ${cleanName}. Loves: ${cleanLikes}. Hates: ${cleanDislikes}. Setting: ${cleanScenario}. Write the story now in the exact STORY: / IMAGE_PROMPT: format.`;
 
         const credentials = Buffer.from(`${username}:${password}`).toString('base64');
         const scpResponse = await fetch('https://shouldcallpaul.replit.app/getChatCompletion', {
@@ -242,17 +242,17 @@ astronaut kid dragon space`;
         const scpData = await scpResponse.json();
         const raw = (scpData?.choices?.[0]?.message?.content || '').trim();
 
-        // Parse plain-text STORY: / IMAGE_QUERY: format
+        // Parse plain-text STORY: / IMAGE_PROMPT: format
         let storyText = '';
-        let queryText = '';
-        const storyMatch = raw.match(/STORY:\s*([\s\S]*?)(?:\n\s*IMAGE_QUERY:|$)/i);
-        const queryMatch = raw.match(/IMAGE_QUERY:\s*([^\n]+)/i);
+        let imagePrompt = '';
+        const storyMatch = raw.match(/STORY:\s*([\s\S]*?)(?:\n\s*IMAGE_(?:PROMPT|QUERY):|$)/i);
+        const promptMatch = raw.match(/IMAGE_(?:PROMPT|QUERY):\s*([\s\S]+?)$/i);
         if (storyMatch) storyText = storyMatch[1].trim();
-        if (queryMatch) queryText = queryMatch[1].trim().replace(/^["']|["']$/g, '');
+        if (promptMatch) imagePrompt = promptMatch[1].trim().replace(/^["']|["']$/g, '').replace(/\s+/g, ' ');
 
         // Fallback: if labels were missing, treat the whole reply as the story
         if (!storyText && raw.length > 30) {
-            storyText = raw.replace(/^(STORY|IMAGE_QUERY):\s*/gi, '').trim();
+            storyText = raw.replace(/^(STORY|IMAGE_(?:PROMPT|QUERY)):\s*/gi, '').trim();
         }
 
         if (!storyText) {
@@ -279,38 +279,25 @@ astronaut kid dragon space`;
                 : cut + '...';
         }
 
-        let imageUrl = null;
-        let imageCredit = null;
-        // Clamp image query to first 6 words for cleaner Pexels results
-        const rawQuery = (queryText || cleanScenario || 'adventure').toString();
-        const query = rawQuery
-            .replace(/[^a-zA-Z0-9\s]/g, ' ')
-            .trim()
-            .split(/\s+/)
-            .slice(0, 6)
-            .join(' ');
-        if (pexelsClient) {
-            try {
-                const photoRes = await pexelsClient.photos.search({
-                    query,
-                    per_page: 15,
-                    orientation: 'landscape'
-                });
-                if (photoRes?.photos?.length > 0) {
-                    const pick = photoRes.photos[Math.floor(Math.random() * photoRes.photos.length)];
-                    imageUrl = pick.src.large2x || pick.src.large || pick.src.original;
-                    imageCredit = { photographer: pick.photographer, url: pick.url };
-                }
-            } catch (pexErr) {
-                console.error('Pexels error:', pexErr?.message || pexErr);
-            }
+        // Build the AI image prompt for Pollinations (free, no key, kid-friendly)
+        // If GPT didn't return one, build a fallback from the inputs
+        let finalPrompt = imagePrompt;
+        if (!finalPrompt || finalPrompt.length < 15) {
+            finalPrompt = `A kid named ${cleanName} who loves ${cleanLikes} ${cleanScenario}, vibrant kid-friendly digital illustration, colorful storybook art, no text`;
         }
+        // Hard cap length and ensure style suffix is present
+        finalPrompt = finalPrompt.slice(0, 400);
+        if (!/storybook|illustration|digital/i.test(finalPrompt)) {
+            finalPrompt += ', vibrant kid-friendly digital illustration, colorful storybook art, no text';
+        }
+
+        const seed = Math.floor(Math.random() * 1000000);
+        const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=1024&height=768&nologo=true&safe=true&seed=${seed}`;
 
         res.json({
             story: storyText,
-            imageQuery: query,
+            imagePrompt: finalPrompt,
             imageUrl,
-            imageCredit,
             style
         });
 

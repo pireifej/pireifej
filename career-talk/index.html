@@ -986,29 +986,32 @@
         <div id="story-loading" style="display:none; margin-top: 22px; text-align: center;">
             <div class="sm-spinner"></div>
             <p class="mono cyan" style="margin-top: 14px; font-size: 0.95rem;">&gt; gpt-4o-mini is writing...&nbsp;<span class="sm-dots"><span>.</span><span>.</span><span>.</span></span></p>
-            <p class="mono" style="color: var(--muted); font-size: 0.78rem; margin-top: 4px;">&gt; searching pexels for a matching photo...</p>
+            <p class="mono" style="color: var(--muted); font-size: 0.78rem; margin-top: 4px;">&gt; image AI is warming up the paint brushes...</p>
         </div>
 
         <!-- RESULT VIEW -->
-        <div id="story-result" style="display:none; margin-top: 14px; flex: 1; min-height: 0;">
-            <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 18px; height: 100%;">
-                <div class="glass coral-edge" style="padding: 18px 22px; overflow-y: auto; max-height: 60vh;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+        <div id="story-result" style="display:none; margin-top: 12px; flex: 1; min-height: 0; flex-direction: column;">
+            <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 16px; flex: 1; min-height: 0;">
+                <div class="glass coral-edge" style="padding: 14px 18px; display:flex; flex-direction:column; min-height: 0;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px; flex-shrink: 0;">
                         <span class="ex-tag" style="background: rgba(255,143,171,0.12); border-color: rgba(255,143,171,0.4); color: var(--coral);">THE STORY</span>
-                        <span id="sm-style-pill" class="mono" style="color: var(--muted); font-size: 0.7rem;"></span>
+                        <span id="sm-style-pill" class="mono" style="color: var(--muted); font-size: 0.65rem;"></span>
                     </div>
-                    <div id="sm-story-text" style="font-family: 'Inter', sans-serif; font-size: clamp(0.95rem, 1.7vh, 1.2rem); line-height: 1.55;"></div>
+                    <div id="sm-story-text" style="font-family: 'Inter', sans-serif; font-size: clamp(0.85rem, 1.55vh, 1.05rem); line-height: 1.5; overflow-y: auto; flex: 1; min-height: 0; padding-right: 6px;"></div>
                 </div>
-                <div class="glass cyan-edge" style="padding: 14px; display:flex; flex-direction:column; align-items:stretch;">
-                    <span class="ex-tag" style="align-self:flex-start; margin-bottom: 8px;">THE PICTURE</span>
-                    <div id="sm-image-wrap" style="flex:1; min-height:0; border-radius: 14px; overflow: hidden; background: rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; position: relative;">
+                <div class="glass cyan-edge" style="padding: 12px; display:flex; flex-direction:column; align-items:stretch; min-height: 0;">
+                    <span class="ex-tag" style="align-self:flex-start; margin-bottom: 6px; flex-shrink: 0;">THE PICTURE</span>
+                    <div id="sm-image-wrap" style="flex:1; min-height:0; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; position: relative;">
                         <img id="sm-image" style="width:100%; height:100%; object-fit: cover; display:none;" alt="Story illustration">
-                        <p id="sm-image-fallback" style="color: var(--muted); font-family:'JetBrains Mono', monospace; font-size: 0.85rem; padding: 14px; text-align:center;">No matching photo found.</p>
+                        <div id="sm-image-fallback" style="color: var(--cyan); font-family:'JetBrains Mono', monospace; font-size: 0.8rem; padding: 14px; text-align:center;">
+                            <div class="sm-spinner" style="margin: 0 auto 10px;"></div>
+                            &gt; AI is drawing your scene<span class="sm-dots"><span>.</span><span>.</span><span>.</span></span><br>
+                            <span style="color: var(--muted); font-size: 0.7rem;">(usually 5-15 seconds)</span>
+                        </div>
                     </div>
-                    <p id="sm-image-credit" style="margin: 6px 0 0; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-align: right;"></p>
                 </div>
             </div>
-            <div style="display:flex; gap:12px; justify-content:center; margin-top: 14px;">
+            <div style="display:flex; gap:12px; justify-content:center; margin-top: 12px; flex-shrink: 0;">
                 <button id="sm-again" class="sm-btn primary"><i class="fas fa-redo"></i>&nbsp; Try Another</button>
                 <button id="sm-regen" class="sm-btn ghost"><i class="fas fa-sync"></i>&nbsp; Same kid, new story</button>
             </div>
@@ -1169,7 +1172,7 @@
         function show(view) {
             $('story-inputs').style.display = view === 'input' ? 'block' : 'none';
             $('story-loading').style.display = view === 'loading' ? 'block' : 'none';
-            $('story-result').style.display = view === 'result' ? 'block' : 'none';
+            $('story-result').style.display = view === 'result' ? 'flex' : 'none';
         }
 
         function setError(msg) {
@@ -1210,16 +1213,17 @@
                 }
                 $('sm-story-text').textContent = data.story;
                 $('sm-style-pill').textContent = data.style ? '// voice: ' + data.style : '';
-                var img = $('sm-image'), fb = $('sm-image-fallback'), credit = $('sm-image-credit');
+                var img = $('sm-image'), fb = $('sm-image-fallback');
+                img.style.display = 'none';
+                fb.style.display = 'block';
+                fb.innerHTML = '<div class="sm-spinner" style="margin: 0 auto 10px;"></div>&gt; AI is drawing your scene<span class="sm-dots"><span>.</span><span>.</span><span>.</span></span><br><span style="color: var(--muted); font-size: 0.7rem;">(usually 5-15 seconds)</span>';
                 if (data.imageUrl) {
                     img.onload = function () { img.style.display = 'block'; fb.style.display = 'none'; };
-                    img.onerror = function () { img.style.display = 'none'; fb.style.display = 'block'; fb.textContent = 'Image failed to load.'; };
+                    img.onerror = function () { img.style.display = 'none'; fb.style.display = 'block'; fb.innerHTML = '<span style="color: var(--coral);">&gt; Image didn\'t come through. Click "Same kid, new story" to retry.</span>'; };
                     img.src = data.imageUrl;
-                    credit.textContent = data.imageCredit ? 'photo: ' + data.imageCredit.photographer + ' / pexels' : '';
                 } else {
-                    img.style.display = 'none'; img.removeAttribute('src');
-                    fb.style.display = 'block'; fb.textContent = 'No matching photo found (story still works).';
-                    credit.textContent = '';
+                    img.removeAttribute('src');
+                    fb.innerHTML = '<span style="color: var(--coral);">&gt; No image this time (story still works).</span>';
                 }
                 show('result');
             } catch (err) {
