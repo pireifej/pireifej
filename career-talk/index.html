@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Paul Ireifej's 45-minute career talk for Indian Hill School students.">
+<meta name="robots" content="noindex, nofollow">
+<title>My Career in Code &mdash; Paul Ireifej</title>
+<link rel="shortcut icon" href="/img-new/logo/piconlogo.png" type="image/x-icon">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reveal.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-deep: #0d0d1a; --bg-mid: #1a1a3e; --bg-purple: #2d1b4e;
+        --cyan: #00d4ff; --purple: #6c5ce7; --lav: #a29bfe;
+        --coral: #FF8FAB; --sun: #FFC857;
+        --bone: #e8ecf1; --muted: #9aa5b8;
+    }
+    html, body { margin:0; padding:0; height:100%; background: var(--bg-deep); color: var(--bone); font-family: 'Inter', sans-serif; overflow: hidden; }
+    body {
+        background:
+            radial-gradient(ellipse 60% 50% at 18% 20%, rgba(108, 92, 231, 0.22), transparent 70%),
+            radial-gradient(ellipse 50% 50% at 82% 80%, rgba(0, 212, 255, 0.15), transparent 70%),
+            radial-gradient(ellipse 70% 60% at 50% 50%, rgba(45, 27, 78, 0.6), rgba(13, 13, 26, 1));
+        background-attachment: fixed;
+    }
+    .reveal { color: var(--bone); position: relative; z-index: 1; }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0 !important; }
+
+    /* Matrix rain — full viewport, low opacity */
+    #matrix-rain { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.10; }
+    section[data-matrix="strong"] ~ #matrix-rain, section.matrix-strong-active { /* hook for stronger rain */ }
+
+    .slide-inner {
+        position: relative; height: 100vh; min-height: 100vh;
+        padding: 4vh 5vw; box-sizing: border-box;
+        display: flex; flex-direction: column; overflow: hidden;
+    }
+    .slide-inner.center { justify-content: center; }
+    .slide-inner.center-all { justify-content: center; align-items: center; text-align: center; }
+
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--bone); margin: 0; letter-spacing: -0.5px; }
+    h1 { font-size: clamp(2.6rem, 6.5vh, 6rem); font-weight: 900; line-height: 1.02; }
+    h2 { font-size: clamp(1.9rem, 4.8vh, 3.8rem); font-weight: 800; line-height: 1.08; }
+    h3 { font-size: clamp(1.2rem, 2.4vh, 1.9rem); font-weight: 700; }
+    .reveal p, .reveal li { font-size: clamp(1rem, 1.85vh, 1.4rem); line-height: 1.55; color: var(--bone); }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .grad-cyan-coral { background: linear-gradient(90deg, var(--cyan), var(--coral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grad-cyan-sun { background: linear-gradient(90deg, var(--cyan), var(--sun)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grad-coral-sun { background: linear-gradient(90deg, var(--coral), var(--sun)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .cyan { color: var(--cyan); } .coral { color: var(--coral); } .sun { color: var(--sun); } .lav { color: var(--lav); }
+
+    .eyebrow {
+        display: inline-block; font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem; letter-spacing: 4px; color: var(--cyan); text-transform: uppercase;
+        padding: 6px 14px; border: 1px solid rgba(0, 212, 255, 0.4);
+        border-radius: 4px; background: rgba(0, 212, 255, 0.06); margin-bottom: 16px;
+    }
+    .eyebrow.coral { color: var(--coral); border-color: rgba(255,143,171,0.5); background: rgba(255,143,171,0.06); }
+    .eyebrow.sun { color: var(--sun); border-color: rgba(255,200,87,0.5); background: rgba(255,200,87,0.06); }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 22px;
+        padding: 26px 30px;
+        box-shadow: 0 18px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .glass.cyan-edge { border-color: rgba(0,212,255,0.45); box-shadow: 0 0 30px rgba(0,212,255,0.2), 0 18px 50px rgba(0,0,0,0.5); }
+    .glass.coral-edge { border-color: rgba(255,143,171,0.45); box-shadow: 0 0 30px rgba(255,143,171,0.2), 0 18px 50px rgba(0,0,0,0.5); }
+    .glass.sun-edge { border-color: rgba(255,200,87,0.45); box-shadow: 0 0 30px rgba(255,200,87,0.2), 0 18px 50px rgba(0,0,0,0.5); }
+
+    /* Stickers */
+    .sticker {
+        position: absolute; display: inline-flex; align-items: center; justify-content: center;
+        font-family: 'JetBrains Mono', monospace; font-weight: 700;
+        border-radius: 50%; background: rgba(13, 13, 26, 0.75); backdrop-filter: blur(8px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+        animation: float-bob 5s ease-in-out infinite;
+    }
+    .sticker.cyan { color: var(--cyan); border: 2px solid var(--cyan); box-shadow: 0 0 20px rgba(0,212,255,0.4), 0 8px 24px rgba(0,0,0,0.5); }
+    .sticker.coral { color: var(--coral); border: 2px solid var(--coral); box-shadow: 0 0 20px rgba(255,143,171,0.4), 0 8px 24px rgba(0,0,0,0.5); }
+    .sticker.sun { color: var(--sun); border: 2px solid var(--sun); box-shadow: 0 0 20px rgba(255,200,87,0.4), 0 8px 24px rgba(0,0,0,0.5); }
+    .sticker.purple { color: var(--lav); border: 2px solid var(--lav); box-shadow: 0 0 20px rgba(162,155,254,0.4), 0 8px 24px rgba(0,0,0,0.5); }
+    .sticker.sm { width: 52px; height: 52px; font-size: 1.3rem; }
+    .sticker.md { width: 76px; height: 76px; font-size: 1.9rem; }
+    .sticker.lg { width: 104px; height: 104px; font-size: 2.6rem; }
+    @keyframes float-bob { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+    .float-alt { animation-duration: 7s; animation-delay: -2s; }
+    .float-slow { animation-duration: 9s; animation-delay: -1s; }
+    .float-fast { animation-duration: 4s; animation-delay: -3s; }
+
+    /* Typing */
+    .typing { font-family: 'JetBrains Mono', monospace; }
+    .typing::after { content: '_'; color: var(--cyan); animation: blink 1s steps(1) infinite; margin-left: 2px; }
+    @keyframes blink { 0%,50% { opacity: 1; } 50.01%,100% { opacity: 0; } }
+
+    /* Glitch */
+    .glitch { position: relative; color: var(--bone); font-weight: 900; font-family: 'Montserrat', sans-serif; animation: glitch-base 3s infinite; }
+    .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; }
+    .glitch::before { color: var(--coral); animation: glitch-anim-1 2.5s infinite linear alternate-reverse; }
+    .glitch::after  { color: var(--cyan);  animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+    @keyframes glitch-base { 0%,100% { transform: translate(0); } 20% { transform: translate(-1px,0); } 40% { transform: translate(1px,-1px); } 60% { transform: translate(-1px,1px); } 80% { transform: translate(0,1px); } }
+    @keyframes glitch-anim-1 { 0%,100% { clip-path: inset(0 0 80% 0); transform: translate(-3px,0); } 25% { clip-path: inset(70% 0 10% 0); transform: translate(2px,0); } 50% { clip-path: inset(40% 0 40% 0); transform: translate(-2px,0); } 75% { clip-path: inset(10% 0 70% 0); transform: translate(3px,0); } }
+    @keyframes glitch-anim-2 { 0%,100% { clip-path: inset(70% 0 10% 0); transform: translate(2px,0); } 25% { clip-path: inset(20% 0 60% 0); transform: translate(-3px,0); } 50% { clip-path: inset(50% 0 20% 0); transform: translate(2px,0); } 75% { clip-path: inset(0 0 80% 0); transform: translate(-2px,0); } }
+
+    /* Photo placeholder */
+    .photo-ph {
+        background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(255,143,171,0.08));
+        border: 2px dashed rgba(0, 212, 255, 0.5);
+        border-radius: 18px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; padding: 18px;
+        color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+        min-height: 200px;
+    }
+    .photo-ph i { font-size: 2.4rem; margin-bottom: 10px; opacity: 0.6; }
+    .photo-ph .ph-label { color: var(--bone); font-weight: 700; font-size: 0.95rem; margin-top: 6px; letter-spacing: 0.5px; }
+    .photo-ph .ph-note { color: var(--muted); font-size: 0.75rem; margin-top: 4px; font-style: italic; }
+    .photo-ph.coral { border-color: rgba(255,143,171,0.5); color: var(--coral); }
+    .photo-ph.sun { border-color: rgba(255,200,87,0.5); color: var(--sun); }
+
+    /* Timeline */
+    .timeline-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 28px; position: relative; }
+    .timeline-grid::before { content: ''; position: absolute; top: 50%; left: 4%; right: 4%; height: 2px;
+        background: linear-gradient(90deg, var(--purple), var(--cyan), var(--lav), var(--coral), var(--sun));
+        box-shadow: 0 0 12px var(--cyan); z-index: 0; transform: translateY(-50%); }
+    .timeline-card {
+        position: relative; z-index: 1;
+        background: linear-gradient(180deg, rgba(20,14,42,0.95), rgba(10,8,24,0.95));
+        border: 1px solid rgba(0,212,255,0.3); border-radius: 16px;
+        padding: 18px 14px; text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .timeline-card:hover { transform: translateY(-6px); border-color: var(--cyan); box-shadow: 0 0 30px rgba(0,212,255,0.35); }
+    .timeline-card .yr { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 700; color: var(--cyan); letter-spacing: 2px; margin-bottom: 6px; }
+    .timeline-card .role { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bone); margin-bottom: 4px; }
+    .timeline-card .note { font-size: 0.85rem; color: var(--muted); line-height: 1.3; }
+
+    /* IDE mockup */
+    .ide { background: #161629; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(0,212,255,0.12); overflow: hidden; max-width: 820px; margin: 0 auto; }
+    .ide-bar { background: #0e0e1c; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .ide-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .ide-dot.r { background: #ff5f57; } .ide-dot.y { background: #febc2e; } .ide-dot.g { background: #28c840; }
+    .ide-bar .ide-file { margin-left: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+    .ide-body { padding: 22px 26px; font-family: 'JetBrains Mono', monospace;
+        font-size: clamp(0.85rem, 1.6vh, 1.1rem); line-height: 1.7; min-height: 200px; color: var(--bone); white-space: pre-wrap; }
+    .ide-body .kw { color: var(--coral); } .ide-body .fn { color: var(--cyan); }
+    .ide-body .str { color: var(--sun); } .ide-body .com { color: var(--muted); font-style: italic; }
+    .ide-cursor { display: inline-block; width: 8px; height: 1.1em; background: var(--cyan); vertical-align: text-bottom; animation: blink 1s steps(1) infinite; box-shadow: 0 0 8px var(--cyan); }
+
+    /* Joke / "Maybe I'm a ___?" big card */
+    .joke-card { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; height: 90vh; }
+    .joke-q { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(3rem, 12vh, 9rem); line-height: 1; letter-spacing: -2px; }
+    .joke-q .qmark { color: var(--coral); }
+    .joke-sub { font-size: 1.25rem; color: var(--muted); margin-top: 18px; max-width: 480px; }
+
+    /* List of items (what I do) */
+    .do-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 24px; }
+    .do-item {
+        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px; padding: 20px;
+        display: flex; align-items: center; gap: 14px;
+        transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .do-item:hover { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,212,255,0.25); }
+    .do-item .ico { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .do-item .ico.c { background: rgba(0,212,255,0.15); color: var(--cyan); }
+    .do-item .ico.p { background: rgba(255,143,171,0.15); color: var(--coral); }
+    .do-item .ico.s { background: rgba(255,200,87,0.15); color: var(--sun); }
+    .do-item .ico.l { background: rgba(162,155,254,0.15); color: var(--lav); }
+    .do-item .lbl { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.05rem; }
+
+    /* Step cards (cat steps, etc) */
+    .step-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 24px; align-items: stretch; }
+    .step-card { background: linear-gradient(180deg, rgba(20,14,42,0.92), rgba(10,8,24,0.92));
+        border: 1px solid rgba(0,212,255,0.25); border-radius: 18px; padding: 22px; position: relative; }
+    .step-card .num { position: absolute; top: -18px; left: 22px; width: 40px; height: 40px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--cyan), var(--purple)); display: flex; align-items: center; justify-content: center;
+        font-family: 'Montserrat', sans-serif; font-weight: 900; color: var(--bg-deep); font-size: 1.2rem;
+        box-shadow: 0 0 18px rgba(0,212,255,0.5); }
+    .step-card h3 { margin-top: 10px; margin-bottom: 8px; color: var(--cyan); }
+    .step-card p { margin: 0; font-size: 1rem; color: var(--bone); }
+
+    /* Exercise card */
+    .ex-card {
+        background: linear-gradient(135deg, rgba(255,143,171,0.12), rgba(255,200,87,0.12));
+        border: 2px dashed rgba(255,143,171,0.55); border-radius: 22px;
+        padding: 26px 30px; box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+    }
+    .ex-card .ex-tag {
+        display: inline-block; background: var(--coral); color: var(--bg-deep);
+        font-family: 'JetBrains Mono', monospace; font-weight: 700; letter-spacing: 2px;
+        padding: 5px 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 14px;
+    }
+    .ex-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 18px; }
+    .ex-step { background: rgba(13,13,26,0.55); border: 1px solid rgba(255,143,171,0.3); border-radius: 14px; padding: 16px; }
+    .ex-step .n { color: var(--coral); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.85rem; letter-spacing: 2px; }
+    .ex-step .t { font-weight: 700; margin: 6px 0 4px; font-family: 'Montserrat', sans-serif; }
+    .ex-step .d { color: var(--muted); font-size: 0.9rem; }
+
+    /* Reveal nav */
+    .reveal .progress { color: var(--cyan); }
+    .reveal .controls { color: var(--cyan); }
+    .reveal .slide-number {
+        background: rgba(13,13,26,0.85); color: var(--cyan); font-family: 'JetBrains Mono', monospace;
+        border: 1px solid rgba(0,212,255,0.4); border-radius: 4px;
+    }
+    .back-btn {
+        position: fixed; top: 16px; left: 16px; z-index: 100;
+        background: rgba(13,13,26,0.85); color: var(--cyan); padding: 9px 16px;
+        border: 1px solid var(--cyan); border-radius: 6px; text-decoration: none;
+        font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+        box-shadow: 0 0 18px rgba(0,212,255,0.3); transition: all 0.3s;
+    }
+    .back-btn:hover { background: var(--cyan); color: var(--bg-deep); }
+
+    /* AT&T inspired (just colored type) */
+    .att-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(5rem, 18vh, 14rem);
+        background: linear-gradient(90deg, #00a8e0, #009fdb); -webkit-background-clip: text; background-clip: text; color: transparent;
+        letter-spacing: -4px; text-shadow: 0 0 60px rgba(0,168,224,0.4); }
+
+    /* Big single-statement slide */
+    .big-statement { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(3rem, 12vh, 9rem); line-height: 1; letter-spacing: -3px; }
+
+    /* Apps / games / tools convo prompt */
+    .convo-prompt { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .convo-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 999px; padding: 10px 20px; font-family: 'Montserrat'; font-weight: 600; color: var(--bone); font-size: 1rem; }
+
+    /* Mobile vs desktop frames */
+    .frame-row { display: grid; grid-template-columns: 2fr 1fr; gap: 36px; align-items: end; margin-top: 24px; }
+    .frame-desktop { background: #1a1a3e; border: 8px solid #2a2a4e; border-radius: 14px 14px 4px 4px;
+        padding: 12px; aspect-ratio: 16/10; position: relative; }
+    .frame-desktop::after { content: ''; position: absolute; left: -50px; right: -50px; bottom: -18px; height: 14px;
+        background: linear-gradient(180deg, #2a2a4e, #181830); border-radius: 4px; }
+    .frame-mobile { background: #1a1a3e; border: 4px solid #2a2a4e; border-radius: 26px; padding: 10px;
+        aspect-ratio: 9/16; position: relative; }
+    .frame-mobile::before { content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+        width: 50px; height: 5px; background: #0d0d1a; border-radius: 4px; }
+    .frame-screen { background: var(--bone); border-radius: 4px; width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center; color: #333; font-family: 'JetBrains Mono'; font-size: 0.7rem; text-align: center; padding: 8px; box-sizing: border-box; }
+    .frame-mobile .frame-screen { border-radius: 18px; }
+    .frame-label { text-align: center; margin-top: 14px; font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.85rem; letter-spacing: 1px; }
+
+    /* GPT explode */
+    .gpt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
+    .gpt-letter { text-align: center; padding: 28px 22px;
+        background: linear-gradient(180deg, rgba(20,14,42,0.92), rgba(10,8,24,0.92));
+        border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; }
+    .gpt-letter .l { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 5rem; line-height: 1;
+        background: linear-gradient(135deg, var(--cyan), var(--coral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .gpt-letter .w { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.4rem; margin: 8px 0 12px; }
+    .gpt-letter .d { color: var(--muted); font-size: 0.95rem; }
+
+    /* Next-word demo */
+    .nextword { display: grid; gap: 14px; margin-top: 24px; }
+    .nextword-row { display: flex; align-items: center; gap: 16px; font-family: 'JetBrains Mono', monospace; font-size: clamp(1rem, 2.2vh, 1.6rem); }
+    .nextword-row .prompt-txt { background: rgba(255,255,255,0.05); padding: 10px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
+    .nextword-row .blank { color: var(--coral); border-bottom: 3px solid var(--coral); padding: 0 8px; min-width: 80px; display: inline-block; }
+    .nextword-row .arrow { color: var(--cyan); font-size: 1.5rem; }
+    .nextword-row .ans { color: var(--sun); font-weight: 700; background: rgba(255,200,87,0.1); padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(255,200,87,0.3); }
+
+    /* Resource cards */
+    .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 24px; }
+    .res-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px;
+        padding: 22px; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+    .res-card:hover { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,212,255,0.25); }
+    .res-card .ico { font-size: 2rem; margin-bottom: 12px; }
+    .res-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .res-card p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+    /* Act break / chapter marker */
+    .act-marker { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 14px; }
+
+    /* QR placeholder */
+    .qr-ph { width: 180px; height: 180px; background: var(--bone); border-radius: 18px;
+        display: flex; align-items: center; justify-content: center; color: #333; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-align: center; padding: 10px; box-sizing: border-box; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+        .slide-inner { padding: 3vh 4vw; }
+        .timeline-grid { grid-template-columns: repeat(2, 1fr); }
+        .timeline-grid::before { display: none; }
+        .joke-card { grid-template-columns: 1fr; gap: 20px; height: auto; }
+        .step-row { grid-template-columns: 1fr; }
+        .gpt-grid { grid-template-columns: 1fr; }
+        .frame-row { grid-template-columns: 1fr; }
+        .sticker.lg { width: 70px; height: 70px; font-size: 1.8rem; }
+        .sticker.md { width: 56px; height: 56px; font-size: 1.4rem; }
+    }
+</style>
+</head>
+<body>
+
+<canvas id="matrix-rain"></canvas>
+<a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> &nbsp;Home</a>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== ACT 1: WHO IS THIS GUY? ==================== -->
+
+<!-- 01 TITLE -->
+<section>
+    <div class="slide-inner center">
+        <div style="max-width: 920px;">
+            <div class="mono cyan" style="font-size: 1rem; margin-bottom: 16px;"><span class="coral">paul@indianhill:~$</span> <span class="typing" data-typing="whoami --story"></span></div>
+            <span class="eyebrow">// 45-minute career talk</span>
+            <h1>My Career<br><span class="grad-cyan-coral">in Code.</span></h1>
+            <p style="margin-top: 22px; color: var(--muted); max-width: 680px; font-size: 1.25rem;">
+                Two decades of bugs, breakthroughs, late-night pages, and the lessons I wish someone had told me when I was your age.
+            </p>
+            <div style="margin-top: 36px; display: flex; gap: 18px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--coral)); display:flex; align-items:center; justify-content:center; font-weight: 900; font-family: 'Montserrat'; color: var(--bg-deep); font-size: 1.6rem;">P</div>
+                <div>
+                    <div style="font-family: 'Montserrat'; font-weight: 700; font-size: 1.25rem;">Paul Ireifej</div>
+                    <div class="mono" style="color: var(--muted); font-size: 0.9rem;">principal member of technical staff &middot; AT&amp;T</div>
+                </div>
+            </div>
+        </div>
+        <span class="sticker cyan lg" style="top: 12%; right: 8%;">&lt;/&gt;</span>
+        <span class="sticker coral md float-alt" style="top: 30%; right: 22%;">{ }</span>
+        <span class="sticker sun sm float-slow" style="top: 58%; right: 14%;">;</span>
+        <span class="sticker purple md float-fast" style="bottom: 18%; right: 28%;">&gt;_</span>
+    </div>
+</section>
+
+<!-- 02 KID PAUL + KIDS AT iCODE -->
+<section>
+    <div class="slide-inner center">
+        <div class="act-marker">// act_01 &middot; the origin story</div>
+        <h2>Once upon a time, <span class="grad-cyan-sun">I was your age.</span></h2>
+        <p style="margin-top: 12px; color: var(--muted); font-size: 1.2rem; max-width: 720px;">And now my kids go to Indian Hill &mdash; <span class="coral">just like you</span>.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; margin-top: 36px; align-items: center;">
+            <div class="photo-ph" style="min-height: 320px;">
+                <i class="fas fa-camera"></i>
+                <div class="ph-label">Kid Paul</div>
+                <div class="ph-note">photo: paul as a kid (to upload)</div>
+            </div>
+            <div class="photo-ph coral" style="min-height: 320px;">
+                <i class="fas fa-camera"></i>
+                <div class="ph-label">Gabriel &amp; Raphael @ iCode</div>
+                <div class="ph-note">photo: my kids "coding" at camp (to upload)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 03 ZZT-OOP -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// my first language</span>
+        <h2>I started coding <span class="grad-cyan-coral">when I was 6.</span></h2>
+        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4vw; margin-top: 30px; align-items: center;">
+            <div class="photo-ph sun" style="min-height: 300px;">
+                <i class="fas fa-floppy-disk"></i>
+                <div class="ph-label">ZZT-OOP (1991)</div>
+                <div class="ph-note">screenshot: ZZT-OOP game / editor</div>
+            </div>
+            <div>
+                <h3 class="sun" style="margin-bottom: 12px;">ZZT-OOP &middot; 1991</h3>
+                <p style="font-size: 1.2rem;">A game-making language built into a tiny game called <span class="mono cyan">ZZT</span>. I was 6 or 7. I didn't even know it was "coding" &mdash; I just wanted to build my own levels.</p>
+                <div class="glass cyan-edge" style="margin-top: 22px;">
+                    <p style="margin: 0;"><span class="cyan mono">// nobody taught me.</span> I just kept poking at it. Same way you figure out a new video game.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 04 WHAT??? -->
+<section data-matrix="strong">
+    <div class="slide-inner center-all">
+        <span class="eyebrow coral">// the big question</span>
+        <h1 class="grad-coral-sun" style="font-size: clamp(5rem, 18vh, 15rem); margin: 18px 0;">WHAT???</h1>
+        <p style="font-size: clamp(1.2rem, 2.4vh, 1.8rem); color: var(--muted); max-width: 720px;">
+            So... what do I <span class="coral">actually</span> do for a job? Let's guess together.
+        </p>
+    </div>
+</section>
+
+<!-- 05 HACKER? -->
+<section>
+    <div class="slide-inner">
+        <div class="joke-card">
+            <div>
+                <span class="eyebrow coral">// guess #1</span>
+                <div class="joke-q">Hacker<span class="qmark">?</span></div>
+                <p class="joke-sub">Mission Impossible music plays. I rappel from the ceiling. I steal data. Motorcycle chase. Everything explodes behind me as I escape.</p>
+            </div>
+            <div class="photo-ph coral" style="min-height: 60vh;">
+                <i class="fas fa-mask"></i>
+                <div class="ph-label">Tom Cruise hanging from ceiling</div>
+                <div class="ph-note">Mission Impossible 1 mainframe scene</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 06 CODE? -->
+<section>
+    <div class="slide-inner">
+        <div class="joke-card">
+            <div>
+                <span class="eyebrow">// guess #2</span>
+                <div class="joke-q">Code<span class="qmark">?</span></div>
+                <p class="joke-sub">Hooded developer. Dark room. Glowing monitors. Mysterious code only I understand. Drinks coffee at 2am.</p>
+            </div>
+            <div class="photo-ph" style="min-height: 60vh;">
+                <i class="fas fa-laptop-code"></i>
+                <div class="ph-label">Coder in the dark</div>
+                <div class="ph-note">cool animation of guy coding (you have this)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 07 TECH SUPPORT? -->
+<section>
+    <div class="slide-inner">
+        <div class="joke-card">
+            <div>
+                <span class="eyebrow sun">// guess #3</span>
+                <div class="joke-q">Tech Support<span class="qmark">?</span></div>
+                <p class="joke-sub">"Have you tried turning it off and on again?" Headset on, all day. Answering the phone, fixing computer problems.</p>
+            </div>
+            <div class="photo-ph sun" style="min-height: 60vh;">
+                <i class="fas fa-headset"></i>
+                <div class="ph-label">Tech support guy w/ headset</div>
+                <div class="ph-note">animation of smiling support guy</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 08 HELP GRANDMA? -->
+<section>
+    <div class="slide-inner">
+        <div class="joke-card">
+            <div>
+                <span class="eyebrow">// guess #4</span>
+                <div class="joke-q">Help <span class="lav">Grandma</span><span class="qmark">?</span></div>
+                <p class="joke-sub">One-on-one tech help. "Click the icon, grandma. Yes, that one. No, the OTHER one."</p>
+            </div>
+            <div class="photo-ph" style="min-height: 60vh;">
+                <i class="fas fa-user-friends"></i>
+                <div class="ph-label">Kid helping grandma</div>
+                <div class="ph-note">photo: kid + grandma at computer</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ACT 2: WHAT I ACTUALLY DO ==================== -->
+
+<!-- 09 HONESTLY... A BIT OF EVERYTHING -->
+<section>
+    <div class="slide-inner center">
+        <div class="act-marker">// act_02 &middot; the real answer</div>
+        <h2>Honestly? <span class="grad-cyan-sun">A little bit of everything.</span></h2>
+        <div class="do-list">
+            <div class="do-item"><div class="ico c"><i class="fas fa-shield-halved"></i></div><div class="lbl">Network Security</div></div>
+            <div class="do-item"><div class="ico p"><i class="fas fa-code"></i></div><div class="lbl">Computer Programming</div></div>
+            <div class="do-item"><div class="ico s"><i class="fas fa-cloud"></i></div><div class="lbl">Cloud Architecture</div></div>
+            <div class="do-item"><div class="ico l"><i class="fas fa-sitemap"></i></div><div class="lbl">System Design</div></div>
+            <div class="do-item"><div class="ico c"><i class="fas fa-key"></i></div><div class="lbl">Certificates &amp; SSH</div></div>
+            <div class="do-item"><div class="ico p"><i class="fas fa-clipboard-check"></i></div><div class="lbl">Compliance</div></div>
+            <div class="do-item"><div class="ico s"><i class="fas fa-users-gear"></i></div><div class="lbl">Team Lead Stuff</div></div>
+            <div class="do-item"><div class="ico l"><i class="fas fa-phone"></i></div><div class="lbl">Getting Paged at Night</div></div>
+        </div>
+        <p style="margin-top: 28px; color: var(--muted); font-style: italic;">But there's one thing I do that matters more than all of those...</p>
+    </div>
+</section>
+
+<!-- 10 GROUP EXERCISE: DRAWING TELEPHONE -->
+<section data-matrix="strong">
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// group exercise &middot; ~5 min</span>
+        <h2>The <span class="grad-coral-sun">Drawing Telephone</span> Game.</h2>
+        <p style="margin-top: 10px; color: var(--muted); font-size: 1.15rem;">A.k.a. how image AI actually works.</p>
+        <div class="ex-card" style="margin-top: 26px;">
+            <span class="ex-tag">LIVE</span>
+            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: 1.4rem;">I whisper an idea. Each person passes it on &mdash; but every other step, they have to DRAW it.</div>
+            <div class="ex-steps">
+                <div class="ex-step"><div class="n">STEP 1</div><div class="t">I whisper a sentence to Kid #1.</div><div class="d">("a dragon eating pizza on a skateboard")</div></div>
+                <div class="ex-step"><div class="n">STEP 2</div><div class="t">Kid #1 draws it on the board.</div><div class="d">No labels, no words.</div></div>
+                <div class="ex-step"><div class="n">STEP 3</div><div class="t">Kid #2 sees the drawing &mdash; writes a description.</div><div class="d">Just by looking.</div></div>
+                <div class="ex-step"><div class="n">STEP 4</div><div class="t">Kid #3 draws THAT description.</div><div class="d">Pass it on again.</div></div>
+                <div class="ex-step"><div class="n">STEP 5</div><div class="t">We compare the last drawing to the first sentence.</div><div class="d">Usually... it's chaos.</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 22px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; text-align: center;">
+            &gt; This is EXACTLY what image AI does &mdash; text becomes picture becomes text becomes picture.
+        </p>
+    </div>
+</section>
+
+<!-- 11 HELPING + EXPLAINING (post-exercise add) -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// the real answer</span>
+        <h2>What I REALLY do: <span class="grad-cyan-coral">help people.</span></h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px;">
+            <div class="glass cyan-edge">
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="width: 60px; height: 60px; border-radius: 14px; background: rgba(0,212,255,0.15); display: flex; align-items: center; justify-content: center; color: var(--cyan); font-size: 1.6rem;"><i class="fas fa-hands-helping"></i></div>
+                    <div>
+                        <h3 class="cyan" style="margin-bottom: 4px;">Helping others</h3>
+                        <p style="margin: 0; color: var(--muted);">Figuring out what a business actually needs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass coral-edge">
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <div style="width: 60px; height: 60px; border-radius: 14px; background: rgba(255,143,171,0.15); display: flex; align-items: center; justify-content: center; color: var(--coral); font-size: 1.6rem;"><i class="fas fa-comments"></i></div>
+                    <div>
+                        <h3 class="coral" style="margin-bottom: 4px;">Explaining things</h3>
+                        <p style="margin: 0; color: var(--muted);">Translating between people and computers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 30px; color: var(--muted); font-style: italic; text-align: center; max-width: 740px; margin-left: auto; margin-right: auto;">
+            The code is the easy part. The hard part is figuring out <span class="cyan">what to build</span> and explaining it to everyone else.
+        </p>
+    </div>
+</section>
+
+<!-- 12 SO WHAT — WEBSITES (responsive) -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// so what do I make?</span>
+        <h2><span class="grad-cyan-coral">Websites.</span> Like this one.</h2>
+        <div class="frame-row">
+            <div>
+                <div class="frame-desktop"><div class="frame-screen">shouldcallpaul.com<br>(desktop)</div></div>
+                <div class="frame-label">DESKTOP &middot; wide screen</div>
+            </div>
+            <div>
+                <div class="frame-mobile"><div class="frame-screen">shouldcallpaul.com<br>(mobile)</div></div>
+                <div class="frame-label">PHONE &middot; small screen</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 22px; color: var(--muted);">
+            Same site &mdash; <span class="cyan">re-arranges itself</span> so it works on any screen.
+        </p>
+    </div>
+</section>
+
+<!-- 13 SO WHAT — BAD WEBSITE EXAMPLE -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// and what NOT to do</span>
+        <h2>This is what <span class="grad-coral-sun">bad</span> looks like.</h2>
+        <div class="frame-row">
+            <div>
+                <div class="frame-desktop"><div class="frame-screen">nj.gov style<br>(desktop &mdash; ok)</div></div>
+                <div class="frame-label">DESKTOP</div>
+            </div>
+            <div>
+                <div class="frame-mobile"><div class="frame-screen" style="font-size: 0.5rem;">tiny tiny tiny<br>squished site<br>can't read it</div></div>
+                <div class="frame-label coral">PHONE &middot; unreadable</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 22px; color: var(--muted);">
+            Looks the same on every screen &mdash; which means it's <span class="coral">unusable on most of them</span>.
+        </p>
+    </div>
+</section>
+
+<!-- 14 APPS -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow sun">// class question</span>
+        <h2>What <span class="grad-cyan-sun">apps</span> do you use every day?</h2>
+        <div class="convo-prompt">
+            <span class="convo-chip"><i class="fas fa-music" style="color: var(--coral); margin-right: 8px;"></i>music</span>
+            <span class="convo-chip"><i class="fas fa-video" style="color: var(--cyan); margin-right: 8px;"></i>video</span>
+            <span class="convo-chip"><i class="fas fa-comment" style="color: var(--sun); margin-right: 8px;"></i>messaging</span>
+            <span class="convo-chip"><i class="fas fa-camera" style="color: var(--lav); margin-right: 8px;"></i>photos</span>
+            <span class="convo-chip"><i class="fas fa-shopping-cart" style="color: var(--coral); margin-right: 8px;"></i>shopping</span>
+            <span class="convo-chip"><i class="fas fa-map" style="color: var(--cyan); margin-right: 8px;"></i>maps</span>
+        </div>
+        <p style="margin-top: 30px; color: var(--muted); max-width: 720px;">
+            (Open conversation &mdash; let them shout out apps. Bonus points: ask which ONE they couldn't live without.)
+        </p>
+    </div>
+</section>
+
+<!-- 15 GAMES -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// class question</span>
+        <h2><span class="grad-coral-sun">Games.</span> What are you playing?</h2>
+        <div class="convo-prompt">
+            <span class="convo-chip"><i class="fas fa-gamepad" style="color: var(--coral); margin-right: 8px;"></i>console</span>
+            <span class="convo-chip"><i class="fas fa-mobile-screen" style="color: var(--cyan); margin-right: 8px;"></i>mobile</span>
+            <span class="convo-chip"><i class="fas fa-cubes" style="color: var(--sun); margin-right: 8px;"></i>minecraft?</span>
+            <span class="convo-chip"><i class="fas fa-rocket" style="color: var(--lav); margin-right: 8px;"></i>roblox?</span>
+            <span class="convo-chip"><i class="fas fa-crown" style="color: var(--coral); margin-right: 8px;"></i>fortnite?</span>
+        </div>
+        <p style="margin-top: 30px; color: var(--muted); max-width: 720px;">
+            (Real talk: every single one of those games is built by software developers like me.)
+        </p>
+    </div>
+</section>
+
+<!-- 16 TOOLS -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// class question</span>
+        <h2>And <span class="grad-cyan-coral">tools.</span></h2>
+        <div class="convo-prompt">
+            <span class="convo-chip"><i class="fas fa-calculator" style="color: var(--cyan); margin-right: 8px;"></i>calculator</span>
+            <span class="convo-chip"><i class="fas fa-clock" style="color: var(--coral); margin-right: 8px;"></i>alarm clock</span>
+            <span class="convo-chip"><i class="fas fa-heart-pulse" style="color: var(--sun); margin-right: 8px;"></i>health apps</span>
+            <span class="convo-chip" style="background: rgba(0,212,255,0.15); border-color: var(--cyan);"><i class="fas fa-robot" style="color: var(--cyan); margin-right: 8px;"></i>ChatGPT</span>
+            <span class="convo-chip" style="background: rgba(0,212,255,0.15); border-color: var(--cyan);"><i class="fas fa-sparkles" style="color: var(--cyan); margin-right: 8px;"></i>Gemini</span>
+        </div>
+        <p style="margin-top: 30px; color: var(--muted); max-width: 720px;">
+            ChatGPT and Gemini? <span class="cyan">Those are just tools too.</span> Made by software developers. We're about to talk a LOT about them.
+        </p>
+    </div>
+</section>
+
+<!-- ==================== ACT 3: AT&T ==================== -->
+
+<!-- 17 AT&T TITLE -->
+<section>
+    <div class="slide-inner center-all">
+        <div class="act-marker">// act_03 &middot; my actual job</div>
+        <div class="att-logo">AT&amp;T</div>
+        <p style="margin-top: 18px; color: var(--muted); font-size: 1.2rem;">Let me tell you what I do for them.</p>
+    </div>
+</section>
+
+<!-- 18 AT&T DEEP DIVE -->
+<section>
+    <div class="slide-inner">
+        <span class="eyebrow">// my day job</span>
+        <h2>Three things, mostly: <span class="grad-cyan-coral">catch bad guys, follow rules, keep things running.</span></h2>
+        <div class="step-row" style="margin-top: 38px;">
+            <div class="step-card">
+                <div class="num">1</div>
+                <h3>Fraud</h3>
+                <p>People try to steal from AT&amp;T customers. My team builds software that catches them &mdash; like a teacher catching a kid sneaking notes in a test, but at the speed of millions per second.</p>
+            </div>
+            <div class="step-card">
+                <div class="num">2</div>
+                <h3>Compliance</h3>
+                <p>Rules. Lots of rules. No passwords in our code. Software has to be up to date. We hire people whose entire job is to TRY to hack us, just to make sure they can't. Boring &mdash; until it isn't.</p>
+            </div>
+            <div class="step-card">
+                <div class="num">3</div>
+                <h3>Keeping it up</h3>
+                <p>If AT&amp;T's stuff breaks at 3am... my phone rings. I get out of bed. I'm grumpy. I fix it. (This is the part of the job I'd skip if I could.)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ACT 4: AI ==================== -->
+
+<!-- 19 AI TITLE -->
+<section data-matrix="strong">
+    <div class="slide-inner center-all">
+        <div class="act-marker">// act_04 &middot; the big one</div>
+        <h1 class="big-statement grad-cyan-coral">AI.</h1>
+        <p style="margin-top: 22px; color: var(--muted); font-size: 1.3rem;">Quick question for the room...</p>
+    </div>
+</section>
+
+<!-- 20 APPLES & ICE CREAM JOKE -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// what does AI stand for?</span>
+        <h2>You said "Artificial Intelligence?" <span class="grad-coral-sun">WRONG.</span></h2>
+        <div class="photo-ph coral" style="min-height: 320px; margin-top: 26px;">
+            <i class="fas fa-ice-cream"></i>
+            <div class="ph-label">Apples &amp; Ice Cream</div>
+            <div class="ph-note">photo: apples + ice cream sundae</div>
+        </div>
+        <p style="text-align: center; margin-top: 22px; color: var(--muted); font-size: 1.15rem;">
+            It stands for <span class="coral">Apples &amp; Ice Cream</span>. Two flavors that have <span class="sun">changed the world.</span>
+        </p>
+    </div>
+</section>
+
+<!-- 21 GPT EXPLAINED -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// ok fine, you were right</span>
+        <h2>But what about <span class="grad-cyan-sun">GPT</span>?</h2>
+        <p style="color: var(--muted); margin-top: 6px;">As in <span class="mono">Chat-GPT</span> &mdash; the one your big sibling uses for homework.</p>
+        <div class="gpt-grid">
+            <div class="gpt-letter">
+                <div class="l">G</div>
+                <div class="w">Generative</div>
+                <div class="d">It MAKES new things &mdash; words, pictures, stories. Doesn't just copy.</div>
+            </div>
+            <div class="gpt-letter">
+                <div class="l">P</div>
+                <div class="w">Pre-trained</div>
+                <div class="d">It already read basically the whole internet before you ever talked to it.</div>
+            </div>
+            <div class="gpt-letter">
+                <div class="l">T</div>
+                <div class="w">Transformer</div>
+                <div class="d">A clever new way to read &amp; understand words. Invented at Google in 2017.</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 22px; color: var(--muted); font-style: italic;">
+            And yes &mdash; AI <span class="cyan">does</span> stand for Artificial Intelligence. You were right.
+        </p>
+    </div>
+</section>
+
+<!-- 22 AI TIMELINE -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// the AI timeline</span>
+        <h2>AI is <span class="grad-cyan-coral">75 years old.</span></h2>
+        <div class="timeline-grid">
+            <div class="timeline-card">
+                <div class="yr">1950</div>
+                <div class="role">The Idea</div>
+                <div class="note">Alan Turing: "can machines think?"</div>
+            </div>
+            <div class="timeline-card">
+                <div class="yr">1956</div>
+                <div class="role">AI gets named</div>
+                <div class="note">Dartmouth College conference</div>
+            </div>
+            <div class="timeline-card">
+                <div class="yr">2000s</div>
+                <div class="role">Real progress</div>
+                <div class="note">Face recognition, recommendations, search</div>
+            </div>
+            <div class="timeline-card">
+                <div class="yr">Today</div>
+                <div class="role">It talks!</div>
+                <div class="note">ChatGPT, Gemini, Claude, art &amp; music AI</div>
+            </div>
+            <div class="timeline-card">
+                <div class="yr">Soon</div>
+                <div class="role">Who knows</div>
+                <div class="note">Self-driving cars, space, cures for disease</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 28px; color: var(--muted); font-style: italic;">
+            The Turing Test: if a computer can fool you into thinking it's a human... is it thinking?
+        </p>
+    </div>
+</section>
+
+<!-- 23 CAT STEP 1 -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// how does AI actually learn?</span>
+        <h2>Step 1: Show it <span class="grad-cyan-sun">lots of cats.</span></h2>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 26px;">
+            <div class="photo-ph" style="min-height: 200px; aspect-ratio: 1;"><i class="fas fa-cat"></i><div class="ph-label">Big cat</div></div>
+            <div class="photo-ph coral" style="min-height: 200px; aspect-ratio: 1;"><i class="fas fa-cat"></i><div class="ph-label">Small cat</div></div>
+            <div class="photo-ph sun" style="min-height: 200px; aspect-ratio: 1;"><i class="fas fa-cat"></i><div class="ph-label">Fluffy cat</div></div>
+            <div class="photo-ph" style="min-height: 200px; aspect-ratio: 1; border-color: rgba(162,155,254,0.5); color: var(--lav);"><i class="fas fa-cat"></i><div class="ph-label">Silly cat</div></div>
+        </div>
+        <p style="text-align: center; margin-top: 26px; color: var(--muted); font-size: 1.15rem;">
+            Thousands of cat pictures. AI learns like a kid &mdash; <span class="cyan">show, don't tell</span>.
+        </p>
+    </div>
+</section>
+
+<!-- 24 CAT STEP 2 -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// pattern matching</span>
+        <h2>Step 2: Find the <span class="grad-coral-sun">patterns.</span></h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; margin-top: 28px; align-items: center;">
+            <div class="photo-ph coral" style="min-height: 360px;">
+                <i class="fas fa-cat"></i>
+                <div class="ph-label">Cat w/ circles drawn on it</div>
+                <div class="ph-note">circles on: ears, nose, whiskers, fur</div>
+            </div>
+            <div>
+                <div class="glass cyan-edge" style="margin-bottom: 14px;"><p style="margin: 0;"><span class="cyan mono">+ pointy ears</span></p></div>
+                <div class="glass coral-edge" style="margin-bottom: 14px;"><p style="margin: 0;"><span class="coral mono">+ whiskers</span></p></div>
+                <div class="glass sun-edge" style="margin-bottom: 14px;"><p style="margin: 0;"><span class="sun mono">+ furry body</span></p></div>
+                <div class="glass" style="margin-bottom: 0;"><p style="margin: 0;"><span class="lav mono">+ cute little nose</span></p></div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 22px; color: var(--muted); font-style: italic;">
+            "Hmm, I keep seeing these same things..."
+        </p>
+    </div>
+</section>
+
+<!-- 25 CAT STEP 3 -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow sun">// the test</span>
+        <h2>Step 3: <span class="grad-cyan-sun">"Is this a cat?"</span></h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; margin-top: 28px; align-items: center;">
+            <div class="photo-ph sun" style="min-height: 340px;">
+                <i class="fas fa-cat"></i>
+                <div class="ph-label">Cat w/ glasses, reading a book</div>
+                <div class="ph-note">cute illustration</div>
+            </div>
+            <div>
+                <div class="glass cyan-edge"><p style="margin: 0; font-size: 1.15rem;"><span class="mono cyan">AI:</span> "Pointy ears? <span class="sun">check.</span> Whiskers? <span class="sun">check.</span> Furry? <span class="sun">check.</span>"</p></div>
+                <div class="glass coral-edge" style="margin-top: 14px;"><p style="margin: 0; font-size: 1.3rem; text-align: center;"><span class="grad-coral-sun" style="font-weight: 900; font-family: 'Montserrat';">YES. This is a cat.</span></p></div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 22px; color: var(--muted);">
+            That's <span class="cyan">machine learning.</span> The more examples we give it, the smarter it gets.
+        </p>
+    </div>
+</section>
+
+<!-- 26 GLORIFIED PATTERN RECOGNITION -->
+<section data-matrix="strong">
+    <div class="slide-inner center-all">
+        <span class="eyebrow">// the truth</span>
+        <h1 class="grad-cyan-coral" style="font-size: clamp(2.8rem, 9.5vh, 7rem); margin: 14px 0; text-align: center; line-height: 1;">
+            Glorified<br>Pattern Recognition.
+        </h1>
+        <p style="font-size: clamp(1.2rem, 2.4vh, 1.8rem); color: var(--muted); max-width: 740px; margin-top: 22px;">
+            Go home and tell your family: AI is just really good at spotting patterns. <span class="cyan">And getting really good at faking thinking.</span>
+        </p>
+    </div>
+</section>
+
+<!-- 27 NEXT-WORD PREDICTION -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// the magic trick</span>
+        <h2>AI is just really good at <span class="grad-coral-sun">finishing sentences.</span></h2>
+        <div class="nextword">
+            <div class="nextword-row">
+                <span class="prompt-txt">The cat sat on the</span>
+                <span class="blank">___</span>
+                <span class="arrow">&rarr;</span>
+                <span class="ans">MAT</span>
+            </div>
+            <div class="nextword-row">
+                <span class="prompt-txt">Once upon a</span>
+                <span class="blank">___</span>
+                <span class="arrow">&rarr;</span>
+                <span class="ans">TIME</span>
+            </div>
+            <div class="nextword-row">
+                <span class="prompt-txt">Peanut butter and</span>
+                <span class="blank">___</span>
+                <span class="arrow">&rarr;</span>
+                <span class="ans">JELLY</span>
+            </div>
+            <div class="nextword-row">
+                <span class="prompt-txt">I love</span>
+                <span class="blank">___</span>
+                <span class="arrow">&rarr;</span>
+                <span class="ans">YOU?</span>
+            </div>
+        </div>
+        <p style="margin-top: 30px; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto;">
+            ChatGPT does this. Over. And over. <span class="cyan">One word at a time.</span> Until you have a whole story.
+        </p>
+    </div>
+</section>
+
+<!-- 28 SUNO SONG DEMO -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow sun">// live demo &middot; ~4 min</span>
+        <h2>Let's make a <span class="grad-coral-sun">song.</span></h2>
+        <p style="color: var(--muted); margin-top: 6px; font-size: 1.2rem;">Using a website called <span class="sun mono">Suno</span>.</p>
+        <div class="ex-card" style="margin-top: 26px; background: linear-gradient(135deg, rgba(255,200,87,0.12), rgba(255,143,171,0.12)); border-color: rgba(255,200,87,0.5);">
+            <span class="ex-tag" style="background: var(--sun);">SUNO</span>
+            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: 1.5rem;">What should the song be about?</div>
+            <p style="margin-top: 12px; color: var(--muted);">Class shouts ideas. Pick the funniest. Type it in. Listen.</p>
+            <div class="ex-steps">
+                <div class="ex-step" style="border-color: rgba(255,200,87,0.4);"><div class="n" style="color: var(--sun);">PROMPT</div><div class="t">Topic + style</div><div class="d">"a song about pizza in country style"</div></div>
+                <div class="ex-step" style="border-color: rgba(255,200,87,0.4);"><div class="n" style="color: var(--sun);">WAIT</div><div class="t">~30 seconds</div><div class="d">AI writes lyrics + composes music</div></div>
+                <div class="ex-step" style="border-color: rgba(255,200,87,0.4);"><div class="n" style="color: var(--sun);">PLAY</div><div class="t">Listen together</div><div class="d">Everybody screams</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 20px; text-align: center; color: var(--muted); font-style: italic;">
+            (Requires internet. If wifi is dead &mdash; skip and go to the story.)
+        </p>
+    </div>
+</section>
+
+<!-- 29 STORY GENERATOR EXERCISE -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow coral">// live demo &middot; ~5 min</span>
+        <h2>Now <span class="grad-cyan-coral">YOU</span> are the prompt.</h2>
+        <p style="color: var(--muted); margin-top: 6px; font-size: 1.2rem;">Volunteer comes up. AI writes a story starring you.</p>
+        <div class="ex-card" style="margin-top: 26px;">
+            <span class="ex-tag">STORY MAKER</span>
+            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: 1.4rem;">Tell me four things:</div>
+            <div class="ex-steps">
+                <div class="ex-step"><div class="n">01</div><div class="t">Your name</div><div class="d">(stage name OK)</div></div>
+                <div class="ex-step"><div class="n">02</div><div class="t">Two things you LIKE</div><div class="d">(pizza, soccer, dragons...)</div></div>
+                <div class="ex-step"><div class="n">03</div><div class="t">One thing you DISLIKE</div><div class="d">(broccoli? mondays?)</div></div>
+                <div class="ex-step"><div class="n">04</div><div class="t">A scenario</div><div class="d">("...on a spaceship")</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 22px; text-align: center;">
+            <span class="mono cyan">&gt; shouldcallpaul.com/story-maker</span>
+        </p>
+    </div>
+</section>
+
+<!-- ==================== ACT 5: REAL TALK + CLOSE ==================== -->
+
+<!-- 30 JOBS & AI -->
+<section>
+    <div class="slide-inner center">
+        <div class="act-marker">// act_05 &middot; real talk</div>
+        <h2>Real talk: <span class="grad-cyan-coral">what about jobs?</span></h2>
+        <p style="color: var(--muted); margin-top: 6px; font-size: 1.15rem;">Your parents might be talking about this at the dinner table.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px;">
+            <div class="glass coral-edge">
+                <h3 class="coral" style="margin-bottom: 12px;">The honest part</h3>
+                <p style="margin: 0;">Some jobs ARE going away. Big companies are cutting people. AI does some things faster and cheaper than humans.</p>
+            </div>
+            <div class="glass cyan-edge">
+                <h3 class="cyan" style="margin-bottom: 12px;">The hopeful part</h3>
+                <p style="margin: 0;">Every time tech changes, jobs CHANGE &mdash; they don't disappear. (Ever heard of an elevator operator? A milkman? A switchboard lady?)</p>
+            </div>
+        </div>
+        <div class="glass sun-edge" style="margin-top: 22px;">
+            <p style="margin: 0; text-align: center; font-size: 1.2rem;">
+                The kids who learn to <span class="cyan">USE</span> AI &mdash; instead of being afraid of it &mdash; <span class="sun">win.</span>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 31 LEARN MORE -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// keep going</span>
+        <h2>Want to learn <span class="grad-cyan-coral">more?</span></h2>
+        <div class="res-grid">
+            <div class="res-card"><div class="ico cyan"><i class="fas fa-laptop-code"></i></div><h3 class="cyan">Code Ninja</h3><p>Coding classes for kids, after school</p></div>
+            <div class="res-card"><div class="ico coral"><i class="fas fa-graduation-cap"></i></div><h3 class="coral">iCode</h3><p>Summer camps. Where my kids learned.</p></div>
+            <div class="res-card"><div class="ico sun"><i class="fab fa-youtube"></i></div><h3 class="sun">YouTube</h3><p>Free coding tutorials for any topic</p></div>
+            <div class="res-card"><div class="ico lav"><i class="fas fa-globe"></i></div><h3 class="lav">shouldcallpaul.com</h3><p>My site. Workshops, blog, more.</p></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 36px; margin-top: 32px; align-items: center;">
+            <div>
+                <h3 style="margin-bottom: 10px;">Tell your parents about me.</h3>
+                <p style="color: var(--muted); margin: 0;">I run workshops on <span class="cyan">AI</span>, <span class="coral">public speaking</span>, and more. If your parent or teacher wants a class like this one, send them my way.</p>
+            </div>
+            <div>
+                <div class="qr-ph">QR<br>shouldcallpaul<br>.com</div>
+                <p style="text-align: center; margin-top: 8px; font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.8rem;">scan me</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 32 CLOSING -->
+<section data-matrix="strong">
+    <div class="slide-inner center-all">
+        <span class="eyebrow sun">// the end</span>
+        <h1 style="font-size: clamp(2.8rem, 9vh, 7rem); margin: 14px 0;">
+            <span class="grad-cyan-coral">Should</span><br>Call Paul.
+        </h1>
+        <p style="color: var(--muted); margin-top: 18px; font-size: 1.3rem;">Questions?</p>
+        <p class="mono cyan" style="margin-top: 30px;">&gt; paul@shouldcallpaul.com</p>
+    </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://unpkg.com/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+    // Matrix rain
+    (function () {
+        var canvas = document.getElementById('matrix-rain');
+        var ctx = canvas.getContext('2d');
+        var w, h, cols, drops;
+        var chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ<>{}()[]=;:./*+-=&|';
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            cols = Math.floor(w / 18);
+            drops = new Array(cols).fill(0).map(function () { return Math.random() * -h; });
+        }
+        window.addEventListener('resize', resize);
+        resize();
+        function tick() {
+            ctx.fillStyle = 'rgba(13, 13, 26, 0.08)';
+            ctx.fillRect(0, 0, w, h);
+            ctx.font = '16px JetBrains Mono, monospace';
+            for (var i = 0; i < cols; i++) {
+                var ch = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillStyle = 'rgba(0, 212, 255, 0.85)';
+                ctx.fillText(ch, i * 18, drops[i]);
+                drops[i] += 18;
+                if (drops[i] > h + Math.random() * 200) drops[i] = -Math.random() * 100;
+            }
+            requestAnimationFrame(tick);
+        }
+        tick();
+    })();
+
+    // Typing
+    function runTyper(el) {
+        if (el.dataset.typed === '1') return;
+        el.dataset.typed = '1';
+        var full = el.dataset.typing || el.textContent;
+        el.textContent = '';
+        var i = 0;
+        (function step() {
+            if (i <= full.length) {
+                el.textContent = full.slice(0, i);
+                i++;
+                setTimeout(step, 55 + Math.random() * 40);
+            }
+        })();
+    }
+
+    Reveal.initialize({
+        hash: true, controls: true, progress: true, slideNumber: 'c/t',
+        center: false, disableLayout: true,
+        transition: 'fade', backgroundTransition: 'fade',
+        keyboard: { 87: 'prev', 65: 'prev', 83: 'next', 68: 'next' }
+    }).then(function () {
+        // matrix opacity toggle on certain slides
+        var canvas = document.getElementById('matrix-rain');
+        function updateMatrix(slide) {
+            if (slide && slide.dataset.matrix === 'strong') {
+                canvas.style.opacity = '0.32';
+            } else {
+                canvas.style.opacity = '0.10';
+            }
+        }
+        function runForSlide(slide) {
+            slide.querySelectorAll('.typing[data-typing]').forEach(runTyper);
+            updateMatrix(slide);
+        }
+        runForSlide(Reveal.getCurrentSlide());
+        Reveal.on('slidechanged', function (e) { runForSlide(e.currentSlide); });
+    });
+</script>
+</body>
+</html>
