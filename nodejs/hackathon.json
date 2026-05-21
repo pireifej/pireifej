@@ -1,6 +1,19 @@
 {
     "records": [
         {
+            "image": "img/hack/speech-sensei-stage.jpg",
+            "label": "Speech Sensei",
+            "type": "hackathon",
+            "desc": "<p>Speech Sensei coaches speech recovery for patients with brain injury and stroke-related communication challenges. Built for the AT&amp;T 2026 Software Symposium Hackathon's Technology &amp; Life Improvement track, with feedback from Dr. Sharon Bushi, Medical Director at Burke Rehab Hospital.</p>",
+            "powerpointLink": "",
+            "details": {
+                "date": "May 21, 2026",
+                "location": "Middletown, NJ",
+                "track": "Technology & Life Improvement \u2014 Brain Injury Rehabilitation",
+                "placement": "Honorable Mention"
+            }
+        },
+        {
             "image": "img/hack/IMG_0548.PNG",
             "label": "Shift Happens",
             "type": "hackathon",
