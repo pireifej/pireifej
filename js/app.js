@@ -162,6 +162,17 @@ $( document ).ready(function() {
         postProcessData(data, "hackathon");
     }
 
+    // Prefix relative image paths (e.g. "img/hack/therapyconnect.png") with the
+    // backend's static asset host so they resolve to
+    // https://shouldcallpaul.replit.app/resume_data/img/hack/therapyconnect.png.
+    // Absolute URLs (anything starting with http://, https://, or //) are left alone.
+    function resolveImageUrl(path) {
+        if (!path) return path;
+        if (/^(https?:)?\/\//i.test(path)) return path;
+        var cleaned = String(path).replace(/^\/+/, '');
+        return 'https://shouldcallpaul.replit.app/resume_data/' + cleaned;
+    }
+
     function postProcessData(data, type) {
         var hackathonDesc = "AT&T Hackathon and Software Symposium is a company-wide coding competition. Given only 24 hours to design, develop and present an innovative solution to an AT&T business problem.";
         var modalBody = "";
@@ -277,7 +288,7 @@ modalBody += `</ul>
 
             if (entry["image"]) {
                 modalBody += `<div class="col-lg-6 col-md-6">
-                                        <img src="${entry.image}" alt="Thumb" style="width:340px;height:339px">
+                                        <img src="${resolveImageUrl(entry.image)}" alt="Thumb" style="width:340px;height:339px">
                                     </div>`;
             }
 
@@ -285,7 +296,7 @@ modalBody += `</ul>
                 for (var j = 0; j < entry.gallery.length; j++) {
                     modalBody += `
                                     <div class="col-lg-6 col-md-6"">
-                                        <img src="${entry.gallery[j]}" alt="Thumb" style="width:340px;height:339px">
+                                        <img src="${resolveImageUrl(entry.gallery[j])}" alt="Thumb" style="width:340px;height:339px">
                                     </div>`;
                 }
             }
