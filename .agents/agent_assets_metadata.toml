@@ -12,3 +12,9 @@ id = "nlUftyvPxbc0316Y8scnd"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Active-Listening.pptx"
 type = "slides"
 title = "Active Listening — PowerPoint (7.2 MB)"
+
+[[outputs]]
+id = "weA6fD_BayixX9lc6IMO6"
+uri = "file://exports/api-image-migration.txt"
+type = "text"
+title = "Image Migration List (86 URLs for backend to pull)"
