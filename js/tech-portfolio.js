@@ -10,6 +10,18 @@ $(document).ready(function() {
         'Fraud Application Hardening': { image: 'img-new/projects/fraud_protection_security_visual.png', categories: ['conference', 'patent'] }
     };
 
+    // Prefix relative image paths (e.g. "img/hack/therapyconnect.png") with the
+    // backend's static asset host so they resolve to
+    // https://shouldcallpaul.replit.app/resume_data/img/hack/therapyconnect.png.
+    // Absolute URLs and portfolio-local img-new/* paths are left alone.
+    function resolveImageUrl(path) {
+        if (!path) return path;
+        if (/^(https?:)?\/\//i.test(path)) return path;
+        var cleaned = String(path).replace(/^\/+/, '');
+        if (cleaned.indexOf('img-new/') === 0) return cleaned;
+        return 'https://shouldcallpaul.replit.app/resume_data/' + cleaned;
+    }
+
     function getProjectImage(item) {
         var label = item.label || '';
         var category = item._category || '';
@@ -19,7 +31,7 @@ $(document).ready(function() {
                 return config.image;
             }
         }
-        return item.image || 'img-new/banner/2.jpg';
+        return resolveImageUrl(item.image) || 'img-new/banner/2.jpg';
     }
 
     function checkAllLoaded() {
@@ -137,7 +149,8 @@ $(document).ready(function() {
         if (modalImage) allImages.push(modalImage);
         if (item.gallery && item.gallery.length > 0) {
             for (var j = 0; j < item.gallery.length; j++) {
-                if (item.gallery[j] !== modalImage) allImages.push(item.gallery[j]);
+                var resolved = resolveImageUrl(item.gallery[j]);
+                if (resolved !== modalImage) allImages.push(resolved);
             }
         }
         var pictureHtml = '';
