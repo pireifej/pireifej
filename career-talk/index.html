@@ -479,7 +479,7 @@
             <div>
                 <span class="eyebrow sun">// guess #3</span>
                 <div class="joke-q">Tech Support<span class="qmark">?</span></div>
-                <p class="joke-sub">"Have you tried turning it off and on again?" Headset on, all day. Answering the phone, fixing computer problems.</p>
+                <p class="joke-sub" style="font-size: clamp(1.8rem, 3.6vh, 2.8rem); max-width: 720px; line-height: 1.4;">"Have you tried turning it off and on again?" Headset on, all day. Answering the phone, fixing computer problems.</p>
             </div>
             <div class="photo-ph sun" style="min-height: 60vh;">
                 <i class="fas fa-headset"></i>
@@ -497,7 +497,7 @@
             <div>
                 <span class="eyebrow">// guess #4</span>
                 <div class="joke-q">Help <span class="lav">Grandma</span><span class="qmark">?</span></div>
-                <p class="joke-sub">One-on-one tech help. "Click the icon, grandma. Yes, that one. No, the OTHER one."</p>
+                <p class="joke-sub" style="font-size: clamp(1.8rem, 3.6vh, 2.8rem); max-width: 720px; line-height: 1.4;">One-on-one tech help. "Click the icon, grandma. Yes, that one. No, the OTHER one."</p>
             </div>
             <div class="photo-ph" style="min-height: 60vh;">
                 <i class="fas fa-user-friends"></i>
@@ -511,7 +511,15 @@
 <!-- ==================== ACT 2: WHAT I ACTUALLY DO ==================== -->
 
 <!-- 09 HONESTLY... A BIT OF EVERYTHING -->
-<section>
+<section class="big-text-slide">
+    <style>
+        .big-text-slide .act-marker { font-size: clamp(1.6rem, 2.8vh, 2.2rem) !important; }
+        .big-text-slide h2 { font-size: clamp(3.4rem, 8vh, 6.4rem) !important; }
+        .big-text-slide .do-list { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; gap: 24px !important; margin-top: 36px !important; }
+        .big-text-slide .do-item .lbl { font-size: clamp(1.9rem, 3.2vh, 2.6rem) !important; }
+        .big-text-slide .do-item .ico { width: 60px !important; height: 60px !important; font-size: 1.8rem !important; }
+        .big-text-slide .closing-line { font-size: clamp(2rem, 3.6vh, 3rem) !important; }
+    </style>
     <div class="slide-inner center">
         <div class="act-marker">// act_02 &middot; the real answer</div>
         <h2>Honestly? <span class="grad-cyan-sun">A little bit of everything.</span></h2>
@@ -525,7 +533,7 @@
             <div class="do-item"><div class="ico s"><i class="fas fa-users-gear"></i></div><div class="lbl">Team Lead Stuff</div></div>
             <div class="do-item"><div class="ico l"><i class="fas fa-phone"></i></div><div class="lbl">Getting Paged at Night</div></div>
         </div>
-        <p style="margin-top: 32px; color: var(--muted); font-style: italic; font-size: clamp(1.5rem, 2.7vh, 2rem); line-height: 1.4;">But there's one thing I do that matters more than all of those...</p>
+        <p class="closing-line" style="margin-top: 36px; color: var(--muted); font-style: italic; line-height: 1.4;">But there's one thing I do that matters more than all of those...</p>
     </div>
 </section>
 
