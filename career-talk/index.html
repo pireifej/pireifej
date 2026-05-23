@@ -432,7 +432,8 @@
 </section>
 
 <!-- 05 HACKER? -->
-<section>
+<section data-audio="mi-theme">
+    <audio id="mi-theme-audio" src="../img-new/career-talk/audio/mission-impossible.mp3" preload="auto"></audio>
     <div class="slide-inner">
         <div class="joke-card">
             <div>
@@ -454,7 +455,7 @@
             <div>
                 <span class="eyebrow">// guess #2</span>
                 <div class="joke-q">Code<span class="qmark">?</span></div>
-                <p class="joke-sub">Hooded developer. Dark room. Glowing monitors. Mysterious code only I understand. Drinks coffee at 2am.</p>
+                <p class="joke-sub" style="font-size: clamp(1.8rem, 3.6vh, 2.8rem); max-width: 720px; line-height: 1.4;">Hooded developer. Dark room. Glowing monitors. Mysterious code only I understand. Drinks coffee at 2am.</p>
             </div>
             <div class="photo-ph" style="min-height: 60vh;">
                 <i class="fas fa-laptop-code"></i>
@@ -1146,9 +1147,24 @@
                 canvas.style.opacity = '0.10';
             }
         }
+        function stopAllAudio() {
+            document.querySelectorAll('audio[id$="-audio"]').forEach(function (a) {
+                try { a.pause(); a.currentTime = 0; } catch (err) {}
+            });
+        }
         function runForSlide(slide) {
             slide.querySelectorAll('.typing[data-typing]').forEach(runTyper);
             updateMatrix(slide);
+            stopAllAudio();
+            var audioKey = slide.dataset.audio;
+            if (audioKey) {
+                var audioEl = document.getElementById(audioKey + '-audio');
+                if (audioEl) {
+                    audioEl.volume = 0.6;
+                    var p = audioEl.play();
+                    if (p && p.catch) p.catch(function () { /* autoplay blocked; user can click */ });
+                }
+            }
         }
         runForSlide(Reveal.getCurrentSlide());
         Reveal.on('slidechanged', function (e) { runForSlide(e.currentSlide); });
