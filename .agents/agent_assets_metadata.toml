@@ -1,5 +1,10 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "gEcD5z1hpOfW0pzcZiBIw"
+uri = "file://img-new/career-talk/alligators-iguanas.png"
+type = "image"
+title = "alligators and iguanas"
 
 [[outputs]]
 id = "PkAbsr8cMq9-jfszORuYY"
