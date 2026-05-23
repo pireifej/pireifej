@@ -600,11 +600,11 @@
         <h2><span class="grad-cyan-coral">Websites.</span> Like this one.</h2>
         <div class="frame-row">
             <div>
-                <div class="frame-desktop"><div class="frame-screen">shouldcallpaul.com<br>(desktop)</div></div>
+                <div class="frame-desktop"><div class="frame-screen" style="padding: 0; overflow: hidden;"><img src="../img-new/career-talk/site-desktop.png" alt="shouldcallpaul.com desktop view" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;"></div></div>
                 <div class="frame-label">DESKTOP &middot; wide screen</div>
             </div>
             <div>
-                <div class="frame-mobile"><div class="frame-screen">shouldcallpaul.com<br>(mobile)</div></div>
+                <div class="frame-mobile"><div class="frame-screen" style="padding: 0; overflow: hidden;"><img src="../img-new/career-talk/site-mobile.png" alt="shouldcallpaul.com mobile view" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;"></div></div>
                 <div class="frame-label">PHONE &middot; small screen</div>
             </div>
         </div>
@@ -1168,10 +1168,19 @@
                 try { a.pause(); a.currentTime = 0; } catch (err) {}
             });
         }
+        function pauseAllVideos() {
+            document.querySelectorAll('section video').forEach(function (v) {
+                try { v.pause(); } catch (err) {}
+            });
+        }
         function runForSlide(slide) {
             slide.querySelectorAll('.typing[data-typing]').forEach(runTyper);
             updateMatrix(slide);
             stopAllAudio();
+            pauseAllVideos();
+            slide.querySelectorAll('video').forEach(function (v) {
+                try { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function(){}); } catch (err) {}
+            });
             var audioKey = slide.dataset.audio;
             if (audioKey) {
                 var audioEl = document.getElementById(audioKey + '-audio');
