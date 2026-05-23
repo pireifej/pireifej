@@ -227,9 +227,10 @@
     .big-statement { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(3rem, 12vh, 9rem); line-height: 1; letter-spacing: -3px; }
 
     /* Apps / games / tools convo prompt */
-    .convo-prompt { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-    .convo-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
-        border-radius: 999px; padding: 10px 20px; font-family: 'Montserrat'; font-weight: 600; color: var(--bone); font-size: 1rem; }
+    .convo-prompt { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 30px; justify-content: center; }
+    .convo-chip { background: rgba(255,255,255,0.06); border: 2px solid rgba(255,255,255,0.18);
+        border-radius: 999px; padding: 18px 32px; font-family: 'Montserrat'; font-weight: 700; color: var(--bone); font-size: clamp(1.4rem, 2.6vh, 2.1rem); display: inline-flex; align-items: center; }
+    .convo-chip i { font-size: 1.15em !important; margin-right: 12px !important; }
 
     /* Mobile vs desktop frames */
     .frame-row { display: grid; grid-template-columns: 2fr 1fr; gap: 36px; align-items: end; margin-top: 24px; }
@@ -639,7 +640,7 @@
 <section>
     <div class="slide-inner center">
         <span class="eyebrow sun">// class question</span>
-        <h2>What <span class="grad-cyan-sun">apps</span> do you use every day?</h2>
+        <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">What <span class="grad-cyan-sun">apps</span> do you use every day?</h2>
         <div class="convo-prompt">
             <span class="convo-chip"><i class="fas fa-music" style="color: var(--coral); margin-right: 8px;"></i>music</span>
             <span class="convo-chip"><i class="fas fa-video" style="color: var(--cyan); margin-right: 8px;"></i>video</span>
@@ -658,7 +659,7 @@
 <section>
     <div class="slide-inner center">
         <span class="eyebrow coral">// class question</span>
-        <h2><span class="grad-coral-sun">Games.</span> What are you playing?</h2>
+        <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);"><span class="grad-coral-sun">Games.</span> What are you playing?</h2>
         <div class="convo-prompt">
             <span class="convo-chip"><i class="fas fa-gamepad" style="color: var(--coral); margin-right: 8px;"></i>console</span>
             <span class="convo-chip"><i class="fas fa-mobile-screen" style="color: var(--cyan); margin-right: 8px;"></i>mobile</span>
@@ -676,7 +677,7 @@
 <section>
     <div class="slide-inner center">
         <span class="eyebrow">// class question</span>
-        <h2>And <span class="grad-cyan-coral">tools.</span></h2>
+        <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">And <span class="grad-cyan-coral">tools.</span></h2>
         <div class="convo-prompt">
             <span class="convo-chip"><i class="fas fa-calculator" style="color: var(--cyan); margin-right: 8px;"></i>calculator</span>
             <span class="convo-chip"><i class="fas fa-clock" style="color: var(--coral); margin-right: 8px;"></i>alarm clock</span>
@@ -686,6 +687,24 @@
         </div>
         <p style="margin-top: 30px; color: var(--muted); max-width: 720px;">
             ChatGPT and Gemini? <span class="cyan">Those are just tools too.</span> Made by software developers. We're about to talk a LOT about them.
+        </p>
+    </div>
+</section>
+
+<!-- 16b DEVELOPMENT / AI CODING TOOLS -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// and... development</span>
+        <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">Even <span class="grad-cyan-coral">coding itself</span> is changing.</h2>
+        <div class="convo-prompt">
+            <span class="convo-chip" style="background: rgba(255,143,87,0.15); border-color: #ff8f57;"><i class="fas fa-code" style="color: #ff8f57;"></i>Replit</span>
+            <span class="convo-chip" style="background: rgba(217,119,87,0.15); border-color: #d97757;"><i class="fas fa-feather" style="color: #d97757;"></i>Claude</span>
+            <span class="convo-chip" style="background: rgba(108,92,231,0.18); border-color: #6c5ce7;"><i class="fas fa-i-cursor" style="color: #a29bfe;"></i>Cursor</span>
+            <span class="convo-chip" style="background: rgba(255,200,87,0.15); border-color: var(--sun);"><i class="fab fa-github" style="color: var(--sun);"></i>Copilot</span>
+            <span class="convo-chip" style="background: rgba(0,212,255,0.15); border-color: var(--cyan);"><i class="fas fa-robot" style="color: var(--cyan);"></i>ChatGPT</span>
+        </div>
+        <p style="margin-top: 36px; color: var(--muted); max-width: 900px; margin-left: auto; margin-right: auto; font-size: clamp(1.5rem, 2.8vh, 2.2rem); line-height: 1.4;">
+            You type what you want in <span class="cyan">plain English</span> &mdash; and the AI writes the code with you. The kids in this room? <span class="coral">You'll grow up building with these.</span>
         </p>
     </div>
 </section>
