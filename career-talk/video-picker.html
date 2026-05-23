@@ -2,73 +2,55 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Video Picker — Slide 6</title>
+<title>Video Picker — Career Talk slides</title>
 <style>
     body { background: #0F0E2E; color: #fff; font-family: system-ui, sans-serif; margin: 0; padding: 32px; }
     h1 { text-align: center; margin: 0 0 8px; }
-    .sub { text-align: center; color: #9aa; margin-bottom: 28px; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .sub { text-align: center; color: #9aa; margin: 0 auto 28px; max-width: 760px; }
+    h2.section { margin: 56px 0 18px; text-align: center; font-size: 2rem; color: #00d4ff; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 36px; }
+    h2.section.sun { color: #FFC857; }
+    h2.section.lav { color: #a29bfe; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 22px; max-width: 1600px; margin: 0 auto; }
     .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; align-items: center; }
-    .card h2 { margin: 0 0 12px; font-size: 1.6rem; color: #00d4ff; }
+    .card h3 { margin: 0 0 12px; font-size: 1.6rem; color: #fff; }
     .card .note { font-size: 0.85rem; color: #888; margin-top: 10px; text-align: center; }
-    video { width: 100%; height: auto; border-radius: 12px; max-height: 360px; object-fit: cover; }
+    video { width: 100%; height: auto; border-radius: 12px; max-height: 300px; object-fit: cover; }
+    .current { border-color: #6c5ce7; box-shadow: 0 0 30px rgba(108,92,231,0.4); }
+    .current h3::after { content: " ← current"; color: #a29bfe; font-size: 0.85rem; }
 </style>
 </head>
 <body>
-<h1>Pick a real-human coder clip</h1>
-<p class="sub">All free stock video from Pexels — muted, auto-loop. Tell me the letter (A–D) and I'll swap it onto slide 6 replacing the cartoon animation.</p>
+<h1>Career Talk video picker</h1>
+<p class="sub">Tell me which letter goes on which slide and I'll wire it in. All free Pexels stock, autoplay+muted+loop.</p>
+
+<h2 class="section">Slide 6 — "Code?" (hooded dev / dark room)</h2>
 <div class="grid">
-    <div class="card">
-        <h2>A</h2>
-        <video src="https://videos.pexels.com/video-files/6963744/6963744-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #6963744</div>
-    </div>
-    <div class="card">
-        <h2>B</h2>
-        <video src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #3129957</div>
-    </div>
-    <div class="card">
-        <h2>C</h2>
-        <video src="https://videos.pexels.com/video-files/2873755/2873755-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #2873755</div>
-    </div>
-    <div class="card">
-        <h2>D</h2>
-        <video src="https://videos.pexels.com/video-files/3209211/3209211-uhd_2560_1440_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #3209211</div>
-    </div>
-    <div class="card">
-        <h2>E</h2>
-        <video src="https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_24fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #855564</div>
-    </div>
-    <div class="card">
-        <h2>F</h2>
-        <video src="https://videos.pexels.com/video-files/5198159/5198159-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #5198159</div>
-    </div>
-    <div class="card">
-        <h2>G</h2>
-        <video src="https://videos.pexels.com/video-files/6963752/6963752-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #6963752</div>
-    </div>
-    <div class="card">
-        <h2>H</h2>
-        <video src="https://videos.pexels.com/video-files/7989458/7989458-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #7989458</div>
-    </div>
-    <div class="card">
-        <h2>I</h2>
-        <video src="https://videos.pexels.com/video-files/5453622/5453622-hd_1920_1080_24fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #5453622</div>
-    </div>
-    <div class="card">
-        <h2>J</h2>
-        <video src="https://videos.pexels.com/video-files/5198166/5198166-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video>
-        <div class="note">Pexels #5198166</div>
-    </div>
+    <div class="card current"><h3>A</h3><video src="https://videos.pexels.com/video-files/6963744/6963744-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#6963744</div></div>
+    <div class="card"><h3>B</h3><video src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#3129957</div></div>
+    <div class="card"><h3>C</h3><video src="https://videos.pexels.com/video-files/2873755/2873755-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#2873755</div></div>
+    <div class="card"><h3>D</h3><video src="https://videos.pexels.com/video-files/3209211/3209211-uhd_2560_1440_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#3209211</div></div>
+    <div class="card"><h3>E</h3><video src="https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_24fps.mp4" autoplay muted loop playsinline></video><div class="note">#855564</div></div>
+    <div class="card"><h3>F</h3><video src="https://videos.pexels.com/video-files/5198159/5198159-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#5198159</div></div>
 </div>
-<p class="sub" style="margin-top: 40px;">If none of these feel right, I can dig up more (e.g. specifically "hooded coder in dark room", "fingers on keyboard close-up", "multiple monitors", etc.) — just tell me the vibe.</p>
+
+<h2 class="section sun">Slide 7 — "Tech Support?" (headset / call center / IT help)</h2>
+<div class="grid">
+    <div class="card"><h3>TS-A</h3><video src="https://videos.pexels.com/video-files/5538262/5538262-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#5538262</div></div>
+    <div class="card"><h3>TS-B</h3><video src="https://videos.pexels.com/video-files/7651768/7651768-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video><div class="note">#7651768</div></div>
+    <div class="card"><h3>TS-C</h3><video src="https://videos.pexels.com/video-files/7821855/7821855-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video><div class="note">#7821855</div></div>
+    <div class="card"><h3>TS-D</h3><video src="https://videos.pexels.com/video-files/8728186/8728186-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video><div class="note">#8728186</div></div>
+    <div class="card"><h3>TS-E</h3><video src="https://videos.pexels.com/video-files/8728188/8728188-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video><div class="note">#8728188</div></div>
+    <div class="card"><h3>TS-F</h3><video src="https://videos.pexels.com/video-files/8728190/8728190-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video><div class="note">#8728190</div></div>
+</div>
+
+<h2 class="section lav">Slide 8 — "Help Grandma?" (elderly person at computer / family helping)</h2>
+<div class="grid">
+    <div class="card"><h3>GR-A</h3><video src="https://videos.pexels.com/video-files/5701984/5701984-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#5701984</div></div>
+    <div class="card"><h3>GR-B</h3><video src="https://videos.pexels.com/video-files/6010488/6010488-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#6010488</div></div>
+    <div class="card"><h3>GR-C</h3><video src="https://videos.pexels.com/video-files/6010491/6010491-hd_1920_1080_25fps.mp4" autoplay muted loop playsinline></video><div class="note">#6010491</div></div>
+    <div class="card"><h3>GR-D</h3><video src="https://videos.pexels.com/video-files/4011693/4011693-hd_1920_1080_30fps.mp4" autoplay muted loop playsinline></video><div class="note">#4011693</div></div>
+</div>
+
+<p class="sub" style="margin-top: 56px;">Not feeling any of them? Just tell me the vibe and I'll dig up more.</p>
 </body>
 </html>
