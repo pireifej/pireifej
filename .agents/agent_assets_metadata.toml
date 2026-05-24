@@ -6,6 +6,12 @@ uri = "file://img-new/career-talk/alligators-iguanas.png"
 type = "image"
 title = "alligators and iguanas"
 
+[[generated]]
+id = "wEWtSp_tQin6HwtbG9P0f"
+uri = "file://img-new/career-talk/cat-with-circles.png"
+type = "image"
+title = "cat with circles annotations"
+
 [[outputs]]
 id = "PkAbsr8cMq9-jfszORuYY"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
