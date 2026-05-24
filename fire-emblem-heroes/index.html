@@ -362,6 +362,48 @@
 
 <a href="/slides-hub.html" class="back-btn"><i class="fas fa-skull"></i> &nbsp;Back</a>
 
+<audio id="bgm" src="audio/fallen-heroes-bgm.mp3" loop preload="auto"></audio>
+<button id="bgm-toggle" class="bgm-toggle" aria-label="Toggle background music" title="Toggle music">
+    <i class="fas fa-volume-mute"></i>
+</button>
+
+<style>
+    .bgm-toggle {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 999;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid var(--gold, #c9a14a);
+        background: rgba(10, 4, 14, 0.85);
+        color: var(--gold, #c9a14a);
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 1px rgba(196, 30, 58, 0.4), 0 4px 18px rgba(0,0,0,0.6), 0 0 22px rgba(196, 30, 58, 0.2);
+        transition: transform 0.25s, box-shadow 0.25s, color 0.25s, border-color 0.25s;
+    }
+    .bgm-toggle:hover {
+        transform: scale(1.08);
+        color: var(--crimson-glow, #ff3a5e);
+        border-color: var(--crimson-glow, #ff3a5e);
+        box-shadow: 0 0 0 1px var(--crimson-glow, #ff3a5e), 0 6px 24px rgba(0,0,0,0.7), 0 0 32px rgba(255, 58, 94, 0.5);
+    }
+    .bgm-toggle.playing {
+        color: var(--crimson-glow, #ff3a5e);
+        border-color: var(--crimson-glow, #ff3a5e);
+        animation: bgmPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes bgmPulse {
+        0%, 100% { box-shadow: 0 0 0 1px var(--crimson-glow, #ff3a5e), 0 4px 18px rgba(0,0,0,0.6), 0 0 22px rgba(255, 58, 94, 0.35); }
+        50% { box-shadow: 0 0 0 1px var(--crimson-glow, #ff3a5e), 0 4px 18px rgba(0,0,0,0.6), 0 0 38px rgba(255, 58, 94, 0.7); }
+    }
+</style>
+
 <div class="reveal">
     <div class="slides">
 
@@ -605,6 +647,38 @@
 
 <script src="https://unpkg.com/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
+    // ===== Background music toggle =====
+    (function () {
+        var audio = document.getElementById('bgm');
+        var btn = document.getElementById('bgm-toggle');
+        if (!audio || !btn) return;
+        audio.volume = 0.35;
+        var icon = btn.querySelector('i');
+        function setPlaying(on) {
+            if (on) {
+                btn.classList.add('playing');
+                icon.className = 'fas fa-volume-up';
+                btn.setAttribute('title', 'Mute music');
+            } else {
+                btn.classList.remove('playing');
+                icon.className = 'fas fa-volume-mute';
+                btn.setAttribute('title', 'Play music');
+            }
+        }
+        btn.addEventListener('click', function () {
+            if (audio.paused) {
+                var p = audio.play();
+                if (p && p.then) p.then(function () { setPlaying(true); }).catch(function () { setPlaying(false); });
+                else setPlaying(true);
+            } else {
+                audio.pause();
+                setPlaying(false);
+            }
+        });
+        audio.addEventListener('pause', function () { setPlaying(false); });
+        audio.addEventListener('play', function () { setPlaying(true); });
+    })();
+
     Reveal.initialize({
         hash: true,
         controls: true,
