@@ -518,25 +518,36 @@
     <style>
         .big-text-slide .act-marker { font-size: clamp(1.6rem, 2.8vh, 2.2rem) !important; }
         .big-text-slide h2 { font-size: clamp(3.4rem, 8vh, 6.4rem) !important; }
-        .big-text-slide .do-list { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; gap: 24px !important; margin-top: 36px !important; }
-        .big-text-slide .do-item .lbl { font-size: clamp(1.9rem, 3.2vh, 2.6rem) !important; }
-        .big-text-slide .do-item .ico { width: 60px !important; height: 60px !important; font-size: 1.8rem !important; }
+        .big-text-slide .grid3x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .big-text-slide .gcell { background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 22px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; aspect-ratio: 1.3; transition: transform 0.25s, box-shadow 0.25s; }
+        .big-text-slide .gcell .gico { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+        .big-text-slide .gcell .glbl { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.2rem, 2.2vh, 1.7rem); line-height: 1.15; color: var(--bone); }
+        /* color variants */
+        .big-text-slide .gcell.cy { border-color: rgba(0,212,255,0.45); } .big-text-slide .gcell.cy .gico { background: rgba(0,212,255,0.15); color: var(--cyan); }
+        .big-text-slide .gcell.co { border-color: rgba(255,143,171,0.45); } .big-text-slide .gcell.co .gico { background: rgba(255,143,171,0.15); color: var(--coral); }
+        .big-text-slide .gcell.su { border-color: rgba(255,200,87,0.45); } .big-text-slide .gcell.su .gico { background: rgba(255,200,87,0.15); color: var(--sun); }
+        .big-text-slide .gcell.lv { border-color: rgba(162,155,254,0.45); } .big-text-slide .gcell.lv .gico { background: rgba(162,155,254,0.15); color: var(--lav); }
+        /* center "ME" hub */
+        .big-text-slide .gcell.me { background: linear-gradient(135deg, rgba(0,212,255,0.18), rgba(108,92,231,0.22)); border: 3px solid var(--cyan); box-shadow: 0 0 50px rgba(0,212,255,0.4), inset 0 0 30px rgba(108,92,231,0.2); }
+        .big-text-slide .gcell.me .gico { width: 78px; height: 78px; font-size: 2.4rem; background: linear-gradient(135deg, var(--cyan), var(--lav)); color: #0f0e2e; box-shadow: 0 0 30px rgba(0,212,255,0.5); }
+        .big-text-slide .gcell.me .glbl { font-size: clamp(1.5rem, 2.8vh, 2.2rem); background: linear-gradient(135deg, var(--cyan), var(--coral)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .big-text-slide .closing-line { font-size: clamp(2rem, 3.6vh, 3rem) !important; }
     </style>
     <div class="slide-inner center">
         <div class="act-marker">// act_02 &middot; the real answer</div>
         <h2>Honestly? <span class="grad-cyan-sun">A little bit of everything.</span></h2>
-        <div class="do-list">
-            <div class="do-item"><div class="ico c"><i class="fas fa-shield-halved"></i></div><div class="lbl">Network Security</div></div>
-            <div class="do-item"><div class="ico p"><i class="fas fa-code"></i></div><div class="lbl">Computer Programming</div></div>
-            <div class="do-item"><div class="ico s"><i class="fas fa-cloud"></i></div><div class="lbl">Cloud Architecture</div></div>
-            <div class="do-item"><div class="ico l"><i class="fas fa-sitemap"></i></div><div class="lbl">System Design</div></div>
-            <div class="do-item"><div class="ico c"><i class="fas fa-key"></i></div><div class="lbl">Certificates &amp; SSH</div></div>
-            <div class="do-item"><div class="ico p"><i class="fas fa-clipboard-check"></i></div><div class="lbl">Compliance</div></div>
-            <div class="do-item"><div class="ico s"><i class="fas fa-users-gear"></i></div><div class="lbl">Team Lead Stuff</div></div>
-            <div class="do-item"><div class="ico l"><i class="fas fa-phone"></i></div><div class="lbl">Getting Paged at Night</div></div>
+        <div class="grid3x3">
+            <div class="gcell cy"><div class="gico"><i class="fas fa-shield-halved"></i></div><div class="glbl">Network Security</div></div>
+            <div class="gcell co"><div class="gico"><i class="fas fa-code"></i></div><div class="glbl">Programming</div></div>
+            <div class="gcell su"><div class="gico"><i class="fas fa-cloud"></i></div><div class="glbl">Cloud Architecture</div></div>
+            <div class="gcell lv"><div class="gico"><i class="fas fa-sitemap"></i></div><div class="glbl">System Design</div></div>
+            <div class="gcell me"><div class="gico"><i class="fas fa-user-astronaut"></i></div><div class="glbl">All of it.<br>At once.</div></div>
+            <div class="gcell cy"><div class="gico"><i class="fas fa-key"></i></div><div class="glbl">Certificates &amp; SSH</div></div>
+            <div class="gcell co"><div class="gico"><i class="fas fa-clipboard-check"></i></div><div class="glbl">Compliance</div></div>
+            <div class="gcell su"><div class="gico"><i class="fas fa-users-gear"></i></div><div class="glbl">Team Lead</div></div>
+            <div class="gcell lv"><div class="gico"><i class="fas fa-phone"></i></div><div class="glbl">Paged at Night</div></div>
         </div>
-        <p class="closing-line" style="margin-top: 36px; color: var(--muted); font-style: italic; line-height: 1.4;">But there's one thing I do that matters more than all of those...</p>
+        <p class="closing-line" style="margin-top: 32px; color: var(--muted); font-style: italic; line-height: 1.4;">But there's one thing I do that matters more than all of those...</p>
     </div>
 </section>
 
@@ -544,21 +555,20 @@
 <section data-matrix="strong">
     <div class="slide-inner center">
         <span class="eyebrow coral">// group exercise &middot; ~5 min</span>
-        <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">The <span class="grad-coral-sun">Drawing Telephone</span> Game.</h2>
-        <p style="margin-top: 18px; color: var(--bone); font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 600;">A.k.a. how image AI actually works.</p>
-        <div class="ex-card" style="margin-top: 30px; padding: 28px;">
+        <h2 style="font-size: clamp(2.6rem, 6.5vh, 5rem); white-space: nowrap; line-height: 1.1;"><span class="grad-coral-sun">Drawing Telephone</span> &mdash; how image AI works.</h2>
+        <div class="ex-card" style="margin-top: 26px; padding: 24px 26px;">
             <span class="ex-tag" style="font-size: clamp(1.1rem, 2vh, 1.5rem); padding: 6px 16px;">LIVE</span>
-            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: clamp(2rem, 3.6vh, 2.8rem); line-height: 1.35;">I whisper an idea. Each person passes it on &mdash; but every other step, they have to DRAW it.</div>
-            <div class="ex-steps" style="margin-top: 22px;">
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">STEP 1</div><div class="t" style="font-size: clamp(1.4rem, 2.6vh, 2rem); line-height: 1.4;">I whisper a sentence to Kid #1.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">STEP 2</div><div class="t" style="font-size: clamp(1.4rem, 2.6vh, 2rem); line-height: 1.4;">Kid #1 draws it on the board.</div><div class="d" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">No labels, no words.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">STEP 3</div><div class="t" style="font-size: clamp(1.4rem, 2.6vh, 2rem); line-height: 1.4;">Kid #2 sees the drawing &mdash; writes a description.</div><div class="d" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">Just by looking.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">STEP 4</div><div class="t" style="font-size: clamp(1.4rem, 2.6vh, 2rem); line-height: 1.4;">Kid #3 draws THAT description.</div><div class="d" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">Pass it on again.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">STEP 5</div><div class="t" style="font-size: clamp(1.4rem, 2.6vh, 2rem); line-height: 1.4;">We compare the last drawing to the first sentence.</div><div class="d" style="font-size: clamp(1.2rem, 2.2vh, 1.7rem);">Usually... it's chaos.</div></div>
+            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: clamp(1.7rem, 3.2vh, 2.4rem); line-height: 1.3;">I whisper an idea. Pass it on &mdash; every other person has to DRAW it.</div>
+            <div class="ex-steps" style="margin-top: 18px;">
+                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 1</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">I whisper a sentence to Kid #1.</div></div>
+                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 2</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Kid #1 draws it &mdash; no words.</div></div>
+                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 3</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Kid #2 writes a description of the drawing.</div></div>
+                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 4</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Kid #3 draws THAT description. Repeat.</div></div>
+                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 5</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Compare last drawing to first sentence. Chaos.</div></div>
             </div>
         </div>
-        <p style="margin-top: 28px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; text-align: center; font-size: clamp(1.4rem, 2.6vh, 2rem); line-height: 1.4;">
-            &gt; This is EXACTLY what image AI does &mdash; text becomes picture becomes text becomes picture.
+        <p style="margin-top: 22px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; text-align: center; font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.35;">
+            &gt; Exactly what image AI does &mdash; text &rarr; picture &rarr; text &rarr; picture.
         </p>
     </div>
 </section>
