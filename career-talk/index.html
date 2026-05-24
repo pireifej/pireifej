@@ -1371,6 +1371,8 @@
             if (!payload.name) { setError('At least give me a name.'); return; }
             show('loading');
             goBtn.disabled = true;
+            regenBtn.disabled = true;
+            againBtn.disabled = true;
             try {
                 var resp = await fetch('/api/story', {
                     method: 'POST',
@@ -1390,9 +1392,23 @@
                 fb.style.display = 'block';
                 fb.innerHTML = '<div class="sm-spinner" style="margin: 0 auto 10px;"></div>&gt; AI is drawing your scene<span class="sm-dots"><span>.</span><span>.</span><span>.</span></span><br><span style="color: var(--muted); font-size: 0.7rem;">(usually 5-15 seconds)</span>';
                 if (data.imageUrl) {
-                    img.onload = function () { img.style.display = 'block'; fb.style.display = 'none'; };
-                    img.onerror = function () { img.style.display = 'none'; fb.style.display = 'block'; fb.innerHTML = '<span style="color: var(--coral);">&gt; Image didn\'t come through. Click "Same kid, new story" to retry.</span>'; };
+                    // Cancel any previous load and reset handlers (regen safety)
+                    img.onload = null; img.onerror = null;
+                    var imgTimeoutId = null;
+                    var imgSettled = false;
+                    var settle = function () { if (imgTimeoutId) { clearTimeout(imgTimeoutId); imgTimeoutId = null; } imgSettled = true; };
+                    img.onload = function () { if (imgSettled) return; settle(); img.style.display = 'block'; fb.style.display = 'none'; };
+                    img.onerror = function () { if (imgSettled) return; settle(); img.style.display = 'none'; fb.style.display = 'block'; fb.innerHTML = '<span style="color: var(--coral);">&gt; Image didn\'t come through. Click "Same kid, new story" to retry.</span>'; };
                     img.src = data.imageUrl;
+                    // 30s timeout — pollinations.ai sometimes hangs forever
+                    imgTimeoutId = setTimeout(function () {
+                        if (imgSettled) return;
+                        imgSettled = true;
+                        try { img.src = ''; } catch (e) {}
+                        img.style.display = 'none';
+                        fb.style.display = 'block';
+                        fb.innerHTML = '<span style="color: var(--coral);">&gt; Image took too long. Click "Same kid, new story" to retry.</span>';
+                    }, 30000);
                 } else {
                     img.removeAttribute('src');
                     fb.innerHTML = '<span style="color: var(--coral);">&gt; No image this time (story still works).</span>';
@@ -1404,6 +1420,8 @@
                 show('input');
             } finally {
                 goBtn.disabled = false;
+                regenBtn.disabled = false;
+                againBtn.disabled = false;
             }
         }
 
