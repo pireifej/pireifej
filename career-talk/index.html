@@ -264,6 +264,12 @@
     .nextword-row .blank { color: var(--coral); border-bottom: 4px solid var(--coral); padding: 0 12px; min-width: 110px; display: inline-block; }
     .nextword-row .arrow { color: var(--cyan); font-size: clamp(2.4rem, 5vh, 3.6rem); }
     .nextword-row .ans { color: var(--sun); font-weight: 800; background: rgba(255,200,87,0.12); padding: 12px 24px; border-radius: 10px; border: 2px solid rgba(255,200,87,0.4); }
+    .nextword-row .ans.flip-ans { cursor: pointer; user-select: none; transition: transform 0.6s, background 0.3s, box-shadow 0.3s; transform-style: preserve-3d; display: inline-block; min-width: 100px; text-align: center; }
+    .nextword-row .ans.flip-ans:not(.revealed) { background: rgba(255,200,87,0.18); box-shadow: 0 0 18px rgba(255,200,87,0.35); animation: pulseHint 2.4s ease-in-out infinite; }
+    .nextword-row .ans.flip-ans:hover { transform: scale(1.06); box-shadow: 0 0 30px rgba(255,200,87,0.55); }
+    .nextword-row .ans.flip-ans.flipping { transform: rotateY(90deg); }
+    .nextword-row .ans.flip-ans.revealed { background: rgba(255,200,87,0.25); border-color: var(--sun); box-shadow: 0 0 26px rgba(255,200,87,0.5); animation: none; }
+    @keyframes pulseHint { 0%, 100% { box-shadow: 0 0 18px rgba(255,200,87,0.3); } 50% { box-shadow: 0 0 32px rgba(255,200,87,0.65); } }
 
     /* Resource cards */
     .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 32px; }
@@ -538,19 +544,26 @@
     </style>
     <div class="slide-inner center">
         <div class="act-marker">// act_02 &middot; the real answer</div>
-        <h2>Honestly? <span class="grad-cyan-sun">A little bit of everything.</span></h2>
-        <div class="grid3x3">
-            <div class="gcell cy"><div class="gico"><i class="fas fa-shield-halved"></i></div><div class="glbl">Network Security</div></div>
-            <div class="gcell co"><div class="gico"><i class="fas fa-code"></i></div><div class="glbl">Programming</div></div>
-            <div class="gcell su"><div class="gico"><i class="fas fa-cloud"></i></div><div class="glbl">Cloud Architecture</div></div>
-            <div class="gcell lv"><div class="gico"><i class="fas fa-sitemap"></i></div><div class="glbl">System Design</div></div>
-            <div class="gcell me"><div class="gico"><i class="fas fa-user-astronaut"></i></div><div class="glbl">All of it.<br>At once.</div></div>
-            <div class="gcell cy"><div class="gico"><i class="fas fa-key"></i></div><div class="glbl">Certificates &amp; SSH</div></div>
-            <div class="gcell co"><div class="gico"><i class="fas fa-clipboard-check"></i></div><div class="glbl">Compliance</div></div>
-            <div class="gcell su"><div class="gico"><i class="fas fa-users-gear"></i></div><div class="glbl">Team Lead</div></div>
-            <div class="gcell lv"><div class="gico"><i class="fas fa-phone"></i></div><div class="glbl">Paged at Night</div></div>
+        <h2 style="padding-right: 80px;">Honestly? <span class="grad-cyan-sun">A little bit of everything.</span></h2>
+        <div style="display: grid; grid-template-columns: 1.7fr 1fr; gap: 36px; margin-top: 22px; align-items: center; width: 100%;">
+            <div class="grid3x3" style="margin-top: 0;">
+                <div class="gcell cy"><div class="gico"><i class="fas fa-shield-halved"></i></div><div class="glbl">Network Security</div></div>
+                <div class="gcell co"><div class="gico"><i class="fas fa-code"></i></div><div class="glbl">Programming</div></div>
+                <div class="gcell su"><div class="gico"><i class="fas fa-cloud"></i></div><div class="glbl">Cloud Architecture</div></div>
+                <div class="gcell lv"><div class="gico"><i class="fas fa-sitemap"></i></div><div class="glbl">System Design</div></div>
+                <div class="gcell me"><div class="gico"><i class="fas fa-user-astronaut"></i></div><div class="glbl">All of it.<br>At once.</div></div>
+                <div class="gcell cy"><div class="gico"><i class="fas fa-key"></i></div><div class="glbl">Certificates &amp; SSH</div></div>
+                <div class="gcell co"><div class="gico"><i class="fas fa-clipboard-check"></i></div><div class="glbl">Compliance</div></div>
+                <div class="gcell su"><div class="gico"><i class="fas fa-users-gear"></i></div><div class="glbl">Team Lead</div></div>
+                <div class="gcell lv"><div class="gico"><i class="fas fa-phone"></i></div><div class="glbl">Paged at Night</div></div>
+            </div>
+            <div class="glass cyan-edge" style="padding: 28px;">
+                <div style="font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: clamp(1.1rem, 2vh, 1.5rem); letter-spacing: 2px; margin-bottom: 14px;">// but...</div>
+                <p style="margin: 0; color: var(--bone); font-size: clamp(1.7rem, 3vh, 2.4rem); line-height: 1.35; font-weight: 700;">
+                    There's <span class="cyan">one thing</span> I do that matters more than <span class="sun">all of these.</span>
+                </p>
+            </div>
         </div>
-        <p class="closing-line" style="margin-top: 32px; color: var(--muted); font-style: italic; line-height: 1.4;">But there's one thing I do that matters more than all of those...</p>
     </div>
 </section>
 
@@ -654,7 +667,8 @@
     <div class="slide-inner center">
         <span class="eyebrow sun">// class question</span>
         <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">What <span class="grad-cyan-sun">apps</span> do you use every day?</h2>
-        <div class="convo-prompt">
+        <p style="margin-top: 18px; color: var(--muted); font-style: italic; font-size: clamp(1.4rem, 2.6vh, 2rem);">// kids guess first &mdash; tap to reveal</p>
+        <div class="convo-prompt fragment fade-in">
             <span class="convo-chip"><i class="fas fa-music" style="color: var(--coral);"></i>music</span>
             <span class="convo-chip"><i class="fas fa-video" style="color: var(--cyan);"></i>video</span>
             <span class="convo-chip"><i class="fas fa-comment" style="color: var(--sun);"></i>messaging</span>
@@ -670,14 +684,15 @@
     <div class="slide-inner center">
         <span class="eyebrow coral">// class question</span>
         <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);"><span class="grad-coral-sun">Games.</span> What are you playing?</h2>
-        <div class="convo-prompt">
+        <p style="margin-top: 18px; color: var(--muted); font-style: italic; font-size: clamp(1.4rem, 2.6vh, 2rem);">// kids shout first &mdash; tap to reveal</p>
+        <div class="convo-prompt fragment fade-in">
             <span class="convo-chip"><i class="fas fa-gamepad" style="color: var(--coral);"></i>console</span>
             <span class="convo-chip"><i class="fas fa-mobile-screen" style="color: var(--cyan);"></i>mobile</span>
             <span class="convo-chip"><i class="fas fa-cubes" style="color: var(--sun);"></i>minecraft?</span>
             <span class="convo-chip"><i class="fas fa-rocket" style="color: var(--lav);"></i>roblox?</span>
             <span class="convo-chip"><i class="fas fa-crown" style="color: var(--coral);"></i>fortnite?</span>
         </div>
-        <p style="margin-top: 40px; color: var(--bone); max-width: 1100px; margin-left: auto; margin-right: auto; font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 700;">
+        <p class="fragment fade-in" style="margin-top: 40px; color: var(--bone); max-width: 1100px; margin-left: auto; margin-right: auto; font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 700;">
             <span class="coral">Real talk:</span> every single one of those games is built by <span class="cyan">software developers</span> like me.
         </p>
     </div>
@@ -688,14 +703,15 @@
     <div class="slide-inner center">
         <span class="eyebrow">// class question</span>
         <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">And <span class="grad-cyan-coral">tools.</span></h2>
-        <div class="convo-prompt">
+        <p style="margin-top: 18px; color: var(--muted); font-style: italic; font-size: clamp(1.4rem, 2.6vh, 2rem);">// kids guess first &mdash; tap to reveal</p>
+        <div class="convo-prompt fragment fade-in">
             <span class="convo-chip"><i class="fas fa-calculator" style="color: var(--cyan);"></i>calculator</span>
             <span class="convo-chip"><i class="fas fa-clock" style="color: var(--coral);"></i>alarm clock</span>
             <span class="convo-chip"><i class="fas fa-heart-pulse" style="color: var(--sun);"></i>health apps</span>
             <span class="convo-chip" style="background: rgba(0,212,255,0.15); border-color: var(--cyan);"><i class="fas fa-robot" style="color: var(--cyan);"></i>ChatGPT</span>
             <span class="convo-chip" style="background: rgba(108,92,231,0.18); border-color: #6c5ce7;"><i class="fas fa-gem" style="color: #a29bfe;"></i>Gemini</span>
         </div>
-        <p style="margin-top: 40px; color: var(--bone); max-width: 1200px; margin-left: auto; margin-right: auto; font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 700;">
+        <p class="fragment fade-in" style="margin-top: 40px; color: var(--bone); max-width: 1200px; margin-left: auto; margin-right: auto; font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 700;">
             <span class="cyan">ChatGPT</span> and <span class="lav">Gemini?</span> Those are just <span class="sun">tools</span> too. Made by software developers. We're about to talk a <span class="coral">LOT</span> about them.
         </p>
     </div>
@@ -706,13 +722,14 @@
     <div class="slide-inner center">
         <span class="eyebrow">// and... development</span>
         <h2 style="font-size: clamp(3.6rem, 9vh, 7rem);">Even <span class="grad-cyan-coral">coding itself</span> is changing.</h2>
-        <div class="convo-prompt">
+        <p style="margin-top: 18px; color: var(--muted); font-style: italic; font-size: clamp(1.4rem, 2.6vh, 2rem);">// kids guess first &mdash; tap to reveal</p>
+        <div class="convo-prompt fragment fade-in">
             <span class="convo-chip" style="background: rgba(255,143,87,0.15); border-color: #ff8f57;"><i class="fas fa-code" style="color: #ff8f57;"></i>Replit</span>
             <span class="convo-chip" style="background: rgba(217,119,87,0.15); border-color: #d97757;"><i class="fas fa-feather" style="color: #d97757;"></i>Claude</span>
             <span class="convo-chip" style="background: rgba(108,92,231,0.18); border-color: #6c5ce7;"><i class="fas fa-i-cursor" style="color: #a29bfe;"></i>Cursor</span>
             <span class="convo-chip" style="background: rgba(255,200,87,0.15); border-color: var(--sun);"><i class="fab fa-github" style="color: var(--sun);"></i>Copilot</span>
         </div>
-        <p style="margin-top: 40px; color: var(--bone); max-width: 1200px; margin-left: auto; margin-right: auto; font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 700;">
+        <p class="fragment fade-in" style="margin-top: 40px; color: var(--bone); max-width: 1200px; margin-left: auto; margin-right: auto; font-size: clamp(1.9rem, 3.6vh, 2.8rem); line-height: 1.4; font-weight: 700;">
             You type what you want in <span class="cyan">plain English</span> &mdash; and the <span class="coral">AI writes the code</span> with you. The kids in this room? <span class="sun">You'll grow up building with these.</span>
         </p>
     </div>
@@ -977,33 +994,34 @@
     <div class="slide-inner center">
         <span class="eyebrow coral">// the magic trick</span>
         <h2>AI is just really good at <span class="grad-coral-sun">finishing sentences.</span></h2>
+        <p style="margin-top: 6px; color: var(--muted); font-style: italic; font-size: clamp(1.4rem, 2.6vh, 2rem); text-align: center;">// kids guess first &mdash; tap the yellow box to flip</p>
         <div class="nextword">
             <div class="nextword-row">
                 <span class="prompt-txt">The cat sat on the</span>
                 <span class="blank">___</span>
                 <span class="arrow">&rarr;</span>
-                <span class="ans">MAT</span>
+                <span class="ans flip-ans" data-answer="MAT">?</span>
             </div>
             <div class="nextword-row">
                 <span class="prompt-txt">Once upon a</span>
                 <span class="blank">___</span>
                 <span class="arrow">&rarr;</span>
-                <span class="ans">TIME</span>
+                <span class="ans flip-ans" data-answer="TIME">?</span>
             </div>
             <div class="nextword-row">
                 <span class="prompt-txt">Peanut butter and</span>
                 <span class="blank">___</span>
                 <span class="arrow">&rarr;</span>
-                <span class="ans">JELLY</span>
+                <span class="ans flip-ans" data-answer="JELLY">?</span>
             </div>
             <div class="nextword-row">
-                <span class="prompt-txt">I love</span>
+                <span class="prompt-txt">I would like a cup of</span>
                 <span class="blank">___</span>
                 <span class="arrow">&rarr;</span>
-                <span class="ans">YOU?</span>
+                <span class="ans flip-ans" data-answer="TEA? COFFEE?">?</span>
             </div>
         </div>
-        <p style="margin-top: 40px; color: var(--bone); text-align: center; max-width: 1100px; margin-left: auto; margin-right: auto; font-size: clamp(1.8rem, 3.4vh, 2.6rem); font-weight: 700; line-height: 1.4;">
+        <p style="margin-top: 36px; color: var(--bone); text-align: center; max-width: 1100px; margin-left: auto; margin-right: auto; font-size: clamp(1.8rem, 3.4vh, 2.6rem); font-weight: 700; line-height: 1.4;">
             ChatGPT does this. Over. And over. <span class="cyan">One word at a time.</span> Until you have a whole story.
         </p>
     </div>
@@ -1288,6 +1306,21 @@
         }
         runForSlide(Reveal.getCurrentSlide());
         Reveal.on('slidechanged', function (e) { runForSlide(e.currentSlide); });
+
+        // Click-to-flip on .flip-ans (slide 29 next-word reveal)
+        document.querySelectorAll('.flip-ans').forEach(function (el) {
+            var answer = el.getAttribute('data-answer') || '';
+            el.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+                if (el.classList.contains('revealed')) {
+                    el.classList.add('flipping');
+                    setTimeout(function () { el.textContent = '?'; el.classList.remove('revealed'); el.classList.remove('flipping'); }, 300);
+                } else {
+                    el.classList.add('flipping');
+                    setTimeout(function () { el.textContent = answer; el.classList.add('revealed'); el.classList.remove('flipping'); }, 300);
+                }
+            });
+        });
     });
 
     // ===== STORY MAKER (slide 29) =====
