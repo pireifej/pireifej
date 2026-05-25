@@ -283,20 +283,32 @@
         /* Closing slide */
         .closing-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 14px;
-            margin-top: 30px;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 22px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .closing-grid img {
             width: 100%;
-            height: 90px;
+            height: 11vh;
+            max-height: 110px;
+            min-height: 70px;
             object-fit: cover;
             border-radius: 3px;
             border: 1px solid var(--crimson);
-            opacity: 0.85;
-            transition: opacity 0.3s, transform 0.3s;
+            opacity: 0.82;
+            box-shadow: 0 0 0 1px rgba(201, 161, 74, 0.25), 0 4px 12px rgba(0,0,0,0.5);
+            transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
         }
-        .closing-grid img:hover { opacity: 1; transform: scale(1.05); }
+        .closing-grid img:hover {
+            opacity: 1;
+            transform: scale(1.08);
+            box-shadow: 0 0 0 1px var(--gold), 0 8px 20px rgba(0,0,0,0.7), 0 0 24px rgba(255, 58, 94, 0.45);
+            z-index: 2;
+            position: relative;
+        }
 
         /* Reveal nav tweaks */
         .reveal .progress { color: var(--crimson); }
@@ -636,8 +648,11 @@
                     </p>
                 </div>
                 <div class="closing-grid">
-                    <img src="img/2018-celica.jpg" alt=""><img src="img/2019-berkut.jpg" alt=""><img src="img/2020-ike.jpg" alt=""><img src="img/2021-edelgard.jpg" alt=""><img src="img/2022-rhea.jpg" alt="">
-                    <img src="img/2018-robin.jpg" alt=""><img src="img/2019-tiki.jpg" alt=""><img src="img/2020-ashnard.jpg" alt=""><img src="img/2021-dimitri.jpg" alt=""><img src="img/2022-ninian.jpg" alt="">
+                    <img src="img/2018-celica.jpg" alt="" title="Celica — 2018"><img src="img/2018-hardin.jpg" alt="" title="Hardin — 2018"><img src="img/2018-robin.jpg" alt="" title="Robin — 2018"><img src="img/2018-takumi.jpg" alt="" title="Takumi — 2018"><img src="img/2019-berkut.jpg" alt="" title="Berkut — 2019"><img src="img/2019-corrin.jpg" alt="" title="Corrin — 2019"><img src="img/2019-delthea.jpg" alt="" title="Delthea — 2019">
+                    <img src="img/2019-mareeta.jpg" alt="" title="Mareeta — 2019"><img src="img/2019-tiki.jpg" alt="" title="Tiki — 2019"><img src="img/2020-ashnard.jpg" alt="" title="Ashnard — 2020"><img src="img/2020-corrin.jpg" alt="" title="Corrin — 2020"><img src="img/2020-ike.jpg" alt="" title="Ike — 2020"><img src="img/2020-julia.jpg" alt="" title="Julia — 2020"><img src="img/2020-lyon.jpg" alt="" title="Lyon — 2020">
+                    <img src="img/2021-dimitri.jpg" alt="" title="Dimitri — 2021"><img src="img/2021-edelgard.jpg" alt="" title="Edelgard — 2021"><img src="img/2021-morgan-f.jpg" alt="" title="Morgan (F) — 2021"><img src="img/2021-morgan-m.jpg" alt="" title="Morgan (M) — 2021"><img src="img/2022-gustav.jpg" alt="" title="Gustav — 2022"><img src="img/2022-lilith.jpg" alt="" title="Lilith — 2022"><img src="img/2022-ninian.jpg" alt="" title="Ninian — 2022">
+                    <img src="img/2022-rhea.jpg" alt="" title="Rhea — 2022"><img src="img/2023-anankos.jpg" alt="" title="Anankos — 2023"><img src="img/2023-byleth.jpg" alt="" title="Byleth — 2023"><img src="img/2023-chrom.jpg" alt="" title="Chrom — 2023"><img src="img/2023-maria.jpg" alt="" title="Maria — 2023"><img src="img/2024-lumera.jpg" alt="" title="Lumera — 2024"><img src="img/2024-nergal.jpg" alt="" title="Nergal — 2024">
+                    <img src="img/2024-ursula.jpg" alt="" title="Ursula — 2024"><img src="img/2024-veyle.jpg" alt="" title="Veyle — 2024"><img src="img/2025-alear-f.jpg" alt="" title="Alear (F) — 2025"><img src="img/2025-alear-m.jpg" alt="" title="Alear (M) — 2025"><img src="img/2025-dedue.jpg" alt="" title="Dedue — 2025"><img src="img/2025-lena.jpg" alt="" title="Lena — 2025">
                 </div>
             </div>
         </section>
