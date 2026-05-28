@@ -350,6 +350,23 @@
     .sm-dots span:nth-child(2) { animation-delay: 0.2s; }
     .sm-dots span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes sm-blink { 0%, 80%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
+
+    /* ===== INTERACTIVE WHITEBOARD (Algorithm + Telephone exercises) ===== */
+    .wb-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px auto 0; width: 100%; max-width: 1500px; }
+    .wb-side { display: flex; flex-direction: column; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.15); border-radius: 18px; padding: 14px; min-height: 320px; }
+    .wb-side-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 12px; }
+    .wb-side-label { font-family: 'JetBrains Mono', monospace; font-size: clamp(0.85rem, 1.5vh, 1.1rem); letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin: 0; }
+    .wb-side-label.coral { color: var(--coral); }
+    .wb-clear-btn { background: rgba(255,143,171,0.15); border: 2px solid rgba(255,143,171,0.5); color: var(--coral); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; padding: 6px 14px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; }
+    .wb-clear-btn:hover { background: var(--coral); color: #0f0e2e; border-color: var(--coral); }
+    .wb-textarea { width: 100%; flex: 1; min-height: 260px; background: #fff; border: none; border-radius: 12px; padding: 16px; color: #1a1a2e; font-family: 'Inter', sans-serif; font-size: clamp(1.4rem, 2.6vh, 1.95rem); line-height: 1.45; resize: none; outline: none; box-sizing: border-box; font-weight: 600; }
+    .wb-textarea::placeholder { color: #6b7488; font-style: italic; font-weight: 400; }
+    .wb-canvas-wrap { flex: 1; background: #fff; border-radius: 12px; overflow: hidden; min-height: 260px; position: relative; }
+    .wb-canvas { display: block; width: 100%; height: 100%; cursor: crosshair; touch-action: none; background: #fff; }
+    .wb-round-toggle { display: inline-flex; justify-content: center; gap: 4px; margin: 12px auto 0; padding: 5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; }
+    .wb-round-btn { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(0.78rem, 1.4vh, 1rem); letter-spacing: 1px; padding: 8px 18px; border-radius: 999px; cursor: pointer; border: none; background: transparent; color: var(--muted); transition: all 0.2s; text-transform: uppercase; }
+    .wb-round-btn.active { background: linear-gradient(135deg, var(--cyan), var(--lav)); color: #0f0e2e; box-shadow: 0 4px 18px rgba(0,212,255,0.4); }
+    .wb-mode-hint { text-align: center; margin: 10px auto 0; color: var(--bone); font-family: 'JetBrains Mono', monospace; font-size: clamp(0.95rem, 1.7vh, 1.25rem); max-width: 1100px; line-height: 1.35; }
 </style>
 </head>
 <body>
@@ -567,25 +584,58 @@
     </div>
 </section>
 
-<!-- 10 GROUP EXERCISE: DRAWING TELEPHONE -->
+<!-- 10 GROUP EXERCISE: ALGORITHM GAME (was Drawing Telephone) -->
 <section data-matrix="strong">
-    <div class="slide-inner center">
-        <span class="eyebrow coral">// group exercise &middot; ~5 min</span>
-        <h2 style="font-size: clamp(3.2rem, 8vh, 6rem); line-height: 1.05; margin-bottom: 6px;">The <span class="grad-coral-sun">Drawing Telephone</span> Game.</h2>
-        <p style="margin: 0; color: var(--bone); font-size: clamp(1.5rem, 2.8vh, 2.2rem); font-weight: 600; line-height: 1.3;">A.k.a. <span class="cyan">how image AI actually works.</span></p>
-        <div class="ex-card" style="margin-top: 26px; padding: 24px 26px;">
-            <span class="ex-tag" style="font-size: clamp(1.1rem, 2vh, 1.5rem); padding: 6px 16px;">LIVE</span>
-            <div style="font-family: 'Montserrat'; font-weight: 700; font-size: clamp(1.7rem, 3.2vh, 2.4rem); line-height: 1.3;">I whisper an idea. Pass it on &mdash; every other person has to DRAW it.</div>
-            <div class="ex-steps" style="margin-top: 18px;">
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 1</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">I whisper a sentence to Kid #1.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 2</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Kid #1 draws it &mdash; no words.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 3</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Kid #2 writes a description of the drawing.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 4</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Kid #3 draws THAT description. Repeat.</div></div>
-                <div class="ex-step"><div class="n" style="font-size: clamp(1.1rem, 2vh, 1.5rem);">STEP 5</div><div class="t" style="font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.3;">Compare last drawing to first sentence. Chaos.</div></div>
+    <div class="slide-inner" style="padding-top: 2.5vh; padding-bottom: 2.5vh; display: flex; flex-direction: column; height: 96vh; justify-content: flex-start;">
+        <div style="text-align:center;">
+            <span class="eyebrow coral">// group exercise &middot; ~5 min</span>
+            <h2 style="font-size: clamp(2.6rem, 6vh, 4.6rem); line-height: 1.05; margin: 4px 0 6px;">The <span class="grad-coral-sun">Algorithm</span> Game.</h2>
+            <p style="margin: 0; color: var(--bone); font-size: clamp(1.2rem, 2.2vh, 1.8rem); font-weight: 600;">One kid types instructions for a shape. Another kid draws what they read.</p>
+            <div class="wb-round-toggle" data-label-target="#alg-mode-hint">
+                <button class="wb-round-btn active" data-label="Round 1 &middot; ALL AT ONCE: Type the whole instruction first. Then the drawer follows.">Round 1: All At Once</button>
+                <button class="wb-round-btn" data-label="Round 2 &middot; STEP BY STEP: Type ONE instruction. Drawer does it. Then the next one. And so on.">Round 2: Step By Step</button>
+            </div>
+            <p id="alg-mode-hint" class="wb-mode-hint">Round 1 &middot; ALL AT ONCE: Type the whole instruction first. Then the drawer follows.</p>
+        </div>
+        <div class="wb-panel" style="flex: 1; min-height: 0;">
+            <div class="wb-side">
+                <div class="wb-side-header">
+                    <p class="wb-side-label">Instructions (typed)</p>
+                    <button class="wb-clear-btn" data-target="#alg-instr">Clear</button>
+                </div>
+                <textarea id="alg-instr" class="wb-textarea" placeholder="e.g. Draw a 4-inch line going right. From the right end, draw a 4-inch line going up. Now connect back to the start..."></textarea>
+            </div>
+            <div class="wb-side">
+                <div class="wb-side-header">
+                    <p class="wb-side-label coral">Drawing</p>
+                    <button class="wb-clear-btn" data-target="#alg-canvas">Clear</button>
+                </div>
+                <div class="wb-canvas-wrap"><canvas id="alg-canvas" class="wb-canvas"></canvas></div>
             </div>
         </div>
-        <p style="margin-top: 22px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; text-align: center; font-size: clamp(1.3rem, 2.4vh, 1.85rem); line-height: 1.35;">
-            &gt; Exactly what image AI does &mdash; text &rarr; picture &rarr; text &rarr; picture.
+    </div>
+</section>
+
+<!-- 10b ALGORITHM GAME TAKEAWAY -->
+<section>
+    <div class="slide-inner center">
+        <span class="eyebrow">// the takeaway</span>
+        <h2 style="font-size: clamp(3rem, 7.5vh, 5.6rem); line-height: 1.1;">That's <span class="grad-cyan-coral">coding.</span></h2>
+        <p style="margin-top: 16px; color: var(--bone); font-size: clamp(1.5rem, 2.8vh, 2.2rem); line-height: 1.4; font-weight: 600; max-width: 1100px; margin-left: auto; margin-right: auto;">
+            You're not "talking to a computer." You're giving it <span class="cyan">instructions so clear</span> a literal robot can follow them &mdash; in the right <span class="sun">order</span>.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 36px; max-width: 1200px; margin-left: auto; margin-right: auto;">
+            <div class="glass coral-edge" style="padding: 22px 24px;">
+                <h3 class="coral" style="margin: 0 0 8px; font-size: clamp(1.5rem, 2.8vh, 2.1rem);">All at once</h3>
+                <p style="margin: 0; color: var(--muted); font-size: clamp(1.15rem, 2.1vh, 1.7rem); line-height: 1.35;">Drawer guesses. Things break. Bugs everywhere.</p>
+            </div>
+            <div class="glass cyan-edge" style="padding: 22px 24px;">
+                <h3 class="cyan" style="margin: 0 0 8px; font-size: clamp(1.5rem, 2.8vh, 2.1rem);">Step by step</h3>
+                <p style="margin: 0; color: var(--muted); font-size: clamp(1.15rem, 2.1vh, 1.7rem); line-height: 1.35;">Drawer follows exactly. Shape appears. <span class="cyan">That's an algorithm.</span></p>
+            </div>
+        </div>
+        <p style="margin-top: 28px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: clamp(1.2rem, 2.2vh, 1.75rem); text-align: center;">
+            &gt; Computers can't guess what you mean. They do <span class="sun">exactly</span> what you say.
         </p>
     </div>
 </section>
@@ -977,6 +1027,37 @@
     </div>
 </section>
 
+<!-- 25b GROUP EXERCISE: DRAWING TELEPHONE (moved from Act 2 — image AI metaphor) -->
+<section data-matrix="strong">
+    <div class="slide-inner" style="padding-top: 2.5vh; padding-bottom: 2.5vh; display: flex; flex-direction: column; height: 96vh; justify-content: flex-start;">
+        <div style="text-align:center;">
+            <span class="eyebrow coral">// group exercise &middot; ~5 min</span>
+            <h2 style="font-size: clamp(2.6rem, 6vh, 4.6rem); line-height: 1.05; margin: 4px 0 6px;">The <span class="grad-coral-sun">Drawing Telephone</span> Game.</h2>
+            <p style="margin: 0; color: var(--bone); font-size: clamp(1.2rem, 2.2vh, 1.8rem); font-weight: 600;">A.k.a. <span class="cyan">how image AI actually works.</span> Idea &rarr; draw &rarr; describe &rarr; draw...</p>
+            <p class="wb-mode-hint" style="margin-top: 10px;">I whisper an idea. Kid #1 <span class="coral">draws</span>. Kid #2 <span class="cyan">describes</span>. Kid #3 draws THAT. Repeat &mdash; <span class="sun">clear after each handoff.</span></p>
+        </div>
+        <div class="wb-panel" style="flex: 1; min-height: 0;">
+            <div class="wb-side">
+                <div class="wb-side-header">
+                    <p class="wb-side-label">Describe what you see</p>
+                    <button class="wb-clear-btn" data-target="#tel-instr">Clear</button>
+                </div>
+                <textarea id="tel-instr" class="wb-textarea" placeholder="Look at the drawing. Type a sentence describing it. Then hand off to the next kid..."></textarea>
+            </div>
+            <div class="wb-side">
+                <div class="wb-side-header">
+                    <p class="wb-side-label coral">Draw what you read</p>
+                    <button class="wb-clear-btn" data-target="#tel-canvas">Clear</button>
+                </div>
+                <div class="wb-canvas-wrap"><canvas id="tel-canvas" class="wb-canvas"></canvas></div>
+            </div>
+        </div>
+        <p style="margin-top: 10px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; text-align: center; font-size: clamp(1.05rem, 2vh, 1.55rem);">
+            &gt; Compare the final drawing to the first sentence. Chaos. <span class="sun">That's image AI</span> &mdash; text &rarr; picture &rarr; text &rarr; picture.
+        </p>
+    </div>
+</section>
+
 <!-- 26 GLORIFIED PATTERN RECOGNITION -->
 <section data-matrix="strong">
     <div class="slide-inner center-all">
@@ -1292,6 +1373,7 @@
             updateMatrix(slide);
             stopAllAudio();
             pauseAllVideos();
+            slide.querySelectorAll('.wb-canvas').forEach(sizeWbCanvas);
             slide.querySelectorAll('video').forEach(function (v) {
                 try { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function(){}); } catch (err) {}
             });
@@ -1305,8 +1387,96 @@
                 }
             }
         }
+        // === Interactive Whiteboard (Algorithm + Telephone games) ===
+        function sizeWbCanvas(canvas) {
+            var wrap = canvas.parentElement;
+            var rect = wrap.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) return;
+            var dpr = window.devicePixelRatio || 1;
+            var prev = (canvas.width && canvas.height) ? canvas.toDataURL() : null;
+            canvas.width = Math.round(rect.width * dpr);
+            canvas.height = Math.round(rect.height * dpr);
+            canvas.style.width = rect.width + 'px';
+            canvas.style.height = rect.height + 'px';
+            var ctx = canvas.getContext('2d');
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+            ctx.strokeStyle = '#000'; ctx.lineWidth = 5;
+            if (prev) {
+                var img = new Image();
+                img.onload = function () { ctx.drawImage(img, 0, 0, rect.width, rect.height); };
+                img.src = prev;
+            }
+        }
+        document.querySelectorAll('.wb-canvas').forEach(function (canvas) {
+            var drawing = false, lastX = 0, lastY = 0;
+            function getPos(e) {
+                var r = canvas.getBoundingClientRect();
+                return { x: e.clientX - r.left, y: e.clientY - r.top };
+            }
+            canvas.addEventListener('pointerdown', function (e) {
+                e.preventDefault();
+                drawing = true;
+                var p = getPos(e); lastX = p.x; lastY = p.y;
+                try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+                var ctx = canvas.getContext('2d');
+                ctx.beginPath();
+                ctx.arc(lastX, lastY, 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = '#000';
+                ctx.fill();
+            });
+            canvas.addEventListener('pointermove', function (e) {
+                if (!drawing) return;
+                e.preventDefault();
+                var p = getPos(e);
+                var ctx = canvas.getContext('2d');
+                ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(p.x, p.y); ctx.stroke();
+                lastX = p.x; lastY = p.y;
+            });
+            ['pointerup','pointercancel','pointerleave'].forEach(function (ev) {
+                canvas.addEventListener(ev, function () { drawing = false; });
+            });
+        });
+        document.querySelectorAll('.wb-clear-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                if (!confirm("Clear this panel? This can't be undone.")) return;
+                var target = document.querySelector(btn.getAttribute('data-target'));
+                if (!target) return;
+                if (target.tagName === 'TEXTAREA') {
+                    target.value = '';
+                } else if (target.tagName === 'CANVAS') {
+                    var ctx = target.getContext('2d');
+                    ctx.save();
+                    ctx.setTransform(1, 0, 0, 1, 0, 0);
+                    ctx.clearRect(0, 0, target.width, target.height);
+                    ctx.restore();
+                    var dpr = window.devicePixelRatio || 1;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                    ctx.strokeStyle = '#000'; ctx.lineWidth = 5;
+                }
+            });
+        });
+        document.querySelectorAll('.wb-round-toggle').forEach(function (toggle) {
+            var hintSel = toggle.getAttribute('data-label-target');
+            toggle.querySelectorAll('.wb-round-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    toggle.querySelectorAll('.wb-round-btn').forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    if (hintSel) {
+                        var hint = document.querySelector(hintSel);
+                        if (hint) hint.innerHTML = btn.getAttribute('data-label');
+                    }
+                });
+            });
+        });
+
         runForSlide(Reveal.getCurrentSlide());
         Reveal.on('slidechanged', function (e) { runForSlide(e.currentSlide); });
+        window.addEventListener('resize', function () {
+            var cur = Reveal.getCurrentSlide();
+            if (cur) cur.querySelectorAll('.wb-canvas').forEach(sizeWbCanvas);
+        });
 
         // Click-to-flip on .flip-ans (slide 29 next-word reveal)
         document.querySelectorAll('.flip-ans').forEach(function (el) {
