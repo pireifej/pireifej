@@ -7,12 +7,23 @@ $(document).ready(function() {
         'Youth Leadership Program - Coordinator': 'img/PXL_20240824_152158036.MP.jpg'
     };
 
+    var customImagePosition = {
+        'career-day-1.jpg': 'center top'
+    };
+
     function getWorkshopImage(item) {
         var label = item.label || '';
         if (customWorkshopImages[label]) {
             return customWorkshopImages[label];
         }
         return item.image || 'img-new/banner/2.jpg';
+    }
+
+    function getImagePosition(img) {
+        for (var key in customImagePosition) {
+            if (img && img.indexOf(key) !== -1) return customImagePosition[key];
+        }
+        return '';
     }
 
     $.ajax({ url: API_BASE + 'workshops', type: 'get', dataType: 'json', cache: false,
@@ -94,8 +105,10 @@ $(document).ready(function() {
             var categoryLabel = item._category === 'ai' ? 'AI Workshop'
                 : item._category === 'youth' ? 'Youth & Community'
                 : 'Public Speaking';
+            var pos = getImagePosition(img);
+            var posStyle = pos ? ' style="object-position: ' + pos + ';"' : '';
             html += '<div class="portfolio-card" data-category="' + item._category + '" data-index="' + idx + '">' +
-                '<div class="card-image"><img src="' + img + '" alt="' + label + '" loading="lazy"></div>' +
+                '<div class="card-image"><img src="' + img + '"' + posStyle + ' alt="' + label + '" loading="lazy"></div>' +
                 '<div class="card-content"><h5>' + label + '</h5>' +
                 '<span class="card-category">' + categoryLabel + '</span></div></div>';
         });

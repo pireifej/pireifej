@@ -2507,7 +2507,7 @@ I specialize in bridging the gap between technology and communication, leading d
             var SP_PROGRAMS = [
                 { key: 'ai', icon: 'fas fa-microchip', title: 'AI Literacy Series', tagline: 'Demystifying AI for educators, leaders, and curious adults.', image: 'img/future_school_ai_group.jpg', ctaLabel: 'See all AI sessions' },
                 { key: 'speaking', icon: 'fas fa-microphone-alt', title: 'Public Speaking Programs', tagline: 'Find your voice, structure your message, captivate any room.', image: 'img-new/workshops/public_speaking_workshop_bell_works.png', ctaLabel: 'See all Public Speaking sessions' },
-                { key: 'youth', icon: 'fas fa-users', title: 'Youth & Community Leadership', tagline: 'Career inspiration, respect, and leadership programs for K\u201312 audiences.', image: 'img/gallery/careerday2025-1.jpg', ctaLabel: 'See all Youth sessions' }
+                { key: 'youth', icon: 'fas fa-users', title: 'Youth & Community Leadership', tagline: 'Career inspiration, respect, and leadership programs for K\u201312 audiences.', image: 'img/gallery/ysa-finale-group.jpg', lockImage: true, ctaLabel: 'See all Youth sessions' }
             ];
             function spCategory(item) {
                 if (!item) return 'speaking';
@@ -2566,10 +2566,12 @@ I specialize in bridging the gap between technology and communication, leading d
                     if (!lines) {
                         lines = '<div class="sp-line"><div class="sp-line-meta">New sessions being scheduled.</div></div>';
                     }
-                    var headerImg = (recent && (recent.image || (recent.gallery && recent.gallery[0])))
+                    var headerImg = prog.lockImage
+                                 ? prog.image
+                                 : ((recent && (recent.image || (recent.gallery && recent.gallery[0])))
                                  || (upcoming && (upcoming.image || (upcoming.gallery && upcoming.gallery[0])))
                                  || (pItems[0] && (pItems[0].image || (pItems[0].gallery && pItems[0].gallery[0])))
-                                 || prog.image;
+                                 || prog.image);
                     html += '<div class="sp-card">' +
                         '<div class="sp-photo" style="background-image: url(\'' + headerImg + '\');"></div>' +
                         '<div class="sp-header">' +
