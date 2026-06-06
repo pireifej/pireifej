@@ -12,6 +12,12 @@ uri = "file://img-new/career-talk/cat-with-circles.png"
 type = "image"
 title = "cat with circles no text"
 
+[[generated]]
+id = "gxDx5QabbTJRwfYDsXLTN"
+uri = "file://attached_assets/generated_images/porky-cartoon.png"
+type = "image"
+title = "porky cartoon mascot"
+
 [[outputs]]
 id = "PkAbsr8cMq9-jfszORuYY"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
