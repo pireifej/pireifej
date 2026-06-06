@@ -502,16 +502,24 @@
                             <img src="img-new/shape/7.png" alt="Thumb">
                         </div>
                         <!-- Porky the flying-pig mascot sticker to cover the arm cut-out and add personality -->
-                        <img class="hero-mic-sticker" src="img-new/team/porky-cartoon.png" alt="Porky the flying pig mascot in an aviator cap" loading="lazy">
+                        <div class="porky-wrap" tabindex="0" role="button" aria-label="About Porky the flying pig">
+                            <img class="hero-mic-sticker" src="img-new/team/porky-cartoon.png" alt="Porky the flying pig mascot in an aviator cap" loading="lazy">
+                            <span class="porky-tip">Porky the flying pig &mdash; he joins my workshops as a reminder that anything is possible.</span>
+                        </div>
                     </div>
                     <style>
-                        .hero-mic-sticker {
+                        .porky-wrap {
                             position: absolute;
                             width: 180px;
-                            height: auto;
                             left: 56%;
                             top: 50%;
                             z-index: 5;
+                            cursor: pointer;
+                        }
+                        .hero-mic-sticker {
+                            display: block;
+                            width: 100%;
+                            height: auto;
                             pointer-events: none;
                             filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.30));
                             animation: heroMicFloat 5s ease-in-out infinite;
@@ -521,10 +529,61 @@
                             0%, 100% { transform: translate(0, 0) rotate(-4deg); }
                             50%      { transform: translate(0, -10px) rotate(4deg); }
                         }
+                        .porky-tip {
+                            position: absolute;
+                            bottom: 100%;
+                            left: 50%;
+                            transform: translateX(-50%) translateY(4px);
+                            margin-bottom: 6px;
+                            width: max-content;
+                            max-width: 210px;
+                            background: #1a1a2e;
+                            color: #fff;
+                            font-size: 13px;
+                            line-height: 1.4;
+                            text-align: center;
+                            padding: 9px 12px;
+                            border-radius: 12px;
+                            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: opacity 0.2s ease, transform 0.2s ease;
+                            pointer-events: none;
+                            z-index: 6;
+                        }
+                        .porky-tip::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            border: 7px solid transparent;
+                            border-top-color: #1a1a2e;
+                        }
+                        .porky-wrap:hover .porky-tip,
+                        .porky-wrap:focus .porky-tip,
+                        .porky-wrap.show-tip .porky-tip {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: translateX(-50%) translateY(0);
+                        }
                         @media (max-width: 991px) {
-                            .hero-mic-sticker { width: 140px; left: 56%; top: 50%; }
+                            .porky-wrap { width: 140px; left: 56%; top: 50%; }
                         }
                     </style>
+                    <script>
+                        (function () {
+                            var porky = document.querySelector('.porky-wrap');
+                            if (!porky) return;
+                            porky.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                porky.classList.toggle('show-tip');
+                            });
+                            document.addEventListener('click', function () {
+                                porky.classList.remove('show-tip');
+                            });
+                        })();
+                    </script>
                     
                 </div>
                 <div class="personal-social">
