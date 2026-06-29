@@ -123,11 +123,18 @@ app.get('/:page.html', (req, res, next) => {
     }
 });
 
+const NO_CACHE_EXTENSIONS = new Set(['.html', '.json', '.xml']);
+
 app.use(express.static('.', {
     setHeaders: (res, filePath, stat) => {
-        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-        res.set('Pragma', 'no-cache');
-        res.set('Expires', '0');
+        const ext = path.extname(filePath).toLowerCase();
+        if (NO_CACHE_EXTENSIONS.has(ext)) {
+            res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.set('Pragma', 'no-cache');
+            res.set('Expires', '0');
+        } else {
+            res.set('Cache-Control', 'public, max-age=86400');
+        }
     }
 }));
 
