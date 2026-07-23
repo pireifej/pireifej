@@ -397,7 +397,7 @@
                             <a href="portfolio.html?module=workshops" style="text-decoration: none; color: inherit; transition: all 0.3s ease;" onmouseover="this.style.opacity='0.8'; this.querySelector('.medium').style.textDecoration='underline'" onmouseout="this.style.opacity='1'; this.querySelector('.medium').style.textDecoration='none'">
                                 <div class="fun-fact">
                                     <div class="counter">
-                                        <div class="timer" data-to="15" data-speed="2000">15</div>
+                                        <div class="timer" id="workshops-counter" data-to="30" data-speed="2000">30</div>
                                         <div class="operator">+</div>
                                     </div>
                                     <span class="medium">Workshops Led <i class="fas fa-external-link-alt" style="font-size: 0.7em; margin-left: 5px;"></i></span>
@@ -405,7 +405,7 @@
                             </a>
                             <div class="fun-fact">
                                 <div class="counter">
-                                    <div class="timer" data-to="10" data-speed="2000">10</div>
+                                    <div class="timer" id="years-counter" data-to="12" data-speed="2000">12</div>
                                     <div class="operator">+</div>
                                 </div>
                                 <span class="medium">Years on Stage</span>
@@ -522,6 +522,32 @@
     <script src="js/typed.js"></script>
     <script src="js/validnavs.js"></script>
     <script src="js/main-new.js"></script>
+
+    <script>
+        // Live instructor stats — same API the homepage uses
+        $(document).ready(function() {
+            // Years on stage: first speech on record was 2014
+            var years = new Date().getFullYear() - 2014;
+            $('#years-counter').attr('data-to', years).text(years);
+
+            // Workshops led: count records from the resume API
+            $.ajax({
+                url: 'https://shouldcallpaul.replit.app/resume/workshops',
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+                    var count = data.records ? data.records.length : 0;
+                    if (count > 0) {
+                        $('#workshops-counter').attr('data-to', count).text(count);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('Could not load workshops count:', error);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
