@@ -386,6 +386,47 @@
         </div>
     </div>
 
+    <!-- Latest Academy Highlights -->
+    <div class="gallery-area default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-50">
+                    <h5 class="sub-title">Spring 2026 Academy</h5>
+                    <h2 class="title">Highlights from Our Latest Academy</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); height: 100%;">
+                        <img src="img/gallery/ysa-2026-township.jpg" alt="Young Speakers Academy students at the Holmdel Township Committee showcase" style="width: 100%; height: 280px; object-fit: cover;">
+                        <div style="background: white; padding: 20px;">
+                            <h5 style="margin-bottom: 8px;">The Live Showcase</h5>
+                            <p style="margin: 0; font-size: 0.9rem; color: #666;">Students delivered their speeches before the Holmdel Township Committee — the grand finale of the 8-week program.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); height: 100%;">
+                        <img src="img/gallery/ysa-2026-pizza.jpg" alt="Young Speakers Academy pizza celebration during class" style="width: 100%; height: 280px; object-fit: cover;">
+                        <div style="background: white; padding: 20px;">
+                            <h5 style="margin-bottom: 8px;">Learning Should Be Fun</h5>
+                            <p style="margin: 0; font-size: 0.9rem; color: #666;">Pizza party during our weekly sessions — building confidence works best in a relaxed, supportive environment.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); height: 100%;">
+                        <img src="img/gallery/ysa-2026-certificates.jpg" alt="Young Speakers Academy students receiving certificates of completion" style="width: 100%; height: 280px; object-fit: cover;">
+                        <div style="background: white; padding: 20px;">
+                            <h5 style="margin-bottom: 8px;">Certificates of Completion</h5>
+                            <p style="margin: 0; font-size: 0.9rem; color: #666;">Every graduate earns a certificate — and the confidence to speak anywhere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Instructor Section -->
     <div class="about-area default-padding">
         <div class="container">
@@ -397,7 +438,7 @@
                             <a href="portfolio.html?module=workshops" style="text-decoration: none; color: inherit; transition: all 0.3s ease;" onmouseover="this.style.opacity='0.8'; this.querySelector('.medium').style.textDecoration='underline'" onmouseout="this.style.opacity='1'; this.querySelector('.medium').style.textDecoration='none'">
                                 <div class="fun-fact">
                                     <div class="counter">
-                                        <div class="timer" id="workshops-counter" data-to="30" data-speed="2000">30</div>
+                                        <div class="timer" id="workshops-counter" data-to="65" data-speed="2000">65</div>
                                         <div class="operator">+</div>
                                     </div>
                                     <span class="medium">Workshops Led <i class="fas fa-external-link-alt" style="font-size: 0.7em; margin-left: 5px;"></i></span>
@@ -530,16 +571,35 @@
             var years = new Date().getFullYear() - 2014;
             $('#years-counter').attr('data-to', years).text(years);
 
-            // Workshops led: count records from the resume API
+            // Workshops led: count total SESSIONS from the resume API.
+            // Series like Young Speakers Academy (8 weeks) or Career Day
+            // (seven presentations) count as multiple sessions.
+            var NUM_WORDS = {one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12};
+            function sessionCount(record) {
+                var text = ((record.label || '') + ' ' + (record.desc || '')).replace(/<[^>]+>/g, ' ').toLowerCase();
+                var best = 1, m;
+                m = text.match(/(\d+)[-\s]week/);
+                if (m) best = Math.max(best, parseInt(m[1], 10));
+                if (/presented twice|again at/.test(text)) best = Math.max(best, 2);
+                m = text.match(/(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|\d+)(?:\s+\S+)?\s+(?:sessions|presentations)/);
+                if (m) {
+                    var n = NUM_WORDS[m[1]] || parseInt(m[1], 10);
+                    if (n) best = Math.max(best, n);
+                }
+                return best;
+            }
             $.ajax({
                 url: 'https://shouldcallpaul.replit.app/resume/workshops',
                 type: 'get',
                 dataType: 'json',
                 cache: false,
                 success: function(data) {
-                    var count = data.records ? data.records.length : 0;
-                    if (count > 0) {
-                        $('#workshops-counter').attr('data-to', count).text(count);
+                    var records = data.records || [];
+                    var total = 0;
+                    records.forEach(function(r) { total += sessionCount(r); });
+                    console.log('Workshop sessions total:', total, 'from', records.length, 'workshops');
+                    if (total > 0) {
+                        $('#workshops-counter').attr('data-to', total).text(total);
                     }
                 },
                 error: function(xhr, status, error) {
