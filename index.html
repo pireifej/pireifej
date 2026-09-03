@@ -501,7 +501,7 @@
                         <div class="shape-center">
                             <img src="img-new/shape/7.png" alt="Thumb">
                         </div>
-                        <!-- Porky the flying-pig mascot sticker to cover the arm cut-out and add personality -->
+                        <!-- Porky peeks over the bottom of the hero as a playful site mascot -->
                         <div class="porky-wrap" tabindex="0" role="button" aria-label="About Porky the flying pig">
                             <img class="hero-mic-sticker" src="img-new/team/porky-cartoon.png" alt="Porky the flying pig mascot in an aviator cap" loading="lazy">
                             <span class="porky-tip">Porky the flying pig &mdash; he joins my workshops as a reminder that anything is possible.</span>
@@ -510,9 +510,10 @@
                     <style>
                         .porky-wrap {
                             position: absolute;
-                            width: 180px;
-                            left: 56%;
-                            top: 50%;
+                            width: 145px;
+                            left: 7%;
+                            top: auto;
+                            bottom: -62px;
                             z-index: 5;
                             cursor: pointer;
                         }
@@ -568,7 +569,12 @@
                             transform: translateX(-50%) translateY(0);
                         }
                         @media (max-width: 991px) {
-                            .porky-wrap { width: 140px; left: 56%; top: 50%; }
+                            .porky-wrap {
+                                width: 115px;
+                                left: 4%;
+                                top: auto;
+                                bottom: -44px;
+                            }
                         }
                     </style>
                     <script>
