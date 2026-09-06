@@ -174,15 +174,16 @@
             <p class="catalog-intro-note">Browse by category to find sessions that fit your audience — every workshop here can be tailored and delivered for your organization or clients.</p>
 
             <div class="filter-buttons" id="catalog-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
+                {{workshopCatalogFilters}}
             </div>
 
             <div id="catalog-content">
-                <div class="loading-spinner">Loading...</div>
+                {{workshopCatalogContent}}
             </div>
         </div>
     </div>
 
+    <script>window.__WORKSHOP_CATALOG_DATA__ = {{workshopCatalogData}};</script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.appear.js"></script>

@@ -7,16 +7,20 @@ $(document).ready(function() {
         'youth_education': 'Youth & Education'
     };
 
-    $.ajax({ url: API_URL, type: 'get', dataType: 'json', cache: false,
-        success: function(data) {
-            renderFilters(data.categories || []);
-            renderCatalog(data.categories || []);
-            setupFilterHandlers();
-        },
-        error: function() {
-            $('#catalog-content').html('<div class="loading-spinner">Failed to load the catalog. Please try again later.</div>');
-        }
-    });
+    if (window.__WORKSHOP_CATALOG_DATA__ && Array.isArray(window.__WORKSHOP_CATALOG_DATA__.categories)) {
+        setupFilterHandlers();
+    } else {
+        $.ajax({ url: API_URL, type: 'get', dataType: 'json', cache: false,
+            success: function(data) {
+                renderFilters(data.categories || []);
+                renderCatalog(data.categories || []);
+                setupFilterHandlers();
+            },
+            error: function() {
+                $('#catalog-content').html('<div class="loading-spinner">Failed to load the catalog. Please try again later.</div>');
+            }
+        });
+    }
 
     function esc(s) {
         return $('<div>').text(s || '').html();

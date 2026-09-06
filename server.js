@@ -92,6 +92,91 @@ function replaceTemplates(content) {
     return content;
 }
 
+const WORKSHOP_CATALOG_API = 'https://shouldcallpaul.replit.app/speaker/speaker_menu';
+const WORKSHOP_CATALOG_CACHE_MS = 5 * 60 * 1000;
+let workshopCatalogCache = { data: null, expiresAt: 0 };
+
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+async function getWorkshopCatalog() {
+    if (workshopCatalogCache.data && Date.now() < workshopCatalogCache.expiresAt) {
+        return workshopCatalogCache.data;
+    }
+
+    try {
+        const response = await fetch(WORKSHOP_CATALOG_API, { timeout: 8000 });
+        if (!response.ok) {
+            throw new Error(`Workshop catalog API returned ${response.status}`);
+        }
+        const data = await response.json();
+        if (!data || !Array.isArray(data.categories)) {
+            throw new Error('Workshop catalog API returned an invalid response');
+        }
+        workshopCatalogCache = {
+            data,
+            expiresAt: Date.now() + WORKSHOP_CATALOG_CACHE_MS
+        };
+        return data;
+    } catch (error) {
+        if (workshopCatalogCache.data) {
+            console.warn('Using stale workshop catalog cache:', error.message);
+            return workshopCatalogCache.data;
+        }
+        throw error;
+    }
+}
+
+function renderWorkshopCatalog(data) {
+    const shortTitles = {
+        ai_technology: 'AI & Technology',
+        public_speaking: 'Public Speaking',
+        youth_education: 'Youth & Education'
+    };
+    let filters = '<button class="filter-btn active" data-filter="all">All</button>';
+    let content = '';
+
+    data.categories.forEach(category => {
+        const categoryId = escapeHtml(category.id);
+        const items = Array.isArray(category.items) ? category.items : [];
+        filters += `<button class="filter-btn" data-filter="${categoryId}">${escapeHtml(shortTitles[category.id] || category.title)}</button>`;
+        content += `<div class="catalog-section" data-category="${categoryId}">`;
+        content += `<h2 class="catalog-section-title">${escapeHtml(category.title)}</h2>`;
+        content += `<div class="catalog-section-count">${items.length} ${items.length === 1 ? 'offering' : 'offerings'}</div>`;
+        content += '<div class="catalog-list">';
+
+        items.forEach(item => {
+            const parts = Array.isArray(item.parts) ? item.parts : [];
+            content += '<div class="catalog-item"><div class="catalog-item-header">';
+            content += `<h5>${escapeHtml(item.title)}</h5>`;
+            if (item.type === 'series') {
+                content += `<span class="catalog-badge">${parts.length ? `${parts.length}-Part ` : ''}Series</span>`;
+            }
+            content += '</div>';
+            if (item.description) {
+                content += `<p>${escapeHtml(item.description)}</p>`;
+            }
+            if (parts.length) {
+                content += '<ul class="catalog-parts">';
+                parts.forEach((part, index) => {
+                    content += `<li>${index + 1}. ${escapeHtml(part)}</li>`;
+                });
+                content += '</ul>';
+            }
+            content += '</div>';
+        });
+        content += '</div></div>';
+    });
+
+    return { filters, content };
+}
+
 app.get('/', (req, res) => {
     try {
         let content = fs.readFileSync('index.html', 'utf8');
@@ -101,6 +186,29 @@ app.get('/', (req, res) => {
     } catch (error) {
         console.error('Error serving index.html:', error);
         res.status(500).send('Server error');
+    }
+});
+
+app.get('/workshop-catalog.html', async (req, res) => {
+    try {
+        const data = await getWorkshopCatalog();
+        const rendered = renderWorkshopCatalog(data);
+        let content = fs.readFileSync('workshop-catalog.html', 'utf8');
+        content = replaceTemplates(content)
+            .replace('{{workshopCatalogFilters}}', rendered.filters)
+            .replace('{{workshopCatalogContent}}', rendered.content)
+            .replace('{{workshopCatalogData}}', JSON.stringify(data).replace(/</g, '\\u003c'));
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.send(content);
+    } catch (error) {
+        console.error('Error rendering workshop catalog:', error);
+        let content = fs.readFileSync('workshop-catalog.html', 'utf8');
+        content = replaceTemplates(content)
+            .replace('{{workshopCatalogFilters}}', '<button class="filter-btn active" data-filter="all">All</button>')
+            .replace('{{workshopCatalogContent}}', '<div class="loading-spinner">Loading...</div>')
+            .replace('{{workshopCatalogData}}', 'null');
+        res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.send(content);
     }
 });
 
