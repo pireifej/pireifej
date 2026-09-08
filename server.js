@@ -43,7 +43,8 @@ const PROTECTED_PATTERNS = [
     /^\/slides-hub\.html$/i,
     /^\/public-speaking-hub\.html$/i,
     /^\/session-[^/]+(\/.*)?$/i,
-    /^\/monmouth-county(\/.*)?$/i
+    /^\/monmouth-county(\/.*)?$/i,
+    /^\/corporate-workshops(\/.*)?$/i
 ];
 
 function isProtected(reqPath) {
