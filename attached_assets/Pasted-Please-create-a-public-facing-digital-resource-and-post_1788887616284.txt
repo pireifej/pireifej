@@ -1,0 +1,27 @@
+Please create a public-facing digital resource and post-session homework page on my "Should Call Paul" website for the United Teletech Credit Union workshop, intended to be accessed via the QR code from the final slide.
+
+1. Styling & Branding:
+- Keep the page styling, colors, and responsive layouts fully aligned with the rest of shouldcallpaul.com.
+- Header Banner: "Navigating the Shift: Digital Toolkit & Reflection Hub"
+- Subtitle: "Customized for United Teletech Credit Union — October 12, 2026"
+
+2. Page Sections:
+- Section 1: Executive Summary & Cheat Sheet
+  * A concise, 1-page scannable summary of the 4 key frameworks: Bridges Transition Model (J-Curve), Prosci Neurological Friction, Covey/Paulson CIA Matrix, and Dr. Lucy Hone’s "Helping or Harming?" filter.
+  * Include a printable/downloadable PDF button for a 1-page "Desk Guide" with member-facing de-escalation scripts during system freezes.
+
+- Section 2: Media & Recommended Reading
+  * Video Embed / Link: Dr. Lucy Hone’s TEDx Talk: "The Three Secrets of Resilient People".
+  * Summary & Media: Dr. Tasha Eurich on self-awareness and shifting from "Why" to "What".
+  * Recommended Reading Cards with book covers and direct Amazon links:
+    1. "Managing Transitions" by William Bridges
+    2. "Insight" by Dr. Tasha Eurich
+    3. "The 7 Habits of Highly Effective People" by Stephen Covey
+    4. "Resilient Grieving" by Dr. Lucy Hone
+
+- Section 3: Interactive Post-Workshop Reflection (Homework)
+  * An interactive form that employees can fill out on their phones or laptops to cement their takeaways:
+    1. Reflection 1 (Textarea): "Identify one operational hassle of this IT/org rollout that belongs in your 'Accept' bucket (outside your direct control) that you commit to stop venting about."
+    2. Reflection 2 (Textarea): "What is one specific action in your 'Circle of Control' that will make Day 1 smoother for you or a teammate?"
+    3. Reflection 3 (Multiple Choice + Short Response): "When you encounter unexpected technical friction during Go-Live week, what is your go-to 'Helping or Harming?' circuit breaker?"
+  * Provide a "Save My Responses" button that allows users to download their answers as a clean text file or email their responses to themselves for their own notes. No mandatory login required.
