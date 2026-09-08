@@ -1,0 +1,32 @@
+Please build a presentation slide deck component for my existing "Should Call Paul" web application, accessible from my Speaker Hub / Admin dashboard. 
+
+1. Design & Aesthetic Consistency:
+- Match the exact branding, typography, color palette, responsive container styling, and header/navigation conventions of my existing Should Call Paul site (clean, professional, modern cards, and high-contrast text).
+- Include keyboard navigation (Left/Right arrows, Spacebar) and on-screen "Previous / Next / Fullscreen" controls.
+
+2. Workshop Header & Cover Details:
+- Organization: United Teletech Credit Union
+- Date: Monday, October 12, 2026
+- Title: Navigating the Shift: Operational Resilience Through System Overhauls
+- Speaker: Paul Ireifej (Should Call Paul, LLC)
+
+3. Slide Content & Sequence:
+- Slide 1: Title Slide (Branded with United Teletech Credit Union, October 12, 2026, session title, and speaker credit).
+- Slide 2: The Reality of Tech Transitions (The Human Side of IT, Highlighting the J-Curve / Productivity Dip).
+- Slide 3: Live Pulse Check (Live Digital Word Cloud via Slido/Mentimeter - include a prominent QR code placeholder, short link, and room code).
+- Slide 4: The Biology of Frustration (William Bridges' Transition Model & Prosci Cognitive Load - Basal Ganglia vs. Prefrontal Cortex).
+- Slide 5: Whole-Room Reset (The Arm-Crossing Reflex exercise prompt and debrief points).
+- Slide 6: Organizational Self-Awareness (Dr. Tasha Eurich - Shifting from defensive 'Why' to proactive 'What').
+- Slide 7: Interactive Live Whiteboard (Circle of Control vs. Concern / CIA Model):
+  * Provide an interactive in-slide digital whiteboard directly on the page so I don't need to switch apps.
+  * Three distinct drop-zone columns or interactive text cards: "Control", "Influence", "Accept".
+  * Include a real-time input field and "Add Item" button that appends entries in EXTRA-LARGE, high-contrast, bold font so the whole room can read what I type from the stage.
+  * Include a quick-toggle "Clear" and "Sample Seeds" button.
+- Slide 8: 60-Second Pair Share (Prompt: 1 'Accept' item to release, 1 'Control' habit to own).
+- Slide 9: Tactical Circuit Breakers (Dr. Lucy Hone - "Is what I'm doing helping or harming me?").
+- Slide 10: Cross-Department Fishbowl Scenario (Frontline & IT Go-Live error screen roleplay script and de-escalation points).
+- Slide 11: Recommended Reading (William Bridges, Dr. Tasha Eurich, Stephen Covey, Dr. Lucy Hone).
+- Slide 12: Digital Resource & Homework Hub (Large, centered QR code linking directly to the dedicated homework/toolkit page on shouldcallpaul.com).
+
+4. Admin Integration:
+- Add a direct link/card to launch this deck from my existing Speaker Hub/Admin view.
