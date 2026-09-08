@@ -23,15 +23,32 @@ id = "PkAbsr8cMq9-jfszORuYY"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
 type = "slides"
 title = "Public Speaking — PowerPoint (5.1 MB)"
+logical_id = "8876f527-02af-4e93-a5b6-ed8a5c80ace7"
 
 [[outputs]]
 id = "nlUftyvPxbc0316Y8scnd"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Active-Listening.pptx"
 type = "slides"
 title = "Active Listening — PowerPoint (7.2 MB)"
+logical_id = "61856029-ee8b-4dfb-9484-70f228a5b08b"
 
 [[outputs]]
 id = "weA6fD_BayixX9lc6IMO6"
 uri = "file://exports/api-image-migration.txt"
 type = "text"
 title = "Image Migration List (86 URLs for backend to pull)"
+logical_id = "77ab212f-b1c3-4438-8122-d446bc3fc8c6"
+
+[[outputs]]
+id = "X3TFUGdHbQz4BpZLOSv3X"
+uri = "file://docs/united-teletech-system-freeze-desk-guide.pdf"
+type = "pdf"
+title = "System Freeze Desk Guide"
+description = "One-page printable communication guide for the United Teletech resilience workshop."
+logical_id = "afeca5a9-ebd8-4dca-af2c-4675039b7cae"
+content_hash = "sha256:665b53a2463cc3c830c9e525ab3172d5cbbc67aa28596c1d667270f5ea7a20b0"
+size = 4913
+mtime_ms = 1788888590493
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/afeca5a9-ebd8-4dca-af2c-4675039b7cae/1b3285af-46af-4cfd-a5f2-7612af8d3009"
+storage_version_token = "1788889363575711"
+content_type = "application/pdf"

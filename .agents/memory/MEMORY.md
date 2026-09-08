@@ -1,0 +1,1 @@
+- [Canonical public hostname](canonical-public-hostname.md) — Use the `www` host for production links and QR codes; the apex host has failed TLS.
