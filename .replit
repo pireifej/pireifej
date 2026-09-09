@@ -45,3 +45,8 @@ externalPort = 3001
 [deployment]
 deploymentTarget = "autoscale"
 run = ["npm", "start"]
+
+[userenv]
+
+[userenv.shared]
+UTCU_CLIENT_USERNAME = "unitedteletech"

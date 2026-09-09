@@ -51,6 +51,47 @@ function isProtected(reqPath) {
     return PROTECTED_PATTERNS.some(re => re.test(reqPath));
 }
 
+function hasBasicCredentials(req, expectedUser, expectedPass) {
+    const header = req.headers.authorization || '';
+    if (!header.startsWith('Basic ')) return false;
+
+    try {
+        const decoded = Buffer.from(header.slice(6), 'base64').toString('utf8');
+        const idx = decoded.indexOf(':');
+        if (idx < 0) return false;
+        return decoded.slice(0, idx) === expectedUser && decoded.slice(idx + 1) === expectedPass;
+    } catch {
+        return false;
+    }
+}
+
+function requireUnitedTeletechClient(req, res, next) {
+    const expectedUser = process.env.UTCU_CLIENT_USERNAME;
+    const expectedPass = process.env.UTCU_CLIENT_PASSWORD;
+
+    if (!expectedUser || !expectedPass) {
+        console.error('UTCU client credentials not set — blocking client deck route');
+        res.set('WWW-Authenticate', 'Basic realm="United Teletech Workshop"');
+        res.set('Cache-Control', 'no-store');
+        return res.status(401).send('Client access is not configured');
+    }
+
+    if (hasBasicCredentials(req, expectedUser, expectedPass)) return next();
+
+    res.set('WWW-Authenticate', 'Basic realm="United Teletech Workshop"');
+    res.set('Cache-Control', 'no-store');
+    return res.status(401).send('Authentication required');
+}
+
+app.get(
+    ['/client/united-teletech-resilience', '/client/united-teletech-resilience.html'],
+    requireUnitedTeletechClient,
+    (req, res) => {
+        res.set('Cache-Control', 'no-store, private');
+        res.sendFile(path.join(__dirname, 'corporate-workshops', 'united-teletech-resilience.html'));
+    }
+);
+
 function requireAdmin(req, res, next) {
     if (!isProtected(req.path)) return next();
 
@@ -63,18 +104,7 @@ function requireAdmin(req, res, next) {
         return res.status(401).send('Auth not configured');
     }
 
-    const header = req.headers.authorization || '';
-    if (header.startsWith('Basic ')) {
-        try {
-            const decoded = Buffer.from(header.slice(6), 'base64').toString('utf8');
-            const idx = decoded.indexOf(':');
-            const user = decoded.slice(0, idx);
-            const pass = decoded.slice(idx + 1);
-            if (user === expectedUser && pass === expectedPass) {
-                return next();
-            }
-        } catch (e) { /* fall through */ }
-    }
+    if (hasBasicCredentials(req, expectedUser, expectedPass)) return next();
 
     res.set('WWW-Authenticate', 'Basic realm="Paul Slides"');
     res.set('Cache-Control', 'no-store');
