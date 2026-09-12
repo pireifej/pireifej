@@ -1,0 +1,87 @@
+Generate a new presentation entry in the Speaker Hub admin portal for my upcoming CFCA conference session:
+"When Fraud Controls Fail: Strengthening Communications Fraud Defenses Through Resilience Testing"
+
+Target Presentation Length: 20–25 minutes (12–13 slides).
+Audience: 30–40 telecom fraud, revenue assurance, and risk professionals in a large conference room.
+Speaker Stance: Independent industry practitioner/consultant (no corporate/carrier bias).
+
+Architecture & Design Directives:
+- DO NOT reinvent the wheel: Reuse the existing presentation engine, layout containers, CSS themes, and UI components from previous workshops in this repository.
+- High-visibility typography: Text must be large, crisp, and readable from the back of a 40-foot room. Avoid walls of text or dense paragraph blocks.
+- Clean visual scaffolding: Use existing icon libraries (Lucide/FontAwesome) or clean emojis as scannable bullet points, status badges, and cards.
+- Diagrams & Visuals: Use simple, clean flowcharts/diagrams ONLY where structural logic requires it (e.g., the Agentic AI loop and the Comparative Matrix). No photorealistic AI fluff images.
+- Palette: Professional dark slate/navy theme with high-contrast electric cyan and emerald accents.
+
+Slide-by-Slide Content & Narrative Structure:
+
+Slide 1: Title Slide
+- Title: When Fraud Controls Fail: Strengthening Communications Fraud Defenses Through Resilience Testing
+- Subtitle: Bridging the Gap Between Software Reliability and Fraud Exposure
+- Event: CFCA Annual Conference
+
+Slide 2: The Hook
+- Quote: "Everyone has a plan until they get punched in the mouth." — Mike Tyson
+- The Setup: Fraud detection algorithms and ML scoring engines look bulletproof on paper—until an upstream dependency quietly breaks at 2:00 AM.
+
+Slide 3: The Engineering Reality
+- Quote: "Failures are a given, and everything will eventually fail over time. You have to build systems that embrace failure as a natural occurrence." — Dr. Werner Vogels, CTO, Amazon
+- Core Takeaway: Stop designing under the assumption that systems won't fail. Start engineering how your fraud controls degrade when dependencies inevitably do.
+
+Slide 4: Kickoff Scenario — "The 2:00 AM Ghost Outage"
+- Real-World Incident: A routine automated credential/cert rotation touches a fraud microservice during an off-peak maintenance window.
+- The Trap: Downstream service returns 401 Unauthorized; the mediation switch defaults to "Fail Open" to prevent dropping legitimate customer calls.
+- The Blind Spot: Zero alarms sound and dashboards show no activity for 4 hours while high-rate international revenue share fraud (IRSF) passes completely uninspected.
+
+Slide 5: Demystifying Chaos Engineering
+- Definition: Controlled, hypothesis-driven failure discovery—not reckless outages in production.
+- Core Guardrails:
+  * Strict blast radius limits (canary routing, 1% traffic slicing, non-critical tenants)
+  * Scheduled off-peak GameDays with cross-functional oversight
+  * Automated kill switches (instant experiment rollback if latency or error budgets breach thresholds)
+
+Slide 6: Failure Domain 1 — Identity, Secrets & Access
+- Machine-to-Machine IDs (Mech ID): Password rollover desyncs and expired service account credentials.
+- Internal mTLS / Certificates: Expired certificates inside the service mesh breaking real-time rating engines.
+- External Vendor APIs: Downstream threat intel / CNAM / reputation lookups hitting rate limits (HTTP 429) or token revocation.
+- The Critical Question: Does the engine fail open (blind fraud risk) or fail closed (dropping legitimate subscriber revenue)?
+
+Slide 7: Failure Domain 2 — Cloud & Platform Degradation
+- Kubernetes / Pod Failures: Sudden burst attacks (e.g., Wangiri floods) triggering memory spikes and pod OOMKilled crash loops.
+- CPU Throttling: Microservices hitting container CPU limits, causing tail latency to exceed pre-call setup timers and forcing silent fallbacks.
+- Connection Pool Starvation: Slow database queries tying up worker threads, causing CDR ingestion queues to back up and desynchronize.
+
+Slide 8: The Getting Started Blueprint — Tooling Landscape
+- Platform Native:
+  * AWS Fault Injection Service (FIS) — Native fault injection across EC2, EKS, and Lambda.
+  * Azure Chaos Studio — Orchestrated platform faults, native AKS and network disruption.
+  * GCP — Built-in integration with CNCF Kubernetes chaos tools on GKE.
+- Multi-Cloud & Open Source Standards:
+  * Chaos Mesh & LitmusChaos (CNCF) — Cloud-native CRDs for pod, network, and disk stress testing.
+  * Gremlin — Enterprise multi-cloud resilience platform.
+- Starter Rule: Don't build custom chaos tools from scratch; start with native cloud services and standard CNCF CRDs.
+
+Slide 9: Emerging Frontier — Agentic AI as the Chaos Co-Pilot
+- Multi-Stage Autonomous Workflow:
+  1. Discovery: LLM agent parses Terraform (.tf) files, Helm charts, and K8s YAML to map hidden dependency chains and single points of failure.
+  2. Synthesis: Agent auto-generates executable Chaos Mesh YAML or AWS FIS JSON experiment templates.
+  3. Guarded Execution: Agent monitors Prometheus/Datadog telemetry via API and triggers auto-abort if error budgets exceed 0.5%.
+  4. Remediation: Post-test telemetry feeds back to the agent to draft a GitHub PR (e.g., tuning timeouts, adding local cache fallbacks).
+
+Slide 10: The Resilience Maturity Ladder
+- Stage 1: Staging GameDays (Manual failure injection during synthetic testing).
+- Stage 2: Dark/Shadow Traffic (Replaying production feeds against intentionally broken mock dependencies).
+- Stage 3: Off-Peak Production Windows (Controlled off-hours injection with active monitoring and abort switches).
+- Stage 4: Continuous Guardrailed Resilience (Automated, bounded chaos testing embedded into CI/CD pipelines).
+
+Slide 11: Architecture Matrix — Default Fragile vs. Resilient Design
+- Visual 3-row comparison table:
+  * Pre-Call Rating Engine | Default: Fails open silently | Resilient: Local cache fallback + instant silence alert
+  * External Reputation API | Default: Worker threads hang on timeout | Resilient: Strict circuit breaker + degraded scoring fallback
+  * Streaming Ingestion Pods | Default: CrashLoopBackOff on spike | Resilient: Horizontal Pod Autoscaler (HPA) + backpressure buffering
+
+Slide 12: Final Wrap-Up & Decisive Takeaway
+- Takeaway: "In fraud prevention, detection logic is only as effective as the infrastructure that keeps it conscious."
+- Closing Principle: Test your fraud controls on your own schedule—before a fraudster tests them on theirs.
+
+Slide 13: Q&A
+- Open floor for audience questions, tooling discussions, and implementation strategies.

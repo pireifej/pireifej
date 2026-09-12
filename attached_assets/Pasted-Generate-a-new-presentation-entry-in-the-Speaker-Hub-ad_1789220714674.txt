@@ -1,0 +1,75 @@
+Generate a new presentation entry in the Speaker Hub admin portal for my upcoming CFCA conference session:
+"When Fraud Controls Fail: Strengthening Communications Fraud Defenses Through Resilience Testing"
+
+Target Presentation Length: 20–25 minutes (10–12 slides).
+Audience: 30–40 telecom fraud, revenue assurance, and risk professionals in a large conference room.
+Speaker Stance: Independent consulting professional (no carrier or corporate affiliation).
+
+Architecture & Design Directives:
+- DO NOT reinvent the wheel: Leverage and reuse the existing slide deck template, layout wrappers, and UI components from previously built workshops in this repo.
+- Large, high-visibility typography: Text must be readable from the back of a 40-foot room. Strictly avoid dense paragraphs and walls of text.
+- Clean visual scaffolding: Use existing icon sets (Lucide/FontAwesome) or clean emojis as scannable bullet points and badges.
+- Visual diagrams: Include simple, clean flowcharts/diagrams ONLY where structural logic requires it (e.g., fail-open vs. fail-closed architecture or AI agent discovery pipeline). No AI-generated photorealistic images or fluff graphics.
+- High-contrast, sleek palette: Match the platform's dark navy/slate theme with crisp accent highlights.
+
+Slide-by-Slide Content & Narrative Structure:
+
+Slide 1: Title Slide
+- Title: When Fraud Controls Fail: Strengthening Communications Fraud Defenses Through Resilience Testing
+- Event: CFCA Annual Conference
+- Focus: Bridging the gap between software reliability and fraud exposure.
+
+Slide 2: The Hook
+- Quote: "Everyone has a plan until they get punched in the mouth." — Mike Tyson
+- Concept: Fraud rules, scoring models, and ML pipelines look flawless on paper—until a production dependency breaks unexpectedly at 2:00 AM.
+
+Slide 3: The Engineering Reality
+- Quote: "Failures are a given, and everything will eventually fail over time. You have to build systems that embrace failure as a natural occurrence." — Dr. Werner Vogels, CTO, Amazon
+- Key Takeaway: Move from hoping systems never break to engineering how fraud defense degrades when dependencies inevitably do.
+
+Slide 4: Kickoff Scenario — "The 2:00 AM Ghost Outage"
+- Real-World Case: A routine automated credential/cert rotation hits a fraud microservice during an off-peak window.
+- The Trap: Downstream service returns 401 Unauthorized; the mediation switch defaults to "Fail Open" to preserve call completion.
+- The Blind Spot: Zero alerts fire on the dashboard for 4 hours while high-rate international revenue share fraud (IRSF) passes completely uninspected.
+
+Slide 5: Demystifying Chaos Engineering
+- Definition: Controlled, hypothesis-driven discovery—not reckless outages in production.
+- Core Guardrails:
+  * Strict blast radius limits (canary routing, 1% traffic slicing)
+  * Scheduled off-peak GameDays with cross-functional oversight
+  * Automated kill switches (abort experiment if latency/error budgets spike)
+
+Slide 6: Failure Domain 1 — Identity, Secrets & Access
+- Machine-to-Machine ID (Mech ID): Expired service account passwords and credential rollover desyncs.
+- Internal mTLS / Certificates: Expired certificates inside the service mesh breaking rating lookups.
+- Third-Party APIs: Downstream threat intel / reputation APIs hitting rate limits (HTTP 429) or token revocation.
+- Dilemma: Does the system fail open (blind risk) or fail closed (dropping subscriber traffic)?
+
+Slide 7: Failure Domain 2 — Cloud & Platform Degradation
+- Kubernetes / Pod Failures: Sudden burst attacks (e.g., Wangiri storms) triggering memory spikes and pod OOMKilled crash loops.
+- CPU Throttling: Microservices hitting resource caps, spiking tail latency past pre-call setup timers and forcing silent fallbacks.
+- Connection Exhaustion: Slow database queries tying up pool connections, blocking ingestion queues.
+
+Slide 8: Emerging Concept / POC — AI Agents for Chaos Discovery
+- The Concept: Feeding infrastructure-as-code (Terraform configs, Helm charts, Kubernetes manifests) into an LLM agent.
+- Capability: Agent analyzes dependency graphs, maps hidden single points of failure, and synthesizes targeted Chaos Mesh or LitmusChaos manifests.
+- Pitch: Moving from manually guessing where systems are fragile to automated AI-driven architectural stress testing.
+
+Slide 9: The Resilience Maturity Ladder
+- Step 1: GameDays in Staging (Manual failure injection during synthetic tests).
+- Step 2: Dark/Shadow Traffic (Replaying live feeds against broken dependencies).
+- Step 3: Off-Peak Production Windows (Controlled off-hours injection with monitored rollback triggers).
+- Step 4: Continuous Guardrailed Resilience (Automated, bounded chaos testing in runtime).
+
+Slide 10: Comparative Matrix — Default Architecture vs. Resilient Design
+- Visual 3-row comparison table:
+  * Component: Pre-Call Auth Engine | Default: Fails open silently | Resilient: Local cache fallback + alert
+  * Component: External Reputation API | Default: Worker threads hang on timeout | Resilient: Strict circuit breaker + fallback rules
+  * Component: Streaming Ingestion Pods | Default: CrashLoopBackOff on spike | Resilient: Horizontal Pod Autoscaler + backpressure buffering
+
+Slide 11: Final Wrap-Up & Core Principle
+- Takeaway: "In fraud prevention, detection logic is only as good as the system running it."
+- Closing Line: Break your fraud controls on your own schedule—before a fraudster breaks them on theirs.
+
+Slide 12: Q&A
+- Open floor for discussion and practical implementation questions.
