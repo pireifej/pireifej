@@ -1,2 +1,3 @@
 - [Canonical public hostname](canonical-public-hostname.md) — Use the `www` host for production links and QR codes; the apex host has failed TLS.
 - [Client resource portal](client-resource-portal.md) — Long-term direction is invite-only, read-only client access with revocation, expiry, licensing, and watermarking.
+- [Workshop reuse boundaries](workshop-reuse-boundaries.md) — Shared presentation assets must work under both admin and client-only entry points.

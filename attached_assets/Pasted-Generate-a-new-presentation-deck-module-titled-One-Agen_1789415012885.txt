@@ -1,0 +1,32 @@
+Generate a new presentation deck module titled "One Agency: Building Daily Trust and Professional Respect" inside my existing speakers-hub / presentation admin system.
+
+### Core Objectives:
+1. MAXIMIZE CODE REUSE: Inspect my existing slide repository, GUI widget components, and presentation controller scripts in this workspace. Reuse all established design tokens, typography, navigation buttons, full-screen handlers, and slide layouts. Do not create redundant CSS/JS frameworks.
+2. TAILOR THE SLIDE CONTENT: Build a 12-to-14 slide interactive deck structured around a 60-minute workshop for non-supervisory staff (prosecutors, detectives, paralegals, and clerks) at a county prosecutor's office.
+
+### Required Interactive GUI Widgets:
+1. Live Large-Type Text Display Widget ("The Megaphone"):
+   - A dedicated slide component where the presenter can click an input box or hit a hotkey, type attendee comments/rewrites in real time, and render them in HUGE, responsive, high-contrast typography directly on the slide for the whole room to read.
+2. Simulated Email Card Component:
+   - A clean UI component styled to look like an internal desktop email client (displaying "To", "From", "Subject", and body).
+   - Needs a toggle or side-by-side comparison state:
+     * State A: "The Friction Point" (curt, aggressive email with red highlight callouts on toxic phrasing like "Per my last email").
+     * State B: "The Constructive Rewrite" (clean, de-escalated language using the "Help me understand" model).
+3. QR Code Presentation Slots:
+   - Pre-formatted slide modules with clean placeholders for embedding live polling QR codes (Slido/Mentimeter) alongside clear instruction copy and timer badges.
+
+### Slide Sequence & Content Architecture:
+- Slide 1: Title Slide ("One Agency: Building Daily Trust and Professional Respect").
+- Slide 2: The Core Premise ("The Cost of the Closed Circle" — Personal Story framing).
+- Slide 3: Interactive Poll 1 ("The Live Room Diagnostic" — Embed QR code slot for gut reactions & word cloud).
+- Slide 4: Anatomy of Friction: The "You Need To Do This" Trap vs. "That's Not My Job".
+- Slide 5: The Alignment Pivot: "Help Me Understand" (Three words to clear bottlenecks and build trust).
+- Slide 6: Center-Stage Lab Setup: The Urgent Request Scenario (Visual breakdown of the exercise rules).
+- Slide 7: The "In-Earshot Radius" Rule (Graphic showing open bullpens vs. off-floor social coordination).
+- Slide 8: Interactive Exercise 2: "Temptation vs. Tact" Email Landmine (Using the Email Card Component).
+- Slide 9: Live Audience Input Slide (Using the Large-Type Live Text Display Widget to type real-time audience email rewrites).
+- Slide 10: Digital Discipline: Reply-All etiquette and strict Zero-AI / Data Confidentiality policy reminder.
+- Slide 11: The Hallway Test: Baseline civility and everyday courtesy across ranks.
+- Slide 12: Wrap-Up & Action: The 48-Hour Micro-Commitment (With QR slot for takeaway reference guides).
+
+Ensure the new deck seamlessly integrates into my current presentation launcher and responsive viewer controls.

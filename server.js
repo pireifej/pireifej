@@ -92,6 +92,16 @@ app.get(
     }
 );
 
+// Preserve the client-only deck's relative assets under its own credentials.
+app.get(
+    ['/client/shared/workshop-base.css', '/client/shared/workshop-controller.js'],
+    requireUnitedTeletechClient,
+    (req, res) => {
+        res.set('Cache-Control', 'no-store, private');
+        res.sendFile(path.join(__dirname, 'corporate-workshops', 'shared', path.basename(req.path)));
+    }
+);
+
 function requireAdmin(req, res, next) {
     if (!isProtected(req.path)) return next();
 
