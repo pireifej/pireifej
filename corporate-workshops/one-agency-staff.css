@@ -1,4 +1,26 @@
 /* Staff-only projection refinements. Shared deck styling remains untouched. */
+.one-agency-staff:has(.slide.light.active) .nav .count {
+  color: #101c33;
+}
+
+.one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] h2 {
+  font-size: clamp(48px, 7.2vw, 116px);
+  max-width: none;
+}
+
+.one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] .eyebrow {
+  font-size: clamp(18px, 1.8vw, 29px);
+}
+
+.one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] .step b {
+  font-size: clamp(44px, 5vw, 80px);
+}
+
+.one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] .step p {
+  font-size: clamp(27px, 2.7vw, 43px);
+  line-height: 1.15;
+}
+
 .one-agency-staff .slide[aria-label="Slide 1, title"] .eyebrow {
   font-size: clamp(20px, 1.9vw, 30px);
   margin-bottom: 24px;
@@ -136,6 +158,9 @@
 .one-agency-staff .qr-settings .qr-actions { margin-top: 10px; }
 
 @media (min-width: 900px) and (max-height: 760px) {
+  .one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] { padding-top: 62px; }
+  .one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] .three { margin-top: 20px; }
+  .one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] .step { padding-top: 18px; padding-bottom: 18px; }
   .one-agency-staff .slide[aria-label="Slide 3, live room diagnostic"] { padding-top: 62px; padding-bottom: 78px; }
   .one-agency-staff .diagnostic-copy h2 { font-size: clamp(43px, 5vw, 66px); }
   .one-agency-staff .diagnostic-question { font-size: clamp(24px, 2.45vw, 36px); }
