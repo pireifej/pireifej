@@ -1,7 +1,10 @@
 /* Staff-only projection refinements. Shared deck styling remains untouched. */
 .one-agency-staff .nav .count {
-  color: #101c33;
-  background: #f5f1e8;
+  color: #000;
+  background: #fff;
+  border: 2px solid #101c33;
+  font-weight: 500;
+  flex-shrink: 0;
   padding: 8px 10px;
   border-radius: 3px;
 }
@@ -115,7 +118,7 @@
 }
 
 .one-agency-staff:has(.slide.light.active) .nav .count {
-  color: #101c33;
+  color: #000;
 }
 
 .one-agency-staff .slide[aria-label="Slide 5, alignment pivot"] h2 {
