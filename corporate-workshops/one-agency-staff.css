@@ -1,4 +1,53 @@
 /* Staff-only projection refinements. Shared deck styling remains untouched. */
+.one-agency-staff .lab-scenario {
+  margin-top: 28px;
+  padding: 22px 26px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 700 clamp(25px, 2.8vw, 44px)/1.2 Manrope, sans-serif;
+}
+
+.one-agency-staff .lab-rounds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 28px;
+}
+
+.one-agency-staff .lab-round {
+  border-top: 5px solid var(--coral);
+  padding-top: 16px;
+}
+
+.one-agency-staff .lab-round b {
+  color: var(--coral);
+  font: 500 clamp(17px, 1.6vw, 25px) "DM Mono", monospace;
+}
+
+.one-agency-staff .lab-round h3 {
+  margin-top: 10px;
+  font: 800 clamp(26px, 3vw, 47px)/1.1 Manrope, sans-serif;
+}
+
+.one-agency-staff .lab-round p {
+  margin-top: 10px;
+  font: 700 clamp(24px, 2.6vw, 41px)/1.2 Manrope, sans-serif;
+}
+
+.one-agency-staff .lab-pivot { border-color: var(--acid); }
+.one-agency-staff .lab-pivot b { color: var(--acid); }
+
+.one-agency-staff .lab-guardrail {
+  margin-top: 28px;
+  color: var(--paper);
+  font: 500 clamp(14px, 1.3vw, 20px)/1.4 Manrope, sans-serif;
+}
+
+@media (max-width: 760px) {
+  .one-agency-staff .lab-rounds { grid-template-columns: 1fr; gap: 20px; }
+  .one-agency-staff .pressure-lab.active { justify-content: flex-start; }
+}
+
 .one-agency-staff .traps {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
