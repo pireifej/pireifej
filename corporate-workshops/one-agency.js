@@ -62,7 +62,7 @@
       }
 
       if (isEditingTarget(document.activeElement)) return true;
-      if (event.key.toLowerCase() === "m") {
+      if (!document.body.classList.contains("one-agency-staff") && event.key.toLowerCase() === "m") {
         event.preventDefault();
         const megaSlide = $("megaInput")?.closest(".slide");
         const megaIndex = megaSlide ? workshopController.slides.indexOf(megaSlide) : -1;
