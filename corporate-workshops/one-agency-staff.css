@@ -1,4 +1,28 @@
 /* Staff-only projection refinements. Shared deck styling remains untouched. */
+.one-agency-staff .traps {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.one-agency-staff .trap h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.one-agency-staff .trap-cross {
+  flex: none;
+  color: #c43726;
+  font: 800 .7em Manrope, sans-serif;
+}
+
+.one-agency-staff .trap p {
+  color: #354154;
+}
+
+@media (max-width: 760px) {
+  .one-agency-staff .traps { grid-template-columns: 1fr; }
+}
+
 .one-agency-staff:has(.slide.light.active) .nav .count {
   color: #101c33;
 }
