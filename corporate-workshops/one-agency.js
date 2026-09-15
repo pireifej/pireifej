@@ -90,7 +90,34 @@
 
   const input = $("megaInput");
   const output = $("megaOutput");
+  const staffDeck = document.body.classList.contains("one-agency-staff");
   function fitMegaphone() {
+    if (staffDeck) {
+      if (!output.clientWidth || !output.clientHeight) return;
+      // Reset to the stylesheet's original size before measuring each rewrite.
+      output.style.removeProperty("font-size");
+      const style = getComputedStyle(output);
+      const maximum = parseFloat(style.fontSize);
+      const availableWidth = output.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      const availableHeight = output.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+      const range = document.createRange();
+      range.selectNodeContents(output);
+      const fits = (size) => {
+        output.style.fontSize = `${size}px`;
+        const text = range.getBoundingClientRect();
+        return text.width <= availableWidth && text.height <= availableHeight;
+      };
+      if (fits(maximum)) return;
+      let low = 1;
+      let high = maximum;
+      while (high - low > 0.5) {
+        const middle = (low + high) / 2;
+        if (fits(middle)) low = middle;
+        else high = middle;
+      }
+      output.style.fontSize = `${low}px`;
+      return;
+    }
     let size = Math.min(window.innerWidth * 0.09, 160);
     output.style.fontSize = `${size}px`;
     while ((output.scrollHeight > output.clientHeight || output.scrollWidth > output.clientWidth) && size > 12) {
@@ -103,6 +130,15 @@
     fitMegaphone();
   });
   window.addEventListener("resize", fitMegaphone);
+  if (staffDeck) {
+    const scheduleFit = () => requestAnimationFrame(fitMegaphone);
+    new ResizeObserver(scheduleFit).observe(output);
+    new MutationObserver(scheduleFit).observe(output.closest(".slide"), {
+      attributes: true, attributeFilter: ["class"]
+    });
+    document.addEventListener("fullscreenchange", scheduleFit);
+    document.fonts.ready.then(scheduleFit);
+  }
   $("megaClear").onclick = () => {
     input.value = "";
     output.textContent = "Type a rewrite.";

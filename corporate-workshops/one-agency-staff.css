@@ -30,6 +30,12 @@
   min-height: 0;
 }
 .one-agency-staff .mega-controls { grid-template-columns: minmax(0, 1fr) auto; }
+.one-agency-staff .megaphone {
+  height: 100dvh;
+  min-height: 0;
+}
+.one-agency-staff .megaphone > :not(.megaphone-output) { flex-shrink: 0; }
+.one-agency-staff .megaphone-output { overflow-wrap: anywhere; }
 
 @media (min-width: 900px) {
   .one-agency-staff .slide[aria-label="Slide 8, email landmine"] h2 br { display: none; }
