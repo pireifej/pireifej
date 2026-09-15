@@ -1,0 +1,156 @@
+/* Staff-only projection refinements. Shared deck styling remains untouched. */
+.one-agency-staff .slide[aria-label="Slide 1, title"] .eyebrow {
+  font-size: clamp(20px, 1.9vw, 30px);
+  margin-bottom: 24px;
+}
+
+.one-agency-staff .slide[aria-label="Slide 1, title"] .sub {
+  font-size: clamp(28px, 2.65vw, 42px);
+  line-height: 1.22;
+  max-width: 1080px;
+  margin-top: 24px;
+}
+
+.one-agency-staff .slide[aria-label="Slide 1, title"] .meta {
+  font-size: clamp(24px, 2.4vw, 38px);
+  margin-top: 22px;
+}
+
+.one-agency-staff .circle-breath {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: clamp(24px, 4vw, 48px) 0 20px;
+}
+
+.one-agency-staff .circle-breath i {
+  display: block;
+  width: clamp(50px, 6vw, 82px);
+  aspect-ratio: 1;
+  border: 5px solid var(--acid);
+  border-radius: 50%;
+}
+
+.one-agency-staff .circle-breath i:last-child {
+  border-color: var(--coral);
+  border-right-color: transparent;
+  transform: rotate(-30deg);
+}
+
+.one-agency-staff .slide.alt .quote + .circle-breath + .sub {
+  font-size: clamp(25px, 2.5vw, 39px);
+  max-width: 900px;
+  line-height: 1.2;
+}
+
+.one-agency-staff .diagnostic-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(330px, .65fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 66px);
+  max-width: 1260px;
+}
+
+.one-agency-staff .diagnostic-copy h2 {
+  font-size: clamp(45px, 5.4vw, 76px);
+  max-width: 840px;
+}
+
+.one-agency-staff .diagnostic-question {
+  font: 800 clamp(26px, 2.85vw, 43px) Manrope;
+  line-height: 1.13;
+  max-width: 860px;
+  margin-top: 22px;
+}
+
+.one-agency-staff .email-callout {
+  margin-top: 21px;
+  max-width: 870px;
+  border-left: 9px solid var(--coral);
+  padding: 12px 0 12px 20px;
+  background: rgba(245, 241, 232, .06);
+}
+
+.one-agency-staff .email-callout span {
+  color: var(--acid);
+  font: 500 13px "DM Mono";
+  letter-spacing: .11em;
+}
+
+.one-agency-staff .email-callout p {
+  font: 800 clamp(21px, 2.2vw, 32px) Manrope;
+  line-height: 1.16;
+  margin-top: 7px;
+}
+
+.one-agency-staff .diagnostic-copy .meta { margin-top: 19px; }
+.one-agency-staff .diagnostic-poll { min-width: 0; }
+
+.one-agency-staff .diagnostic-poll .qr {
+  width: clamp(180px, 17vw, 220px);
+  border-width: 6px;
+}
+
+.one-agency-staff .diagnostic-timer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.one-agency-staff .diagnostic-timer .timer {
+  margin: 0;
+  font-size: 16px;
+  padding: 10px 12px;
+}
+
+.one-agency-staff .diagnostic-timer .qr-actions {
+  margin: 0;
+  flex-wrap: nowrap;
+}
+
+.one-agency-staff .diagnostic-timer .mini-btn {
+  padding: 8px 10px;
+}
+
+.one-agency-staff .reaction-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 17px;
+  max-width: 450px;
+}
+
+.one-agency-staff .reaction-chips b {
+  border: 2px solid var(--line);
+  padding: 7px 10px;
+  font: 800 clamp(24px, 2vw, 29px) Manrope;
+  line-height: 1;
+}
+
+.one-agency-staff .reaction-chips b:nth-child(3n + 1) { border-color: var(--acid); }
+.one-agency-staff .reaction-chips b:nth-child(3n + 2) { border-color: var(--coral); }
+
+.one-agency-staff .qr-settings { margin-top: 9px; max-width: 420px; }
+.one-agency-staff .qr-settings summary { cursor: pointer; color: var(--muted); font: 500 12px "DM Mono"; }
+.one-agency-staff .qr-settings .qr-actions { margin-top: 10px; }
+
+@media (min-width: 900px) and (max-height: 760px) {
+  .one-agency-staff .slide[aria-label="Slide 3, live room diagnostic"] { padding-top: 62px; padding-bottom: 78px; }
+  .one-agency-staff .diagnostic-copy h2 { font-size: clamp(43px, 5vw, 66px); }
+  .one-agency-staff .diagnostic-question { font-size: clamp(24px, 2.45vw, 36px); }
+  .one-agency-staff .email-callout { margin-top: 15px; }
+  .one-agency-staff .email-callout p { font-size: clamp(20px, 2vw, 28px); }
+  .one-agency-staff .reaction-chips { margin-top: 10px; }
+  .one-agency-staff .reaction-chips b { font-size: 24px; padding: 6px 9px; }
+}
+
+@media (max-width: 760px) {
+  .one-agency-staff .diagnostic-layout { grid-template-columns: 1fr; }
+  .one-agency-staff .diagnostic-copy h2 { font-size: clamp(39px, 12vw, 60px); }
+  .one-agency-staff .diagnostic-question { font-size: clamp(24px, 7vw, 34px); }
+  .one-agency-staff .diagnostic-timer { flex-wrap: wrap; }
+  .one-agency-staff .diagnostic-timer .qr-actions { flex-wrap: wrap; }
+  .one-agency-staff .reaction-chips b { font-size: clamp(21px, 6vw, 28px); }
+  .one-agency-staff .qr-settings .qr-actions { overflow-wrap: anywhere; }
+}
