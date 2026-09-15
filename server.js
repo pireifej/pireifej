@@ -277,7 +277,9 @@ const NO_CACHE_EXTENSIONS = new Set(['.html', '.json', '.xml']);
 app.use(express.static('.', {
     setHeaders: (res, filePath, stat) => {
         const ext = path.extname(filePath).toLowerCase();
-        if (NO_CACHE_EXTENSIONS.has(ext)) {
+        const workshopAsset = filePath.includes(`${path.sep}corporate-workshops${path.sep}`) &&
+            (ext === '.js' || ext === '.css');
+        if (NO_CACHE_EXTENSIONS.has(ext) || workshopAsset) {
             res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
             res.set('Pragma', 'no-cache');
             res.set('Expires', '0');
