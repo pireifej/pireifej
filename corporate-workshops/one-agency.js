@@ -5,10 +5,12 @@
   const nav = document.querySelector(".nav");
   let lastFocus;
 
-  notes.setAttribute("role", "dialog");
-  notes.setAttribute("aria-modal", "true");
-  notes.setAttribute("aria-labelledby", "notesTitle");
-  notes.querySelector("h2").id = "notesTitle";
+  if (notes) {
+    notes.setAttribute("role", "dialog");
+    notes.setAttribute("aria-modal", "true");
+    notes.setAttribute("aria-labelledby", "notesTitle");
+    notes.querySelector("h2").id = "notesTitle";
+  }
 
   function isEditingTarget(target) {
     return target instanceof HTMLElement && (
@@ -23,6 +25,7 @@
   }
 
   function setModal(open) {
+    if (!notes) return;
     if (open) {
       lastFocus = document.activeElement;
       notes.classList.add("open");
@@ -41,7 +44,7 @@
 
   const workshopController = window.initWorkshopController({
     onKeydown(event) {
-      if (notes.classList.contains("open")) {
+      if (notes?.classList.contains("open")) {
         if (event.key === "Escape") setModal(false);
         if (event.key === "Tab") {
           const focusable = focusableNotes();
@@ -71,8 +74,8 @@
     }
   });
 
-  $("notesOpen").onclick = () => setModal(true);
-  $("notesClose").onclick = () => setModal(false);
+  $("notesOpen")?.addEventListener("click", () => setModal(true));
+  $("notesClose")?.addEventListener("click", () => setModal(false));
 
   const email = $("email");
   document.querySelectorAll("[data-email]").forEach((button) => {
