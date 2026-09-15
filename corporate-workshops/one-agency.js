@@ -61,7 +61,9 @@
       if (isEditingTarget(document.activeElement)) return true;
       if (event.key.toLowerCase() === "m") {
         event.preventDefault();
-        workshopController.show(8);
+        const megaSlide = $("megaInput")?.closest(".slide");
+        const megaIndex = megaSlide ? workshopController.slides.indexOf(megaSlide) : -1;
+        workshopController.show(megaIndex >= 0 ? megaIndex : workshopController.current);
         setTimeout(() => $("megaInput").focus(), 0);
         return true;
       }

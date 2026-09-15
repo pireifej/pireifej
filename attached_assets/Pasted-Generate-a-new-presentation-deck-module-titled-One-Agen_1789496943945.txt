@@ -1,0 +1,36 @@
+Generate a new presentation deck module titled "One Agency: Leadership, Accountability, and Team Alignment" inside my existing `should-call-paul` Replit workspace.
+
+### Core Objectives:
+1. MAXIMIZE CODE & WIDGET REUSE:
+   - Inherit directly from the architecture, styles, and controllers used in the Direct Reports deck ("One Agency: Building Daily Trust and Professional Respect").
+   - Reuse all existing design tokens, full-screen handlers, slide layouts, navigation buttons, and GUI widget components without creating duplicate CSS/JS logic.
+2. AUDIENCE CALIBRATION:
+   - Tailor all slide copy, scenarios, and prompts specifically for the 60-minute Leadership & Supervisors Track (Section Chiefs, Lieutenants, Sergeants, and Admin Supervisors).
+   - Maintain a practical, non-academic tone that addresses cross-division friction, supervisory peer dynamics, and psychological safety.
+
+### Required Interactive GUI Widgets (Reuse Existing):
+1. Live Large-Type Text Display Widget ("The Megaphone"):
+   - Slide component with hotkey/click-to-input functionality that renders live audience call-outs and rewritten managerial directives in large, high-contrast typography.
+2. Simulated Email Card Component:
+   - Display a high-pressure managerial email with toggleable states:
+     * State A: "The Downhill Panic" (harsh, accusatory supervisor email highlighted with red callouts on blame language).
+     * State B: "The Accountable Rewrite" (objective, firm directive that maintains high standards and process improvement without inducing terror).
+3. QR Code Presentation Slots:
+   - Pre-formatted slide containers for live polling QR integration (Slido/Mentimeter), complete with timer badges and clear participant instructions.
+
+### Slide Sequence & Content Architecture (12 to 14 Slides):
+- Slide 1: Title Slide ("One Agency: Leadership, Accountability, and Team Alignment").
+- Slide 2: The Leadership Mirror (The "Shifted Lens": how silence, promotion boundaries, and closed doors are perceived from below).
+- Slide 3: Interactive Poll: Leadership Diagnostic (QR slot for the 2-step poll: Root causes of inter-unit friction & staff morale leakages).
+- Slide 4: Navigating the Inner Circle (Peer-to-boss promotion friction and the danger of apparent favoritism).
+- Slide 5: The "Earshot Radius" for Leadership (Distinguishing public floor awareness vs. private social coordination).
+- Slide 6: The 30-Second Intentional Footprint (Practical MBWA: initiating low-stakes contact outside your core circle).
+- Slide 7: Center-Stage Lab: Cross-Divisional Standoff (Exercise setup: Person A [Requester] vs. Person B [Receiver]).
+- Slide 8: The Collaborative Trade-Off (Deconstructing positional warfare vs. shared agency priority).
+- Slide 9: Reframing Resistance: Diagnosing "That's Not My Job" (Burnout and lack of role clarity vs. defiance).
+- Slide 10: Interactive Exercise: "Downhill Pressure" Email Lab (Using the Simulated Email Card Component).
+- Slide 11: Live Audience Rewrite Input (Using the Large-Type Live Text Display Widget to type real-time supervisor rewrites).
+- Slide 12: Digital & Ethical Guardrails (Managing late-night email cascades and strict enforcement of the Zero-AI / Data Confidentiality policy).
+- Slide 13: Wrap-Up & The 48-Hour Leadership Challenge (With QR slot linking to supervisor job-aids and 1-on-1 check-in templates).
+
+Ensure this new presentation registers correctly into the slide deck selector/launcher within the `should-call-paul` admin interface.
