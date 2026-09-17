@@ -26,7 +26,7 @@
             padding: 40px 20px;
         }
         .hub-container {
-            max-width: 800px;
+            max-width: 1000px;
             width: 100%;
             text-align: center;
         }
@@ -91,6 +91,13 @@
             border-color: #0984e3;
             box-shadow: 0 25px 60px rgba(9, 132, 227, 0.3);
         }
+        .hub-card.professional {
+            border-top: 4px solid #fdcb6e;
+        }
+        .hub-card.professional:hover {
+            border-color: #fdcb6e;
+            box-shadow: 0 25px 60px rgba(253, 203, 110, 0.3);
+        }
         .hub-card .card-icon {
             width: 80px;
             height: 80px;
@@ -107,6 +114,9 @@
         }
         .hub-card.ai .card-icon {
             background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        }
+        .hub-card.professional .card-icon {
+            background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
         }
         .hub-card h2 {
             color: #fff;
@@ -134,6 +144,10 @@
         .hub-card.ai .status {
             background: rgba(9, 132, 227, 0.2);
             color: #74b9ff;
+        }
+        .hub-card.professional .status {
+            background: rgba(253, 203, 110, 0.2);
+            color: #fdcb6e;
         }
         .hub-card.ai .status.coming-soon {
             background: rgba(255,255,255,0.1);
@@ -173,7 +187,25 @@
          .hub-card.leadership { border-top:4px solid #f4bd4f; background:linear-gradient(180deg,rgba(68,48,42,.82),rgba(20,30,50,.94)); }
          .hub-card.leadership:hover { border-color:#c8ff38; box-shadow:0 25px 60px rgba(244,189,79,.18); }
          .hub-card.leadership .card-icon { background:linear-gradient(135deg,#f4bd4f,#ff6b4a); color:#101c33; }
-         .hub-card.leadership .status { background:rgba(244,189,79,.16); color:#ffd98a; }
+          .hub-card.leadership .status { background:rgba(244,189,79,.16); color:#ffd98a; }
+        .side-projects-divider {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: 20px auto 30px;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .side-projects-divider::before,
+        .side-projects-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -211,14 +243,14 @@
             <p>Your private collection of workshop presentations</p>
         </div>
 
-        <div class="hub-grid">
+        <div class="hub-grid" aria-label="Workshop categories">
             <a href="public-speaking-hub.html" class="hub-card speaking">
                 <div class="card-icon">
                     <i class="fas fa-microphone-alt"></i>
                 </div>
                 <h2>Public Speaking</h2>
-                <p>Professional workshops, Young Speakers Academy, Monmouth County government sessions, and school career talks.</p>
-                <span class="status"><i class="fas fa-check-circle"></i> 6 Presentations Live</span>
+                <p>Youth confidence-building through Young Speakers Academy and engaging school career talks for grades 4&ndash;6.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 2 Programs Live</span>
             </a>
 
             <a href="ai-workshops-hub.html" class="hub-card ai">
@@ -230,6 +262,18 @@
                 <span class="status"><i class="fas fa-check-circle"></i> 5 Presentations Live</span>
             </a>
 
+            <a href="professional-workshops-hub.html" class="hub-card professional">
+                <div class="card-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h2>Professional Workshops</h2>
+                <p>Practical communication, resilience, fraud testing, and leadership workshops for corporate and community teams.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 6 Decks Live</span>
+            </a>
+        </div>
+
+        <div class="side-projects-divider"><span><i class="fas fa-code-branch"></i> &nbsp; Side Projects</span></div>
+        <div class="hub-grid" aria-label="Side projects">
             <a href="fire-emblem-heroes/" class="hub-card fallen">
                 <div class="card-icon">
                     <i class="fas fa-skull"></i>
@@ -237,36 +281,6 @@
                 <h2>Fire Emblem Heroes</h2>
                 <p>A creative side project &mdash; every Fallen Hero ever released, organized by banner from 2018 to 2025.</p>
                 <span class="status"><i class="fas fa-check-circle"></i> All Fallen Units</span>
-            </a>
-            <a href="corporate-workshops/united-teletech-resilience.html" class="hub-card resilience">
-                <div class="card-icon"><i class="fas fa-compass"></i></div>
-                <h2>Operational Resilience</h2>
-                <p>United Teletech Credit Union workshop: navigating system overhauls with practical resilience.</p>
-                <span class="status"><i class="fas fa-check-circle"></i> 12-Slide Workshop</span>
-            </a>
-             <a href="corporate-workshops/cfca-fraud-resilience.html" class="hub-card cfca">
-                 <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                 <h2>Fraud Resilience Testing</h2>
-                 <p>CFCA practitioner session: engineering fraud-control behavior when dependencies degrade.</p>
-                 <span class="status"><i class="fas fa-check-circle"></i> 13-Slide CFCA Session</span>
-             </a>
-             <a href="corporate-workshops/one-agency.html" class="hub-card agency">
-                 <div class="card-icon"><i class="fas fa-users"></i></div>
-                 <h2>One Agency</h2>
-                 <p>County prosecutor's office workshop: daily trust and professional respect across roles.</p>
-                 <span class="status"><i class="fas fa-check-circle"></i> 12-Slide Live Workshop</span>
-             </a>
-              <a href="corporate-workshops/one-agency-leadership.html" class="hub-card leadership">
-                  <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
-                  <h2>Leadership &amp; Accountability</h2>
-                  <p>One Agency leadership track: accountable cross-division alignment for supervisors.</p>
-                  <span class="status"><i class="fas fa-check-circle"></i> 13-Slide Leadership Track</span>
-              </a>
-            <a href="resources/united-teletech-resilience.html" class="hub-card resilience">
-                <div class="card-icon"><i class="fas fa-book-open"></i></div>
-                <h2>Resilience Toolkit</h2>
-                <p>Public-by-link digital resources, Desk Guide, recommended reading, and private post-session reflection.</p>
-                <span class="status"><i class="fas fa-check-circle"></i> Homework Hub Live</span>
             </a>
         </div>
 

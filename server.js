@@ -42,6 +42,7 @@ const PROTECTED_PATTERNS = [
     /^\/ai-workshops-hub\.html$/i,
     /^\/slides-hub\.html$/i,
     /^\/public-speaking-hub\.html$/i,
+    /^\/professional-workshops-hub\.html$/i,
     /^\/session-[^/]+(\/.*)?$/i,
     /^\/monmouth-county(\/.*)?$/i,
     /^\/corporate-workshops(\/.*)?$/i

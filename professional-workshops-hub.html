@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Professional Workshops Hub | Paul Ireifej</title>
+    <link rel="shortcut icon" href="img-new/logo/piconlogo.png" type="image/x-icon">
+    <link href="css/font-awesome.2.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.new.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .hub-container { max-width: 900px; width: 100%; text-align: center; }
+        .hub-header { margin-bottom: 55px; }
+        .hub-header .icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 25px; font-size: 2.5rem; color: white;
+        }
+        .hub-header h1 { color: #fff; font-size: 2.8rem; font-weight: 700; margin-bottom: 15px; }
+        .hub-header p { color: rgba(255,255,255,0.7); font-size: 1.2rem; }
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .hub-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 42px 34px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hub-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+        .hub-card.resilience {
+            border-top: 4px solid #c8ff38;
+            background: linear-gradient(180deg, rgba(41,64,88,0.72), rgba(16,28,51,0.82));
+        }
+        .hub-card.resilience:hover { border-color: #c8ff38; box-shadow: 0 25px 60px rgba(200,255,56,.18); }
+        .hub-card.resilience .card-icon { background: linear-gradient(135deg, #c8ff38, #43d7ff); color: #101c33; }
+        .hub-card.resilience .status { background: rgba(200,255,56,.14); color: #c8ff38; }
+        .hub-card.cfca {
+            border-top: 4px solid #55d9fa;
+            background: linear-gradient(180deg, rgba(16,43,70,.78), rgba(9,27,50,.9));
+        }
+        .hub-card.cfca:hover { border-color: #45e6ad; box-shadow: 0 25px 60px rgba(85,217,250,.17); }
+        .hub-card.cfca .card-icon { background: linear-gradient(135deg,#55d9fa,#45e6ad); color:#091b32; }
+        .hub-card.cfca .status { background: rgba(85,217,250,.14); color:#8be8ff; }
+        .hub-card.agency {
+            border-top: 4px solid #ff6b4a;
+            background: linear-gradient(180deg, rgba(49,45,68,.78), rgba(16,28,51,.9));
+        }
+        .hub-card.agency:hover { border-color: #c8ff38; box-shadow: 0 25px 60px rgba(255,107,74,.18); }
+        .hub-card.agency .card-icon { background: linear-gradient(135deg,#ff6b4a,#c8ff38); color:#101c33; }
+        .hub-card.agency .status { background: rgba(255,107,74,.16); color:#ffb1a0; }
+        .hub-card.leadership {
+            border-top: 4px solid #f4bd4f;
+            background: linear-gradient(180deg, rgba(68,48,42,.82), rgba(20,30,50,.94));
+        }
+        .hub-card.leadership:hover { border-color: #c8ff38; box-shadow: 0 25px 60px rgba(244,189,79,.18); }
+        .hub-card.leadership .card-icon { background: linear-gradient(135deg,#f4bd4f,#ff6b4a); color:#101c33; }
+        .hub-card.leadership .status { background: rgba(244,189,79,.16); color:#ffd98a; }
+        .hub-card .card-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 25px; font-size: 2rem; color: white;
+        }
+        .hub-card h2 { color: #fff; font-size: 1.6rem; font-weight: 700; margin-bottom: 15px; }
+        .hub-card p { color: rgba(255,255,255,0.72); font-size: 1rem; line-height: 1.6; margin-bottom: 20px; }
+        .hub-card .status {
+            display: inline-block; padding: 8px 20px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600;
+        }
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: 60px auto 30px;
+            max-width: 900px;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .section-divider::before, .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+        }
+        /* The Monmouth cards retain the original Canva sticker treatment. */
+        .canva-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+        .canva-hub-card {
+            position: relative;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 2px solid rgba(255,255,255,0.85);
+            border-radius: 25px;
+            padding: 38px 32px 30px;
+            text-align: left;
+            text-decoration: none;
+            color: #2d3142;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+        .canva-hub-card:hover { transform: translateY(-8px) rotate(-0.5deg); color: #2d3142; text-decoration: none; box-shadow: 0 22px 55px rgba(0,0,0,0.32); }
+        .canva-hub-card.coral { background: linear-gradient(135deg, #FFF4E6 0%, #FFE5D9 100%); }
+        .canva-hub-card.mint { background: linear-gradient(135deg, #E8F8F1 0%, #D9F0EA 100%); }
+        .canva-sticker {
+            position: absolute; top: -14px; right: -10px; width: 80px; height: 80px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+            animation: subtle-float-hub 4s ease-in-out infinite; transform: rotate(8deg);
+        }
+        .canva-hub-card.coral .canva-sticker { background: linear-gradient(135deg, #FF7E67 0%, #FFC857 100%); }
+        .canva-hub-card.mint .canva-sticker { background: linear-gradient(135deg, #4ECDC4 0%, #A084DC 100%); animation-delay: -2s; }
+        @keyframes subtle-float-hub {
+            0%, 100% { transform: translateY(0) rotate(8deg); }
+            50% { transform: translateY(-8px) rotate(8deg); }
+        }
+        .canva-hub-card .canva-tag {
+            display: inline-block; background: rgba(45,49,66,0.08); color: #FF7E67;
+            font-weight: 700; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+            padding: 6px 14px; border-radius: 20px; margin-bottom: 18px;
+        }
+        .canva-hub-card.mint .canva-tag { color: #1F7A72; }
+        .canva-hub-card h2 { font-family: 'Montserrat', 'Segoe UI', sans-serif; color: #2d3142; font-size: 1.55rem; font-weight: 800; margin-bottom: 12px; line-height: 1.15; }
+        .canva-hub-card p { color: rgba(45,49,66,0.78); font-size: 0.98rem; font-weight: 500; line-height: 1.55; margin-bottom: 22px; }
+        .canva-hub-card .canva-cta {
+            display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.95rem;
+            color: #FF7E67; padding: 10px 18px; border-radius: 25px;
+            background: rgba(255,126,103,0.12); border: 2px solid rgba(255,126,103,0.25);
+            transition: all 0.25s ease;
+        }
+        .canva-hub-card.mint .canva-cta { color: #1F7A72; background: rgba(78,205,196,0.15); border-color: rgba(78,205,196,0.35); }
+        .canva-hub-card:hover .canva-cta { background: #FF7E67; color: #fff; border-color: #FF7E67; }
+        .canva-hub-card.mint:hover .canva-cta { background: #4ECDC4; color: #fff; border-color: #4ECDC4; }
+        .deck-admin-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .deck-admin-actions a { text-decoration: none; }
+        .deck-admin-actions a:focus-visible { outline: 3px solid #2d3142; outline-offset: 4px; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: rgba(255,255,255,0.6); text-decoration: none; font-size: 1rem; transition: all 0.3s ease;
+        }
+        .back-link:hover { color: #fff; }
+        .logout-note { margin-top: 30px; color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+        @media (max-width: 768px) {
+            .hub-header h1 { font-size: 2rem; }
+            .hub-card { padding: 36px 28px; }
+            .canva-hub-card { padding: 32px 24px 26px; }
+            .canva-sticker { width: 64px; height: 64px; font-size: 1.6rem; }
+            .section-divider { letter-spacing: 2px; font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hub-container">
+        <div class="hub-header">
+            <div class="icon"><i class="fas fa-briefcase"></i></div>
+            <h1>Professional Workshops</h1>
+            <p>Practical communication, resilience, and leadership sessions for professional teams</p>
+        </div>
+
+        <div class="section-divider" id="operational-resilience">
+            <span><i class="fas fa-compass"></i> &nbsp; United Teletech Credit Union</span>
+        </div>
+        <div class="hub-grid">
+            <a href="corporate-workshops/united-teletech-resilience.html" class="hub-card resilience">
+                <div class="card-icon"><i class="fas fa-compass"></i></div>
+                <h2>Operational Resilience</h2>
+                <p>United Teletech Credit Union workshop: navigating system overhauls with practical resilience.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 12-Slide Workshop</span>
+            </a>
+        </div>
+
+        <div class="section-divider" id="fraud-resilience">
+            <span><i class="fas fa-shield-alt"></i> &nbsp; CFCA</span>
+        </div>
+        <div class="hub-grid">
+            <a href="corporate-workshops/cfca-fraud-resilience.html" class="hub-card cfca">
+                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                <h2>Fraud Resilience Testing</h2>
+                <p>CFCA practitioner session: engineering fraud-control behavior when dependencies degrade.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 13-Slide CFCA Session</span>
+            </a>
+        </div>
+
+        <div class="section-divider" id="one-agency">
+            <span><i class="fas fa-landmark"></i> &nbsp; Monmouth County Prosecutor&rsquo;s Office</span>
+        </div>
+        <div class="hub-grid">
+            <a href="corporate-workshops/one-agency.html" class="hub-card agency">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h2>One Agency</h2>
+                <p>County prosecutor&rsquo;s office workshop: daily trust and professional respect across roles.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 12-Slide Live Workshop</span>
+            </a>
+            <a href="corporate-workshops/one-agency-leadership.html" class="hub-card leadership">
+                <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
+                <h2>Leadership &amp; Accountability</h2>
+                <p>One Agency leadership track: accountable cross-division alignment for supervisors.</p>
+                <span class="status"><i class="fas fa-check-circle"></i> 13-Slide Leadership Track</span>
+            </a>
+        </div>
+
+        <div class="section-divider" id="monmouth">
+            <span><i class="fas fa-landmark"></i> &nbsp; Monmouth County Sessions</span>
+        </div>
+        <div class="canva-grid">
+            <article class="canva-hub-card coral">
+                <div class="canva-sticker"><i class="fas fa-microphone"></i></div>
+                <span class="canva-tag">Deck 1 &middot; 14 Slides &middot; 50 Minutes</span>
+                <h2>Find Your Voice / Speak So Others Will Listen</h2>
+                <p>A static, print-ready intensive on spontaneous presence, somatic reset, applied improv, and the PREP framework.</p>
+                <div class="deck-admin-actions" aria-label="Find Your Voice deck actions">
+                    <a class="canva-cta" href="monmouth-county/public-speaking.html"><i class="fas fa-eye" aria-hidden="true"></i> Preview deck</a>
+                    <a class="canva-cta" href="monmouth-county/public-speaking.html?print=1" target="_blank" rel="noopener"><i class="fas fa-print" aria-hidden="true"></i> Print / Save to PDF</a>
+                </div>
+            </article>
+            <a href="monmouth-county/active-listening.html" class="canva-hub-card mint">
+                <div class="canva-sticker"><i class="fas fa-assistive-listening-systems"></i></div>
+                <span class="canva-tag">Deck 2 &middot; 10 Slides</span>
+                <h2>Listening First</h2>
+                <p>Active listening &amp; better workplace communication. The mirror technique, empathy, and the telephone improv.</p>
+                <span class="canva-cta">Start Slides <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <a href="slides-hub.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Slides Hub
+        </a>
+        <p class="logout-note">You are logged in as admin. Close this tab to log out.</p>
+    </div>
+</body>
+</html>
