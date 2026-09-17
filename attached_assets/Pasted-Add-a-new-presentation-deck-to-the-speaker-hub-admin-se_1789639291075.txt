@@ -1,0 +1,99 @@
+Add a new presentation deck to the speaker-hub admin section of the should-call-paul website for the workshop: "De-escalation & Diplomacy Under Pressure".
+
+Follow these specific instructions:
+
+1. DESIGN & LOOK AND FEEL:
+   - Match the exact visual language, layout structure, typography, card borders, badge styles, and container widgets used on:
+     https://www.shouldcallpaul.com/monmouth-county/active-listening.html
+   - Borrow existing design tokens, CSS classes, card containers, and color palette from the active-listening page and speaker-hub stylesheet.
+
+2. STRICT FORMAT CONSTRAINTS (STATIC PDF / PPT EXPORT READY):
+   - Do NOT include any interactive components, JS tabs, collapse toggles, or dynamic carousels.
+   - Each slide must be an individual static container with a 16:9 ratio (1280px by 720px) and clean page-break CSS (`break-after: page; page-break-after: always;`) so that it prints or exports to PDF and PowerPoint without overflowing or clipping.
+   - All text must fit cleanly within the fixed 1280x720 slide bounds without inner scrolling.
+
+3. SLIDE CONTENT & WORKSHOP PROGRESSION (50-Minute Intensive):
+   - Slide 1: Title Slide
+     * Title: "De-escalation & Diplomacy Under Pressure"
+     * Subtitle: "Tactical Empathy, Somatic Composure & Conflict Mediation"
+     * Facilitator: Paul Ireifej
+
+   - Slide 2: The Hook / Cultural Reframe
+     * Headline: "Two Amygdalas in a Trench Coat"
+     * Concept: Moving past the myth of the purely rational workplace. When conflict flares, human biology overrides logic; high stress triggers primal threat responses.
+     * Core Rule: You cannot reason with an active fight-or-flight state. De-escalate the physiology before addressing the facts.
+
+   - Slide 3: The Observation Principle (William Ury)
+     * Headline: "Go to the Balcony: Detaching from the Fire"
+     * 2-Column Split Layout:
+       * The Floor (Reacting): Taking insults personally, defending policy defensively, matching hostile energy.
+       * The Balcony (Observing): Viewing aggression as an emotional crisis; stepping into the role of calm facilitator.
+
+   - Slide 4: Somatic Demeanor & Physical Safety
+     * Headline: "The Supportive Stance: Body Language Under Fire"
+     * 3-Card Visual Grid (CPI Principles):
+       1) Torso at 45° (Avoid square-on chest alignment; softens perceived confrontation).
+       2) The 3-Foot Buffer (Respect personal boundaries; allow space for elevated heart rates).
+       3) Open Palms at Waist Height (Subconscious visual cue communicating neutrality and lack of threat).
+
+   - Slide 5: Vocal Architecture (Chris Voss)
+     * Headline: "The Late-Night FM DJ Voice"
+     * Key Levers:
+       * Slow cadence by ~30%.
+       * Downward terminal inflection (projects calm, steady authority; avoids the uncertainty of rising tones).
+       * Lower pitch to naturally invite emotional counter-matching.
+
+   - Slide 6: Exercise 1: Partner Drill
+     * Headline: "Exercise 1: The Volume Decoupler (Stage Whisper)"
+     * Instructions: Pair turn-and-talk (Person A & Person B).
+     * Rule: Intense emotional delivery using a tense stage whisper—zero shouting to keep room acoustic control intact.
+     * Drill: Person A vents an urgent objection for 45 seconds; Person B absorbs with a 2-second micro-pause, replying at half-speed and half-volume. Switch roles.
+
+   - Slide 7: Section Divider
+     * Headline: "The Verbal Architecture: Tactical Empathy"
+     * Subtitle: "Neutralizing tension without conceding operational boundaries"
+
+   - Slide 8: The Core Verbal Framework (Bill Eddy)
+     * Headline: "The E.A.R. Method for High-Tension Moments"
+     * 3-Card Column Layout:
+       * E - Empathy ("I hear how frustrating this roadblock has become for your team.")
+       * A - Attention ("Walk me through the specifics so I see what you're seeing.")
+       * R - Respect ("I appreciate your commitment to getting this resolved.")
+
+   - Slide 9: De-escalation Linguistics
+     * Headline: "Affect Labeling vs. The 'Calm Down' Trap"
+     * Side-by-Side Comparison:
+       * Avoid: "Calm down," "You're overreacting," "That's not my fault." (Accelerants that invalidate feelings).
+       * Deploy: "It sounds like you feel completely blindsided by this update." (Engages prefrontal logic to process the label).
+
+   - Slide 10: Exercise 2: Partner Drill
+     * Headline: "Exercise 2: Label & Pivot"
+     * Instructions: Pair exercise.
+     * Partner attacks with a tough professional objection ("This workflow is completely broken!").
+     * Responder is banned from saying "but" or justifying policy; must execute one precise affect label followed by an open problem-solving question. Switch roles.
+
+   - Slide 11: Live Facilitator Coaching (Front of Room)
+     * Headline: "Live Demonstration: The Boundary & Limit Setting"
+     * On-Stage Scenario: Facilitator roleplays an escalating counterpart; volunteer executes:
+       1) Physical 45° stance and breath reset.
+       2) Immediate affect label.
+       3) Constructive Limit Setting ("When/Then" structure: "When we discuss this calmly, then we can review the file together.").
+
+   - Slide 12: Executive Presence Insight
+     * Headline: "Silence as a De-escalation Asset"
+     * Large Stat / Highlight: The 3-Second Micro-Pause.
+     * How intentional pauses dissipate tension, interrupt aggressive momentum, and signal grounded composure.
+
+   - Slide 13: Summary Comparison
+     * Headline: "Reactive Escalation vs. Diplomatic Authority"
+     * Clean comparison table evaluating: First Instinct, Vocal Tone, Body Alignment, Linguistic Strategy, and Outcome.
+
+   - Slide 14: Workshop Close & Facilitator Contact
+     * Headline: "Be the Thermostat, Not the Mirror"
+     * Daily Diplomatic Commitment: Refuse to catch fire when someone strikes a match. Lead with grounded presence.
+     * Facilitator Info: Paul Ireifej | Communication & Leadership Workshops
+
+4. SITE PLACEMENT & NAVIGATION INTEGRATION:
+   - Place this slide deck under the "Monmouth County Sessions" divider within the "Professional Workshops" catalog in the speaker-hub admin.
+   - Include direct preview links and a clean "Print / Save to PDF" action button in the toolbar.
+   - Ensure all assets, shared CSS links, and icon libraries resolve correctly with no broken dependencies.

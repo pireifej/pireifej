@@ -23,6 +23,13 @@ const DECKS = [
     title: 'Paul Ireifej — Listening First',
     out: 'Paul-Ireifej-Monmouth-County-Active-Listening.pptx',
   },
+  {
+    url: '/monmouth-county/de-escalation-diplomacy.html',
+    title: 'Paul Ireifej — De-escalation & Diplomacy Under Pressure',
+    out: 'Paul-Ireifej-Monmouth-County-De-escalation-Diplomacy.pptx',
+    format: 'static-print',
+    slideCount: 14,
+  },
 ];
 
 const W = 1920, H = 1080;
@@ -60,7 +67,7 @@ async function exportDeck(browser, deck) {
   for (let i = 0; i < total; i++) {
     const file = path.join(TMP_DIR, `slide-${i}.png`);
     if (isStatic) {
-      // The public-speaking deck is a print-ready static page: each slide is
+      // Static decks are print-ready pages: each slide is
       // an independent, fixed 1280x720 element rather than a Reveal section.
       const selector = `.print-slide#slide-${i + 1}`;
       const slide = await page.$(selector);
@@ -108,8 +115,10 @@ async function exportDeck(browser, deck) {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const selected = process.argv.includes('--public-speaking')
-    ? DECKS.filter((deck) => deck.format === 'static-print')
-    : DECKS;
+    ? DECKS.filter((deck) => deck.url === '/monmouth-county/public-speaking.html')
+    : process.argv.includes('--de-escalation')
+      ? DECKS.filter((deck) => deck.url === '/monmouth-county/de-escalation-diplomacy.html')
+      : DECKS;
   for (const deck of selected) await exportDeck(browser, deck);
   await browser.close();
   if (fs.existsSync(TMP_DIR)) fs.rmdirSync(TMP_DIR);
