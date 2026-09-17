@@ -295,6 +295,9 @@
             color: #fff;
             border-color: #4ECDC4;
         }
+        .deck-admin-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .deck-admin-actions a { text-decoration: none; }
+        .deck-admin-actions a:focus-visible { outline: 3px solid #2d3142; outline-offset: 4px; }
         /* ---------- Dark Tech x Canva hybrid (Career Talks) ---------- */
         .dt-grid {
             display: grid;
@@ -438,13 +441,16 @@
         </div>
 
         <div class="canva-grid">
-            <a href="monmouth-county/public-speaking.html" class="canva-hub-card coral">
+            <article class="canva-hub-card coral">
                 <div class="canva-sticker"><i class="fas fa-microphone"></i></div>
-                <span class="canva-tag">Deck 1 &middot; 10 Slides</span>
-                <h2>Finding Your Voice</h2>
-                <p>Speaking with confidence at Monmouth County. Story, body language, and the human commercial group exercise.</p>
-                <span class="canva-cta">Start Slides <i class="fas fa-arrow-right"></i></span>
-            </a>
+                <span class="canva-tag">Deck 1 &middot; 14 Slides &middot; 50 Minutes</span>
+                <h2>Find Your Voice / Speak So Others Will Listen</h2>
+                <p>A static, print-ready intensive on spontaneous presence, somatic reset, applied improv, and the PREP framework.</p>
+                <div class="deck-admin-actions" aria-label="Find Your Voice deck actions">
+                    <a class="canva-cta" href="monmouth-county/public-speaking.html"><i class="fas fa-eye" aria-hidden="true"></i> Preview deck</a>
+                    <a class="canva-cta" href="monmouth-county/public-speaking.html?print=1" target="_blank" rel="noopener"><i class="fas fa-print" aria-hidden="true"></i> Print / Save to PDF</a>
+                </div>
+            </article>
 
             <a href="monmouth-county/active-listening.html" class="canva-hub-card mint">
                 <div class="canva-sticker"><i class="fas fa-assistive-listening-systems"></i></div>

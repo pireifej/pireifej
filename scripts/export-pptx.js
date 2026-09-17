@@ -4,15 +4,19 @@ const fs = require('fs');
 const path = require('path');
 
 const CHROMIUM = '/nix/store/qa9cnw4v5xkxyip6mb9kxqfq1z4x2dx1-chromium-138.0.7204.100/bin/chromium';
-const BASE = 'http://localhost:5000';
+const BASE = process.env.REPLIT_DEV_DOMAIN
+  ? `https://${process.env.REPLIT_DEV_DOMAIN}`
+  : 'http://127.0.0.1:5000';
 const OUT_DIR = path.join(__dirname, '..', 'exports');
 const TMP_DIR = path.join(__dirname, '..', '.tmp-slides');
 
 const DECKS = [
   {
     url: '/monmouth-county/public-speaking.html',
-    title: 'Paul Ireifej — Finding Your Voice',
+    title: 'Paul Ireifej — Find Your Voice / Speak So Others Will Listen',
     out: 'Paul-Ireifej-Monmouth-County-Public-Speaking.pptx',
+    format: 'static-print',
+    slideCount: 14,
   },
   {
     url: '/monmouth-county/active-listening.html',
@@ -22,24 +26,55 @@ const DECKS = [
 ];
 
 const W = 1920, H = 1080;
+const STATIC_W = 1280, STATIC_H = 720;
 
 async function exportDeck(browser, deck) {
   console.log(`\n=== ${deck.out} ===`);
   fs.mkdirSync(TMP_DIR, { recursive: true });
   const page = await browser.newPage();
-  await page.setViewport({ width: W, height: H, deviceScaleFactor: 1 });
-  await page.goto(`${BASE}${deck.url}`, { waitUntil: 'networkidle0', timeout: 60000 });
+  if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
+    throw new Error('Admin credentials must be configured in workspace Secrets to export protected decks.');
+  }
+  await page.authenticate({
+    username: process.env.ADMIN_USERNAME,
+    password: process.env.ADMIN_PASSWORD,
+  });
+  const isStatic = deck.format === 'static-print';
+  const width = isStatic ? STATIC_W : W;
+  const height = isStatic ? STATIC_H : H;
+  await page.setViewport({ width, height, deviceScaleFactor: 1 });
+  const response = await page.goto(`${BASE}${deck.url}`, { waitUntil: 'networkidle0', timeout: 60000 });
+  if (!response.ok()) throw new Error(`Deck request failed: HTTP ${response.status()}`);
+  if (isStatic) {
+    await page.addStyleTag({ content: '.deck-toolbar { display: none !important; }' });
+    await page.evaluate(() => document.fonts.ready);
+  }
   await new Promise(r => setTimeout(r, 2000));
 
-  const total = await page.evaluate(() => document.querySelectorAll('.reveal .slides > section').length);
+  const total = isStatic
+    ? deck.slideCount
+    : await page.evaluate(() => document.querySelectorAll('.reveal .slides > section').length);
   console.log(`  Slides: ${total}`);
 
   const images = [];
   for (let i = 0; i < total; i++) {
-    await page.evaluate((idx) => Reveal.slide(idx), i);
-    await new Promise(r => setTimeout(r, 600));
     const file = path.join(TMP_DIR, `slide-${i}.png`);
-    await page.screenshot({ path: file, type: 'png', clip: { x: 0, y: 0, width: W, height: H } });
+    if (isStatic) {
+      // The public-speaking deck is a print-ready static page: each slide is
+      // an independent, fixed 1280x720 element rather than a Reveal section.
+      const selector = `.print-slide#slide-${i + 1}`;
+      const slide = await page.$(selector);
+      if (!slide) throw new Error(`Missing static slide: ${selector}`);
+      const box = await slide.boundingBox();
+      if (!box || Math.round(box.width) !== STATIC_W || Math.round(box.height) !== STATIC_H) {
+        throw new Error(`Static slide ${i + 1} must be exactly ${STATIC_W}x${STATIC_H}px`);
+      }
+      await slide.screenshot({ path: file, type: 'png' });
+    } else {
+      await page.evaluate((idx) => Reveal.slide(idx), i);
+      await new Promise(r => setTimeout(r, 600));
+      await page.screenshot({ path: file, type: 'png', clip: { x: 0, y: 0, width: W, height: H } });
+    }
     images.push(file);
     process.stdout.write(`  [${i + 1}/${total}] `);
   }
@@ -72,7 +107,10 @@ async function exportDeck(browser, deck) {
     headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
-  for (const deck of DECKS) await exportDeck(browser, deck);
+  const selected = process.argv.includes('--public-speaking')
+    ? DECKS.filter((deck) => deck.format === 'static-print')
+    : DECKS;
+  for (const deck of selected) await exportDeck(browser, deck);
   await browser.close();
   if (fs.existsSync(TMP_DIR)) fs.rmdirSync(TMP_DIR);
   console.log('\nAll done.');

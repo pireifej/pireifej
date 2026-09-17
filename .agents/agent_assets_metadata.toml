@@ -22,8 +22,15 @@ title = "porky cartoon mascot"
 id = "PkAbsr8cMq9-jfszORuYY"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
 type = "slides"
-title = "Public Speaking — PowerPoint (5.1 MB)"
+title = "Find Your Voice — PowerPoint"
+description = "14-slide PowerPoint export. Slides preserve the design as full-slide images."
 logical_id = "8876f527-02af-4e93-a5b6-ed8a5c80ace7"
+content_hash = "sha256:f59d3a518145e0f761b76a54573b678f0ef74e972941f5579f3c9a1e388c73ae"
+size = 4057191
+mtime_ms = 1789607441795
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/8876f527-02af-4e93-a5b6-ed8a5c80ace7/3ee952b3-a09a-44e6-a8d4-c368bc93be80"
+storage_version_token = "1789607485566692"
+content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 
 [[outputs]]
 id = "nlUftyvPxbc0316Y8scnd"
@@ -51,4 +58,18 @@ size = 4913
 mtime_ms = 1788888590493
 storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/afeca5a9-ebd8-4dca-af2c-4675039b7cae/1b3285af-46af-4cfd-a5f2-7612af8d3009"
 storage_version_token = "1788889363575711"
+content_type = "application/pdf"
+
+[[outputs]]
+id = "jKW5aX8LXOxUgtVYV5ihw"
+uri = "file://exports/Paul-Ireifej-Find-Your-Voice.pdf"
+type = "pdf"
+title = "Find Your Voice — PDF"
+description = "14 static, print-ready slides in 16:9 format."
+logical_id = "6b26e63b-b212-48e3-9673-6578f17007d7"
+content_hash = "sha256:4de2a03fc5defdfb262e109c41ab006e18eeed52fa3939cd82e7b0d19aff6fba"
+size = 1301859
+mtime_ms = 1789607456315
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/6b26e63b-b212-48e3-9673-6578f17007d7/c5ec6bc6-f99e-4f4d-aacd-8043dfd92180"
+storage_version_token = "1789607484673820"
 content_type = "application/pdf"

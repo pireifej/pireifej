@@ -1,0 +1,101 @@
+Update the presentation deck in the speaker-hub admin section of the should-call-paul website for the workshop: "Find Your Voice / Speak So Others Will Listen".
+
+Follow these specific instructions:
+
+1. DESIGN & LOOK AND FEEL:
+   - Match the exact visual language, layout structure, typography, card borders, badge styles, and container widgets used on:
+     https://www.shouldcallpaul.com/monmouth-county/public-speaking.html
+   - Borrow existing design tokens, CSS classes, card containers, and color palette from the public-speaking page and speaker-hub stylesheet.
+
+2. STRICT FORMAT CONSTRAINTS (STATIC PDF / PPT EXPORT READY):
+   - Do NOT include any interactive components, JS tabs, collapse toggles, or dynamic carousels.
+   - Each slide must be an individual static container with a 16:9 ratio (1280px by 720px) and clean page-break CSS (`break-after: page; page-break-after: always;`) so that it prints or exports to PDF and PowerPoint without overflowing or clipping.
+   - All text must fit cleanly within the fixed 1280x720 slide bounds without inner scrolling.
+
+3. SLIDE CONTENT & WORKSHOP PROGRESSION (50-Minute Interactive Intensive):
+   - Slide 1: Title Slide
+     * Title: "Find Your Voice / Speak So Others Will Listen"
+     * Subtitle: "A 50-Minute Interactive Intensive on Spontaneous Presence, Somatic Reset & Applied Improv"
+     * Facilitator: Paul Ireifej
+
+   - Slide 2: The Origin Story / Pattern Interrupt
+     * Headline: "I Am NOT Qualified to Lead This Workshop"
+     * Content: The paradox of the stutter. Why theoretical orators fail in the real world, while someone who fought to claim every syllable understands the high stakes of silence, tension, and what it truly means to not have a voice.
+     * Core Shift: Moving from corporate recital to genuine human resonance.
+
+   - Slide 3: Somatic & Vocal Activation (Whole Room Drill)
+     * Headline: "The Body Speaks First: Vocal & Physical Reset"
+     * Layout: 3 distinct cards/pillars based on speech therapy & vocal science:
+       1) Cervical & Laryngeal Release (Gentle neck roll, jaw release, shoulder reset to disengage vagal fight-or-flight tension).
+       2) Motor Resonance (Lip trills / motorboat buzz to wake up diaphragmatic airflow without straining vocal folds).
+       3) Forward Placement ("Mmm-mmm" resonance buzz to bring sound out of the back of the throat and into the facial mask).
+
+   - Slide 4: The Mental Reframe (Teaching Block)
+     * Headline: "Perfection is the Enemy of Presence"
+     * Visual 2-column or card layout: Breaking down Stanford's "Dare to be Dull" reframe.
+     * When you drop the urge to say the brilliant thing, your executive brain unfreezes and spontaneous connection takes over.
+
+   - Slide 5: Exercise 1A: Pair Friction Warm-Up
+     * Headline: "The Energy Drain: 'Yes, But...' vs. 'Yes, And...'"
+     * Instructions: Turn to your neighbor (Person A & Person B).
+     * 60 seconds planning an event using strictly "Yes, but...". Experience how polite objection stalls momentum, triggers defensiveness, and creates conversational deadlock.
+
+   - Slide 6: Exercise 1B: Room-Wide Story Dash
+     * Headline: "The Penguin Protocol: Group 'Yes, And...'"
+     * Instructions: The whole-room fantastical narrative dash.
+     * Prompt: "A colony of penguins just took over the corporate breakroom."
+     * Rules: Accept the prior person's sentence as unquestioned fact, add one sentence starting with "Yes, and...", pass to the next volunteer.
+     * Key lesson: Absurd premises disable analytical self-censorship and level the room.
+
+   - Slide 7: Meeting Reality Check
+     * Headline: "Applied Improv in Tough Meetings"
+     * 3-Card Icon Layout:
+       1) Accept the Offer (Treat curveballs and objections as data, not attacks).
+       2) Lower the Stakes (Silence internal critics; trust your experience).
+       3) Build the Bridge (Validate their reality before steering the outcome).
+
+   - Slide 8: Section Divider
+     * Headline: "The Rapid-Thinking Framework"
+     * Subtitle: "Structure sets you free: instant containers for real-time clarity"
+
+   - Slide 9: The Core Framework
+     * Headline: "The PREP Model for Spontaneous Clarity"
+     * 4-Step or 3-Card visual layout:
+       * P - Point (Lead with the bottom line in one sentence).
+       * R - Reason (The fundamental 'why' or strategic rationale).
+       * E - Evidence / Story (One concrete fact, metric, or real-life example).
+       * P - Point Action (Reiterate your conclusion with a clear call-to-action).
+
+   - Slide 10: Exercise 2: Partner PREP Sprint
+     * Headline: "The 45-Second PREP Sprint"
+     * Instructions: Rapid turn-and-talk with neighbor.
+     * Partner A gets a surprise prompt; 45 seconds to deliver Point, Reason, Evidence, Point with zero advance prep. Switch roles with a new prompt.
+
+   - Slide 11: Live Facilitator Coaching
+     * Headline: "The Hot-Seat: Handling the Interruption"
+     * Live stage demo: One volunteer takes the mic.
+     * The Protocol under pressure:
+       1) Take a 2-second breath (replace panic fillers with confident silence).
+       2) Acknowledge the interruption ("Yes, And...").
+       3) Anchor back to a tight PREP conclusion.
+
+   - Slide 12: Executive Presence Insight
+     * Headline: "The 2.0-Second Micro-Pause"
+     * Large Stat Display: 2.0s
+     * Why dead air feels like an eternity to the speaker, but conveys composure, authority, and confidence to the listener.
+
+   - Slide 13: Summary Comparison Table
+     * Headline: "Scripted Oratory vs. Spontaneous Presence"
+     * High-contrast table comparing: Objective, Reaction to Pushback, Physical State, Mental Architecture, and Room Impact.
+
+   - Slide 14: Closing Call to Action & Daily Practice
+     * Headline: "Finding Your Voice is a Daily Habit"
+     * The 60-Second Morning Rep: Pick a household object or headline, start a timer, and deliver a PREP response out loud.
+     * Closing thought tying back to the stutter: Your voice matters most when it isn't scripted. Speak to connect.
+     * Contact/Facilitator Info: Paul Ireifej | Workshops, Keynotes & Speaking
+
+4. ADMIN & NAVIGATION INTEGRATION:
+   - Add this deck to the `speaker-hub` admin dashboard (under the workshops/decks list) alongside existing presentation assets.
+   - Include direct preview and clean "Print / Save to PDF" action buttons in the admin toolbar.
+   - Verify all fonts, brand styles, and FontAwesome icons render accurately.
+```Ready when you are. What are we working on?

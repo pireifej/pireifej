@@ -13,7 +13,7 @@ This portfolio website showcases Paul Ireifej's professional work as a public sp
 - Never regenerate PDF/PPTX exports unless explicitly asked
 
 ## How-To: Export Slide Decks to PPTX (for email / Google Drive)
-Use this whenever the user asks for a PowerPoint version of any Reveal.js deck on the site (Monmouth County, AI Workshop sessions, etc.). Output is image-based PPTX (one high-res image per slide) — opens in PowerPoint, Google Slides, Keynote. Email-safe (~5-10 MB per deck).
+Use this whenever the user asks for a PowerPoint version of any slide deck on the site (Reveal.js decks and the static print-ready Monmouth County public-speaking deck). Output is image-based PPTX (one image per slide) — opens in PowerPoint, Google Slides, Keynote. Email-safe (~5-10 MB per deck).
 
 **Script:** `scripts/export-pptx.js` (already in repo). Edit the `DECKS` array at the top to add/remove decks — each entry needs `{ url, title, out }`.
 
@@ -21,16 +21,16 @@ Use this whenever the user asks for a PowerPoint version of any Reveal.js deck o
 ```bash
 # 1. Make sure Portfolio Server workflow is running on :5000
 # 2. Install deps if missing (they're not in package.json by design — only needed for exports):
-npm install puppeteer-core pptxgenjs --no-save
+npm ci
 # 3. Run the export:
 node scripts/export-pptx.js
 ```
 
-**Output:** `exports/<deck-name>.pptx` (1920×1080 widescreen, 16:9 PPT layout).
+**Output:** `exports/<deck-name>.pptx` (16:9 PPT layout). The static public-speaking slides are captured at their fixed 1280×720 dimensions; the active-listening Reveal deck remains 1920×1080.
 
 **Key technical bits:**
 - Uses `puppeteer-core` + system Chromium at `/nix/store/qa9cnw4v5xkxyip6mb9kxqfq1z4x2dx1-chromium-138.0.7204.100/bin/chromium`
-- Navigates each Reveal.js slide via `Reveal.slide(i)`, screenshots viewport, embeds full-bleed image into a `pptxgenjs` slide
+- Navigates each Reveal.js slide via `Reveal.slide(i)`, screenshots the 1920×1080 viewport, and embeds each full-bleed image into a `pptxgenjs` slide. The static public-speaking deck instead captures `.print-slide#slide-1` through `.print-slide#slide-14` at exactly 1280×720.
 - 600ms wait per slide for animations/orbs to settle
 - Background color `#0F0E2E` set behind images (matches dark theme so any rounding gaps don't show white)
 
@@ -46,9 +46,9 @@ The project is structured as a static HTML/CSS/JavaScript frontend served by an 
 
 ## Recent Changes (May 2, 2026)
 ### Monmouth County Government Audience — Two New Presentation Modules
-- New folder **/monmouth-county/** with two 10-slide Reveal.js 5.x decks for county government audiences (~70+ people in-room).
+- Folder **/monmouth-county/** contains a static 14-slide public-speaking intensive and a 10-slide Reveal.js active-listening deck for county government audiences (~70+ people in-room).
 - New shared stylesheet **/shared-assets/monmouth-style.css** — entirely new "Canva sticker" aesthetic (light/pastel, opposite of the dark AI-workshop palette): coral/peach + sunshine yellow + pink for Public Speaking (`body.theme-coral`), mint/lavender + soft pink for Active Listening (`body.theme-mint`). Quicksand body / Montserrat headers (Google Fonts), 25px rounded corners, glassmorphism `.canva-card`, and a `subtle-float` keyframe animation (5–10px bob) applied to inline SVG `.sticker` decorations (mic, ear, speech bubble, heart, star, lightbulb, mirror, pause icon, abstract people). Reveal.js setup mirrors Session 4 architecture (disableLayout, full-viewport sections, hash routing, slideNumber c/t, arrow + WASD keyboard mapping, slide transition).
-- **monmouth-county/public-speaking.html** — "Finding Your Voice: Speaking with Confidence at Monmouth County" (coral theme, 10 slides): Title → Connection Factor (See/Speak To/Care About) → Taming the Butterflies (Box Breathe + Power Pose + First 30 Seconds + Reframe) → Power of Story (with/without contrast cards) → Body Language Basics → **GROUP EXERCISE: The Human Commercial** (60s learn / 30s pitch your partner) → Visuals That Work → Reading a Room of 70+ → Leadership Through Communication → Closing "Should Call Paul." with contact + Q&A.
+- **monmouth-county/public-speaking.html** — "Find Your Voice / Speak So Others Will Listen," a static, print-ready 14-slide, 50-minute interactive intensive (fixed 1280×720 `.print-slide` containers): Title → Origin Story / Pattern Interrupt → Somatic & Vocal Activation → Mental Reframe → Pair Friction Warm-Up → Room-Wide Story Dash → Applied Improv in Tough Meetings → Rapid-Thinking Framework divider → PREP Model → Partner PREP Sprint → Hot-Seat Interruption Coaching → 2.0-Second Micro-Pause → Scripted Oratory vs. Spontaneous Presence comparison → Daily Practice closing and Paul Ireifej contact. The print layout supports browser Print / Save to PDF and image-based PPTX export.
 - **monmouth-county/active-listening.html** — "Listening First: Building Better Connections at Work" (mint theme, 10 slides): Title → Hearing vs Listening → Common Roadblocks (Rehearsing/Distractions/Filtering) → Reading the Unspoken (Eyes/Hands/Tone/Pauses) → The Mirror Technique (Paraphrase → Reflect → Confirm) → **GROUP EXERCISE: The Telephone Improv** (Yes-And chain) → Empathy in Action → The Power of the Pause → Better Meetings → Closing "Should Call Paul." with contact + Q&A.
 - Reusable CSS components: `.canva-card` (glassmorphism, 25px radius, 6 solid color variants), `.sticker` + `subtle-float` / `subtle-float-alt` / `float-slow` / `float-fast` keyframe animations, `.exercise-card` (warm gradient + dashed border + timer-pill), `.big-quote`, `.num-badge` (numbered step circles), `.pill` (6 color variants), `.deco-blob` (soft background blobs), `.slide-title` / `.slide-closing` layouts.
 - **public-speaking-hub.html** — added a new "Monmouth County Sessions" section below the existing Professional/Youth grid, with two Canva-sticker hub cards (`.canva-hub-card.coral` linking to `monmouth-county/public-speaking.html` and `.canva-hub-card.mint` linking to `monmouth-county/active-listening.html`). Cards have floating `.canva-sticker` icon badges with their own `subtle-float-hub` animation, gradient pastel backgrounds, and bouncy hover (cubic-bezier 0.34, 1.56, 0.64, 1). Existing dark-theme cards untouched. Loaded Quicksand + Montserrat from Google Fonts at the bottom of the inline `<style>` block.
