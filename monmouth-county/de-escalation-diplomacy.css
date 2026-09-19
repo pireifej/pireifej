@@ -109,4 +109,16 @@ body.static-deck{margin:0;color:var(--ink);font-family:'Quicksand',sans-serif}
 .trench-photo{display:block;width:100%;height:auto;object-fit:contain}
 .trench-figure figcaption{margin-top:8px;text-align:center;font-size:17px;line-height:24px;color:#565a68}
 .pause-layout .stat{margin:30px 0 20px}
+.static-deck #slide-12{padding:88px 48px 28px}
+#slide-12 .pause-layout{grid-template-columns:310px 1fr;gap:36px}
+#slide-12 .eyebrow{font-size:16px;letter-spacing:1px}
+#slide-12 .stat{font-size:210px;line-height:.9;color:#7050a8}
+#slide-12 .stat small{display:block;font-size:48px;line-height:1.1;margin-top:16px}
+#slide-12 .subtitle{font-size:36px!important;font-weight:700;line-height:1.15}
+#slide-12 h2{font-size:56px;line-height:1.08;margin-bottom:22px}
+#slide-12 h2 .lavender{color:#7050a8}
+#slide-12 .pause-copy p{font-size:36px;line-height:1.2;font-weight:600}
+#slide-12 .canva-card{padding:24px;margin-top:24px}
+#slide-12 .canva-card h3{font-size:34px;line-height:1.15;margin-bottom:16px}
+#slide-12 .canva-card p{font-size:34px;line-height:1.2}
 @media print{@page{size:1280px 720px;margin:0}html,body.static-deck{height:auto!important;overflow:visible!important;margin:0!important;padding:0!important}body.static-deck{display:flow-root;print-color-adjust:exact;-webkit-print-color-adjust:exact}.deck-toolbar{display:none!important}.static-deck .print-slide{width:1280px!important;height:720px!important;margin:0!important;transform:none!important;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always}.static-deck .print-slide:last-of-type{break-after:auto;page-break-after:auto}}
