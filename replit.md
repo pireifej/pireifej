@@ -11,6 +11,7 @@ This portfolio website showcases Paul Ireifej's professional work as a public sp
 - No emojis in slides or copy unless explicitly requested
 - Casual, non-technical tone in chat replies
 - Never regenerate PDF/PPTX exports unless explicitly asked
+- Monmouth County cards and deck controls link to pre-generated PPTX downloads in `exports/`. These image-based exports are admin-protected and must be regenerated with `node scripts/export-pptx.js` when an updated export is explicitly requested; slide edits alone do not refresh them.
 
 ## How-To: Export Slide Decks to PPTX (for email / Google Drive)
 Use this whenever the user asks for a PowerPoint version of any slide deck on the site (Reveal.js decks and the static print-ready Monmouth County public-speaking deck). Output is image-based PPTX (one image per slide) — opens in PowerPoint, Google Slides, Keynote. Email-safe (~5-10 MB per deck).

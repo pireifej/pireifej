@@ -45,6 +45,7 @@ const PROTECTED_PATTERNS = [
     /^\/professional-workshops-hub\.html$/i,
     /^\/session-[^/]+(\/.*)?$/i,
     /^\/monmouth-county(\/.*)?$/i,
+    /^\/exports\/Paul-Ireifej-Monmouth-County-[^/]+\.pptx$/i,
     /^\/corporate-workshops(\/.*)?$/i
 ];
 
@@ -278,6 +279,11 @@ const NO_CACHE_EXTENSIONS = new Set(['.html', '.json', '.xml']);
 app.use(express.static('.', {
     setHeaders: (res, filePath, stat) => {
         const ext = path.extname(filePath).toLowerCase();
+        if (ext === '.pptx' && path.basename(filePath).startsWith('Paul-Ireifej-Monmouth-County-')) {
+            res.set('Cache-Control', 'private, no-store');
+            res.set('Content-Disposition', `attachment; filename="${path.basename(filePath)}"`);
+            return;
+        }
         const workshopAsset = filePath.includes(`${path.sep}corporate-workshops${path.sep}`) &&
             (ext === '.js' || ext === '.css');
         if (NO_CACHE_EXTENSIONS.has(ext) || workshopAsset) {

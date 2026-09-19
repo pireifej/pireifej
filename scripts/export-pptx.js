@@ -52,10 +52,9 @@ async function exportDeck(browser, deck) {
   await page.setViewport({ width, height, deviceScaleFactor: 1 });
   const response = await page.goto(`${BASE}${deck.url}`, { waitUntil: 'networkidle0', timeout: 60000 });
   if (!response.ok()) throw new Error(`Deck request failed: HTTP ${response.status()}`);
-  if (isStatic) {
-    await page.addStyleTag({ content: '.deck-toolbar { display: none !important; }' });
-    await page.evaluate(() => document.fonts.ready);
-  }
+  await page.addStyleTag({ content: '.deck-toolbar, .back-btn, .reveal .controls, .reveal .progress { display: none !important; } * { animation: none !important; }' });
+  await page.evaluate(() => document.fonts.ready);
+  if (!isStatic) await page.waitForFunction(() => window.Reveal && Reveal.isReady());
   await new Promise(r => setTimeout(r, 2000));
 
   const total = isStatic
