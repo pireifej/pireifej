@@ -41,6 +41,16 @@ body.static-deck{margin:0;color:var(--ink);font-family:'Quicksand',sans-serif}
 .demo-list{display:grid;gap:9px;margin-top:17px}.demo-step{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;padding:11px 14px;border-radius:16px;background:rgba(255,255,255,.17);color:#fff}.demo-step b{display:grid;place-items:center;width:35px;height:35px;border-radius:50%;background:#fff;color:#5c3f95;font-family:'Montserrat',sans-serif}.demo-step span{font-size:17px;font-weight:700}.pause-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:42px;align-items:center}.stat{font:800 146px/.78 'Montserrat',sans-serif;color:var(--lavender);letter-spacing:-9px}.stat small{font-size:35px;letter-spacing:-1px}.pause-copy p{font-size:22px}.pause-copy .canva-card{margin-top:18px}.pause-copy .canva-card p{font-size:17px}
 .table-wrap{margin-top:18px;overflow:hidden;border:3px solid var(--ink);border-radius:21px}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.78);font-size:17px}th{padding:12px 17px;background:var(--ink);color:#fff;text-align:left;font:700 17px 'Montserrat',sans-serif}td{padding:11px 17px;border-top:1px solid rgba(45,49,66,.17);line-height:1.2}td:first-child{width:22%;color:#5c3f95;font-weight:700}tr:nth-child(even){background:rgba(232,248,241,.55)}.closing h1{font-size:57px;margin:20px 0}.daily{max-width:850px;margin:0 auto;padding:21px 28px;text-align:left}.daily p{font-size:21px}.contact{margin-top:22px;font-size:18px;font-weight:700}.contact i{color:var(--mint);margin-right:7px}
 .static-deck .time-tag{display:none!important}
+.static-deck #slide-6{padding:88px 44px 24px}
+#slide-6 .exercise{padding:22px 26px;background:linear-gradient(135deg,#246b66,#7050a8)}
+#slide-6 h2{font-size:40px;line-height:1.1;margin:0 0 14px}
+#slide-6 h2 span{font-size:26px;white-space:nowrap}
+#slide-6 .drill-instructions{font-size:24px;line-height:1.3}
+.workplace-scenarios{display:grid;gap:10px;margin:18px 0}
+.workplace-scenario{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:center;background:#fff;border-radius:16px;padding:14px 18px}
+#slide-6 .workplace-scenario h3{font-size:26px;line-height:1.15;color:#52377d;margin:0;letter-spacing:-.5px}
+#slide-6 .workplace-scenario p{font-size:25px;line-height:1.25;color:var(--ink);font-weight:600}
+#slide-6 .whisper-rule{padding:11px 14px;background:var(--ink);border-radius:12px;font-size:23px;line-height:1.25;font-weight:700}
 .static-deck #slide-5{padding:92px 56px 30px}
 #slide-5 .voice-layout{grid-template-columns:180px 1fr;gap:32px}
 #slide-5 .vinyl{width:180px;height:180px;border-width:12px}
