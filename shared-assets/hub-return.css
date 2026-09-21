@@ -1,0 +1,48 @@
+/* Shared only by hub and homework pages, never presentation decks. */
+body {
+    padding-bottom: 100px !important;
+}
+
+a.hub-return-link {
+    position: fixed;
+    left: max(16px, env(safe-area-inset-left));
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #18243b;
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .25);
+    font: 700 15px/1.2 system-ui, sans-serif;
+    text-decoration: none;
+}
+
+a.hub-return-link:hover {
+    background: #29436b;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a.hub-return-link:focus-visible {
+    outline: 3px solid #ffcf57;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    body { padding-bottom: 180px !important; }
+    /* Keep clear of homework score badges at the bottom-right. */
+    a.hub-return-link {
+        left: 12px;
+        bottom: calc(105px + env(safe-area-inset-bottom));
+    }
+}
+
+@media print {
+    a.hub-return-link { display: none !important; }
+    body { padding-bottom: 0 !important; }
+}
