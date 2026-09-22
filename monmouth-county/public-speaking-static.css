@@ -35,6 +35,18 @@ body.static-deck{margin:0;color:var(--ink);font-family:'Quicksand',sans-serif}
 #slide-3 .icon-disc{width:52px;height:52px;font-size:30px;margin-bottom:12px;color:#b53b29}
 #slide-3 .canva-card h3{font-size:34px;line-height:1.1;min-height:75px;margin-bottom:12px}
 #slide-3 .canva-card p{font-size:32px;line-height:1.2;font-weight:600}
+.static-deck #slide-4{padding:88px 48px 28px}
+#slide-4 h2{font-size:56px;line-height:1.08;margin:12px 0 18px}
+#slide-4 h2 .mint{color:#17665f}
+#slide-4 .lead{font-size:36px!important;line-height:1.2;font-weight:700;max-width:none}
+#slide-4 .deck-grid{gap:24px;margin-top:24px}
+#slide-4 .reframe-card{padding:26px;min-height:330px}
+#slide-4 .reframe-card h3{font-size:38px;line-height:1.12;margin:14px 0 20px}
+#slide-4 .reframe-card p{font-size:36px;line-height:1.2;font-weight:600}
+#slide-4 .xmark,#slide-4 .checkmark{font-size:44px;line-height:1}
+#slide-4 .xmark{color:#b23b5e}
+#slide-4 .solid-mint{background:#17665f}
+#slide-4 .checkmark{color:#fff}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body.static-deck{margin:0!important;padding:0!important;height:auto!important;overflow:visible!important}
