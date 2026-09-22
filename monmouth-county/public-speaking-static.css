@@ -47,6 +47,13 @@ body.static-deck{margin:0;color:var(--ink);font-family:'Quicksand',sans-serif}
 #slide-4 .xmark{color:#b23b5e}
 #slide-4 .solid-mint{background:#17665f}
 #slide-4 .checkmark{color:#fff}
+.static-deck #slide-7{padding:88px 48px 28px}
+#slide-7 h2{font-size:60px;line-height:1.08;margin:16px 0 24px}
+#slide-7 .deck-grid{gap:20px;margin-top:24px}
+#slide-7 .canva-card{padding:28px 24px;min-height:350px}
+#slide-7 .icon-disc{width:60px;height:60px;font-size:34px;margin-bottom:22px}
+#slide-7 .canva-card h3{font-size:36px;line-height:1.1;margin-bottom:20px}
+#slide-7 .canva-card p{font-size:34px;line-height:1.2;font-weight:600}
 .static-deck .improv-progression{padding:88px 48px 28px}
 .improv-progression h2{font-size:46px;line-height:1.08;margin:12px 0 18px}
 .improv-progression .improv-instructions{padding:16px 20px;border:2px solid #fff;border-radius:18px;background:#fff1cd;font-size:30px;line-height:1.2;font-weight:600}
