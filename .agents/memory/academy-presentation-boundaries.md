@@ -7,7 +7,7 @@ Keep Academy homework assignments exactly unchanged during presentation/navigati
 
 **Why:** The user wants the existing teaching material and visual identity preserved, while allowing long topics to be separated into presentation-sized slides.
 
-**How to apply:** The user rejected internal slide scrolling and approved fixed 16:9 Reveal.js slides with very large text. Split frameworks, examples, and activities into separate slides instead of shrinking text or adding scrolling. Preserve homework wording exactly. Impromptu Speaking is the review-first pilot; wait for approval before converting the other Academy decks. Do not create downloadable exports unless requested.
+**How to apply:** The user rejected internal slide scrolling and explicitly confirmed the Impromptu Speaking fixed 16:9 Reveal.js pilot was perfect, approving that format across the Academy. Split frameworks, examples, and activities into separate slides with very large text instead of shrinking text or adding scrolling. Preserve homework wording exactly. Do not create downloadable exports unless requested.
 
 Do not gate presentation controls on the entire window load event when third-party video embeds are present.
 
