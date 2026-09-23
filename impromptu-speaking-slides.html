@@ -546,6 +546,7 @@
             }
         }
     </style>
+    <link href="css/academy-presentation.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <a href="young-speakers-academy.html" class="back-btn">
@@ -1028,33 +1029,6 @@
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var sections = $('section');
-            var navDots = $('.nav-dots a');
-
-            $(window).on('scroll', function() {
-                var scrollPos = $(window).scrollTop() + $(window).height() / 2;
-                sections.each(function(i) {
-                    var top = $(this).offset().top;
-                    var bottom = top + $(this).outerHeight();
-                    if (scrollPos >= top && scrollPos <= bottom) {
-                        navDots.removeClass('active');
-                        navDots.eq(i).addClass('active');
-                    }
-                });
-            });
-
-            navDots.on('click', function(e) {
-                e.preventDefault();
-                var target = $(this).attr('href');
-                $('html, body').animate({
-                    scrollTop: $(target).offset().top
-                }, 800);
-            });
-
-            navDots.first().addClass('active');
-        });
-    </script>
+    <script src="js/academy-presentation.js"></script>
 </body>
 </html>

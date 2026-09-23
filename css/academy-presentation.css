@@ -1,0 +1,180 @@
+/* Shared one-slide presentation shell for the Young Speakers Academy decks. */
+html.academy-presentation,
+html.academy-presentation body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+html.academy-presentation .slides-wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+html.academy-presentation .slide-section {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    min-height: 0 !important;
+    box-sizing: border-box;
+    display: none !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: clamp(64px, 9vh, 90px) !important;
+    padding-bottom: clamp(92px, 13vh, 125px) !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+html.academy-presentation .slide-section.is-active {
+    display: flex !important;
+}
+
+html.academy-presentation .slide-section > .container {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+html.academy-presentation .slide-section:focus {
+    outline: none;
+}
+
+html.academy-presentation .scroll-indicator {
+    cursor: pointer;
+    z-index: 4;
+}
+
+.academy-controls {
+    position: fixed;
+    left: 50%;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 1005;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    background: rgba(22, 25, 35, 0.88);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.academy-controls button {
+    width: 42px;
+    height: 42px;
+    display: inline-grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.academy-controls button:hover:not(:disabled),
+.academy-controls button:focus-visible {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.academy-controls button:disabled {
+    cursor: default;
+    opacity: 0.35;
+}
+
+.academy-slide-count {
+    min-width: 68px;
+    color: #fff;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+html.academy-presentation .nav-dots {
+    z-index: 1004;
+}
+
+html.academy-presentation .nav-dots a {
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    html.academy-presentation .slide-section {
+        align-items: flex-start;
+        padding-top: 50px !important;
+        padding-bottom: 105px !important;
+    }
+
+    html.academy-presentation .slide-section > .container {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    html.academy-presentation .nav-dots {
+        top: auto !important;
+        right: 12px !important;
+        bottom: calc(76px + env(safe-area-inset-bottom));
+        left: 12px;
+        transform: none !important;
+        flex-direction: row !important;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px !important;
+    }
+
+    html.academy-presentation .nav-dots a {
+        width: 10px !important;
+        height: 10px !important;
+    }
+
+    html.academy-presentation .volume-slider {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 4px;
+        padding: 10px 8px;
+    }
+
+    html.academy-presentation .volume-level,
+    html.academy-presentation .volume-level.power {
+        min-width: 0;
+        padding: 8px 2px;
+        font-size: 0.7rem;
+        overflow-wrap: anywhere;
+    }
+
+    .academy-controls {
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .academy-controls button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .academy-slide-count {
+        min-width: 58px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .academy-controls button,
+    html.academy-presentation .nav-dots a {
+        transition: none !important;
+    }
+}
