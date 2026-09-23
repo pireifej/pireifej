@@ -5,9 +5,9 @@ description: Content-preservation decisions and external-media readiness constra
 
 Keep Academy homework assignments exactly unchanged during presentation/navigation work. Preserve the existing styling and interactive activities; student-specific names should not appear in slide content.
 
-**Why:** The user explicitly approved a behavior-only conversion, not a content rewrite or redesign.
+**Why:** The user wants the existing teaching material and visual identity preserved, while allowing long topics to be separated into presentation-sized slides.
 
-**How to apply:** For dense content, prefer scrolling inside the current slide over automatically shrinking text or splitting/rewording activities. Obtain approval before content restructuring; do not create downloadable exports unless requested.
+**How to apply:** The user rejected internal slide scrolling and approved fixed 16:9 Reveal.js slides with very large text. Split frameworks, examples, and activities into separate slides instead of shrinking text or adding scrolling. Preserve homework wording exactly. Impromptu Speaking is the review-first pilot; wait for approval before converting the other Academy decks. Do not create downloadable exports unless requested.
 
 Do not gate presentation controls on the entire window load event when third-party video embeds are present.
 
