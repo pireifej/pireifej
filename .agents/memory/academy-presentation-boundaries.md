@@ -13,4 +13,4 @@ Do not gate presentation controls on the entire window load event when third-par
 
 **Why:** External video loading can leave the legacy page preloader intercepting clicks even though the slides and controller are ready. A parent loading container can also report no visible bounds while its fixed child still blocks pointer events.
 
-**How to apply:** Treat DOM/controller readiness separately from embedded media readiness. In browser checks, confirm actual control clicks work, not merely that the loading container has zero bounds.
+**How to apply:** Treat DOM/controller readiness separately from embedded media readiness. Place essential navigation before optional legacy scripts and initialize when slide markup exists, rather than waiting for all later scripts. In browser checks, deliberately stall video and legacy-script requests and confirm actual control clicks work, not merely that the loading container has zero bounds.

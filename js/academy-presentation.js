@@ -183,7 +183,9 @@
         show(initial >= 0 ? initial : 0, false);
     }
 
-    if (document.readyState === 'loading') {
+    if (document.querySelector('.slides-wrapper > .slide-section')) {
+        init();
+    } else if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
