@@ -73,3 +73,17 @@ mtime_ms = 1789607456315
 storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/6b26e63b-b212-48e3-9673-6578f17007d7/c5ec6bc6-f99e-4f4d-aacd-8043dfd92180"
 storage_version_token = "1789607484673820"
 content_type = "application/pdf"
+
+[[outputs]]
+id = "qdZtwo5RICAsE4rJO_x72"
+uri = "file://exports/CFCA-When-Fraud-Controls-Fail.pptx"
+type = "slides"
+title = "CFCA Presentation — PowerPoint Download"
+description = "One-time export of all 13 current slides, including both portraits. Image-based slides preserve the design; text is not individually editable."
+logical_id = "a2dd7f98-5799-4003-a455-fa079115b47c"
+content_hash = "sha256:bec6f8d6d3120e12f8c3d3fb60b5855b126a61a67c9344d13a3ef115cd8e8061"
+size = 2721643
+mtime_ms = 1790253687427
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/a2dd7f98-5799-4003-a455-fa079115b47c/22a6cf55-466c-4f27-940e-182a5e686c5f"
+storage_version_token = "1790253695262528"
+content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
