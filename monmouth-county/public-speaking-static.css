@@ -81,6 +81,13 @@ body.static-deck{margin:0;color:var(--ink);font-family:'Quicksand',sans-serif}
 #slide-11 .sequence{grid-template-columns:76px 1fr;gap:24px 20px;margin-top:30px}
 #slide-11 .sequence .num{width:72px;height:72px;font-size:36px}
 #slide-11 .sequence p{font-size:36px;line-height:1.2;font-weight:600}
+.static-deck #slide-12{padding:64px 48px 40px}
+#slide-12 .pause{grid-template-columns:320px 1fr;gap:40px;margin-top:24px}
+#slide-12 h2{font-size:60px;line-height:1.08;margin-bottom:24px}
+#slide-12 .lead{font-size:36px!important;line-height:1.22;font-weight:600;max-width:none}
+#slide-12 .pause-cue{font-size:32px;line-height:1.22;font-weight:700;margin-top:24px}
+#slide-12 .stat{font-size:174px}
+#slide-12 .smallcaps{font-size:26px;margin-top:24px}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body.static-deck{margin:0!important;padding:0!important;height:auto!important;overflow:visible!important}
