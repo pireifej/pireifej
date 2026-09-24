@@ -88,6 +88,14 @@ body.static-deck{margin:0;color:var(--ink);font-family:'Quicksand',sans-serif}
 #slide-12 .pause-cue{font-size:32px;line-height:1.22;font-weight:700;margin-top:24px}
 #slide-12 .stat{font-size:174px}
 #slide-12 .smallcaps{font-size:26px;margin-top:24px}
+#slide-13 table{font-size:28px}
+#slide-13 th{font-size:27px;line-height:1.15;padding:12px 14px}
+#slide-13 td{padding:12px 14px;line-height:1.16}
+#slide-14 .daily{max-width:1040px;padding:24px 28px}
+#slide-14 .daily h3{font-size:32px;line-height:1.15;margin-bottom:14px}
+#slide-14 .daily p{font-size:32px;line-height:1.22;font-weight:600}
+#slide-14 .closing-message{margin-top:22px;font:600 32px/1.22 'Montserrat',sans-serif}
+#slide-14 .contact{font-size:25px;line-height:1.25;margin-top:20px}
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body.static-deck{margin:0!important;padding:0!important;height:auto!important;overflow:visible!important}
