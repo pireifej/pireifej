@@ -57,8 +57,9 @@ async function exportDeck(browser, deck) {
   if (!isStatic) await page.waitForFunction(() => window.Reveal && Reveal.isReady());
   await new Promise(r => setTimeout(r, 2000));
 
+  const staticSlides = isStatic ? await page.$$('.print-slide') : [];
   const total = isStatic
-    ? deck.slideCount
+    ? staticSlides.length
     : await page.evaluate(() => document.querySelectorAll('.reveal .slides > section').length);
   console.log(`  Slides: ${total}`);
 
@@ -68,9 +69,7 @@ async function exportDeck(browser, deck) {
     if (isStatic) {
       // Static decks are print-ready pages: each slide is
       // an independent, fixed 1280x720 element rather than a Reveal section.
-      const selector = `.print-slide#slide-${i + 1}`;
-      const slide = await page.$(selector);
-      if (!slide) throw new Error(`Missing static slide: ${selector}`);
+      const slide = staticSlides[i];
       const box = await slide.boundingBox();
       if (!box || Math.round(box.width) !== STATIC_W || Math.round(box.height) !== STATIC_H) {
         throw new Error(`Static slide ${i + 1} must be exactly ${STATIC_W}x${STATIC_H}px`);

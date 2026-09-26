@@ -22,14 +22,14 @@ title = "porky cartoon mascot"
 id = "PkAbsr8cMq9-jfszORuYY"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
 type = "slides"
-title = "Find Your Voice — PowerPoint"
-description = "14-slide PowerPoint export. Slides preserve the design as full-slide images."
+title = "Public Speaking — PowerPoint"
+description = "14 slides with the latest font sizes and PREP heading layout. Image-based slides preserve the current design."
 logical_id = "8876f527-02af-4e93-a5b6-ed8a5c80ace7"
-content_hash = "sha256:f59d3a518145e0f761b76a54573b678f0ef74e972941f5579f3c9a1e388c73ae"
-size = 4057191
-mtime_ms = 1789607441795
-storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/8876f527-02af-4e93-a5b6-ed8a5c80ace7/3ee952b3-a09a-44e6-a8d4-c368bc93be80"
-storage_version_token = "1789607485566692"
+content_hash = "sha256:bdeca21e3367788eba8241bbf7dacb335d0a6b90fb9e3f7268c582bfc3f86ab6"
+size = 4114532
+mtime_ms = 1790430982061
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/8876f527-02af-4e93-a5b6-ed8a5c80ace7/2ec94703-34ea-4750-bae0-6629dfd64e04"
+storage_version_token = "1790431014492216"
 content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 
 [[outputs]]
@@ -86,4 +86,18 @@ size = 2721643
 mtime_ms = 1790253687427
 storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/a2dd7f98-5799-4003-a455-fa079115b47c/22a6cf55-466c-4f27-940e-182a5e686c5f"
 storage_version_token = "1790253695262528"
+content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+
+[[outputs]]
+id = "aWdvyBMFbASFwgLJbbW_p"
+uri = "file://exports/Paul-Ireifej-Monmouth-County-De-escalation-Diplomacy.pptx"
+type = "slides"
+title = "De-escalation & Diplomacy — PowerPoint"
+description = "All 15 current slides, in order. Image-based slides preserve the current design."
+logical_id = "deea515a-5bdb-4337-add3-97143fed522e"
+content_hash = "sha256:3a7553a9ad78431c89d9fcb87d6fdb0b2c9d2838a578aad98a16e74963586960"
+size = 4740206
+mtime_ms = 1790430991249
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/deea515a-5bdb-4337-add3-97143fed522e/2d94bf4e-cd06-4685-936d-a92db73254ce"
+storage_version_token = "1790431015484329"
 content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
