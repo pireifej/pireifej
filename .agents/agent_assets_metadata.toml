@@ -22,14 +22,14 @@ title = "porky cartoon mascot"
 id = "PkAbsr8cMq9-jfszORuYY"
 uri = "file://exports/Paul-Ireifej-Monmouth-County-Public-Speaking.pptx"
 type = "slides"
-title = "Public Speaking — PowerPoint"
-description = "14 slides with the latest font sizes and PREP heading layout. Image-based slides preserve the current design."
+title = "Public Speaking — Download PowerPoint"
+description = "Your 14-slide presentation with the latest font sizes and layout updates."
 logical_id = "8876f527-02af-4e93-a5b6-ed8a5c80ace7"
 content_hash = "sha256:bdeca21e3367788eba8241bbf7dacb335d0a6b90fb9e3f7268c582bfc3f86ab6"
 size = 4114532
 mtime_ms = 1790430982061
-storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/8876f527-02af-4e93-a5b6-ed8a5c80ace7/2ec94703-34ea-4750-bae0-6629dfd64e04"
-storage_version_token = "1790431014492216"
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/8876f527-02af-4e93-a5b6-ed8a5c80ace7/eeec5549-88a2-4a19-89dc-619ea1a8dbb2"
+storage_version_token = "1790431163245302"
 content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 
 [[outputs]]
