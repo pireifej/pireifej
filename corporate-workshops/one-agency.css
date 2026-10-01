@@ -40,6 +40,12 @@
 }
 .supervisory-dynamics .process-points strong { font-weight: 800; }
 .supervisory-dynamics .process-points span { font-size: 22px; width: 28px; text-align: center; }
+.supervisory-dynamics .versus {
+  color: #C2410C;
+  font-weight: 800;
+  -webkit-text-stroke: 1.5px #C2410C;
+  transform: scale(1.2);
+}
 body:has(.supervisory-dynamics.active) .brand,
 body:has(.supervisory-dynamics.active) .brand b,
 body:has(.supervisory-dynamics.active) .count {
