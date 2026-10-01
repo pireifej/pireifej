@@ -5,6 +5,34 @@
   --danger: #ffb1a0;
 }
 
+.supervisory-dynamics .trap {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  padding: 24px;
+}
+.supervisory-dynamics .trap p {
+  color: #1E293B;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.supervisory-dynamics h2 .coral {
+  color: #C2410C;
+  -webkit-text-fill-color: #C2410C;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+body:has(.supervisory-dynamics.active) .brand,
+body:has(.supervisory-dynamics.active) .brand b,
+body:has(.supervisory-dynamics.active) .count {
+  color: #0F172A;
+}
+body:has(.supervisory-dynamics.active) .license-mark {
+  color: #1E293B;
+  opacity: 1;
+}
+
 .leadership-insights {
   display: grid;
   gap: 22px;
