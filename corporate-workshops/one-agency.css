@@ -5,19 +5,22 @@
   --danger: #ffb1a0;
 }
 
-.supervisory-dynamics .trap {
+.supervisory-dynamics .trap,
+.priority-negotiation .discipline > div {
   background: #fff;
   border: 1px solid #E2E8F0;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
   padding: 24px;
 }
-.supervisory-dynamics .trap p {
+.supervisory-dynamics .trap p,
+.priority-negotiation .discipline p {
   color: #1E293B;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
 }
-.supervisory-dynamics h2 .coral {
+.supervisory-dynamics h2 .coral,
+.priority-negotiation h2 .coral {
   color: #C2410C;
   -webkit-text-fill-color: #C2410C;
   -webkit-text-stroke: 0;
@@ -48,10 +51,14 @@
 }
 body:has(.supervisory-dynamics.active) .brand,
 body:has(.supervisory-dynamics.active) .brand b,
-body:has(.supervisory-dynamics.active) .count {
+body:has(.supervisory-dynamics.active) .count,
+body:has(.priority-negotiation.active) .brand,
+body:has(.priority-negotiation.active) .brand b,
+body:has(.priority-negotiation.active) .count {
   color: #0F172A;
 }
-body:has(.supervisory-dynamics.active) .license-mark {
+body:has(.supervisory-dynamics.active) .license-mark,
+body:has(.priority-negotiation.active) .license {
   color: #1E293B;
   opacity: 1;
 }
