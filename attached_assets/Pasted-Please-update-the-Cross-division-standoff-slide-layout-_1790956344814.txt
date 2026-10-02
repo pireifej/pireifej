@@ -1,0 +1,38 @@
+Please update the "Cross-division standoff" slide layout so the three cards explicitly showcase the plug-and-play communication formulas:
+
+1. Top Header & Subtitle:
+   - Pill tag: "CENTER-STAGE LAB · 8 MINUTES"
+   - Main Title: "Cross-division standoff." in high-contrast solid white (#FFFFFF).
+   - Subtitle: "The Accountable Negotiation Protocol" in electric lime (#CEFD00).
+
+2. Rebuild the 3 Cards to Highlight the Formulas:
+
+   CARD 1: PERSON A · REQUESTER
+   - Header Tag: "PERSON A · REQUESTER" (#CEFD00, bold uppercase)
+   - Formula Box (visually highlighted container or monospace font):
+     [Specific Item] + [Hard Deadline] + [External Reason]
+   - Example / In Practice (crisp white text):
+     "I need Project X by 4:00 PM because leadership has a mandatory briefing at 9:00 AM tomorrow."
+   - Rule Tag at bottom: "Eliminates vague panic & rank-pulling."
+
+   CARD 2: PERSON B · RECEIVER
+   - Header Tag: "PERSON B · RECEIVER" (#38BDF8 or #FF6B4A, bold uppercase)
+   - Formula Box (visually highlighted container or monospace font):
+     [Locked Commitment] + [Counter-Offer Option] + [Check-In]
+   - Example / In Practice (crisp white text):
+     "I'm locked on Task Y until 3:00 PM. I can review the top 3 items today, or the full file by 10:00 AM tomorrow. Does that work?"
+   - Rule Tag at bottom: "Replaces the brick wall with a viable option."
+
+   CARD 3: THE ROOM · OBSERVERS
+   - Header Tag: "THE ROOM · OBSERVERS" (#94A3B8, bold uppercase)
+   - Formula Box (Checklist format):
+     [Check Reason] + [Check Constraint] + [Check Agreement]
+   - Scoring Criteria (bullet points in crisp off-white):
+     • Did you hear an operational reason, not just raw urgency?
+     • Did you hear a real constraint with an alternative option?
+     • Did they lock in a mutual next step?
+
+3. Visual Design & Polish:
+   - Use the consistent dark navy background (#0B192C).
+   - Enclose each formula in a subtle dark pill or bordered code block (#1E293B border, #0F172A background) so the structure pops visually from the examples.
+   - All body copy should be high-contrast white (#FFFFFF) or light slate (#E2E8F0), minimum font size 16px/1rem for readability.
