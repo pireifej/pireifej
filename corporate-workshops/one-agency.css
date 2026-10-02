@@ -5,22 +5,19 @@
   --danger: #ffb1a0;
 }
 
-.supervisory-dynamics .trap,
-.priority-negotiation .discipline > div {
+.supervisory-dynamics .trap {
   background: #fff;
   border: 1px solid #E2E8F0;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
   padding: 24px;
 }
-.supervisory-dynamics .trap p,
-.priority-negotiation .discipline p {
+.supervisory-dynamics .trap p {
   color: #1E293B;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
 }
-.supervisory-dynamics h2 .coral,
-.priority-negotiation h2 .coral {
+.supervisory-dynamics h2 .coral {
   color: #C2410C;
   -webkit-text-fill-color: #C2410C;
   -webkit-text-stroke: 0;
@@ -51,14 +48,10 @@
 }
 body:has(.supervisory-dynamics.active) .brand,
 body:has(.supervisory-dynamics.active) .brand b,
-body:has(.supervisory-dynamics.active) .count,
-body:has(.priority-negotiation.active) .brand,
-body:has(.priority-negotiation.active) .brand b,
-body:has(.priority-negotiation.active) .count {
+body:has(.supervisory-dynamics.active) .count {
   color: #0F172A;
 }
-body:has(.supervisory-dynamics.active) .license-mark,
-body:has(.priority-negotiation.active) .license {
+body:has(.supervisory-dynamics.active) .license-mark {
   color: #1E293B;
   opacity: 1;
 }
@@ -784,6 +777,44 @@ h2 {
   font-size: clamp(18px, 1.6vw, 25px);
   line-height: 1.3;
   margin-top: 16px;
+}
+
+/* Leadership slide 8: shared priority negotiation on the navy stage. */
+.priority-negotiation {
+  background: #0B192C;
+  color: #FFFFFF;
+}
+.priority-negotiation:before { display: none; }
+.priority-negotiation .eyebrow { color: #94A3B8; }
+.priority-negotiation h2 {
+  color: #FFFFFF;
+  font-weight: 700;
+  -webkit-text-fill-color: #FFFFFF;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.priority-negotiation h2 .coral {
+  color: #FF6B4A;
+  -webkit-text-fill-color: #FF6B4A;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.priority-negotiation .discipline > div {
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 8px;
+  padding: 28px;
+}
+.priority-negotiation .discipline h3 {
+  color: #F87171;
+  font: 700 24px/1.25 Manrope, sans-serif;
+}
+.priority-negotiation .discipline > div + div h3 { color: #CEFD00; }
+.priority-negotiation .discipline p {
+  color: #E2E8F0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
 .warning {
