@@ -4,6 +4,7 @@
   const deck = document.querySelector(".deck");
   const nav = document.querySelector(".nav");
   let lastFocus;
+  const directive = $("room-sized-directive");
 
   if (notes) {
     notes.setAttribute("role", "dialog");
@@ -64,10 +65,11 @@
       if (isEditingTarget(document.activeElement)) return true;
       if (!document.body.classList.contains("one-agency-staff") && event.key.toLowerCase() === "m") {
         event.preventDefault();
-        const megaSlide = $("megaInput")?.closest(".slide");
+        const megaEditor = directive || $("megaInput");
+        const megaSlide = megaEditor?.closest(".slide");
         const megaIndex = megaSlide ? workshopController.slides.indexOf(megaSlide) : -1;
         workshopController.show(megaIndex >= 0 ? megaIndex : workshopController.current);
-        setTimeout(() => $("megaInput").focus(), 0);
+        setTimeout(() => megaEditor?.focus(), 0);
         return true;
       }
       return false;
@@ -91,6 +93,7 @@
   const input = $("megaInput");
   const output = $("megaOutput");
   const staffDeck = document.body.classList.contains("one-agency-staff");
+  if (input && output) {
   function fitMegaphone() {
     if (staffDeck) {
       if (!output.clientWidth || !output.clientHeight) return;
@@ -145,6 +148,14 @@
     input.focus();
     fitMegaphone();
   };
+  }
+
+  if (directive && !staffDeck) {
+    $("megaClear").addEventListener("click", () => {
+      directive.value = "";
+      directive.focus();
+    });
+  }
 
   document.querySelectorAll("[data-qr]").forEach((slot) => {
     const file = $(`${slot.dataset.qr}File`);
