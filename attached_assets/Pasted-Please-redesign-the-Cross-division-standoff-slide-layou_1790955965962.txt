@@ -1,0 +1,33 @@
+Please redesign the "Cross-division standoff" slide layout to make the "Three Structural Shifts" explicit, high-contrast, and actionable:
+
+1. Header Area:
+   - Keep the dark navy background (#0B192C) and the small top pill tag: "CENTER-STAGE LAB · 8 MINUTES".
+   - Main headline: "Cross-division standoff." in high-contrast solid white (#FFFFFF).
+   - Add a crisp sub-headline right beneath it: "Three Structural Shifts to Break the Deadlock" in electric lime (#CEFD00) or bright cyan (#38BDF8).
+
+2. Redesign the 3 Column Cards:
+   - Instead of a single flat container, break the content into three distinct, structured, semi-translucent cards (background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 20px).
+   
+   - CARD 1:
+     - Header tag: "PERSON A · REQUESTER" (accent color: #CEFD00, font-weight: 700, uppercase).
+     - Bold Action Rule: "State Operational Reason + Hard Deadline"
+     - Subtext / Formula: "Drop raw urgency. Must explain why it moved and the exact time needed."
+     - Prompt tag at bottom: Example: "I need Project X by 4:00 PM because leadership reviews it at 9:00 AM."
+
+   - CARD 2:
+     - Header tag: "PERSON B · RECEIVER" (accent color: #FF6B4A or #38BDF8, font-weight: 700, uppercase).
+     - Bold Action Rule: "Name Constraint + Accountable Option"
+     - Subtext / Formula: "Drop the brick wall ('I'm busy'). Must name capacity and offer a viable alternative."
+     - Prompt tag at bottom: Example: "Locked until 3:00 PM. I can review the top 3 items today, or the full batch by 10:00 AM."
+
+   - CARD 3:
+     - Header tag: "THE ROOM · OBSERVERS" (accent color: #94A3B8, font-weight: 700, uppercase).
+     - Bold Action Rule: "Score the Protocol"
+     - Subtext / Formula: "Listen actively for:
+       1. Clear operational reason?
+       2. Real capacity constraint stated?
+       3. Realistic next step agreed upon?"
+
+3. Styling & Polish:
+   - Ensure all body text is crisp white/off-white (#FFFFFF / #E2E8F0) with font-weight: 500 so it can be easily read from across the room.
+   - Maintain the footer branding consistently across the slide.
