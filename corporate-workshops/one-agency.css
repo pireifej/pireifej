@@ -817,6 +817,65 @@ h2 {
   line-height: 1.6;
 }
 
+/* Leadership slide 9: distinguish system signals from personal diagnoses. */
+.resistance-reset { background: #0B192C; color: #FFFFFF; }
+.resistance-reset:before { display: none; }
+.resistance-reset .eyebrow { color: #CEFD00; }
+.resistance-reset h2 {
+  color: #FFFFFF;
+  -webkit-text-fill-color: #FFFFFF;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.resistance-reset h2 .accent {
+  color: #CEFD00;
+  -webkit-text-fill-color: #CEFD00;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.resistance-reset .resistance-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+.resistance-reset .resistance-card {
+  min-height: 240px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .05);
+}
+.resistance-reset .resistance-card h3 {
+  color: #FFFFFF;
+  font: 700 clamp(19px, 1.8vw, 26px)/1.25 Manrope, sans-serif;
+}
+.resistance-reset .resistance-subtitle {
+  margin-top: 10px;
+  color: #94A3B8;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.resistance-reset .resistance-response .resistance-subtitle { color: #CEFD00; }
+.resistance-reset .resistance-card ul,
+.resistance-reset .resistance-card ol {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding-left: 22px;
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.resistance-reset .resistance-card li { padding-left: 4px; }
+.resistance-reset .resistance-response li::marker { color: #CEFD00; font-weight: 700; }
+@media (max-width: 760px) {
+  .resistance-reset.active { justify-content: flex-start; }
+  .resistance-reset .resistance-cards { grid-template-columns: 1fr; gap: 18px; }
+}
+
 .warning {
   border-color: var(--coral) !important;
 }
