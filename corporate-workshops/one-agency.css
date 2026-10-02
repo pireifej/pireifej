@@ -712,6 +712,96 @@ h2 {
   display: block;
 }
 
+/* Leadership slide 10: dark email comparison, preserving the A/B controller. */
+.email-lab {
+  background: #0B192C;
+  color: #FFFFFF;
+  padding-top: 54px;
+  padding-bottom: 86px;
+}
+.email-lab.active { justify-content: flex-start; }
+.email-lab:before { display: none; }
+.email-lab .eyebrow { color: #CEFD00; margin-bottom: 12px; }
+.email-lab h2 {
+  font-size: clamp(36px, 4.4vw, 64px);
+  line-height: 1.05;
+  color: #FFFFFF;
+  -webkit-text-fill-color: #FFFFFF;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.email-lab h2 .accent {
+  color: #CEFD00;
+  -webkit-text-fill-color: #CEFD00;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+.email-lab .email {
+  margin-top: 18px;
+  width: 100%;
+  background: #0F172A;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+}
+.email-lab .email-tabs { background: #0B132B; }
+.email-lab .email-tabs button {
+  background: #0B132B;
+  color: #E2E8F0;
+  border-bottom: 3px solid transparent;
+  padding: 12px 16px;
+  font-size: 17px;
+  line-height: 1.35;
+}
+.email-lab .email-tabs button[aria-pressed="true"] {
+  background: #1E293B;
+  color: #FFFFFF;
+}
+.email-lab .email-tabs button[data-email="a"][aria-pressed="true"] { border-bottom-color: #EF4444; }
+.email-lab .email-tabs button[data-email="b"][aria-pressed="true"] { border-bottom-color: #CEFD00; }
+.email-lab .email-tabs button:hover { color: #FFFFFF; }
+.email-lab .mail-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 20px;
+  border-bottom: 1px solid #1E293B;
+  color: #E2E8F0;
+  font-size: 17px;
+  line-height: 1.35;
+}
+.email-lab .mail-row b {
+  width: 80px;
+  flex-shrink: 0;
+  color: #94A3B8;
+}
+.email-lab .mail-body {
+  min-height: 0;
+  padding: 16px 20px 20px;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.email-lab .mail-body ul { margin: 10px 0 0; padding-left: 24px; }
+.email-lab .mail-body li + li { margin-top: 8px; }
+.email-lab .mail-body li::marker { color: #CEFD00; }
+.email-lab .toxic {
+  background: rgba(239, 68, 68, .25);
+  color: #FCA5A5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+@media (max-width: 760px) {
+  .email-lab { padding: 76px 22px 104px; }
+  .email-lab .email-tabs button { padding: 12px 10px; font-size: 16px; }
+  .email-lab .mail-row { padding: 8px 14px; gap: 8px; }
+  .email-lab .mail-row b { width: 65px; }
+  .email-lab .mail-body { padding: 16px 14px 20px; }
+}
+
 .megaphone {
   justify-content: flex-start !important;
   padding-top: 72px;

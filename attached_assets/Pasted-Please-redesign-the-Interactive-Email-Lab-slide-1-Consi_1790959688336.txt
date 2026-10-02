@@ -1,0 +1,39 @@
+Please redesign the "Interactive Email Lab" slide:
+
+1. Consistency & Theme:
+   - Switch background to the global dark navy (#0B192C) instead of the light off-white.
+   - Header:
+     - Tag: "INTERACTIVE EMAIL LAB · 6 MINUTES" (#CEFD00)
+     - Title: "Downhill pressure or accountable direction?" 
+       - "Downhill pressure or" in solid bold white (#FFFFFF).
+       - "accountable direction?" in solid electric lime (#CEFD00) or coral (#FF6B4A).
+
+2. Email Card Container:
+   - Build a clean modern dark-mode client container (background: #0F172A; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5)).
+   
+   - TABS (Top Bar):
+     - Active Tab A: Background: #1E293B, Text: "A · The Downhill Panic", Bottom Accent Border: 3px solid #EF4444 (red/coral).
+     - Inactive Tab B: Background: #0B132B, Text: "B · The Accountable Rewrite", Bottom Accent Border: transparent.
+
+   - EMAIL METADATA TABLE (Inside container):
+     - Rows with subtle dividing borders (#1E293B):
+       - TO: Project Team Alpha
+       - FROM: Division Leadership
+       - SUBJECT: [Dynamic based on tab]
+
+   - TAB A CONTENT:
+     - Subject: "This delay is unacceptable"
+     - Body Text:
+       "<span style='background: rgba(239, 68, 68, 0.25); color: #FCA5A5; padding: 2px 6px; border-radius: 4px;'>This is unacceptable.</span> I asked for the Project X files already. <span style='background: rgba(239, 68, 68, 0.25); color: #FCA5A5; padding: 2px 6px; border-radius: 4px;'>Someone dropped the ball.</span> Fix it immediately and explain why this keeps happening."
+
+   - TAB B CONTENT:
+     - Subject: "Project X Status: Blockers & Next Update"
+     - Body Text:
+       "The Project X file is past our 11:00 AM cutoff.
+
+        • Owner: Alex, please take point on triage.
+        • Blocker: What is the immediate constraint preventing completion by 2:00 PM?
+        • Next Update: Reply in the shared channel by 1:00 PM with the revised ETA so we can adjust priority together."
+
+3. Typography & Sizing:
+   - Ensure all email body copy is crisp white (#FFFFFF) with font-size: 18px and line-height: 1.6 for clear readability from the back row.
