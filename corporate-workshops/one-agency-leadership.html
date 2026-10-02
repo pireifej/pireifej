@@ -66,10 +66,74 @@
     </div></div>
   </section>
 
-  <section class="slide" tabindex="-1" aria-label="Slide 5, earshot radius">
+  <section class="slide earshot-floorplan" tabindex="-1" aria-label="Slide 5, earshot radius">
     <div class="eyebrow">Leadership coordination · 4 minutes</div>
     <h2>The <span class="accent">earshot radius</span><br>for leaders.</h2>
-    <div class="radius"><div class="bullpen" aria-label="Illustration of the shared work floor awareness zone"></div><div class="rule"><h3>Public floor / private social</h3><p>On the floor, make work-relevant coordination visible to those affected. Private social coordination belongs off-floor and off the work channel. Do not let social access become a shadow workflow.</p></div></div>
+    <div class="radius">
+      <svg class="office-plan" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="leadership-plan-title leadership-plan-desc">
+        <title id="leadership-plan-title">20-Foot Earshot Radius</title>
+        <desc id="leadership-plan-desc">Top-down office floor plan. A supervisor and peer have an informal chat at two central desks. Concentric acoustic rings reach three surrounding workstations: one employee overhears fragments, another infers back-channel decisions, and another feels excluded from the loop.</desc>
+        <defs>
+          <radialGradient id="leadership-acoustic-field">
+            <stop offset="0" stop-color="#CEFD00" stop-opacity=".15"/>
+            <stop offset=".55" stop-color="#CEFD00" stop-opacity=".07"/>
+            <stop offset="1" stop-color="#CEFD00" stop-opacity="0"/>
+          </radialGradient>
+          <symbol id="leadership-workstation" viewBox="0 0 80 76">
+            <rect x="7" y="5" width="66" height="34" rx="3"/>
+            <rect x="26" y="11" width="28" height="16" rx="2"/>
+            <path d="M40 27v5m-9 0h18M17 16v12m46-12v12"/>
+            <rect x="25" y="47" width="30" height="23" rx="8"/>
+            <circle class="plan-avatar" cx="40" cy="51" r="9"/>
+            <path d="M28 65q12-12 24 0"/>
+          </symbol>
+        </defs>
+        <!-- Walls, doorway swings and workstation partitions, not a grid. -->
+        <path class="plan-walls" d="M18 80V18h245m54 0h305v324H415m-60 0H18V170M263 18v35m0-35a35 35 0 0 1 35 35M355 342v-35m0 35a35 35 0 0 1 35-35"/>
+        <path class="plan-partitions" d="M18 178h141V88m322-70v160h141M444 342V224h178M18 281h138v61"/>
+        <circle cx="320" cy="180" r="145" fill="url(#leadership-acoustic-field)"/>
+        <circle class="plan-ring plan-ring-outer" cx="320" cy="180" r="138"/>
+        <circle class="plan-ring plan-ring-middle" cx="320" cy="180" r="102"/>
+        <circle class="plan-ring" cx="320" cy="180" r="66"/>
+
+        <g class="plan-station">
+          <use href="#leadership-workstation" x="67" y="92" width="80" height="76"/>
+          <use href="#leadership-workstation" x="493" y="92" width="80" height="76"/>
+          <use href="#leadership-workstation" x="482" y="230" width="80" height="76"/>
+        </g>
+        <path class="plan-leader" d="M107 92V74m426 18V81m29 193h35v29"/>
+        <rect class="plan-tag" x="30" y="33" width="208" height="41" rx="5"/>
+        <text class="plan-label" x="44" y="59">Overhears fragments</text>
+        <rect class="plan-tag" x="406" y="28" width="207" height="53" rx="5"/>
+        <text class="plan-label" x="420" y="50">Infers back-channel<tspan x="420" dy="22">decisions</tspan></text>
+        <rect class="plan-tag" x="443" y="303" width="170" height="47" rx="5"/>
+        <text class="plan-label" x="457" y="323">Feels excluded<tspan x="457" dy="20">from the loop</tspan></text>
+
+        <!-- Two top-down desks and seated colleagues facing their exchange. -->
+        <g class="plan-central">
+          <rect x="244" y="151" width="29" height="66" rx="4"/>
+          <rect x="249" y="167" width="15" height="27" rx="2"/>
+          <rect x="367" y="151" width="29" height="66" rx="4"/>
+          <rect x="376" y="167" width="15" height="27" rx="2"/>
+          <rect x="282" y="161" width="30" height="45" rx="12"/>
+          <rect x="328" y="161" width="30" height="45" rx="12"/>
+          <path d="M283 192q14-17 28 0m18 0q14-17 28 0"/>
+          <circle class="plan-avatar" cx="297" cy="179" r="11"/>
+          <circle class="plan-avatar" cx="343" cy="179" r="11"/>
+          <path d="M300 128h40a5 5 0 0 1 5 5v13a5 5 0 0 1-5 5h-9l-7 7v-7h-24a5 5 0 0 1-5-5v-13a5 5 0 0 1 5-5Z"/>
+        </g>
+        <g fill="#CEFD00">
+          <circle cx="308" cy="140" r="2"/><circle cx="320" cy="140" r="2"/><circle cx="332" cy="140" r="2"/>
+        </g>
+        <rect x="216" y="227" width="208" height="52" rx="5" fill="#0B192C"/>
+        <text class="plan-label" x="320" y="248" text-anchor="middle">Supervisor + Peer</text>
+        <text class="plan-note" x="320" y="269" text-anchor="middle">(Informal chat)</text>
+        <path d="M189 313h24m214 0h-24" stroke="#CEFD00" stroke-width="1.5"/>
+        <rect x="177" y="297" width="254" height="31" rx="4" fill="#0B192C"/>
+        <text class="plan-radius-label" x="304" y="319" text-anchor="middle">20-Foot Earshot Radius</text>
+      </svg>
+      <div class="rule"><h3>Public floor / private social</h3><p>On the floor, make work-relevant coordination visible to those affected. Private social coordination belongs off-floor and off the work channel. Do not let social access become a shadow workflow.</p></div>
+    </div>
   </section>
 
   <section class="slide alt" tabindex="-1" aria-label="Slide 6, intentional footprint">
