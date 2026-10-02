@@ -67,40 +67,17 @@ function hasBasicCredentials(req, expectedUser, expectedPass) {
     }
 }
 
-function requireUnitedTeletechClient(req, res, next) {
-    const expectedUser = process.env.UTCU_CLIENT_USERNAME;
-    const expectedPass = process.env.UTCU_CLIENT_PASSWORD;
-
-    if (!expectedUser || !expectedPass) {
-        console.error('UTCU client credentials not set — blocking client deck route');
-        res.set('WWW-Authenticate', 'Basic realm="United Teletech Workshop"');
-        res.set('Cache-Control', 'no-store');
-        return res.status(401).send('Client access is not configured');
-    }
-
-    if (hasBasicCredentials(req, expectedUser, expectedPass)) return next();
-
-    res.set('WWW-Authenticate', 'Basic realm="United Teletech Workshop"');
-    res.set('Cache-Control', 'no-store');
-    return res.status(401).send('Authentication required');
-}
-
-app.get(
-    ['/client/united-teletech-resilience', '/client/united-teletech-resilience.html'],
-    requireUnitedTeletechClient,
+// Guest access has been revoked; keep the admin-protected deck unchanged.
+app.all(
+    [
+        '/client/united-teletech-resilience',
+        '/client/united-teletech-resilience.html',
+        '/client/shared/workshop-base.css',
+        '/client/shared/workshop-controller.js'
+    ],
     (req, res) => {
         res.set('Cache-Control', 'no-store, private');
-        res.sendFile(path.join(__dirname, 'corporate-workshops', 'united-teletech-resilience.html'));
-    }
-);
-
-// Preserve the client-only deck's relative assets under its own credentials.
-app.get(
-    ['/client/shared/workshop-base.css', '/client/shared/workshop-controller.js'],
-    requireUnitedTeletechClient,
-    (req, res) => {
-        res.set('Cache-Control', 'no-store, private');
-        res.sendFile(path.join(__dirname, 'corporate-workshops', 'shared', path.basename(req.path)));
+        res.status(410).send('Guest access to this workshop has been revoked.');
     }
 );
 
