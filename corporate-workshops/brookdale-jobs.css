@@ -23,7 +23,7 @@ body.brookdale-jobs{--ink:#101c33;--paper:#f5f1e8;--acid:#c8ff38;--blue:#43d7ff;
 .brookdale-jobs .time{color:var(--blue);font-weight:800}
 .brookdale-jobs .resume-layout{display:grid;grid-template-columns:1.7fr 1fr;gap:18px}
 .brookdale-jobs .resume-sheet{border:2px solid var(--line);background:#172b49;padding:18px 22px}
-.brookdale-jobs .resume-row{padding:9px 0;border-bottom:1px solid var(--line)}
+.brookdale-jobs .resume-row{padding:6px 0;border-bottom:1px solid var(--line)}
 .brookdale-jobs .resume-row:last-child{border:0}
 .brookdale-jobs .resume-row p{line-height:1.25}
 .brookdale-jobs .resume-row strong{color:var(--acid)}
