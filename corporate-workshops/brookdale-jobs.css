@@ -36,7 +36,8 @@ body.brookdale-jobs{--ink:#101c33;--paper:#f5f1e8;--acid:#c8ff38;--blue:#43d7ff;
 .brookdale-jobs .process .card{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:center;padding:20px 24px}
 .brookdale-jobs .process h3{margin:0;color:var(--acid)}
 .brookdale-jobs blockquote{margin:0;border-left:5px solid var(--blue);padding-left:18px}
-.brookdale-jobs .prediction{display:flex;flex-direction:column;gap:16px;min-height:225px}
+.brookdale-jobs .prediction-examples{display:grid;grid-template-columns:1fr;gap:10px}
+.brookdale-jobs .prediction{display:flex;flex-direction:column;padding:10px 22px;gap:16px}
 .brookdale-jobs .prediction .sentence{font-size:30px;font-weight:800}
 .brookdale-jobs .prediction button{align-self:flex-start;margin-top:auto}
 .brookdale-jobs .answer{color:var(--acid);font-weight:800;min-height:65px}
