@@ -135,24 +135,47 @@
       <article class="card">
         <p class="pattern-step">STEP 1 →</p>
         <h3>The Input</h3>
-        <p><strong>Billions of Examples</strong></p>
-        <p>AI scans millions of cat pictures: fluffy, hairless, tiny kittens, giant strays, silly poses.</p>
-        <p>It analyzes raw data.</p>
+        <div class="pattern-collage">
+          <img src="/attached_assets/image_search/pattern-5047551.jpg" alt="Three kittens with different coat patterns">
+          <img src="/attached_assets/image_search/pattern-13283324.jpg" alt="A calico cat with kittens">
+          <img src="/attached_assets/image_search/pattern-6727205.jpg" alt="A fluffy orange cat">
+          <img src="/attached_assets/image_search/pattern-29826010.jpg" alt="A short-haired ginger cat on a deck">
+        </div>
       </article>
       <article class="card">
         <p class="pattern-step">STEP 2 →</p>
         <h3>Feature &amp; Pattern Detection</h3>
-        <ul aria-label="Recurring features"><li>Pointed ear shapes (triangle contours)</li><li>Whiskers &amp; muzzle symmetry</li><li>Slit eye geometry &amp; fur texture</li></ul>
+        <svg class="pattern-features" viewBox="230 210 395 765" role="img" aria-label="A real gray tabby cat with cyan circles around its ears, lime circles around its eyes, and an orange circle around its furry body" xmlns="http://www.w3.org/2000/svg">
+          <image href="/attached_assets/image_search/pattern-3822875.jpg" x="0" y="0" width="650" height="975"/>
+          <g fill="none" stroke-width="10">
+            <ellipse cx="380" cy="290" rx="42" ry="58" stroke="#43d7ff" transform="rotate(-22 380 290)"/>
+            <ellipse cx="550" cy="280" rx="35" ry="58" stroke="#43d7ff" transform="rotate(22 550 280)"/>
+            <ellipse cx="433" cy="348" rx="28" ry="21" stroke="#c8ff38"/>
+            <ellipse cx="511" cy="346" rx="28" ry="21" stroke="#c8ff38"/>
+            <ellipse cx="440" cy="665" rx="130" ry="205" stroke="#ff9b55"/>
+          </g>
+        </svg>
       </article>
       <article class="card">
         <p class="pattern-step">STEP 3</p>
         <h3>The New Test</h3>
-        <p><strong>Prediction:</strong> A brand-new, unseen photo.</p>
-        <p>Matches key patterns?<br><strong class="accent">YES — 98% Cat</strong></p>
-        <p>Missing patterns (floppy ears, snout)?<br><strong class="blue">NO — 4% Cat (Dog)</strong></p>
+        <div class="pattern-tests">
+          <div class="pattern-test">
+            <img src="/attached_assets/image_search/pattern-29826010.jpg" alt="Ginger cat">
+            <svg class="pattern-verdict pattern-pass" viewBox="0 0 48 48" role="img" aria-label="Correct: cat"><path d="m12 25 8 8 17-19"/></svg>
+          </div>
+          <div class="pattern-test">
+            <img src="/attached_assets/image_search/pattern-14730790.jpg" alt="Tan dog">
+            <svg class="pattern-verdict pattern-fail" viewBox="0 0 48 48" role="img" aria-label="Incorrect: not a cat"><path d="m15 15 18 18m0-18L15 33"/></svg>
+          </div>
+        </div>
       </article>
     </div>
-    <p class="pattern-caveat">No hand-written rulebook for every cat; humans still design and train the system.<br>Percentages are illustrative, not measured. Simplified examples—not reliable cat criteria.</p>
+    <ul class="pattern-caveat">
+      <li>No hand-written rulebook for every cat; humans still design and train the system.</li>
+      <li>Percentages are illustrative, not measured.</li>
+      <li>Simplified examples, not reliable cat criteria.</li>
+    </ul>
     <div class="anchor"><p><strong>Language uses a similar pattern-learning principle:</strong> Generative AI studies billions of sentences to find word patterns.</p></div>
   </section>
 
