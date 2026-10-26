@@ -3,3 +3,4 @@
 - [Workshop reuse boundaries](workshop-reuse-boundaries.md) — Shared presentation assets must work under both admin and client-only entry points.
 - [Academy presentation boundaries](academy-presentation-boundaries.md) — Preserve homework and interactive content when changing presentation behavior; avoid whole-window load gates.
 - [Leadership live typing](leadership-live-typing.md) — Keep the directive exercise a simple large text box and Clear button.
+- [Brookdale presentation format](brookdale-presentation-format.md) — Keep lesson content static; presenter may only have a PPT and explains predictions aloud.
