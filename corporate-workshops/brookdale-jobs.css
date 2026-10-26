@@ -62,6 +62,13 @@ body.brookdale-jobs{--ink:#101c33;--paper:#f5f1e8;--acid:#c8ff38;--blue:#43d7ff;
 .brookdale-jobs .experience-verbs h3{font-size:28px;color:var(--blue)}
 .brookdale-jobs .experience-verbs p{font-size:28px;line-height:1.5}
 .brookdale-jobs .experience-footer p{font-weight:800}
+.brookdale-jobs .job-posting-slide{gap:8px;padding-top:52px;padding-bottom:76px}
+.brookdale-jobs .job-posting-slide h2{font-size:40px}
+.brookdale-jobs .job-posting-slide p,.brookdale-jobs .job-posting-slide li{font-size:24px;line-height:1.2}
+.brookdale-jobs .job-posting-slide .card{padding:12px 16px;border-top:4px solid var(--blue)}
+.brookdale-jobs .job-posting-slide h3{font-size:26px;line-height:1.1;margin-bottom:8px;color:var(--acid)}
+.brookdale-jobs .job-posting-slide ul{margin:0;padding-left:26px}
+.brookdale-jobs .job-posting-slide li+li{margin-top:6px}
 .brookdale-jobs .timer-panel{display:flex;align-items:center;gap:12px;padding:14px 20px;background:#23354c;border-left:7px solid var(--acid)}
 .brookdale-jobs .timer{font:800 44px/1 Manrope;color:var(--acid);font-variant-numeric:tabular-nums;min-width:140px}
 .brookdale-jobs .timer-panel p{margin-left:auto}
@@ -72,8 +79,8 @@ body.brookdale-jobs{--ink:#101c33;--paper:#f5f1e8;--acid:#c8ff38;--blue:#43d7ff;
 .brookdale-jobs .hub-link{position:fixed;left:48px;top:16px;z-index:5;font:700 24px/1.1 Manrope}
 .brookdale-jobs .slide:focus{outline:none}
 .brookdale-jobs .slide[aria-labelledby="title-3"]{gap:16px}
-.brookdale-jobs .slide[aria-labelledby="title-8"]{gap:14px}
-.brookdale-jobs .slide[aria-labelledby="title-11"]{gap:12px}
+.brookdale-jobs .slide[aria-labelledby="title-9"]{gap:14px}
+.brookdale-jobs .slide[aria-labelledby="title-12"]{gap:12px}
 .brookdale-jobs #timer-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .brookdale-jobs .lunch-return{padding:20px 26px}
 .brookdale-jobs .lunch-return>p:first-child{font-weight:800;letter-spacing:.04em}
