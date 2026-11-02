@@ -24,9 +24,11 @@ Certificates return `certifications`; the other résumé feeds return `records`.
 
 ## Explicit testimonial exception
 
-The user chose to keep testimonials unchanged for now. The live `/resume/testimonials` feed currently has only two entries, whereas the existing testimonial page has 18.
-Static testimonials and curated testimonial previews were not replaced or removed.
-The backend must be completed separately before switching this content.
+The original exception was superseded after the backend published all 18 entries and the user authorized the switch.
+The testimonial page and homepage preview now fetch `/resume/testimonials`, without a static quote fallback.
+They request fresh data on load/retry, refresh every five minutes while visible, and revalidate when returning to a page whose last request is at least five minutes old.
+The full page groups records by the four specified categories, preserving feed order within each group; the homepage previews the first three records. Counts are dynamic, not capped at 18.
+Quotes are rendered as text; legacy records do not need IDs. Existing local headshots remain presentation assets only.
 
 ## Freshness and failures
 

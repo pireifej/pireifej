@@ -1,10 +1,10 @@
 ---
 name: Public portfolio feed boundaries
-description: Testimonial exception and public-only backend integration scope.
+description: Public-only backend integration scope and testimonial source decision.
 ---
 
-Keep testimonials unchanged until the missing entries are published in the existing backend and the user authorizes switching them.
+Use the existing public backend for testimonials; the earlier instruction to keep them static has been superseded.
 
-**Why:** During the feed audit, the backend exposed only two testimonials compared with 18 on the website. The user explicitly chose “Keep testimonials unchanged for now.”
+**Why:** The user subsequently confirmed the backend publishes all 18 entries and explicitly authorized connecting the website. Both Kathleen testimonials are intentional, not duplicates.
 
-**How to apply:** Do not replace the static testimonials with the incomplete feed as part of unrelated feed work. Public portfolio work must not modify the backend/database or combine private CRM workshops with résumé workshops.
+**How to apply:** Never deduplicate testimonials by person or restore hardcoded quotes as an outage fallback. Public portfolio work must not modify the backend/database or combine private CRM workshops with résumé workshops.
