@@ -45,7 +45,7 @@ $(document).ready(function() {
                 '<div class="card-content"><h5>' + label + '</h5>' +
                 '<span class="card-category">' + getCategoryLabel(item._category) + '</span></div></div>';
         });
-        $('#race-grid').html(html);
+        $('#race-grid').html(html || '<p>No races are published yet.</p>');
     }
 
     function setupFilterHandlers() {

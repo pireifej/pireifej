@@ -52,6 +52,9 @@ $( document ).ready(function() {
             dataType: 'json',
             cache: false,
             success: postProcessDataProjects,
+            error: function() {
+                $('#nav-tabContent-ireifej').html('<p role="alert">Could not load portfolio entries. Please reload to try again.</p>');
+            },
             async:true,
         });
     }

@@ -4,3 +4,4 @@
 - [Academy presentation boundaries](academy-presentation-boundaries.md) — Preserve homework and interactive content when changing presentation behavior; avoid whole-window load gates.
 - [Leadership live typing](leadership-live-typing.md) — Keep the directive exercise a simple large text box and Clear button.
 - [Brookdale presentation format](brookdale-presentation-format.md) — Keep lesson content static; presenter may only have a PPT and explains predictions aloud.
+- [Public portfolio feeds](public-portfolio-feeds.md) — Testimonials remain unchanged until the backend content is complete and a switch is authorized.

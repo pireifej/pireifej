@@ -3,6 +3,14 @@ $(document).ready(function() {
     var allItems = [];
     var loadedCount = 0;
     var TOTAL_LOADS = 4;
+    var categoryOrder = ['projects', 'conference', 'hackathon', 'patent'];
+    var failedCategories = [];
+    function failed(category) {
+        return function() {
+            failedCategories.push(category);
+            checkAllLoaded();
+        };
+    }
 
     var customProjectImages = {
         'Real Time Machine Learning and AI Operations': { image: 'img-new/projects/ml_and_ai_operations_visualization.png', categories: ['conference', 'patent'] },
@@ -37,7 +45,14 @@ $(document).ready(function() {
     function checkAllLoaded() {
         loadedCount++;
         if (loadedCount >= TOTAL_LOADS) {
+            // Keep feed order within each category, regardless of network timing.
+            allItems.sort(function(a, b) {
+                return categoryOrder.indexOf(a._category) - categoryOrder.indexOf(b._category);
+            });
             renderGrid();
+            if (failedCategories.length) {
+                $('#tech-grid').prepend('<p role="alert">Could not load: ' + failedCategories.join(', ') + '. Please reload to try again.</p>');
+            }
             setupFilterHandlers();
             setupModalHandlers();
             ModalNav.init(allItems, openModal);
@@ -54,7 +69,7 @@ $(document).ready(function() {
             });
             checkAllLoaded();
         },
-        error: checkAllLoaded
+        error: failed('projects')
     });
 
     $.ajax({ url: API_BASE + 'conference', type: 'get', dataType: 'json', cache: false,
@@ -66,7 +81,7 @@ $(document).ready(function() {
             });
             checkAllLoaded();
         },
-        error: checkAllLoaded
+        error: failed('conference')
     });
 
     $.ajax({ url: API_BASE + 'hackathon', type: 'get', dataType: 'json', cache: false,
@@ -78,7 +93,7 @@ $(document).ready(function() {
             });
             checkAllLoaded();
         },
-        error: checkAllLoaded
+        error: failed('hackathon')
     });
 
     $.ajax({ url: API_BASE + 'patent', type: 'get', dataType: 'json', cache: false,
@@ -90,7 +105,7 @@ $(document).ready(function() {
             });
             checkAllLoaded();
         },
-        error: checkAllLoaded
+        error: failed('patent')
     });
 
     function renderGrid() {
@@ -103,7 +118,7 @@ $(document).ready(function() {
                 '<div class="card-content"><h5>' + label + '</h5>' +
                 '<span class="card-category">' + item._categoryLabel + '</span></div></div>';
         });
-        $('#tech-grid').html(html);
+        $('#tech-grid').html(html || (failedCategories.length ? '' : '<p>No portfolio entries are published yet.</p>'));
     }
 
     function setupFilterHandlers() {

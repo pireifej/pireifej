@@ -2670,11 +2670,12 @@ I specialize in bridging the gap between technology and communication, leading d
         
         // Update dynamic "Times on Stage" counter on page load
         $(document).ready(function() {
-            let workshopsCount = 0;
-            let speechesCount = 0;
+            let workshopsCount = null;
+            let speechesCount = null;
             const stageCounter = $('#stage-counter');
             
             function updateStageCounter() {
+                if (workshopsCount === null || speechesCount === null) return;
                 const total = workshopsCount + speechesCount;
                 console.log('Total times on stage:', total, '(Workshops:', workshopsCount, '+ Speeches:', speechesCount, ')');
                 stageCounter.attr('data-to', total);
@@ -2694,6 +2695,7 @@ I specialize in bridging the gap between technology and communication, leading d
                 },
                 error: function(xhr, status, error) {
                     console.log('Could not load workshops count:', error);
+                    stageCounter.removeAttr('data-to').text('Unavailable');
                 }
             });
             
@@ -2710,6 +2712,7 @@ I specialize in bridging the gap between technology and communication, leading d
                 },
                 error: function(xhr, status, error) {
                     console.log('Could not load speeches count:', error);
+                    stageCounter.removeAttr('data-to').text('Unavailable');
                 }
             });
         });

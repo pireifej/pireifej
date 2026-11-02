@@ -112,7 +112,7 @@ $(document).ready(function() {
                 '<div class="card-content"><h5>' + label + '</h5>' +
                 '<span class="card-category">' + categoryLabel + '</span></div></div>';
         });
-        $('#workshop-grid').html(html);
+        $('#workshop-grid').html(html || '<p>No workshops are published yet.</p>');
         applyFilter(getInitialFilter());
     }
 

@@ -12,6 +12,8 @@ $(document).ready(function() {
     } else {
         $.ajax({ url: API_URL, type: 'get', dataType: 'json', cache: false,
             success: function(data) {
+                $('#catalog-title').text(data.title || '');
+                $('#catalog-subtitle').text(data.subtitle || '');
                 renderFilters(data.categories || []);
                 renderCatalog(data.categories || []);
                 setupFilterHandlers();
@@ -35,6 +37,10 @@ $(document).ready(function() {
     }
 
     function renderCatalog(categories) {
+        if (!categories.length) {
+            $('#catalog-content').html('<div class="loading-spinner">No workshops are published yet.</div>');
+            return;
+        }
         var html = '';
         categories.forEach(function(cat) {
             var items = cat.items || [];

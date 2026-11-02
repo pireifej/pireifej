@@ -109,6 +109,9 @@ function replaceTemplates(content) {
     content = content.replace('{{preloader}}', preloader);
     content = content.replace('{{header}}', header);
     content = content.replace('{{sidebar}}', sidebar);
+    // Install public-feed validation before page-specific jQuery consumers.
+    content = content.replace('<script src="js/jquery-3.6.0.min.js"></script>',
+        '<script src="js/jquery-3.6.0.min.js"></script><script src="/js/public-feed-policy.js"></script>');
     return content;
 }
 
@@ -145,10 +148,6 @@ async function getWorkshopCatalog() {
         };
         return data;
     } catch (error) {
-        if (workshopCatalogCache.data) {
-            console.warn('Using stale workshop catalog cache:', error.message);
-            return workshopCatalogCache.data;
-        }
         throw error;
     }
 }
@@ -194,7 +193,7 @@ function renderWorkshopCatalog(data) {
         content += '</div></div>';
     });
 
-    return { filters, content };
+    return { filters, content: content || '<div class="loading-spinner">No workshops are published yet.</div>' };
 }
 
 app.get('/', (req, res) => {
@@ -216,6 +215,8 @@ app.get('/workshop-catalog.html', async (req, res) => {
         let content = fs.readFileSync('workshop-catalog.html', 'utf8');
         content = replaceTemplates(content)
             .replace('{{workshopCatalogFilters}}', rendered.filters)
+            .replace('{{workshopCatalogTitle}}', escapeHtml(data.title))
+            .replace('{{workshopCatalogSubtitle}}', escapeHtml(data.subtitle))
             .replace('{{workshopCatalogContent}}', rendered.content)
             .replace('{{workshopCatalogData}}', JSON.stringify(data).replace(/</g, '\\u003c'));
         res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -225,6 +226,8 @@ app.get('/workshop-catalog.html', async (req, res) => {
         let content = fs.readFileSync('workshop-catalog.html', 'utf8');
         content = replaceTemplates(content)
             .replace('{{workshopCatalogFilters}}', '<button class="filter-btn active" data-filter="all">All</button>')
+            .replace('{{workshopCatalogTitle}}', 'Workshop Catalog')
+            .replace('{{workshopCatalogSubtitle}}', 'The catalog is temporarily unavailable.')
             .replace('{{workshopCatalogContent}}', '<div class="loading-spinner">Loading...</div>')
             .replace('{{workshopCatalogData}}', 'null');
         res.set('Cache-Control', 'no-cache, no-store, must-revalidate');

@@ -36,7 +36,7 @@ $(document).ready(function() {
                 '<div class="card-image"><img src="' + img + '" alt="' + label + '" style="object-position: center top;" loading="lazy"></div>' +
                 '<div class="card-content"><h5>' + label + '</h5></div></div>';
         });
-        $('#speech-grid').html(html);
+        $('#speech-grid').html(html || '<p>No speeches are published yet.</p>');
     }
 
     function setupModalHandlers() {

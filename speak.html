@@ -598,12 +598,11 @@
                     var total = 0;
                     records.forEach(function(r) { total += sessionCount(r); });
                     console.log('Workshop sessions total:', total, 'from', records.length, 'workshops');
-                    if (total > 0) {
-                        $('#workshops-counter').attr('data-to', total).text(total);
-                    }
+                    $('#workshops-counter').attr('data-to', total).text(total);
                 },
                 error: function(xhr, status, error) {
                     console.log('Could not load workshops count:', error);
+                    $('#workshops-counter').removeAttr('data-to').text('Unavailable');
                 }
             });
         });
