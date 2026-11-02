@@ -101,3 +101,31 @@ mtime_ms = 1790430991249
 storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/deea515a-5bdb-4337-add3-97143fed522e/2d94bf4e-cd06-4685-936d-a92db73254ce"
 storage_version_token = "1790431015484329"
 content_type = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+
+[[outputs]]
+id = "KSkPjoi1FqB3IcncKmNCW"
+uri = "file://attached_assets/exports/website-testimonials.csv"
+type = "table"
+title = "All 18 website testimonials — CSV"
+description = "Full quotes, names, attributions, categories, event labels, dates where known, image paths, and display order for database import."
+logical_id = "01708fb5-673a-44eb-a510-4990f7749d61"
+content_hash = "sha256:ed345aba11f045722c8988ef6e41064faafac14ddd0a8ffcc5d338318c9b57c4"
+size = 9431
+mtime_ms = 1793630768283
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/01708fb5-673a-44eb-a510-4990f7749d61/a120df6b-384f-481a-bfda-99573b8914e4"
+storage_version_token = "1793630791156412"
+content_type = "text/csv"
+
+[[outputs]]
+id = "MjuIOfJqtvAe9ekPgz-xK"
+uri = "file://attached_assets/exports/website-testimonials.json"
+type = "unspecified"
+title = "All 18 website testimonials — JSON"
+description = "Structured export of the existing website testimonials, preserving the published wording and marking unknown dates as null."
+logical_id = "1b9d1a84-928d-4ca5-8f95-84c2854bc5c3"
+content_hash = "sha256:6dce412bdc866a6d7cb408cbc649fe461ad6b8fb8b39fdc10f0daab4cc9674ad"
+size = 12633
+mtime_ms = 1793630768280
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:05ad202a-6e69-4884-b90d-a09b0663bd17/1b9d1a84-928d-4ca5-8f95-84c2854bc5c3/0177dda5-1a9b-4756-b476-ba35e7d81e64"
+storage_version_token = "1793630791682254"
+content_type = "application/octet-stream"
